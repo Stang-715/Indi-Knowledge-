@@ -210,8 +210,8 @@ svg#indiaMap { width: 100%; height: auto; display: block; }
 
 /* states & districts */
 .state path {
-  stroke: rgba(255, 253, 246, 0.85);
-  stroke-width: 0.35;
+  stroke: rgba(255, 253, 246, 0.7);
+  stroke-width: 0.3;
   vector-effect: non-scaling-stroke;
   transition: filter 0.15s ease, opacity 0.2s ease;
   cursor: pointer;
@@ -222,8 +222,8 @@ svg#indiaMap { width: 100%; height: auto; display: block; }
 
 .state-outline {
   fill: none;
-  stroke: rgba(60, 50, 40, 0.55);
-  stroke-width: 0.7;
+  stroke: rgba(60, 50, 40, 0.6);
+  stroke-width: 0.8;
   vector-effect: non-scaling-stroke;
   pointer-events: none;
 }

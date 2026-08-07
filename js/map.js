@@ -16,6 +16,8 @@
     H: 0,
     stateBBox: {},   // slug -> [x0,y0,x1,y1]
     stateEls: {},    // slug -> <g>
+    distInfo: {},    // slug -> [{n, c:[x,y], w}]
+    dLabelsG: null,  // district labels layer (rebuilt per focus)
     focused: null,
     activeDistrict: null,
     anim: null,
@@ -135,11 +137,14 @@
     root.appendChild(outlinesG);
     var labelsG = el("g", { "class": "state-labels", "pointer-events": "none" });
     root.appendChild(labelsG);
+    M.dLabelsG = el("g", { "class": "district-labels", "pointer-events": "none" });
+    root.appendChild(M.dLabelsG);
 
     Object.keys(data.states).forEach(function (slug) {
       var st = data.states[slug];
       var g = el("g", { "class": "state", "data-state": slug });
       var allPolys = [];
+      M.distInfo[slug] = [];
 
       st.districts.forEach(function (d) {
         d.p.forEach(function (flat) { allPolys.push(flat); });
@@ -147,6 +152,8 @@
         d.p.forEach(function (flat) { dPath += flatToPath(flat); });
         var path = el("path", { d: dPath, "data-district": d.n });
         g.appendChild(path);
+        var di = polyCentroidAndBBox(d.p);
+        M.distInfo[slug].push({ n: d.n, c: di.c, w: di.b[2] - di.b[0] });
       });
 
       var info = polyCentroidAndBBox(allPolys);
@@ -235,6 +242,34 @@
     });
   }
 
+  function clearDistrictLabels() {
+    while (M.dLabelsG.firstChild) M.dLabelsG.removeChild(M.dLabelsG.firstChild);
+  }
+
+  function buildDistrictLabels(slug) {
+    clearDistrictLabels();
+    var b = M.stateBBox[slug];
+    var stateW = b[2] - b[0], stateH = b[3] - b[1];
+    var fs = Math.max(1.6, Math.min(stateW, stateH) / 26);
+    M.distInfo[slug].forEach(function (d) {
+      // skip labels that clearly overflow their district
+      if (d.w < d.n.length * fs * 0.5) return;
+      var t = el("text", {
+        x: d.c[0], y: d.c[1],
+        "text-anchor": "middle",
+        "font-size": fs,
+        "font-family": "'Segoe UI', system-ui, sans-serif",
+        "font-weight": 600,
+        fill: "#4a4138",
+        stroke: "rgba(251,249,242,0.9)",
+        "stroke-width": fs * 0.18,
+        "paint-order": "stroke",
+      });
+      t.textContent = d.n;
+      M.dLabelsG.appendChild(t);
+    });
+  }
+
   function focusState(slug) {
     M.focused = slug;
     M.activeDistrict = null;
@@ -247,6 +282,7 @@
     });
     var lbls = M.svg.querySelectorAll(".state-labels text");
     lbls.forEach(function (t) { t.style.display = "none"; });
+    buildDistrictLabels(slug);
     animateViewBox(stateViewBox(slug), 650);
     if (M.hooks.onStateSelect) M.hooks.onStateSelect(slug);
   }
@@ -260,6 +296,7 @@
       g.querySelectorAll("path").forEach(function (p) { p.classList.remove("district-active"); });
     });
     M.svg.querySelectorAll(".state-labels text").forEach(function (t) { t.style.display = ""; });
+    clearDistrictLabels();
     animateViewBox(nationalViewBox(), 650);
     if (M.hooks.onStateSelect) M.hooks.onStateSelect(null);
   }
