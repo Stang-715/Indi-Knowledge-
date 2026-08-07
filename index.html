@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>India Knowledge Map · भारत — Interactive Atlas</title>
+  <meta name="description" content="An interactive, research-backed knowledge map of India — soil health, history, governance, communities, art, craft, wars, Vedas and folk tales, state by state and district by district.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🇮🇳</text></svg>">
+</head>
+<body>
+
+  <div class="tricolor"><span class="s"></span><span class="w"></span><span class="g"></span></div>
+
+  <header class="app-header">
+    <div class="kicker">Interactive knowledge atlas of</div>
+    <h1>INDIA</h1>
+    <div class="devanagari">भारत</div>
+    <p class="tagline">
+      Nine layers of knowledge on one clickable map — soil beneath your feet, the history above it,
+      and the stories carried between. Every fact researched, sourced and QC-checked; nothing assumed.
+    </p>
+  </header>
+
+  <nav class="tabs" id="tabBar" aria-label="Knowledge tabs"></nav>
+
+  <main class="layout">
+    <section class="map-card" aria-label="Map of India">
+      <div class="map-toolbar">
+        <div class="crumb" id="crumb"></div>
+        <div class="spacer"></div>
+        <input type="search" id="stateSearch" list="stateList" placeholder="Search state / UT…" aria-label="Search state">
+        <datalist id="stateList"></datalist>
+        <button class="tool-btn" id="btn3d" title="Toggle 3D tilt view">◈ 3D view</button>
+        <button class="tool-btn" id="btnReset" title="Back to national view">⤺ India</button>
+      </div>
+      <div class="map-viewport" id="mapStage">
+        <div class="map-tilt">
+          <svg id="indiaMap" role="img" aria-label="Interactive map of Indian states and districts"></svg>
+        </div>
+      </div>
+      <div class="map-legend" id="mapLegend"></div>
+    </section>
+
+    <aside class="panel" aria-label="Details panel">
+      <div class="panel-head" id="panelHead"></div>
+      <div class="panel-body" id="panelBody"></div>
+    </aside>
+  </main>
+
+  <div id="tooltip" role="tooltip"></div>
+
+  <footer class="app-footer">
+    <div class="credit">Conceived &amp; directed by <b>Srisanth</b> (stang-715) · Built with Claude Code</div>
+    <div>
+      Data compiled from government portals, ICAR, ASI, GI Registry, national academies and academic sources —
+      see the Sources section of every entry and <a href="data/qc-report.md">the QC report</a>.
+      New findings and media are integrated slowly through a strict review pipeline
+      (<a href="backend/README.md">how it works</a>), not open edits.
+    </div>
+    <div style="margin-top:6px">
+      Map boundaries: simplified community data (Datameet-derived) for visualisation only — not an authoritative
+      representation of national or internal boundaries.
+    </div>
+  </footer>
+
+  <!-- map geometry -->
+  <script src="js/map-data.js"></script>
+
+  <!-- research-backed data packs (each file is independent; missing ones degrade gracefully) -->
+  <script src="data/soil.js"></script>
+  <script src="data/history.js"></script>
+  <script src="data/governance.js"></script>
+  <script src="data/community.js"></script>
+  <script src="data/art.js"></script>
+  <script src="data/craft.js"></script>
+  <script src="data/wars.js"></script>
+  <script src="data/vedas.js"></script>
+  <script src="data/folklore.js"></script>
+
+  <!-- app -->
+  <script src="js/map.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

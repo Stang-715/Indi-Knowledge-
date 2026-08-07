@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/stang-715/Indi-Knowledge-/backend/contribution.schema.json",
+  "title": "India Knowledge Map — Contribution",
+  "description": "A single proposed addition (fact, correction, media item or new finding). Submissions failing this schema are rejected before human review.",
+  "type": "object",
+  "required": ["kind", "tab", "state", "payload", "sources", "submitter"],
+  "additionalProperties": false,
+  "properties": {
+    "kind": {
+      "enum": ["fact", "correction", "media", "district-record", "new-finding"]
+    },
+    "tab": {
+      "enum": ["soil", "history", "governance", "community", "art", "craft", "wars", "vedas", "folklore"]
+    },
+    "state": {
+      "type": "string",
+      "description": "Canonical slug from data/SPEC.md, e.g. 'madhya-pradesh'",
+      "pattern": "^[a-z][a-z-]+$"
+    },
+    "district": {
+      "type": ["string", "null"],
+      "description": "Official district name if the contribution is district-level"
+    },
+    "payload": {
+      "type": "object",
+      "description": "For 'media': the media object (type,title,url,source,license). For facts/corrections: {text, replaces?}. For district-record: fields per the tab's schema.",
+      "minProperties": 1
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 2,
+      "description": "At least two independent sources; one may be primary research.",
+      "items": {
+        "type": "object",
+        "required": ["title", "url"],
+        "additionalProperties": false,
+        "properties": {
+          "title": { "type": "string", "minLength": 3 },
+          "publisher": { "type": "string" },
+          "url": { "type": "string", "pattern": "^https?://" },
+          "year": { "type": "integer", "minimum": 1800, "maximum": 2100 }
+        }
+      }
+    },
+    "submitter": {
+      "type": "object",
+      "required": ["name", "contact"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string", "minLength": 2 },
+        "contact": { "type": "string", "minLength": 5 },
+        "affiliation": { "type": "string" }
+      }
+    },
+    "notes": { "type": "string", "maxLength": 2000 }
+  }
+}
