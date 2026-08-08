@@ -18,6 +18,7 @@
     stateEls: {},    // slug -> <g>
     distInfo: {},    // slug -> [{n, c:[x,y], w}]
     dLabelsG: null,  // district labels layer (rebuilt per focus)
+    depthSvgs: [],   // stacked silhouette layers for 3D thickness
     focused: null,
     activeDistrict: null,
     anim: null,
@@ -106,7 +107,9 @@
       var t = Math.min(1, (ts - t0) / ms);
       var e = ease(t);
       var vb = from.map(function (v, i) { return v + (target[i] - v) * e; });
-      svg.setAttribute("viewBox", vb.join(" "));
+      var vbStr = vb.join(" ");
+      svg.setAttribute("viewBox", vbStr);
+      M.depthSvgs.forEach(function (d) { d.setAttribute("viewBox", vbStr); });
       if (t < 1) M.anim = requestAnimationFrame(step);
     }
     M.anim = requestAnimationFrame(step);
@@ -220,6 +223,24 @@
     // click on empty space resets
     svg.addEventListener("click", function () {
       if (M.focused) reset();
+    });
+
+    // 3D thickness: stacked silhouette layers behind the interactive map.
+    // SVG children can't translateZ, so these are sibling <svg> elements
+    // that the orbit view pushes back in Z (see css .depth-layer rules).
+    var silhouette = "";
+    Object.keys(data.states).forEach(function (slug) {
+      var st = data.states[slug];
+      var polys = st.outline || st.districts.reduce(function (a, d) { return a.concat(d.p); }, []);
+      polys.forEach(function (flat) { silhouette += flatToPath(flat); });
+    });
+    var tiltBox = svg.parentNode; // .map-tilt
+    ["#31203a", "#2a1b32", "#23162a", "#1c1122"].forEach(function (color, i) {
+      var dsvg = el("svg", { viewBox: "0 0 " + W + " " + M.H, "class": "depth-layer", "aria-hidden": "true" });
+      dsvg.setAttribute("data-z", i + 1);
+      dsvg.appendChild(el("path", { d: silhouette, fill: color }));
+      tiltBox.insertBefore(dsvg, svg);
+      M.depthSvgs.push(dsvg);
     });
 
     recolor();

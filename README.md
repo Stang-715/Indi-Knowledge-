@@ -32,13 +32,16 @@ No build step, no server, no dependencies:
 | 07 | 🛡️ Wars | Battles fought on each state's soil — belligerents, outcomes, consequences |
 | 08 | 🕉️ Vedas | Vedic connections, shakhas & living traditions, knowledge centers, regional texts |
 | 09 | 🪔 Folk Tales | Documented folk tales ("Dadi ki kahaniyan") readable in **English / हिन्दी / regional language** |
+| 10 | 🏰 Heritage | UNESCO World Heritage properties and ASI-protected monuments, state by state |
 
 ## How to use
 
 - **Click a state** → it zooms in; the side panel opens that state's dossier for the active tab.
 - **Click a district** (inside a zoomed state) → district-level records where verified data exists.
 - **Switch tabs** → the map re-colors (soil types, formation era, GI-craft density, lore language…).
-- **◈ 3D view** → tilts the map; **search box** jumps to any state; **Esc** returns to India.
+- **◈ 3D view** → cycles flat → tilt → **orbit**: drag to rotate on X/Y, scroll or ⟲⟳ (or Q/E)
+  to spin on Z, double-click to reset — the map stays fully clickable while rotated.
+- **Search box** jumps to any state; **Esc** returns to India.
 
 ## Data integrity (the strict filter)
 

@@ -228,6 +228,22 @@
         return e && count(e.tales) ? "Tale: " + (e.tales[0].title.en || "") : null;
       },
     },
+    {
+      key: "heritage", num: "10", icon: "🏰", label: "Heritage",
+      blurb: "UNESCO World Heritage properties and ASI-protected monuments — the built and natural memory of every state.",
+      legendTitle: "Heritage sites documented",
+      fill: function (e) { return e ? seqColor(count(e.sites), [2, 4, 5, 6]) : null; },
+      legend: function () {
+        return [{ label: "fewer", color: SEQ[0] }, { label: "…", color: SEQ[2] }, { label: "more", color: SEQ[4] }];
+      },
+      tipLine: function (e) {
+        if (!e) return null;
+        var bits = [];
+        if (e.unescoCount != null) bits.push("UNESCO: " + e.unescoCount);
+        if (count(e.sites)) bits.push("e.g. " + e.sites[0].name);
+        return bits.join(" · ") || null;
+      },
+    },
   ];
 
   /* ---------------- app state ---------------- */
@@ -471,6 +487,26 @@
       }).join(""));
       return html;
     },
+    heritage: function (e) {
+      var html = para(e.summary, "summary");
+      html += sec("At a glance", kvCards([
+        ["UNESCO properties", e.unescoCount != null ? String(e.unescoCount) : null],
+        ["ASI monuments", e.asiNote],
+      ]));
+      if (count(e.sites)) {
+        var order = ["UNESCO World Heritage", "UNESCO Natural", "UNESCO Tentative List",
+                     "ASI Monument of National Importance", "State protected"];
+        var sorted = e.sites.slice().sort(function (a, b) {
+          return order.indexOf(a.designation) - order.indexOf(b.designation);
+        });
+        html += sec("Sites", sorted.map(function (s) {
+          return itemCard(esc(s.name),
+            esc(s.district || "") + (s.period ? " · " + esc(s.period) : ""),
+            esc(s.note || ""), s.designation || null);
+        }).join(""));
+      }
+      return html;
+    },
   };
 
   function pill(code, label) {
@@ -534,7 +570,7 @@
         "<div class='stat-strip'>" +
         "<div class='stat'><div class='n'>36</div><div class='l'>States & UTs</div></div>" +
         "<div class='stat'><div class='n'>" + window.IndiaMap.listStates().reduce(function (a, s) { return a + window.IndiaMap.listDistricts(s.slug).length; }, 0) + "</div><div class='l'>Districts</div></div>" +
-        "<div class='stat'><div class='n'>" + loaded + "/9</div><div class='l'>Data packs</div></div>" +
+        "<div class='stat'><div class='n'>" + loaded + "/" + TABS.length + "</div><div class='l'>Data packs</div></div>" +
         "</div>" +
         (pack && pack.meta && count(pack.meta.primarySources)
           ? sec("Primary sources for this tab", ul(pack.meta.primarySources))
@@ -710,13 +746,25 @@
     search.addEventListener("change", trySearch);
     search.addEventListener("keydown", function (e) { if (e.key === "Enter") trySearch(); });
 
-    // 3D toggle + reset
+    // 3D control: flat → tilt → orbit (drag to rotate X/Y, wheel/Q/E for Z)
     var stage = document.getElementById("mapStage");
     var btn3d = document.getElementById("btn3d");
+    var btnZL = document.getElementById("btnZL");
+    var btnZR = document.getElementById("btnZR");
+    window.Orbit.init({ stage: stage, tiltEl: stage.querySelector(".map-tilt") });
+    var MODE_LABELS = ["◈ 3D view", "◈ Tilt on", "🧊 Orbit on"];
     btn3d.addEventListener("click", function () {
-      stage.classList.toggle("tilted");
-      btn3d.classList.toggle("on");
+      var m = (window.Orbit.getMode() + 1) % 3;
+      window.Orbit.setMode(m);
+      btn3d.textContent = MODE_LABELS[m];
+      btn3d.classList.toggle("on", m > 0);
+      btnZL.style.display = m === 2 ? "" : "none";
+      btnZR.style.display = m === 2 ? "" : "none";
     });
+    btnZL.style.display = "none";
+    btnZR.style.display = "none";
+    btnZL.addEventListener("click", function () { window.Orbit.spin(-12); });
+    btnZR.addEventListener("click", function () { window.Orbit.spin(12); });
     document.getElementById("btnReset").addEventListener("click", function () {
       window.IndiaMap.reset();
     });

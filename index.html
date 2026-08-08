@@ -31,13 +31,16 @@
         <div class="spacer"></div>
         <input type="search" id="stateSearch" list="stateList" placeholder="Search state / UT…" aria-label="Search state">
         <datalist id="stateList"></datalist>
-        <button class="tool-btn" id="btn3d" title="Toggle 3D tilt view">◈ 3D view</button>
+        <button class="tool-btn" id="btn3d" title="Cycle view: flat / tilt / 3D orbit">◈ 3D view</button>
+        <button class="tool-btn zbtn" id="btnZL" title="Spin left (Q)">⟲</button>
+        <button class="tool-btn zbtn" id="btnZR" title="Spin right (E)">⟳</button>
         <button class="tool-btn" id="btnReset" title="Back to national view">⤺ India</button>
       </div>
       <div class="map-viewport" id="mapStage">
         <div class="map-tilt">
           <svg id="indiaMap" role="img" aria-label="Interactive map of Indian states and districts"></svg>
         </div>
+        <div class="orbit-hint">drag to rotate · scroll or ⟲⟳ to spin · double-click to reset</div>
       </div>
       <div class="map-legend" id="mapLegend"></div>
     </section>
@@ -79,9 +82,11 @@
   <script src="data/wars.js"></script>
   <script src="data/vedas.js"></script>
   <script src="data/folklore.js"></script>
+  <script src="data/heritage.js"></script>
 
   <!-- app -->
   <script src="js/map.js"></script>
+  <script src="js/orbit.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>
