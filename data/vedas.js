@@ -152,7 +152,7 @@ window.INDIA_DATA.vedas = {
       "knowledgeCenters": [
         {
           "name": "Tawang Monastery (Galden Namgey Lhatse)",
-          "note": "Founded in 1680 by Merak Lama Lodre Gyatso; its Par-Khang library preserves the Kangyur and Tengyur and thousands of Mahayana Buddhist manuscripts, making it the state's foremost repository of written learning."
+          "note": "Founded 1680-81 by Merak Lama Lodre Gyatso in accordance with the wishes of the 5th Dalai Lama; its library preserves sets of the Kangyur and Tengyur, making it the state's foremost repository of written learning."
         }
       ],
       "texts": [
@@ -330,7 +330,7 @@ window.INDIA_DATA.vedas = {
     "chandigarh": {
       "name": "Chandigarh",
       "summary": "Chandigarh is a planned modern city with no ancient Vedic institution of its own, though it sits in the northwestern plains that scholarship associates with late Vedic settlement. Its real contribution to Vedic knowledge is institutional and modern: Panjab University, headquartered in Chandigarh, administers the Vishveshvaranand institute whose 16-volume 'A Vedic Word Concordance' is a foundational reference tool of world Vedic scholarship.",
-      "vedicConnection": "The city itself is a 20th-century creation and has no direct Vedic heritage; the surrounding Punjab-Haryana plains fall within the broader region of early Vedic settlement that scholars such as Witzel place in the northwest (Punjab to the Sarasvati region), but no specific Vedic site is claimed for Chandigarh. Its genuine role is in modern Vedic philology: the Vishveshvaranand Vedic Research Institute, taken over by Panjab University (Chandigarh) in 1965 and renamed the Vishveshvaranand Vishva Bandhu Institute of Sanskrit and Indological Studies, completed the 16-volume Vedic Word Concordance under Acharya Vishva Bandhu. This is scholarly infrastructure for the Vedas, not an inherited recitation tradition.",
+      "vedicConnection": "The city itself is a 20th-century creation and has no direct Vedic heritage; the surrounding Punjab-Haryana plains fall within the broader region of early Vedic settlement that scholars such as Witzel place in the northwest (Punjab to the Sarasvati region), but no specific Vedic site is claimed for Chandigarh. Its genuine role is in modern Vedic philology: the Vishveshvaranand Vedic Research Institute — incorporated into Panjab University (Chandigarh) in 1965 and today called the Vishveshvaranand Vishva Bandhu Institute of Sanskrit and Indological Studies — completed the 16-volume Vedic Word Concordance under Acharya Vishva Bandhu. This is scholarly infrastructure for the Vedas, not an inherited recitation tradition.",
       "traditions": [],
       "knowledgeCenters": [
         {
@@ -342,8 +342,8 @@ window.INDIA_DATA.vedas = {
         "A Vedic Word Concordance (Vaidika-Padanukrama-Kosha), 16 volumes, 1935-1965, compiled under Acharya Vishva Bandhu — a universal register of over 125,000 Vedic vocables used by Indologists worldwide."
       ],
       "facts": [
-        "The 16-volume Vedic Word Concordance (1935-65) registers over 125,000 vocables across Vedic literature and was completed by mid-1965.",
-        "Panjab University took over the Vishveshvaranand Vedic Research Institute in 1965, renaming it the Vishveshvaranand Vishvabandhu Institute of Sanskrit and Indological Studies.",
+        "The 16-volume Vedic Word Concordance (1935-65) registers over 125,000 vocables across Vedic literature and was completed by mid-1965; its editors were Vishva Bandhu, Bhim Dev and S. Bhaskaran Nair.",
+        "The Vishveshvaranand Vedic Research Institute was incorporated into Panjab University, Chandigarh in 1965 as the Vishveshvaranand Institute of Sanskrit and Indological Studies, later renamed to honour Acharya Vishva Bandhu (VVBIS).",
         "Acharya Vishva Bandhu (1897-1973) edited both the Vedic Word Concordance and the Vedic Texto-Linguistic Studies series.",
         "Building on the Concordance, the institute compiles a Dictionary of Vedic Interpretation; the first volume (up to the lemma Agni) has been completed."
       ],
@@ -419,7 +419,7 @@ window.INDIA_DATA.vedas = {
     "dadra-nagar-haveli-daman-diu": {
       "name": "Dadra & Nagar Haveli and Daman & Diu",
       "summary": "This union territory has no attested Vedic tradition; its knowledge heritage is overwhelmingly tribal and oral. Indigenous communities — Warli, Kokna, Dhodia, Koli and others forming a majority in Dadra & Nagar Haveli — transmit mythology, ecological knowledge and custom through folklore, song and dance, while coastal Daman and Diu carry a blended Indo-Portuguese cultural layer.",
-      "vedicConnection": "No Vedic connection can honestly be claimed: no shakha, ved pathshala or Vedic-period site is attested for the territory. Knowledge here is transmitted orally within indigenous communities — the Warli (more than three-fifths of the tribal population), Kokna, Dhodia and others — whose mythology and practices remain distinct from the major textual religions. Daman and Diu's four-and-a-half centuries of Portuguese rule instead produced a hybrid Indo-Portuguese folk culture, seen in forms like the Mando dance.",
+      "vedicConnection": "No Vedic connection can honestly be claimed: no shakha, ved pathshala or Vedic-period site is attested for the territory. Knowledge here is transmitted orally within indigenous communities — the Warli (per Britannica, more than three-fifths of the tribal population), Dhodia, Kokna and others — whose mythology and practices remain distinct from the major textual religions. Daman and Diu's four-and-a-half centuries of Portuguese rule instead produced a hybrid Indo-Portuguese folk culture, seen in forms like the Mando dance.",
       "traditions": [
         {
           "name": "Warli, Kokna and Dhodia oral traditions",
@@ -433,17 +433,17 @@ window.INDIA_DATA.vedas = {
       "knowledgeCenters": [],
       "texts": [],
       "facts": [
-        "Indigenous communities make up about 63% of Dadra & Nagar Haveli's population; principal tribes include the Warli, Kokna, Dhodia, Koli, Kathodi, Naika and Dublas.",
-        "Warlis constitute more than three-fifths of the territory's tribal population.",
+        "Britannica records that indigenous peoples (Scheduled Tribes) account for the large majority of Dadra & Nagar Haveli's population, the most numerous being the Warli (Varli), Dhodia and Kokna.",
+        "Per Britannica, Warlis constitute more than three-fifths of the territory's tribal population.",
         "Tribal knowledge is transmitted through folklore, song and dance; no Vedic school or pathshala tradition is documented in the territory.",
         "Daman and Diu's culture blends Indian and Portuguese elements, with folk forms like the Mando dance reflecting the colonial-era heritage."
       ],
       "sources": [
         {
-          "title": "Dadra & Nagar Haveli — Culture and Traditions",
-          "publisher": "IndianMirror",
-          "url": "https://www.indianmirror.com/culture/states-culture/dadra.html",
-          "year": 2024
+          "title": "Dadra and Nagar Haveli — People",
+          "publisher": "Encyclopaedia Britannica",
+          "url": "https://www.britannica.com/place/Dadra-and-Nagar-Haveli",
+          "year": 2025
         },
         {
           "title": "Dadra and Nagar Haveli and Daman and Diu Culture & Tradition",
@@ -517,7 +517,7 @@ window.INDIA_DATA.vedas = {
         },
         {
           "name": "Madhva Dvaita tradition (Partagali Jeevottam Math)",
-          "note": "First GSB Vaishnava math, established 1475 by Swami Madhavendra Tirtha in the Dvaita order of Madhvacharya; seat at Partagali, South Goa."
+          "note": "First GSB Vaishnava math, established in 1475 under Shrimad Narayana Tirtha, who received sannyasa from Ramachandra Tirtha of the Palimaru Math (Udupi) in the Dvaita order of Madhvacharya; seat at Partagali, South Goa."
         }
       ],
       "knowledgeCenters": [
@@ -533,8 +533,8 @@ window.INDIA_DATA.vedas = {
       "texts": [],
       "facts": [
         "Community tradition traces the Gaud Saraswats to Brahmins of the Sarasvati river region who migrated as the river dried, and derives 'Gaud' from allegiance to Gaudapada's Advaita.",
-        "The Partagali Jeevottam Math was established in 1475 CE by Swami Madhavendra Tirtha and follows the Dvaita school of Madhvacharya.",
-        "The Keloshi seat of the Gaudapadacharya Math was destroyed by the Portuguese in 1564, after which the math moved to Kavale.",
+        "The Partagali Jeevottam Math was established in 1475 CE (Chaitra Shukla 2, Shaka 1397) under Shrimad Narayana Tirtha, in the Dvaita line of Madhvacharya via the Palimaru Math of Udupi.",
+        "The Keloshi seat of the Gaudapadacharya Math was destroyed by the Portuguese in 1564; the math's present seat at Kavale was established in 1630.",
         "In 1953 the 22nd Partagali pontiff founded a gurukula-style Sanskrit pathshala at Bicholim; renamed Jeevottam Vaidika Sanskrit Pathashala at Partagali in 1972, it taught over 500 students, halted in 2016, and was revived as Jeevottam Vidyapeetham."
       ],
       "sources": [
@@ -555,6 +555,12 @@ window.INDIA_DATA.vedas = {
           "publisher": "Goa News Hub",
           "url": "https://goanewshub.com/dakshin-ayodhya-shree-partagali-math-begins-a-new-vedic-school-jeevottam-vidyapeetham/",
           "year": 2024
+        },
+        {
+          "title": "History — Shree Saunsthan Gaudapadacharya Kavale Math",
+          "publisher": "Kavale Math (official)",
+          "url": "https://kavalemath.org/about-us/history/",
+          "year": 2026
         },
         {
           "title": "A Study on Culture of Goud Saraswat Brahmins",

@@ -265,7 +265,7 @@ window.INDIA_DATA.governance = {
       "facts": [
         "Assam has 35 districts: four districts (Bajali, Biswanath, Hojai, Tamulpur) merged in December 2022 for delimitation were restored by the Cabinet in August 2023 with adjusted boundaries.",
         "Orunodoi currently pays Rs 1,250 per month to about 37.1 lakh women beneficiaries.",
-        "The BJP-led NDA won the 2026 assembly election with a large majority (leading in about 101 of 126 seats on a turnout above 85%), returning Himanta Biswa Sarma's government.",
+        "The BJP-led NDA won the 2026 assembly election (polling 9 April, results 4 May 2026) with a two-thirds majority of 101 of 126 seats — BJP 82, with allies AGP and BPF on 10 each — returning Himanta Biswa Sarma's government.",
         "Assam's hill and Bodoland areas are governed under the Sixth Schedule through the BTC, KAAC and Dima Hasao councils.",
         "The state capital moved from Shillong to Dispur in 1972 following the reorganisation of the Northeast."
       ],
@@ -283,9 +283,9 @@ window.INDIA_DATA.governance = {
           "year": 2026
         },
         {
-          "title": "Assam Assembly Election Results 2026: Himanta Biswa Sarma-led NDA crosses majority mark",
-          "publisher": "India TV News",
-          "url": "https://www.indiatvnews.com/north-east/assam/assam-assembly-election-results-2026-himanta-biswa-sarma-led-nda-crosses-majority-mark-sets-to-form-govt-2026-05-04-1039456",
+          "title": "Assam Assembly election results 2026: NDA secures two-thirds majority, wins 101 seats",
+          "publisher": "The Tribune",
+          "url": "https://www.tribuneindia.com/live-blog/assembly-elections-2026/assam-assembly-election-results-2026-counting-to-begin-shortly/",
           "year": 2026
         },
         {
@@ -374,13 +374,13 @@ window.INDIA_DATA.governance = {
     },
     "chandigarh": {
       "name": "Chandigarh",
-      "summary": "Built as post-Partition Punjab's Le Corbusier-designed capital, Chandigarh became a union territory on 1 November 1966 and serves simultaneously as the capital of both Punjab and Haryana. It has no legislature: since 1985 the Governor of Punjab has been its ex-officio Administrator. Local democracy runs through an elected Municipal Corporation, whose 2024 mayoral election was overturned by the Supreme Court over ballot tampering.",
+      "summary": "Built as post-Partition Punjab's Le Corbusier-designed capital, Chandigarh became a union territory on 1 November 1966 and serves simultaneously as the capital of both Punjab and Haryana. It has no legislature: since 1 June 1984 the Governor of Punjab has been its ex-officio Administrator. Local democracy runs through an elected Municipal Corporation, whose 2024 mayoral election was overturned by the Supreme Court over ballot tampering.",
       "formation": {
         "date": "1 November 1966",
         "details": "The Punjab Reorganisation Act, 1966 divided erstwhile Punjab into Punjab and Haryana and constituted Chandigarh as a union territory serving as the shared capital of both states, pending a final settlement that has never been implemented."
       },
       "capital": "Chandigarh (itself the seat of the UT administration and capital of Punjab and Haryana)",
-      "legislature": "None — UT without legislature; administered under Article 239 by an Administrator (the Governor of Punjab, ex officio, since 1985), with one Lok Sabha seat",
+      "legislature": "None — UT without legislature; administered under Article 239 by an Administrator (the Governor of Punjab, ex officio, since 1 June 1984), with one Lok Sabha seat",
       "districts": 1,
       "politicalHistory": "Chandigarh's transfer to Punjab, promised under the 1985 Rajiv-Longowal Accord, was never executed, leaving it a centrally administered shared capital. Its single Lok Sabha seat has swung between Congress and BJP. The January 2024 mayoral election became a national controversy when the Supreme Court found the presiding officer had defaced ballots and declared the AAP-Congress candidate Kuldeep Kumar the lawfully elected mayor.",
       "flagshipPolicies": [
@@ -406,7 +406,7 @@ window.INDIA_DATA.governance = {
       "districtGovernance": "Chandigarh is a single district headed by a Deputy Commissioner under the Administrator's UT setup. The elected Municipal Corporation (with a mayor chosen annually by councillors) handles civic functions; surrounding villages have been merged into the corporation, so panchayati raj bodies no longer operate.",
       "facts": [
         "Chandigarh is the shared capital of Punjab and Haryana while itself being a union territory with no assembly.",
-        "Since 1985 the Governor of Punjab has served ex officio as Administrator; Gulab Chand Kataria assumed both offices on 31 July 2024.",
+        "Chandigarh was run by Chief Commissioners until 31 May 1984; since 1 June 1984 the Governor of Punjab has served ex officio as Administrator, with Gulab Chand Kataria holding both offices since 31 July 2024.",
         "In February 2024 the Supreme Court set aside the Chandigarh mayoral result after presiding officer Anil Masih was caught on camera defacing ballots, and declared AAP's Kuldeep Kumar mayor.",
         "The UT comprises a single district under a Deputy Commissioner and elects one Lok Sabha member.",
         "Chandigarh was created under the Punjab Reorganisation Act, 1966 on 1 November 1966."
@@ -425,9 +425,9 @@ window.INDIA_DATA.governance = {
           "year": 2024
         },
         {
-          "title": "The Present Governor (and Administrator, UT Chandigarh)",
+          "title": "Role of the Governor as Administrator, UT Chandigarh",
           "publisher": "Punjab Raj Bhavan",
-          "url": "https://punjabrajbhavan.gov.in/home/governor",
+          "url": "https://punjabrajbhavan.gov.in/home/roleAsChandigarhAdministrator",
           "year": 2025
         },
         {
