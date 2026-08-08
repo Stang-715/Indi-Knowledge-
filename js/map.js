@@ -166,8 +166,8 @@
         "text-anchor": "middle",
         "font-size": Math.max(7, Math.min(13, w * 0.09)),
         "font-family": "Georgia, serif",
-        fill: "#3c342b",
-        stroke: "rgba(251,249,242,0.85)",
+        fill: "#3b2740",
+        stroke: "rgba(246,244,238,0.9)",
         "stroke-width": 2.5,
         "paint-order": "stroke",
         "data-label": slug,
@@ -227,7 +227,7 @@
 
   function recolor() {
     Object.keys(M.stateEls).forEach(function (slug) {
-      var fill = (M.hooks.getFill && M.hooks.getFill(slug)) || "#d8cfbc";
+      var fill = (M.hooks.getFill && M.hooks.getFill(slug)) || "#e7e2d6";
       M.stateEls[slug].querySelectorAll("path").forEach(function (p) {
         p.setAttribute("fill", fill);
       });
@@ -260,8 +260,8 @@
         "font-size": fs,
         "font-family": "'Segoe UI', system-ui, sans-serif",
         "font-weight": 600,
-        fill: "#4a4138",
-        stroke: "rgba(251,249,242,0.9)",
+        fill: "#3b2740",
+        stroke: "rgba(246,244,238,0.92)",
         "stroke-width": fs * 0.18,
         "paint-order": "stroke",
       });

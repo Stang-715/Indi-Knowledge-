@@ -4,8 +4,11 @@ An interactive, research-backed knowledge atlas of India. One clickable map,
 **36 states & union territories, 720+ district polygons**, and **nine layers of
 knowledge** — from the NPK values in the soil to the folk tales told above it.
 
-> Conceived & directed by **Srisanth** ([stang-715](https://github.com/stang-715)) ·
-> Built with Claude Code.
+> Built with Claude Code — researched by a fleet of Claude agents and re-checked by a
+> QC agent. Map boundaries by the Datameet community (via
+> [udit-001/india-maps-data](https://github.com/udit-001/india-maps-data)); data from
+> Government of India portals, ICAR, ASI, UNESCO, the GI Registry and the national
+> academies. **Made in India.**
 
 ## Open it
 

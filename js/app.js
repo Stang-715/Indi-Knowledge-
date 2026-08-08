@@ -22,26 +22,29 @@
   }
   function count(arr) { return Array.isArray(arr) ? arr.length : 0; }
 
-  var SEQ = ["#e9dbb8", "#e3c07b", "#dd9b4a", "#c9702a", "#9c4a1d"]; // light → deep
+  // folk screen-print palette: off-white ground, orange working family,
+  // teal / pink / marigold / aubergine accents
+  var NO_DATA = "#e7e2d6";
+  var SEQ = ["#fbd7b8", "#f9a76b", "#f97c3d", "#e85420", "#c93a12"]; // light → deep vermilion
   function seqColor(n, breaks) {
     for (var i = 0; i < breaks.length; i++) if (n <= breaks[i]) return SEQ[i];
     return SEQ[SEQ.length - 1];
   }
 
   var SOIL_COLORS = [
-    ["alluvial", "#d9b96c", "Alluvial"],
-    ["black", "#6e5849", "Black (Regur)"],
-    ["regur", "#6e5849", "Black (Regur)"],
-    ["red", "#c26744", "Red"],
-    ["later", "#b3543a", "Laterite"],
-    ["desert", "#e3c987", "Desert / Arid"],
-    ["arid", "#e3c987", "Desert / Arid"],
-    ["mountain", "#8aa37b", "Mountain / Forest"],
-    ["forest", "#6b8f5a", "Mountain / Forest"],
-    ["saline", "#b9c4c9", "Saline / Coastal"],
-    ["coastal", "#b9c4c9", "Saline / Coastal"],
-    ["sandy", "#ddd0a5", "Sandy"],
-    ["peat", "#4f5d52", "Peaty / Marshy"],
+    ["alluvial", "#f9a76b", "Alluvial"],
+    ["black", "#3b2740", "Black (Regur)"],
+    ["regur", "#3b2740", "Black (Regur)"],
+    ["red", "#e85420", "Red"],
+    ["later", "#c93a12", "Laterite"],
+    ["desert", "#f9a51f", "Desert / Arid"],
+    ["arid", "#f9a51f", "Desert / Arid"],
+    ["mountain", "#0f9e88", "Mountain / Forest"],
+    ["forest", "#0c7f6e", "Mountain / Forest"],
+    ["saline", "#a7b8b4", "Saline / Coastal"],
+    ["coastal", "#a7b8b4", "Saline / Coastal"],
+    ["sandy", "#f3c983", "Sandy"],
+    ["peat", "#5a4363", "Peaty / Marshy"],
   ];
   function soilColor(entry) {
     if (!entry || !count(entry.soilTypes)) return null;
@@ -49,21 +52,32 @@
     for (var i = 0; i < SOIL_COLORS.length; i++) {
       if (t.indexOf(SOIL_COLORS[i][0]) !== -1) return SOIL_COLORS[i];
     }
-    return ["other", "#cbbfa5", "Other"];
+    return ["other", "#d8cfc0", "Other"];
   }
 
   var LANG_COLORS = {
-    hi: "#dd9b4a", bn: "#4f7fbf", ta: "#b3543a", te: "#c98a3a", kn: "#8a5fa8",
-    ml: "#2e7d4f", mr: "#c96a12", gu: "#5b8f5a", pa: "#b04a6e", or: "#4a8f8f",
-    as: "#7a6fb0", ur: "#54737a", ks: "#54737a", ne: "#6d8f3f", kok: "#c47a5a",
-    mni: "#a85f7f", lus: "#5f8fa8", kha: "#3f7f6f", nag: "#8f6f4f", brx: "#6f5f8f",
-    en: "#9a9a8a", doi: "#a8783f", sat: "#7f5f3f", mai: "#cf8f3f", bho: "#cf8f3f",
-    raj: "#dd9b4a", tcy: "#8a5fa8", gon: "#7f6f4f", bo: "#8f5f5f", dv: "#4f8faf",
+    hi: "#e85420", bn: "#0f9e88", ta: "#c93a12", te: "#f9a51f", kn: "#7a4e8e",
+    ml: "#0c7f6e", mr: "#f97c3d", gu: "#f9a76b", pa: "#b0435f", or: "#3e9e8c",
+    as: "#8a6fa8", ur: "#5a6e7a", ks: "#5a6e7a", ne: "#c98a3a", kok: "#f291a6",
+    mni: "#b0435f", lus: "#5f8fa8", kha: "#3f7f6f", nag: "#a8783f", brx: "#7a4e8e",
+    en: "#a79fae", doi: "#a8783f", sat: "#8a5a2f", mai: "#f9a51f", bho: "#f9a76b",
+    raj: "#e85420", tcy: "#7a4e8e", gon: "#8a5a2f", bo: "#5a4363", dv: "#5f8fa8",
   };
   function langColor(code) {
-    if (!code) return "#cbbfa5";
+    if (!code) return NO_DATA;
     var c = String(code).split("-")[0].toLowerCase();
-    return LANG_COLORS[c] || "#cbbfa5";
+    return LANG_COLORS[c] || NO_DATA;
+  }
+
+  // decorative flat-print patchwork, used only while a tab's data pack
+  // hasn't loaded — keeps the map vibrant instead of off-white on off-white
+  // orange-weighted per the 60/30/10 rule: mostly vermilion family, accents sparse
+  var PATCH = ["#e85420", "#f9a76b", "#f97c3d", "#c93a12", "#fbd7b8", "#f9a51f",
+               "#e85420", "#f9a76b", "#0f9e88", "#f97c3d", "#f291a6", "#fbd7b8"];
+  function patchColor(slug) {
+    var h = 0;
+    for (var i = 0; i < slug.length; i++) h = (h * 31 + slug.charCodeAt(i)) >>> 0;
+    return PATCH[h % PATCH.length];
   }
 
   function formationYear(entry) {
@@ -72,12 +86,12 @@
     return m ? parseInt(m[1], 10) : null;
   }
   var ERA_COLORS = [
-    [1950, "#9c4a1d", "1947–1950"],
-    [1959, "#c9702a", "1950s (Reorganisation)"],
-    [1969, "#dd9b4a", "1960s"],
-    [1979, "#e3c07b", "1970s"],
-    [1999, "#c9b98a", "1980s–90s"],
-    [2100, "#8aa37b", "2000s+"],
+    [1950, "#c93a12", "1947–1950"],
+    [1959, "#e85420", "1950s (Reorganisation)"],
+    [1969, "#f97c3d", "1960s"],
+    [1979, "#f9a76b", "1970s"],
+    [1999, "#fbd7b8", "1980s–90s"],
+    [2100, "#0f9e88", "2000s+"],
   ];
   function eraColor(y) {
     for (var i = 0; i < ERA_COLORS.length; i++) if (y <= ERA_COLORS[i][0]) return ERA_COLORS[i];
@@ -207,7 +221,7 @@
           }
         });
         var out = Object.keys(seen).slice(0, 12).map(function (k) { return { label: k, color: seen[k] }; });
-        if (Object.keys(seen).length > 12) out.push({ label: "…and more", color: "#cbbfa5" });
+        if (Object.keys(seen).length > 12) out.push({ label: "…and more", color: "#e7e2d6" });
         return out;
       },
       tipLine: function (e) {
@@ -577,8 +591,8 @@
         ? items.map(function (it) {
             return "<span class='chip'><span class='swatch' style='background:" + it.color + "'></span>" + esc(it.label) + "</span>";
           }).join("")
-        : "<span>awaiting data pack…</span>") +
-      "<span class='chip' style='margin-left:auto'><span class='swatch' style='background:#cbbfa5'></span>no data</span>";
+        : "<span>decorative patchwork — research pack still in the pipeline</span>") +
+      "<span class='chip' style='margin-left:auto'><span class='swatch' style='background:#e7e2d6'></span>no data</span>";
   }
 
   function renderCrumb() {
@@ -641,11 +655,14 @@
     window.IndiaMap.init({
       svg: document.getElementById("indiaMap"),
       tooltip: document.getElementById("tooltip"),
-      getFill: function (slug) { return App.tab.fill(getEntry(App.tab.key, slug)); },
+      getFill: function (slug) {
+        if (!getPack(App.tab.key)) return patchColor(slug);
+        return App.tab.fill(getEntry(App.tab.key, slug));
+      },
       getTooltip: function (slug) {
         var name = window.INDIA_MAP.states[slug].name;
         var e = getEntry(App.tab.key, slug);
-        var line = e ? App.tab.tipLine(e) : "no data pack loaded";
+        var line = e ? App.tab.tipLine(e) : "research pack in the pipeline";
         return "<div class='t-name'>" + esc(name) + "</div>" +
           (line ? "<div class='t-sub'>" + esc(line) + "</div>" : "") +
           "<div class='t-sub'>click to explore ›</div>";
