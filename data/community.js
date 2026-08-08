@@ -489,8 +489,8 @@ window.INDIA_DATA.community = {
         }
       ],
       "languages": [
-        "Hindi (most spoken, about two-thirds of residents)",
-        "Punjabi (over a fifth of residents)",
+        "Hindi (most spoken mother tongue, 73.6% in the 2011 Census)",
+        "Punjabi (about 22% by mother tongue, 2011 Census)",
         "English (language of administration)"
       ],
       "festivals": [
@@ -516,7 +516,7 @@ window.INDIA_DATA.community = {
       "facts": [
         "Chandigarh is a Union Territory serving as the joint capital of Punjab and Haryana.",
         "The Rose Festival was launched in 1970; the Zakir Hussain Rose Garden spreads over about 30 acres with 1,600+ rose varieties.",
-        "Hindi (about 68%) and Punjabi (about 22%) are the city's most spoken languages.",
+        "Per 2011 Census mother-tongue data, Hindi (73.6%) and Punjabi (22.0%) are Chandigarh's leading languages; the Punjabi share has declined from about 36% in 1981.",
         "Le Corbusier designed the city's sector-grid layout and its Capitol Complex buildings."
       ],
       "sources": [
@@ -536,6 +536,18 @@ window.INDIA_DATA.community = {
           "title": "Rose Garden Chandigarh: Asia's Largest Floral Symphony",
           "publisher": "India Tourism Info",
           "url": "https://indiatourisminfo.com/rose-garden-chandigarh-asias-largest-floral-symphony/",
+          "year": 2025
+        },
+        {
+          "title": "After mother tongue, city more proficient in English (2011 Census language data)",
+          "publisher": "The Tribune, Chandigarh",
+          "url": "https://www.tribuneindia.com/news/archive/chandigarh/after-mother-tongue-city-more-proficient-in-english-662470/",
+          "year": 2018
+        },
+        {
+          "title": "Chandigarh Rose Festival",
+          "publisher": "Chandigarh Tourism, Chandigarh Administration",
+          "url": "https://chandigarhtourism.gov.in/pages/event/52",
           "year": 2025
         }
       ],

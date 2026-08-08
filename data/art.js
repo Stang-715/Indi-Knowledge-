@@ -177,14 +177,14 @@ window.INDIA_DATA.art = {
           "type": "sculpture",
           "origin": "Wancho tribe, Longding district (Patkai hills)",
           "description": "Figurative wood carving tradition historically linked to warrior culture: tobacco pipes with head-shaped bowls, carved mugs, dolls, animal and Buddha figures.",
-          "status": "GI-tagged (registered 2022 in the IP India state register)"
+          "status": "GI-tagged 2024 (granted January 2024, alongside Adi Kekir ginger and handmade carpets)"
         },
         {
           "name": "Idu Mishmi textiles",
           "type": "other",
           "origin": "Idu Mishmi tribe, Dibang Valley and Lower Dibang Valley districts",
           "description": "Handloom weaving with dense geometric and symbolic motifs on shawls, jackets and wrap skirts, woven by Idu Mishmi women on loin looms.",
-          "status": "GI-tagged 2018 (among the state's first GI products with Arunachal orange)"
+          "status": "GI-tagged 2019 (application filed 2018; among the state's earliest GI products after Arunachal orange)"
         },
         {
           "name": "Monpa handmade paper (Mon shugu)",
@@ -196,8 +196,8 @@ window.INDIA_DATA.art = {
       ],
       "classicalConnections": "No Indian classical form is native to Arunachal Pradesh; its dominant traditions are Buddhist monastic cham mask dances and lhamo-style dance-dramas in the Monpa west, and the community dances and weaving arts of the Adi, Nyishi, Apatani, Mishmi, Wancho and other tribes.",
       "facts": [
-        "Arunachal Pradesh's GI journey began in 2014-15 with Arunachal orange and Idu Mishmi textiles (registered 2018), and the state has since reached about 20 GI registrations.",
-        "Wancho wooden craft (registered 2022) is known for pipes and mugs carved with warrior and head-hunting imagery, alongside Buddha figures and dolls.",
+        "Arunachal Pradesh's GI journey began with Arunachal orange (2014-15); Idu Mishmi textiles received their GI tag on 27 August 2019, and the state has since reached about 20 GI registrations.",
+        "Wancho wooden craft received its GI tag in January 2024, and is known for pipes and mugs carved with warrior and head-hunting imagery, alongside Buddha figures and dolls.",
         "Monpa handmade paper was GI-registered in 2022.",
         "Aji Lhamu is a masked dance-drama of the Tawang Monpas linked to the Tibetan lhamo opera tradition, and carved wooden masks are central to monastery festival dances."
       ],

@@ -321,7 +321,7 @@ window.INDIA_DATA.wars = {
           "year": "1764",
           "location": "Buxar, on the Ganga in western Bihar",
           "belligerents": "East India Company army under Major Hector Munro vs the combined forces of Mir Qasim of Bengal, Nawab Shuja-ud-Daula of Awadh and Mughal emperor Shah Alam II",
-          "outcome": "On 22-23 October 1764 Munro's smaller force decisively defeated the allied Indian armies.",
+          "outcome": "On 22 October 1764 (23 October in some accounts) Munro's smaller force decisively defeated the allied Indian armies.",
           "consequence": "By the Treaty of Allahabad (1765) the emperor granted the Company the diwani (revenue rights) of Bengal, Bihar and Orissa — the legal foundation of British rule in India."
         },
         {
@@ -700,7 +700,7 @@ window.INDIA_DATA.wars = {
           "year": "1026",
           "location": "Somnath temple, Prabhas Patan, Saurashtra coast",
           "belligerents": "Mahmud of Ghazni's raiding army vs local Chaulukya-era defenders of Somnath",
-          "outcome": "In early January 1026, on his celebrated fifteenth Indian expedition, Mahmud stormed Somnath, massacred its defenders, and looted and destroyed the temple, smashing its linga.",
+          "outcome": "In early January 1026, on the most celebrated of his many Indian expeditions, Mahmud stormed Somnath, massacred its defenders, and looted and destroyed the temple, smashing its linga.",
           "consequence": "The raid yielded fabulous plunder, earned Mahmud the epithet 'idol-breaker', and became one of the most contested memories in Indian history; the temple was rebuilt repeatedly, most recently after 1947 (completed 1951)."
         },
         {
@@ -730,7 +730,7 @@ window.INDIA_DATA.wars = {
       ],
       "militaryHeritage": "Gujarat's fortifications range from Uparkot at Junagadh and Bhadra Fort in Ahmedabad to Bhujia Fort at Bhuj; in the 1971 war the bombed Bhuj airstrip was famously repaired in days by some 300 local women, and the state today hosts key defence sites including the Jamnagar air base and the Navy's INS Valsura.",
       "facts": [
-        "Mahmud of Ghazni sacked the Somnath temple in January 1026 on his fifteenth Indian expedition.",
+        "Mahmud of Ghazni sacked the Somnath temple in January 1026, near the end of his long series of Indian raids.",
         "Alauddin Khalji's generals conquered Gujarat in 1299, ending Vaghela Rajput rule.",
         "The Battle of Bhuchar Mori (July 1591) near Dhrol is remembered as the bloodiest battle fought in Saurashtra.",
         "Fighting in the Rann of Kutch began on 9 April 1965 with Pakistani attacks near Kanjarkot and Sardar Post.",
