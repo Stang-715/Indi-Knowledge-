@@ -79,13 +79,13 @@ window.INDIA_DATA_PARTS["vedas-a"] = {
         { name: "Tawang Monastery (Galden Namgey Lhatse)", note: "Founded 1680-81 by Merak Lama Lodre Gyatso in accordance with the wishes of the 5th Dalai Lama; its library preserves sets of the Kangyur and Tengyur, making it the state's foremost repository of written learning." }
       ],
       texts: [
-        "Kangyur (Buddha's teachings, 108 volumes) and Tengyur (commentaries, 225 volumes) preserved in Tawang Monastery's Par-Khang library, alongside several thousand rare Mahayana manuscripts."
+        "Kangyur (the Buddha's words, c. 108 volumes per set) and Tengyur (commentaries, c. 225 volumes per set) preserved in Tawang Monastery's library."
       ],
       facts: [
-        "Tawang Monastery, founded in 1680, is one of the largest monasteries in India and the birthplace of the 6th Dalai Lama, Tsangyang Gyatso.",
+        "Tawang Monastery, founded 1680-81 by Merak Lama Lodre Gyatso, is one of the largest monasteries in India; the 6th Dalai Lama, Tsangyang Gyatso, was born in 1683 at Urgelling near Tawang.",
         "Donyi-Polo has traditionally been transmitted orally without written scriptures; the Donyi Polo Yelam Kebang (founded 1986) began transcribing oral traditions into written texts.",
         "Parshuram Kund in Lohit district is a Hindu pilgrimage site whose origin tradition is told in the Kalika Purana, Srimad Bhagavata and Mahabharata, with a major Makar Sankranti mela each January.",
-        "The monastery's Par-Khang library holds more than 400 handwritten and printed manuscript volumes including the Kangyur and Tengyur."
+        "The monastery library holds multiple sets of the Kangyur (c. 108 volumes each) and Tengyur (c. 225 volumes each) among its manuscript and xylograph holdings."
       ],
       sources: [
         { title: "Tawang Monastery", publisher: "Wikipedia / ThePrint feature on Tawang's manuscript collections", url: "https://en.wikipedia.org/wiki/Tawang_Monastery", year: 2026 },
@@ -290,8 +290,7 @@ window.INDIA_DATA_PARTS["vedas-a"] = {
         { title: "Shree Samsthan Gokarn Partagali Jeevottam Math — official site", publisher: "Partagali Math", url: "https://partagalimath.org/", year: 2026 },
         { title: "Gaudapadacharya Math", publisher: "Wikipedia", url: "https://en.wikipedia.org/wiki/Gaudapadacharya_Math", year: 2026 },
         { title: "Dakshin Ayodhya Shree Partagali Math begins a new Vedic school, 'Jeevottam Vidyapeetham'", publisher: "Goa News Hub", url: "https://goanewshub.com/dakshin-ayodhya-shree-partagali-math-begins-a-new-vedic-school-jeevottam-vidyapeetham/", year: 2024 },
-        { title: "History — Shree Saunsthan Gaudapadacharya Kavale Math", publisher: "Kavale Math (official)", url: "https://kavalemath.org/about-us/history/", year: 2026 },
-        { title: "A Study on Culture of Goud Saraswat Brahmins", publisher: "ARC Journals (IJHCS)", url: "https://www.arcjournals.org/pdfs/ijhcs/v3-i1/4.pdf", year: 2016 }
+        { title: "History — Shree Saunsthan Gaudapadacharya Kavale Math", publisher: "Kavale Math (official)", url: "https://kavalemath.org/about-us/history/", year: 2026 }
       ],
       confidence: "medium",
       media: []
@@ -308,7 +307,7 @@ window.INDIA_DATA_PARTS["vedas-a"] = {
       knowledgeCenters: [
         { name: "Valabhi (Vallabhipur, Bhavnagar district)", note: "Maitraka capital c. 480-775 CE and celebrated seat of learning; Xuanzang (7th c.) found some 6,000 monks and ~100 monasteries, with a curriculum spanning Buddhist philosophy, grammar, law, logic and Brahmanical sciences." },
         { name: "Dwarka Sharada Peetham", note: "Western cardinal matha attributed by tradition to Adi Shankara; a continuing hub of Vedic learning, Sanskrit scholarship and Vedanta discourse at Dwarka." },
-        { name: "Shree Somnath Sanskrit University, Veraval", note: "Gujarat's dedicated Sanskrit university, established by state act in 2005, with a Faculty of Veda among its seven faculties and 35 affiliated institutions." }
+        { name: "Shree Somnath Sanskrit University, Veraval", note: "Gujarat's dedicated Sanskrit university, established by a Gujarat Legislative Assembly act of 2005 (UGC-recognized 2006), with Veda among its seven faculties." }
       ],
       texts: [
         "Maitrayani Samhita of the Krishna Yajurveda — preserved in living recitation by the shakha's Gujarat (Varaha) adherents."
@@ -317,13 +316,14 @@ window.INDIA_DATA_PARTS["vedas-a"] = {
         "Valabhi was the Maitraka capital (c. 480-775 CE) and was considered a rival of Nalanda; Xuanzang described more than 6,000 monks studying there.",
         "The Maitrayani shakha survives with its Varaha sub-recension prevalent in Gujarat and the Manava sub-recension in Maharashtra near Nagpur.",
         "The Dwarka Sharada Peetham is the western amnaya Peetham; according to tradition it holds authority over the Samaveda with the mahavakya 'Tattvamasi'.",
-        "Shree Somnath Sanskrit University (est. 2005, Veraval) is Gujarat's only Sanskrit university, offering Veda, Vyakarana, Jyotisha, Nyaya and Vedanta studies, NAAC A+ accredited."
+        "Shree Somnath Sanskrit University, Veraval, was established by a Gujarat state act passed on 1 April 2005 and UGC-recognized in February 2006; it teaches Veda, Vyakarana, Jyotisha, Nyaya and Vedanta through seven faculties.",
+        "The Varaha sub-recension of the Maitrayani shakha is reported among Gujarat communities including Modha Brahmins, with followers noted at Morvi in Saurashtra."
       ],
       sources: [
         { title: "Valabhi University", publisher: "Wikipedia", url: "https://en.wikipedia.org/wiki/Valabhi_University", year: 2026 },
         { title: "Shree Somnath Sanskrit University — official site", publisher: "SSSU, Veraval", url: "https://sssu.ac.in/", year: 2026 },
         { title: "Dwarka Sharada Peetham", publisher: "Wikipedia / dwarakasharadapeetham.org (Paschimamnaya)", url: "https://en.wikipedia.org/wiki/Dwarka_Sharada_Peetham", year: 2026 },
-        { title: "The Vedic Shakhas (survey of surviving recensions)", publisher: "IndiaDivine.org (survey drawing on standard shakha scholarship)", url: "https://www.indiadivine.org/the-vedic-shakhas/", year: 2024 }
+        { title: "Yajurveda Shakhas", publisher: "Dharmawiki", url: "https://dharmawiki.org/index.php/Yajurveda_Shakhas_(%E0%A4%AF%E0%A4%9C%E0%A5%81%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A5%87%E0%A4%A6%E0%A4%B8%E0%A5%8D%E0%A4%AF_%E0%A4%B6%E0%A4%BE%E0%A4%96%E0%A4%BE%E0%A4%83)", year: 2024 }
       ],
       confidence: "high",
       media: []
