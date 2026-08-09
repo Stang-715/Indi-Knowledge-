@@ -908,56 +908,58 @@ window.INDIA_DATA.craft = {
     },
     "himachal-pradesh": {
       "name": "Himachal Pradesh",
-      "summary": "Himachal's craft identity is woven on the loom: Kullu and Kinnauri shawls with bold geometric borders are the state's flagship products, both GI-protected. Chamba adds two court crafts — the embroidered Chamba rumal and traditional metalwork — that grew up around its former princely capital. The state's GI-protected craft and produce roster rose to 17 items in 2026.",
+      "summary": "Himachal's craft economy is built on wool and on Pahari courtly art. Frame-loom shawl weaving in Kullu and Kinnaur, the double-sided embroidery of the Chamba rumal and Kangra miniature painting are all GI-protected. In July 2026 eight further products were registered, taking the state's GI count to 17.",
       "crafts": [
         {
-          "name": "Kullu shawls",
-          "cluster": "Kullu district (Kullu valley weaving cooperatives)",
-          "materials": "Sheep wool, Merino and Angora blends, with brightly coloured geometric patterned borders",
+          "name": "Kullu shawl",
+          "cluster": "Kullu",
+          "materials": "Sheep wool, merino, angora and pashmina yarn woven on frame and pit looms",
           "giTag": "GI-tagged (2004)",
-          "description": "Handwoven twill shawls whose striking multicoloured geometric border patterns derive from Kinnauri motifs; officially recognised with a GI in December 2004, among the earliest Indian textiles protected."
+          "description": "Plain-bodied shawls and stoles finished with bold geometric patti borders in three to eight colours; the GI mark is used at Kullu Dasehra to separate handwoven pieces from mill imitations."
         },
         {
-          "name": "Kinnauri shawls",
-          "cluster": "Kinnaur district",
-          "materials": "Fine local wool and pashmina blends woven with intricate patterned bands",
+          "name": "Kinnauri shawl",
+          "cluster": "Kinnaur",
+          "materials": "Local and merino sheep wool, yak and pashmina blends, natural and chemical dyes",
           "giTag": "GI-tagged (2008)",
-          "description": "Denser and more intricately patterned than Kullu shawls, with motifs carrying religious symbolism; registered under the GI Act on 4 December 2008."
+          "description": "Narrow multi-band borders in five symbolic colours carrying Buddhist and cosmological motifs, woven on pit looms; the matching Kinnauri topi joined the GI list in 2026."
         },
         {
           "name": "Chamba rumal",
-          "cluster": "Chamba district",
-          "materials": "Untwisted silk floss embroidered on fine cotton or muslin in double-satin do-rukha stitch",
+          "cluster": "Chamba",
+          "materials": "Fine handspun muslin or khaddar ground, untwisted silk floss (pat)",
           "giTag": "GI-tagged (2007)",
-          "description": "Embroidered 'handkerchief' panels depicting Pahari-miniature themes such as Krishna legends, worked identically on both faces; GI-registered on 22 January 2007. India Post has issued a special cover honouring the craft."
+          "description": "Do-rukha (double-satin) darning stitch that renders the same picture identically on both faces, illustrating Krishna legends, rasmandal circles and hunting scenes in a Pahari miniature idiom."
         },
         {
-          "name": "Chamba metal craft",
-          "cluster": "Chamba town",
-          "materials": "Brass and copper, engraved and cast for temple plaques and utensils",
-          "giTag": null,
-          "description": "A survival of Chamba's princely workshops, producing engraved plaques, ritual vessels and temple imagery alongside the town's better-known rumal embroidery."
+          "name": "Kangra miniature painting",
+          "cluster": "Kangra",
+          "materials": "Handmade wasli paper, mineral and vegetable pigments, squirrel-hair brushes",
+          "giTag": "GI-tagged (2012)",
+          "description": "The lyrical late-18th-century Pahari school of Guler-Kangra, known for Gita Govinda and Bhagavata themes, soft modelling of faces and green Himalayan foregrounds."
+        },
+        {
+          "name": "Chamba metal art",
+          "cluster": "Chamba",
+          "materials": "Brass and bronze casting and repousse work",
+          "giTag": "GI-tagged (2026)",
+          "description": "Temple images, masks and ritual vessels in the Chamba tradition; registered in the July 2026 batch of eight Himachal GIs alongside Kinnauri jewellery and Kinnauri topi."
         }
       ],
       "masterCraftspeople": [
         {
-          "name": "Vijay Sharma",
-          "craft": "Pahari miniature painting and Chamba rumal revival",
-          "recognition": "Padma Shri (2012)"
-        },
-        {
           "name": "Lalita Vakil",
           "craft": "Chamba rumal embroidery",
-          "recognition": "Padma Shri (2022)"
+          "recognition": "Padma Shri (2022); Shilp Guru Award (2012); National Award (1993); Nari Shakti Puraskar (2018)"
         }
       ],
-      "economicNote": "Handloom shawl weaving is the state's largest craft industry, organised substantially through weaver cooperatives in the Kullu valley; with eight more products added in July 2026, Himachal's GI portfolio now protects 17 local products.",
+      "economicNote": "GI registration is being used explicitly as a rural-livelihood instrument: eight more traditional products were registered in July 2026, lifting the state total to 17, with four more (Pangi barley, Chamba chukh, Bharmour honey, Sirmaur ginger) in the pipeline.",
       "facts": [
-        "Kullu shawl was officially recognised with a Geographical Indication in December 2004, among the first Himachali products protected.",
-        "Chamba rumal was GI-registered on 22 January 2007 and Kinnauri shawl on 4 December 2008.",
-        "Eight more Himachal products received GI tags in July 2026, taking the state's total to 17.",
-        "India Post has released special covers on the Chamba rumal and Chamba chappal, both crafts of Chamba district.",
-        "Chamba rumal embroidery is worked do-rukha (double-faced), so the design appears identical on both sides of the cloth."
+        "Kullu shawl was recognised under the GI Act on 10 December 2004; Chamba rumal followed on 22 January 2007.",
+        "Kinnauri shawl was registered on 4 December 2008 and Kangra painting on 2 April 2012.",
+        "The nine earlier Himachal GIs are Kullu shawl, Kangra tea, Chamba rumal, Kinnauri shawl, Kangra painting, Himachali kala zeera, Himachali chulli (apricot) oil, Chamba chappal and Lahauli knitted socks and gloves.",
+        "The July 2026 batch added Spiti seabuckthorn (chharma), Salooni safed makka, Chamba metal art, Sirmauri loiya, Kinnauri topi, Mandi sepuvadi, Kinnauri apple and Kinnauri jewellery.",
+        "Lalita Vakil trained hundreds of women in Chamba rumal embroidery over roughly five decades before receiving the Padma Shri in 2022."
       ],
       "sources": [
         {
@@ -967,22 +969,22 @@ window.INDIA_DATA.craft = {
           "year": 2026
         },
         {
+          "title": "Eight traditional Himachal products secure GI tags; CM Sukhu hails landmark achievement",
+          "publisher": "ANI News",
+          "url": "https://www.aninews.in/news/national/politics/eight-traditional-himachal-products-secure-gi-tags-cm-sukhu-hails-landmark-achievement20260701192024/",
+          "year": 2026
+        },
+        {
           "title": "Geographical Indication (GI) Tags of Himachal Pradesh",
           "publisher": "eGeneralStudies",
           "url": "https://www.egeneralstudies.com/geographical-indication-gi-tags-of-himachal-pradesh/",
-          "year": 2024
+          "year": 2026
         },
         {
-          "title": "Postal dept releases covers on Chamba rumal, chappal",
-          "publisher": "The Tribune",
-          "url": "https://www.tribuneindia.com/news/himachal/postal-dept-releases-covers-on-chamba-rumal-chappal-367686",
+          "title": "Padma Shri Recipient Lalita Vakil Devoted Her Life To Chamba Rumal",
+          "publisher": "Outlook India",
+          "url": "https://www.outlookindia.com/national/padma-shri-recipient-lalita-vakil-devoted-her-life-to-chamba-rumal--news-47378",
           "year": 2022
-        },
-        {
-          "title": "Padma Awards — official awardee database",
-          "publisher": "Ministry of Home Affairs, Government of India",
-          "url": "https://www.padmaawards.gov.in/",
-          "year": 2024
         }
       ],
       "confidence": "high",
@@ -990,87 +992,83 @@ window.INDIA_DATA.craft = {
     },
     "jammu-kashmir": {
       "name": "Jammu & Kashmir",
-      "summary": "Kashmir is India's densest luxury-craft cluster: Pashmina and Kani shawls, papier-mâché, walnut wood carving, khatamband ceilings and hand-knotted carpets all carry GI protection. GI registration of Kashmiri crafts began in 2008 with Pashmina, Sozni and Kani shawls, and seven crafts of the Kashmir division are now registered. Srinagar's artisan quarters remain the production heart, with GI labels and QR codes now used to fight machine-made imitations.",
+      "summary": "Kashmir has the deepest GI-protected craft cluster in India: registration began in 2008 with Pashmina, Sozni and Kani shawl, and by late 2025 fifteen Kashmir crafts were registered, with eight more added that year. The crafts are export-facing, with handicraft and handloom shipments of Rs 2,567 crore over three fiscal years to 2024-25.",
       "crafts": [
         {
           "name": "Kashmir Pashmina",
-          "cluster": "Srinagar and Kashmir valley",
-          "materials": "Hand-spun undercoat fibre of the Changthangi goat (cashmere), handwoven and often hand-embroidered",
+          "cluster": "Srinagar and Budgam",
+          "materials": "Hand-combed Changthangi goat down (pashm), hand-spun on the yinder wheel, handwoven",
           "giTag": "GI-tagged (2008)",
-          "description": "The famed featherweight shawl fibre of Kashmir; GI registration (2008) is enforced through a testing-and-labelling regime, and over 20,000 shawls have been issued GI labels."
+          "description": "Ultra-fine cashmere shawls spun and woven entirely by hand; GI-labelled pieces now carry a QR-coded certification issued by the Craft Development Institute quality-control laboratory."
         },
         {
           "name": "Kani shawl",
-          "cluster": "Kanihama, Budgam district",
-          "materials": "Pashmina yarn woven with small wooden bobbins (kanis) in twill-tapestry technique",
+          "cluster": "Kanihama, Budgam",
+          "materials": "Pashmina yarn worked with kanis (small wooden bobbins) on a twill-tapestry loom",
           "giTag": "GI-tagged (2008)",
-          "description": "Loom-woven patterned shawls whose motifs are built colour-by-colour from coded talim charts using dozens of kani bobbins; among the first Kashmiri crafts taken up for GI registration in 2008."
+          "description": "Woven, not embroidered: the weaver follows a coded talim script, inserting coloured wefts bobbin by bobbin, so a single shawl can take a year or more."
         },
         {
-          "name": "Kashmir papier-mâché",
-          "cluster": "Srinagar (Zadibal and old-city workshops)",
-          "materials": "Pulped waste paper moulded into forms, hand-painted with naqashi designs and lacquered",
+          "name": "Sozni (sozankari) embroidery",
+          "cluster": "Srinagar",
+          "materials": "Fine silk or cotton thread needled onto pashmina and raffal grounds",
+          "giTag": "GI-tagged (2008)",
+          "description": "Micro-fine satin and darning needlework in chinar, paisley and jaal layouts; do-rukha versions read cleanly on both faces of the shawl."
+        },
+        {
+          "name": "Kashmir papier-mache (kar-i-qalamdani)",
+          "cluster": "Srinagar",
+          "materials": "Recycled paper pulp (sakhtasazi) over moulds, gypsum ground, mineral pigments, lacquer",
           "giTag": "GI-tagged (2011-12)",
-          "description": "A Persian-origin craft of painted and gilded boxes, ornaments and panels; registered under the GI Act in the 2011-12 registration cycle."
+          "description": "Persian-derived painted lacquerware: boxes, vases and ceiling panels finished in hazara, gul-andar and arabesque patterns with gold outlining."
         },
         {
           "name": "Kashmir walnut wood carving",
           "cluster": "Srinagar",
-          "materials": "Seasoned Kashmir walnut (Juglans regia) wood, deep-carved with chinar-leaf, dragon and floral motifs",
-          "giTag": "GI-tagged (2011-12)",
-          "description": "Kashmir is one of the few regions where walnut grows at carving quality; furniture and screens are carved in relief, undercut and lattice styles. GI-registered alongside khatamband in the 2011-12 cycle."
-        },
-        {
-          "name": "Kashmir hand-knotted carpet",
-          "cluster": "Srinagar and south Kashmir weaving villages",
-          "materials": "Silk or silk-wool pile hand-knotted on cotton warps from coded talim patterns",
-          "giTag": "GI-tagged (2016)",
-          "description": "Kal baffi carpets descend from Persian workshop traditions introduced under Sultan Zain-ul-Abidin; since GI registration, carpets carry QR-coded GI labels — around 9,700 issued so far."
+          "materials": "Kashmir walnut (Juglans regia) heartwood, hand chisels",
+          "giTag": "GI-tagged (year not verified)",
+          "description": "Deep undercut, semi-carved and khokerdar relief in lotus, chinar and dragon motifs on screens, tables and monastery and mosque interiors."
         }
       ],
       "masterCraftspeople": [
         {
           "name": "Ghulam Nabi Dar",
           "craft": "Walnut wood carving",
-          "recognition": "Padma Shri (2024)"
-        },
-        {
-          "name": "Ghulam Mohammed Zaz",
-          "craft": "Santoor and stringed-instrument making (last hereditary santoor maker of Srinagar)",
-          "recognition": "Padma Shri (2023)"
+          "recognition": "Padma Shri (2024); National Award for handicrafts (1995-96); State Award (1984)"
         }
       ],
-      "economicNote": "More than 20,000 Pashmina shawls and about 9,700 hand-knotted carpets had been issued GI tags by 2024, and J&K authorities report roughly 70,000 craft items GI-labelled with QR codes — a certification push aimed at protecting artisan incomes from counterfeit imports.",
+      "economicNote": "Handicraft and handloom exports from Kashmir totalled about Rs 2,567 crore across three fiscal years to 2024-25, with handicraft exports of Rs 733.59 crore in 2024-25; Kani and Sozni shawls accounted for roughly Rs 1,105 crore and hand-knotted carpets Rs 728 crore of that three-year total.",
       "facts": [
-        "GI registration of Kashmir crafts began in 2008, with Pashmina, Sozni embroidery and Kani shawl selected first.",
-        "Seven crafts of the Kashmir division are GI-registered: Pashmina, Sozni, Kani shawl, walnut wood carving, khatamband, papier-mâché and hand-knotted carpet.",
-        "Over 20,000 Pashmina shawls and around 9,700 carpets have been issued GI tags with QR-coded labels.",
-        "Walnut wood carving master Ghulam Nabi Dar of Srinagar received the Padma Shri in 2024.",
-        "Ghulam Mohammed Zaz, Srinagar's last hereditary santoor maker, received the Padma Shri in 2023."
+        "GI registration of Kashmir crafts began in 2008, the first three being Pashmina, Sozni and Kani shawl.",
+        "By November 2025 Kashmir had 15 GI-registered crafts, including hand-knotted carpet, Sozni, Kani shawl, papier-mache, walnut wood carving and khatamband.",
+        "Eight further crafts were awarded GI status in 2025: Kashmir Namda, Gabba, willow bat, tweed, Crewel, chain stitch, Shikara and Wagguv.",
+        "Six more crafts are in the GI pipeline: copperware (kandkari), silverware, houseboat, tapestry, Kashmir tilla and aari staple embroidery.",
+        "The Handicrafts and Handloom Department trained 17,182 women at 432 elementary and advanced training centres over four years, disbursing Rs 36.27 crore in stipends.",
+        "Over 20,000 Pashmina shawls and about 9,700 carpets had been issued individual GI labels as of the reported count."
       ],
       "sources": [
         {
-          "title": "8 Kashmir Crafts Earn GI Status",
+          "title": "Handicraft, handloom exports from Kashmir at Rs 2,567 cr in over last two fiscal years",
+          "publisher": "ThePrint",
+          "url": "https://theprint.in/economy/handicraft-handloom-exports-from-kashmir-at-rs-2567-cr-in-over-last-two-fiscal-years/2507851/",
+          "year": 2025
+        },
+        {
+          "title": "Eight More Kashmir Crafts Earn GI Tag: New Hope for local Artisans",
           "publisher": "Greater Kashmir",
-          "url": "https://www.greaterkashmir.com/business/8-kashmir-crafts-earn-gi-status/",
-          "year": 2023
+          "url": "https://www.greaterkashmir.com/business/eight-more-kashmir-crafts-earn-gi-tag-new-hope-for-local-artisans/",
+          "year": 2025
         },
         {
-          "title": "GI Registered Crafts",
-          "publisher": "Craft Development Institute, Srinagar (CDI PTQC-CGI)",
-          "url": "https://cdiptqccgi.com/gi-crafts",
-          "year": 2024
+          "title": "Handicrafts & Handloom Dept unveils exquisite Table Book on GI crafts of Kashmir",
+          "publisher": "Rising Kashmir",
+          "url": "https://risingkashmir.com/handicrafts-handloom-dept-unveils-exquisite-table-book-on-gi-crafts-of-kashmir/",
+          "year": 2025
         },
         {
-          "title": "Over 20,000 Pashmina Shawls, 9000 Carpets Issued GI Tags",
-          "publisher": "Kashmir Life",
-          "url": "https://kashmirlife.net/jammu-and-kashmir-over-20000-pashmina-shawls-9000-carpets-issued-gi-tags-332629/",
-          "year": 2024
-        },
-        {
-          "title": "Padma Awards — official awardee database",
-          "publisher": "Ministry of Home Affairs, Government of India",
-          "url": "https://www.padmaawards.gov.in/",
+          "title": "President honours renowned Kashmiri wood carver Ghulam Nabi Dar with Padma Shri Award",
+          "publisher": "Greater Kashmir",
+          "url": "https://www.greaterkashmir.com/kashmir/president-honours-renowned-kashmiri-wood-carver-ghulam-nabi-dar-with-padma-shri-award/",
           "year": 2024
         }
       ],
@@ -1079,223 +1077,244 @@ window.INDIA_DATA.craft = {
     },
     "jharkhand": {
       "name": "Jharkhand",
-      "summary": "Jharkhand's signature craft is Sohrai-Khovar, the ritual mural art of Hazaribagh's tribal women, which in 2020 became the state's first Geographical Indication. Around it sit older material traditions — dokra lost-wax brass casting, bamboo basketry and lac work — rooted in the state's forests and its position as India's leading lac producer.",
+      "summary": "Jharkhand's crafts sit at the meeting point of tribal ritual art and forest-based sericulture. Sohrai and Khovar wall painting of Hazaribagh received a GI tag in 2020, while the state is India's leading producer of tasar silk, reared on forest host trees across a dozen districts and marketed through the state corporation Jharcraft.",
       "crafts": [
         {
-          "name": "Sohrai-Khovar painting",
-          "cluster": "Barkagaon block, Hazaribagh district",
-          "materials": "Natural earth pigments — black, yellow, red and white soils — applied on mud-plastered walls and now on paper and cloth",
+          "name": "Sohrai and Khovar painting",
+          "cluster": "Hazaribagh",
+          "materials": "Locally dug coloured earths (black manganese, red ochre, white kaolin), rice paste, cloth swabs and combs on mud-plastered walls",
           "giTag": "GI-tagged (2020)",
-          "description": "Harvest (Sohrai) and marriage (Khovar) murals painted by tribal women, with imagery linked to prehistoric rock art of the region; Jharkhand's first GI, with the certificate received by the Sohrai Kala Mahila Vikas Sahyog Samiti in 2020."
+          "description": "Ritual mural art by tribal women: Khovar for the marriage season and Sohrai for the harvest, with comb-scratched (sgraffito) animal, cattle and forest imagery on house walls."
         },
         {
-          "name": "Dokra (lost-wax) metal casting",
-          "cluster": "Tribal belts across the state, sold through Ranchi and Hazaribagh outlets",
-          "materials": "Brass scrap cast by the cire-perdue (lost-wax) method with clay-and-wax moulds",
+          "name": "Kuchai tasar silk",
+          "cluster": "Seraikela-Kharsawan (Kuchai)",
+          "materials": "Wild tasar cocoons reared on asan and arjun host trees, reeled and handloom-woven",
           "giTag": null,
-          "description": "Figurines, lamps, measuring bowls and jewellery cast in the ancient lost-wax tradition shared across the Chhotanagpur plateau."
+          "description": "A complete forest-to-loom system - host-tree management, silkworm rearing, cocoon collection, grainage, yarn making and weaving - producing the coarse, honey-gold, low-lustre tasar cloth."
         },
         {
-          "name": "Bamboo craft",
-          "cluster": "Forested districts statewide",
-          "materials": "Locally harvested bamboo split and woven",
+          "name": "Paitkar (Pyatkar) scroll painting",
+          "cluster": "East Singhbhum (Amadubi)",
+          "materials": "Natural pigments from stone, leaf and flower on paper or cloth scrolls",
           "giTag": null,
-          "description": "Baskets, fish traps, winnows and household articles woven by rural and tribal communities for daily and ritual use."
+          "description": "Narrative scrolls unrolled by itinerant singer-painters of the Singhbhum region, illustrating death-journey and Ramayana-Mahabharata episodes; GI status has been sought but not confirmed as granted."
         },
         {
-          "name": "Lac craft",
-          "cluster": "Ranchi region (Namkum hosts the national lac research institute)",
-          "materials": "Lac resin from host trees, coloured and moulded over metal or wood",
+          "name": "Dhokra lost-wax metal casting",
+          "cluster": "Jharkhand tribal craft clusters (specific district not identified in sources consulted)",
+          "materials": "Beeswax, clay, brass and bell-metal scrap",
           "giTag": null,
-          "description": "Lac bangles, beads and toys drawing on Jharkhand's position as India's leading producer of natural lac; the Indian Institute of Natural Resins and Gums at Namkum, Ranchi anchors the sector."
+          "description": "Hollow figures of animals, deities and measuring vessels cast by the lost-wax method; supported alongside woodcraft, terracotta, lac bangles and zardozi under the Jharcraft programme."
         }
       ],
       "masterCraftspeople": [
         {
           "name": "Bulu Imam",
-          "craft": "Documentation and revival of Sohrai-Khovar painting (Hazaribagh)",
+          "craft": "Sohrai and Khovar art documentation and revival",
           "recognition": "Padma Shri (2019)"
         }
       ],
-      "economicNote": "The Sohrai-Khovar GI is held by a women's cooperative, the Sohrai Kala Mahila Vikas Sahyog Samiti of Hazaribagh, putting certification income directly in artisans' hands; lac collection and processing around Ranchi supplements forest-based rural incomes.",
+      "economicNote": "Jharkhand is the country's leading tasar silk producer, with rearing across West and East Singhbhum, Seraikela, Dumka, Pakur, Godda, Sahebganj, Dhanbad, Giridih, Latehar, Palamu, Garhwa and Simdega; Jharcraft, set up in 2006, aggregates sericulture farmers, weavers and artisans and holds a GOTS organic certification for its tasar.",
       "facts": [
-        "Sohrai-Khovar painting received Jharkhand's first GI tag in 2020, cleared in about nine months from application.",
-        "The GI certificate was received by the Sohrai Kala Mahila Vikas Sahyog Samiti, a Hazaribagh women's cooperative, in November 2020.",
-        "Sohrai painting is done for the post-harvest Sohrai festival and Khovar for marriage rituals, using natural coloured soils.",
-        "Bulu Imam, who campaigned for decades to document Hazaribagh's village murals and rock art, received the Padma Shri in 2019."
+        "Sohrai Khovar painting of Hazaribagh received its GI tag in 2020, in the same round as Telangana's Telia Rumal.",
+        "The paintings are made during the harvest and marriage seasons using naturally available soils of different colours.",
+        "Bulu Imam brought Khovar (marriage) art to wider notice in 1993 and Sohrai (harvest) murals thereafter, founding the Tribal Women Artists Cooperative and the Sanskriti Museum (1995).",
+        "Jharcraft (Jharkhand Silk Textile and Handicraft Development Corporation) was established in 2006 to develop sericulture, handloom and handicraft livelihoods.",
+        "Jharcraft states it is the only producer of organic tasar silk globally, certified under GOTS by OneCert."
       ],
       "sources": [
         {
-          "title": "Sohrai-Khovar painting gets GI tag",
-          "publisher": "The Daily Pioneer",
-          "url": "https://www.dailypioneer.com/2021/state-editions/sohrai-khovar-painting-gets-gi-tag.html",
-          "year": 2021
-        },
-        {
-          "title": "Jharkhand gets its first GI tag on the Sohrai Khovar painting",
-          "publisher": "The IP Press",
-          "url": "https://www.theippress.com/2020/05/15/jharkhand-one-of-the-states-in-india-gets-its-first-gi-tag-on-the-sohrai-khovar-painting/",
+          "title": "GI Tag to Two Products (Sohrai Khovar Painting, Telia Rumal)",
+          "publisher": "Drishti IAS",
+          "url": "https://www.drishtiias.com/daily-updates/daily-news-analysis/gi-tag-to-two-products",
           "year": 2020
         },
         {
-          "title": "Geographical Indications of Goods of Jharkhand",
-          "publisher": "India Brand Equity Foundation (IBEF)",
-          "url": "https://www.ibef.org/giofindia/jharkhand",
-          "year": 2024
+          "title": "About Us / Sericulture",
+          "publisher": "JHARCRAFT (Govt. of Jharkhand corporation)",
+          "url": "https://www.jharcraft.in/about-us/",
+          "year": 2026
+        },
+        {
+          "title": "79-YO Padma Shri Awardee Spent 30 Years Preserving 10000-Year-Old Art",
+          "publisher": "The Better India",
+          "url": "https://thebetterindia.com/276781/jharkhand-hunter-protects-chalcolithic-era-art-through-tribal-women-artists/",
+          "year": 2022
+        },
+        {
+          "title": "What are Kuchai Silk Sarees",
+          "publisher": "My Textile Notes",
+          "url": "http://mytextilenotes.blogspot.com/2026/06/what-are-kuchai-silk-sarees-what-is.html",
+          "year": 2026
         }
       ],
-      "confidence": "high",
+      "confidence": "medium",
       "media": []
     },
     "karnataka": {
       "name": "Karnataka",
-      "summary": "Karnataka pairs royal-patronage crafts with village industries: Mysore silk from the state-run KSIC mills, rosewood inlay from Mysuru workshops, lac-turned Channapatna toys and the silver-on-black Bidriware of Bidar. All four are GI-registered, part of one of the largest state GI portfolios in India.",
+      "summary": "Karnataka carries one of the largest GI portfolios of any Indian state (reported at 42-46 registrations), and its craft entries are unusually diverse: lacquered wooden toys at Channapatna, silver-inlaid Bidriware at Bidar, reeled Mysore silk, rosewood inlay at Mysuru and the cotton-and-art-silk Ilkal saree of Bagalkot.",
       "crafts": [
         {
           "name": "Channapatna toys and dolls",
-          "cluster": "Channapatna, Ramanagara district",
-          "materials": "Ivory wood (Wrightia tinctoria) and other soft local woods, lathe-turned and coated with vegetable-dyed lac",
-          "giTag": "GI-tagged (2006)",
-          "description": "Smooth, brightly lacquered wooden toys made in a tradition credited to Tipu Sultan's patronage of Persian craftsmen; today produced by home units and small factories in 'toy town' Channapatna."
+          "cluster": "Ramanagara (Channapatna)",
+          "materials": "Ivory-wood (hale mara, Wrightia tinctoria), lac sticks, vegetable dyes, hand and power lathes",
+          "giTag": "GI-tagged (2005)",
+          "description": "Turned wooden toys, rattles and figures coloured by pressing lac against the spinning workpiece and polished with a screwpine leaf; the cluster is known as Gombegala Ooru, the town of toys."
         },
         {
           "name": "Mysore silk",
-          "cluster": "Mysuru (Karnataka Silk Industries Corporation mills)",
-          "materials": "Pure mulberry silk with genuine gold-silver zari",
-          "giTag": "GI-tagged (2005)",
-          "description": "Crepe-de-soie sarees woven under the KSIC label in a tradition begun by the Mysore maharajas in 1912; one of Karnataka's first GI registrations."
+          "cluster": "Mysuru",
+          "materials": "Mulberry silk with pure gold and silver zari",
+          "giTag": "GI-tagged (2004)",
+          "description": "Dense, high-lustre silk sarees with unbroken zari borders, historically produced under the Mysore royal silk-weaving enterprise founded in the early 20th century."
         },
         {
           "name": "Bidriware",
           "cluster": "Bidar",
-          "materials": "Cast zinc-copper alloy inlaid with pure silver, blackened with a soil-and-sal-ammoniac paste unique to Bidar fort",
-          "giTag": "GI-tagged (2006)",
-          "description": "Persian-influenced metalware brought to the Deccan under the Bahmani sultans; the matte-black ground with gleaming silver inlay depends on the peculiar chemistry of Bidar's fort soil."
+          "materials": "Zinc-copper alloy body, pure silver wire and sheet inlay, oxidising soil from Bidar fort",
+          "giTag": "GI-tagged (2005)",
+          "description": "Metalware in which silver is chiselled into the cast alloy and the ground is then blackened with a paste of nitre and the fort's anaerobic soil, leaving silver arabesques on matte black."
         },
         {
           "name": "Mysore rosewood inlay",
           "cluster": "Mysuru",
-          "materials": "Rosewood inlaid with lighter woods and ivory-substitute materials",
+          "materials": "Rosewood ground with inlays of coloured woods, horn, shell and metal",
           "giTag": "GI-tagged (2005)",
-          "description": "Pictorial panels, elephants and furniture inlaid with contrasting woods, a workshop craft nurtured under the Mysore Wodeyars; GI-protected since 2005."
+          "description": "Marquetry panels and furniture depicting deities, processions and hunting scenes, developed under Mysore court patronage as a substitute for the older ivory inlay."
+        },
+        {
+          "name": "Ilkal saree",
+          "cluster": "Bagalkot (Ilkal)",
+          "materials": "Cotton warp for the body with art-silk warp for border and pallu, joined by the kondi (loop) technique",
+          "giTag": "GI-tagged (2007)",
+          "description": "Sarees with a distinctive red tope teni pallu and chikki or gomi borders, frequently finished with Kasuti hand embroidery from north Karnataka."
         }
       ],
       "masterCraftspeople": [
         {
           "name": "Shah Rasheed Ahmed Quadri",
-          "craft": "Bidriware (silver inlay metalwork, Bidar)",
-          "recognition": "Padma Shri (2023)"
+          "craft": "Bidriware",
+          "recognition": "Padma Shri (2023); National Award (1988); Karnataka State Award (1984)"
         }
       ],
-      "economicNote": "Karnataka holds one of India's largest GI portfolios — around 46 registered products, among the highest of any state — and Mysore silk is produced commercially by the state-owned Karnataka Silk Industries Corporation, giving the craft an unusual public-sector anchor.",
+      "economicNote": "A 2021 study counted around 4,000 artisans in Channapatna working from roughly 250 homes and 50 small units, with annual lacquerware output estimated at about Rs 3 crore, and the cluster under pressure from plastic and imported toys.",
       "facts": [
-        "Channapatna toys and dolls received their GI tag in 2006; the town is popularly called 'gombegala ooru' (toy town).",
-        "Mysore silk received GI status in 2005, the first product from Karnataka to be registered.",
-        "Bidriware obtained GI registration in January 2006; its black patina comes from soil taken from Bidar fort.",
-        "Mysore rosewood inlay was awarded a GI in 2005.",
-        "Bidri master Shah Rasheed Ahmed Quadri of Bidar received the Padma Shri in 2023."
+        "Karnataka has among the highest GI counts in India; contemporaneous reports cite 42 registered products in 2021 and 46 in later listings.",
+        "GI registry entries compiled by secondary sources date Mysore silk to 22.07.2004, Bidriware to 24.01.2005 and Channapatna toys and dolls to 07.02.2005; a one-year variance appears across sources because filing and registration dates are quoted interchangeably.",
+        "Ilkal saree carries GI number 43, granted in 2007; Kasuti embroidery of Dharwad is separately GI-registered.",
+        "Sandur Lambani embroidery of the Lambani (Banjara) women of Ballari district holds GI number 134.",
+        "Bidri's black patina depends on soil from the Bidar fort, which is unusually free of oxygen and iron - a material tie that underpins the GI claim."
       ],
       "sources": [
         {
-          "title": "Geographical Indication (GI) Tags of Karnataka",
-          "publisher": "The IP Press",
-          "url": "https://www.theippress.com/2020/07/15/geographical-indication-gi-tags-of-karnataka/",
-          "year": 2020
+          "title": "GI Tagged Products in Karnataka, Preserve the Heritage of the Land",
+          "publisher": "Caleidoscope",
+          "url": "https://caleidoscope.in/art-culture/gi-tagged-products-in-karnataka",
+          "year": 2023
         },
         {
-          "title": "Channapatna Toys & Dolls — Karnataka's Wooden Artistry",
-          "publisher": "Incredible India (Ministry of Tourism)",
-          "url": "https://www.incredibleindia.gov.in/en/karnataka/channapatna-toys-and-dolls",
+          "title": "Channapatna's traditional artisans toy with modernity",
+          "publisher": "Mongabay India",
+          "url": "https://india.mongabay.com/2024/01/channapatnas-traditional-artisans-toy-with-modernity/",
           "year": 2024
         },
         {
-          "title": "GI Tags in Karnataka: Product List, Origin & Description",
-          "publisher": "The Legal School",
-          "url": "https://thelegalschool.in/blog/gi-tag-karnataka",
-          "year": 2025
+          "title": "Karnataka has the highest 42 GI tagged products in the country",
+          "publisher": "ETV Bharat",
+          "url": "https://www.etvbharat.com/english/state/karnataka/karnataka-has-the-highest-42-gi-tagged-products-in-the-country/na20210129212827025",
+          "year": 2021
         },
         {
-          "title": "Mysore Silk, Thanjavur Paintings granted GI tag",
-          "publisher": "Star of Mysore",
-          "url": "https://starofmysore.com/mysore-silk-thanjavur-paintings-granted-gi-tag/",
-          "year": 2019
+          "title": "Padma Awards 2023: Renowned craftsman Shah Rasheed Ahmed Quadri conferred Padma Shri",
+          "publisher": "Republic World",
+          "url": "https://www.republicworld.com/india-news/general-news/padma-awards-2023-renowned-craftsman-shah-rasheed-ahmed-quadri-conferred-padma-shri-articleshow.html",
+          "year": 2023
         }
       ],
-      "confidence": "high",
+      "confidence": "medium",
       "media": []
     },
     "kerala": {
       "name": "Kerala",
-      "summary": "Kerala's craft map runs from the metallurgical secret of the Aranmula kannadi mirror to the coir yarns of Alappuzha, the unbleached gold-bordered cottons of Balaramapuram and the woven screw-pine mats of its wetlands. All four are GI-protected, and the state's Industries Department maintains a dedicated GI products portal.",
+      "summary": "Kerala holds around 31 of India's registered geographical indications and topped the country in new GI registrations in 2022-23. Its craft GIs cluster around metal (the front-surface Aranmula mirror, the Payyannur ritual ring), unbleached kasavu handloom towns and the coir belt of Alappuzha.",
       "crafts": [
         {
           "name": "Aranmula kannadi (metal mirror)",
-          "cluster": "Aranmula, Pathanamthitta district",
-          "materials": "A closely guarded tin-copper bronze alloy, cast and polished to a front-surface mirror finish",
-          "giTag": "GI-tagged (2004-05)",
-          "description": "A distortion-free metal mirror made by a handful of Vishwakarma families in Aranmula; considered auspicious among Kerala's ashtamangalyam objects and one of India's earliest handicraft GIs."
+          "cluster": "Pathanamthitta (Aranmula)",
+          "materials": "Secret copper-tin bell-metal alloy, clay and beeswax moulds, hand lapping and polishing",
+          "giTag": "GI-tagged (2005)",
+          "description": "A front-surface reflecting metal mirror that shows an undistorted image with no parallax, cast by Vishwakarma families attached to the Aranmula Parthasarathy temple for about five centuries."
         },
         {
-          "name": "Alleppey coir",
-          "cluster": "Alappuzha district",
-          "materials": "Golden coconut-husk fibre spun into yarn and woven into mats and matting",
-          "giTag": "GI-tagged (2007)",
-          "description": "Alappuzha is the historic centre of India's coir industry, and its naturally golden-hued yarn earned the GI tag in 2007; products range from mats and matting to geotextiles."
+          "name": "Payyannur pavithra ring",
+          "cluster": "Kannur (Payyannur)",
+          "materials": "Gold or silver, drawn and knotted by hand",
+          "giTag": "GI-tagged (2004)",
+          "description": "A ritual ring whose form reproduces the knotted darbha-grass pavithram worn during Vedic rites, made by a small number of families in Payyannur."
         },
         {
           "name": "Balaramapuram sarees and fine cotton fabrics",
-          "cluster": "Balaramapuram, Thiruvananthapuram district",
-          "materials": "Unbleached fine cotton (kora) with kasavu (gold zari) borders, woven on traditional pit looms",
-          "giTag": "GI-tagged (2010)",
-          "description": "The classic Kerala kasavu weave, made by hereditary weaving communities settled at Balaramapuram under Travancore royal patronage; GI-tagged along with the town's fine cotton fabrics."
+          "cluster": "Thiruvananthapuram (Balaramapuram)",
+          "materials": "Unbleached fine-count cotton with kasavu (gold) zari borders, throw-shuttle handlooms",
+          "giTag": "GI-tagged (2009)",
+          "description": "The classic off-white Kerala mundu and set-mundu with a plain gold border, woven by Shaliyar weaver families settled at Balaramapuram under Travancore patronage."
         },
         {
-          "name": "Screw pine craft",
-          "cluster": "Wetland belts of central and southern Kerala",
-          "materials": "Dried and dyed screw pine (Pandanus) leaves plaited into mats and bags",
-          "giTag": "GI-tagged (2010-11)",
-          "description": "Sleeping mats, prayer mats and bags plaited from thorny screw-pine leaves, a women's household craft of Kerala's backwater villages registered under the GI Act."
+          "name": "Kuthampully sarees",
+          "cluster": "Thrissur (Kuthampully)",
+          "materials": "Cotton with kasavu zari, jacquard-assisted handlooms",
+          "giTag": "GI-tagged (2009)",
+          "description": "Kasavu sarees and set-mundu woven by the Devanga community, now also carrying figurative and coloured-border variants for the Onam market."
+        },
+        {
+          "name": "Alleppey coir",
+          "cluster": "Alappuzha",
+          "materials": "Coconut husk retted in backwaters, hand-spun coir yarn, hand and treadle looms",
+          "giTag": "GI-tagged (2007)",
+          "description": "Coir yarn, mats, mattings and rugs from the Alappuzha belt, the historic centre of India's coir export trade."
         }
       ],
       "masterCraftspeople": [
         {
-          "name": "K. K. Ramachandra Pulavar",
-          "craft": "Tholpavakoothu shadow puppetry and leather-puppet making",
-          "recognition": "Padma Shri (2021)"
+          "name": "K. R. Mohanan",
+          "craft": "Wood carving",
+          "recognition": "Shilp Guru Award (2017), Ministry of Textiles"
         }
       ],
-      "economicNote": "Kerala dominates India's coir economy — the Coir Board is headquartered in Kochi and Alappuzha remains its historic manufacturing hub — while the GI-certified handloom clusters at Balaramapuram and elsewhere sustain hereditary weaving households.",
+      "economicNote": "Kerala accounts for roughly 31 of India's registered geographical indications and led all states in new GI registrations in FY 2022-23, with the handicraft and handloom categories - coir, kasavu weaving, bell metal and screw pine - carrying most of the entries.",
       "facts": [
-        "Aranmula kannadi, a front-surface bronze mirror with a secret alloy formula, was GI-registered in 2004-05.",
-        "Alleppey coir received its GI tag in 2007; Alappuzha is known as the cradle of India's coir industry.",
-        "Balaramapuram sarees and fine cotton fabrics were granted GI protection in 2010.",
-        "Screw pine craft of Kerala is GI-registered for mats, wall hangings and related plaited goods.",
-        "Kerala's Industries Department runs a dedicated portal (gikerala.in) for the state's GI products."
+        "Aranmula Kannadi is one of India's earliest GI entries, with registry records showing an effective date of 08.12.2003 and the tag commonly reported for 2005.",
+        "Payyannur Pavithra Ring was registered on 23.02.2004 and Balaramapuram Sarees and Fine Cotton Fabrics on 19.01.2009.",
+        "Other Kerala handicraft GIs include Maddalam of Palakkad (2008), Brass Broidered Coconut Shell Crafts (2008), Cannanore Home Furnishings (2009), Kasaragod Sarees (11.05.2009) and Screw Pine Craft of Kerala.",
+        "Alleppey Coir appears in registry compilations with a 2006 date and is commonly reported as GI-tagged in 2007.",
+        "Nilambur teak, GI-tagged in 2019, was the first forest produce in India to receive a GI tag."
       ],
       "sources": [
         {
-          "title": "Alleppey Coir — Kerala GI tagged products",
-          "publisher": "Industries Department, Government of Kerala",
-          "url": "https://www.gikerala.in/products/alleppey-coir",
-          "year": 2024
+          "title": "Kerala GI Products",
+          "publisher": "Directorate of Industries and Commerce, Government of Kerala",
+          "url": "https://industry.kerala.gov.in/index.php/kerala-gi-products",
+          "year": 2026
         },
         {
-          "title": "Balaramapuram Sarees and Fine Cotton Fabrics",
-          "publisher": "Industries Department, Government of Kerala",
-          "url": "https://www.gikerala.in/products/balaramapuram-sarees-and-fine-cotton-fabrics",
-          "year": 2024
-        },
-        {
-          "title": "Screw Pine Craft of Kerala",
-          "publisher": "Industries Department, Government of Kerala",
-          "url": "https://www.gikerala.in/products/screw-pine-craft-of-kerala",
-          "year": 2024
-        },
-        {
-          "title": "Aranmula Kannadi: A mirror reflecting Kerala's traditions and glorious past",
-          "publisher": "Onmanorama",
-          "url": "https://www.onmanorama.com/travel/kerala/2019/10/14/aranmula-kannadi-kerala-tradition-glorious-past.html",
+          "title": "Kerala Piravi: GI Tags for Kerala Products",
+          "publisher": "Onmanorama (Malayala Manorama)",
+          "url": "https://specials.manoramaonline.com/Onmanorama/2019/kerala-piravi/index.html",
           "year": 2019
+        },
+        {
+          "title": "Kerala tops Geographical Indication tag list in FY 2022-23",
+          "publisher": "The Tribune",
+          "url": "https://www.tribuneindia.com/news/uncategorized/kerala-tops-geographical-indication-tag-list-in-fy-2022-23-494438/",
+          "year": 2023
+        },
+        {
+          "title": "Statewise List of Shilp Guru Awardees for the Year 2017, 2018 & 2019",
+          "publisher": "Press Information Bureau, Government of India",
+          "url": "https://static.pib.gov.in/WriteReadData/specificdocs/documents/2022/nov/doc20221128137401.pdf",
+          "year": 2022
         }
       ],
       "confidence": "medium",
@@ -1303,64 +1322,76 @@ window.INDIA_DATA.craft = {
     },
     "ladakh": {
       "name": "Ladakh",
-      "summary": "Ladakh's crafts serve both monastery and household: thangka painting and carved wooden choktse tables for Buddhist devotional life, hammered copperware from the river village of Chilling, and the spinning of pashmina from Changthang's goats — the raw fibre behind the world's finest shawls. Ladakhi wood carving is among the products of the union territory that have obtained GI registration since it became a UT in 2019.",
+      "summary": "Ladakh's crafts are pastoral and monastic. Pashm from Changthangi goats reared by Changpa nomads on the Changthang plateau and the shingskos tradition of monastery wood carving both received GI tags in 2023, the union territory's second and third GI registrations after Raktsey Karpo apricot.",
       "crafts": [
         {
-          "name": "Wood carving",
-          "cluster": "Leh, Wanla and Choglamsar",
-          "materials": "Willow, apricot and imported pine, carved with dragons, lotus and the eight auspicious symbols",
-          "giTag": "GI-tagged (2021)",
-          "description": "Low choktse tea tables, monastery pillars and altar fittings carved in Tibetan-Buddhist style; reported GI-registered in 2021, among the union territory's first protected crafts."
+          "name": "Ladakh Pashmina",
+          "cluster": "Leh (Changthang plateau)",
+          "materials": "Hand-combed Changthangi goat down of about 10-16 microns, hand-spun, handwoven",
+          "giTag": "GI-tagged (2023)",
+          "description": "Raw pashm combed each spring by Changpa herders at 4,000-5,000 m and worked into shawls and stoles; a single goat yields only 80-170 g of usable combed fibre a year."
         },
         {
-          "name": "Pashmina spinning and weaving",
-          "cluster": "Changthang plateau (Changpa herders) and Leh workshops",
-          "materials": "Undercoat fibre of the Changra (Changthangi) goat, hand-combed, spun and woven",
-          "giTag": null,
-          "description": "Changthang's high-altitude herders produce the raw cashmere behind GI-tagged Pashmina shawls; Ladakh's administration has pushed local value-addition so more spinning and weaving happens within the UT."
+          "name": "Ladakh wood carving (shingskos)",
+          "cluster": "Leh",
+          "materials": "Poplar, willow and apricot wood, hand chisels, mineral paints",
+          "giTag": "GI-tagged (2023)",
+          "description": "Carved monastery doors and pillar capitals, choktse folding tables, scripture cases and lama thrones in Tibetan-Buddhist motif vocabularies."
         },
         {
           "name": "Thangka painting",
-          "cluster": "Leh and monastery ateliers across Ladakh",
-          "materials": "Mineral pigments on primed cotton canvas, mounted in brocade",
+          "cluster": "Leh",
+          "materials": "Sized cotton cloth, natural mineral and vegetable pigments, gold, brocade mounts",
           "giTag": null,
-          "description": "Scroll paintings of Buddhist deities and mandalas executed to strict iconometric rules, commissioned for monasteries and household shrines; identified by the UT administration as a key craft product."
+          "description": "Buddhist scroll paintings of deities and mandalas made to strict iconometric grids; painters train for years in monastic and market ateliers around Leh."
         },
         {
-          "name": "Metal craft of Chilling",
-          "cluster": "Chilling village, on the Zanskar river",
-          "materials": "Copper, brass and silver hammered into teapots, ladles and ritual vessels",
+          "name": "Nambu and pattu woollen weaving",
+          "cluster": "Leh and Kargil",
+          "materials": "Local sheep and yak wool, hand-spun, woven on narrow backstrap and pit looms",
           "giTag": null,
-          "description": "Descendants of Newari metalsmiths brought from Nepal centuries ago still work copper and silver at Chilling, making the ornate gurgur tea pots and stove fittings used across Ladakh."
+          "description": "Nambu, a white woollen cloth used for goncha robes, and the coarser pattu, alongside willow-twig and grass basketry, form the everyday textile and container crafts of Ladakhi households."
         }
       ],
-      "masterCraftspeople": [],
-      "economicNote": "The UT administration promotes GI-tagged Ladakhi products as a livelihood route for youth, and artisan clusters in Changthang and Wanla produce high-quality pashmina wool, wood carvings and thangka for exhibitions such as 'Enchanting Ladakh' at Dilli Haat.",
+      "masterCraftspeople": [
+        {
+          "name": "Tsering Namgyal",
+          "craft": "Wood carving (shingskos)",
+          "recognition": "Padma Shri (2022)"
+        }
+      ],
+      "economicNote": "GI registration for Ladakh crafts was driven by NABARD with the Department of Handicrafts and Handloom from December 2020, and the pashm supply chain feeds a global cashmere market reported at around USD 1.5 billion, though verified UT-level artisan counts and turnover were not found in the sources consulted.",
       "facts": [
-        "Ladakhi products that have obtained GI registration include pashmina, wood carving, sea buckthorn and the Raktsey Karpo apricot.",
-        "Traditional craft lines include stone and wood carving, thangka painting, copper metal craft and felted wool goods.",
-        "Chilling village on the Zanskar river is Ladakh's hereditary metalworking centre.",
-        "Artisan clusters in Changthang and Wanla supply pashmina wool, wood carvings and thangka paintings.",
-        "No Padma or Shilp Guru awardee could be verified specifically for Ladakhi handicrafts in this compilation."
+        "Ladakh Pashmina and Ladakh wood carving were both registered with the GI Registry, Chennai, in 2023.",
+        "They were the second and third GI tags for Ladakh after Raktsey Karpo apricot, tagged in December 2022; Ladakh seabuckthorn became the fourth later in 2023.",
+        "Pashm is combed, not sheared, from the undercoat of Changthangi goats living at roughly 13,000-16,000 feet where winter temperatures fall to about -40C.",
+        "One shawl can require the annual pashm yield of three to four goats and 200-500 hours of hand work across the spinning, weaving and finishing stages.",
+        "Tsering Namgyal has worked on interiors, statue cases and lama thrones in more than 25 Ladakhi monasteries."
       ],
       "sources": [
         {
-          "title": "L-G Gupta calls for promotion of Ladakhi GI tag products to boost youth livelihood",
-          "publisher": "The Tribune",
-          "url": "https://www.tribuneindia.com/news/j-k/l-g-gupta-calls-for-promotion-of-ladakhi-gi-tag-products-to-boost-youth-livelihood",
-          "year": 2025
+          "title": "Ladakh's Pashmina Wool, Wood Carving get GI Tag",
+          "publisher": "The Earth News Network",
+          "url": "https://www.10net.in/2023/04/05/ladakhs-pashmina-wool-wood-carving-get-gi-tag/",
+          "year": 2023
         },
         {
-          "title": "'Enchanting Ladakh' opens at Dilli Haat — exquisite handicrafts and handlooms",
-          "publisher": "Administration of UT of Ladakh (ladakh.gov.in)",
-          "url": "https://ladakh.gov.in/enchanting-ladakh-opens-at-dilli-haat-exquisite-handicrafts-and-handlooms-on-show-till-year-end/",
-          "year": 2024
+          "title": "After Pashmina and Apricots, Ladakh secures GI tag for Ladakh Seabuckthorn",
+          "publisher": "Ziraat Times",
+          "url": "https://ziraattimes.com/2023/11/after-pashmina-and-apricots-ladakh-secures-gi-tag-for-ladakh-seabuckthorn/",
+          "year": 2023
         },
         {
-          "title": "Handicraft of Ladakh",
+          "title": "In Conversation with Padma Shri awardee Tsering Namgyal, Woodcarver",
           "publisher": "Reach Ladakh Bulletin",
-          "url": "https://www.reachladakh.com/peculiarities/handicraft-of-ladakh",
-          "year": 2024
+          "url": "https://www.reachladakh.com/news/in-conversation-with-reach-ladakh/in-conversation-with-padma-shri-awardee-tsering-namgyal-woodcarver",
+          "year": 2022
+        },
+        {
+          "title": "Thangka painting, Leh - craft research archive",
+          "publisher": "Gaatha (Craft of India)",
+          "url": "https://gaatha.org/Craft-of-India/study-thangka-painting-leh/",
+          "year": 2026
         }
       ],
       "confidence": "medium",
@@ -1368,233 +1399,236 @@ window.INDIA_DATA.craft = {
     },
     "lakshadweep": {
       "name": "Lakshadweep",
-      "summary": "Lakshadweep's crafts are built almost entirely from the coconut palm and the sea: coir spinning, coconut-shell utensils and ornaments, and the boat-building tradition of Minicoy, whose odam sailing vessels and painted houses are a craft form in themselves. Production is small-scale and household-based, and no island craft yet holds a GI registration.",
+      "summary": "Lakshadweep has no registered craft GI; its making traditions are almost entirely coconut-based. Coir spinning and mat weaving, coconut-shell and stem carving, and the building of odam sailing craft and their miniatures form the islands' craft economy, run largely through small government demonstration centres.",
       "crafts": [
         {
-          "name": "Coir spinning and products",
-          "cluster": "Across the inhabited islands, with Minicoy noted for fine coir work",
-          "materials": "Retted coconut-husk fibre twisted into yarn, ropes, mats and bags",
+          "name": "Coir yarn, mats and matting",
+          "cluster": "Kavaratti, Kalpeni and other inhabited islands",
+          "materials": "Coconut husk fibre, screw-pine (pandanus) leaf",
           "giTag": null,
-          "description": "Coir ropes and twines were the islands' historic trade goods; artisans, largely women, spin fibre and weave mats, baskets and bags in a craft passed down through generations."
+          "description": "Husks are retted and defibred, spun into yarn and woven into mats, mattings, ropes and baskets; coir yarn is among the islands' principal manufactures alongside copra and coconut oil."
         },
         {
-          "name": "Coconut shell craft",
-          "cluster": "Island households territory-wide",
-          "materials": "Polished coconut shell, sometimes combined with wood",
+          "name": "Coconut shell and stem craft",
+          "cluster": "Kavaratti and Agatti",
+          "materials": "Dried coconut shell, coconut stem and wood",
           "giTag": null,
-          "description": "Ladles, spoons, cups, lamps, pendants and other ornaments worked from coconut shell — the islands' most accessible craft material."
+          "description": "Shells are cut, carved and polished into ladles, spoons, cups, pendants, earrings, lamps and chandeliers - the islands' main souvenir craft."
         },
         {
-          "name": "Traditional boat building and model boats",
-          "cluster": "Minicoy island",
-          "materials": "Coconut and other local timbers fastened and rigged with coir",
+          "name": "Wooden boat building and model odams",
+          "cluster": "Kavaratti and Agatti",
+          "materials": "Coconut wood, local timber, coir lashing",
           "giTag": null,
-          "description": "Minicoy's odam sailing vessels, built for deep-sea tuna fishing, carry a living shipwright tradition; painted boats and houses and souvenir model boats extend the same skills."
-        }
-      ],
-      "masterCraftspeople": [
+          "description": "Islanders build odams, the traditional coconut-wood-and-coir sailing craft used for deep-sea tuna fishing, and carve scale models of them as decorative pieces."
+        },
         {
-          "name": "Ali Manikfan",
-          "craft": "Traditional shipbuilding and marine crafts (Minicoy); led the hand-built reconstruction of a historic Arab sailing ship",
-          "recognition": "Padma Shri (2021)"
+          "name": "Sea-shell and mother-of-pearl craft",
+          "cluster": "Kavaratti and Agatti craft markets",
+          "materials": "Locally collected sea shells and mother-of-pearl",
+          "giTag": null,
+          "description": "Shell inlay, jewellery and curios sold through island craft markets; older turtle-shell work is no longer legal and has been displaced by shell and coconut alternatives."
         }
       ],
-      "economicNote": "Craft production remains a household and cooperative activity supplementing fishing and coconut cultivation; coir spinning and shell work are sold mainly as souvenirs to visitors, with government support units on several islands.",
+      "masterCraftspeople": [],
+      "economicNote": "Craft production is organised through small state centres rather than large clusters: at the Coir Production cum Demonstration Centre in Kavaratti, 14 women operate six machines to extract coir and make rope, and coir yarn, coconut-shell craft, copra and coconut oil are the territory's listed manufactures.",
       "facts": [
-        "Odam and machhwa are the islands' two main traditional fishing craft; odams are built of coconut wood and coir.",
-        "Coir mats, baskets, ropes and twines are a speciality of Minicoy, where the craft is predominantly women's work.",
-        "Coconut shell is worked into ladles, cups, jewellery and lamps across the islands.",
-        "No Lakshadweep craft holds a Geographical Indication registration.",
-        "Ali Manikfan of Minicoy, honoured with the Padma Shri in 2021, is celebrated for traditional shipbuilding and marine knowledge."
+        "No Lakshadweep craft appears among India's registered geographical indications in the sources consulted.",
+        "Coir is extracted from coconut husk and, together with screw-pine leaf, is woven into mats and baskets by island weavers.",
+        "The Coir Production cum Demonstration Centre at Kavaratti is staffed by 14 women running six machines.",
+        "Odams, built of coconut wood and coir, are the traditional deep-sea tuna-fishing craft of the islands and are also reproduced as models.",
+        "Agatti and Kavaratti craft markets are the main retail outlets for island handicraft."
       ],
       "sources": [
         {
+          "title": "Lakshadweep's coir workers",
+          "publisher": "People's Archive of Rural India (PARI)",
+          "url": "https://ruralindiaonline.org/article/lakshadweeps-coir-workers",
+          "year": 2019
+        },
+        {
           "title": "Coconut Shell, Fibre and Stem Craft of Lakshadweep",
-          "publisher": "India InCH (Craft Revival Trust)",
+          "publisher": "India InCH (Encyclopedia of Intangible Cultural Heritage)",
           "url": "https://www.indiainch.org/craft/coconut-shell-fibre-and-stem-craft-of-lakshadweep/",
-          "year": 2024
+          "year": 2026
         },
         {
-          "title": "Lakshadweep Arts and Crafts",
-          "publisher": "Maps of India",
-          "url": "https://www.mapsofindia.com/lakshadweep/culture/art-crafts.html",
-          "year": 2024
-        },
-        {
-          "title": "Craft of India — Lakshadweep Island",
+          "title": "Craft of India - Lakshadweep Island",
           "publisher": "Young INTACH",
           "url": "https://www.youngintach.org/public/maps_craft_lakshadweep_island",
-          "year": 2024
+          "year": 2026
+        },
+        {
+          "title": "Crafts of Lakshadweep",
+          "publisher": "Indianetzone",
+          "url": "https://www.indianetzone.com/crafts_lakshadweep",
+          "year": 2026
         }
       ],
-      "confidence": "medium",
+      "confidence": "low",
       "media": []
     },
     "madhya-pradesh": {
       "name": "Madhya Pradesh",
-      "summary": "Madhya Pradesh is handloom and tribal-art country: the gossamer Chanderi and the reversible-bordered Maheshwari weaves, the natural-dye block prints of Bagh, and Gond painting, the Pardhan-Gond tradition that moved from village walls to global galleries. All four carry GI protection, and the state's tribal painters have earned a run of Padma Shris.",
+      "summary": "Madhya Pradesh's craft map is anchored by three GI textile towns - Chanderi, Maheshwar and Bagh - and by the tribal painting traditions of the Gond-Pardhan, which received their own GI in 2020. Bagh printing uses river-washed alizarin reds and iron-tannin blacks; Chanderi and Maheshwar weave cotton-silk unions with zari borders.",
       "crafts": [
         {
-          "name": "Chanderi sarees",
-          "cluster": "Chanderi, Ashoknagar district",
-          "materials": "Silk warp with fine cotton weft, gold zari borders and woven butis",
+          "name": "Chanderi saree and fabric",
+          "cluster": "Ashoknagar (Chanderi)",
+          "materials": "Fine cotton and mulberry silk union yarns with gold and silver zari, pit and frame looms",
           "giTag": "GI-tagged (2005)",
-          "description": "A sheer, glossy handloom fabric woven in a fort town patronised by Bundela and Scindia courts; among India's earliest textile GIs (2005)."
+          "description": "Sheer, glossy sarees in cotton, silk-cotton and pure silk with hand-woven nakshi butis (gold coins, peacocks, lotus) and a distinctive transparent ground."
         },
         {
-          "name": "Maheshwari sarees",
-          "cluster": "Maheshwar, Khargone district",
-          "materials": "Cotton-silk blends with distinctive reversible borders and pallu stripes",
-          "giTag": "GI-tagged (2010-11)",
-          "description": "A weave founded under Ahilyabai Holkar's 18th-century patronage at Maheshwar on the Narmada, known for its bugdi (reversible) border that can be worn either side."
+          "name": "Maheshwari saree",
+          "cluster": "Khargone (Maheshwar)",
+          "materials": "Cotton warp with silk weft, zari borders",
+          "giTag": "GI-tagged (2010)",
+          "description": "Reversible bugdi borders and geometric ghat, chatai and eent motifs derived from the ghat carvings at Maheshwar, a tradition attributed to the patronage of Rani Ahilyabai Holkar."
         },
         {
-          "name": "Bagh prints",
-          "cluster": "Bagh, Dhar district",
-          "materials": "Hand-carved wooden blocks, natural alizarin red and iron black dyes on cotton",
+          "name": "Bagh hand-block print",
+          "cluster": "Dhar (Bagh village)",
+          "materials": "Hand-carved teak blocks, alizarin red, iron-tannin (kasees) black, harda mordant, Baghini river water",
           "giTag": "GI-tagged (2008)",
-          "description": "Hand-block printing by the Khatri community using river-washed cloth and vegetable-mineral dyes, with geometric and floral repeats; GI-tagged in 2008."
+          "description": "Natural-dye block printing on cotton and silk in which the printed cloth is washed in the Baghini river and boiled with alizarin, the local water chemistry being credited for the depth of the reds."
         },
         {
           "name": "Gond painting",
-          "cluster": "Pardhan Gond artists of Dindori-Mandla region and Bhopal",
-          "materials": "Acrylics and natural pigments on paper and canvas, built from dot-and-dash infill patterns",
-          "giTag": "GI-tagged (2023)",
-          "description": "The painted mythology of the Gond community, carried from village walls into contemporary art by Jangarh Singh Shyam's lineage; GI protection was granted in 2023."
+          "cluster": "Dindori (Patangarh)",
+          "materials": "Originally earth and plant colours on mud walls, now acrylic and ink on paper and canvas",
+          "giTag": "GI-tagged (2020)",
+          "description": "The Gond-Pardhan idiom of dotted and dashed infill over animal, tree and deity forms, developed into a contemporary studio practice from the village of Patangarh."
         }
       ],
       "masterCraftspeople": [
         {
-          "name": "Bhuri Bai",
-          "craft": "Bhil painting (Jhabua/Bhopal)",
-          "recognition": "Padma Shri (2021)"
+          "name": "Bhajju Shyam",
+          "craft": "Gond (Pardhan) painting",
+          "recognition": "Padma Shri (2018)"
         },
         {
-          "name": "Durga Bai Vyam",
-          "craft": "Gond painting",
-          "recognition": "Padma Shri (2022)"
-        },
-        {
-          "name": "Jodhaiya Bai Baiga",
-          "craft": "Baiga painting (Umaria)",
-          "recognition": "Padma Shri (2023)"
+          "name": "Mohammed Yusuf Khatri",
+          "craft": "Bagh hand-block printing",
+          "recognition": "National Award for handicrafts and handlooms (2003); UNESCO Award of Excellence (2014)"
         }
       ],
-      "economicNote": "Handloom weaving at Chanderi and Maheshwar anchors the state's craft economy, with GI protection used to defend both weaves against powerloom imitations; state emporia market the clusters' output alongside tribal painting.",
+      "economicNote": "The three GI textile towns - Chanderi, Maheshwar and Bagh - are the state's principal craft employers, but the sources consulted did not provide verified artisan counts or cluster turnover, so no figures are asserted here.",
       "facts": [
-        "Chanderi fabric was granted its GI tag in 2005, among the first Indian handlooms protected.",
-        "Bagh prints of Dhar district received GI protection in 2008 for their natural-dye hand-block printing.",
-        "Chanderi and Maheshwari are both GI-tagged weaves, celebrated as central India's leading handloom traditions.",
-        "Gond painting is among Madhya Pradesh's GI-tagged handicrafts.",
-        "Three MP tribal women painters — Bhuri Bai (2021), Durga Bai Vyam (2022) and Jodhaiya Bai Baiga (2023) — received Padma Shris in successive years."
+        "Chanderi fabric was GI-registered in 2005 and is the state's best-known handloom GI.",
+        "Maheshwari saree and dress material carries GI entry number 197, dated 08.02.2010; some secondary sources quote 2008 or 2012, so the 2010 registry date is used here.",
+        "Bagh print received its GI tag in 2008; the craft is named after Bagh village in Dhar district and its printers trace an alizarin-dyeing lineage over many generations.",
+        "Gond painting received its GI tag in 2020, in a round that also covered Sharbati wheat.",
+        "Bhajju Shyam of Patangarh, awarded the Padma Shri in 2018, brought Gond-Pardhan art international attention with The London Jungle Book (2004)."
       ],
       "sources": [
+        {
+          "title": "Madhya Pradesh's Gond painting gets GI tag",
+          "publisher": "ThePrint",
+          "url": "https://theprint.in/india/madhya-pradeshs-gond-painting-gets-gi-tag/1511637/",
+          "year": 2023
+        },
+        {
+          "title": "Maheshwari Saari - district produce",
+          "publisher": "District Khargone, Government of Madhya Pradesh",
+          "url": "https://khargone.nic.in/en/district-produce/maheshwari-saari/",
+          "year": 2026
+        },
+        {
+          "title": "Bagh Prints of Madhya Pradesh - A Kaleidoscope of Colors",
+          "publisher": "Incredible India (Ministry of Tourism)",
+          "url": "https://www.incredibleindia.gov.in/en/madhya-pradesh/bagh-prints-of-madhya-pradesh",
+          "year": 2026
+        },
         {
           "title": "GI Tags of Madhya Pradesh: Handicrafts, Food, Agriculture & More",
           "publisher": "The Legal School",
           "url": "https://thelegalschool.in/blog/gi-tag-madhya-pradesh",
           "year": 2025
-        },
-        {
-          "title": "Chanderi Sarees: A Tale of History and Elegance",
-          "publisher": "Fashion Law Journal",
-          "url": "https://fashionlawjournal.com/chanderi-sarees-a-tale-of-history-and-elegance/",
-          "year": 2024
-        },
-        {
-          "title": "A Case Study of Chanderi Sarees",
-          "publisher": "IJCRT (International Journal of Creative Research Thoughts)",
-          "url": "https://ijcrt.org/papers/IJPUB1802140.pdf",
-          "year": 2018
-        },
-        {
-          "title": "Padma Awards — official awardee database",
-          "publisher": "Ministry of Home Affairs, Government of India",
-          "url": "https://www.padmaawards.gov.in/",
-          "year": 2024
         }
       ],
-      "confidence": "medium",
+      "confidence": "high",
       "media": []
     },
     "maharashtra": {
       "name": "Maharashtra",
-      "summary": "Maharashtra's craft roster spans the zari-tapestry Paithani saree, the hand-tanned Kolhapuri chappal, Solapur's jacquard chaddars, Pune's ceremonial pagadi and the rice-paste wall paintings of the Warli. All five are GI-registered — Solapur chaddar (2005) was among the state's first, Kolhapuri chappal (2019, jointly with Karnataka) among the most publicized.",
+      "summary": "Maharashtra's GI craft list runs from the pure-zari Paithani of the Godavari valley and the Warli murals of Palghar to the vegetable-tanned Kolhapuri chappal and the Solapur chaddar, the state's first handicraft GI. Sawantwadi's wooden toys and Ganjifa cards were added in 2024.",
       "crafts": [
         {
-          "name": "Paithani sarees",
-          "cluster": "Paithan (Chhatrapati Sambhajinagar district) and Yeola (Nashik district)",
-          "materials": "Pure silk with gold-silver zari, pallus woven in tapestry technique with peacock and lotus motifs",
+          "name": "Paithani saree and fabrics",
+          "cluster": "Chhatrapati Sambhajinagar (Paithan) and Nashik (Yeola)",
+          "materials": "Mulberry silk with pure gold and silver zari, tapestry (interlocked) weft technique",
           "giTag": "GI-tagged (2010)",
-          "description": "A brocade tradition dating to Satavahana-era Paithan, revived at Yeola under Peshwa patronage; the oblique square border and jewel-toned tapestry pallu are its signatures."
-        },
-        {
-          "name": "Kolhapuri chappal",
-          "cluster": "Kolhapur and adjoining districts of Maharashtra and Karnataka",
-          "materials": "Vegetable (bag) tanned buffalo leather, hand-stitched without nails",
-          "giTag": "GI-tagged (2019)",
-          "description": "The open-toed leather sandal of the Deccan, its GI registered jointly for four districts each in Maharashtra and Karnataka in 2019 — one of India's few two-state craft GIs."
+          "description": "Kadiyal borders and a hand-woven tapestry pallu carrying peacock, lotus, parrot and Ajanta-derived motifs, with no floats on the reverse; a single saree can take months on the loom."
         },
         {
           "name": "Warli painting",
-          "cluster": "Palghar district (Dahanu, Talasari, Jawhar belts)",
-          "materials": "White rice-paste pigment on red-ochre mud wall grounds, now on cloth and paper",
-          "giTag": "GI-tagged (2014)",
-          "description": "Ritual wall paintings of the Warli Adivasi community built from circles, triangles and the spiral tarpa dance; GI-registered with proceeds routed through tribal artist collectives."
+          "cluster": "Palghar",
+          "materials": "Rice-paste white on a cow-dung and earth ground, chewed bamboo-stick brush",
+          "giTag": "GI-tagged (2013)",
+          "description": "Ritual wall painting of the Warli community built from circles, triangles and lines - tarpa dance circles, marriage chauk and harvest scenes - originally painted by women for the lagna ceremony."
         },
         {
-          "name": "Solapur chaddar",
+          "name": "Kolhapuri chappal",
+          "cluster": "Kolhapur",
+          "materials": "Vegetable (bark)-tanned buffalo and cow hide, hand-braided thongs, no nails or metal",
+          "giTag": "GI-tagged (2018)",
+          "description": "Open-toe leather sandals stitched and braided entirely by hand, with the kapshi, bakkalnali and pukari types distinguished by braid and toe-loop construction."
+        },
+        {
+          "name": "Solapur chaddar and terry towel",
           "cluster": "Solapur",
-          "materials": "Cotton woven on jacquard looms into thick patterned bedsheets",
+          "materials": "Coarse cotton yarn on jacquard-fitted looms",
           "giTag": "GI-tagged (2005)",
-          "description": "Solapur's hallmark jacquard bedsheet, from one of India's largest textile-weaving towns; among the earliest Maharashtra products to win GI protection."
+          "description": "Heavy jacquard-figured cotton bed covers and terry towelling woven largely by Padmashali weaver families; the state's earliest handicraft GI registration."
         },
         {
-          "name": "Puneri pagadi",
-          "cluster": "Pune",
-          "materials": "Fine cotton or silk cloth folded and stitched over a light frame",
-          "giTag": "GI-tagged (2009)",
-          "description": "The distinctive flat-topped turban of Pune's 19th-century scholars and reformers, still made by a small number of hereditary craftsmen and worn ceremonially."
+          "name": "Sawantwadi wooden toys and Ganjifa",
+          "cluster": "Sindhudurg (Sawantwadi)",
+          "materials": "Local pangara and other softwoods, lacquer, natural pigments, hand-cut card discs",
+          "giTag": "GI-tagged (2024)",
+          "description": "Lacquered wooden fruit, toys and figures, and the hand-painted circular Ganjifa playing cards revived under the patronage of the Sawantwadi royal family."
         }
       ],
       "masterCraftspeople": [
         {
           "name": "Jivya Soma Mashe",
-          "craft": "Warli painting (Dahanu)",
-          "recognition": "Padma Shri (2011)"
-        },
-        {
-          "name": "Parshuram Gangavane",
-          "craft": "Chitrakathi picture-storytelling art (Pinguli, Sindhudurg)",
-          "recognition": "Padma Shri (2021)"
+          "craft": "Warli painting",
+          "recognition": "Padma Shri (2011); Shilp Guru (2002); National Award for Tribal Art (1976); Prince Claus Award (2009)"
         }
       ],
-      "economicNote": "Solapur's chaddar and terry-towel weaving constitutes one of India's largest powerloom-handloom clusters, while the 2019 Kolhapuri chappal GI — shared across eight districts of Maharashtra and Karnataka — protects an estimated leather-artisan economy spanning both states.",
+      "economicNote": "The Kolhapuri chappal cluster is the state's largest craft employer of this kind, with over 10,000 artisans (reported as more than 10,000 families directly or indirectly) and a market estimated at about Rs 9 crore in 2020; Kolhapur district asked in 2026 for a dedicated training centre to scale up roughly 3,500 artisans.",
       "facts": [
-        "Maharashtra's craft GIs include Solapur chaddar (2005), Puneri pagadi (2009), Paithani saree and fabrics (2010), Warli painting (2014) and Kolhapuri chappal (2019).",
-        "The Kolhapuri chappal GI was registered jointly for districts of Maharashtra and Karnataka in 2019.",
-        "Warli painting's GI is held on behalf of the tribal artist community of Palghar district.",
-        "Kolhapuri chappals and Paithani sarees featured in the national crafts bazaar showcased during India's G20 summit events.",
-        "Warli pioneer Jivya Soma Mashe received the Padma Shri in 2011; Chitrakathi custodian Parshuram Gangavane received it in 2021."
+        "Solapur chaddar (2005) was the first handicraft product from Maharashtra to receive a GI tag.",
+        "Paithani saree and fabrics were GI-tagged in 2010, Warli painting in 2013 and Kolhapuri chappal in 2018.",
+        "Karvath Kati sarees and fabrics of the Vidarbha region received GI status in 2017.",
+        "Sawantwadi Ganjifa received a GI tag in January 2024 and Sawantwadi wooden toys were registered on 30 March 2024.",
+        "Jivya Soma Mashe (1934-2018) of Dhamangaon, Palghar district, was the artist most responsible for moving Warli painting from ritual wall art to a portable, signed practice."
       ],
       "sources": [
         {
-          "title": "Geographical Indications and Maharashtra handicrafts (JIPR Vol 27)",
-          "publisher": "Journal of Intellectual Property Rights, NIScPR (CSIR)",
+          "title": "Maharashtra Day 2024: Exploring 7 GI-Tagged products, honouring the state's cultural heritage",
+          "publisher": "Knocksense",
+          "url": "https://www.knocksense.com/mumbai/maharashtra-day-2024-exploring-7-gi-tagged-products-honouring-the-states-cultural-heritage/",
+          "year": 2024
+        },
+        {
+          "title": "Geographical Indications in Maharashtra",
+          "publisher": "Journal of Intellectual Property Rights (NISCPR)",
           "url": "https://nopr.niscpr.res.in/bitstream/123456789/59279/1/JIPR%2027(1)%2038-41.pdf",
           "year": 2022
         },
         {
-          "title": "Kolhapuri chappal, Paithani saree from Maharashtra set to feature at crafts bazaar during G20 summit",
-          "publisher": "News On AIR (Prasar Bharati)",
-          "url": "https://newsonair.gov.in/kolhapuri-chappal-paithani-saree-from-maharashtra-set-to-feature-at-crafts-bazaar-during-g20-summit",
-          "year": 2023
+          "title": "Union Budget Wishlist: Kolhapur Seeks Training Centre For Kolhapuri Chappal Artisans",
+          "publisher": "ETV Bharat",
+          "url": "https://www.etvbharat.com/en/state/union-budget-wishlist-kolhapur-seeks-capital-investment-in-sugar-industry-and-training-centre-for-kolhapuri-chappal-artisans-enn26013102174",
+          "year": 2026
         },
         {
-          "title": "Padma Awards — official awardee database",
-          "publisher": "Ministry of Home Affairs, Government of India",
-          "url": "https://www.padmaawards.gov.in/",
-          "year": 2024
+          "title": "Karvath Kati Sarees & Fabrics (GI profile)",
+          "publisher": "Textiles Committee, Ministry of Textiles",
+          "url": "https://txcindia.gov.in/html/GI/Karvath%20Kati%20Sarees%20&%20Favrucs.htm",
+          "year": 2026
         }
       ],
       "confidence": "high",
@@ -1602,65 +1636,71 @@ window.INDIA_DATA.craft = {
     },
     "manipur": {
       "name": "Manipur",
-      "summary": "In Manipur nearly every Meitei household historically kept a loom, and weaving remains a women's economy. Three textiles — Shaphee Lanphee, Wangkhei Phee and Moirang Phee — received GI registration in 2014, while Longpi stone pottery and kauna reed craft carry the hill and wetland traditions. Imphal's Ima Keithel women's market is the trade's historic hub.",
+      "summary": "Manipur's craft identity is carried by women's loin-loom and fly-shuttle weaving: three fabrics - Shaphee Lanphee, Wangkhei Phee and Moirang Phee - were GI-certified in 2013 on applications filed in 2011. Alongside them stand the wheel-less Longpi black stone pottery of Ukhrul and Kauna water-reed weaving around the Loktak wetlands.",
       "crafts": [
         {
           "name": "Shaphee Lanphee",
-          "cluster": "Meitei weaving households, Imphal valley",
-          "materials": "Loin-loom cotton fabric embroidered with unframed needlework motifs",
-          "giTag": "GI-tagged (2014)",
-          "description": "A shawl of honour historically conferred by Manipuri kings on brave warriors and chiefs, its embroidered moon, spear and animal motifs worked by Meitei women; GI-registered in 2014."
+          "cluster": "Imphal East and Imphal West",
+          "materials": "Loin-loom woven cotton ground with frameless needlework embroidery",
+          "giTag": "GI-tagged (2013)",
+          "description": "A red-and-black shawl embroidered without a frame with stylised elephants, horses, buffalo horns, fish, sun, moon, stars, spears and peacocks; historically presented to Tangkhul Naga chiefs as a mark of honour."
         },
         {
           "name": "Wangkhei Phee",
-          "cluster": "Wangkhei, Imphal East district",
-          "materials": "Fine translucent white cotton woven with delicate floral motifs",
-          "giTag": "GI-tagged (2014)",
-          "description": "A sheer white fabric for phanek wraparounds, innaphi shawls and ceremonial dress, prized for its fineness; one of Manipur's three 2014 textile GIs."
+          "cluster": "Imphal East (Wangkhei)",
+          "materials": "Hand-spun white cotton yarn",
+          "giTag": "GI-tagged (2013)",
+          "description": "A sheer, transparent white cloth with woven geometric and floral patterning, worn by Manipuri women at weddings and festive occasions."
         },
         {
           "name": "Moirang Phee",
-          "cluster": "Moirang, Bishnupur district",
-          "materials": "Cotton and silk woven with the stepped 'Moirang Pheejin' temple-tooth border motif",
-          "giTag": "GI-tagged (2014)",
-          "description": "The pointed pheejin motif rising along the border identifies this weave of Moirang, traditionally worn for ritual and festive occasions; GI-registered in 2014."
+          "cluster": "Bishnupur (Moirang)",
+          "materials": "Cotton and silk yarn, fly-shuttle and loin looms",
+          "giTag": "GI-tagged (2013)",
+          "description": "Identified by the Moirang pheejin temple-motif border pattern running along the length of the cloth, named for the town of Moirang."
         },
         {
-          "name": "Longpi pottery",
-          "cluster": "Longpi Kajui and Longpi Khullen villages, Ukhrul district",
-          "materials": "Ground serpentine stone and weathered rock mixed and hand-shaped without a potter's wheel",
+          "name": "Longpi (Loree) black pottery",
+          "cluster": "Ukhrul (Longpi Kajui and Nungbi)",
+          "materials": "Crushed black serpentine stone mixed with brown clay, no potter's wheel",
           "giTag": null,
-          "description": "The matte-black stone pottery of the Tangkhul Naga, shaped by hand and beaten, then fired and rubbed with local leaves — cookware once reserved for Tangkhul royalty."
+          "description": "Tangkhul Naga hand-built cookware and tableware, shaped entirely by hand and mould, fired in open kilns and rubbed with pasted leaf to give the characteristic charcoal-grey sheen."
         },
         {
-          "name": "Kauna reed craft",
-          "cluster": "Wetlands of Bishnupur and Imphal valley",
-          "materials": "Kauna water reed (bulrush) dried and woven over rope cores",
+          "name": "Kauna (water-reed) craft",
+          "cluster": "Bishnupur and Thoubal (Loktak wetlands)",
+          "materials": "Kauna water reed harvested from wetlands, dried and hand-plaited",
           "giTag": null,
-          "description": "Mats, cushions, bags and baskets woven from the spongy kauna reed that grows in Manipur's wetlands, now a significant export craft."
+          "description": "Mats, cushions, baskets and bags plaited from the soft, spongy kauna reed; a household-scale craft concentrated around the Loktak lake villages."
         }
       ],
       "masterCraftspeople": [
         {
-          "name": "Hanjabam Ongbi Radhe Devi",
-          "craft": "Potloi (Manipuri bridal costume) making",
-          "recognition": "Padma Shri (2021)"
+          "name": "Machihan Sasa",
+          "craft": "Longpi (black stone) pottery",
+          "recognition": "Padma Shri (2024), Art category, Craft-Pottery-Black"
         }
       ],
-      "economicNote": "Handloom weaving is Manipur's largest cottage industry and is carried out almost entirely by women; the GI certification handed over in 2014 for its three signature phees was pursued to secure weavers' incomes against imitation fabrics.",
+      "economicNote": "The three GI fabrics anchor women-run handloom clusters across Imphal East, Imphal West and Bishnupur, and Longpi pottery has expanded from village cookware to a marketed craft, with Machihan Sasa reported to have trained over 300 people in more than five decades.",
       "facts": [
-        "Shaphee Lanphee, Wangkhei Phee and Moirang Phee were registered under the GI Act, with certification handed to the state on 30 May 2014.",
-        "Shaphee Lanphee was historically gifted by Manipur's kings to soldiers and chiefs as a mark of honour.",
-        "Longpi black pottery is made without a potter's wheel from a serpentine stone-clay mix unique to Ukhrul district.",
-        "Weaving in Manipur is done overwhelmingly by women, from loin looms and frame looms in household compounds.",
-        "Potloi costume maker Hanjabam Ongbi Radhe Devi received the Padma Shri in 2021."
+        "Shaphee Lanphee, Wangkhei Phee and Moirang Phee were GI-certified in 2013; the applications (GI nos. 371, 372 and 373) were filed by the Manipur Department of Commerce and Industries on 19 December 2011 under Class 25.",
+        "Shaphee Lanphee is embroidered without a frame over loin-loom cloth, and its motifs are read as narrative rather than decorative.",
+        "Wangkhei Phee is made from hand-spun cotton and is prized for its transparency.",
+        "Longpi pottery is made without a wheel from black serpentine stone and clay, and is associated with the villages of Longpi Kajui and Nungbi in Ukhrul district.",
+        "Machihan Sasa, born 1 April 1950 in Longpi Kajui, received the Padma Shri on Republic Day 2024 for reviving Longpi Hampai pottery."
       ],
       "sources": [
         {
           "title": "GI Tagged Textile Fabrics of Manipur",
-          "publisher": "MyGov Blog (Government of India)",
+          "publisher": "MyGov Blogs, Government of India",
           "url": "https://blog.mygov.in/gi-tagged-textile-fabrics-of-manipur/",
-          "year": 2022
+          "year": 2023
+        },
+        {
+          "title": "Shri Machihan Sasa was conferred with the prestigious Padma Shri Award 2024",
+          "publisher": "Manipur MyGov (Government of Manipur)",
+          "url": "https://manipur.mygov.in/talk/shri-machihan-sasa-was-conferred-prestigious-padma-shri-award-2024/",
+          "year": 2024
         },
         {
           "title": "Manipur's GI-Certified Handloom Clusters: Weaving Identity in the Hills of the Northeast",
@@ -1669,64 +1709,58 @@ window.INDIA_DATA.craft = {
           "year": 2025
         },
         {
-          "title": "Padma Awards — official awardee database",
-          "publisher": "Ministry of Home Affairs, Government of India",
-          "url": "https://www.padmaawards.gov.in/",
+          "title": "Ukhrul's earthen alchemist: How Padma Shri Machihan Sasa made Longpi pottery famous",
+          "publisher": "EastMojo",
+          "url": "https://eastmojo.com/manipur/2024/01/27/ukruls-earthen-alchemist-how-padma-shri-machihan-sasa-made-longpi-pottery-famous/",
           "year": 2024
         }
       ],
-      "confidence": "high",
+      "confidence": "medium",
       "media": []
     },
     "meghalaya": {
       "name": "Meghalaya",
-      "summary": "Meghalaya's craft economy won national recognition in 2023-25 with a burst of GI registrations: the wheel-less black Larnai pottery of the Jaintia Hills, the handwoven Garo Dakmanda wraparound, and Ryndia, the naturally dyed Khasi eri-silk fabric. Cane and bamboo work — from carrying baskets to the knup rain shield — remains the everyday craft of all three hill communities.",
+      "summary": "Meghalaya's craft breakthrough came on 2 April 2025, when Ryndia - the handspun, naturally dyed Eri silk of the Khasi hills - and Khasi handloom products received GI tags (nos. 1112 and 1113), the state's first textile GIs. Around them sit the older, unregistered traditions of Larnai black pottery and Khasi, Jaintia and Garo cane and bamboo work.",
       "crafts": [
         {
-          "name": "Larnai pottery",
-          "cluster": "Larnai village, Jaintia Hills",
-          "materials": "Local black clay hand-shaped without a potter's wheel",
-          "giTag": "GI-tagged (2023)",
-          "description": "Black earthen cooking pots and vessels made by hand-molding and beating, a matrilineally transmitted craft of Larnai; GI awarded in December 2023 after a decade-long pursuit."
-        },
-        {
-          "name": "Garo Dakmanda",
-          "cluster": "Garo Hills districts",
-          "materials": "Long-staple 'khildig' cotton handwoven on traditional looms",
-          "giTag": "GI-tagged (2023)",
-          "description": "The ankle-length wraparound of Garo women, woven with bold border motifs; GI-certified in the same 2023 batch as Larnai pottery and Lakadong turmeric."
-        },
-        {
-          "name": "Ryndia (eri silk)",
-          "cluster": "Ri-Bhoi district (Umden cluster) and Khasi Hills",
-          "materials": "Hand-spun eri ('ahimsa') silk, handwoven and dyed with natural dyes such as lac, turmeric and iron-rich mud",
+          "name": "Ryndia (Eri silk) textile",
+          "cluster": "Ri-Bhoi (Umden-Diwon)",
+          "materials": "Hand-reared Eri (ahimsa) silk, hand-spun yarn, natural dyes from lac, turmeric, iron and bark",
           "giTag": "GI-tagged (2025)",
-          "description": "A soft, warm peace-silk fabric in which moths leave the cocoon before reeling; Ryndia and Meghalaya handloom products received GI recognition in 2025, with NEHHDC building it into a brand."
+          "description": "Soft, matte, durable handwoven cloth central to Khasi dress and ritual; the fibre is taken after the moth leaves the cocoon, which is why Eri is called peace or ahimsa silk."
         },
         {
-          "name": "Cane and bamboo craft",
-          "cluster": "Statewide among Khasi, Jaintia and Garo communities",
-          "materials": "Cane and bamboo split and woven",
+          "name": "Khasi handloom products",
+          "cluster": "East Khasi Hills",
+          "materials": "Cotton, Eri silk and wool on loin and frame looms",
+          "giTag": "GI-tagged (2025)",
+          "description": "Shawls, stoles and dress textiles carrying Khasi motifs, registered as GI no. 1113 in Classes 24, 25 and 26 alongside the Ryndia registration."
+        },
+        {
+          "name": "Larnai black pottery",
+          "cluster": "West Jaintia Hills (Larnai)",
+          "materials": "Local clay, coil and hand building without a wheel, open firing",
           "giTag": null,
-          "description": "Conical khoh carrying baskets, the knup rain shield, fish traps, mats and stools — daily-use weaving traditions found in nearly every hill household."
+          "description": "Cooking pots and vessels hand-built by Jaintia potters at Larnai and sold widely, including at Iewduh bazaar in Shillong; not GI-registered in the sources consulted."
+        },
+        {
+          "name": "Cane and bamboo craft (khoh, knup, tlieng)",
+          "cluster": "East Khasi Hills, West Jaintia Hills and Garo Hills",
+          "materials": "Split bamboo and cane, sometimes pokerwork-burnt decoration",
+          "giTag": null,
+          "description": "The conical head-strap khoh carrying basket and knup rain shield of the Khasi, the finely woven tlieng mats and fish traps of the Jaintia, and the pokerwork bamboo of the Garo, where designs are burnt in with a red-hot rod."
         }
       ],
       "masterCraftspeople": [],
-      "economicNote": "Meghalaya's four 2023 GI-tagged products — including Larnai pottery and Garo Dakmanda — are estimated to support livelihoods of about 30,000 people directly involved in their production and trade.",
+      "economicNote": "The GI application was driven by the Meghalaya Department of Textiles over about four years with NABARD support, building on the official recognition of Umden-Diwon as the state's first Eri silk village in 2021; verified artisan counts and cluster turnover were not available in the sources consulted.",
       "facts": [
-        "Larnai pottery, Garo Dakmanda, Garo Chubitchi and Lakadong turmeric received GI certification in December 2023.",
-        "Meghalaya's Ryndia eri-silk textile and Khasi handloom products were accorded GI recognition in 2025.",
-        "The state had pursued a GI tag for Larnai pottery since 2013.",
-        "Ryndia is promoted as an ethical 'peace silk' — eri cocoons are processed only after the moth emerges.",
-        "The 2023 GI products are estimated to support around 30,000 livelihoods in production and trade."
+        "Meghalaya Ryndia Textile was granted GI tag no. 1112 and Meghalaya Khasi Handloom Products GI tag no. 1113.",
+        "The Ryndia GI was granted on 2 April 2025 - the state's first textile geographical indications.",
+        "Ryndia is handwoven, handspun, naturally dyed and made from Eri silk taken without killing the silkworm.",
+        "Umden-Diwon in Ri-Bhoi district was officially recognised as Meghalaya's first Eri silk village in 2021.",
+        "Weaving is practised across the Khasi, Jaintia and Garo communities, with cane, bamboo and Larnai pottery forming the main non-textile crafts."
       ],
       "sources": [
-        {
-          "title": "Meghalaya's Garo textiles, Larnai pottery, Chubitchi and Lakadong turmeric get GI tags",
-          "publisher": "YourStory (SocialStory)",
-          "url": "https://yourstory.com/socialstory/2024/04/meghalaya-gi-tags-cultural-heritage-craftsmanship",
-          "year": 2024
-        },
         {
           "title": "Meghalaya's Ryndia silk gets GI tag",
           "publisher": "The Shillong Times",
@@ -1734,10 +1768,22 @@ window.INDIA_DATA.craft = {
           "year": 2025
         },
         {
-          "title": "Ryndia — Eri Silk Brand of Meghalaya",
-          "publisher": "North Eastern Handicrafts & Handlooms Development Corporation (NEHHDC)",
-          "url": "https://nehhdc.com/ryndia",
-          "year": 2024
+          "title": "Meghalaya's Ryndia Silk and Khasi Handloom Get GI Tag Recognition",
+          "publisher": "Indian Textile Journal",
+          "url": "https://indiantextilejournal.com/meghalayas-ryndia-silk-and-khasi-handloom-get-gi-tag-recognition/",
+          "year": 2025
+        },
+        {
+          "title": "Meghalaya's Ryndia - eri silk textile accorded GI tag",
+          "publisher": "United News of India (UNI)",
+          "url": "https://www.uniindia.com/news/east/textile-meghalaya-ryndia-gi-tag/3429419.html",
+          "year": 2025
+        },
+        {
+          "title": "Art & Handicrafts of Meghalaya",
+          "publisher": "Meghalaya Tourism (Government of Meghalaya)",
+          "url": "https://www.meghalayatourism.in/explore/about-meghalaya/art-handicrafts/",
+          "year": 2026
         }
       ],
       "confidence": "high",
@@ -1745,70 +1791,76 @@ window.INDIA_DATA.craft = {
     },
     "mizoram": {
       "name": "Mizoram",
-      "summary": "Mizo craft is above all the puan — the handwoven wrap that marks every stage of Mizo life. Five weaves (Mizo Puanchei, Tawlhlohpuan, Ngotekherh, Hmaram and Pawndum) won GI tags in 2019, woven largely by women on loin looms, with Thenzawl as the state's main commercial handloom cluster. Bamboo work, including the khumbeu ceremonial hat, is the companion craft of a state blanketed in bamboo forest.",
+      "summary": "Mizoram's craft economy is essentially one craft - puan weaving - practised at household scale, overwhelmingly by women. Five traditional Mizo puans (Puanchei, Ngotekherh, Tawlhlohpuan, Hmaram and Pawndum) were registered with the GI Registry in 2019, and the Fourth All India Handloom Census counted about 27,500 people in weaving and allied work.",
       "crafts": [
         {
           "name": "Mizo Puanchei",
-          "cluster": "Woven statewide; Thenzawl (Serchhip district) is the main commercial cluster",
-          "materials": "Cotton and blended yarns woven on loin and frame looms in vivid banded patterns",
+          "cluster": "Serchhip (Thenzawl) and Aizawl",
+          "materials": "Cotton and acrylic yarn, some Eri silk, on loin and fly-shuttle looms",
           "giTag": "GI-tagged (2019)",
-          "description": "The most colourful of Mizo puans, wrapped around the waist for weddings, festivals and dances such as Cheraw; a bride's essential garment, GI-tagged in 2019."
-        },
-        {
-          "name": "Tawlhlohpuan",
-          "cluster": "Aizawl and Thenzawl weaving centres",
-          "materials": "Compactly woven cotton with warp-wise motifs",
-          "giTag": "GI-tagged (2019)",
-          "description": "Literally the cloth of one who 'stands firm and does not retreat', historically worn by Mizo warriors as a mark of bravery; GI-registered in 2019."
+          "description": "The most elaborate Mizo puan, worn by women for Chapchar Kut and the Cheraw bamboo dance, banded in red, black, white and yellow with dense supplementary-weft motifs."
         },
         {
           "name": "Ngotekherh",
-          "cluster": "Weaving households statewide",
-          "materials": "Cotton puan with a white base and bold black warp stripes",
+          "cluster": "Serchhip (Thenzawl) and Aizawl",
+          "materials": "Cotton yarn, handloom",
           "giTag": "GI-tagged (2019)",
-          "description": "A loin-loom puan with a plain white ground bordered by twin black stripes, worn on ceremonial occasions; among the five Mizo weaves GI-tagged in 2019."
+          "description": "A white puan crossed by broad black bands with fine warp stripes, historically a men's cloth and now widely worn as a wrap-around by women."
+        },
+        {
+          "name": "Tawlhlohpuan",
+          "cluster": "Serchhip (Thenzawl) and Aizawl",
+          "materials": "Cotton and wool yarn, handloom",
+          "giTag": "GI-tagged (2019)",
+          "description": "Named from tawlhloh, to stand firm and not retreat; a thick, closely woven cloth associated with warriors and with valour in Mizo tradition."
         },
         {
           "name": "Hmaram",
-          "cluster": "Weaving households statewide",
-          "materials": "Cotton woven with elaborate patterned bands",
+          "cluster": "Serchhip (Thenzawl) and Aizawl",
+          "materials": "Cotton yarn, handloom",
           "giTag": "GI-tagged (2019)",
-          "description": "An elaborately decorated shorter wraparound traditionally worn by women and girls, its motifs carrying clan and ritual meaning; GI-registered in 2019."
+          "description": "A patterned women's lower garment worn with a blouse, distinguished by narrow decorative bands along the length of the cloth."
         },
         {
-          "name": "Bamboo and cane craft",
-          "cluster": "Statewide",
-          "materials": "Bamboo and cane split and woven",
-          "giTag": null,
-          "description": "Baskets (paikawng), the khumbeu ceremonial bamboo hat, stools and utensils from one of India's most bamboo-rich states."
+          "name": "Pawndum",
+          "cluster": "Serchhip (Thenzawl) and Aizawl",
+          "materials": "Cotton yarn in black, red and white, handloom",
+          "giTag": "GI-tagged (2019)",
+          "description": "A dark banded shawl with strong ceremonial use, traditionally used to cover the dead and given as a customary gift within the family."
         }
       ],
       "masterCraftspeople": [],
-      "economicNote": "Five Mizo handloom weaves received GI tags in 2019, a certification drive intended to secure the incomes of the state's predominantly female weavers; Thenzawl in Serchhip district functions as Mizoram's principal commercial handloom cluster.",
+      "economicNote": "Weaving is the state's dominant craft livelihood: about 27,540 people are engaged in weaving and allied activities per the Fourth All India Handloom Census (around 17,200 weavers and 10,200 allied workers), concentrated in Thenzawl (Serchhip district) and Aizawl district.",
       "facts": [
-        "Mizo Puanchei, Tawlhlohpuan, Ngotekherh, Hmaram and Pawndum all received GI tags in 2019.",
-        "Tawlhlohpuan takes its name from 'to stand firm, not to move backward' and was associated with warriors.",
-        "Puanchei is the essential bridal and festival wrap, worn during Cheraw (bamboo dance) and other ceremonies.",
-        "Pawndum, a black-and-red striped cloth, is used in mourning and in the traditional Khuallam dance.",
-        "No Mizoram craftsperson with a verified Padma or Shilp Guru award for handicrafts was identified in this compilation."
+        "Five Mizo traditional puans - Puanchei, Hmaram, Tawlhlohpuan, Ngotekherh and Pawndum - were registered with the GI Registry, Chennai, in 2019.",
+        "The registration was reported in August-September 2019 and covered handloom textiles rather than agricultural produce.",
+        "The Fourth All India Handloom Census recorded about 27,540 people in weaving and allied activities in Mizoram.",
+        "Yarns in common use include cotton, Eri silk, acrylic and wool; Thenzawl in Serchhip district is the best-known production cluster.",
+        "No Mizoram craftsperson with a verified Padma or Shilp Guru award was identified in the sources consulted, so no names are listed."
       ],
       "sources": [
         {
           "title": "GI tag accorded to Mizoram's handloom products",
-          "publisher": "ANI News",
-          "url": "https://www.aninews.in/news/national/features/gi-tag-accorded-to-mizorams-handloom-products20190908141508/",
+          "publisher": "Business Standard / ANI",
+          "url": "https://www.business-standard.com/article/news-ani/gi-tag-accorded-to-mizoram-s-handloom-products-119090800374_1.html",
           "year": 2019
         },
         {
-          "title": "Geographical Indication Tags of Mizoram",
-          "publisher": "The IP Press",
-          "url": "https://www.theippress.com/2020/06/18/geographical-indication-tags-of-mizoram/",
-          "year": 2020
+          "title": "Handover Programme of GI Documents of Five Traditional Mizo Puan",
+          "publisher": "MISTIC, Government of Mizoram",
+          "url": "https://mistic.mizoram.gov.in/page/handover-programme-of-gi-documents-of-five-traditional-mizo-puan",
+          "year": 2019
         },
         {
-          "title": "Mizoram — GI handloom products",
-          "publisher": "Handloom Export Promotion Council (HEPC)",
-          "url": "https://hepcindia.com/gihandloom_products/Mizoram.html",
+          "title": "Pick These 5 GI-Tagged Handlooms Of Mizoram",
+          "publisher": "Outlook Traveller",
+          "url": "https://www.outlooktraveller.com/experiences/shopping/pick-these-5-gi-tagged-handlooms-of-mizoram",
+          "year": 2023
+        },
+        {
+          "title": "Handloom and Master Weavers Operation in Mizoram",
+          "publisher": "International Journal of Creative Research Thoughts (IJCRT)",
+          "url": "https://ijcrt.org/papers/IJCRT2406415.pdf",
           "year": 2024
         }
       ],
