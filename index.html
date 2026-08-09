@@ -32,6 +32,7 @@
         <input type="search" id="stateSearch" list="stateList" placeholder="Search state / UT…" aria-label="Search state">
         <datalist id="stateList"></datalist>
         <button class="tool-btn" id="btn3d" title="Cycle view: flat / tilt / 3D orbit">◈ 3D view</button>
+        <button class="tool-btn" id="btnRelief" title="Show measured elevation instead of data-height">⛰ Relief</button>
         <button class="tool-btn zbtn" id="btnZL" title="Spin left (Q)">⟲</button>
         <button class="tool-btn zbtn" id="btnZR" title="Spin right (E)">⟳</button>
         <button class="tool-btn" id="btnReset" title="Back to national view">⤺ India</button>
@@ -75,6 +76,7 @@
 
   <!-- map geometry -->
   <script src="js/map-data.js"></script>
+  <script src="js/terrain-data.js"></script>
 
   <!-- research-backed data packs (each file is independent; missing ones degrade gracefully) -->
   <script src="data/soil.js"></script>

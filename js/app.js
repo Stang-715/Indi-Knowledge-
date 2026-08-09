@@ -629,6 +629,10 @@
             return "<span class='chip'><span class='swatch' style='background:" + it.color + "'></span>" + esc(it.label) + "</span>";
           }).join("")
         : "<span>decorative patchwork — research pack still in the pipeline</span>") +
+      (window.Map3D && window.Map3D.isRelief && window.Map3D.isRelief()
+        ? "<span class='chip' style='margin-left:12px'>⛰ measured elevation (Mapzen/SRTM terrain tiles), vertical exaggeration ≈ ×" +
+          esc(window.Map3D.exaggeration()) + "</span>"
+        : "") +
       "<span class='chip' style='margin-left:auto'><span class='swatch' style='background:#dcdcd7'></span>no data</span>";
   }
 
@@ -863,6 +867,7 @@
       },
     });
 
+    var btnRelief = document.getElementById("btnRelief");
     var modes = has3D ? 3 : 2;
     var MODE_LABELS = ["◈ 3D view", "◈ Tilt on", "🧊 3D model"];
     var mode = 0;
@@ -872,18 +877,35 @@
       stage.classList.toggle("mode3d", m === 2);
       btn3d.textContent = MODE_LABELS[m];
       btn3d.classList.toggle("on", m > 0);
-      btnZL.style.display = m === 2 ? "" : "none";
-      btnZR.style.display = m === 2 ? "" : "none";
+      var show3dTools = m === 2 ? "" : "none";
+      btnZL.style.display = show3dTools;
+      btnZR.style.display = show3dTools;
+      btnRelief.style.display = (m === 2 && window.Map3D.hasTerrain()) ? "" : "none";
       hidePopup();
       if (m === 2) {
         sync3D();
         window.Map3D.invalidate();
         if (App.state) { window.Map3D.select(App.state); window.Map3D.focus(App.state); }
       }
+      renderLegend();
     }
     btn3d.addEventListener("click", function () { setMode((mode + 1) % modes); });
+    btnRelief.addEventListener("click", function () {
+      var turningOn = !window.Map3D.isRelief();
+      if (turningOn && !window.Map3D.terrainReady()) {
+        btnRelief.textContent = "⛰ building…";
+        btnRelief.disabled = true;
+      }
+      window.Map3D.setRelief(turningOn, function (ok) {
+        btnRelief.disabled = false;
+        btnRelief.textContent = "⛰ Relief";
+        btnRelief.classList.toggle("on", ok && turningOn);
+        renderLegend();
+      });
+    });
     btnZL.style.display = "none";
     btnZR.style.display = "none";
+    btnRelief.style.display = "none";
     btnZL.addEventListener("click", function () { window.Map3D.spin(-0.28); });
     btnZR.addEventListener("click", function () { window.Map3D.spin(0.28); });
     document.addEventListener("keydown", function (e) {

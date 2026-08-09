@@ -29,6 +29,7 @@
     center: [0, 0],
     hover: -1, selected: -1,
     hooks: {}, dirty: true, raf: null, ready: false,
+    relief: false, terrainReady: false, terrainLoading: false, tn: 0, tArr: null, tbuf: null,
     drag: null, moved: false,
   };
 
@@ -191,6 +192,149 @@
     M.arr.color = new Uint8Array(M.nVert * 3);
   }
 
+  /* ---------------- real relief mesh (from window.INDIA_TERRAIN) ----------------
+     A dense lon/lat grid displaced by measured elevation, masked to land and
+     skirted down to the base so each state reads as a solid relief slab.
+     Shading comes from the height gradient, so ridges and valleys are real. */
+  var TERR_H = 0.23;        // world units at ELEV_MAX (vertical exaggeration)
+  var TERR_BASE = 0.02;
+
+  function buildTerrain(hPix, mPix, W, H, step) {
+    var T = window.INDIA_TERRAIN;
+    var bb = T.bbox, size = T.size;
+    var minLon = bb[0], minLat = bb[1], maxLon = bb[2], maxLat = bb[3];
+    var mapBB = window.INDIA_MAP.bbox;
+    var midLat = (mapBB[1] + mapBB[3]) / 2 * Math.PI / 180;
+    var kx = Math.cos(midLat);
+    var spanX = (mapBB[2] - mapBB[0]) * kx, spanY = (mapBB[3] - mapBB[1]);
+    var scale = 2 / Math.max(spanX, spanY);
+    var cx0 = (mapBB[0] + mapBB[2]) / 2, cy0 = (mapBB[1] + mapBB[3]) / 2;
+
+    var slugRemap = new Int16Array(256);
+    for (var q = 0; q < 256; q++) slugRemap[q] = -1;
+    T.slugs.forEach(function (s, i) {
+      if (M.idx[s] !== undefined) slugRemap[i] = M.idx[s];
+    });
+
+    function lonAt(c) { return minLon + (maxLon - minLon) * c / (size[0] - 1); }
+    function latAt(r) { return maxLat - (maxLat - minLat) * r / (size[1] - 1); }
+    function X(c) { return (lonAt(c) - cx0) * kx * scale; }
+    function Z(r) { return -(latAt(r) - cy0) * scale; }
+    function elev(r, c) { return hPix[r * W + c] / 255; }
+    function st(r, c) { return mPix[r * W + c]; }
+
+    var pos = [], ys = [], shade = [], sidx = [];
+    // light direction in grid space, matching the extruded view
+    var lx = -0.55, lz = 0.83, ln = Math.hypot(lx, lz); lx /= ln; lz /= ln;
+
+    function push(r, c, y, sh, si) {
+      pos.push(X(c), Z(r)); ys.push(y); shade.push(sh); sidx.push(si);
+    }
+    function hgt(r, c) { return TERR_BASE + elev(r, c) * TERR_H; }
+    // hillshade from the local gradient (cell spacing in world units)
+    var dx = Math.abs(X(step) - X(0)) || 1e-4;
+    function shadeAt(r, c) {
+      var rc = Math.min(H - 1 - step, Math.max(step, r));
+      var cc = Math.min(W - 1 - step, Math.max(step, c));
+      var gx = (elev(rc, cc + step) - elev(rc, cc - step)) * TERR_H / (2 * dx);
+      var gz = (elev(rc + step, cc) - elev(rc - step, cc)) * TERR_H / (2 * dx);
+      // normal = (-gx, 1, -gz) normalised, lit from a raised light
+      var nl = Math.hypot(gx, 1, gz);
+      var lam = (-gx * lx * 0.62 + 1 * 0.72 + -gz * lz * 0.62) / nl;
+      return Math.max(0.30, Math.min(1.22, 0.42 + 0.72 * lam));
+    }
+
+    for (var r = 0; r + step < H; r += step) {
+      for (var c = 0; c + step < W; c += step) {
+        var s00 = st(r, c);
+        if (s00 === 255) continue;
+        var si = slugRemap[s00];
+        if (si < 0) continue;
+        var y00 = hgt(r, c), y10 = hgt(r, c + step),
+            y01 = hgt(r + step, c), y11 = hgt(r + step, c + step);
+        var sh = shadeAt(r, c);
+        push(r, c, y00, sh, si); push(r, c + step, y10, sh, si); push(r + step, c + step, y11, sh, si);
+        push(r, c, y00, sh, si); push(r + step, c + step, y11, sh, si); push(r + step, c, y01, sh, si);
+
+        // skirt walls wherever the cell borders ocean or another state
+        var nbr = [[r - step, c, 0.52], [r + step, c, 0.44], [r, c - step, 0.62], [r, c + step, 0.36]];
+        for (var k = 0; k < 4; k++) {
+          var rr = nbr[k][0], cc2 = nbr[k][1];
+          var outside = rr < 0 || cc2 < 0 || rr >= H || cc2 >= W || st(rr, cc2) !== s00;
+          if (!outside) continue;
+          var wsh = nbr[k][2];
+          var ax, az, bx, bz, ay, by;
+          if (k === 0) { ax = X(c); az = Z(r); bx = X(c + step); bz = Z(r); ay = y00; by = y10; }
+          else if (k === 1) { ax = X(c); az = Z(r + step); bx = X(c + step); bz = Z(r + step); ay = y01; by = y11; }
+          else if (k === 2) { ax = X(c); az = Z(r); bx = X(c); bz = Z(r + step); ay = y00; by = y01; }
+          else { ax = X(c + step); az = Z(r); bx = X(c + step); bz = Z(r + step); ay = y10; by = y11; }
+          pos.push(ax, az); ys.push(0); shade.push(wsh); sidx.push(si);
+          pos.push(bx, bz); ys.push(0); shade.push(wsh); sidx.push(si);
+          pos.push(bx, bz); ys.push(by); shade.push(wsh); sidx.push(si);
+          pos.push(ax, az); ys.push(0); shade.push(wsh); sidx.push(si);
+          pos.push(bx, bz); ys.push(by); shade.push(wsh); sidx.push(si);
+          pos.push(ax, az); ys.push(ay); shade.push(wsh); sidx.push(si);
+        }
+      }
+    }
+
+    M.tn = ys.length;
+    M.tArr = {
+      pos: new Float32Array(pos), y: new Float32Array(ys),
+      shade: new Float32Array(shade), state: new Float32Array(sidx),
+      color: new Uint8Array(ys.length * 3), height: new Float32Array(ys.length),
+    };
+    // terrain y is absolute: aHeight carries it and aY is always 1
+    for (var i = 0; i < M.tn; i++) M.tArr.height[i] = M.tArr.y[i];
+    M.tArr.y.fill(1);
+  }
+
+  function uploadTerrain() {
+    var gl = M.gl;
+    function mk(data, usage) {
+      var b = gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER, b);
+      gl.bufferData(gl.ARRAY_BUFFER, data, usage || gl.STATIC_DRAW);
+      return b;
+    }
+    M.tbuf = {
+      pos: mk(M.tArr.pos), y: mk(M.tArr.y), shade: mk(M.tArr.shade),
+      state: mk(M.tArr.state), height: mk(M.tArr.height, gl.DYNAMIC_DRAW),
+      color: mk(M.tArr.color, gl.DYNAMIC_DRAW),
+    };
+    M.terrainReady = true;
+    applyColors();
+    M.dirty = true;
+  }
+
+  function loadTerrain(done) {
+    if (!window.INDIA_TERRAIN || M.terrainLoading) { if (done) done(false); return; }
+    M.terrainLoading = true;
+    var T = window.INDIA_TERRAIN, W = T.size[0], H = T.size[1];
+    var imgs = {}, left = 2;
+    ["height", "mask"].forEach(function (key) {
+      var im = new Image();
+      im.onload = function () {
+        var cv = document.createElement("canvas");
+        cv.width = W; cv.height = H;
+        var ctx = cv.getContext("2d");
+        ctx.drawImage(im, 0, 0);
+        var d = ctx.getImageData(0, 0, W, H).data;
+        var out = new Uint8Array(W * H);
+        for (var i = 0, p = 0; i < out.length; i++, p += 4) out[i] = d[p];
+        imgs[key] = out;
+        if (--left === 0) {
+          var step = (window.innerWidth < 900) ? 3 : 2;
+          buildTerrain(imgs.height, imgs.mask, W, H, step);
+          uploadTerrain();
+          if (done) done(true);
+        }
+      };
+      im.onerror = function () { M.terrainLoading = false; if (done) done(false); };
+      im.src = T[key];
+    });
+  }
+
   /* ---------------- GL setup ---------------- */
   // Precision of anything shared with the fragment shader must match it
   // exactly (mediump), or the program fails to link. Position maths stays highp.
@@ -323,6 +467,37 @@
     if (h.length === 3) h = h[0] + h[0] + h[1] + h[1] + h[2] + h[2];
     return [parseInt(h.slice(0, 2), 16), parseInt(h.slice(2, 4), 16), parseInt(h.slice(4, 6), 16)];
   }
+  function applyColors() {
+    var rgb = M.colors, hgt = M.heights, gl = M.gl;
+    if (!rgb || !M.slugs.length) return;
+
+    // extruded model: colour + data-driven height
+    var st = M.arr.state, col = M.arr.color, hb = M.arr.height;
+    for (var i = 0; i < M.nVert; i++) {
+      var c = rgb[M.slugs[st[i]]];
+      col[i * 3] = c[0]; col[i * 3 + 1] = c[1]; col[i * 3 + 2] = c[2];
+      hb[i] = hgt[M.slugs[st[i]]];
+    }
+    if (gl) {
+      gl.bindBuffer(gl.ARRAY_BUFFER, M.buf.color);
+      gl.bufferSubData(gl.ARRAY_BUFFER, 0, col);
+      gl.bindBuffer(gl.ARRAY_BUFFER, M.buf.height);
+      gl.bufferSubData(gl.ARRAY_BUFFER, 0, hb);
+    }
+
+    // relief mesh: colour only — its height is measured elevation
+    if (M.terrainReady) {
+      var ts = M.tArr.state, tc = M.tArr.color;
+      for (var j = 0; j < M.tn; j++) {
+        var c2 = rgb[M.slugs[ts[j]]];
+        tc[j * 3] = c2[0]; tc[j * 3 + 1] = c2[1]; tc[j * 3 + 2] = c2[2];
+      }
+      gl.bindBuffer(gl.ARRAY_BUFFER, M.tbuf.color);
+      gl.bufferSubData(gl.ARRAY_BUFFER, 0, tc);
+    }
+    M.dirty = true;
+  }
+
   function setData(colorsBySlug, metricsBySlug) {
     var maxV = 0;
     M.slugs.forEach(function (s) { maxV = Math.max(maxV, metricsBySlug[s] || 0); });
@@ -333,22 +508,7 @@
       hgt[s] = BASE_H + SPAN_H * Math.pow((metricsBySlug[s] || 0) / maxV, 0.75);
     });
     M.colors = rgb; M.heights = hgt;
-
-    var st = M.arr.state, col = M.arr.color, hb = M.arr.height;
-    for (var i = 0; i < M.nVert; i++) {
-      var slug = M.slugs[st[i]];
-      var c = rgb[slug];
-      col[i * 3] = c[0]; col[i * 3 + 1] = c[1]; col[i * 3 + 2] = c[2];
-      hb[i] = hgt[slug];
-    }
-    if (M.gl) {
-      var gl = M.gl;
-      gl.bindBuffer(gl.ARRAY_BUFFER, M.buf.color);
-      gl.bufferSubData(gl.ARRAY_BUFFER, 0, col);
-      gl.bindBuffer(gl.ARRAY_BUFFER, M.buf.height);
-      gl.bufferSubData(gl.ARRAY_BUFFER, 0, hb);
-    }
-    M.dirty = true;
+    applyColors();
   }
 
   /* ---------------- draw ---------------- */
@@ -364,6 +524,8 @@
 
   function bindAttribs() {
     var gl = M.gl;
+    var useT = M.relief && M.terrainReady;
+    var B = useT ? M.tbuf : M.buf;
     function at(name, buf, size, type, norm) {
       var l = M.loc[name];
       if (l < 0) return;
@@ -371,13 +533,14 @@
       gl.enableVertexAttribArray(l);
       gl.vertexAttribPointer(l, size, type || gl.FLOAT, !!norm, 0, 0);
     }
-    at("aPos", M.buf.pos, 2);
-    at("aY", M.buf.y, 1);
-    at("aShade", M.buf.shade, 1);
-    at("aState", M.buf.state, 1);
-    at("aHeight", M.buf.height, 1);
-    at("aColor", M.buf.color, 3, gl.UNSIGNED_BYTE, true);
+    at("aPos", B.pos, 2);
+    at("aY", B.y, 1);
+    at("aShade", B.shade, 1);
+    at("aState", B.state, 1);
+    at("aHeight", B.height, 1);
+    at("aColor", B.color, 3, gl.UNSIGNED_BYTE, true);
   }
+  function vertCount() { return (M.relief && M.terrainReady) ? M.tn : M.nVert; }
 
   function draw() {
     if (!M.ready) return;
@@ -400,15 +563,18 @@
     gl.uniform1f(M.loc.uSel, M.selected);
     gl.uniform1f(M.loc.uPick, 0);
 
-    // contact shadow (flattened silhouette, offset along the light)
-    gl.uniform1f(M.loc.uFlat, 1);
-    gl.depthMask(false);
-    gl.drawArrays(gl.TRIANGLES, 0, M.nVert);
-    gl.depthMask(true);
+    // contact shadow (flattened silhouette, offset along the light);
+    // skipped in relief mode, where overlapping grid quads would stack alpha
+    if (!(M.relief && M.terrainReady)) {
+      gl.uniform1f(M.loc.uFlat, 1);
+      gl.depthMask(false);
+      gl.drawArrays(gl.TRIANGLES, 0, vertCount());
+      gl.depthMask(true);
+    }
 
     // the model
     gl.uniform1f(M.loc.uFlat, 0);
-    gl.drawArrays(gl.TRIANGLES, 0, M.nVert);
+    gl.drawArrays(gl.TRIANGLES, 0, vertCount());
 
     M.dirty = false;
     if (M.hooks.onFrame) M.hooks.onFrame();
@@ -457,7 +623,7 @@
     gl.uniform1f(M.loc.uSel, M.selected);
     gl.uniform1f(M.loc.uFlat, 0);
     gl.uniform1f(M.loc.uPick, 1);
-    gl.drawArrays(gl.TRIANGLES, 0, M.nVert);
+    gl.drawArrays(gl.TRIANGLES, 0, vertCount());
 
     var px = new Uint8Array(4);
     gl.readPixels(x, y, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, px);
@@ -581,7 +747,31 @@
         y: r.top + (0.5 - cy / cw * 0.5) * r.height,
       };
     },
-    stats: function () { return { vertices: M.nVert, states: M.slugs.length }; },
+    hasTerrain: function () { return !!window.INDIA_TERRAIN; },
+    terrainReady: function () { return M.terrainReady; },
+    setRelief: function (on, done) {
+      if (on && !M.terrainReady) {
+        loadTerrain(function (ok) {
+          M.relief = !!ok;
+          M.dirty = true;
+          if (done) done(ok);
+        });
+        return;
+      }
+      M.relief = !!on;
+      M.dirty = true;
+      if (done) done(true);
+    },
+    isRelief: function () { return M.relief && M.terrainReady; },
+    // metres at the tallest point, for an honest legend
+    exaggeration: function () {
+      var T = window.INDIA_TERRAIN;
+      if (!T) return null;
+      var mapBB = window.INDIA_MAP.bbox;
+      var kmPerUnit = (mapBB[2] - mapBB[0]) * 111 * Math.cos((mapBB[1] + mapBB[3]) / 2 * Math.PI / 180) / 2;
+      return Math.round((TERR_H * kmPerUnit * 1000) / T.elevMax);
+    },
+    stats: function () { return { vertices: M.nVert, terrainVertices: M.tn, states: M.slugs.length }; },
   };
   window.Map3D = api;
 })();

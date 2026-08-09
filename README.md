@@ -39,8 +39,12 @@ No build step, no server, no dependencies:
 - **Click a state** → it zooms in; the side panel opens that state's dossier for the active tab.
 - **Click a district** (inside a zoomed state) → district-level records where verified data exists.
 - **Switch tabs** → the map re-colors (soil types, formation era, GI-craft density, lore language…).
-- **◈ 3D view** → cycles flat → tilt → **orbit**: drag to rotate on X/Y, scroll or ⟲⟳ (or Q/E)
-  to spin on Z, double-click to reset — the map stays fully clickable while rotated.
+- **◈ 3D view** → cycles flat → tilt → **3D model** (real WebGL geometry): drag to orbit a
+  full 360°, scroll to zoom, ⟲⟳ or Q/E to spin, double-click to reset. Every state is a
+  solid whose height encodes that tab's data, and clicking one opens a popup card.
+- **⛰ Relief** (in 3D mode) → swaps data-height for **measured elevation**: the Himalaya,
+  Western Ghats and the flat Gangetic plain rendered from real terrain data, hill-shaded
+  from the height gradient. The legend states the vertical exaggeration.
 - **Search box** jumps to any state; **Esc** returns to India.
 
 ## Data integrity (the strict filter)
@@ -65,6 +69,8 @@ Everything is plain, readable JavaScript:
 index.html          the app shell
 css/style.css       theme (warm paper / poster look)
 js/map-data.js      simplified state & district boundaries (~330 KB)
+js/terrain-data.js  measured elevation heightmap + per-state mask (PNG data URIs)
+js/map3d.js         WebGL 3D engine: extruded states, real relief, orbit, picking
 js/map.js           map engine: projection, zoom, hover, districts
 js/app.js           tabs, choropleths, panel renderers, language switcher
 data/<tab>.js       one research pack per tab — the files you'd edit
@@ -75,6 +81,13 @@ backend/            moderation pipeline design + contribution JSON schema
 To fix or extend data: edit the relevant `data/<tab>.js`, keep the schema from
 `data/SPEC.md` (sources required!), and open a PR — the PR review is the moderation
 step for now.
+
+## Elevation note
+
+Relief mode uses Mapzen/Nextzen **terrarium** terrain tiles from the AWS Open Data
+registry (SRTM/ETOPO derived), resampled to a regular lon/lat grid and stored as an
+8-bit heightmap. Heights are real measurements; the vertical scale is exaggerated
+(~×39) so relief reads at country scale — the legend says so on screen.
 
 ## Boundaries note
 
