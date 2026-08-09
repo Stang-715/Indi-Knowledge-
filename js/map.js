@@ -169,8 +169,8 @@
         "text-anchor": "middle",
         "font-size": Math.max(7, Math.min(13, w * 0.09)),
         "font-family": "Georgia, serif",
-        fill: "#3b2740",
-        stroke: "rgba(246,244,238,0.9)",
+        fill: "#3e2540",
+        stroke: "rgba(247,247,245,0.9)",
         "stroke-width": 2.5,
         "paint-order": "stroke",
         "data-label": slug,
@@ -235,7 +235,7 @@
       polys.forEach(function (flat) { silhouette += flatToPath(flat); });
     });
     var tiltBox = svg.parentNode; // .map-tilt
-    ["#31203a", "#2a1b32", "#23162a", "#1c1122"].forEach(function (color, i) {
+    ["#33203a", "#2c1b32", "#25162a", "#1e1122"].forEach(function (color, i) {
       var dsvg = el("svg", { viewBox: "0 0 " + W + " " + M.H, "class": "depth-layer", "aria-hidden": "true" });
       dsvg.setAttribute("data-z", i + 1);
       dsvg.appendChild(el("path", { d: silhouette, fill: color }));
@@ -248,7 +248,7 @@
 
   function recolor() {
     Object.keys(M.stateEls).forEach(function (slug) {
-      var fill = (M.hooks.getFill && M.hooks.getFill(slug)) || "#e7e2d6";
+      var fill = (M.hooks.getFill && M.hooks.getFill(slug)) || "#dcdcd7";
       M.stateEls[slug].querySelectorAll("path").forEach(function (p) {
         p.setAttribute("fill", fill);
       });
@@ -281,8 +281,8 @@
         "font-size": fs,
         "font-family": "'Segoe UI', system-ui, sans-serif",
         "font-weight": 600,
-        fill: "#3b2740",
-        stroke: "rgba(246,244,238,0.92)",
+        fill: "#3e2540",
+        stroke: "rgba(247,247,245,0.92)",
         "stroke-width": fs * 0.18,
         "paint-order": "stroke",
       });

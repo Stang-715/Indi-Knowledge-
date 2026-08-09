@@ -7,30 +7,30 @@
 
 :root {
   /* ground — 60% */
-  --paper: #efece5;
-  --paper-deep: #e7e2d6;
-  --card: #f6f4ee;
-  --line: #ddd5c9;
+  --paper: #ebebe8;
+  --paper-deep: #dededa;
+  --card: #f7f7f5;
+  --line: #d4d4cf;
 
   /* ink */
-  --ink: #3b2740;          /* aubergine */
-  --ink-soft: #7a6b80;
+  --ink: #3e2540;          /* aubergine */
+  --ink-soft: #7b6a7e;
 
   /* orange family — 30% */
-  --verm-deep: #c93a12;
-  --verm: #e85420;
+  --verm-deep: #c63c13;
+  --verm: #f4491c;
   --orange-mid: #f97c3d;
   --orange-soft: #f9a76b;
   --orange-pale: #fbd7b8;
 
   /* accents — used sparingly */
-  --teal: #0f9e88;
-  --teal-deep: #0c7f6e;
-  --pink: #f291a6;
-  --marigold: #f9a51f;
+  --teal: #00a085;
+  --teal-deep: #04806c;
+  --pink: #f79fb4;
+  --marigold: #fdae1c;
 
-  --danger: #c93a12;
-  --shadow: 0 10px 30px rgba(59, 39, 64, 0.16);
+  --danger: #c63c13;
+  --shadow: 0 10px 30px rgba(62, 37, 64, 0.16);
   --radius: 14px;
   --font-display: Georgia, "Times New Roman", "Noto Serif", serif;
   --font-body: "Segoe UI", system-ui, -apple-system, "Noto Sans", sans-serif;
@@ -43,8 +43,8 @@ html, body { height: 100%; }
 body {
   font-family: var(--font-body);
   background:
-    radial-gradient(1100px 650px at 78% -8%, #f7f4ec 0%, transparent 60%),
-    radial-gradient(900px 600px at -8% 108%, #e9e4d7 0%, transparent 55%),
+    radial-gradient(1100px 650px at 78% -8%, #f8f8f6 0%, transparent 60%),
+    radial-gradient(900px 600px at -8% 108%, #e4e4e0 0%, transparent 55%),
     var(--paper);
   color: var(--ink);
   line-height: 1.5;
@@ -220,7 +220,7 @@ main.layout {
   perspective: 1400px;
   padding: 8px 10px 2px;
   background:
-    radial-gradient(closest-side at 50% 45%, #fbf9f3a8, transparent 90%),
+    radial-gradient(closest-side at 50% 45%, #fdfdfca8, transparent 90%),
     var(--card);
 }
 .map-tilt {
@@ -259,12 +259,76 @@ svg#indiaMap { width: 100%; height: auto; display: block; position: relative; z-
   color: var(--ink-soft);
   padding: 6px 0 4px;
 }
-.orbit3d .orbit-hint { display: block; }
+.mode3d .orbit-hint { display: block; }
 .zbtn { min-width: 34px; }
+
+/* ---------- true 3D (WebGL) view ---------- */
+.canvas-wrap { display: none; }
+.mode3d .canvas-wrap { display: block; }
+.mode3d #svgWrap { display: none; }
+.mode3d { perspective: none; }
+#indiaMap3D {
+  display: block;
+  width: 100%;
+  height: min(68vh, 620px);
+  border-radius: 10px;
+  cursor: grab;
+  touch-action: none;
+}
+#indiaMap3D.grabbing { cursor: grabbing; }
+
+/* popup card anchored on a clicked state */
+.state-popup {
+  position: fixed;
+  z-index: 95;
+  width: 268px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--verm);
+  border-radius: 12px;
+  box-shadow: 0 16px 40px rgba(62, 37, 64, 0.26);
+  padding: 12px 14px 13px;
+  opacity: 0;
+  transform: translateY(6px) scale(0.98);
+  transition: opacity 0.14s ease, transform 0.14s ease;
+  pointer-events: none;
+}
+.state-popup.show { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+.state-popup .sp-close {
+  position: absolute; top: 6px; right: 8px;
+  border: none; background: none; cursor: pointer;
+  color: var(--ink-soft); font-size: 16px; line-height: 1;
+}
+.state-popup .sp-close:hover { color: var(--verm); }
+.state-popup h4 {
+  font-family: var(--font-display);
+  font-size: 18px; font-weight: 500;
+  color: var(--ink);
+  margin-right: 16px;
+}
+.state-popup .sp-tab {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--verm);
+}
+.state-popup .sp-body { font-size: 12.5px; color: #52415c; margin-top: 6px; }
+.state-popup .sp-stats { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+.state-popup .sp-stat {
+  background: var(--paper); border: 1px solid var(--line);
+  border-radius: 8px; padding: 4px 8px;
+  font-size: 11px; color: var(--ink);
+}
+.state-popup .sp-stat b { color: var(--verm-deep); }
+.state-popup .sp-open {
+  margin-top: 10px; width: 100%;
+  border: none; background: var(--verm); color: #fff8f2;
+  border-radius: 8px; padding: 8px 10px;
+  font: 700 12px var(--font-body); cursor: pointer;
+}
+.state-popup .sp-open:hover { background: var(--verm-deep); }
 
 /* states & districts */
 .state path {
-  stroke: rgba(246, 244, 238, 0.75);
+  stroke: rgba(247, 247, 245, 0.75);
   stroke-width: 0.3;
   vector-effect: non-scaling-stroke;
   transition: filter 0.15s ease, opacity 0.2s ease;
@@ -272,26 +336,26 @@ svg#indiaMap { width: 100%; height: auto; display: block; position: relative; z-
 }
 .state.dim path { opacity: 0.22; pointer-events: none; }
 .state:hover path { filter: brightness(1.08) saturate(1.12); }
-.state.hovered path { filter: brightness(1.1) saturate(1.15) drop-shadow(0 -3px 5px rgba(59,39,64,0.35)); }
+.state.hovered path { filter: brightness(1.1) saturate(1.15) drop-shadow(0 -3px 5px rgba(62,37,64,0.35)); }
 
 .state-outline {
   fill: none;
-  stroke: rgba(59, 39, 64, 0.55);
+  stroke: rgba(62, 37, 64, 0.55);
   stroke-width: 0.8;
   vector-effect: non-scaling-stroke;
   pointer-events: none;
 }
 
 /* focused state: districts become first-class */
-.state.focus path { stroke: rgba(246, 244, 238, 0.95); stroke-width: 0.6; }
+.state.focus path { stroke: rgba(247, 247, 245, 0.95); stroke-width: 0.6; }
 .state.focus path:hover { filter: brightness(1.15); }
 .state.focus path.district-active {
-  filter: brightness(1.2) drop-shadow(0 -2px 4px rgba(59,39,64,0.4));
+  filter: brightness(1.2) drop-shadow(0 -2px 4px rgba(62,37,64,0.4));
   stroke: #fff;
 }
 
-.map-shadow { filter: drop-shadow(0 14px 16px rgba(59, 39, 64, 0.2)); }
-.tilted .map-shadow { filter: drop-shadow(0 26px 22px rgba(59, 39, 64, 0.28)); }
+.map-shadow { filter: drop-shadow(0 14px 16px rgba(62, 37, 64, 0.2)); }
+.tilted .map-shadow { filter: drop-shadow(0 26px 22px rgba(62, 37, 64, 0.28)); }
 
 /* legend */
 .map-legend {
@@ -312,7 +376,7 @@ svg#indiaMap { width: 100%; height: auto; display: block; position: relative; z-
 .map-legend .swatch {
   width: 13px; height: 13px;
   border-radius: 3px;
-  border: 1px solid rgba(59,39,64,0.25);
+  border: 1px solid rgba(62,37,64,0.25);
   display: inline-block;
 }
 .map-legend .legend-title { font-weight: 700; color: var(--ink); margin-right: 4px; }
@@ -378,7 +442,7 @@ svg#indiaMap { width: 100%; height: auto; display: block; position: relative; z-
   padding: 4px 10px;
   border: 1px solid transparent;
 }
-.badge.qc-verified { background: #dff0ec; color: var(--teal-deep); border-color: #b5dcd3; }
+.badge.qc-verified { background: #dff1ed; color: var(--teal-deep); border-color: #b5dcd3; }
 .badge.qc-pending { background: #fce9dc; color: var(--verm-deep); border-color: #f3c9a9; }
 .badge.conf-high { background: #ebe5ef; color: var(--ink); border-color: #d3c7da; }
 .badge.conf-medium { background: #fdf0d7; color: #9a6206; border-color: #f0d9a4; }
@@ -463,7 +527,7 @@ ul.plain li::before {
 .item-card .ic-body { font-size: 13px; margin-top: 5px; color: #52415c; }
 .item-card .ic-tag {
   font-size: 10px; font-weight: 800; letter-spacing: 0.06em;
-  color: var(--teal-deep); background: #dff0ec;
+  color: var(--teal-deep); background: #dff1ed;
   padding: 2px 8px; border-radius: 999px; white-space: nowrap;
   align-self: flex-start;
 }
@@ -496,7 +560,7 @@ ul.plain li::before {
   transition: all 0.15s ease;
 }
 .district-chip:hover { border-color: var(--verm); transform: translateY(-1px); }
-.district-chip.has-data { border-color: var(--teal); background: #e9f5f1; }
+.district-chip.has-data { border-color: var(--teal); background: #e6f4f0; }
 .district-chip.active { background: var(--verm); color: #fff8f2; border-color: var(--verm-deep); }
 
 /* language pills (folklore) */
@@ -535,7 +599,7 @@ ul.plain li::before {
   text-align: center;
   color: var(--ink-soft);
   font-size: 12.5px;
-  background: repeating-linear-gradient(45deg, transparent 0 10px, #f4efe4 10px 20px);
+  background: repeating-linear-gradient(45deg, transparent 0 10px, #ebebe8 10px 20px);
 }
 
 /* empty / welcome state */
@@ -582,7 +646,7 @@ footer.app-footer {
 footer.app-footer .credit {
   font-family: var(--font-display);
   font-size: 15px;
-  color: #f6f4ee;
+  color: #f7f7f5;
   margin-bottom: 6px;
 }
 footer.app-footer a { color: var(--marigold); }

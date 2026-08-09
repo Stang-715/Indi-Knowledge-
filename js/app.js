@@ -24,8 +24,8 @@
 
   // folk screen-print palette: off-white ground, orange working family,
   // teal / pink / marigold / aubergine accents
-  var NO_DATA = "#e7e2d6";
-  var SEQ = ["#fbd7b8", "#f9a76b", "#f97c3d", "#e85420", "#c93a12"]; // light → deep vermilion
+  var NO_DATA = "#dcdcd7";
+  var SEQ = ["#fbd7b8", "#f9a76b", "#f97c3d", "#f4491c", "#c63c13"]; // light → deep vermilion
   function seqColor(n, breaks) {
     for (var i = 0; i < breaks.length; i++) if (n <= breaks[i]) return SEQ[i];
     return SEQ[SEQ.length - 1];
@@ -33,16 +33,16 @@
 
   var SOIL_COLORS = [
     ["alluvial", "#f9a76b", "Alluvial"],
-    ["black", "#3b2740", "Black (Regur)"],
-    ["regur", "#3b2740", "Black (Regur)"],
-    ["red", "#e85420", "Red"],
-    ["later", "#c93a12", "Laterite"],
-    ["desert", "#f9a51f", "Desert / Arid"],
-    ["arid", "#f9a51f", "Desert / Arid"],
-    ["mountain", "#0f9e88", "Mountain / Forest"],
-    ["forest", "#0c7f6e", "Mountain / Forest"],
-    ["saline", "#a7b8b4", "Saline / Coastal"],
-    ["coastal", "#a7b8b4", "Saline / Coastal"],
+    ["black", "#3e2540", "Black (Regur)"],
+    ["regur", "#3e2540", "Black (Regur)"],
+    ["red", "#f4491c", "Red"],
+    ["later", "#c63c13", "Laterite"],
+    ["desert", "#fdae1c", "Desert / Arid"],
+    ["arid", "#fdae1c", "Desert / Arid"],
+    ["mountain", "#00a085", "Mountain / Forest"],
+    ["forest", "#04806c", "Mountain / Forest"],
+    ["saline", "#9fb3af", "Saline / Coastal"],
+    ["coastal", "#9fb3af", "Saline / Coastal"],
     ["sandy", "#f3c983", "Sandy"],
     ["peat", "#5a4363", "Peaty / Marshy"],
   ];
@@ -52,16 +52,16 @@
     for (var i = 0; i < SOIL_COLORS.length; i++) {
       if (t.indexOf(SOIL_COLORS[i][0]) !== -1) return SOIL_COLORS[i];
     }
-    return ["other", "#d8cfc0", "Other"];
+    return ["other", "#cfcfc9", "Other"];
   }
 
   var LANG_COLORS = {
-    hi: "#e85420", bn: "#0f9e88", ta: "#c93a12", te: "#f9a51f", kn: "#7a4e8e",
-    ml: "#0c7f6e", mr: "#f97c3d", gu: "#f9a76b", pa: "#b0435f", or: "#3e9e8c",
-    as: "#8a6fa8", ur: "#5a6e7a", ks: "#5a6e7a", ne: "#c98a3a", kok: "#f291a6",
+    hi: "#f4491c", bn: "#00a085", ta: "#c63c13", te: "#fdae1c", kn: "#7a4e8e",
+    ml: "#04806c", mr: "#f97c3d", gu: "#f9a76b", pa: "#b0435f", or: "#3e9e8c",
+    as: "#8a6fa8", ur: "#5a6e7a", ks: "#5a6e7a", ne: "#c98a3a", kok: "#f79fb4",
     mni: "#b0435f", lus: "#5f8fa8", kha: "#3f7f6f", nag: "#a8783f", brx: "#7a4e8e",
-    en: "#a79fae", doi: "#a8783f", sat: "#8a5a2f", mai: "#f9a51f", bho: "#f9a76b",
-    raj: "#e85420", tcy: "#7a4e8e", gon: "#8a5a2f", bo: "#5a4363", dv: "#5f8fa8",
+    en: "#a79fae", doi: "#a8783f", sat: "#8a5a2f", mai: "#fdae1c", bho: "#f9a76b",
+    raj: "#f4491c", tcy: "#7a4e8e", gon: "#8a5a2f", bo: "#5a4363", dv: "#5f8fa8",
   };
   function langColor(code) {
     if (!code) return NO_DATA;
@@ -72,8 +72,8 @@
   // decorative flat-print patchwork, used only while a tab's data pack
   // hasn't loaded — keeps the map vibrant instead of off-white on off-white
   // orange-weighted per the 60/30/10 rule: mostly vermilion family, accents sparse
-  var PATCH = ["#e85420", "#f9a76b", "#f97c3d", "#c93a12", "#fbd7b8", "#f9a51f",
-               "#e85420", "#f9a76b", "#0f9e88", "#f97c3d", "#f291a6", "#fbd7b8"];
+  var PATCH = ["#f4491c", "#f9a76b", "#f97c3d", "#c63c13", "#fbd7b8", "#fdae1c",
+               "#f4491c", "#f9a76b", "#00a085", "#f97c3d", "#f79fb4", "#fbd7b8"];
   function patchColor(slug) {
     var h = 0;
     for (var i = 0; i < slug.length; i++) h = (h * 31 + slug.charCodeAt(i)) >>> 0;
@@ -86,12 +86,12 @@
     return m ? parseInt(m[1], 10) : null;
   }
   var ERA_COLORS = [
-    [1950, "#c93a12", "1947–1950"],
-    [1959, "#e85420", "1950s (Reorganisation)"],
+    [1950, "#c63c13", "1947–1950"],
+    [1959, "#f4491c", "1950s (Reorganisation)"],
     [1969, "#f97c3d", "1960s"],
     [1979, "#f9a76b", "1970s"],
     [1999, "#fbd7b8", "1980s–90s"],
-    [2100, "#0f9e88", "2000s+"],
+    [2100, "#00a085", "2000s+"],
   ];
   function eraColor(y) {
     for (var i = 0; i < ERA_COLORS.length; i++) if (y <= ERA_COLORS[i][0]) return ERA_COLORS[i];
@@ -221,7 +221,7 @@
           }
         });
         var out = Object.keys(seen).slice(0, 12).map(function (k) { return { label: k, color: seen[k] }; });
-        if (Object.keys(seen).length > 12) out.push({ label: "…and more", color: "#e7e2d6" });
+        if (Object.keys(seen).length > 12) out.push({ label: "…and more", color: "#dcdcd7" });
         return out;
       },
       tipLine: function (e) {
@@ -254,7 +254,8 @@
     lang: "en",       // folklore language preference
   };
 
-  var $panelHead = null, $panelBody = null, $legend = null, $crumb = null;
+  var $panelHead = null, $panelBody = null, $legend = null, $crumb = null, $popup = null;
+  var has3D = false;
 
   /* ---------------- panel section builders ---------------- */
   function sec(title, inner) {
@@ -628,7 +629,7 @@
             return "<span class='chip'><span class='swatch' style='background:" + it.color + "'></span>" + esc(it.label) + "</span>";
           }).join("")
         : "<span>decorative patchwork — research pack still in the pipeline</span>") +
-      "<span class='chip' style='margin-left:auto'><span class='swatch' style='background:#e7e2d6'></span>no data</span>";
+      "<span class='chip' style='margin-left:auto'><span class='swatch' style='background:#dcdcd7'></span>no data</span>";
   }
 
   function renderCrumb() {
@@ -665,9 +666,90 @@
       b.classList.toggle("active", b.getAttribute("data-tab") === tab.key);
     });
     window.IndiaMap.recolor();
+    sync3D();
+    hidePopup();
     renderLegend();
     renderCrumb();
     renderPanel();
+  }
+
+  /* ---------------- 3D: per-tab extrusion height ----------------
+     Height encodes how much this tab documents for a state (or a real
+     magnitude where one exists, e.g. district count for governance). */
+  var METRIC = {
+    soil: function (e) { return count(e.districtHighlights) + count(e.recommendations); },
+    history: function (e) { return count(e.keyEvents) + count(e.dynasties) * 0.5; },
+    governance: function (e) { return e.districts || count(e.flagshipPolicies); },
+    community: function (e) { return count(e.communities) + count(e.festivals); },
+    art: function (e) { return count(e.artForms) * 2; },
+    craft: function (e) {
+      return count(e.crafts) + (e.crafts || []).filter(function (c) { return c.giTag; }).length;
+    },
+    wars: function (e) { return count(e.battles) * 2; },
+    vedas: function (e) { return count(e.traditions) + count(e.knowledgeCenters); },
+    folklore: function (e) { return count(e.tales) * 3; },
+    heritage: function (e) { return count(e.sites) + (e.unescoCount || 0) * 2; },
+  };
+
+  var NO_DATA_3D = "#c3bfb8";   // visibly darker than the 3D ground
+  function sync3D() {
+    if (!has3D) return;
+    var colors = {}, metrics = {};
+    var pack = getPack(App.tab.key);
+    var fn = METRIC[App.tab.key];
+    window.IndiaMap.listStates().forEach(function (s) {
+      var e = getEntry(App.tab.key, s.slug);
+      colors[s.slug] = (pack ? App.tab.fill(e) : patchColor(s.slug)) || NO_DATA_3D;
+      metrics[s.slug] = (e && fn) ? (fn(e) || 0) : 0;
+    });
+    window.Map3D.setData(colors, metrics);
+  }
+
+  /* ---------------- 3D click popup ---------------- */
+  function hidePopup() {
+    if ($popup) $popup.classList.remove("show");
+  }
+  function showPopup(slug, evt) {
+    if (!slug) { hidePopup(); return; }
+    var tab = App.tab;
+    var name = window.INDIA_MAP.states[slug].name;
+    var e = getEntry(tab.key, slug);
+    var fn = METRIC[tab.key];
+    var stats = [
+      { k: "districts", v: window.IndiaMap.listDistricts(slug).length },
+    ];
+    if (e && fn) stats.push({ k: tab.label.toLowerCase() + " records", v: Math.round(fn(e)) });
+    if (e && count(e.sources)) stats.push({ k: "sources", v: count(e.sources) });
+
+    $popup.innerHTML =
+      "<button class='sp-close' aria-label='Close'>×</button>" +
+      "<div class='sp-tab'>" + tab.icon + " " + esc(tab.label) + "</div>" +
+      "<h4>" + esc(name) + "</h4>" +
+      "<div class='sp-body'>" +
+        (e ? esc(String(e.summary || "").split(". ").slice(0, 2).join(". ").slice(0, 190) + "…")
+           : "No verified record in this pack yet — research is still in the pipeline.") +
+      "</div>" +
+      "<div class='sp-stats'>" + stats.map(function (s) {
+        return "<span class='sp-stat'><b>" + esc(s.v) + "</b> " + esc(s.k) + "</span>";
+      }).join("") + "</div>" +
+      "<button class='sp-open'>Open full dossier ›</button>";
+
+    var x = (evt && evt.clientX !== undefined) ? evt.clientX + 16 : window.innerWidth / 2;
+    var y = (evt && evt.clientY !== undefined) ? evt.clientY - 20 : 120;
+    $popup.style.left = Math.min(x, window.innerWidth - 288) + "px";
+    $popup.style.top = Math.max(8, Math.min(y, window.innerHeight - 240)) + "px";
+    $popup.classList.add("show");
+
+    $popup.querySelector(".sp-close").addEventListener("click", hidePopup);
+    $popup.querySelector(".sp-open").addEventListener("click", function () {
+      hidePopup();
+      App.state = slug;
+      App.district = null;
+      window.Map3D.focus(slug);
+      renderCrumb();
+      renderPanel();
+      document.querySelector(".panel").scrollIntoView({ behavior: "smooth", block: "nearest" });
+    });
   }
 
   /* ---------------- boot ---------------- */
@@ -676,6 +758,7 @@
     $panelBody = document.getElementById("panelBody");
     $legend = document.getElementById("mapLegend");
     $crumb = document.getElementById("crumb");
+    $popup = document.getElementById("statePopup");
 
     // tab bar
     var nav = document.getElementById("tabBar");
@@ -746,25 +829,69 @@
     search.addEventListener("change", trySearch);
     search.addEventListener("keydown", function (e) { if (e.key === "Enter") trySearch(); });
 
-    // 3D control: flat → tilt → orbit (drag to rotate X/Y, wheel/Q/E for Z)
+    // view control: flat SVG → tilted SVG → true WebGL 3D
     var stage = document.getElementById("mapStage");
     var btn3d = document.getElementById("btn3d");
     var btnZL = document.getElementById("btnZL");
     var btnZR = document.getElementById("btnZR");
-    window.Orbit.init({ stage: stage, tiltEl: stage.querySelector(".map-tilt") });
-    var MODE_LABELS = ["◈ 3D view", "◈ Tilt on", "🧊 Orbit on"];
-    btn3d.addEventListener("click", function () {
-      var m = (window.Orbit.getMode() + 1) % 3;
-      window.Orbit.setMode(m);
+    window.Orbit.init({ stage: stage, tiltEl: document.getElementById("svgWrap") });
+
+    has3D = window.Map3D.supported() && window.Map3D.init({
+      canvas: document.getElementById("indiaMap3D"),
+      onHover: function (slug, evt) {
+        var tip = document.getElementById("tooltip");
+        if (!slug) { tip.classList.remove("show"); return; }
+        var e = getEntry(App.tab.key, slug);
+        var line = e ? App.tab.tipLine(e) : "research pack in the pipeline";
+        tip.innerHTML = "<div class='t-name'>" + esc(window.INDIA_MAP.states[slug].name) + "</div>" +
+          (line ? "<div class='t-sub'>" + esc(line) + "</div>" : "") +
+          "<div class='t-sub'>click for its card ›</div>";
+        tip.classList.add("show");
+        if (evt) {
+          tip.style.left = Math.min(evt.clientX + 14, window.innerWidth - 280) + "px";
+          tip.style.top = (evt.clientY + 14) + "px";
+        }
+      },
+      onSelect: function (slug, evt) {
+        document.getElementById("tooltip").classList.remove("show");
+        if (!slug) { hidePopup(); return; }
+        App.state = slug;
+        App.district = null;
+        renderCrumb();
+        renderPanel();
+        showPopup(slug, evt);
+      },
+    });
+
+    var modes = has3D ? 3 : 2;
+    var MODE_LABELS = ["◈ 3D view", "◈ Tilt on", "🧊 3D model"];
+    var mode = 0;
+    function setMode(m) {
+      mode = m;
+      window.Orbit.setMode(m === 1 ? 1 : 0);
+      stage.classList.toggle("mode3d", m === 2);
       btn3d.textContent = MODE_LABELS[m];
       btn3d.classList.toggle("on", m > 0);
       btnZL.style.display = m === 2 ? "" : "none";
       btnZR.style.display = m === 2 ? "" : "none";
-    });
+      hidePopup();
+      if (m === 2) {
+        sync3D();
+        window.Map3D.invalidate();
+        if (App.state) { window.Map3D.select(App.state); window.Map3D.focus(App.state); }
+      }
+    }
+    btn3d.addEventListener("click", function () { setMode((mode + 1) % modes); });
     btnZL.style.display = "none";
     btnZR.style.display = "none";
-    btnZL.addEventListener("click", function () { window.Orbit.spin(-12); });
-    btnZR.addEventListener("click", function () { window.Orbit.spin(12); });
+    btnZL.addEventListener("click", function () { window.Map3D.spin(-0.28); });
+    btnZR.addEventListener("click", function () { window.Map3D.spin(0.28); });
+    document.addEventListener("keydown", function (e) {
+      if (mode !== 2) return;
+      if (e.key === "q" || e.key === "Q") window.Map3D.spin(-0.18);
+      if (e.key === "e" || e.key === "E") window.Map3D.spin(0.18);
+      if (e.key === "r" || e.key === "R") window.Map3D.home();
+    });
     document.getElementById("btnReset").addEventListener("click", function () {
       window.IndiaMap.reset();
     });

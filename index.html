@@ -37,10 +37,13 @@
         <button class="tool-btn" id="btnReset" title="Back to national view">⤺ India</button>
       </div>
       <div class="map-viewport" id="mapStage">
-        <div class="map-tilt">
+        <div class="map-tilt" id="svgWrap">
           <svg id="indiaMap" role="img" aria-label="Interactive map of Indian states and districts"></svg>
         </div>
-        <div class="orbit-hint">drag to rotate · scroll or ⟲⟳ to spin · double-click to reset</div>
+        <div class="canvas-wrap" id="canvasWrap">
+          <canvas id="indiaMap3D" aria-label="Three-dimensional model of India, drag to rotate"></canvas>
+        </div>
+        <div class="orbit-hint">drag to orbit 360° · scroll to zoom · click a state for its card · double-click to reset</div>
       </div>
       <div class="map-legend" id="mapLegend"></div>
     </section>
@@ -52,6 +55,7 @@
   </main>
 
   <div id="tooltip" role="tooltip"></div>
+  <div id="statePopup" class="state-popup" role="dialog" aria-label="State summary"></div>
 
   <footer class="app-footer">
     <div class="credit">Built with Claude Code — researched by a fleet of Claude agents, re-checked by a QC agent</div>
@@ -87,6 +91,7 @@
   <!-- app -->
   <script src="js/map.js"></script>
   <script src="js/orbit.js"></script>
+  <script src="js/map3d.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>
