@@ -15,6 +15,9 @@
  */
 import { record, bumpPillar } from './state.js';
 
+/** Below this fraction of integrity a carrier is unreadable, so it is gone. */
+export const CARRIER_DEATH = 0.2;
+
 /** Carrier half-lives, in years. The physics of remembering. */
 export const MEDIA = {
   memory:     { half: 35,   label: 'a reciter',        fragile: true  },
@@ -27,6 +30,13 @@ export const MEDIA = {
 
 /** Where a carrier sits. Distance is redundancy — that is the whole point. */
 export const PLACES = ['home', 'south', 'tibet', 'lanka', 'china', 'abroad'];
+
+/**
+ * Destinations with institutions of their own, which maintain what they receive.
+ * `abroad` and `south` are deliberately not on this list: a copy left with a
+ * merchant is out of the fire but nobody is recopying it.
+ */
+export const FOSTERING = new Set(['tibet', 'lanka', 'china']);
 
 export function initCorpus(state, datapack, fromYear) {
   for (const w of datapack.works.works) {
@@ -113,16 +123,29 @@ export function tickCorpus(state, span, rng, datapack) {
         if (oralKept.has(c.id)) { carrier.health = 1; continue; }   // recited, so kept
         // Outside the repertoire, memory goes fast. One generation, roughly.
         carrier.health *= Math.pow(0.5, span / m.half);
+      } else if (carrier.place === 'home') {
+        // A copy in the same town as a working scriptorium gets recopied.
+        if (scribalKept.has(c.id)) { carrier.health = 1; continue; }
+        carrier.health *= Math.pow(0.5, span / m.half);
       } else {
-        // A copy in the same place as a working scriptorium gets recopied.
-        if (scribalKept.has(c.id) && carrier.place === 'home') { carrier.health = 1; continue; }
+        // A copy that reached a foreign institution is maintained BY that
+        // institution. This is not generosity in the model, it is what happened:
+        // the Abhidharmakosha survives because Tibetan monasteries went on
+        // copying it for a thousand years after the Indian ones were ash.
+        //
+        // It is the whole return on the missionary vector. A teacher does not
+        // just carry a text out of reach of the fire — they leave it somewhere
+        // that will keep it without you.
+        if (FOSTERING.has(carrier.place)) { carrier.health = 1; continue; }
         carrier.health *= Math.pow(0.5, span / m.half);
       }
     }
-    // A carrier below 12% health is gone. Threshold rather than zero, because a
-    // half-rotten manuscript nobody can read is not a surviving copy.
+    // A carrier below a fifth of its integrity is gone. A threshold rather than
+    // zero, because a manuscript too rotted to read is not a surviving copy —
+    // and at 300-year palm leaf that puts an unmaintained copy's working life at
+    // roughly seven centuries, which is about right.
     const before = c.carriers.length;
-    c.carriers = c.carriers.filter(x => x.health > 0.12);
+    c.carriers = c.carriers.filter(x => x.health > CARRIER_DEATH);
     if (c.carriers.length === 0 && before > 0) lose(state, c, year, 'neglect');
   }
 
@@ -210,8 +233,16 @@ export function copyOut(state, workId, destination, year, { teacher = false } = 
   const cost = teacher ? 120 : 60;
   if (state.grain < cost) return false;
   if (!teacher && state.pops.scribes < 1) return false;
+  // The real price of sending a teacher is not the grain for the road. It is
+  // that a person who was keeping the corpus at home is now three thousand
+  // kilometres away, and everything they were maintaining is one copy thinner.
+  if (teacher && state.pops.scribes < 1 && state.pops.reciters < 2) return false;
 
   state.grain -= cost;
+  if (teacher) {
+    if (state.pops.scribes >= 1) state.pops.scribes -= 1;
+    else state.pops.reciters -= 1;
+  }
 
   // Medium follows what the era knows how to do.
   const medium = state.goods.has('paper') ? 'paper'

@@ -136,7 +136,7 @@ function fireEvent(state, ev, datapack, rng) {
  * every reciter you take into keeping is one the land cannot feed.
  */
 function tickEconomy(state, span) {
-  const { reciters, scribes, teachers, soldiers, merchants } = state.pops;
+  const { reciters, scribes, soldiers, merchants } = state.pops;
 
   // Carrying capacity. Foraging supports very few; irrigation and double-cropping
   // support an order of magnitude more.
@@ -145,7 +145,10 @@ function tickEconomy(state, span) {
 
   const yieldPerFarmer = 0.035 * (0.55 + state.pillars.AGRICULTURE / 120);
   const produced = farmers * yieldPerFarmer * span;
-  const consumed = (reciters * 3 + scribes * 3 + teachers * 3 + soldiers * 2.5 + merchants * 2) * span;
+  // Teachers abroad are not in this sum. They eat at the monastery that took
+  // them in — the cost of sending one is the journey, and the maintainer you no
+  // longer have at home.
+  const consumed = (reciters * 3 + scribes * 3 + soldiers * 2.5 + merchants * 2) * span;
   state.grain += produced - consumed;
 
   // Logistic growth toward capacity, slowed when the granary is empty.

@@ -162,26 +162,56 @@ test('the risk list leads with the fragile, not the famous', () => {
 });
 
 test('THE GATE: sending teachers abroad saves works that otherwise burn in 1193', () => {
+  // Asserted across twelve seeds, not one. A gate that only lands on a lucky
+  // campaign is not a gate.
   const base = [];
   for (let y = -3000; y < 1900; y += 100) base.push({ year: y, action: 'patronise' });
   for (let y = -400;  y < 1900; y +=  60) base.push({ year: y, action: 'train-scribe' });
 
-  const warn = run(DP, 'gate', base, { to: 1000 });
-  const atRisk = worksAtRisk(warn, 'home').slice(0, 12);
-  assert.ok(atRisk.length > 0, 'there must be something to lose');
+  const seeds = ['gate','paramountcy','a','b','c','d','e','f','g','h','i','j'];
+  let improved = 0, totalDelta = 0;
 
-  const sending = atRisk.map((w, i) => ({
-    year: 1050 + i, action: 'send-teacher', work: w.id, destination: 'tibet',
+  for (const seed of seeds) {
+    const warn = run(DP, seed, base, { to: 1000 });
+    // Everything genuinely thin — not a fixed count, and not the famous works
+    // that already sit in four houses.
+    const atRisk = worksAtRisk(warn, 'home').filter(w => w.carriers <= 3);
+    assert.ok(atRisk.length > 0, `${seed}: there must be something to lose`);
+
+    const sending = atRisk.map((w, i) => ({
+      year: 1050 + i, action: 'send-teacher', work: w.id, destination: 'tibet',
+    }));
+
+    const nothing = run(DP, seed, base, { to: 1250 });
+    const saved   = run(DP, seed, [...base, ...sending], { to: 1250 });
+    const delta = corpusSummary(saved).extant - corpusSummary(nothing).extant;
+    if (delta > 0) improved++;
+    totalDelta += delta;
+  }
+
+  assert.equal(improved, seeds.length,
+    `copying out must help in every campaign, helped in ${improved}/${seeds.length}`);
+  assert.ok(totalDelta / seeds.length > 3,
+    `average gain was only ${(totalDelta / seeds.length).toFixed(1)} works`);
+});
+
+test('a copy left with a merchant is not a copy left with an institution', () => {
+  // 'abroad' is out of the fire but nobody is recopying it; 'tibet' is.
+  // If those two ever behave the same, the missionary vector has lost its point.
+  const base = [];
+  for (let y = -3000; y < 1900; y += 100) base.push({ year: y, action: 'patronise' });
+  for (let y = -400;  y < 1900; y +=  60) base.push({ year: y, action: 'train-scribe' });
+
+  const warn = run(DP, 'foster', base, { to: 1000 });
+  const atRisk = worksAtRisk(warn, 'home').filter(w => w.carriers <= 3);
+  const send = (dest) => atRisk.map((w, i) => ({
+    year: 1050 + i, action: 'send-teacher', work: w.id, destination: dest,
   }));
 
-  const nothing = run(DP, 'gate', base, { to: 1250 });
-  const saved   = run(DP, 'gate', [...base, ...sending], { to: 1250 });
-
-  const burned = (s) => s.log
-    .filter(l => l.kind === 'catastrophe' && l.year >= 1190 && l.year <= 1200)
-    .reduce((n, l) => n + (l.lost ?? 0), 0);
-
-  assert.ok(burned(saved) < burned(nothing),
-    `copying out must reduce losses: ${burned(saved)} vs ${burned(nothing)}`);
-  assert.ok(corpusSummary(saved).extant > corpusSummary(nothing).extant);
+  // Run to the end of the campaign: an unmaintained palm-leaf copy takes about
+  // seven centuries to become unreadable, so the two only diverge over that long.
+  const toInstitution = run(DP, 'foster', [...base, ...send('tibet')],  { to: 1947 });
+  const toNowhere     = run(DP, 'foster', [...base, ...send('abroad')], { to: 1947 });
+  assert.ok(corpusSummary(toInstitution).extant > corpusSummary(toNowhere).extant,
+    'a fostering destination must outperform a merchant\'s chest');
 });

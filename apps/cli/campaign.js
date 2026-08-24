@@ -40,9 +40,16 @@ function tendedLog() {
   return d;
 }
 
-/** The Aluvihare decision, offered to the player. Copy out, or don't. */
-function copyOutLog(state, atYear, destination, n) {
-  const risk = worksAtRisk(state, 'home').slice(0, n);
+/**
+ * The Aluvihare decision, offered to the player. Copy out, or don't.
+ *
+ * `maxCarriers` is the interesting dial. Sending a teacher costs grain and one
+ * of the people keeping the corpus at home, so insuring a work that already sits
+ * in four houses is a bad trade — measurably so. Insuring everything that is
+ * genuinely thin is the play.
+ */
+function copyOutLog(state, atYear, destination, maxCarriers = 3) {
+  const risk = worksAtRisk(state, 'home').filter(w => w.carriers <= maxCarriers);
   return risk.map((w, i) => ({
     year: atYear + i, action: 'send-teacher', work: w.id, destination,
   }));
@@ -70,7 +77,7 @@ function gate() {
 
   // Two campaigns, identical but for one choice.
   const nothing = run(dp, seed, base, { to: 1250 });
-  const saved   = run(dp, seed, [...base, ...copyOutLog(warn, 1050, 'tibet', 12)], { to: 1250 });
+  const saved   = run(dp, seed, [...base, ...copyOutLog(warn, 1050, 'tibet', 3)], { to: 1250 });
 
   const line = (label, s) => {
     const cs = corpusSummary(s);
