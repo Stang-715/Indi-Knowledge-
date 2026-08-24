@@ -1,0 +1,17 @@
+{
+  "name": "paramountcy",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "An India-only grand strategy game, 6000 BCE to 1947.",
+  "workspaces": ["packages/*", "apps/*"],
+  "scripts": {
+    "test": "node --test \"packages/*/test/*.test.js\"",
+    "check": "node tools/check-determinism-rules.mjs",
+    "verify": "npm run check && npm test",
+    "timeline": "node tools/build-timeline.mjs",
+    "campaign": "node packages/sim/src/cli.js",
+    "serve": "node tools/serve.mjs"
+  },
+  "engines": { "node": ">=22" }
+}

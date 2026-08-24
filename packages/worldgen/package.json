@@ -1,0 +1,7 @@
+{
+  "name": "@paramountcy/worldgen",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "src/terrain.js",
+  "description": "Pure procedural generation. No state, no I/O, no persistence."
+}
