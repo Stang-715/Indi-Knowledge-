@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Paramountcy</title>
+<link rel="stylesheet" href="../../packages/ui/src/kit.css">
+<style>
+  html,body { height:100%; }
+  #app { display:grid; grid-template-columns: 1fr 322px; height:100dvh; gap:0; }
+  @media (max-width: 900px) { #app { grid-template-columns: 1fr; grid-template-rows: 1fr auto; } }
+
+  #stage { position:relative; overflow:hidden; }
+  #map { display:block; width:100%; height:100%; touch-action:none; cursor:grab; }
+  #map.drag { cursor:grabbing; }
+
+  #hud { position:absolute; left:14px; top:14px; display:flex; gap:8px; align-items:center;
+         background:var(--paper); border:1px solid var(--rule); padding:6px 10px;
+         box-shadow:var(--shadow-contact); }
+  #year { font-size:19px; font-weight:600; font-variant-numeric:tabular-nums; min-width:104px; }
+  #era  { font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); }
+
+  #modes { position:absolute; left:14px; bottom:14px; display:flex; gap:2px; }
+  #notices { position:absolute; right:14px; top:14px; width:290px;
+             display:flex; flex-direction:column; gap:6px; pointer-events:none; }
+  #loading { position:absolute; inset:0; display:grid; place-items:center;
+             background:var(--table); font-size:14px; color:var(--ink-soft); z-index:9; }
+
+  aside { background:var(--sheet); border-left:1px solid var(--rule);
+          overflow-y:auto; padding:14px; display:flex; flex-direction:column; gap:12px; }
+  aside::-webkit-scrollbar { width:9px; }
+  aside::-webkit-scrollbar-thumb { background:var(--table-deep); }
+
+  .panel h2 { margin:0 0 8px; font-size:11px; letter-spacing:.12em;
+              text-transform:uppercase; color:var(--ink-soft); font-weight:600; }
+  .acts { display:flex; flex-wrap:wrap; gap:5px; }
+  #chest { max-height:270px; overflow-y:auto; }
+  #log { max-height:150px; overflow-y:auto; font-size:12px; line-height:1.5; }
+  #log div { padding:1px 0; }
+  #log .y { color:var(--ink-faint); font-family:var(--mono); font-size:10px; margin-right:6px; }
+</style>
+</head>
+<body data-era="neolithic">
+<div id="app">
+  <div id="stage">
+    <canvas id="map"></canvas>
+    <div id="loading">building the world…</div>
+    <div id="hud">
+      <div class="clockbar">
+        <div class="gnomon" id="gnomon"></div>
+        <div>
+          <div id="year">6000 BCE</div>
+          <div id="era">Early Neolithic</div>
+        </div>
+      </div>
+      <div class="rule" style="width:1px;height:30px;margin:0 4px"></div>
+      <button class="btn" id="play">▶ play</button>
+      <button class="btn" id="speed">1×</button>
+    </div>
+    <div id="modes" class="tabs"></div>
+    <div id="notices"></div>
+  </div>
+
+  <aside>
+    <div class="panel ledger">
+      <h2>The Ledger</h2>
+      <div class="ledger-row"><span>Grain</span><span class="v" id="grain">—</span></div>
+      <div class="ledger-row"><span>Coin</span><span class="v" id="coin">—</span></div>
+      <div class="ledger-row"><span>Farmers</span><span class="v" id="farmers">—</span></div>
+      <div class="ledger-row"><span>Reciters</span><span class="v" id="reciters">—</span></div>
+      <div class="ledger-row"><span>Scribes</span><span class="v" id="scribes">—</span></div>
+      <div class="ledger-row"><span>Soldiers</span><span class="v" id="soldiers">—</span></div>
+    </div>
+
+    <div class="panel">
+      <h2>Decisions</h2>
+      <div class="acts" id="acts"></div>
+    </div>
+
+    <div class="panel">
+      <h2>Pillars</h2>
+      <div id="pillars"></div>
+    </div>
+
+    <div class="panel">
+      <h2>The Corpus <span class="tiny muted" id="corpus-sum"></span></h2>
+      <div class="chest" id="chest"></div>
+    </div>
+
+    <div class="panel">
+      <h2>Goods</h2>
+      <div class="tokens" id="goods"></div>
+    </div>
+
+    <div class="panel">
+      <h2>Chronicle</h2>
+      <div id="log"></div>
+    </div>
+  </aside>
+</div>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>

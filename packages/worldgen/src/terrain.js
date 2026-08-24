@@ -66,9 +66,13 @@ export function baseHeight(O, lon, lat) {
       (0.70 + 0.38 * ridged(lon * 6.5, lat * 6.5, 11, 4)));
   }
 
+  // The swell warp does not depend on the swell, so it is computed once. It used
+  // to sit inside the loop, which recomputed two four-octave fbm evaluations for
+  // every one of the seven swells — about forty-eight redundant noise calls per
+  // pixel, and the single largest cost in the renderer.
+  const sx = lon + (fbm(lon * 0.42, lat * 0.42, 404, 4) - 0.5) * 3.4;
+  const sy = lat + (fbm(lon * 0.42 + 9.1, lat * 0.42 + 4.7, 404, 4) - 0.5) * 3.4;
   for (const S of O.swells) {
-    const sx = lon + (fbm(lon * 0.42, lat * 0.42, 404, 4) - 0.5) * 3.4;
-    const sy = lat + (fbm(lon * 0.42 + 9.1, lat * 0.42 + 4.7, 404, 4) - 0.5) * 3.4;
     const dx = (sx - S.c[0]) * KX, dy = sy - S.c[1];
     const k = Math.sqrt(dx * dx + dy * dy) / S.r;
     if (k < 1.5) h = Math.max(h, S.h * Math.exp(-k * k * 1.5));

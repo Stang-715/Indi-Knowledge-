@@ -1,0 +1,253 @@
+/* ===========================================================================
+   The Cartographer's Table — UI kit
+   docs/08-visual-design.md §6 and §9
+
+   Everything is an object on a physical surface. No floating chrome, no
+   glassmorphism, no rounded-rectangle cards. The ledger is a bound book, map
+   modes are transparent sheets laid over the model, tooltips are slips of paper.
+
+   Four rules hold across every component:
+     · --gold means YOURS and nothing else
+     · lost state is a LIGHTNESS shift, never a hue shift
+     · nested slips are day-one, not retrofitted
+     · every component has an era variant driven by MATERIAL, not colour
+   =========================================================================== */
+
+:root {
+  /* Palette, sampled from the references (§6.4) */
+  --table:        #C3A578;
+  --table-deep:   #8E7248;
+  --sea-deep:     #24606F;
+  --sea-mid:      #3E8496;
+  --sea-shallow:  #7CB4C0;
+  --land-fertile: #7A8F52;
+  --land-arid:    #C29A48;
+  --land-rock:    #A98F68;
+  --snow:         #E2E5E2;
+  --gold:         #C9A227;
+  --ink:          #2A2118;
+
+  --ink-soft:     rgba(42, 33, 24, 0.62);
+  --ink-faint:    rgba(42, 33, 24, 0.30);
+  --rule:         rgba(42, 33, 24, 0.22);
+
+  /* Semantic colour is kept OUT of the terrain palette on purpose (§6.4). */
+  --loss:         #6E6A62;
+  --warn:         #A8642B;
+
+  --sheet:        #D9C6A2;
+  --sheet-shade:  #C7B08A;
+  --paper:        #E8DCC2;
+
+  --shadow-contact: 0 1px 0 rgba(42,33,24,.18), 0 3px 8px rgba(70,52,28,.20);
+  --shadow-lift:    0 2px 2px rgba(42,33,24,.16), 0 10px 26px rgba(70,52,28,.26);
+
+  --serif: 'Gentium Book Plus', 'Noto Serif', Georgia, 'Times New Roman', serif;
+  --mono:  ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+}
+
+/* --- Era materials (§6.1). The table tells time; no era indicator is needed. */
+[data-era="neolithic"] { --sheet: #C9B996; --sheet-shade: #B3A07A; --paper: #D8CBAA; }
+[data-era="bronze"]    { --sheet: #CDBB93; --sheet-shade: #B6A177; --paper: #DCCDA9; }
+[data-era="iron"]      { --sheet: #D2C09A; --sheet-shade: #BAA57C; --paper: #E0D2AF; }
+[data-era="classical"] { --sheet: #D9C6A2; --sheet-shade: #C7B08A; --paper: #E8DCC2; }
+[data-era="medieval"]  { --sheet: #DFCFAF; --sheet-shade: #CBB694; --paper: #EFE4CD; }
+[data-era="modern"]    { --sheet: #E6DAC1; --sheet-shade: #D2C0A0; --paper: #F4EBD9; }
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--serif);
+  color: var(--ink);
+  background:
+    radial-gradient(120% 90% at 30% 8%, rgba(255,246,222,.55), transparent 62%),
+    var(--table);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- 1. Surface: the survey sheet ---------------------------------------- */
+.surface {
+  position: relative;
+  background: var(--sheet);
+  box-shadow: var(--shadow-lift);
+  /* Laid paper grain — the sheet is a made thing, not a flat fill. */
+  background-image:
+    repeating-linear-gradient(90deg, rgba(255,255,255,.05) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(0deg,  rgba(42,33,24,.030) 0 1px, transparent 1px 4px);
+}
+
+/* --- 2. Ledger: a bound book, lower-left --------------------------------- */
+.ledger {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-left: 5px solid var(--table-deep);   /* the spine */
+  box-shadow: var(--shadow-contact);
+  padding: 14px 16px 16px;
+}
+.ledger h2 {
+  margin: 0 0 10px; font-size: 13px; font-weight: 600;
+  letter-spacing: .11em; text-transform: uppercase; color: var(--ink-soft);
+}
+.ledger-row {
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding: 3px 0; border-bottom: 1px solid rgba(42,33,24,.08);
+  font-size: 14px;
+}
+.ledger-row:last-child { border-bottom: 0; }
+.ledger-row .v { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+
+/* --- 3. Slip: a paper slip. THE tooltip. Nesting is day-one. ------------- */
+.slip {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  box-shadow: var(--shadow-contact);
+  padding: 9px 12px;
+  font-size: 13px; line-height: 1.45;
+  max-width: 300px;
+  /* Torn top edge, so it reads as paper rather than a div. */
+  clip-path: polygon(0 3px, 4% 0, 9% 3px, 15% 0, 22% 3px, 30% 0, 38% 3px,
+                     47% 0, 55% 3px, 64% 0, 72% 3px, 81% 0, 89% 3px, 96% 0,
+                     100% 3px, 100% 100%, 0 100%);
+}
+.slip--d1 { transform: translate(6px, 6px);  }   /* nesting depth 1 */
+.slip--d2 { transform: translate(12px, 12px); }  /* depth 2 */
+.slip b { font-weight: 600; }
+.slip .hint { display: block; margin-top: 5px; color: var(--ink-soft); font-size: 12px; }
+
+/* --- 4. Event card: a pinned card ---------------------------------------- */
+.card {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  box-shadow: var(--shadow-lift);
+  padding: 0 0 14px;
+}
+.card .ribbon {
+  background: var(--table-deep); color: var(--paper);
+  padding: 5px 12px; font-size: 11px;
+  letter-spacing: .13em; text-transform: uppercase;
+  display: flex; justify-content: space-between;
+}
+.card h3 { margin: 12px 14px 6px; font-size: 19px; font-weight: 600; line-height: 1.2; }
+.card p  { margin: 0 14px 8px; font-size: 14px; line-height: 1.5; }
+.card .why { font-style: italic; color: var(--ink-soft); }
+.card .evidence {
+  margin: 10px 14px 0; padding-top: 8px; border-top: 1px solid var(--rule);
+  font-size: 12px; color: var(--ink-soft);
+}
+.card .evidence b { text-transform: uppercase; letter-spacing: .1em; font-size: 10px; }
+
+/* --- 5. Map-mode sheet: lays OVER the model, never swaps it -------------- */
+.mode-sheet {
+  position: absolute; inset: 0; pointer-events: none;
+  opacity: 0; transition: opacity 250ms ease;
+  mix-blend-mode: multiply;
+}
+.mode-sheet.on { opacity: 1; }
+
+/* --- 6. Time control ------------------------------------------------------ */
+.clockbar { display: flex; align-items: center; gap: 8px; }
+.gnomon {
+  width: 34px; height: 34px; position: relative;
+  background: var(--sheet-shade); border: 1px solid var(--rule);
+  border-radius: 50%;
+}
+.gnomon::after {
+  content: ''; position: absolute; left: 50%; top: 50%;
+  width: 1.5px; height: 12px; background: var(--ink);
+  transform-origin: 50% 0; transform: translate(-50%,0) rotate(var(--sun, 40deg));
+}
+
+/* --- 7. Token row: physical goods on the table edge --------------------- */
+.tokens { display: flex; flex-wrap: wrap; gap: 5px; }
+.token {
+  font-size: 11px; padding: 3px 8px;
+  background: var(--sheet-shade); border: 1px solid var(--rule);
+  box-shadow: 0 1px 0 rgba(42,33,24,.14);
+  letter-spacing: .03em;
+}
+.token--new { background: var(--gold); color: var(--ink); font-weight: 600; }
+
+/* --- 8. Pillar meters: eight incised gauges ----------------------------- */
+.pillar { display: grid; grid-template-columns: 78px 1fr 30px; gap: 8px;
+          align-items: center; font-size: 12px; padding: 2px 0; }
+.pillar .bar {
+  height: 7px; background: var(--sheet-shade);
+  box-shadow: inset 0 1px 2px rgba(42,33,24,.30);   /* incised, not raised */
+}
+.pillar .bar i { display: block; height: 100%; background: var(--table-deep); }
+.pillar .n { font-family: var(--mono); text-align: right; color: var(--ink-soft); }
+
+/* --- 9. Corpus chest: palm-leaf bundles ---------------------------------- */
+.chest { display: flex; flex-direction: column; gap: 1px; }
+.work {
+  display: flex; align-items: baseline; gap: 8px;
+  padding: 4px 7px; font-size: 13px;
+  background: linear-gradient(90deg, var(--paper) 0 3px, transparent 3px);
+  border-bottom: 1px solid rgba(42,33,24,.07);
+}
+.work .title { flex: 1; }
+.work .meta { font-family: var(--mono); font-size: 11px; color: var(--ink-soft); }
+/* LOST is a lightness shift, never a hue shift. Validated at dE 27.1 / 16.2. */
+.work--lost { opacity: .38; }
+.work--lost .title { text-decoration: line-through; text-decoration-thickness: 1px; }
+.work--risk { box-shadow: inset 3px 0 0 var(--warn); }
+.work--safe { box-shadow: inset 3px 0 0 var(--land-fertile); }
+
+/* --- 10. Notification: a wax-sealed slip arriving at the edge ----------- */
+.notice {
+  background: var(--paper); border: 1px solid var(--rule);
+  box-shadow: var(--shadow-lift);
+  padding: 9px 12px 9px 30px; font-size: 13px; position: relative;
+  animation: arrive 420ms cubic-bezier(.2,.9,.3,1) both;
+}
+.notice::before {
+  content: ''; position: absolute; left: 9px; top: 11px;
+  width: 13px; height: 13px; border-radius: 50%;
+  background: var(--warn); box-shadow: inset 0 -1px 2px rgba(0,0,0,.28);
+}
+.notice--loss::before { background: var(--loss); }
+.notice--good::before { background: var(--land-fertile); }
+.notice--epoch::before { background: var(--gold); }
+@keyframes arrive { from { transform: translateX(22px); opacity: 0 } to { transform: none; opacity: 1 } }
+
+/* --- 12. Button: primary is a gold wax seal ----------------------------- */
+.btn {
+  font-family: var(--serif); font-size: 13px;
+  padding: 6px 13px; cursor: pointer;
+  background: var(--sheet-shade); color: var(--ink);
+  border: 1px solid var(--rule);
+  box-shadow: 0 1px 0 rgba(42,33,24,.2);
+  transition: transform 90ms ease, box-shadow 90ms ease;
+}
+.btn:hover:not(:disabled) { background: var(--paper); }
+.btn:active:not(:disabled) { transform: translateY(1px); box-shadow: none; }
+.btn:disabled { opacity: .42; cursor: not-allowed; }
+.btn--primary {
+  background: var(--gold); border-color: rgba(42,33,24,.34); font-weight: 600;
+}
+.btn--primary:hover:not(:disabled) { background: #DBB43A; }
+
+/* --- 13. Tabs: index tabs on the ledger's edge -------------------------- */
+.tabs { display: flex; gap: 2px; }
+.tab {
+  font-size: 11px; padding: 5px 11px; cursor: pointer;
+  letter-spacing: .07em; text-transform: uppercase;
+  background: var(--sheet-shade); border: 1px solid var(--rule); border-bottom: 0;
+  color: var(--ink-soft);
+}
+.tab[aria-selected="true"] { background: var(--paper); color: var(--ink); font-weight: 600; }
+
+/* --- 17. Progress: a lamp burning down ---------------------------------- */
+.burn { height: 3px; background: var(--sheet-shade); }
+.burn i { display: block; height: 100%; background: var(--gold); }
+
+/* --- 18. Selection: a gold ring on the terrain -------------------------- */
+.ring { position: absolute; border: 2px solid var(--gold); border-radius: 50%;
+        pointer-events: none; box-shadow: 0 0 0 1px rgba(42,33,24,.3); }
+
+/* --- Utility ------------------------------------------------------------- */
+.muted { color: var(--ink-soft); }
+.tiny  { font-size: 11px; }
+.num   { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.rule  { height: 1px; background: var(--rule); margin: 10px 0; }

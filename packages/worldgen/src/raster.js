@@ -11,31 +11,73 @@
 /**
  * Even-odd scanline fill of a set of closed rings into a byte mask.
  *
- * @param {Array<{x:number[],y:number[]}>} rings  in grid coordinates
+ * Edges are bucketed by the scanline they start on and carried in an active
+ * list, so the cost is O(scanlines + edges) rather than O(scanlines × edges).
+ *
+ * That distinction is not academic here. The coastline is 302 rings and roughly
+ * 150,000 edges; testing every edge on every scanline is ninety million
+ * operations per frame, and it was the entire reason the first playable build
+ * took thirty seconds to show anything.
+ *
+ * @param {Array<{x:ArrayLike<number>,y:ArrayLike<number>}>} rings  grid coordinates
  * @param {number} w @param {number} h
  * @returns {Uint8Array} 1 inside, 0 outside
  */
 export function fillRings(rings, w, h) {
   const mask = new Uint8Array(w * h);
+
+  // Bucket each edge by its first scanline. Store the edge as the x at that
+  // scanline plus a per-scanline increment, so stepping down costs one add.
+  /** @type {Array<Array<{x:number, dxdy:number, yEnd:number}>>} */
+  const buckets = new Array(h);
+  let any = false;
+
+  for (const r of rings) {
+    const n = r.x.length;
+    for (let i = 0, j = n - 1; i < n; j = i++) {
+      let x0 = r.x[j], y0 = r.y[j], x1 = r.x[i], y1 = r.y[i];
+      if (y0 === y1) continue;                       // horizontal edges contribute nothing
+      if (y0 > y1) { const tx = x0, ty = y0; x0 = x1; y0 = y1; x1 = tx; y1 = ty; }
+
+      // Scanline centres are at py + 0.5, so the first one strictly inside is:
+      let py = Math.ceil(y0 - 0.5);
+      if (py < 0) py = 0;
+      const yEnd = Math.min(h - 1, Math.ceil(y1 - 0.5) - 1);
+      if (py > yEnd) continue;
+
+      const dxdy = (x1 - x0) / (y1 - y0);
+      const x = x0 + ((py + 0.5) - y0) * dxdy;
+      (buckets[py] ??= []).push({ x, dxdy, yEnd });
+      any = true;
+    }
+  }
+  if (!any) return mask;
+
+  let active = [];
   const xs = [];
   for (let py = 0; py < h; py++) {
-    const y = py + 0.5;
+    if (buckets[py]) active = active.concat(buckets[py]);
+    if (active.length === 0) continue;
+
     xs.length = 0;
-    for (const r of rings) {
-      const n = r.x.length;
-      for (let i = 0, j = n - 1; i < n; j = i++) {
-        const y0 = r.y[j], y1 = r.y[i];
-        // Half-open test on y avoids double-counting shared vertices.
-        if ((y0 <= y) === (y1 <= y)) continue;
-        xs.push(r.x[j] + ((y - y0) / (y1 - y0)) * (r.x[i] - r.x[j]));
-      }
+    let keep = 0;
+    for (let k = 0; k < active.length; k++) {
+      const e = active[k];
+      xs.push(e.x);
+      e.x += e.dxdy;
+      if (py < e.yEnd) active[keep++] = e;           // compact in place
     }
+    active.length = keep;
+
     if (xs.length < 2) continue;
     xs.sort((a, b) => a - b);
+    const row = py * w;
     for (let k = 0; k + 1 < xs.length; k += 2) {
-      const a = Math.max(0, Math.ceil(xs[k] - 0.5));
-      const b = Math.min(w - 1, Math.floor(xs[k + 1] - 0.5));
-      for (let px = a; px <= b; px++) mask[py * w + px] = 1;
+      let a = Math.ceil(xs[k] - 0.5);
+      let b = Math.floor(xs[k + 1] - 0.5);
+      if (a < 0) a = 0;
+      if (b > w - 1) b = w - 1;
+      for (let px = a; px <= b; px++) mask[row + px] = 1;
     }
   }
   return mask;

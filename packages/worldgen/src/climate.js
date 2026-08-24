@@ -96,7 +96,7 @@ export function buildClimate(O, bbox, landRings, rivers, { size = GRID, sweeps =
   const riverField = nearestLineField(rivers.map(r => ({
     x: r.lon.map(toX), y: r.lat.map(toY),
     weight: Math.max(0.35, (10 - r.rank) * 0.16),
-  })), W, H, { falloff: 3.0 });
+  })), W, H, { falloff: 4.4 });
 
   // 4. Spread lift slightly, so a windward coast gets the rain its mountain wrings out.
   const liftBlur = Float32Array.from(lift);
@@ -117,7 +117,16 @@ export function buildClimate(O, bbox, landRings, rivers, { size = GRID, sweeps =
     const sub = Math.max(0, Math.min(1, (lat - 21) / 9)) *
                 Math.max(0, Math.min(1, (76.5 - lon) / 7));
     const rain = cur[idx] * (0.34 + 0.92 * L) * (1 - 0.62 * sub);
-    moisture[idx] = Math.min(1, rain + riverField[idx] * 0.58 * (0.35 + 0.65 * cur[idx]));
+    // A wider belt that fades faster. The falloff above spreads the corridor
+    // across the floodplain instead of tracing the channel; the exponent here
+    // pulls the far tail back down, so river country is green without the whole
+    // Deccan acquiring bright green veins.
+    //
+    // A square root was the obvious thing to reach for and is exactly backwards:
+    // it lifts small values, so it watered the Thar along the dry Ghaggar bed.
+    const r = riverField[idx];
+    const alluvium = r * r * 0.90 * (0.35 + 0.65 * cur[idx]);
+    moisture[idx] = Math.min(1, rain + alluvium);
   }
 
   // 6. Normalise on a high percentile, not the max. Normalising by the maximum
