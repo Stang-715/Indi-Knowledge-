@@ -21,6 +21,7 @@ import { formatYear }        from '../../../packages/sim/src/clock.js';
 import { spriteURL, spriteFor } from '../../../packages/ui/src/sprites.js';
 import { throughput, CHOKES } from '../../../packages/sim/src/trade.js';
 import { CityRenderer }      from '../../../packages/render-city/src/renderer.js';
+import { WorldgenClient }    from '../../../packages/render-realm/src/workerclient.js';
 import { endowable, endowmentLedger, living, lineageOf }
   from '../../../packages/sim/src/people.js';
 import { cardModel, renderCard, renderYearPage, indexCards, authoredFor }
@@ -55,9 +56,58 @@ mark('fetch');
 const SK = loadSkeleton(bundle);
 const O  = compileOrography(SK.oro);
 mark('skeleton');
-const climate = buildClimate(O, SK.bbox, SK.land, SK.rivers, { size: 220, sweeps: 90 });
-mark('climate');
+/**
+ * The climate build is about a second of solid arithmetic. Hand it to a worker
+ * and paint meanwhile, so the page is interactive immediately instead of frozen
+ * until the monsoon has finished relaxing.
+ *
+ * The worker is a performance decision, not a dependency: if it cannot start —
+ * a file:// page, a locked-down embed, an old browser — the identical code runs
+ * inline. That it CAN run in either place is the payoff for keeping worldgen
+ * pure, which looked pedantic at the time.
+ */
+const wg = new WorldgenClient(new URL('./worldgen.worker.js', import.meta.url));
+
+/**
+ * A provisional climate, so the map can be drawn before the real one exists.
+ *
+ * The monsoon relaxation is about a second of solid arithmetic. Awaiting it
+ * before the first paint means a second of frozen page for no reason: the
+ * coastline, the elevation and the sea are all ready immediately, and the only
+ * thing missing is which shade of green the lowlands are. So paint with a flat
+ * field, then swap the real one in and repaint.
+ */
+function provisionalClimate(W = 8, H = 8) {
+  const moisture = new Float32Array(W * H).fill(0.45);
+  return { W, H, bbox: SK.bbox, moisture, isSea: new Uint8Array(W * H),
+           riverField: new Float32Array(W * H), height: new Float32Array(W * H),
+           provisional: true };
+}
+
+let climate = provisionalClimate();
+
 const renderer = new RealmRenderer({ skeleton: SK, climate });
+
+/** Swap in the real climate the moment it lands, and repaint. */
+async function upgradeClimate() {
+  let real = null;
+  if (wg.available) {
+    try {
+      const r = await wg.send('init', { bundle, size: 220, sweeps: 90 });
+      real = { ...r, riverField: new Float32Array(r.W * r.H), height: new Float32Array(r.W * r.H) };
+      mark('climate-worker');
+    } catch (e) {
+      console.warn('worldgen worker unavailable, falling back inline:', e.message);
+    }
+  }
+  if (!real) {
+    real = buildClimate(O, SK.bbox, SK.land, SK.rivers, { size: 220, sweeps: 90 });
+    mark('climate-inline');
+  }
+  climate = real;
+  renderer.climate = real;
+  draw(3); scheduleFull();
+}
 const cityRenderer = new CityRenderer({ cities: cityData.cities });
 const DP = { timeline, works, people };
 const CARDS = indexCards(cardsDoc);
@@ -970,12 +1020,19 @@ resize();
 mark('first-draw');
 recompute();
 mark('sim');
+syncScrub();
+// Kick the real climate off in the background. The map is on screen well
+// before it lands, and repaints itself when it does.
+const climateReady = upgradeClimate();
 // Paint the coarse pass and clear the curtain first, then refine. Waiting for
 // the full pass before showing anything is what made this take thirty seconds.
 draw(3);
 mark('preview');
 $('loading').remove();
-requestAnimationFrame(() => {
+requestAnimationFrame(async () => {
+  draw(1);
+  mark('first-full');
+  await climateReady;
   draw(1);
   mark('full');
   console.info('startup', marks.map(([l, t]) => `${l} ${t.toFixed(0)}ms`).join(' · '));
