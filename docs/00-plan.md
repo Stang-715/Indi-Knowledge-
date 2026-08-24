@@ -209,8 +209,11 @@ Full specification in [`docs/03-simulation.md`](03-simulation.md). The design st
 this is not Victoria 3 reskinned. The period gives India mechanics that have no Vic 3
 equivalent, and those should be the spine.
 
-**Period: 1836 → 1947.** Victoria 3's start date, ending at Independence and Partition.
-111 years, from the Charter Act settling in to the transfer of power.
+**Period: 4000 BCE → present.** Six thousand years, thirteen eras. Victoria 3's machinery
+fits roughly 1757–1947 — about 3% of that span — so the simulation is **era-layered**: the
+entities stay constant and the rules that govern them swap. Full design in
+[`docs/04-eras.md`](04-eras.md); the sovereignty spine is already built in
+[`data/polities/polities.json`](../data/polities/polities.json).
 
 **Five axes of depth:**
 
@@ -220,7 +223,8 @@ equivalent, and those should be the spine.
 | Social | Pops = culture + religion + profession | Pops = **language + religion + jati-cluster + profession** — four axes, because occupation and mobility in this period ran on all four |
 | Political | You are a sovereign state | **You may not be sovereign.** Paramountcy, Residents, subsidiary alliance, the right of lapse |
 | Spatial | One rung | **Seventeen rungs.** Buildings sited on real streets in real cities |
-| Temporal | 1836–1936 | 1836–1947 |
+| Sovereign | One province, one owner | **A stack, not a colour.** Holder, revenue claimant, tributary superior, paramount — graded overlordship, six thousand years of it |
+| Temporal | 1836–1936, one rule-set | **4000 BCE–present, thirteen rule-sets** |
 
 **The central tension: the Drain.** Home Charges, Council Bills, the guaranteed 5%
 return to British railway investors, a trade surplus that never comes home. Model it as
@@ -316,12 +320,13 @@ Honest framing: this is a multi-year project, and the ladder is what makes it *p
 rather than what makes it huge — each rung ships independently and the game is playable
 from P1 onward.
 
-**P0 · Vertical slice — 6 to 8 weeks.** One district, end to end. Pick **Thanjavur**
-(ryotwari, dense settlement, excellent 19th-century records) or **Pune**. Ladder L2→L12
-including one full city dive. Three goods, pops on all four axes, one map mode, the
-survey mechanic on a single tehsil. No simulation depth — this exists to prove the
-ladder, the dive, and the provenance model on real hardware. **If the dive doesn't feel
-good here, the premise is wrong and we find out for the price of two months.**
+**P0 · Vertical slice — 6 to 8 weeks.** One district, end to end, desktop build. Pick
+**Thanjavur** (ryotwari, dense settlement, excellent 19th-century records) or **Pune**.
+Ladder L2→L12 including one full city dive. Three goods, pops on all four axes, one map
+mode, the survey mechanic on a single tehsil, one era transition. No simulation depth —
+this exists to prove the ladder, the dive, the era swap and the provenance model on real
+hardware. **If the dive doesn't feel good here, the premise is wrong and we find out for
+the price of two months.** Ships a web cut as the demo.
 
 **P1 · One presidency, real game.** Madras Presidency at L0–L8. Simulation core: pops,
 goods, buildings, market, land revenue. Survey mechanic complete. Playable 1836–1870.
@@ -335,22 +340,76 @@ map density, with cities as pins rather than places.
 ground. Campaign to 1947. This is the version that is unlike anything else.
 
 **P4 · The long pour.** Public datapack SDK, contributor tooling, community fills the
-tail. Cities 51–4,041 arrive as data, not as releases.
+tail. Cities 51–4,041 arrive as data, not as releases. The polity spine deepens from 146
+entries to several thousand, with georeferenced extents.
+
+**Running alongside, from P0: the sovereignty spine.** Already begun —
+[`data/polities/polities.json`](../data/polities/polities.json) holds 146 polities and 70
+rule relations across all thirteen eras, schema-validated. It is a skeleton, not
+scholarship (see [`04-eras.md`](04-eras.md) §7), and it grows continuously rather than
+per-phase.
 
 ---
 
-## 11. Decisions I need from you
+## 11. Platform: desktop as the product, web as the demo
 
-I've proposed a default for each and the plan above assumes them. Say the word on any
-you want changed.
+**Settled: desktop-first.** The original brief was web-first, and at 1836–1947 with a
+Victoria 3-shaped map that was defensible. At 4000 BCE–present with seventeen spatial
+rungs, city interiors and thirteen simulation rule-sets, it is not. The reasons, in
+order of weight:
 
-1. **Period — 1836–1947 (assumed).** Alternatives: 1757–1947 (from Plassey, much
-   longer, thinner data early), or modern-day India (completely different data
-   situation — far *better* data, no survey mechanic, no colonial spine).
-2. **Flagship campaign — princely state under paramountcy (assumed).** Alternative:
-   play the Raj itself, which is more conventional and less interesting.
-3. **Studio jurisdiction.** Is the entity Indian-owned? This decides whether sub-metre
-   data is ever an option (§5) and it changes the P3+ plan.
-4. **Target platform priority.** Web-first was the original brief; the city renderer is
-   feasible on the web but the desktop build gets L13–L16 for free. Web-first, desktop
-   later — or both from P1?
+1. **The memory ceiling is the binding constraint.** A mobile browser tab dies somewhere
+   around 300–400 MB of combined heap and GPU allocation. A six-millennium campaign
+   holding 146+ polities, thirteen rule-sets, 648,802 settlements and a city scene graph
+   does not fit under that ceiling. Desktop gives us 4–8 GB and the problem disappears.
+2. **WASM costs 1.2–2× on exactly our hot path.** The simulation is a wide numeric sweep
+   over hundreds of thousands of entities. That is where WASM is furthest from native,
+   and where thread-portability is worst.
+3. **Grand strategy is played in four-hour sessions, on Steam.** That is where the
+   audience for this genre is, where discovery and wishlists work, and where mods —
+   which this genre lives on — are a solved problem rather than an awkward one.
+4. **The whole of §4's constraint list evaporates.** No `MAX_TEXTURE_SIZE` of 4096, no
+   DPR quadratic, no tile-eviction tightrope. L13–L16 stop being a fight.
+
+**The honest cost:** we lose MapLibre GL JS, which was giving us camera, tiling,
+projection, picking and tile lifecycle for free. Rebuilding that map substrate in Rust is
+roughly **2–3 months** of work that the web path did not require. That is the price, and
+it is worth paying once rather than fighting the browser forever.
+
+**But web is not abandoned — it is nearly free if we choose the stack correctly.**
+
+> **Rust + wgpu, one codebase, two targets.** `wgpu` abstracts Vulkan / Metal / DX12
+> *and* WebGPU / WebGL2. The simulation core is already specified as deterministic,
+> headless Rust (§9), which compiles to native and WASM without change.
+
+So the plan becomes:
+
+- **The product is the desktop build.** Full ladder, full timeline, full simulation.
+- **The demo is a web build**: one district, one century, twenty minutes, no install,
+  shareable by link. Which is *exactly the P0 vertical slice* — so the demo costs almost
+  nothing extra and doubles as the marketing artifact for an unknown title.
+- **The web build stays a demo**, deliberately. It is not a second product to maintain at
+  feature parity.
+
+This also matters for reach in India specifically, where PC gaming penetration is lower
+than mobile: the web demo is how someone without a gaming PC meets the game at all.
+
+### What this changes elsewhere
+
+- [`docs/map-density-and-animation-spec.md`](map-density-and-animation-spec.md) §4's web
+  limits now apply **only to the demo build**. The density arithmetic and the animation
+  layering in that document are platform-independent and still hold.
+- §9's `render-realm` / `render-city` are Rust + wgpu, not MapLibre + custom WebGL layers.
+- PMTiles still works — there are Rust readers — so the tiling and datapack story is
+  unchanged.
+
+## 12. Still open
+
+1. **Studio jurisdiction.** Is the entity Indian-owned? This decides whether sub-metre
+   data is ever an option (§5) and it changes P3 onward. Unanswered.
+2. **Historian engagement.** Two areas now need a specialist early rather than late:
+   caste across six millennia, and the contested ground in the polity spine (Vedic
+   chronology, the Indus decline, Aryan migration, "Indian feudalism"). Who, and when?
+3. **Where the vertical slice sits in time.** The colonial era has by far the best data
+   and is the natural P0 target — but it is no longer the headline era. Slice there
+   anyway for the data, or slice somewhere that shows off the 6,000-year hook?
