@@ -20,6 +20,7 @@ import { corpusSummary, worksAtRisk } from '../../../packages/sim/src/corpus.js'
 import { formatYear }        from '../../../packages/sim/src/clock.js';
 import { spriteURL, spriteFor } from '../../../packages/ui/src/sprites.js';
 import { throughput, CHOKES } from '../../../packages/sim/src/trade.js';
+import { CityRenderer }      from '../../../packages/render-city/src/renderer.js';
 
 const $ = (id) => document.getElementById(id);
 
@@ -30,10 +31,11 @@ const mark = (label) => { marks.push([label, performance.now() - T0]); };
 
 /* ── World ──────────────────────────────────────────────────────────────── */
 
-const [bundle, timeline, works] = await Promise.all([
+const [bundle, timeline, works, cityData] = await Promise.all([
   fetch('../../data/skeleton/bundle.json').then(r => r.json()),
   fetch('../../data/timeline/timeline.json').then(r => r.json()),
   fetch('../../data/corpus/works.json').then(r => r.json()),
+  fetch('../../data/cities/cities.json').then(r => r.json()),
 ]);
 
 mark('fetch');
@@ -43,6 +45,7 @@ mark('skeleton');
 const climate = buildClimate(O, SK.bbox, SK.land, SK.rivers, { size: 220, sweeps: 90 });
 mark('climate');
 const renderer = new RealmRenderer({ skeleton: SK, climate });
+const cityRenderer = new CityRenderer({ cities: cityData.cities });
 const DP = { timeline, works };
 
 /* ── Camera ─────────────────────────────────────────────────────────────── */
@@ -144,7 +147,44 @@ function draw(step) {
     renderer.drawWater(ctx, proj, w, h, level, 1);
   }
 
-  drawSites(proj, level);
+  // ── The dive ──────────────────────────────────────────────────────────
+  //
+  // render-realm owns L0-L9 and render-city owns L10-L16, and they share a
+  // camera and nothing else. The handoff is a cross-fade rather than a switch:
+  // the city fades up across the same rungs where the tilt-shift fades out, so
+  // the world stops being a model and becomes a place in one continuous move.
+  const dive = diveTarget(proj, level);
+  if (dive) {
+    cityRenderer.draw(ctx, proj, dive.id, state ? state.year : -6000, level, dpr, dive.alpha);
+  }
+
+  drawSites(proj, level, dive);
+}
+
+/**
+ * Which city we are diving into, and how far in.
+ *
+ * Nothing happens until L8.6, and by L10.4 the city is fully drawn. The camera
+ * centre has to be inside the city's own footprint — you dive into a place, not
+ * into a zoom level.
+ */
+function diveTarget(proj, level) {
+  if (level < 8.6) return null;
+  const year = state ? state.year : -6000;
+  let best = null;
+  for (const c of cityData.cities) {
+    if (year < c.founded) continue;
+    const M = cityRenderer.model(c.id, year);
+    if (!M) continue;
+    const dLon = (cam.cx - c.lon) * Math.cos(c.lat * Math.PI / 180) * 111320;
+    const dLat = (cam.cy - c.lat) * 110574;
+    const d = Math.hypot(dLon, dLat);
+    if (d > M.radius * 2.4) continue;
+    if (!best || d < best.d) best = { id: c.id, d, radius: M.radius };
+  }
+  if (!best) return null;
+  const alpha = Math.max(0, Math.min(1, (level - 8.6) / 1.8));
+  return { ...best, alpha };
 }
 
 /* ── Sites ──────────────────────────────────────────────────────────────── */
@@ -187,9 +227,15 @@ function spriteImage(name) {
 }
 for (const s of SITES) spriteImage(s.sprite);
 
-function drawSites(proj, level) {
+function drawSites(proj, level, dive) {
   const year = state ? state.year : -6000;
+  // Once you are inside a city, its symbolic marker is in the way of the thing
+  // it stands for. The symbol dissolves into the actual building footprint —
+  // that crossover IS the dive (docs/08-visual-design.md §6.3).
+  const markerFade = dive ? 1 - dive.alpha : 1;
+  if (markerFade <= 0.02) return;
   ctx.save();
+  ctx.globalAlpha = markerFade;
 
   // Routes first, under the markers. A route is drawn by its condition, not as
   // a line on a map: thickness is throughput, and a choke shows as a broken

@@ -48,7 +48,10 @@ export function fitSpan(bbox, w, h) {
 export class Camera {
   constructor({ cx, cy, span }) {
     this.cx = cx; this.cy = cy; this.span = span;
-    this.minSpan = 0.05; this.maxSpan = 80;
+    // L16 is 0.21 m/px, which is about 230 m across a viewport — so the camera
+    // has to be able to get down to roughly two thousandths of a degree, or the
+    // bottom of the ladder is unreachable.
+    this.minSpan = 0.0018; this.maxSpan = 80;
   }
 
   /** Projection for a viewport, in CSS pixels. */

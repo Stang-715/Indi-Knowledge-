@@ -1,0 +1,192 @@
+{
+  "note": "City skeletons. Anchors are the part of a real city that is not generic \u2014 the temple precinct, the tank, the fort. Everything else is generated. Sub-metre detail is procedural by design and never shipped as data (India Geospatial Data Guidelines 2021).",
+  "cities": [
+    {
+      "id": "thanjavur",
+      "name": "Thanjavur",
+      "lon": 79.1378,
+      "lat": 10.787,
+      "founded": 850,
+      "walled": 1010,
+      "core": 210,
+      "rings": 8,
+      "gates": 10,
+      "minRadius": 240,
+      "maxRadius": 2100,
+      "anchors": [
+        {
+          "kind": "temple",
+          "name": "Brihadeeswarar",
+          "at": [
+            -40,
+            60
+          ],
+          "size": [
+            300,
+            520
+          ],
+          "rot": 0.05,
+          "from": 1010,
+          "vimana": [
+            -40,
+            -90
+          ],
+          "vimanaSize": [
+            130,
+            130
+          ],
+          "height": 66,
+          "note": "Completed 1010. Its inscriptions name 400 dancers, singers and staff \u2014 individually."
+        },
+        {
+          "kind": "tank",
+          "name": "Sivaganga",
+          "at": [
+            280,
+            300
+          ],
+          "size": [
+            210,
+            180
+          ],
+          "from": 1010
+        },
+        {
+          "kind": "temple",
+          "name": "Palace",
+          "at": [
+            430,
+            -160
+          ],
+          "size": [
+            280,
+            200
+          ],
+          "rot": -0.1,
+          "from": 1535,
+          "vimana": [
+            430,
+            -160
+          ],
+          "vimanaSize": [
+            130,
+            130
+          ],
+          "height": 66
+        },
+        {
+          "kind": "tank",
+          "name": "Anicut channel",
+          "at": [
+            -40,
+            -820
+          ],
+          "size": [
+            900,
+            90
+          ],
+          "from": -100
+        }
+      ]
+    },
+    {
+      "id": "madurai",
+      "name": "Madurai",
+      "lon": 78.1198,
+      "lat": 9.9252,
+      "founded": -300,
+      "walled": 1600,
+      "core": 180,
+      "rings": 8,
+      "gates": 8,
+      "minRadius": 220,
+      "maxRadius": 1900,
+      "anchors": [
+        {
+          "kind": "temple",
+          "name": "Meenakshi",
+          "at": [
+            0,
+            0
+          ],
+          "size": [
+            280,
+            260
+          ],
+          "from": -300,
+          "vimana": [
+            0,
+            0
+          ],
+          "vimanaSize": [
+            110,
+            110
+          ],
+          "height": 52
+        },
+        {
+          "kind": "tank",
+          "name": "Teppakulam",
+          "at": [
+            760,
+            -220
+          ],
+          "size": [
+            220,
+            220
+          ],
+          "from": 1636
+        }
+      ]
+    },
+    {
+      "id": "nalanda",
+      "name": "Nalanda",
+      "lon": 85.4436,
+      "lat": 25.1358,
+      "founded": 415,
+      "core": 150,
+      "rings": 5,
+      "gates": 6,
+      "minRadius": 180,
+      "maxRadius": 780,
+      "anchors": [
+        {
+          "kind": "temple",
+          "name": "Vihara ranks",
+          "at": [
+            0,
+            40
+          ],
+          "size": [
+            200,
+            440
+          ],
+          "from": 415,
+          "vimana": [
+            0,
+            -140
+          ],
+          "vimanaSize": [
+            95,
+            95
+          ],
+          "height": 34
+        },
+        {
+          "kind": "tank",
+          "name": "Monastery tank",
+          "at": [
+            230,
+            -180
+          ],
+          "size": [
+            140,
+            100
+          ],
+          "from": 450
+        }
+      ]
+    }
+  ]
+}
