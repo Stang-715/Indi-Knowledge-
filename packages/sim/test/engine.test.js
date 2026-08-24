@@ -215,3 +215,23 @@ test('a copy left with a merchant is not a copy left with an institution', () =>
   assert.ok(corpusSummary(toInstitution).extant > corpusSummary(toNowhere).extant,
     'a fostering destination must outperform a merchant\'s chest');
 });
+
+test('a decision taken in the final year still happens', () => {
+  // The tick loop covers half-open spans, so a decision dated exactly at `to`
+  // used to fall through all of them. In the client that meant every decision
+  // the player took *right now* was silently discarded.
+  const base = [];
+  for (let y = -3000; y < 900; y += 100) base.push({ year: y, action: 'patronise' });
+  const before = run(DP, 'edge', base, { to: 900 });
+  const after  = run(DP, 'edge', [...base, { year: 900, action: 'raise-soldiers', count: 5 }],
+    { to: 900 });
+  assert.ok(after.pops.soldiers > before.pops.soldiers,
+    'a decision at the campaign edge must take effect');
+});
+
+test('a decision is never applied twice at the edge', () => {
+  const base = [{ year: 500, action: 'raise-soldiers', count: 5 }];
+  const a = run(DP, 'edge2', base, { to: 500 });
+  const b = run(DP, 'edge2', base, { to: 600 });
+  assert.equal(a.pops.soldiers, b.pops.soldiers, 'the edge pass must not double-apply');
+});

@@ -14,6 +14,7 @@ import { Rng } from './rng.js';
 import { initCorpus, tickCorpus, applyWorkEvent, catastrophe, copyOut, worksAtRisk } from './corpus.js';
 import { initTrade, tickTrade, applyTradeEvent, DECISIONS as TRADE_DECISIONS } from './trade.js';
 import { initPeople, tickPeople, oralCapacity, DECISIONS as PEOPLE_DECISIONS } from './people.js';
+import { initSurvey, DECISIONS as SURVEY_DECISIONS } from './survey.js';
 
 /** Pillar deltas by event class. Coarse, deliberately — tuning comes later. */
 const CLASS_EFFECTS = {
@@ -64,6 +65,7 @@ export function run(datapack, seed, decisionLog = [], opts = {}) {
   initCorpus(state, datapack, from);
   initTrade(state, datapack, from);
   initPeople(state, datapack, from);
+  initSurvey(state, datapack, from);
 
   // Decisions indexed by the year they are taken.
   const decisionsByYear = new Map();
@@ -73,6 +75,7 @@ export function run(datapack, seed, decisionLog = [], opts = {}) {
   }
 
   const clock = new Clock({ from, to });
+  const applied = new Set();
 
   while (!clock.done) {
     const [prev, next] = clock.advance();
@@ -82,7 +85,10 @@ export function run(datapack, seed, decisionLog = [], opts = {}) {
 
     // 1. Player decisions taken in this span, in log order.
     for (let y = prev; y < next; y++) {
-      for (const d of decisionsByYear.get(y) ?? []) applyDecision(state, d, datapack, rng);
+      for (const d of decisionsByYear.get(y) ?? []) {
+        applyDecision(state, d, datapack, rng);
+        applied.add(d);
+      }
     }
 
     // 2. Calendar events.
@@ -100,6 +106,19 @@ export function run(datapack, seed, decisionLog = [], opts = {}) {
     tickEconomy(state, span);
 
     if (opts.onYear) opts.onYear(state, next, span);
+  }
+
+  // A decision taken in the campaign's final year still has to happen.
+  //
+  // The tick loop covers half-open spans, so a decision dated exactly `to` fell
+  // through every one of them and silently did nothing — which in the client
+  // meant that any decision the player took *now* was discarded, because the
+  // client recomputes with `to` set to the current year. Decisions the player
+  // just made are the ones they care about most.
+  for (const d of decisionsByYear.get(state.year) ?? []) {
+    if (applied.has(d)) continue;
+    applyDecision(state, d, datapack, rng);
+    applied.add(d);
   }
 
   state.fingerprint = fingerprint(state);
@@ -218,6 +237,7 @@ export function applyDecision(state, d, datapack, rng) {
 
     default:
       if (PEOPLE_DECISIONS[d.action]) return PEOPLE_DECISIONS[d.action](state, d, rng.people);
+      if (SURVEY_DECISIONS[d.action]) return SURVEY_DECISIONS[d.action](state, d, rng.world);
       if (TRADE_DECISIONS[d.action])  return TRADE_DECISIONS[d.action](state, d, rng.trade);
       return;
   }

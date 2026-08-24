@@ -36,6 +36,9 @@ export function newState(opts = {}) {
     endowments: [],
     homeRegion: opts.homeRegion ?? 'RGN.TAMILAKAM',
 
+    /** Districts: id → what we know and how we know it. Set up by survey.js. */
+    districts: new Map(),
+
     /** Trade: routeId → route. Set up by trade.js. */
     routes: new Map(),
     partners: new Map(),
@@ -51,7 +54,7 @@ export function newState(opts = {}) {
     /** Counters the UI reads. */
     stats: { eventsFired: 0, worksLost: 0, worksCopied: 0, tradesCompleted: 0,
              caravansLost: 0, teachersSent: 0, chokesCleared: 0,
-             endowments: 0, schoolsLost: 0 },
+             endowments: 0, schoolsLost: 0, surveys: 0, surveysDisappointing: 0 },
   };
 }
 
@@ -84,6 +87,7 @@ export function fingerprint(state) {
     goods: [...state.goods].sort(),
     people: sortedMap(state.people, ([id, p]) => [id, p.alive ? 1 : 0, p.patronised ? 1 : 0, Math.round(p.returned)]),
     schools: sortedMap(state.schools, ([id, s]) => [id, s.members?.length ?? 0, s.works?.length ?? 0]),
+    districts: sortedMap(state.districts, ([id, d]) => [id, d.tier, d.surveyed ?? 0, d.truth ?? 0]),
     stats: state.stats,
     logLength: state.log.length,
     logHash: state.log.reduce((h, l) => (h * 31 + l.text.length + l.year) | 0, 7),

@@ -25,6 +25,8 @@ import { endowable, endowmentLedger, living, lineageOf }
   from '../../../packages/sim/src/people.js';
 import { cardModel, renderCard, renderYearPage, indexCards, authoredFor }
   from '../../../packages/ui/src/eventcard.js';
+import { surveyable, surveySummary, TIER, SURVEY_COST }
+  from '../../../packages/sim/src/survey.js';
 
 const $ = (id) => document.getElementById(id);
 
@@ -182,7 +184,68 @@ function draw(step) {
     cityRenderer.draw(ctx, proj, dive.id, state ? state.year : -6000, level, dpr, dive.alpha);
   }
 
+  if (mapMode === 'survey') drawSurvey(proj, level);
   drawSites(proj, level, dive);
+}
+
+/**
+ * The survey overlay — a map mode, laid over the model rather than replacing it
+ * (docs/08-visual-design.md §7.3).
+ *
+ * An unsurveyed district is drawn as a blank survey sheet with a torn,
+ * hand-drawn edge: the game saying, on the face of the map, that it does not
+ * know. That is the distinction the whole mechanic exists to make — between
+ * "there is nothing there" and "we have not looked".
+ */
+function drawSurvey(proj, level) {
+  if (!state?.districts) return;
+  const w = 28 / 9, h = 29 / 9;       // one grid cell, in degrees
+  ctx.save();
+  ctx.font = `${Math.round(10 * dpr)}px Georgia, serif`;
+  ctx.textAlign = 'center';
+
+  for (const d of state.districts.values()) {
+    const x0 = proj.toX(d.lon - w / 2), x1 = proj.toX(d.lon + w / 2);
+    const y0 = proj.toY(d.lat + h / 2), y1 = proj.toY(d.lat - h / 2);
+    if (x1 < 0 || y1 < 0 || x0 > cv.width || y0 > cv.height) continue;
+
+    if (d.surveyed !== null) {
+      // Surveyed: the sheet lifts and the terrain shows through.
+      ctx.strokeStyle = 'rgba(201,162,39,.55)';
+      ctx.lineWidth = 1.5 * dpr;
+      ctx.strokeRect(x0 + 2, y0 + 2, x1 - x0 - 4, y1 - y0 - 4);
+      continue;
+    }
+
+    // Unsurveyed: paper laid over the ground, opaque in proportion to ignorance.
+    const t = TIER[d.tier];
+    const cover = 1 - t.trust;
+    ctx.fillStyle = `rgba(216,203,170,${(0.30 + cover * 0.55).toFixed(2)})`;
+    torn(ctx, x0, y0, x1, y1, d.id);
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(42,33,24,.28)';
+    ctx.lineWidth = 1 * dpr;
+    ctx.stroke();
+
+    if (level > 1.6) {
+      ctx.fillStyle = 'rgba(42,33,24,.62)';
+      ctx.fillText(t.label, (x0 + x1) / 2, (y0 + y1) / 2);
+    }
+  }
+  ctx.restore();
+}
+
+/** A rectangle with a deckle edge, so it reads as paper and not as a tile. */
+function torn(ctx, x0, y0, x1, y1, key) {
+  const seed = [...key].reduce((h, c) => (h * 31 + c.charCodeAt(0)) | 0, 7);
+  const wob = (i) => ((Math.sin(seed * 0.7 + i * 2.399) + 1) / 2 - 0.5) * 5 * dpr;
+  ctx.beginPath();
+  const n = 7;
+  for (let i = 0; i <= n; i++) ctx.lineTo(x0 + (x1 - x0) * i / n, y0 + wob(i));
+  for (let i = 0; i <= n; i++) ctx.lineTo(x1 + wob(i + 9), y0 + (y1 - y0) * i / n);
+  for (let i = n; i >= 0; i--) ctx.lineTo(x0 + (x1 - x0) * i / n, y1 + wob(i + 18));
+  for (let i = n; i >= 0; i--) ctx.lineTo(x0 + wob(i + 27), y0 + (y1 - y0) * i / n);
+  ctx.closePath();
 }
 
 /**
@@ -380,6 +443,24 @@ cv.addEventListener('touchmove', (e) => {
 }, { passive: false });
 cv.addEventListener('touchend', () => { pinch = null; });
 
+/* ── Map modes: transparent sheets laid over the model ──────────────────── */
+
+let mapMode = 'terrain';
+const MODES = [
+  { id: 'terrain', label: 'terrain', hint: 'The land, before anyone owns it.' },
+  { id: 'survey',  label: 'survey',  hint: 'What we know, and what we have not looked at.' },
+];
+$('modes').innerHTML = MODES.map(m =>
+  `<button class="tab" role="tab" data-mode="${m.id}" title="${m.hint}"
+     aria-selected="${m.id === 'terrain'}">${m.label}</button>`).join('');
+$('modes').addEventListener('click', (e) => {
+  const b = e.target.closest('[data-mode]');
+  if (!b) return;
+  mapMode = b.dataset.mode;
+  for (const t of $('modes').children) t.setAttribute('aria-selected', t === b);
+  draw(1);
+});
+
 /* ── The game ───────────────────────────────────────────────────────────── */
 
 const SEED = new URLSearchParams(location.search).get('seed') ?? 'paramountcy';
@@ -466,7 +547,33 @@ function paint() {
   paintActions();
   paintRoutes();
   paintPeople();
+  paintSurvey();
 }
+
+function paintSurvey() {
+  const s = state;
+  if (!s.districts) return;
+  const sum = surveySummary(s);
+  $('survey-sum').textContent =
+    `${sum.surveyed} surveyed · ${sum.absent} never looked at`;
+
+  const can = s.grain >= SURVEY_COST.grain && s.pops.scribes >= 1;
+  const next = surveyable(s).slice(0, 4);
+  $('survey').innerHTML = next.length
+    ? next.map(d => `<div class="per">
+        <span class="prov prov--${d.tier === 'ABSENT' ? 'SYNTHESIZED' : 'DERIVED'}"
+              title="${TIER[d.tier].label}">${d.tier[0]}</span>
+        <span class="nm">${d.name} <span class="role">${TIER[d.tier].label}</span></span>
+        ${can ? `<button class="btn" data-survey="${d.id}">survey</button>`
+              : '<span class="tiny muted">—</span>'}
+      </div>`).join('')
+    : `<div class="tiny muted">Everything has been looked at.</div>`;
+}
+
+$('survey').addEventListener('click', (e) => {
+  const b = e.target.closest('[data-survey]');
+  if (b) decide('survey', { district: b.dataset.survey });
+});
 
 /**
  * The people panel.
