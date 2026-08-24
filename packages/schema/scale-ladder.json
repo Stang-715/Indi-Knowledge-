@@ -1,0 +1,174 @@
+{
+  "canvas_side_m": 3440000,
+  "tile_px": 256,
+  "note": "Quadtree over a square canvas covering India incl. Andaman & Nicobar and Lakshadweep. See tools/scale-ladder.mjs.",
+  "worlds": {
+    "realm": [
+      0,
+      8
+    ],
+    "city": [
+      9,
+      12
+    ],
+    "ground": [
+      13,
+      16
+    ]
+  },
+  "levels": [
+    {
+      "level": 0,
+      "name": "Subcontinent",
+      "unit": "Nation",
+      "count": 1,
+      "m_per_px": 13437.5,
+      "renderer": "render-realm",
+      "data_strategy": "vector admin + raster terrain"
+    },
+    {
+      "level": 1,
+      "name": "Region",
+      "unit": "Presidency / Region",
+      "count": 8,
+      "m_per_px": 6718.75,
+      "renderer": "render-realm",
+      "data_strategy": "vector admin + raster terrain"
+    },
+    {
+      "level": 2,
+      "name": "State",
+      "unit": "State / princely state",
+      "count": 36,
+      "m_per_px": 3359.375,
+      "renderer": "render-realm",
+      "data_strategy": "vector admin + raster terrain"
+    },
+    {
+      "level": 3,
+      "name": "Division",
+      "unit": "Division",
+      "count": 102,
+      "m_per_px": 1679.688,
+      "renderer": "render-realm",
+      "data_strategy": "vector admin + raster terrain"
+    },
+    {
+      "level": 4,
+      "name": "District",
+      "unit": "District",
+      "count": 780,
+      "m_per_px": 839.844,
+      "renderer": "render-realm",
+      "data_strategy": "vector admin + raster terrain"
+    },
+    {
+      "level": 5,
+      "name": "Tehsil",
+      "unit": "Tehsil / taluk",
+      "count": 5924,
+      "m_per_px": 419.922,
+      "renderer": "render-realm",
+      "data_strategy": "vector admin + raster terrain"
+    },
+    {
+      "level": 6,
+      "name": "Block",
+      "unit": "Block",
+      "count": 6500,
+      "m_per_px": 209.961,
+      "renderer": "render-realm",
+      "data_strategy": "vector admin + raster terrain"
+    },
+    {
+      "level": 7,
+      "name": "Panchayat",
+      "unit": "Gram panchayat",
+      "count": 255000,
+      "m_per_px": 104.98,
+      "renderer": "render-realm",
+      "data_strategy": "vector admin + raster terrain"
+    },
+    {
+      "level": 8,
+      "name": "Settlement",
+      "unit": "Village / town",
+      "count": 648802,
+      "m_per_px": 52.49,
+      "renderer": "render-realm",
+      "data_strategy": "vector admin + raster terrain"
+    },
+    {
+      "level": 9,
+      "name": "Approach",
+      "unit": null,
+      "count": null,
+      "m_per_px": 26.245,
+      "renderer": "render-city",
+      "data_strategy": "vector streets + footprints"
+    },
+    {
+      "level": 10,
+      "name": "Cityscape",
+      "unit": "City",
+      "count": 4041,
+      "m_per_px": 13.123,
+      "renderer": "render-city",
+      "data_strategy": "vector streets + footprints"
+    },
+    {
+      "level": 11,
+      "name": "Ward",
+      "unit": "Municipal ward",
+      "count": 90000,
+      "m_per_px": 6.561,
+      "renderer": "render-city",
+      "data_strategy": "vector streets + footprints"
+    },
+    {
+      "level": 12,
+      "name": "Neighbourhood",
+      "unit": "Locality",
+      "count": 400000,
+      "m_per_px": 3.281,
+      "renderer": "render-city",
+      "data_strategy": "vector streets + footprints"
+    },
+    {
+      "level": 13,
+      "name": "Block face",
+      "unit": "Street block",
+      "count": null,
+      "m_per_px": 1.64,
+      "renderer": "render-city",
+      "data_strategy": "vector streets + footprints"
+    },
+    {
+      "level": 14,
+      "name": "Street",
+      "unit": "Street segment",
+      "count": null,
+      "m_per_px": 0.82,
+      "renderer": "render-city",
+      "data_strategy": "vector streets + footprints"
+    },
+    {
+      "level": 15,
+      "name": "Plot",
+      "unit": "Parcel",
+      "count": null,
+      "m_per_px": 0.41,
+      "renderer": "render-city",
+      "data_strategy": "procedural (sub-metre: never shipped as data)"
+    },
+    {
+      "level": 16,
+      "name": "Kerb",
+      "unit": "Building",
+      "count": 24000000,
+      "m_per_px": 0.205,
+      "renderer": "render-city",
+      "data_strategy": "procedural (sub-metre: never shipped as data)"
+    }
+  ]
+}
