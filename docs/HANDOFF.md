@@ -98,6 +98,37 @@ node tools/build-basemap.mjs    # → dist/basemap.html
    no international boundary at all. The India outline exists only as a visual emphasis
    mask and **must be replaced with Survey of India geometry before any India release.**
 
+## 4b. What is BUILT and runs
+
+The eleven phases of [`10-buildplan.md`](10-buildplan.md) are implemented.
+**111 tests green.**
+
+```
+npm test              # 111 tests
+npm run check         # the determinism guard
+npm run timeline      # rebuild data/timeline/timeline.json from docs/07-timeline.md
+npm run campaign      # play the whole campaign as text
+npm run campaign -- --gate    # the 1193 scenario
+npm run serve         # then open http://localhost:8420/
+```
+
+| Package | What it is |
+|---|---|
+| `packages/sim/` | Deterministic, headless simulation. `world = f(datapack, seed, decision_log)` |
+| `packages/worldgen/` | Pure terrain, climate, noise, rasterisation, palette |
+| `packages/render-realm/` | Camera, the 17-rung ladder, the table renderer |
+| `packages/ui/` | The Cartographer's Table kit, and 15 procedural landmark sprites |
+| `apps/client/` | The playable game |
+| `apps/cli/` | The campaign as text |
+
+**Measured:** a full 7,947-year campaign runs headless in **53 ms**. The client's
+first paint is **1.0 s**, full-quality pass at **1.4 s**.
+
+**The gate result:** two identical campaigns, one decision apart. Doing nothing
+leaves 34 works extant with 15 burned in 1193. Sending teachers to Tibet in 1050
+leaves 40 with 9 burned — and the risk list leads with the *Abhidharmakosha*, at
+one carrier, all at home.
+
 ## 5. Where to pick up
 
 **Start here:** [`10-buildplan.md`](10-buildplan.md) — the codebase explained plainly, the fundamental rule, and eleven phases to a playable slice. Phase 1 is the determinism test; phase 5 is the go/no-go.
@@ -119,9 +150,22 @@ See [`11-trade-network.md`](11-trade-network.md) §7.
 - P0 prototype has two unverified fixes: map redraw during play, and site-label collision
 - The historian and archaeologist review — now a hiring requirement, not a footnote
 
-## 6. Known faults in the base map
+## 6. Known faults
 
+**Fixed since the last handoff**
+- Height and rainfall no longer need a DOM, so they can move to a worker
+- The map redraws during play (the P0 fault) and site labels no longer collide
+- 22 known event dates are regression-tested after a silent sign bug filed
+  Valabhi's sack (780 CE) in the Vedic period
+
+**Still open**
 - Karakoram reads as detached capsules; Tibet is still somewhat disc-like
 - No coastline detail below ~660 m — the procedural sub-LOD layer is specified, not built
-- Height and rainfall run on the main thread; they belong in a worker
-- Neighbours are computed in full then desaturated — correct-looking but wasteful
+- Terrain still runs on the main thread; the worker move is now trivial but not done
+- L10–L16 (`render-city`) do not exist. The ladder is proven to L9 only
+- The climate model is resolution-sensitive by construction: at 150 cells the
+  Western Ghats fall below one cell and the Malabar coast reads 0.32 instead of
+  0.62. Tests run at the production 220
+- ~360 more timeline events to reach the ~1,150 target
+- Sprites are procedural stand-ins; the ~85 Magnific assets are unbuilt and
+  need an explicit go, since they spend credits

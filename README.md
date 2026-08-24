@@ -1,82 +1,76 @@
-# Indi-Knowledge
+# Paramountcy
 
-An India-only grand strategy game where the first economy is **stories**, not goods.
-Seventeen spatial scales, thirteen historical eras — from the national outline down to
-individual buildings, and from hunting and gathering to the modern republic.
-Working title: **Paramountcy**. Pegged to Victoria 3. **Desktop-first, with a web demo.**
+An India-only grand strategy game, **6000 BCE → 1947**, with its centre of
+gravity in the deep past: **82% of a 210-hour campaign falls before 1300 CE.**
 
-For roughly three thousand years of the campaign there is no money. A storyteller
-recites, and is fed in grain. That is the whole market, and it is enough to build a
-civilisation on.
+Its first economy is not goods but **stories**. For roughly three thousand years
+there is no money, and a storyteller recites and is fed in grain. Works are
+economic entities that are never deleted, only reduced to zero surviving
+carriers — so the corpus is maintained infrastructure with running costs, and
+**neglect destroys more of it than any invasion.**
 
-Victoria 3 renders the whole world at 4,860 m/px. This renders one country, from
-13.4 km/px down to 21 cm/px — the deepest rung is **562 million times** Victoria 3's
-areal density. Rasterising that rung would take 563 TB; streaming it as vector plus
-procedural generation takes about 3 MB per screen. That gap is the architecture.
+The map is generated from 138 KB of control data rather than shipped as an image.
 
-The map ships mostly empty, and that is the design: the evidence for Indian history
-varies in density by six orders of magnitude across those six thousand years. Data
-completeness *is* the fog of war — a 3000 BCE map should be vague because it honestly is
-— and pouring in real data makes the world truer without a code change or a broken save.
+## Run it
 
-The world is not a drawn map but a **made object** — a relief model on a survey sheet,
-lit from the upper left. Every interface element is a thing lying on that table, and the
-table's materials change with the era, so the player reads the date off the desk.
-[Live design kit →](https://claude.ai/code/artifact/4aac5251-73ad-4bce-8f9f-a677f7a3dde1)
+```bash
+npm run serve      # → http://localhost:8420/
+```
 
-Sovereignty is stored as a **stack, not a colour**: every place at every moment has a
-holder, a revenue claimant, a tributary superior and a paramount. For most of these six
-thousand years those were different parties, and that gap is where the history happens.
+```bash
+npm run campaign            # the whole campaign, as text
+npm run campaign -- --gate  # the 1193 scenario: copy out, or don't
+npm run campaign -- --tend --color
+npm test                    # 111 tests
+npm run check               # the determinism guard
+```
 
-And **books are never destroyed — carriers are.** A work is only ever reduced to zero
-surviving copies, and its entry stays in your ledger forever, greyed, with its title and
-author and the year it stopped existing. Palm leaf lasts about three hundred years in
-this climate, so the whole corpus is infrastructure with running costs. Neglect will cost
-you more works than every invasion combined. History is pre-routed, so **you can see the
-fire coming** — the game is about making copies before it arrives.
+No build step, no dependencies. Node 22+.
 
-## Docs
+## The one rule
+
+```
+world = f(datapack, seed, decision_log)
+```
+
+The game never saves the world — it saves **what you did**, and replays it. A
+save file is a recipe, not a photograph of the cake. Saves are kilobytes,
+multiplayer needs no extra machinery, bug reports are exact, and old saves
+survive new data.
+
+The price: `packages/sim` may never call `Math.random()` and never ask what time
+it is. `npm run check` fails the build if it does.
+
+## Layout
 
 | | |
 |---|---|
-| [**00 · The Replan**](docs/00-plan.md) | Scale ladder, the survey thesis, legal constraints, system structure, roadmap. **Start here.** |
-| [02 · The Data Spine](docs/02-data-spine.md) | Provenance tiers, constraint fitting, datapacks, saves that survive a data pour, source licensing |
-| [03 · The Simulation](docs/03-simulation.md) | Pops on four axes, land revenue, India's goods chains, paramountcy, the Drain |
-| [**04 · The Temporal Ladder**](docs/04-eras.md) | Thirteen eras, era-swappable extraction and sovereignty models, and why Victoria 3's machinery only fits 3% of the timeline |
-| [**05 · The Knowledge Economy**](docs/05-knowledge-economy.md) | **The core system.** Works as goods with strange physics, the grain standard, recopying upkeep, redundancy against catastrophe, and the commentary economy |
-| [06 · Pillars & Campaign](docs/06-pillars-and-campaign.md) | The eight development axes, the within-India constraint, the invasion schedule, and what winning means |
-| [**07 · The Timeline**](docs/07-timeline.md) | **787 events across sixteen eras**, 6000 BCE–1947. Information architecture, the 210-hour cadence, regional spines, and the event-card spec |
-| [**08 · Visual Design**](docs/08-visual-design.md) | **The Cartographer's Table.** Locked palette and lighting rig, 18 UI components, sprite manifest and generation pipeline |
-| [**09 · The Base Map**](docs/09-procedural-map.md) | **Procedural, not painted.** 138 KB of skeleton; terrain, rainfall and biomes computed from 103 control points. [Live →](https://claude.ai/code/artifact/9083912f-b4cc-4cdb-868a-ac0fcd13abb8) |
-| [Map density & animation](docs/map-density-and-animation-spec.md) | The original Victoria 3 density comparison and the web performance criteria |
+| `docs/` | The design. Start with [`10-buildplan.md`](docs/10-buildplan.md), then [`HANDOFF.md`](docs/HANDOFF.md) |
+| `packages/sim/` | Deterministic, headless simulation core |
+| `packages/worldgen/` | Pure terrain, climate and rasterisation |
+| `packages/render-realm/` | Camera, the seventeen-rung ladder, the renderer |
+| `packages/ui/` | The Cartographer's Table kit and landmark sprites |
+| `apps/client/` | The playable game |
+| `apps/cli/` | The campaign as text |
+| `data/` | 789 timeline events, 89 works, 146 polities, the map skeleton |
+| `tools/` | Generators. Every number in the docs is recomputable |
 
-## Schemas
+## Two legal constraints that shaped the architecture
 
-- [`packages/schema/entity.schema.json`](packages/schema/entity.schema.json) — world entity with per-field provenance
-- [`packages/schema/datapack.schema.json`](packages/schema/datapack.schema.json) — versioned data bundle manifest
-- [`packages/schema/scale-ladder.json`](packages/schema/scale-ladder.json) — the seventeen rungs, generated
-- [`packages/schema/polity.schema.json`](packages/schema/polity.schema.json) — the sovereignty spine
-- [`packages/schema/work.schema.json`](packages/schema/work.schema.json) — the corpus
+1. **India's Geospatial Data Guidelines 2021** restrict data finer than 1 m.
+   Ladder levels 15–16 are 0.41 m and 0.21 m, so they are **procedural by
+   design, never shipped as data.** The legal line and the technical line turned
+   out to be the same line.
+2. **Boundary depiction is a criminal matter** under the Criminal Law
+   (Amendment) Act 1990. The base map uses land polygons, not country polygons,
+   and carries no international boundary at all. The India outline exists only
+   as a visual emphasis mask and **must be replaced with Survey of India
+   geometry before any India release.**
 
-## Data
+## Status
 
-- [`data/polities/polities.json`](data/polities/polities.json) — **who ruled whom, 4000 BCE to now.**
-  146 polities, 70 rule relations in nine kinds, 13 eras. Schema-validated, confidence-tagged,
-  and explicitly *not yet historian-reviewed*.
-- [`data/corpus/works.json`](data/corpus/works.json) — **the corpus.** 89 works from rock art
-  to the Constitution, 11 catastrophes, 8 pillars, and a validated derivation graph
-  (47 roots, 42 derived works, 46 edges, no cycles).
+All eleven phases of the build plan are implemented and tested. A full
+7,947-year campaign runs headless in 53 ms; the client paints in 1.0 s.
 
-## Tools
-
-```
-node tools/scale-ladder.mjs    # the seventeen rungs, resolutions, and streaming budgets
-node tools/density-calc.mjs    # the Victoria 3 baseline every figure is measured against
-node tools/build-polities.mjs  # rebuild and validate the sovereignty spine
-node tools/build-corpus.mjs    # rebuild and validate the corpus and its derivation graph
-
-# the base map — skeleton in, running map out
-node tools/build-skeleton.mjs  # clip Natural Earth to India, simplify to 5 LODs
-node tools/bundle-skeleton.mjs 4
-node tools/build-basemap.mjs   # → dist/basemap.html
-```
+Not yet built: `render-city` (ladder levels 10–16), the ~85 generated sprite
+assets, and roughly 360 more timeline events. See `docs/HANDOFF.md` §6.
