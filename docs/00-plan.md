@@ -203,6 +203,30 @@ Full specification in [`docs/02-data-spine.md`](02-data-spine.md). The four rule
 
 ---
 
+## 6b. The core system: the knowledge economy
+
+The map, the eras and the sovereignty stack are infrastructure. **The game itself is the
+knowledge economy** — full design in [`05-knowledge-economy.md`](05-knowledge-economy.md),
+corpus in [`data/corpus/works.json`](../data/corpus/works.json).
+
+Victoria 3's first economy is goods. This one's is stories. Before coinage there is no
+abstract store of value, so knowledge and food trade directly against each other: a
+storyteller recites and is fed. Three key departures from every tech tree in the genre:
+
+- **A work is never removed from the game** — it is only reduced to zero surviving
+  carriers, and stays greyed in the ledger forever with its title, author and year of
+  loss. Survival is a function of redundancy, and since history is pre-routed the player
+  can see 1193 coming for two centuries.
+- **Knowledge has upkeep, not research.** Palm leaf lasts ~300 years here, so the entire
+  corpus is maintained infrastructure. Neglect kills more works than every invasion
+  combined — which is true, and is the quietest lesson the game teaches.
+- **Prestige flows backward along derivation edges.** Patronise Panini in 400 BCE and you
+  are still collecting through every grammarian after Patanjali. Foundational investment
+  compounds for millennia.
+
+The eight development pillars, the within-India constraint, the invasion schedule and the
+win condition are in [`06-pillars-and-campaign.md`](06-pillars-and-campaign.md).
+
 ## 7. The simulation — Victoria 3 depth, Indian bones
 
 Full specification in [`docs/03-simulation.md`](03-simulation.md). The design stance:
@@ -320,13 +344,16 @@ Honest framing: this is a multi-year project, and the ladder is what makes it *p
 rather than what makes it huge — each rung ships independently and the game is playable
 from P1 onward.
 
-**P0 · Vertical slice — 6 to 8 weeks.** One district, end to end, desktop build. Pick
-**Thanjavur** (ryotwari, dense settlement, excellent 19th-century records) or **Pune**.
-Ladder L2→L12 including one full city dive. Three goods, pops on all four axes, one map
-mode, the survey mechanic on a single tehsil, one era transition. No simulation depth —
-this exists to prove the ladder, the dive, the era swap and the provenance model on real
-hardware. **If the dive doesn't feel good here, the premise is wrong and we find out for
-the price of two months.** Ships a web cut as the demo.
+**P0 · Vertical slice — 6 to 8 weeks. Now the knowledge economy, not the map.** The map
+is proven technology; the knowledge economy is the unproven, differentiating part, and
+every competitor in the genre already has a map. So: one region, 800 BCE → 1250 CE,
+twelve works, reciters and scribes as pops, grain patronage, the 300-year recopying
+drain, and one catastrophe — 1193 — visible two centuries out with the player able to
+copy things out. Map at L2–L6 only; no city dive yet.
+
+**If watching your own ledger go grey doesn't land, nothing else in this design matters.**
+That is worth finding out in eight weeks, before a single street is drawn. Ships a web cut
+as the demo.
 
 **P1 · One presidency, real game.** Madras Presidency at L0–L8. Simulation core: pops,
 goods, buildings, market, land revenue. Survey mechanic complete. Playable 1836–1870.
