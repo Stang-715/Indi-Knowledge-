@@ -35,6 +35,22 @@
               text-transform:uppercase; color:var(--ink-soft); font-weight:600; }
   .acts { display:flex; flex-wrap:wrap; gap:5px; }
   #chest { max-height:270px; overflow-y:auto; }
+  #people { font-size:12px; }
+  .per { display:flex; align-items:baseline; gap:7px; padding:4px 0;
+         border-bottom:1px solid rgba(42,33,24,.08); }
+  .per .nm { flex:1; }
+  .per .role { font-size:10px; letter-spacing:.06em; text-transform:uppercase;
+               color:var(--ink-soft); }
+  .per button { font-size:11px; padding:2px 8px; }
+  .prov { font-size:9px; letter-spacing:.08em; padding:1px 4px; border:1px solid var(--rule);
+          color:var(--ink-soft); }
+  .prov--SOURCED { border-color:var(--land-fertile); color:#4c6136; }
+  .prov--DERIVED { border-color:var(--land-arid); }
+  .prov--SYNTHESIZED { border-style:dashed; opacity:.75; }
+  .disputed { color:var(--warn); font-weight:600; }
+  #endowments { margin-top:7px; font-size:11px; }
+  .endw { display:flex; justify-content:space-between; padding:2px 0; color:var(--ink-soft); }
+  .endw.dead { opacity:.45; text-decoration:line-through; }
   #routes { font-size:12px; }
   .route { padding:4px 0; border-bottom:1px solid rgba(42,33,24,.08); }
   .route .nm { display:flex; justify-content:space-between; }
@@ -84,6 +100,12 @@
     <div class="panel">
       <h2>Decisions</h2>
       <div class="acts" id="acts"></div>
+    </div>
+
+    <div class="panel">
+      <h2>People <span class="tiny muted" id="people-sum"></span></h2>
+      <div id="people"></div>
+      <div id="endowments"></div>
     </div>
 
     <div class="panel">

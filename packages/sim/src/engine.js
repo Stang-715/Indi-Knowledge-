@@ -13,6 +13,7 @@ import { newState, record, bumpPillar, fingerprint } from './state.js';
 import { Rng } from './rng.js';
 import { initCorpus, tickCorpus, applyWorkEvent, catastrophe, copyOut, worksAtRisk } from './corpus.js';
 import { initTrade, tickTrade, applyTradeEvent, DECISIONS as TRADE_DECISIONS } from './trade.js';
+import { initPeople, tickPeople, oralCapacity, DECISIONS as PEOPLE_DECISIONS } from './people.js';
 
 /** Pillar deltas by event class. Coarse, deliberately — tuning comes later. */
 const CLASS_EFFECTS = {
@@ -55,12 +56,14 @@ export function run(datapack, seed, decisionLog = [], opts = {}) {
   const rng = {
     corpus: new Rng(seed).fork('corpus'),
     trade:  new Rng(seed).fork('trade'),
+    people: new Rng(seed).fork('people'),
     world:  new Rng(seed).fork('world'),
   };
 
   const schedule = buildSchedule(datapack.timeline, seed);
   initCorpus(state, datapack, from);
   initTrade(state, datapack, from);
+  initPeople(state, datapack, from);
 
   // Decisions indexed by the year they are taken.
   const decisionsByYear = new Map();
@@ -89,6 +92,9 @@ export function run(datapack, seed, decisionLog = [], opts = {}) {
 
     // 3. Standing systems. These run every tick and are what actually kills the
     //    corpus — neglect destroys more works than every invasion combined.
+    // People before the corpus: schools are what hold an oral work, so they have
+    // to exist before the corpus asks how much it can remember.
+    tickPeople(state, span, rng.people, datapack);
     tickCorpus(state, span, rng.corpus, datapack);
     tickTrade(state, span, rng.trade);
     tickEconomy(state, span);
@@ -157,6 +163,23 @@ function tickEconomy(state, span) {
   state.pops.farmers = Math.max(200, Math.min(4_000_000,
     farmers + farmers * r * (1 - farmers / K) * span));
 
+  // Being merely short is not the same as starving, and it should not be
+  // survivable indefinitely. A community running with no buffer stops replacing
+  // the reciters it loses, so a lineage over-extended for two generations
+  // quietly ends — which is a decision the player made, not a dice roll.
+  const buffer = consumed * 3;
+  if (state.grain >= 0 && state.grain < buffer && state.pops.reciters > 1) {
+    state.underfed = (state.underfed ?? 0) + span;
+    if (state.underfed > 40) {
+      state.underfed = 0;
+      state.pops.reciters -= 1;
+      record(state, state.year, 'famine',
+        'A reciter is not replaced. There was not enough put by.');
+    }
+  } else if (state.grain >= buffer) {
+    state.underfed = 0;
+  }
+
   if (state.grain < 0) {
     // Starvation falls first on the people who do not grow food.
     const shortfall = -state.grain;
@@ -194,7 +217,8 @@ export function applyDecision(state, d, datapack, rng) {
       return;
 
     default:
-      if (TRADE_DECISIONS[d.action]) TRADE_DECISIONS[d.action](state, d, rng.trade);
+      if (PEOPLE_DECISIONS[d.action]) return PEOPLE_DECISIONS[d.action](state, d, rng.people);
+      if (TRADE_DECISIONS[d.action])  return TRADE_DECISIONS[d.action](state, d, rng.trade);
       return;
   }
 }

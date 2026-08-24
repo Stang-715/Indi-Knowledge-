@@ -1,0 +1,441 @@
+{
+  "note": "Named individuals. NOT historian-reviewed. Dates for the Chola rulers follow the conventional regnal chronology; dates for saints and poets are frequently traditional rather than established, and are marked with a low certainty and dispute:true where scholarship is divided. Nothing here should be cited.",
+  "provenance": {
+    "SOURCED": "Named in an inscription or a text, with the attribution generally accepted.",
+    "DERIVED": "The person is attested but the detail here (a date, a relationship) is inferred.",
+    "SYNTHESIZED": "Generated. The RECORD is real — the Thanjavur inscription really does list 400 temple women — but the individual is invented to fill a sourced count.",
+    "ABSENT": "Known to have existed and not recoverable."
+  },
+  "roles": {
+    "ruler": "Holds a throne.",
+    "patron": "Endows. Often a queen, a merchant guild, or a village assembly.",
+    "poet": "Composes in verse.",
+    "scholar": "Grammar, mathematics, medicine, philosophy, law.",
+    "saint": "A devotional figure with a following that outlives them.",
+    "architect": "Sthapati. Names appear in temple inscriptions.",
+    "performer": "Dancer, singer, drummer. The Thanjavur inscription lists hundreds.",
+    "scribe": "Copies. The corpus depends on them and the record almost never names them.",
+    "official": "Revenue, audit, assembly.",
+    "general": "Commands.",
+    "traveller": "Carries knowledge across a border."
+  },
+
+  "people": [
+
+    { "id": "PER.VIJAYALAYA", "name": "Vijayalaya Chola", "role": "ruler",
+      "region": "RGN.TAMILAKAM", "floruit": [848, 871], "certainty": 0.8,
+      "provenance": "SOURCED",
+      "note": "Took Thanjavur from the Muttaraiyar and began the Chola revival." },
+
+    { "id": "PER.ADITYA_I", "name": "Aditya I", "role": "ruler",
+      "region": "RGN.TAMILAKAM", "floruit": [871, 907], "certainty": 0.85,
+      "provenance": "SOURCED", "teacher": null, "parent": "PER.VIJAYALAYA",
+      "note": "Absorbed the Pallavas. Built temples along the Kaveri." },
+
+    { "id": "PER.PARANTAKA_I", "name": "Parantaka I", "role": "ruler",
+      "region": "RGN.TAMILAKAM", "floruit": [907, 955], "certainty": 0.9,
+      "provenance": "SOURCED", "parent": "PER.ADITYA_I",
+      "note": "The Uttaramerur inscriptions describing election by lot date to his reign." },
+
+    { "id": "PER.SEMBIYAN_MAHADEVI", "name": "Sembiyan Mahadevi", "role": "patron",
+      "region": "RGN.TAMILAKAM", "floruit": [941, 1001], "certainty": 0.9,
+      "provenance": "SOURCED", "gender": "f", "endows": ["temple", "corpus"],
+      "note": "Queen, mother of Uttama Chola, and the most prolific temple patron of the tenth century in her own right — she rebuilt in stone what had been built in brick, and her endowments are inscribed under her own name." },
+
+    { "id": "PER.UTTAMA_CHOLA", "name": "Uttama Chola", "role": "ruler",
+      "region": "RGN.TAMILAKAM", "floruit": [970, 985], "certainty": 0.85,
+      "provenance": "SOURCED", "parent": "PER.SEMBIYAN_MAHADEVI",
+      "note": "Audit procedure for temple accounts is documented under his reign." },
+
+    { "id": "PER.RAJARAJA_I", "name": "Rajaraja I", "also": "Arulmozhivarman", "role": "ruler",
+      "region": "RGN.TAMILAKAM", "floruit": [985, 1014], "certainty": 0.95,
+      "provenance": "SOURCED", "patron_of": ["PER.KUNJARAMALLAN", "PER.NAMBI_ANDAR_NAMBI", "PER.KARUVUR_DEVAR"],
+      "note": "Ordered the great land survey, built the Brihadeeswarar temple, and had its endowments — every donor, every servant, every lamp — cut into its walls." },
+
+    { "id": "PER.KUNDAVAI", "name": "Kundavai", "role": "patron",
+      "region": "RGN.TAMILAKAM", "floruit": [980, 1010], "certainty": 0.85,
+      "provenance": "SOURCED", "gender": "f", "sibling": "PER.RAJARAJA_I",
+      "endows": ["temple", "hospital"],
+      "note": "Rajaraja's elder sister. Endowed temples and a hospital, and her gifts are recorded under her own name rather than her brother's." },
+
+    { "id": "PER.LOKAMAHADEVI", "name": "Lokamahadevi", "role": "patron",
+      "region": "RGN.TAMILAKAM", "floruit": [985, 1014], "certainty": 0.8,
+      "provenance": "SOURCED", "gender": "f", "note": "Rajaraja's chief queen; a shrine at Thanjavur carries her name." },
+
+    { "id": "PER.KUNJARAMALLAN", "name": "Kunjaramallan Rajaraja Perunthachan", "role": "architect",
+      "region": "RGN.TAMILAKAM", "floruit": [1003, 1012], "certainty": 0.8,
+      "provenance": "SOURCED",
+      "note": "The sthapati named in the Thanjavur inscriptions. It is unusually rare for the record to name the builder rather than only the patron." },
+
+    { "id": "PER.KARUVUR_DEVAR", "name": "Karuvur Devar", "role": "saint",
+      "region": "RGN.TAMILAKAM", "floruit": [990, 1020], "certainty": 0.5, "dispute": true,
+      "provenance": "DERIVED",
+      "note": "Associated with the consecration of the Thanjavur temple; the traditional account is later than the events." },
+
+    { "id": "PER.NAMBI_ANDAR_NAMBI", "name": "Nambi Andar Nambi", "role": "scholar",
+      "region": "RGN.TAMILAKAM", "floruit": [990, 1020], "certainty": 0.65,
+      "provenance": "SOURCED", "works": ["WRK.TEVARAM"],
+      "note": "Recovered and arranged the Tevaram hymns under Rajaraja. An act of corpus rescue three centuries after composition." },
+
+    { "id": "PER.RAJENDRA_I", "name": "Rajendra I", "role": "ruler",
+      "region": "RGN.TAMILAKAM", "floruit": [1014, 1044], "certainty": 0.95,
+      "provenance": "SOURCED", "parent": "PER.RAJARAJA_I",
+      "note": "Marched to the Ganga, founded Gangaikonda Cholapuram, and sent a fleet against Srivijaya." },
+
+    { "id": "PER.KRISHNAN_RAMAN", "name": "Krishnan Raman", "role": "general",
+      "region": "RGN.TAMILAKAM", "floruit": [990, 1020], "certainty": 0.6,
+      "provenance": "SOURCED", "note": "A senapati named in Rajaraja's inscriptions." },
+
+    { "id": "PER.CHUDAMANIVARMAN", "name": "Chudamanivarman", "role": "ruler",
+      "region": "EXT.SRIVIJAYA", "floruit": [1000, 1005], "certainty": 0.75,
+      "provenance": "SOURCED",
+      "note": "Srivijayan king. The Leiden plates record a Buddhist vihara built for him at Nagapattinam, on Chola land — trade and religion moving together." },
+
+    { "id": "PER.RAJADHIRAJA_I", "name": "Rajadhiraja I", "role": "ruler",
+      "region": "RGN.TAMILAKAM", "floruit": [1044, 1054], "certainty": 0.85, "provenance": "SOURCED",
+      "parent": "PER.RAJENDRA_I", "note": "Died on the field at Koppam." },
+
+    { "id": "PER.RAJENDRA_II", "name": "Rajendra II", "role": "ruler",
+      "region": "RGN.TAMILAKAM", "floruit": [1054, 1063], "certainty": 0.8, "provenance": "SOURCED" },
+
+    { "id": "PER.VIRARAJENDRA", "name": "Virarajendra", "role": "ruler",
+      "region": "RGN.TAMILAKAM", "floruit": [1063, 1070], "certainty": 0.8, "provenance": "SOURCED",
+      "note": "Endowed a college at Ennayiram — a vedic school with a documented student roll." },
+
+    { "id": "PER.KULOTTUNGA_I", "name": "Kulottunga I", "role": "ruler",
+      "region": "RGN.TAMILAKAM", "floruit": [1070, 1122], "certainty": 0.9, "provenance": "SOURCED",
+      "note": "Sungam Tavirtta — 'he who abolished tolls'. United the Chola and Eastern Chalukya lines, and sent seventy-two merchants as an embassy to the Song court." },
+
+    { "id": "PER.RAMANUJA", "name": "Ramanuja", "role": "saint",
+      "region": "RGN.TAMILAKAM", "floruit": [1017, 1137], "certainty": 0.55, "dispute": true,
+      "provenance": "DERIVED", "teacher": "PER.YAMUNACHARYA",
+      "note": "The traditional 120-year lifespan is not credible as given; the figure and the school are firmly attested, the dates are not." },
+
+    { "id": "PER.YAMUNACHARYA", "name": "Yamunacharya", "role": "scholar",
+      "region": "RGN.TAMILAKAM", "floruit": [916, 1041], "certainty": 0.4, "dispute": true,
+      "provenance": "DERIVED", "teacher": "PER.NATHAMUNI",
+      "note": "Traditional dates. Srivaishnava lineage predecessor to Ramanuja." },
+
+    { "id": "PER.NATHAMUNI", "name": "Nathamuni", "role": "scholar",
+      "region": "RGN.TAMILAKAM", "floruit": [823, 951], "certainty": 0.35, "dispute": true,
+      "provenance": "DERIVED", "works": ["WRK.DIVYAPRABANDHAM"],
+      "note": "Credited with recovering and arranging the Alvar hymns. Traditional dates are impossible as stated." },
+
+    { "id": "PER.VIKRAMA_CHOLA", "name": "Vikrama Chola", "role": "ruler",
+      "region": "RGN.TAMILAKAM", "floruit": [1118, 1135], "certainty": 0.8, "provenance": "SOURCED" },
+
+    { "id": "PER.KULOTTUNGA_II", "name": "Kulottunga II", "role": "ruler",
+      "region": "RGN.TAMILAKAM", "floruit": [1133, 1150], "certainty": 0.8, "provenance": "SOURCED",
+      "patron_of": ["PER.SEKKIZHAR", "PER.OTTAKOOTHAR"] },
+
+    { "id": "PER.SEKKIZHAR", "name": "Sekkizhar", "role": "poet",
+      "region": "RGN.TAMILAKAM", "floruit": [1130, 1160], "certainty": 0.7, "provenance": "SOURCED",
+      "note": "Chief minister and author of the Periya Puranam, the lives of the Nayanars — hagiography commissioned by the state." },
+
+    { "id": "PER.OTTAKOOTHAR", "name": "Ottakoothar", "role": "poet",
+      "region": "RGN.TAMILAKAM", "floruit": [1120, 1180], "certainty": 0.6, "provenance": "DERIVED",
+      "note": "Court poet across three reigns." },
+
+    { "id": "PER.JAYAMKONDAR", "name": "Jayamkondar", "role": "poet",
+      "region": "RGN.TAMILAKAM", "floruit": [1110, 1140], "certainty": 0.6, "provenance": "SOURCED",
+      "note": "Kalingattuparani — war poetry as court literature, and a rare contemporary account of a campaign." },
+
+    { "id": "PER.KAMBAR", "name": "Kambar", "role": "poet",
+      "region": "RGN.TAMILAKAM", "floruit": [1150, 1200], "certainty": 0.5, "dispute": true,
+      "provenance": "DERIVED", "works": ["WRK.KAMBARAMAYANAM"],
+      "note": "Dating is contested across two centuries. The Kamba Ramayanam is not a translation but a rival." },
+
+    { "id": "PER.RAJARAJA_II", "name": "Rajaraja II", "role": "ruler",
+      "region": "RGN.TAMILAKAM", "floruit": [1146, 1173], "certainty": 0.8, "provenance": "SOURCED",
+      "note": "Built Airavatesvara at Darasuram." },
+
+    { "id": "PER.KULOTTUNGA_III", "name": "Kulottunga III", "role": "ruler",
+      "region": "RGN.TAMILAKAM", "floruit": [1178, 1218], "certainty": 0.8, "provenance": "SOURCED" },
+
+    { "id": "PER.RAJARAJA_III", "name": "Rajaraja III", "role": "ruler",
+      "region": "RGN.TAMILAKAM", "floruit": [1216, 1256], "certainty": 0.75, "provenance": "SOURCED" },
+
+    { "id": "PER.RAJENDRA_III", "name": "Rajendra III", "role": "ruler",
+      "region": "RGN.TAMILAKAM", "floruit": [1246, 1279], "certainty": 0.75, "provenance": "SOURCED",
+      "note": "The last Chola." },
+
+    { "id": "PER.MANIKKAVACHAKAR", "name": "Manikkavachakar", "role": "saint",
+      "region": "RGN.TAMILAKAM", "floruit": [820, 870], "certainty": 0.4, "dispute": true,
+      "provenance": "DERIVED", "note": "Tiruvasagam. Dated anywhere from the 6th to the 9th century." },
+
+    { "id": "PER.ANDAL", "name": "Andal", "role": "saint",
+      "region": "RGN.TAMILAKAM", "floruit": [730, 770], "certainty": 0.45, "dispute": true,
+      "provenance": "DERIVED", "gender": "f", "works": ["WRK.DIVYAPRABANDHAM"],
+      "note": "The one woman among the twelve Alvars." },
+
+    { "id": "PER.APPAR", "name": "Appar", "role": "saint",
+      "region": "RGN.TAMILAKAM", "floruit": [600, 680], "certainty": 0.6,
+      "provenance": "DERIVED", "works": ["WRK.TEVARAM"] },
+
+    { "id": "PER.SAMBANDAR", "name": "Sambandar", "role": "saint",
+      "region": "RGN.TAMILAKAM", "floruit": [630, 660], "certainty": 0.6,
+      "provenance": "DERIVED", "works": ["WRK.TEVARAM"] },
+
+    { "id": "PER.SUNDARAR", "name": "Sundarar", "role": "saint",
+      "region": "RGN.TAMILAKAM", "floruit": [710, 750], "certainty": 0.55,
+      "provenance": "DERIVED", "works": ["WRK.TEVARAM"] },
+
+    { "id": "PER.ILANGO", "name": "Ilango Adigal", "role": "poet",
+      "region": "RGN.TAMILAKAM", "floruit": [180, 220], "certainty": 0.35, "dispute": true,
+      "provenance": "DERIVED", "works": ["WRK.SILAPPATIKARAM"],
+      "note": "Traditionally a Chera prince. The attribution is late and doubted." },
+
+    { "id": "PER.SATTANAR", "name": "Sattanar", "role": "poet",
+      "region": "RGN.TAMILAKAM", "floruit": [180, 220], "certainty": 0.35, "dispute": true,
+      "provenance": "DERIVED", "works": ["WRK.MANIMEKALAI"] },
+
+    { "id": "PER.TIRUVALLUVAR", "name": "Tiruvalluvar", "role": "poet",
+      "region": "RGN.TAMILAKAM", "floruit": [280, 320], "certainty": 0.3, "dispute": true,
+      "provenance": "DERIVED", "works": ["WRK.TIRUKKURAL"],
+      "note": "Dated across six centuries by different scholars. Almost nothing about the person is recoverable." },
+
+    { "id": "PER.AUVAIYAR", "name": "Auvaiyar", "role": "poet",
+      "region": "RGN.TAMILAKAM", "floruit": [200, 260], "certainty": 0.3, "dispute": true,
+      "provenance": "DERIVED", "gender": "f", "works": ["WRK.SANGAM"],
+      "note": "The name belongs to more than one poet across many centuries." },
+
+    { "id": "PER.TOLKAPPIYAR", "name": "Tolkappiyar", "role": "scholar",
+      "region": "RGN.TAMILAKAM", "floruit": [-320, -280], "certainty": 0.3, "dispute": true,
+      "provenance": "DERIVED", "works": ["WRK.TOLKAPPIYAM"] },
+
+    { "id": "PER.PANINI", "name": "Panini", "role": "scholar",
+      "region": "RGN.GANDHARA", "floruit": [-520, -480], "certainty": 0.6,
+      "provenance": "SOURCED", "works": ["WRK.ASHTADHYAYI"],
+      "note": "3,959 generative rules. Endow him and you collect through every grammarian for two thousand years." },
+
+    { "id": "PER.KATYAYANA", "name": "Katyayana", "role": "scholar",
+      "region": "RGN.GANGETIC", "floruit": [-300, -250], "certainty": 0.5,
+      "provenance": "DERIVED", "teacher": "PER.PANINI", "works": ["WRK.SHULBA"] },
+
+    { "id": "PER.PATANJALI", "name": "Patanjali", "role": "scholar",
+      "region": "RGN.GANGETIC", "floruit": [-160, -140], "certainty": 0.65,
+      "provenance": "SOURCED", "teacher": "PER.KATYAYANA", "works": ["WRK.MAHABHASHYA"] },
+
+    { "id": "PER.YAJNAVALKYA", "name": "Yajnavalkya", "role": "scholar",
+      "region": "RGN.GANGETIC", "floruit": [-770, -730], "certainty": 0.35, "dispute": true,
+      "provenance": "DERIVED", "works": ["WRK.BRIHADARANYAKA"] },
+
+    { "id": "PER.GARGI", "name": "Gargi Vachaknavi", "role": "scholar",
+      "region": "RGN.GANGETIC", "floruit": [-760, -730], "certainty": 0.35, "dispute": true,
+      "provenance": "DERIVED", "gender": "f",
+      "note": "Argues with Yajnavalkya in open assembly in the Brihadaranyaka, and is not dismissed." },
+
+    { "id": "PER.KAUTILYA", "name": "Kautilya", "also": "Chanakya", "role": "official",
+      "region": "RGN.GANGETIC", "floruit": [-321, -290], "certainty": 0.4, "dispute": true,
+      "provenance": "DERIVED", "works": ["WRK.ARTHASHASTRA"],
+      "note": "The Arthashastra is a composite text compiled over centuries; the single-author attribution is traditional." },
+
+    { "id": "PER.ASHOKA", "name": "Ashoka", "role": "ruler",
+      "region": "RGN.GANGETIC", "floruit": [-268, -232], "certainty": 0.95,
+      "provenance": "SOURCED",
+      "note": "The only ancient Indian ruler whose own voice survives, because he had it carved on rock. The Maski edict names him personally." },
+
+    { "id": "PER.MAHINDA", "name": "Mahinda", "role": "traveller",
+      "region": "RGN.SRI_LANKA", "floruit": [-250, -200], "certainty": 0.6,
+      "provenance": "DERIVED",
+      "note": "Carried the canon to Sri Lanka, where it was written down at Aluvihare two centuries later and survived everything that happened on the mainland." },
+
+    { "id": "PER.NAGARJUNA", "name": "Nagarjuna", "role": "scholar",
+      "region": "RGN.ANDHRA", "floruit": [150, 250], "certainty": 0.6,
+      "provenance": "SOURCED", "works": ["WRK.MULAMADHYAMAKA"] },
+
+    { "id": "PER.VASUBANDHU", "name": "Vasubandhu", "role": "scholar",
+      "region": "RGN.GANDHARA", "floruit": [350, 430], "certainty": 0.6, "dispute": true,
+      "provenance": "DERIVED", "works": ["WRK.ABHIDHARMAKOSHA"],
+      "note": "The Abhidharmakosha survives in full only because it reached Tibet and China. The Sanskrit was recovered in the twentieth century." },
+
+    { "id": "PER.BUDDHAGHOSA", "name": "Buddhaghosa", "role": "scholar",
+      "region": "RGN.SRI_LANKA", "floruit": [400, 450], "certainty": 0.65,
+      "provenance": "SOURCED", "works": ["WRK.VISUDDHIMAGGA"] },
+
+    { "id": "PER.KALIDASA", "name": "Kalidasa", "role": "poet",
+      "region": "RGN.GANGETIC", "floruit": [370, 420], "certainty": 0.4, "dispute": true,
+      "provenance": "DERIVED", "works": ["WRK.SHAKUNTALA", "WRK.MEGHADUTA"] },
+
+    { "id": "PER.ARYABHATA", "name": "Aryabhata", "role": "scholar",
+      "region": "RGN.GANGETIC", "floruit": [499, 520], "certainty": 0.85,
+      "provenance": "SOURCED", "works": ["WRK.ARYABHATIYA"],
+      "note": "Dates himself in the text — he was 23 in 499 — which is why his date is one of the firmest in this list." },
+
+    { "id": "PER.VARAHAMIHIRA", "name": "Varahamihira", "role": "scholar",
+      "region": "RGN.GANGETIC", "floruit": [505, 587], "certainty": 0.7, "provenance": "SOURCED" },
+
+    { "id": "PER.BRAHMAGUPTA", "name": "Brahmagupta", "role": "scholar",
+      "region": "RGN.RAJASTHAN", "floruit": [628, 668], "certainty": 0.8,
+      "provenance": "SOURCED", "works": ["WRK.BRAHMASPHUTA"],
+      "note": "Zero becomes a number with rules. Reached Baghdad in 771 and did not stop travelling." },
+
+    { "id": "PER.BANABHATTA", "name": "Banabhatta", "role": "poet",
+      "region": "RGN.GANGETIC", "floruit": [620, 650], "certainty": 0.75,
+      "provenance": "SOURCED", "works": ["WRK.HARSHACHARITA", "WRK.KADAMBARI"] },
+
+    { "id": "PER.XUANZANG", "name": "Xuanzang", "role": "traveller",
+      "region": "EXT.CHINA", "floruit": [629, 645], "certainty": 0.95,
+      "provenance": "SOURCED",
+      "note": "Studied at Nalanda and left with 657 texts. A one-man redundancy operation, five and a half centuries before the fire." },
+
+    { "id": "PER.DANDIN", "name": "Dandin", "role": "scholar",
+      "region": "RGN.TAMILAKAM", "floruit": [670, 710], "certainty": 0.6,
+      "provenance": "DERIVED", "works": ["WRK.KAVYADARSHA"],
+      "note": "Indian poetics as an export good — the Kavyadarsha was translated into Tibetan, Sinhala and Kannada." },
+
+    { "id": "PER.SHANKARA", "name": "Adi Shankara", "role": "saint",
+      "region": "RGN.KERALA", "floruit": [788, 820], "certainty": 0.45, "dispute": true,
+      "provenance": "DERIVED",
+      "note": "Founded four mathas — institutions designed from the start to outlive their founder, which is why they did." },
+
+    { "id": "PER.ANANDAVARDHANA", "name": "Anandavardhana", "role": "scholar",
+      "region": "RGN.KASHMIR", "floruit": [850, 880], "certainty": 0.7, "provenance": "SOURCED" },
+
+    { "id": "PER.ABHINAVAGUPTA", "name": "Abhinavagupta", "role": "scholar",
+      "region": "RGN.KASHMIR", "floruit": [975, 1025], "certainty": 0.8, "provenance": "SOURCED",
+      "teacher": "PER.ANANDAVARDHANA" },
+
+    { "id": "PER.KALHANA", "name": "Kalhana", "role": "scholar",
+      "region": "RGN.KASHMIR", "floruit": [1148, 1150], "certainty": 0.85,
+      "provenance": "SOURCED", "works": ["WRK.RAJATARANGINI"],
+      "note": "The first Indian work that is recognisably history: sources weighed, informants named, predecessors criticised." },
+
+    { "id": "PER.BHASKARA_II", "name": "Bhaskara II", "role": "scholar",
+      "region": "RGN.MAHARASHTRA", "floruit": [1150, 1185], "certainty": 0.85,
+      "provenance": "SOURCED", "works": ["WRK.LILAVATI", "WRK.SIDDHANTASHIROMANI"] },
+
+    { "id": "PER.MAHAVIRA_MATH", "name": "Mahavira", "role": "scholar",
+      "region": "RGN.KARNATAKA", "floruit": [850, 870], "certainty": 0.7,
+      "provenance": "SOURCED", "works": ["WRK.GANITASARA"],
+      "note": "The mathematician, under Rashtrakuta patronage. Not the Jain tirthankara." },
+
+    { "id": "PER.VIJNANESHWARA", "name": "Vijnaneshwara", "role": "scholar",
+      "region": "RGN.KARNATAKA", "floruit": [1076, 1127], "certainty": 0.7, "provenance": "SOURCED",
+      "note": "The Mitakshara became the standard commentary on Hindu law across most of the subcontinent." },
+
+    { "id": "PER.BASAVA", "name": "Basava", "role": "saint",
+      "region": "RGN.KARNATAKA", "floruit": [1130, 1167], "certainty": 0.75, "provenance": "SOURCED",
+      "note": "The Anubhava Mantapa: an assembly where artisans and washerwomen argued theology and the record kept their words." },
+
+    { "id": "PER.AKKA_MAHADEVI", "name": "Akka Mahadevi", "role": "poet",
+      "region": "RGN.KARNATAKA", "floruit": [1140, 1170], "certainty": 0.65,
+      "provenance": "SOURCED", "gender": "f" },
+
+    { "id": "PER.PAMPA", "name": "Pampa", "role": "poet",
+      "region": "RGN.KARNATAKA", "floruit": [939, 950], "certainty": 0.75, "provenance": "SOURCED",
+      "note": "First of the three gems of Kannada." },
+
+    { "id": "PER.NANNAYA", "name": "Nannaya", "role": "poet",
+      "region": "RGN.ANDHRA", "floruit": [1022, 1063], "certainty": 0.75, "provenance": "SOURCED",
+      "note": "Telugu literature begins, under Rajaraja Narendra of Vengi." },
+
+    { "id": "PER.RUDRAMA_DEVI", "name": "Rani Rudrama Devi", "role": "ruler",
+      "region": "RGN.ANDHRA", "floruit": [1262, 1289], "certainty": 0.85,
+      "provenance": "SOURCED", "gender": "f",
+      "note": "Ruled the Kakatiyas in her own name, and issued inscriptions under a male regnal title as well as her own." },
+
+    { "id": "PER.JAYADEVA", "name": "Jayadeva", "role": "poet",
+      "region": "RGN.BENGAL", "floruit": [1170, 1200], "certainty": 0.7,
+      "provenance": "SOURCED", "works": ["WRK.GITAGOVINDA"] },
+
+    { "id": "PER.ATISHA", "name": "Atisha Dipankara", "role": "traveller",
+      "region": "RGN.BENGAL", "floruit": [982, 1054], "certainty": 0.85, "provenance": "SOURCED",
+      "note": "Left Vikramashila for Tibet in 1042. Fifty years later Vikramashila was ash and what he carried was not." },
+
+    { "id": "PER.GOPALA", "name": "Gopala", "role": "ruler",
+      "region": "RGN.BENGAL", "floruit": [750, 770], "certainty": 0.6, "provenance": "DERIVED",
+      "note": "Elected king by an assembly of chiefs, according to the Pala tradition — an unusual founding story for a dynasty." },
+
+    { "id": "PER.DHARMAPALA", "name": "Dharmapala", "role": "ruler",
+      "region": "RGN.BENGAL", "floruit": [770, 810], "certainty": 0.75, "provenance": "SOURCED",
+      "note": "Founded Vikramashila and Somapura." },
+
+    { "id": "PER.HEMACHANDRA", "name": "Hemachandra", "role": "scholar",
+      "region": "RGN.GUJARAT", "floruit": [1088, 1173], "certainty": 0.8, "provenance": "SOURCED",
+      "note": "Jain polymath. Jain merchant capital funded the bhandara libraries that preserved much of what survives from western India." },
+
+    { "id": "PER.RUDRADAMAN", "name": "Rudradaman I", "role": "ruler",
+      "region": "RGN.GUJARAT", "floruit": [130, 150], "certainty": 0.85, "provenance": "SOURCED",
+      "note": "The Junagadh inscription: the first long inscription in Sanskrit, and it is mostly about repairing a dam." },
+
+    { "id": "PER.KHARAVELA", "name": "Kharavela", "role": "ruler",
+      "region": "RGN.ODISHA", "floruit": [-180, -150], "certainty": 0.5, "dispute": true,
+      "provenance": "SOURCED", "note": "The Hathigumpha inscription. Its dating is contested by more than a century." },
+
+    { "id": "PER.LALITADITYA", "name": "Lalitaditya Muktapida", "role": "ruler",
+      "region": "RGN.KASHMIR", "floruit": [724, 760], "certainty": 0.7, "provenance": "SOURCED" },
+
+    { "id": "PER.SUYYA", "name": "Suyya", "role": "architect",
+      "region": "RGN.KASHMIR", "floruit": [855, 883], "certainty": 0.55, "provenance": "DERIVED",
+      "note": "An engineer, named by Kalhana, who drained the Jhelum floods and reordered the valley's fields." },
+
+    { "id": "PER.SUKAPHAA", "name": "Sukaphaa", "role": "ruler",
+      "region": "RGN.ASSAM", "floruit": [1228, 1268], "certainty": 0.6, "provenance": "DERIVED",
+      "note": "Crossed the Patkai and founded the Ahom kingdom, which kept written chronicles — the buranjis — as state practice." },
+
+    { "id": "PER.BHASKARAVARMAN", "name": "Bhaskaravarman", "role": "ruler",
+      "region": "RGN.ASSAM", "floruit": [600, 650], "certainty": 0.75, "provenance": "SOURCED",
+      "note": "Xuanzang visited his court." },
+
+    { "id": "PER.MADHAVA", "name": "Madhava of Sangamagrama", "role": "scholar",
+      "region": "RGN.KERALA", "floruit": [1340, 1425], "certainty": 0.65, "provenance": "DERIVED",
+      "note": "Infinite series for pi, sine and cosine — with proofs — two centuries before Europe." },
+
+    { "id": "PER.NILAKANTHA", "name": "Nilakantha Somayaji", "role": "scholar",
+      "region": "RGN.KERALA", "floruit": [1444, 1544], "certainty": 0.75,
+      "provenance": "SOURCED", "teacher": "PER.MADHAVA", "works": ["WRK.TANTRASANGRAHA"] },
+
+    { "id": "PER.JYESTHADEVA", "name": "Jyesthadeva", "role": "scholar",
+      "region": "RGN.KERALA", "floruit": [1500, 1575], "certainty": 0.7,
+      "provenance": "SOURCED", "teacher": "PER.NILAKANTHA", "works": ["WRK.YUKTIBHASHA"] },
+
+    { "id": "PER.AL_BIRUNI", "name": "Al-Biruni", "role": "traveller",
+      "region": "EXT.GHAZNA", "floruit": [1017, 1030], "certainty": 0.95,
+      "provenance": "SOURCED", "works": ["WRK.TARIKH_AL_HIND"],
+      "note": "Learned Sanskrit to read the sources, and said so." },
+
+    { "id": "PER.SOMADEVA", "name": "Somadeva", "role": "poet",
+      "region": "RGN.KASHMIR", "floruit": [1063, 1081], "certainty": 0.7,
+      "provenance": "SOURCED", "works": ["WRK.KATHASARITSAGARA"] }
+  ],
+
+  "cohorts": [
+    {
+      "id": "COH.THANJAVUR_TEMPLE_WOMEN",
+      "name": "Talicceri pendugal of the Rajarajesvaram",
+      "role": "performer",
+      "site": "thanjavur", "region": "RGN.TAMILAKAM",
+      "from": 1010, "count": 400, "gender": "f",
+      "provenance": "SOURCED",
+      "count_provenance": "SOURCED",
+      "member_provenance": "SYNTHESIZED",
+      "certainty": 0.85,
+      "note": "The Thanjavur inscription settles 400 temple women on named streets around the temple, each with a share of land, and lists them individually. The COUNT and the practice are sourced. The individuals this game generates are not those women — they are stand-ins, because reproducing a real list of named people as game characters is a decision for a historian and a community, not for a generator."
+    },
+    {
+      "id": "COH.THANJAVUR_MUSICIANS",
+      "name": "Musicians, drummers and singers of the Rajarajesvaram",
+      "role": "performer", "site": "thanjavur", "region": "RGN.TAMILAKAM",
+      "from": 1010, "count": 212, "provenance": "SOURCED",
+      "count_provenance": "DERIVED", "member_provenance": "SYNTHESIZED", "certainty": 0.6,
+      "note": "The inscription lists temple servants by function — drummers, conch-blowers, singers of the Tevaram, dance masters, accountants, lamp-lighters, tailors, a potter, an astrologer. The exact total depends on how you count."
+    },
+    {
+      "id": "COH.UTTARAMERUR_SABHA",
+      "name": "The variyam committees of Uttaramerur",
+      "role": "official", "region": "RGN.TAMILAKAM",
+      "from": 920, "count": 30, "provenance": "SOURCED",
+      "count_provenance": "DERIVED", "member_provenance": "SYNTHESIZED", "certainty": 0.8,
+      "note": "The inscription sets out eligibility, term limits, disqualification for unaudited accounts, and selection by drawing palm-leaf tickets from a pot. It describes the PROCEDURE in detail and does not preserve a roll of names."
+    },
+    {
+      "id": "COH.AYYAVOLE",
+      "name": "The Ayyavole Five Hundred",
+      "role": "official", "region": "RGN.KARNATAKA",
+      "from": 825, "count": 500, "provenance": "SOURCED",
+      "count_provenance": "DERIVED", "member_provenance": "SYNTHESIZED", "certainty": 0.7,
+      "note": "A merchant guild with its own charter, operating from Java to the Persian Gulf. 'Five hundred' is a title, not a census."
+    }
+  ]
+}

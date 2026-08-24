@@ -21,6 +21,8 @@ import { formatYear }        from '../../../packages/sim/src/clock.js';
 import { spriteURL, spriteFor } from '../../../packages/ui/src/sprites.js';
 import { throughput, CHOKES } from '../../../packages/sim/src/trade.js';
 import { CityRenderer }      from '../../../packages/render-city/src/renderer.js';
+import { endowable, endowmentLedger, living, lineageOf }
+  from '../../../packages/sim/src/people.js';
 
 const $ = (id) => document.getElementById(id);
 
@@ -31,11 +33,12 @@ const mark = (label) => { marks.push([label, performance.now() - T0]); };
 
 /* ── World ──────────────────────────────────────────────────────────────── */
 
-const [bundle, timeline, works, cityData] = await Promise.all([
+const [bundle, timeline, works, cityData, people] = await Promise.all([
   fetch('../../data/skeleton/bundle.json').then(r => r.json()),
   fetch('../../data/timeline/timeline.json').then(r => r.json()),
   fetch('../../data/corpus/works.json').then(r => r.json()),
   fetch('../../data/cities/cities.json').then(r => r.json()),
+  fetch('../../data/people/people.json').then(r => r.json()),
 ]);
 
 mark('fetch');
@@ -46,7 +49,7 @@ const climate = buildClimate(O, SK.bbox, SK.land, SK.rivers, { size: 220, sweeps
 mark('climate');
 const renderer = new RealmRenderer({ skeleton: SK, climate });
 const cityRenderer = new CityRenderer({ cities: cityData.cities });
-const DP = { timeline, works };
+const DP = { timeline, works, people };
 
 /* ── Camera ─────────────────────────────────────────────────────────────── */
 
@@ -440,7 +443,65 @@ function paint() {
 
   paintActions();
   paintRoutes();
+  paintPeople();
 }
+
+/**
+ * The people panel.
+ *
+ * Provenance is on the face of it, always. A player must be able to see at a
+ * glance that Sembiyan Mahadevi is named in an inscription and the reciter in
+ * her school is not — because the difference between what the record holds and
+ * what this game invented to stand in its place is the most important thing the
+ * interface has to communicate.
+ */
+function paintPeople() {
+  const s = state;
+  const alive = living(s);
+  const canEndow = endowable(s);
+  $('people-sum').textContent = alive.length
+    ? `${alive.length} living · ${s.schools.size} schools`
+    : `${s.schools.size} schools`;
+
+  const chip = (p) =>
+    `<span class="prov prov--${p.provenance}" title="${p.provenance === 'SOURCED'
+      ? 'Named in an inscription or a text.'
+      : p.provenance === 'DERIVED'
+      ? 'Attested, but a detail here is inferred.'
+      : 'Generated to stand where a real person stood.'}">${p.provenance[0]}</span>`;
+
+  const rows = alive.slice(0, 12).map(p => {
+    const can = canEndow.includes(p) && s.grain >= (p.role === 'architect' ? 260 : 160);
+    const title = (p.note ?? '').replace(/"/g, '&quot;');
+    return `<div class="per" title="${title}">
+      ${chip(p)}
+      <span class="nm">${p.name}${p.dispute ? ' <span class="disputed" title="Scholarship is divided about this person.">‡</span>' : ''}
+        <span class="role">${p.role}</span></span>
+      ${p.patronised ? '<span class="tiny muted">kept</span>'
+        : can ? `<button class="btn" data-endow="${p.id}">endow</button>`
+        : p.role === 'ruler' ? '' : '<span class="tiny muted">—</span>'}
+    </div>`;
+  }).join('');
+
+  $('people').innerHTML = rows ||
+    `<div class="tiny muted">Nobody the record names is at work. Your schools carry it.</div>`;
+
+  const led = endowmentLedger(s);
+  $('endowments').innerHTML = led.length
+    ? `<div class="rule"></div>` + led.slice(0, 6).map(e =>
+        `<div class="endw ${e.stillPaying ? '' : 'dead'}"
+           title="${e.stillPaying
+             ? `Still paying after ${Math.round(e.years)} years, through ${e.aliveHeirs} living heir(s) and ${e.downstream.toFixed(1)} surviving derived work(s).`
+             : `Stopped. The line died and nothing derived from it survives.`}">
+           <span>${e.name}</span>
+           <span class="num">${Math.round(e.returned)} · ${Math.round(e.years)}y</span></div>`).join('')
+    : '';
+}
+
+$('people').addEventListener('click', (e) => {
+  const b = e.target.closest('[data-endow]');
+  if (b) decide('endow', { person: b.dataset.endow });
+});
 
 /**
  * Routes, shown as their four numbers rather than as lines on a map.

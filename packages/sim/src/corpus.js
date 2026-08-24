@@ -14,6 +14,7 @@
  *      are still collecting through every grammarian after Patanjali.
  */
 import { record, bumpPillar } from './state.js';
+import { oralCapacity } from './people.js';
 
 /** Below this fraction of integrity a carrier is unreadable, so it is gone. */
 export const CARRIER_DEATH = 0.2;
@@ -99,7 +100,11 @@ export function tickCorpus(state, span, rng, datapack) {
   // 2. Work out what is being actively maintained, and by whom.
   //    Reciters hold oral works; scribes recopy manuscripts before they rot.
   //    Both are capacity-limited, and both are paid in grain.
-  const oralCapacity   = Math.floor(state.pops.reciters * 3);
+  // Oral capacity is not a headcount, it is the sum of what the living schools
+  // can hold between them. The distinction matters: reciters without a school
+  // hold nothing, and a school that loses its last member takes its repertoire
+  // with it whether or not anybody else is still being fed.
+  const oralCap = oralCapacity(state);
   const scribalCapacity = Math.floor(state.pops.scribes * 4);
 
   const living = [...state.corpus.values()].filter(c => c.exists && !c.lost);
@@ -109,7 +114,7 @@ export function tickCorpus(state, span, rng, datapack) {
     (b.prestige - a.prestige) || (a.composedFrom ?? 0) - (b.composedFrom ?? 0) || a.id.localeCompare(b.id));
 
   const oralKept = new Set(byPriority.filter(c => c.carriers.some(x => x.medium === 'memory'))
-    .slice(0, oralCapacity).map(c => c.id));
+    .slice(0, oralCap).map(c => c.id));
   const scribalKept = new Set(byPriority.filter(c => c.carriers.some(x => x.medium !== 'memory'))
     .slice(0, scribalCapacity).map(c => c.id));
 
@@ -147,6 +152,18 @@ export function tickCorpus(state, span, rng, datapack) {
     const before = c.carriers.length;
     c.carriers = c.carriers.filter(x => x.health > CARRIER_DEATH);
     if (c.carriers.length === 0 && before > 0) lose(state, c, year, 'neglect');
+  }
+
+  // 3b. Assign the oral repertoire to schools, so a school that ends can say
+  //     what it was the last to know.
+  const lineages = [...state.schools.values()];
+  if (lineages.length) {
+    for (const s of lineages) s.works = [];
+    const oral = byPriority.filter(c => oralKept.has(c.id));
+    for (let i = 0; i < oral.length; i++) {
+      const s = lineages[i % lineages.length];
+      s.works.push(oral[i].title);
+    }
   }
 
   // 4. A working scriptorium does not only maintain manuscripts, it makes them.

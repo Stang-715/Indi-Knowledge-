@@ -19,6 +19,7 @@ export function newState(opts = {}) {
 
     /** The pre-coinage economy. Grain is the store of value for ~3,000 years. */
     grain: opts.grain ?? 400,
+    underfed: 0,
     coin: 0,
     coinageKnown: false,
 
@@ -27,6 +28,13 @@ export function newState(opts = {}) {
 
     /** Corpus: workId → carrier record. Set up by corpus.js. */
     corpus: new Map(),
+
+    /** People: id → person. Set up by people.js. */
+    people: new Map(),
+    schools: new Map(),
+    cohorts: [],
+    endowments: [],
+    homeRegion: opts.homeRegion ?? 'RGN.TAMILAKAM',
 
     /** Trade: routeId → route. Set up by trade.js. */
     routes: new Map(),
@@ -42,7 +50,8 @@ export function newState(opts = {}) {
 
     /** Counters the UI reads. */
     stats: { eventsFired: 0, worksLost: 0, worksCopied: 0, tradesCompleted: 0,
-             caravansLost: 0, teachersSent: 0, chokesCleared: 0 },
+             caravansLost: 0, teachersSent: 0, chokesCleared: 0,
+             endowments: 0, schoolsLost: 0 },
   };
 }
 
@@ -73,6 +82,8 @@ export function fingerprint(state) {
     routes: sortedMap(state.routes, ([id, r]) => [id, r.open, Math.round(r.safety * 1000), Math.round(r.hold * 1000)]),
     standing: sortedMap(state.standing, ([id, v]) => [id, Math.round(v)]),
     goods: [...state.goods].sort(),
+    people: sortedMap(state.people, ([id, p]) => [id, p.alive ? 1 : 0, p.patronised ? 1 : 0, Math.round(p.returned)]),
+    schools: sortedMap(state.schools, ([id, s]) => [id, s.members?.length ?? 0, s.works?.length ?? 0]),
     stats: state.stats,
     logLength: state.log.length,
     logHash: state.log.reduce((h, l) => (h * 31 + l.text.length + l.year) | 0, 7),

@@ -74,6 +74,7 @@ const DATA = {
   'timeline':  'data/timeline/timeline.json',
   'works':     'data/corpus/works.json',
   'cities':    'data/cities/cities.json',
+  'people':    'data/people/people.json',
 };
 const inlined = Object.fromEntries(
   Object.entries(DATA).map(([k, p]) => [k, JSON.parse(readFileSync(join(ROOT, p), 'utf8'))]));
@@ -81,8 +82,8 @@ const inlined = Object.fromEntries(
 let entryCode = modules.get(ENTRY).src;
 // Replace the fetch block with the inlined data.
 entryCode = entryCode.replace(
-  /const \[bundle, timeline, works, cityData\] = await Promise\.all\(\[[\s\S]*?\]\);/,
-  'const { skeleton: bundle, timeline, works, cities: cityData } = __DATA;');
+  /const \[bundle, timeline, works, cityData, people\] = await Promise\.all\(\[[\s\S]*?\]\);/,
+  'const { skeleton: bundle, timeline, works, cities: cityData, people } = __DATA;');
 modules.set(ENTRY, { ...modules.get(ENTRY), src: entryCode });
 
 /* ── Assemble ───────────────────────────────────────────────────────────── */

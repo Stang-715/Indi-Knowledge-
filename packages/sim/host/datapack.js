@@ -11,5 +11,6 @@ export function loadDatapack(root) {
     timeline: read('data/timeline/timeline.json'),
     works:    read('data/corpus/works.json'),
     polities: read('data/polities/polities.json'),
+    people:   read('data/people/people.json'),
   };
 }
