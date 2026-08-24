@@ -115,8 +115,8 @@ not a colonial special case. It is the general engine, running for six thousand 
 | Era | Span | Polities in the first cut | Mean confidence |
 |---|---|---:|---:|
 | Neolithic & Chalcolithic | 7000–3300 BCE | 3 | 0.45 |
-| Early Harappan | 3300–2600 BCE | 5 | 0.51 |
-| Indus Civilisation | 2600–1900 BCE | 6 | 0.61 |
+| Early Harappan | 3300–2600 BCE | 4 | 0.53 |
+| Indus Civilisation | 2600–1900 BCE | 6 | 0.60 |
 | Late Harappan & Vedic | 1900–600 BCE | 8 | 0.54 |
 | Second Urbanisation | 600–322 BCE | 22 | 0.65 |
 | Mauryan | 322–185 BCE | 2 | 0.88 |
