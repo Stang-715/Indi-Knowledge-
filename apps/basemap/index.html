@@ -1,0 +1,519 @@
+<title>Procedural India</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Gentium+Book+Plus:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --table:#C3A578;--sheet:#E8DCC0;--sheet-2:#DACBA8;--sheet-3:#CFBE97;
+    --ink:#2A2118;--ink-soft:#5C4E38;--ink-faint:#8A7A5E;--rule:#A98F68;--incise:#6B573A;
+    --gold:#C9A227;--gold-edge:#3A2A08;--gold-lit:#E3C24E;
+    --lift:0 1px 0 rgba(255,248,230,.5),0 2px 3px rgba(42,33,24,.18),0 10px 24px -14px rgba(42,33,24,.4);
+    --press:inset 0 1px 3px rgba(42,33,24,.35);
+  }
+  @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --table:#241C12;--sheet:#33291B;--sheet-2:#3E3222;--sheet-3:#4A3B27;
+    --ink:#E8DCC0;--ink-soft:#B3A488;--ink-faint:#837558;--rule:#4A3A22;--incise:#150F08;
+    --gold:#E8B838;--gold-edge:#6B4E10;--gold-lit:#FFD46A;
+    --lift:0 1px 0 rgba(255,230,180,.06),0 2px 4px rgba(0,0,0,.5),0 12px 28px -14px rgba(0,0,0,.8);
+    --press:inset 0 1px 4px rgba(0,0,0,.6);
+  }}
+  :root[data-theme="dark"]{
+    --table:#241C12;--sheet:#33291B;--sheet-2:#3E3222;--sheet-3:#4A3B27;
+    --ink:#E8DCC0;--ink-soft:#B3A488;--ink-faint:#837558;--rule:#4A3A22;--incise:#150F08;
+    --gold:#E8B838;--gold-edge:#6B4E10;--gold-lit:#FFD46A;
+    --lift:0 1px 0 rgba(255,230,180,.06),0 2px 4px rgba(0,0,0,.5),0 12px 28px -14px rgba(0,0,0,.8);
+    --press:inset 0 1px 4px rgba(0,0,0,.6);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--table);color:var(--ink);
+    font-family:"Gentium Book Plus",Georgia,serif;font-size:16.5px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 22px 90px}
+  .mast{margin-top:36px;padding:clamp(26px,5vw,48px);background:var(--sheet);border:1px solid var(--rule);box-shadow:var(--lift);position:relative}
+  .mast::after{content:"";position:absolute;inset:10px;border:1px solid var(--rule);opacity:.5;pointer-events:none}
+  .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint);margin:0 0 16px}
+  h1{font-family:"Cormorant Garamond",serif;font-weight:700;font-size:clamp(38px,7vw,68px);line-height:.98;margin:0 0 8px;letter-spacing:-.015em}
+  .sub{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:clamp(18px,2.4vw,23px);color:var(--ink-soft);margin:0 0 20px}
+  .stand{color:var(--ink-soft);max-width:62ch;margin:0}
+  .stand strong{color:var(--ink)}
+  section{padding-top:52px}
+  .sh{display:flex;gap:14px;align-items:baseline;border-top:1px solid var(--rule);padding-top:13px;margin-bottom:20px}
+  .sn{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--ink-faint);flex:none;padding-top:8px}
+  h2{font-family:"Cormorant Garamond",serif;font-weight:600;font-size:clamp(25px,3.8vw,36px);line-height:1.1;margin:0}
+  p{max-width:66ch;margin:0 0 15px}
+  code{font-family:"IBM Plex Mono",monospace;font-size:.84em;background:var(--sheet-2);padding:1px 5px;border:1px solid var(--rule)}
+
+  .stage{background:var(--sheet);border:1px solid var(--rule);box-shadow:var(--lift);padding:14px}
+  .canvas-hold{position:relative;background:var(--sheet-3);border:1px solid var(--incise);box-shadow:var(--press);overflow:hidden;touch-action:none}
+  canvas{display:block;width:100%;height:auto;cursor:grab}
+  canvas.drag{cursor:grabbing}
+  .bar{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin-top:12px}
+  .btn{font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;
+    padding:7px 12px;cursor:pointer;border:1px solid var(--incise);background:var(--sheet-2);color:var(--ink);box-shadow:var(--lift)}
+  .btn:hover{background:var(--sheet-3)}
+  .btn.on{background:linear-gradient(160deg,var(--gold-lit),var(--gold) 55%,var(--gold-edge));color:var(--gold-edge);border-color:var(--gold-edge)}
+  .btn:focus-visible{outline:2px solid var(--incise);outline-offset:2px}
+  .spacer{flex:1}
+  .stat{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-faint);font-variant-numeric:tabular-nums}
+  .lbl{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin-right:2px}
+
+  .tw{overflow-x:auto;background:var(--sheet);border:1px solid var(--rule);box-shadow:var(--lift);margin:20px 0}
+  table{border-collapse:collapse;width:100%;min-width:560px}
+  th,td{text-align:left;padding:9px 16px;border-bottom:1px solid var(--rule);font-size:14.5px}
+  thead th{font-family:"IBM Plex Mono",monospace;font-size:10px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-faint);white-space:nowrap}
+  tbody tr:last-child td{border-bottom:none}
+  td.n{font-family:"IBM Plex Mono",monospace;font-size:12.5px;text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+  td.k{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink-soft);white-space:nowrap}
+  tr.pick td{background:var(--sheet-2);font-weight:700}
+  .finding{background:var(--sheet);border:1px solid var(--rule);border-left:4px solid var(--gold-edge);box-shadow:var(--lift);padding:22px 24px;margin:22px 0}
+  .finding p{margin:0}.finding p+p{margin-top:11px}
+  .finding .big{font-family:"Cormorant Garamond",serif;font-size:23px;font-weight:600;line-height:1.3}
+  .steps{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));margin-top:18px}
+  .step{background:var(--sheet);border:1px solid var(--rule);box-shadow:var(--lift);padding:15px 17px}
+  .step b{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--gold-edge);display:block;margin-bottom:6px}
+  .step p{font-size:14.5px;line-height:1.5;margin:0;color:var(--ink-soft)}
+  .colo{margin-top:56px;padding-top:16px;border-top:1px solid var(--rule);font-family:"IBM Plex Mono",monospace;font-size:11px;line-height:1.6;color:var(--ink-faint);max-width:80ch}
+</style>
+<div class="wrap">
+
+<header class="mast">
+  <p class="eyebrow">Base map · Indi-Knowledge</p>
+  <h1>Procedural India</h1>
+  <p class="sub">86 KB of skeleton. Everything else is arithmetic.</p>
+  <p class="stand">You cannot procedurally <em>generate</em> India — noise gives you <em>a</em> landmass, not <em>this</em> one. So the split is: <strong>the shape is data, the detail is code.</strong> A 132-ring coastline and 103 orographic control points go in; terrain, rainfall, biomes and shading come out of a function. No PNG, no mesh, no baked art.</p>
+</header>
+
+<section>
+  <div class="sh"><span class="sn">01</span><h2>The map, running</h2></div>
+  <p>Drag to pan, scroll to zoom. Every pixel below is computed from the skeleton at the moment you look at it — <strong>nothing here is an image</strong>. Step through the layers to see it assemble.</p>
+
+  <div class="stage">
+    <div class="canvas-hold"><canvas id="map" width="1000" height="800"></canvas></div>
+    <div class="bar">
+      <span class="lbl">Layer</span>
+      <button class="btn on" data-layer="final">Final</button>
+      <button class="btn" data-layer="mask">Land mask</button>
+      <button class="btn" data-layer="dist">Coast field</button>
+      <button class="btn" data-layer="height">Height</button>
+      <button class="btn" data-layer="shade">Hillshade</button>
+      <button class="btn" data-layer="moist">Rainfall</button>
+      <span class="spacer"></span>
+      <button class="btn" id="reset">Reset view</button>
+      <span class="stat" id="stat">—</span>
+    </div>
+  </div>
+
+  <div class="steps">
+    <div class="step"><b>1 · Rasterise</b><p>132 coastline rings are filled to a mask. Exact where the data is exact — no noise touches the outline.</p></div>
+    <div class="step"><b>2 · Coast field</b><p>A two-pass chamfer distance transform. Every land pixel learns how far it is from the sea.</p></div>
+    <div class="step"><b>3 · Height</b><p>15 ridges, 7 swells, 7 river troughs. Gaussian falloff, ridged noise on top, troughs carved after.</p></div>
+    <div class="step"><b>4 · Rainfall</b><p>Air marches in from the south-west and drops moisture wherever the ground rises. The Thar and the Deccan shadow emerge — nobody painted them.</p></div>
+    <div class="step"><b>5 · Shade &amp; tint</b><p>Hillshade from the height gradient using the locked rig, then a biome ramp keyed on height, rainfall and latitude.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="sh"><span class="sn">02</span><h2>Why not the other four</h2></div>
+  <div class="tw"><table>
+    <thead><tr><th>Approach</th><th>Used by</th><th class="n">Base size</th><th>Zoom past source</th><th>Verdict</th></tr></thead>
+    <tbody>
+      <tr><td class="k">Pre-rendered raster</td><td>Victoria 3 — 8192×4096</td><td class="n">34 MB</td><td>Blurs. Hard stop at 4.9 km/px</td><td>Rejected — cannot reach L16</td></tr>
+      <tr><td class="k">3D mesh + textures</td><td>Civilization, Total War</td><td class="n">100s of MB</td><td>Good, but LODs are authored</td><td>Rejected — asset pipeline, and you said no 3D</td></tr>
+      <tr><td class="k">Vector tiles</td><td>Mapbox, MapLibre</td><td class="n">streamed</td><td>Crisp at every zoom</td><td>Right for borders, gives no terrain</td></tr>
+      <tr><td class="k">Pure noise</td><td>Minecraft, No Man's Sky</td><td class="n">~0</td><td>Infinite</td><td>Rejected — generates <em>a</em> subcontinent, not India</td></tr>
+      <tr class="pick"><td class="k">Skeleton + field</td><td>This</td><td class="n">86 KB</td><td>Infinite — noise fills below the data</td><td>Chosen</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="finding">
+    <p class="big">400× smaller than Victoria 3's map, and it never blurs.</p>
+    <p>Because there is no resolution to run out of. Down to ~660 m the coastline is Natural Earth's real geometry; below that, deterministic noise adds detail that is <em>plausible</em> rather than surveyed — which is exactly the boundary India's Geospatial Data Guidelines 2021 draw at one metre anyway. <strong>The legal line and the technical line are the same line.</strong></p>
+  </div>
+</section>
+
+<section>
+  <div class="sh"><span class="sn">03</span><h2>Progressive, three ways</h2></div>
+  <div class="steps">
+    <div class="step"><b>Within a frame</b><p>Renders at ⅛ scale first, then ¼, ½, 1:1. You see the map immediately and it sharpens. Drag and it drops back to ⅛ so panning stays fluid.</p></div>
+    <div class="step"><b>Across zoom</b><p>Five LODs, 0.8 KB to 61 KB. The renderer picks by scale; below LOD 4 procedural detail takes over and never runs out.</p></div>
+    <div class="step"><b>Across the project</b><p>Terrain now, rivers and settlements next, then the political layer as its own SOI-compliant vector set. The base map never gets rebuilt — layers get added to it.</p></div>
+  </div>
+  <p style="margin-top:18px">The generator is a pure function of <code>(lon, lat, seed)</code>. Same inputs, same terrain, on every machine, forever — which is the same determinism requirement the simulation core already has, so tiles seam and multiplayer agrees without syncing a single pixel.</p>
+</section>
+
+<p class="colo">
+  Coastline, rivers and lakes: Natural Earth 10m, public domain, clipped to 66–99.5°E / 5–38°N. <strong>Land polygons, not country polygons</strong> — the base map depicts no international boundary at all, which keeps it clear of the Criminal Law (Amendment) Act 1990 issue; political borders arrive later as a separate Survey-of-India-compliant layer. Orography is 103 authored control points, not a sampled DEM. Lighting follows the locked rig: warm key, upper-left, 35°.
+</p>
+
+</div>
+
+<script>
+"use strict";
+const BUNDLE = /*__BUNDLE__*/;
+
+/* ---------- decode ---------- */
+function b64(s){const bin=atob(s);const u=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)u[i]=bin.charCodeAt(i);return new Uint16Array(u.buffer);}
+function unpack(a){const out=[];let i=0;const n=a[i++];for(let k=0;k<n;k++){const len=a[i++];const r=new Uint16Array(a.buffer,a.byteOffset+i*2,len*2);out.push(r);i+=len*2;}return out;}
+const LAND=unpack(b64(BUNDLE.land)), LAKES=unpack(b64(BUNDLE.lakes)), RIVERS=unpack(b64(BUNDLE.rivers)), RANKS=b64(BUNDLE.riverRanks);
+const BB=BUNDLE.bbox, ORO=BUNDLE.oro, Q=65535;
+const LON=x=>BB.w+(x/Q)*(BB.e-BB.w), LAT=y=>BB.s+(y/Q)*(BB.n-BB.s);
+const KX=Math.cos(21.5*Math.PI/180);            // lon→lat aspect at mid-latitude
+
+/* ---------- noise ---------- */
+function h2(x,y,s){let n=Math.imul(x|0,374761393)^Math.imul(y|0,668265263)^Math.imul(s|0,1442695041);
+  n=Math.imul(n^(n>>>13),1274126177);return((n^(n>>>16))>>>0)/4294967296;}
+const sm=t=>t*t*t*(t*(t*6-15)+10);
+function vnoise(x,y,s){const xi=Math.floor(x),yi=Math.floor(y),xf=x-xi,yf=y-yi;
+  const u=sm(xf),v=sm(yf);
+  const a=h2(xi,yi,s),b=h2(xi+1,yi,s),c=h2(xi,yi+1,s),d=h2(xi+1,yi+1,s);
+  return (a+(b-a)*u)+((c+(d-c)*u)-(a+(b-a)*u))*v;}
+function fbm(x,y,s,oct){let v=0,amp=.5,f=1;for(let i=0;i<oct;i++){v+=amp*vnoise(x*f,y*f,s+i*131);f*=2.03;amp*=.5;}return v;}
+function ridged(x,y,s,oct){let v=0,amp=.5,f=1;for(let i=0;i<oct;i++){const n=1-Math.abs(vnoise(x*f,y*f,s+i*57)*2-1);v+=amp*n*n;f*=2.07;amp*=.5;}return v;}
+
+/* ---------- orography, precompiled with bboxes for early reject ---------- */
+const RIDGES=ORO.ridges.map(r=>{let mnx=1e9,mny=1e9,mxx=-1e9,mxy=-1e9;
+  for(const p of r.pts){if(p[0]<mnx)mnx=p[0];if(p[0]>mxx)mxx=p[0];if(p[1]<mny)mny=p[1];if(p[1]>mxy)mxy=p[1];}
+  const pad=r.w*2.6;return{...r,mnx:mnx-pad,mxx:mxx+pad,mny:mny-pad,mxy:mxy+pad};});
+const TROUGHS=ORO.troughs.map(t=>{let mnx=1e9,mny=1e9,mxx=-1e9,mxy=-1e9;
+  for(const p of t.pts){if(p[0]<mnx)mnx=p[0];if(p[0]>mxx)mxx=p[0];if(p[1]<mny)mny=p[1];if(p[1]>mxy)mxy=p[1];}
+  const pad=t.w*2.4;return{...t,mnx:mnx-pad,mxx:mxx+pad,mny:mny-pad,mxy:mxy+pad};});
+
+function segDist(px,py,ax,ay,bx,by){
+  const dx=(bx-ax)*KX,dy=by-ay,pxs=(px-ax)*KX,pys=py-ay;
+  const l2=dx*dx+dy*dy;let t=l2>0?(pxs*dx+pys*dy)/l2:0;t=t<0?0:t>1?1:t;
+  const ex=pxs-t*dx,ey=pys-t*dy;return{d:Math.sqrt(ex*ex+ey*ey),t};}
+
+// Height in metres at a lon/lat. Pure function of position + seed.
+function heightAt(lon,lat,seed){
+  // Domain warp. Without this a gaussian around a short polyline reads as a capsule and
+  // a radial swell reads as a circle — the two most obvious "this was generated" tells.
+  const wx=lon+(fbm(lon*0.85,lat*0.85,seed+911,3)-0.5)*1.15;
+  const wy=lat+(fbm(lon*0.85+31.7,lat*0.85+17.3,seed+911,3)-0.5)*1.15;
+  let h=0;
+  for(const R of RIDGES){
+    if(wx<R.mnx||wx>R.mxx||wy<R.mny||wy>R.mxy)continue;
+    const P=R.pts;let best=1e9,peak=0;
+    for(let i=0;i<P.length-1;i++){
+      const r=segDist(wx,wy,P[i][0],P[i][1],P[i+1][0],P[i+1][1]);
+      if(r.d<best){best=r.d;peak=P[i][2]+(P[i+1][2]-P[i][2])*r.t;}
+    }
+    const k=best/R.w;
+    if(k<3){
+      const g=Math.exp(-k*k*1.15);
+      const rn=ridged(lon*7.5,lat*7.5,seed+11,4);
+      h=Math.max(h,peak*g*(0.66+0.44*rn));
+    }
+  }
+  for(const S of ORO.swells){
+    const sx=lon+(fbm(lon*0.42,lat*0.42,seed+404,4)-0.5)*3.4;
+    const sy=lat+(fbm(lon*0.42+9.1,lat*0.42+4.7,seed+404,4)-0.5)*3.4;
+    const dx=(sx-S.c[0])*KX,dy=sy-S.c[1];
+    const k=Math.sqrt(dx*dx+dy*dy)/S.r;
+    if(k<1.5){const g=Math.exp(-k*k*1.5);h=Math.max(h,S.h*g);}
+  }
+  h+= (fbm(lon*3.1,lat*3.1,seed+7,5)-0.5)*260;
+  h+= (fbm(lon*13,lat*13,seed+23,4)-0.5)*70;
+  for(const T of TROUGHS){
+    if(lon<T.mnx||lon>T.mxx||lat<T.mny||lat>T.mxy)continue;
+    const P=T.pts;let best=1e9,base=0;
+    for(let i=0;i<P.length-1;i++){
+      const r=segDist(lon,lat,P[i][0],P[i][1],P[i+1][0],P[i+1][1]);
+      if(r.d<best){best=r.d;base=P[i][2]+(P[i+1][2]-P[i][2])*r.t;}
+    }
+    const k=best/T.w;
+    if(k<2.2){const g=Math.exp(-k*k*1.05);h=h*(1-g*0.92)+base*g*0.92;}
+  }
+  return h;
+}
+
+/* ---------- orographic rainfall, computed once on a coarse grid ---------- */
+/* Backward upwind trace. For each cell we walk UPWIND and total the terrain rise the air
+   had to climb to reach us: more climbing upwind means it already rained. India has two
+   monsoon branches — Arabian Sea (from the SW) and Bay of Bengal (from the SE) — so we
+   trace both and take the wetter. This is why the Thar, the Deccan shadow and the wet
+   Konkan strip appear without anyone painting them. */
+const MW=220,MH=220;
+const MOIST=new Float32Array(MW*MH);
+const HG=new Float32Array(MW*MH);
+(function buildMoisture(){
+  // Rasterise the coastline into the grid first. heightAt() alone gives open ocean a
+  // positive noise elevation, which made the upwind trace read the Arabian Sea as land.
+  const mc=document.createElement('canvas'); mc.width=MW; mc.height=MH;
+  const mg=mc.getContext('2d',{willReadFrequently:true});
+  mg.fillStyle='#000'; mg.fillRect(0,0,MW,MH);
+  mg.fillStyle='#fff'; mg.beginPath();
+  for(const r of LAND){
+    for(let i=0;i<r.length;i+=2){
+      const X=(LON(r[i])-BB.w)/(BB.e-BB.w)*MW, Y=(1-(LAT(r[i+1])-BB.s)/(BB.n-BB.s))*MH;
+      if(i===0)mg.moveTo(X,Y);else mg.lineTo(X,Y);
+    }
+    mg.closePath();
+  }
+  mg.fill('evenodd');
+  const md=mg.getImageData(0,0,MW,MH).data;
+  for(let j=0;j<MH;j++)for(let i=0;i<MW;i++){
+    const lon=BB.w+(i+.5)/MW*(BB.e-BB.w), lat=BB.s+(j+.5)/MH*(BB.n-BB.s);
+    const isLand=md[((MH-1-j)*MW+i)*4]>127;
+    HG[j*MW+i]= isLand ? Math.max(0,heightAt(lon,lat,1)) : -1;
+  }
+  const hAt=(lon,lat)=>{
+    // clamp to the edge rather than returning 0 — returning 0 made everything beyond the
+    // grid read as ocean, which painted false wet streaks over Iran and western China
+    let fx=(lon-BB.w)/(BB.e-BB.w)*MW-.5, fy=(lat-BB.s)/(BB.n-BB.s)*MH-.5;
+    fx=Math.max(0,Math.min(MW-1,fx)); fy=Math.max(0,Math.min(MH-1,fy));
+    const i=Math.floor(fx),j=Math.floor(fy),u=fx-i,v=fy-j;
+    const a=HG[j*MW+i],b=HG[j*MW+Math.min(MW-1,i+1)],c=HG[Math.min(MH-1,j+1)*MW+i],d=HG[Math.min(MH-1,j+1)*MW+Math.min(MW-1,i+1)];
+    return (a+(b-a)*u)*(1-v)+(c+(d-c)*u)*v;
+  };
+  const BRANCH=[[0.74,0.67],[-0.62,0.78]];                 // Arabian Sea, Bay of Bengal
+  const LOOK=8.0, N=56;
+  for(let j=0;j<MH;j++)for(let i=0;i<MW;i++){
+    const lon=BB.w+(i+.5)/MW*(BB.e-BB.w), lat=BB.s+(j+.5)/MH*(BB.n-BB.s);
+    // per-cell phase jitter kills the ray-march aliasing that striped the whole field
+    const jit=h2(i,j,4242)/N;
+    let sum=0, wsum=0;
+    for(const [dx,dy] of BRANCH){
+      let rise=0, riseNear=0, sea=0, prev=null;
+      for(let k=N;k>=0;k--){
+        const t=k/N+jit;
+        const h=hAt(lon-dx*LOOK*t, lat-dy*LOOK*t);
+        if(h<=1)sea++;
+        if(prev!==null&&h>prev){
+          const d=h-prev; rise+=d;
+          if(t<0.30) riseNear+=d;                          // a local escarpment shadows
+        }                                                   // far harder than a distant one
+        prev=h;
+      }
+      const m=Math.exp(-(rise+riseNear*1.0)/1650)*(0.18+0.82*(sea/(N+1)));
+      const w=Math.pow(m+0.02,3);                           // soft-max: blend, don't switch
+      sum+=m*w; wsum+=w;
+    }
+    MOIST[j*MW+i]=wsum>0?sum/wsum:0;
+  }
+  // gentle blur
+  const t=Float32Array.from(MOIST);
+  for(let p=0;p<4;p++){
+    for(let j=1;j<MH-1;j++)for(let i=1;i<MW-1;i++)
+      MOIST[j*MW+i]=(t[j*MW+i]*4+t[j*MW+i-1]+t[j*MW+i+1]+t[(j-1)*MW+i]+t[(j+1)*MW+i])/8;
+    t.set(MOIST);
+  }
+  // normalise on a high percentile, not the max — outliers were flattening everything
+  const srt=Float32Array.from(MOIST).sort();
+  const hi=srt[Math.floor(srt.length*0.88)]||1;
+  for(let i=0;i<MOIST.length;i++)MOIST[i]=Math.min(1,MOIST[i]/hi);
+})();
+function moistAt(lon,lat){
+  const fx=(lon-BB.w)/(BB.e-BB.w)*MW-.5, fy=(lat-BB.s)/(BB.n-BB.s)*MH-.5;
+  const i=Math.max(0,Math.min(MW-2,Math.floor(fx))), j=Math.max(0,Math.min(MH-2,Math.floor(fy)));
+  const u=Math.max(0,Math.min(1,fx-i)), v=Math.max(0,Math.min(1,fy-j));
+  const a=MOIST[j*MW+i],b=MOIST[j*MW+i+1],c=MOIST[(j+1)*MW+i],d=MOIST[(j+1)*MW+i+1];
+  return (a+(b-a)*u)*(1-v)+(c+(d-c)*u)*v;
+}
+
+/* ---------- view ---------- */
+const cv=document.getElementById('map'), ctx=cv.getContext('2d',{willReadFrequently:true});
+const stat=document.getElementById('stat');
+const off=document.createElement('canvas'), octx=off.getContext('2d',{willReadFrequently:true});
+let view={cx:(BB.w+BB.e)/2, cy:(BB.s+BB.n)/2, span:(BB.e-BB.w)}; // span = lon degrees across
+const HOME={w:66.5,s:5.0,e:98.5,n:37.6};   // India proper; the data extends well past it
+function fitView(){
+  const W=cv.width,H=cv.height;
+  view.span=Math.max(HOME.e-HOME.w,(HOME.n-HOME.s)*W/(KX*H))*1.02;
+  view.cx=(HOME.w+HOME.e)/2; view.cy=(HOME.s+HOME.n)/2;
+}
+let home=null;
+let layer='final', pass=0, raf=0, dragging=false;
+
+function sizeCanvas(){
+  const w=Math.min(1000,cv.parentElement.clientWidth);
+  cv.width=Math.round(w); cv.height=Math.round(w*0.80);
+}
+function proj(){
+  const W=cv.width,H=cv.height;
+  const spanY=view.span*(H/W)*KX;                    // keep aspect honest
+  return {x0:view.cx-view.span/2, y1:view.cy+spanY/2, sx:W/view.span, sy:H/spanY, W,H, spanY};
+}
+
+/* ---------- mask + distance ---------- */
+function buildMask(step){
+  const P=proj(), W=Math.ceil(P.W/step), H=Math.ceil(P.H/step);
+  off.width=W; off.height=H;
+  octx.setTransform(1,0,0,1,0,0);
+  octx.fillStyle='#000'; octx.fillRect(0,0,W,H);
+  octx.fillStyle='#fff'; octx.beginPath();
+  const sx=P.sx/step, sy=P.sy/step;
+  for(const r of LAND){
+    for(let i=0;i<r.length;i+=2){
+      const X=(LON(r[i])-P.x0)*sx, Y=(P.y1-LAT(r[i+1]))*sy;
+      if(i===0)octx.moveTo(X,Y);else octx.lineTo(X,Y);
+    }
+    octx.closePath();
+  }
+  octx.fill('evenodd');
+  const d=octx.getImageData(0,0,W,H).data;
+  const m=new Uint8Array(W*H);
+  for(let i=0,p=0;i<m.length;i++,p+=4)m[i]=d[p]>127?1:0;
+  return {m,W,H};
+}
+// two-pass chamfer 3-4 distance transform, in mask cells
+function distField(m,W,H){
+  const INF=1e7, d=new Float32Array(W*H);
+  for(let i=0;i<W*H;i++)d[i]=m[i]?INF:0;
+  for(let y=0;y<H;y++)for(let x=0;x<W;x++){const i=y*W+x;if(!d[i])continue;let v=d[i];
+    if(x>0)v=Math.min(v,d[i-1]+3); if(y>0)v=Math.min(v,d[i-W]+3);
+    if(x>0&&y>0)v=Math.min(v,d[i-W-1]+4); if(x<W-1&&y>0)v=Math.min(v,d[i-W+1]+4);
+    d[i]=v;}
+  for(let y=H-1;y>=0;y--)for(let x=W-1;x>=0;x--){const i=y*W+x;if(!d[i])continue;let v=d[i];
+    if(x<W-1)v=Math.min(v,d[i+1]+3); if(y<H-1)v=Math.min(v,d[i+W]+3);
+    if(x<W-1&&y<H-1)v=Math.min(v,d[i+W+1]+4); if(x>0&&y<H-1)v=Math.min(v,d[i+W-1]+4);
+    d[i]=v;}
+  for(let i=0;i<W*H;i++)d[i]/=3;
+  return d;
+}
+
+/* ---------- palette ---------- */
+const dark=matchMedia('(prefers-color-scheme:dark)').matches&&document.documentElement.dataset.theme!=='light'
+  ||document.documentElement.dataset.theme==='dark';
+const SEA_D=[0x24,0x60,0x6F],SEA_M=[0x3E,0x84,0x96],SEA_S=[0x7C,0xB4,0xC0];
+const mix=(a,b,t)=>[a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t,a[2]+(b[2]-a[2])*t];
+function biome(h,mo,lat){
+  if(h>4300) return [0xE2,0xE5,0xE2];
+  if(h>3200) return mix([0xA9,0x8F,0x68],[0xE2,0xE5,0xE2],(h-3200)/1100);
+  if(h>1900) return mix([0x94,0x84,0x5E],[0xA9,0x8F,0x68],(h-1900)/1300);
+  const arid=[0xC2,0x9A,0x48], scrub=[0xAE,0xA0,0x60], grass=[0x93,0x9A,0x58], forest=[0x5E,0x7A,0x41], wet=[0x47,0x6B,0x36];
+  let c;
+  if(mo<0.17) c=arid;
+  else if(mo<0.33) c=mix(arid,scrub,(mo-0.17)/0.16);
+  else if(mo<0.50) c=mix(scrub,grass,(mo-0.33)/0.17);
+  else if(mo<0.70) c=mix(grass,forest,(mo-0.50)/0.20);
+  else c=mix(forest,wet,Math.min(1,(mo-0.70)/0.30));
+  if(h>900) c=mix(c,[0x84,0x7C,0x56],Math.min(1,(h-900)/1000));
+  return c;
+}
+
+/* ---------- render ---------- */
+function render(step){
+  const P=proj();
+  const {m,W,H}=buildMask(step);
+  const df=distField(m,W,H);                       // distance inland from the coast
+  const inv=new Uint8Array(W*H);                   // …and distance out to sea
+  for(let i=0;i<inv.length;i++)inv[i]=m[i]?0:1;
+  const sf=distField(inv,W,H);
+  const img=ctx.createImageData(W,H);
+  const px=img.data;
+  const seed=1;
+  const cellLon=view.span/W;
+  const hbuf=new Float32Array(W*H);
+  for(let y=0;y<H;y++){
+    const lat=P.y1-(y+.5)/H*P.spanY;
+    for(let x=0;x<W;x++){
+      const i=y*W+x;
+      if(!m[i]){hbuf[i]=-1;continue;}
+      const lon=P.x0+(x+.5)/W*view.span;
+      let h=heightAt(lon,lat,seed);
+      const coast=Math.min(1,df[i]*cellLon/0.55);       // taper to sea level at the shore
+      h*=0.20+0.80*coast;
+      hbuf[i]=Math.max(0,h);
+    }
+  }
+  // shading + tint
+  const LX=-0.72,LY=-0.60,LZ=0.35;                       // key: upper-left, 35°
+  const nl=Math.hypot(LX,LY,LZ);
+  const scale=1/(cellLon*111000)*1.0;
+  for(let y=0;y<H;y++){
+    const lat=P.y1-(y+.5)/H*P.spanY;
+    for(let x=0;x<W;x++){
+      const i=y*W+x, p=i*4;
+      if(hbuf[i]<0){
+        const d=Math.min(1,sf[i]*cellLon/2.2);
+        const c=d<0.35?mix(SEA_S,SEA_M,d/0.35):mix(SEA_M,SEA_D,(d-0.35)/0.65);
+        const rip=(vnoise((P.x0+x/W*view.span)*34,lat*34,91)-0.5)*7;
+        px[p]=c[0]+rip;px[p+1]=c[1]+rip;px[p+2]=c[2]+rip;px[p+3]=255;continue;
+      }
+      const lon=P.x0+(x+.5)/W*view.span;
+      const hl=hbuf[y*W+Math.max(0,x-1)]<0?0:hbuf[y*W+Math.max(0,x-1)];
+      const hr=hbuf[y*W+Math.min(W-1,x+1)]<0?0:hbuf[y*W+Math.min(W-1,x+1)];
+      const hu=hbuf[Math.max(0,y-1)*W+x]<0?0:hbuf[Math.max(0,y-1)*W+x];
+      const hd=hbuf[Math.min(H-1,y+1)*W+x]<0?0:hbuf[Math.min(H-1,y+1)*W+x];
+      const gx=(hr-hl)*scale*0.5, gy=(hd-hu)*scale*0.5;
+      const nz=1, nn=Math.hypot(gx,gy,nz);
+      let lam=(-gx*LX + -gy*LY + nz*LZ)/(nn*nl);
+      lam=Math.max(0,lam);
+      const shade=0.42+0.78*lam;                          // fill 15% of key, never black
+      const mo=moistAt(lon,lat);
+      let c;
+      if(layer==='mask') c=[0xE8,0xDC,0xC0];
+      else if(layer==='dist'){const t=Math.min(1,df[i]*cellLon/3.5);c=mix([0x24,0x60,0x6F],[0xE8,0xDC,0xC0],t);}
+      else if(layer==='height'){const t=Math.min(1,hbuf[i]/6500);c=mix([0x3E,0x50,0x38],[0xF2,0xEC,0xDA],t);}
+      else if(layer==='shade') c=[0xC8,0xBE,0xA6];
+      else if(layer==='moist'){c=mix([0xC2,0x9A,0x48],[0x2E,0x6B,0x4A],mo);}
+      else c=biome(hbuf[i],mo,lat);
+      const s=(layer==='mask'||layer==='dist'||layer==='moist')?1:shade;
+      px[p]=Math.min(255,c[0]*s);px[p+1]=Math.min(255,c[1]*s);px[p+2]=Math.min(255,c[2]*s);px[p+3]=255;
+    }
+  }
+  off.width=W;off.height=H;octx.putImageData(img,0,0);
+  ctx.imageSmoothingEnabled=step>1;
+  ctx.setTransform(1,0,0,1,0,0);
+  ctx.clearRect(0,0,P.W,P.H);
+  ctx.drawImage(off,0,0,W,H,0,0,P.W,P.H);
+
+  if(layer==='final'||layer==='shade'){
+    // rivers + lakes + coast, drawn as vectors on top
+    ctx.lineCap='round';ctx.lineJoin='round';
+    for(let k=0;k<RIVERS.length;k++){
+      const r=RIVERS[k], rank=RANKS[k];
+      ctx.beginPath();
+      for(let i=0;i<r.length;i+=2){
+        const X=(LON(r[i])-P.x0)*P.sx, Y=(P.y1-LAT(r[i+1]))*P.sy;
+        if(i===0)ctx.moveTo(X,Y);else ctx.lineTo(X,Y);
+      }
+      ctx.strokeStyle='rgba(62,132,150,.85)';
+      ctx.lineWidth=Math.max(0.6,(9-rank)*0.30*Math.max(0.7,Math.min(2.4,33/view.span)));
+      ctx.stroke();
+    }
+    ctx.fillStyle='rgba(62,132,150,.9)';
+    for(const r of LAKES){ctx.beginPath();
+      for(let i=0;i<r.length;i+=2){const X=(LON(r[i])-P.x0)*P.sx,Y=(P.y1-LAT(r[i+1]))*P.sy;if(i===0)ctx.moveTo(X,Y);else ctx.lineTo(X,Y);}
+      ctx.closePath();ctx.fill();}
+    ctx.strokeStyle='rgba(42,33,24,.42)';ctx.lineWidth=1;
+    for(const r of LAND){ctx.beginPath();
+      for(let i=0;i<r.length;i+=2){const X=(LON(r[i])-P.x0)*P.sx,Y=(P.y1-LAT(r[i+1]))*P.sy;if(i===0)ctx.moveTo(X,Y);else ctx.lineTo(X,Y);}
+      ctx.closePath();ctx.stroke();}
+  }
+  const kmpx=(view.span*111*KX)/P.W;
+  stat.textContent=`${W}×${H} · ${kmpx.toFixed(1)} km/px · ${view.span.toFixed(1)}° span`;
+}
+
+/* ---------- progressive scheduler ---------- */
+const STEPS=[8,4,2,1];
+function schedule(from){
+  cancelAnimationFrame(raf); pass=from;
+  const tick=()=>{ if(pass>=STEPS.length)return;
+    render(STEPS[pass]); pass++;
+    raf=requestAnimationFrame(()=>setTimeout(tick,0)); };
+  tick();
+}
+function redraw(fast){ schedule(fast?0:1); }
+
+/* ---------- interaction ---------- */
+let last=null;
+cv.addEventListener('pointerdown',e=>{dragging=true;last=[e.clientX,e.clientY];cv.classList.add('drag');cv.setPointerCapture(e.pointerId);});
+cv.addEventListener('pointermove',e=>{ if(!dragging)return;
+  const P=proj();
+  const dx=(e.clientX-last[0])*(cv.width/cv.clientWidth)/P.sx;
+  const dy=(e.clientY-last[1])*(cv.width/cv.clientWidth)/P.sy;
+  view.cx-=dx; view.cy+=dy; last=[e.clientX,e.clientY];
+  render(8);});
+cv.addEventListener('pointerup',e=>{dragging=false;cv.classList.remove('drag');redraw(false);});
+cv.addEventListener('wheel',e=>{e.preventDefault();
+  const f=e.deltaY>0?1.14:1/1.14;
+  view.span=Math.max(0.35,Math.min(BB.e-BB.w,view.span*f));
+  render(8); clearTimeout(cv._t); cv._t=setTimeout(()=>redraw(false),110);},{passive:false});
+
+document.querySelectorAll('[data-layer]').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('[data-layer]').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on'); layer=b.dataset.layer; redraw(false);}));
+document.getElementById('reset').addEventListener('click',()=>{fitView();redraw(false);});
+addEventListener('resize',()=>{const s=view.span,cx=view.cx,cy=view.cy;sizeCanvas();view.span=s;view.cx=cx;view.cy=cy;redraw(false);});
+sizeCanvas(); fitView(); home={...view}; redraw(false);
+</script>

@@ -47,6 +47,7 @@ fire coming** — the game is about making copies before it arrives.
 | [06 · Pillars & Campaign](docs/06-pillars-and-campaign.md) | The eight development axes, the within-India constraint, the invasion schedule, and what winning means |
 | [**07 · The Timeline**](docs/07-timeline.md) | **787 events across sixteen eras**, 6000 BCE–1947. Information architecture, the 210-hour cadence, regional spines, and the event-card spec |
 | [**08 · Visual Design**](docs/08-visual-design.md) | **The Cartographer's Table.** Locked palette and lighting rig, 18 UI components, sprite manifest and generation pipeline |
+| [**09 · The Base Map**](docs/09-procedural-map.md) | **Procedural, not painted.** 138 KB of skeleton; terrain, rainfall and biomes computed from 103 control points. [Live →](https://claude.ai/code/artifact/9083912f-b4cc-4cdb-868a-ac0fcd13abb8) |
 | [Map density & animation](docs/map-density-and-animation-spec.md) | The original Victoria 3 density comparison and the web performance criteria |
 
 ## Schemas
@@ -73,4 +74,9 @@ node tools/scale-ladder.mjs    # the seventeen rungs, resolutions, and streaming
 node tools/density-calc.mjs    # the Victoria 3 baseline every figure is measured against
 node tools/build-polities.mjs  # rebuild and validate the sovereignty spine
 node tools/build-corpus.mjs    # rebuild and validate the corpus and its derivation graph
+
+# the base map — skeleton in, running map out
+node tools/build-skeleton.mjs  # clip Natural Earth to India, simplify to 5 LODs
+node tools/bundle-skeleton.mjs 4
+node tools/build-basemap.mjs   # → dist/basemap.html
 ```
