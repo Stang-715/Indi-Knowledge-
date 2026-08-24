@@ -1,0 +1,80 @@
+/**
+ * World state.
+ *
+ * Never saved. It is always recomputed by replaying the decision log against the
+ * datapack and seed (docs/10-buildplan.md Part A.3). Everything here is therefore
+ * derived, and nothing here is authoritative.
+ */
+
+/** The eight pillars of development (docs/06-pillars-and-campaign.md §1). */
+export const PILLARS = ['DESIGN','IT','STRUCTURE','CLASSICISM','NETWORKING','TRADE','CULTIVATION','AGRICULTURE'];
+
+export function newState(opts = {}) {
+  return {
+    year: -6000,
+    tick: 0,
+
+    /** Pillars, 0..100. They start near nothing because the game starts at foraging. */
+    pillars: Object.fromEntries(PILLARS.map(p => [p, opts.pillars?.[p] ?? 2])),
+
+    /** The pre-coinage economy. Grain is the store of value for ~3,000 years. */
+    grain: opts.grain ?? 400,
+    coin: 0,
+    coinageKnown: false,
+
+    /** People. Reciters and scribes are the knowledge infrastructure. */
+    pops: { farmers: 1000, reciters: 4, scribes: 0, soldiers: 0, merchants: 0, teachers: 0 },
+
+    /** Corpus: workId → carrier record. Set up by corpus.js. */
+    corpus: new Map(),
+
+    /** Trade: routeId → route. Set up by trade.js. */
+    routes: new Map(),
+    partners: new Map(),
+    caravans: [],
+    goods: new Set(['grain']),
+
+    /** Standing with other regions, 0..100. The currency Share buys. */
+    standing: new Map(),
+
+    /** Narrative log for this campaign. */
+    log: [],
+
+    /** Counters the UI reads. */
+    stats: { eventsFired: 0, worksLost: 0, worksCopied: 0, tradesCompleted: 0,
+             caravansLost: 0, teachersSent: 0, chokesCleared: 0 },
+  };
+}
+
+/** Clamp a pillar to its range. */
+export function bumpPillar(state, pillar, delta) {
+  if (!(pillar in state.pillars)) return;
+  state.pillars[pillar] = Math.max(0, Math.min(100, state.pillars[pillar] + delta));
+}
+
+export function record(state, year, kind, text, extra = {}) {
+  state.log.push({ year, kind, text, ...extra });
+}
+
+/**
+ * Serialise the parts of state that must be identical across two runs of the
+ * same campaign. Used by the determinism test — it deliberately excludes nothing,
+ * because anything excluded is somewhere divergence can hide.
+ */
+export function fingerprint(state) {
+  const sortedMap = (m, f) => [...m.entries()].sort((a, b) => a[0].localeCompare(b[0])).map(f);
+  return JSON.stringify({
+    year: state.year, tick: state.tick,
+    pillars: state.pillars,
+    grain: Math.round(state.grain), coin: Math.round(state.coin),
+    coinageKnown: state.coinageKnown,
+    pops: Object.fromEntries(Object.entries(state.pops).map(([k, v]) => [k, Math.round(v)])),
+    corpus: sortedMap(state.corpus, ([id, c]) => [id, c.carriers.length, c.lost, c.lostYear ?? 0]),
+    routes: sortedMap(state.routes, ([id, r]) => [id, r.open, Math.round(r.safety * 1000), Math.round(r.hold * 1000)]),
+    standing: sortedMap(state.standing, ([id, v]) => [id, Math.round(v)]),
+    goods: [...state.goods].sort(),
+    stats: state.stats,
+    logLength: state.log.length,
+    logHash: state.log.reduce((h, l) => (h * 31 + l.text.length + l.year) | 0, 7),
+  });
+}

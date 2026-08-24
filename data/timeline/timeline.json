@@ -4098,20 +4098,6 @@
    ]
   },
   {
-   "id": "EVT.M1498.VASCO_DA_GAMA_AT_CALICUT",
-   "title": "Vasco da Gama at Calicut",
-   "year": -1498,
-   "year_end": null,
-   "era": "ERA.LATE_HARAPPAN",
-   "class": "COLONIAL",
-   "magnitude": "W",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "scope": "regional",
-   "region": "RGN.KERALA",
-   "dispute": false
-  },
-  {
    "id": "EVT.M1480.GANDHARA_GRAVE_CULTURE_IN_THE_SWAT_VALLEY",
    "title": "Gandhara Grave culture in the Swat valley",
    "year": -1480,
@@ -4148,24 +4134,6 @@
    ]
   },
   {
-   "id": "EVT.M1450.SANKARDEV_THE_EKASARANA_MOVEMENT_AND_ASSAMES",
-   "title": "Sankardev; the Ekasarana movement and Assamese literature",
-   "year": -1450,
-   "year_end": null,
-   "era": "ERA.LATE_HARAPPAN",
-   "class": "REFORM",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.ASSAM",
-   "dispute": false,
-   "window": [
-    -1479,
-    -1421
-   ]
-  },
-  {
    "id": "EVT.M1450.THE_SPOKED_WHEEL_APPEARS",
    "title": "The spoked wheel appears",
    "year": -1450,
@@ -4182,20 +4150,6 @@
     -1479,
     -1421
    ]
-  },
-  {
-   "id": "EVT.M1434.THE_GAJAPATIS",
-   "title": "The Gajapatis",
-   "year": -1434,
-   "year_end": null,
-   "era": "ERA.LATE_HARAPPAN",
-   "class": "FOUNDATION",
-   "magnitude": "M",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "scope": "regional",
-   "region": "RGN.ODISHA",
-   "dispute": false
   },
   {
    "id": "EVT.M1400.HALLUR_IRON_IN_KARNATAKA",
@@ -4227,42 +4181,6 @@
    "trigger": "window",
    "scope": "regional",
    "region": "RGN.KARNATAKA",
-   "dispute": false,
-   "window": [
-    -1428,
-    -1372
-   ]
-  },
-  {
-   "id": "EVT.M1400.INFINITE_SERIES_FOR_SINE_AND_COSINE_WITH_PRO",
-   "title": "Infinite series for π, sine and cosine — with proofs",
-   "year": -1400,
-   "year_end": null,
-   "era": "ERA.LATE_HARAPPAN",
-   "class": "WORK",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.KERALA",
-   "dispute": false,
-   "window": [
-    -1428,
-    -1372
-   ]
-  },
-  {
-   "id": "EVT.M1400.THE_BURANJI_CHRONICLE_TRADITION_BEGINS_HISTO",
-   "title": "The buranji chronicle tradition begins — history as state practice",
-   "year": -1400,
-   "year_end": null,
-   "era": "ERA.LATE_HARAPPAN",
-   "class": "WORK",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.ASSAM",
    "dispute": false,
    "window": [
     -1428,
@@ -4324,20 +4242,6 @@
    ]
   },
   {
-   "id": "EVT.M1352.THE_BENGAL_SULTANATE_A_DISTINCT_LITERARY_PAT",
-   "title": "The Bengal Sultanate; a distinct literary patron",
-   "year": -1352,
-   "year_end": null,
-   "era": "ERA.LATE_HARAPPAN",
-   "class": "FOUNDATION",
-   "magnitude": "W",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "scope": "regional",
-   "region": "RGN.BENGAL",
-   "dispute": false
-  },
-  {
    "id": "EVT.M1350.CATTLE_KEEPING_AND_MOBILITY_RISE_AS_FARMING_",
    "title": "Cattle-keeping and mobility rise as farming intensity falls",
    "year": -1350,
@@ -4384,38 +4288,6 @@
    "dispute": true
   },
   {
-   "id": "EVT.M1340.MADHAVA_OF_SANGAMAGRAMA_FOUNDS_THE_KERALA_SC",
-   "title": "Madhava of Sangamagrama founds the Kerala school",
-   "year": -1340,
-   "year_end": null,
-   "era": "ERA.LATE_HARAPPAN",
-   "class": "WORK",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.KERALA",
-   "dispute": false,
-   "window": [
-    -1367,
-    -1313
-   ]
-  },
-  {
-   "id": "EVT.M1339.THE_KASHMIR_SULTANATE",
-   "title": "The Kashmir Sultanate",
-   "year": -1339,
-   "year_end": null,
-   "era": "ERA.LATE_HARAPPAN",
-   "class": "FOUNDATION",
-   "magnitude": "W",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "scope": "regional",
-   "region": "RGN.KASHMIR",
-   "dispute": false
-  },
-  {
    "id": "EVT.M1330.INAMGAON_S_POPULATION_FALLS_THE_CHIEF_S_HOUS",
    "title": "Inamgaon's population falls; the chief's house is abandoned",
    "year": -1330,
@@ -4434,20 +4306,6 @@
    ]
   },
   {
-   "id": "EVT.M1323.KAKATIYA_FALLS_TO_THE_TUGHLAQS",
-   "title": "Kakatiya falls to the Tughlaqs",
-   "year": -1323,
-   "year_end": null,
-   "era": "ERA.LATE_HARAPPAN",
-   "class": "CATASTROPHE",
-   "magnitude": "W",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "scope": "regional",
-   "region": "RGN.ANDHRA",
-   "dispute": false
-  },
-  {
    "id": "EVT.M1320.DAIMABAD_ABANDONED",
    "title": "Daimabad abandoned",
    "year": -1320,
@@ -4464,20 +4322,6 @@
     -1346,
     -1294
    ]
-  },
-  {
-   "id": "EVT.M1317.THE_YADAVAS_END",
-   "title": "The Yadavas end",
-   "year": -1317,
-   "year_end": null,
-   "era": "ERA.LATE_HARAPPAN",
-   "class": "—",
-   "magnitude": "M",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "scope": "regional",
-   "region": "RGN.MAHARASHTRA",
-   "dispute": false
   },
   {
    "id": "EVT.M1300.ASSAM_RICE_CULTIVATION_THE_BRAHMAPUTRA_CORRI",
@@ -4528,24 +4372,6 @@
    "scope": "subcontinental",
    "region": null,
    "dispute": true
-  },
-  {
-   "id": "EVT.M1300.NAMDEV_THE_VARKARI_PILGRIMAGE_TO_PANDHARPUR",
-   "title": "Namdev; the Varkari pilgrimage to Pandharpur",
-   "year": -1300,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "REFORM",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.MAHARASHTRA",
-   "dispute": false,
-   "window": [
-    -1326,
-    -1274
-   ]
   },
   {
    "id": "EVT.M1300.NORTHEAST_DAOJALI_HADING_THE_EASTERN_NEOLITH",
@@ -4710,57 +4536,6 @@
    ]
   },
   {
-   "id": "EVT.M1296.DEVAGIRI_RAIDED_BY_ALAUDDIN_KHALJI",
-   "title": "Devagiri raided by Alauddin Khalji",
-   "year": -1296,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "INVASION",
-   "magnitude": "W",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "scope": "regional",
-   "region": "RGN.MAHARASHTRA",
-   "dispute": false,
-   "becomes": "nothing"
-  },
-  {
-   "id": "EVT.M1290.JNANESHWAR_S_JNANESHWARI_MARATHI_LITERATURE_",
-   "title": "Jnaneshwar's Jnaneshwari — Marathi literature arrives",
-   "year": -1290,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "WORK",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.MAHARASHTRA",
-   "dispute": false,
-   "window": [
-    -1316,
-    -1264
-   ]
-  },
-  {
-   "id": "EVT.M1290.PALKURIKI_SOMANATHA_TELUGU_DEVOTIONAL_LITERA",
-   "title": "Palkuriki Somanatha; Telugu devotional literature",
-   "year": -1290,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "WORK",
-   "magnitude": "M",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.ANDHRA",
-   "dispute": false,
-   "window": [
-    -1316,
-    -1264
-   ]
-  },
-  {
    "id": "EVT.M1280.CATTLE_RAIDING_GAVISHTI_AS_THE_BASIC_FORM_OF",
    "title": "Cattle raiding (gavishti) as the basic form of conflict",
    "year": -1280,
@@ -4776,60 +4551,6 @@
    "window": [
     -1306,
     -1254
-   ]
-  },
-  {
-   "id": "EVT.M1280.TWIPRA_MANIKYA_IN_THE_TRIPURA_HILLS",
-   "title": "Twipra (Manikya) in the Tripura hills",
-   "year": -1280,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "FOUNDATION",
-   "magnitude": "M",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.ASSAM",
-   "dispute": false,
-   "window": [
-    -1306,
-    -1254
-   ]
-  },
-  {
-   "id": "EVT.M1262.RANI_RUDRAMA_DEVI_RULES_IN_HER_OWN_NAME",
-   "title": "Rani Rudrama Devi rules in her own name",
-   "year": -1262,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "—",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.ANDHRA",
-   "dispute": false,
-   "window": [
-    -1287,
-    -1237
-   ]
-  },
-  {
-   "id": "EVT.M1250.KONARK_THE_SUN_TEMPLE_AS_A_STONE_CHARIOT",
-   "title": "Konark; the Sun Temple as a stone chariot",
-   "year": -1250,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "FOUNDATION",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.ODISHA",
-   "dispute": false,
-   "window": [
-    -1275,
-    -1225
    ]
   },
   {
@@ -4852,42 +4573,6 @@
    "becomes": "nothing"
   },
   {
-   "id": "EVT.M1250.THE_MAHANUBHAVA_SECT_PROSE_IN_MARATHI",
-   "title": "The Mahanubhava sect; prose in Marathi",
-   "year": -1250,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "WORK",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.MAHARASHTRA",
-   "dispute": false,
-   "window": [
-    -1275,
-    -1225
-   ]
-  },
-  {
-   "id": "EVT.M1250.THE_PAIK_SYSTEM_LABOUR_SERVICE_AS_THE_BASIS_",
-   "title": "The paik system: labour service as the basis of the state",
-   "year": -1250,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "TRANSITION",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.ASSAM",
-   "dispute": false,
-   "window": [
-    -1275,
-    -1225
-   ]
-  },
-  {
    "id": "EVT.M1230.THE_DANA_STUTI_HYMNS_PATRONAGE_RECORDED_IN_V",
    "title": "The dana-stuti hymns: patronage recorded in verse",
    "year": -1230,
@@ -4903,68 +4588,6 @@
    "window": [
     -1255,
     -1205
-   ]
-  },
-  {
-   "id": "EVT.M1228.SUKAPHAA_CROSSES_THE_PATKAI_THE_AHOM_KINGDOM",
-   "title": "Sukaphaa crosses the Patkai — the Ahom kingdom begins",
-   "year": -1228,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "FOUNDATION",
-   "magnitude": "W",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "scope": "regional",
-   "region": "RGN.ASSAM",
-   "dispute": false
-  },
-  {
-   "id": "EVT.M1206.BAKHTIYAR_KHALJI_S_TIBET_EXPEDITION_DESTROYE",
-   "title": "Bakhtiyar Khalji's Tibet expedition destroyed in the hills",
-   "year": -1206,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "INVASION",
-   "magnitude": "W",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "scope": "regional",
-   "region": "RGN.ASSAM",
-   "dispute": false,
-   "becomes": "nothing"
-  },
-  {
-   "id": "EVT.M1204.BAKHTIYAR_KHALJI_TAKES_NADIA",
-   "title": "Bakhtiyar Khalji takes Nadia",
-   "year": -1204,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "INVASION",
-   "magnitude": "W",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "scope": "regional",
-   "region": "RGN.BENGAL",
-   "dispute": false,
-   "becomes": "nothing"
-  },
-  {
-   "id": "EVT.M1200.CALICUT_RISES_THE_ZAMORIN_AND_THE_PEPPER_TRA",
-   "title": "Calicut rises; the Zamorin and the pepper trade",
-   "year": -1200,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "FOUNDATION",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.KERALA",
-   "dispute": false,
-   "window": [
-    -1224,
-    -1176
    ]
   },
   {
@@ -5004,24 +4627,6 @@
    ]
   },
   {
-   "id": "EVT.M1200.KASHMIRI_SANSKRIT_SCHOLARSHIP_AT_ITS_WIDEST_",
-   "title": "Kashmiri Sanskrit scholarship at its widest influence",
-   "year": -1200,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "WORK",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.KASHMIR",
-   "dispute": false,
-   "window": [
-    -1224,
-    -1176
-   ]
-  },
-  {
    "id": "EVT.M1200.MALHAR_AND_RAJA_NALA_KA_TILA_EARLY_GANGETIC_",
    "title": "Malhar and Raja Nala ka Tila: early Gangetic iron",
    "year": -1200,
@@ -5034,71 +4639,6 @@
    "scope": "subcontinental",
    "region": null,
    "dispute": true
-  },
-  {
-   "id": "EVT.M1200.RAMAPPA_TEMPLE_FLOATING_BRICK_AND_SANDBOX_FO",
-   "title": "Ramappa temple; floating brick and sandbox foundations",
-   "year": -1200,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "FOUNDATION",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.ANDHRA",
-   "dispute": false,
-   "window": [
-    -1224,
-    -1176
-   ]
-  },
-  {
-   "id": "EVT.M1200.THE_JAGANNATH_CULT_ABSORBS_TRIBAL_JAIN_AND_B",
-   "title": "The Jagannath cult absorbs tribal, Jain and Buddhist strands",
-   "year": -1200,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "REFORM",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.ODISHA",
-   "dispute": false,
-   "window": [
-    -1224,
-    -1176
-   ]
-  },
-  {
-   "id": "EVT.M1192.SECOND_TARAIN",
-   "title": "Second Tarain",
-   "year": -1192,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "INVASION",
-   "magnitude": "W",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "scope": "regional",
-   "region": "RGN.RAJASTHAN",
-   "dispute": false,
-   "becomes": "nothing"
-  },
-  {
-   "id": "EVT.M1187.THE_YADAVAS_OF_DEVAGIRI",
-   "title": "The Yadavas of Devagiri",
-   "year": -1187,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "FOUNDATION",
-   "magnitude": "M",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "scope": "regional",
-   "region": "RGN.MAHARASHTRA",
-   "dispute": false
   },
   {
    "id": "EVT.M1180.THE_IRON_AXE_CHANGES_WHAT_LAND_CAN_BE_FARMED",
@@ -5116,74 +4656,6 @@
    "window": [
     -1204,
     -1156
-   ]
-  },
-  {
-   "id": "EVT.M1170.JAYADEVA_S_GITA_GOVINDA",
-   "title": "Jayadeva's Gita Govinda",
-   "year": -1170,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "WORK",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.BENGAL",
-   "dispute": false,
-   "window": [
-    -1193,
-    -1147
-   ]
-  },
-  {
-   "id": "EVT.M1170.TANK_IRRIGATION_TRANSFORMS_THE_TELANGANA_UPL",
-   "title": "Tank irrigation transforms the Telangana uplands",
-   "year": -1170,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "STRUCTURE",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.ANDHRA",
-   "dispute": false,
-   "window": [
-    -1193,
-    -1147
-   ]
-  },
-  {
-   "id": "EVT.M1161.THE_JAGANNATH_TEMPLE_AT_PURI_COMPLETED",
-   "title": "The Jagannath temple at Puri completed",
-   "year": -1161,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "FOUNDATION",
-   "magnitude": "W",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "scope": "regional",
-   "region": "RGN.ODISHA",
-   "dispute": false
-  },
-  {
-   "id": "EVT.M1160.PARAKRAMABAHU_I_THE_TANK_SYSTEM_AT_MAXIMUM_E",
-   "title": "Parakramabahu I; the tank system at maximum extent",
-   "year": -1160,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "STRUCTURE",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.SRI_LANKA",
-   "dispute": false,
-   "window": [
-    -1183,
-    -1137
    ]
   },
   {
@@ -5205,128 +4677,6 @@
    ]
   },
   {
-   "id": "EVT.M1150.BELUR_AND_HALEBIDU_THE_HOYSALA_STYLE",
-   "title": "Belur and Halebidu; the Hoysala style",
-   "year": -1150,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "FOUNDATION",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.KARNATAKA",
-   "dispute": false,
-   "window": [
-    -1173,
-    -1127
-   ]
-  },
-  {
-   "id": "EVT.M1150.JAIN_BHANDARA_LIBRARIES_AT_JAISALMER_AND_PAT",
-   "title": "Jain bhandara libraries at Jaisalmer and Patan",
-   "year": -1150,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "TRANSITION",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.RAJASTHAN",
-   "dispute": false,
-   "window": [
-    -1173,
-    -1127
-   ]
-  },
-  {
-   "id": "EVT.M1150.JAIN_MERCHANT_CAPITAL_FUNDS_LIBRARIES_THE_BH",
-   "title": "Jain merchant capital funds libraries — the bhandaras",
-   "year": -1150,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "TRANSITION",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.GUJARAT",
-   "dispute": false,
-   "window": [
-    -1173,
-    -1127
-   ]
-  },
-  {
-   "id": "EVT.M1150.KAMBA_RAMAYANAM_A_RIVAL_NOT_A_TRANSLATION",
-   "title": "Kamba Ramayanam — a rival, not a translation",
-   "year": -1150,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "WORK",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.TAMILAKAM",
-   "dispute": false,
-   "window": [
-    -1173,
-    -1127
-   ]
-  },
-  {
-   "id": "EVT.M1148.KALHANA_S_RAJATARANGINI",
-   "title": "Kalhana's Rajatarangini",
-   "year": -1148,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "WORK",
-   "magnitude": "W",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "scope": "regional",
-   "region": "RGN.KASHMIR",
-   "dispute": false
-  },
-  {
-   "id": "EVT.M1140.AKKA_MAHADEVI_VACHANAS_BY_WEAVERS_POTTERS_WA",
-   "title": "Akka Mahadevi; vachanas by weavers, potters, washerwomen",
-   "year": -1140,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "WORK",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.KARNATAKA",
-   "dispute": false,
-   "window": [
-    -1163,
-    -1117
-   ]
-  },
-  {
-   "id": "EVT.M1130.BASAVA_AND_THE_SHARANAS_THE_ANUBHAVA_MANTAPA",
-   "title": "Basava and the Sharanas; the Anubhava Mantapa",
-   "year": -1130,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "REFORM",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.KARNATAKA",
-   "dispute": false,
-   "window": [
-    -1153,
-    -1107
-   ]
-  },
-  {
    "id": "EVT.M1120.THE_ASHVAMEDHA_SOVEREIGNTY_PERFORMED_AS_RITU",
    "title": "The ashvamedha: sovereignty performed as ritual",
    "year": -1120,
@@ -5342,56 +4692,6 @@
    "window": [
     -1142,
     -1098
-   ]
-  },
-  {
-   "id": "EVT.M1102.THE_CHERA_PERUMALS_END_KERALA_FRAGMENTS_INTO",
-   "title": "The Chera Perumals end; Kerala fragments into chiefdoms",
-   "year": -1102,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "EPOCH",
-   "magnitude": "W",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "scope": "regional",
-   "region": "RGN.KERALA",
-   "dispute": false
-  },
-  {
-   "id": "EVT.M1100.HEMACHANDRA_JAIN_SCHOLARSHIP_AND_THE_SIDDHA_",
-   "title": "Hemachandra; Jain scholarship and the Siddha-Hema",
-   "year": -1100,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "WORK",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.GUJARAT",
-   "dispute": false,
-   "window": [
-    -1122,
-    -1078
-   ]
-  },
-  {
-   "id": "EVT.M1100.KAMARUPA_FRAGMENTS_THE_CHUTIYA_AND_KACHARI_R",
-   "title": "Kamarupa fragments; the Chutiya and Kachari rise",
-   "year": -1100,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "FOUNDATION",
-   "magnitude": "M",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.ASSAM",
-   "dispute": false,
-   "window": [
-    -1122,
-    -1078
    ]
   },
   {
@@ -5431,75 +4731,6 @@
    ]
   },
   {
-   "id": "EVT.M1100.THE_CHARYAPADA_THE_EARLIEST_BENGALI_AND_ASSA",
-   "title": "The Charyapada — the earliest Bengali (and Assamese, and Odia) verse",
-   "year": -1100,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "WORK",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.BENGAL",
-   "dispute": false,
-   "window": [
-    -1122,
-    -1078
-   ]
-  },
-  {
-   "id": "EVT.M1100.VIJNANESHWARA_S_MITAKSHARA_THE_STANDARD_COMM",
-   "title": "Vijnaneshwara's Mitakshara — the standard commentary on Hindu law",
-   "year": -1100,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "WORK",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.KARNATAKA",
-   "dispute": false,
-   "window": [
-    -1122,
-    -1078
-   ]
-  },
-  {
-   "id": "EVT.M1090.THE_CHOLA_WARS_EXHAUST_THE_CHERAS",
-   "title": "The Chola wars exhaust the Cheras",
-   "year": -1090,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "INVASION",
-   "magnitude": "M",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.KERALA",
-   "dispute": false,
-   "window": [
-    -1112,
-    -1068
-   ],
-   "becomes": "nothing"
-  },
-  {
-   "id": "EVT.M1083.KAKATIYA_FOUNDATION",
-   "title": "Kakatiya foundation",
-   "year": -1083,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "FOUNDATION",
-   "magnitude": "W",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "scope": "regional",
-   "region": "RGN.ANDHRA",
-   "dispute": false
-  },
-  {
    "id": "EVT.M1080.THE_RIGVEDA_IS_ARRANGED_INTO_TEN_MANDALAS",
    "title": "The Rigveda is arranged into ten mandalas",
    "year": -1080,
@@ -5515,88 +4746,6 @@
    "window": [
     -1102,
     -1058
-   ]
-  },
-  {
-   "id": "EVT.M1078.THE_EASTERN_GANGAS",
-   "title": "The Eastern Gangas",
-   "year": -1078,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "FOUNDATION",
-   "magnitude": "W",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "scope": "regional",
-   "region": "RGN.ODISHA",
-   "dispute": false
-  },
-  {
-   "id": "EVT.M1070.KULOTTUNGA_UNITES_CHOLA_AND_EASTERN_CHALUKYA",
-   "title": "Kulottunga unites Chola and Eastern Chalukya lines",
-   "year": -1070,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "—",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.ANDHRA",
-   "dispute": false,
-   "window": [
-    -1091,
-    -1049
-   ]
-  },
-  {
-   "id": "EVT.M1070.THE_SENAS_BRAHMANICAL_REORDERING",
-   "title": "The Senas; brahmanical reordering",
-   "year": -1070,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "FOUNDATION",
-   "magnitude": "M",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.BENGAL",
-   "dispute": false,
-   "window": [
-    -1091,
-    -1049
-   ]
-  },
-  {
-   "id": "EVT.M1070.VIJAYABAHU_RESTORES_INDEPENDENCE_POLONNARUWA",
-   "title": "Vijayabahu restores independence; Polonnaruwa",
-   "year": -1070,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "FOUNDATION",
-   "magnitude": "M",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "scope": "regional",
-   "region": "RGN.SRI_LANKA",
-   "dispute": false
-  },
-  {
-   "id": "EVT.M1050.PALA_BUDDHISM_TRANSMITS_WHOLESALE_TO_TIBET",
-   "title": "Pala Buddhism transmits wholesale to Tibet",
-   "year": -1050,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "TRADE",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.BENGAL",
-   "dispute": false,
-   "window": [
-    -1071,
-    -1029
    ]
   },
   {
@@ -5618,20 +4767,6 @@
    ]
   },
   {
-   "id": "EVT.M1031.THE_DILWARA_TEMPLES_AT_MOUNT_ABU",
-   "title": "The Dilwara temples at Mount Abu",
-   "year": -1031,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "FOUNDATION",
-   "magnitude": "W",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "scope": "regional",
-   "region": "RGN.GUJARAT",
-   "dispute": false
-  },
-  {
    "id": "EVT.M1030.THE_SABHA_AND_SAMITI_ASSEMBLY_AS_AN_INSTITUT",
    "title": "The sabha and samiti: assembly as an institution",
    "year": -1030,
@@ -5650,35 +4785,6 @@
    ]
   },
   {
-   "id": "EVT.M1026.HOYSALA_FOUNDATION",
-   "title": "Hoysala foundation",
-   "year": -1026,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "FOUNDATION",
-   "magnitude": "M",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "scope": "regional",
-   "region": "RGN.KARNATAKA",
-   "dispute": false
-  },
-  {
-   "id": "EVT.M1026.SOMNATH_RAIDED_BY_MAHMUD_OF_GHAZNI",
-   "title": "Somnath raided by Mahmud of Ghazni",
-   "year": -1026,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "INVASION",
-   "magnitude": "W",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "scope": "regional",
-   "region": "RGN.GUJARAT",
-   "dispute": false,
-   "becomes": "nothing"
-  },
-  {
    "id": "EVT.M1000.AHICHCHHATRA_AND_JAKHERA",
    "title": "Ahichchhatra and Jakhera",
    "year": -1000,
@@ -5690,24 +4796,6 @@
    "trigger": "window",
    "scope": "subcontinental",
    "region": null,
-   "dispute": false,
-   "window": [
-    -1020,
-    -980
-   ]
-  },
-  {
-   "id": "EVT.M1000.ATISHA_DIPANKARA_LEAVES_FOR_TIBET",
-   "title": "Atisha Dipankara leaves for Tibet",
-   "year": -1000,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "TRADE",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.BENGAL",
    "dispute": false,
    "window": [
     -1020,
@@ -5787,125 +4875,6 @@
    ]
   },
   {
-   "id": "EVT.M1000.NANNAYA_S_ANDHRA_MAHABHARATAMU_TELUGU_LITERA",
-   "title": "Nannaya's Andhra Mahabharatamu — Telugu literature begins",
-   "year": -1000,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "WORK",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.ANDHRA",
-   "dispute": false,
-   "window": [
-    -1020,
-    -980
-   ]
-  },
-  {
-   "id": "EVT.M1000.THE_JEWISH_COPPER_PLATES_OF_BHASKARA_RAVI_VA",
-   "title": "The Jewish copper plates of Bhaskara Ravi Varman",
-   "year": -1000,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "WORK",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.KERALA",
-   "dispute": false,
-   "window": [
-    -1020,
-    -980
-   ]
-  },
-  {
-   "id": "EVT.M1000.THE_KAMAKHYA_TEMPLE_TRADITION_TANTRIC_TRANSM",
-   "title": "The Kamakhya temple tradition; Tantric transmission",
-   "year": -1000,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "REFORM",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.ASSAM",
-   "dispute": false,
-   "window": [
-    -1020,
-    -980
-   ]
-  },
-  {
-   "id": "EVT.M1000.THE_KATHASARITSAGARA_S_KASHMIRI_COURT_PATRON",
-   "title": "The Kathasaritsagara's Kashmiri court patronage",
-   "year": -1000,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "WORK",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.KASHMIR",
-   "dispute": false,
-   "window": [
-    -1020,
-    -980
-   ]
-  },
-  {
-   "id": "EVT.M1000.THE_MANIPRAVALAM_REGISTER_SANSKRIT_AND_MALAY",
-   "title": "The Manipravalam register: Sanskrit and Malayalam fused",
-   "year": -1000,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "WORK",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.KERALA",
-   "dispute": false,
-   "window": [
-    -1020,
-    -980
-   ]
-  },
-  {
-   "id": "EVT.M993.CHOLA_CONQUEST_ANURADHAPURA_FALLS",
-   "title": "Chola conquest; Anuradhapura falls",
-   "year": -993,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "INVASION",
-   "magnitude": "W",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "scope": "regional",
-   "region": "RGN.SRI_LANKA",
-   "dispute": false,
-   "becomes": "nothing"
-  },
-  {
-   "id": "EVT.M983.GOMMATESHWARA_AT_SHRAVANABELAGOLA_17_M_FROM_",
-   "title": "Gommateshwara at Shravanabelagola — 17 m from a single rock",
-   "year": -983,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "FOUNDATION",
-   "magnitude": "W",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "scope": "regional",
-   "region": "RGN.KARNATAKA",
-   "dispute": false
-  },
-  {
    "id": "EVT.M980.BARLEY_YIELDS_TO_RICE_AND_WHEAT_IN_THE_EASTE",
    "title": "Barley yields to rice and wheat in the eastern settlements",
    "year": -980,
@@ -5922,38 +4891,6 @@
     -1000,
     -960
    ]
-  },
-  {
-   "id": "EVT.M975.ABHINAVAGUPTA_KASHMIR_SHAIVISM_AND_THE_TANTR",
-   "title": "Abhinavagupta; Kashmir Shaivism and the Tantraloka",
-   "year": -975,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "WORK",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.KASHMIR",
-   "dispute": false,
-   "window": [
-    -995,
-    -955
-   ]
-  },
-  {
-   "id": "EVT.M973.WESTERN_CHALUKYA_AT_KALYANI",
-   "title": "Western Chalukya at Kalyani",
-   "year": -973,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "FOUNDATION",
-   "magnitude": "M",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "scope": "regional",
-   "region": "RGN.KARNATAKA",
-   "dispute": false
   },
   {
    "id": "EVT.M970.TRIBUTE_BALI_BHAGA_AS_VOLUNTARY_OFFERING_NOT",
@@ -5988,24 +4925,6 @@
    "dispute": true
   },
   {
-   "id": "EVT.M950.OSIAN_AND_THE_MARU_GURJARA_TEMPLE_STYLE",
-   "title": "Osian and the Maru-Gurjara temple style",
-   "year": -950,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "FOUNDATION",
-   "magnitude": "M",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.RAJASTHAN",
-   "dispute": false,
-   "window": [
-    -969,
-    -931
-   ]
-  },
-  {
    "id": "EVT.M950.THE_HASTINAPURA_FLOOD_LAYER",
    "title": "The Hastinapura flood layer",
    "year": -950,
@@ -6024,38 +4943,6 @@
    ]
   },
   {
-   "id": "EVT.M950.THE_SHILAHARAS_ON_THE_KONKAN_COAST",
-   "title": "The Shilaharas on the Konkan coast",
-   "year": -950,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "FOUNDATION",
-   "magnitude": "M",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.MAHARASHTRA",
-   "dispute": false,
-   "window": [
-    -969,
-    -931
-   ]
-  },
-  {
-   "id": "EVT.M941.THE_CHAULUKYAS_SOLANKIS",
-   "title": "The Chaulukyas (Solankis)",
-   "year": -941,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "FOUNDATION",
-   "magnitude": "M",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "scope": "regional",
-   "region": "RGN.GUJARAT",
-   "dispute": false
-  },
-  {
    "id": "EVT.M940.KAUSAMBI_OCCUPIED_AS_HASTINAPURA_DECLINES",
    "title": "Kausambi occupied as Hastinapura declines",
    "year": -940,
@@ -6067,24 +4954,6 @@
    "trigger": "window",
    "scope": "subcontinental",
    "region": null,
-   "dispute": false,
-   "window": [
-    -959,
-    -921
-   ]
-  },
-  {
-   "id": "EVT.M940.PAMPA_S_VIKRAMARJUNA_VIJAYA_THE_THREE_GEMS_O",
-   "title": "Pampa's Vikramarjuna Vijaya; the \"three gems\" of Kannada",
-   "year": -940,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "WORK",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.KARNATAKA",
    "dispute": false,
    "window": [
     -959,
@@ -6218,24 +5087,6 @@
    ]
   },
   {
-   "id": "EVT.M900.ANANDAVARDHANA_S_DHVANYALOKA_POETICS_AS_PHIL",
-   "title": "Anandavardhana's Dhvanyaloka — poetics as philosophy",
-   "year": -900,
-   "year_end": null,
-   "era": "ERA.LATE_VEDIC",
-   "class": "WORK",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.KASHMIR",
-   "dispute": false,
-   "window": [
-    -918,
-    -882
-   ]
-  },
-  {
    "id": "EVT.M900.ANURADHAPURA_S_EARLY_SETTLEMENT",
    "title": "Anuradhapura's early settlement",
    "year": -900,
@@ -6301,24 +5152,6 @@
    "trigger": "window",
    "scope": "subcontinental",
    "region": null,
-   "dispute": false,
-   "window": [
-    -918,
-    -882
-   ]
-  },
-  {
-   "id": "EVT.M900.THE_PALA_LINE_OF_KAMARUPA",
-   "title": "The Pala line of Kamarupa",
-   "year": -900,
-   "year_end": null,
-   "era": "ERA.LATE_VEDIC",
-   "class": "FOUNDATION",
-   "magnitude": "M",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.ASSAM",
    "dispute": false,
    "window": [
     -918,
@@ -6398,60 +5231,6 @@
    ]
   },
   {
-   "id": "EVT.M855.AVANTIVARMAN_SUYYA_S_ENGINEERING_DRAINS_THE_",
-   "title": "Avantivarman; Suyya's engineering drains the Jhelum floods",
-   "year": -855,
-   "year_end": null,
-   "era": "ERA.LATE_VEDIC",
-   "class": "STRUCTURE",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.KASHMIR",
-   "dispute": false,
-   "window": [
-    -872,
-    -838
-   ]
-  },
-  {
-   "id": "EVT.M850.KAVIRAJAMARGA_THE_EARLIEST_SURVIVING_KANNADA",
-   "title": "Kavirajamarga — the earliest surviving Kannada literary work",
-   "year": -850,
-   "year_end": null,
-   "era": "ERA.LATE_VEDIC",
-   "class": "WORK",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.KARNATAKA",
-   "dispute": false,
-   "window": [
-    -867,
-    -833
-   ]
-  },
-  {
-   "id": "EVT.M850.THE_PALA_SCHOOL_OF_BRONZE_AND_MANUSCRIPT_PAI",
-   "title": "The Pala school of bronze and manuscript painting",
-   "year": -850,
-   "year_end": null,
-   "era": "ERA.LATE_VEDIC",
-   "class": "WORK",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.BENGAL",
-   "dispute": false,
-   "window": [
-    -867,
-    -833
-   ]
-  },
-  {
    "id": "EVT.M850.VIDEGHA_MATHAVA_S_FIRE_THE_EASTWARD_EXPANSIO",
    "title": "Videgha Mathava's fire — the eastward expansion, told as myth",
    "year": -850,
@@ -6467,52 +5246,6 @@
    "window": [
     -867,
     -833
-   ]
-  },
-  {
-   "id": "EVT.M850.VIJAYALAYA_TAKES_THANJAVUR_ERA_13_CARRIES_TH",
-   "title": "Vijayalaya takes Thanjavur → Era 13 carries the rest",
-   "year": -850,
-   "year_end": null,
-   "era": "ERA.LATE_VEDIC",
-   "class": "EPOCH",
-   "magnitude": "W",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "scope": "regional",
-   "region": "RGN.TAMILAKAM",
-   "dispute": false
-  },
-  {
-   "id": "EVT.M849.THE_TARISAPPALLI_COPPER_PLATES_A_GRANT_TO_A_",
-   "title": "The Tarisappalli copper plates — a grant to a Christian church",
-   "year": -849,
-   "year_end": null,
-   "era": "ERA.LATE_VEDIC",
-   "class": "WORK",
-   "magnitude": "W",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "scope": "regional",
-   "region": "RGN.KERALA",
-   "dispute": false
-  },
-  {
-   "id": "EVT.M848.TELUGU_INSCRIPTIONS_MULTIPLY_UNDER_THE_RASHT",
-   "title": "Telugu inscriptions multiply under the Rashtrakutas",
-   "year": -848,
-   "year_end": null,
-   "era": "ERA.LATE_VEDIC",
-   "class": "WORK",
-   "magnitude": "M",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.ANDHRA",
-   "dispute": false,
-   "window": [
-    -865,
-    -831
    ]
   },
   {
@@ -6552,24 +5285,6 @@
    ]
   },
   {
-   "id": "EVT.M830.MANIKKAVACHAKAR_S_TIRUVASAGAM",
-   "title": "Manikkavachakar's Tiruvasagam",
-   "year": -830,
-   "year_end": null,
-   "era": "ERA.LATE_VEDIC",
-   "class": "WORK",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.TAMILAKAM",
-   "dispute": false,
-   "window": [
-    -847,
-    -813
-   ]
-  },
-  {
    "id": "EVT.M820.SURPLUS_CONCENTRATES_THE_GRAMA_BECOMES_A_TAX",
    "title": "Surplus concentrates; the grama becomes a taxable unit",
    "year": -820,
@@ -6585,42 +5300,6 @@
    "window": [
     -836,
     -804
-   ]
-  },
-  {
-   "id": "EVT.M800.ELLORA_KAILASA_COMPLETED",
-   "title": "Ellora Kailasa completed",
-   "year": -800,
-   "year_end": null,
-   "era": "ERA.LATE_VEDIC",
-   "class": "FOUNDATION",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.KARNATAKA",
-   "dispute": false,
-   "window": [
-    -816,
-    -784
-   ]
-  },
-  {
-   "id": "EVT.M800.ELLORA_KAILASA_COMPLETED_2",
-   "title": "Ellora Kailasa completed",
-   "year": -800,
-   "year_end": null,
-   "era": "ERA.LATE_VEDIC",
-   "class": "FOUNDATION",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.MAHARASHTRA",
-   "dispute": false,
-   "window": [
-    -816,
-    -784
    ]
   },
   {
@@ -6678,132 +5357,6 @@
    ]
   },
   {
-   "id": "EVT.M800.SILK_AND_LAC_FROM_KAMARUPA_REACH_THE_GANGETI",
-   "title": "Silk and lac from Kamarupa reach the Gangetic markets",
-   "year": -800,
-   "year_end": null,
-   "era": "ERA.LATE_VEDIC",
-   "class": "TRADE",
-   "magnitude": "M",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.ASSAM",
-   "dispute": false,
-   "window": [
-    -816,
-    -784
-   ]
-  },
-  {
-   "id": "EVT.M800.SOMAPURA_MAHAVIHARA_AT_PAHARPUR_THE_LARGEST_",
-   "title": "Somapura Mahavihara at Paharpur — the largest south of the Himalaya",
-   "year": -800,
-   "year_end": null,
-   "era": "ERA.LATE_VEDIC",
-   "class": "FOUNDATION",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.BENGAL",
-   "dispute": false,
-   "window": [
-    -816,
-    -784
-   ]
-  },
-  {
-   "id": "EVT.M800.SRI_LANKAN_MONKS_CARRY_THE_CANON_TO_SOUTHEAS",
-   "title": "Sri Lankan monks carry the canon to Southeast Asia",
-   "year": -800,
-   "year_end": null,
-   "era": "ERA.LATE_VEDIC",
-   "class": "TRADE",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.SRI_LANKA",
-   "dispute": false,
-   "window": [
-    -816,
-    -784
-   ]
-  },
-  {
-   "id": "EVT.M800.THE_CHERA_PERUMALS_OF_MAKOTAI",
-   "title": "The Chera Perumals of Makotai",
-   "year": -800,
-   "year_end": null,
-   "era": "ERA.LATE_VEDIC",
-   "class": "FOUNDATION",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.KERALA",
-   "dispute": false,
-   "window": [
-    -816,
-    -784
-   ]
-  },
-  {
-   "id": "EVT.M800.THE_DIVYA_PRABANDHAM_COMPILED",
-   "title": "The Divya Prabandham compiled",
-   "year": -800,
-   "year_end": null,
-   "era": "ERA.LATE_VEDIC",
-   "class": "WORK",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.TAMILAKAM",
-   "dispute": false,
-   "window": [
-    -816,
-    -784
-   ]
-  },
-  {
-   "id": "EVT.M800.THE_GUHILAS_OF_MEWAR_THE_CHAUHANS_OF_SAKAMBH",
-   "title": "The Guhilas of Mewar; the Chauhans of Sakambhari",
-   "year": -800,
-   "year_end": null,
-   "era": "ERA.LATE_VEDIC",
-   "class": "FOUNDATION",
-   "magnitude": "M",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.RAJASTHAN",
-   "dispute": false,
-   "window": [
-    -816,
-    -784
-   ]
-  },
-  {
-   "id": "EVT.M800.VAJRAYANA_SCHOOLS_FLOURISH_IN_COASTAL_ODISHA",
-   "title": "Vajrayana schools flourish in coastal Odisha",
-   "year": -800,
-   "year_end": null,
-   "era": "ERA.LATE_VEDIC",
-   "class": "REFORM",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.ODISHA",
-   "dispute": false,
-   "window": [
-    -816,
-    -784
-   ]
-  },
-  {
    "id": "EVT.M790.THE_PANCHAVIMSHA_BRAHMANA",
    "title": "The Panchavimsha Brahmana",
    "year": -790,
@@ -6822,24 +5375,6 @@
    ]
   },
   {
-   "id": "EVT.M780.NANDIVARMAN_III_THE_PALLAVA_HIGH_STYLE_CLOSE",
-   "title": "Nandivarman III; the Pallava high style closes",
-   "year": -780,
-   "year_end": null,
-   "era": "ERA.LATE_VEDIC",
-   "class": "—",
-   "magnitude": "M",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.TAMILAKAM",
-   "dispute": false,
-   "window": [
-    -796,
-    -764
-   ]
-  },
-  {
    "id": "EVT.M780.THE_VEDANGA_DISCIPLINES_SEPARATE_OUT_SIX_AUX",
    "title": "The Vedanga disciplines separate out: six auxiliary sciences",
    "year": -780,
@@ -6851,24 +5386,6 @@
    "trigger": "window",
    "scope": "subcontinental",
    "region": null,
-   "dispute": false,
-   "window": [
-    -796,
-    -764
-   ]
-  },
-  {
-   "id": "EVT.M780.VALABHI_SACKED_THE_UNIVERSITY_ENDS",
-   "title": "Valabhi sacked; the university ends",
-   "year": -780,
-   "year_end": null,
-   "era": "ERA.LATE_VEDIC",
-   "class": "CATASTROPHE",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.GUJARAT",
    "dispute": false,
    "window": [
     -796,
@@ -6894,52 +5411,6 @@
    ]
   },
   {
-   "id": "EVT.M770.DHARMAPALA_VIKRAMASHILA_AND_SOMAPURA_FOUNDED",
-   "title": "Dharmapala; Vikramashila and Somapura founded",
-   "year": -770,
-   "year_end": null,
-   "era": "ERA.LATE_VEDIC",
-   "class": "FOUNDATION",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.BENGAL",
-   "dispute": false,
-   "window": [
-    -785,
-    -755
-   ]
-  },
-  {
-   "id": "EVT.M753.RASHTRAKUTA_THE_DECCAN_BECOMES_THE_ARBITER_O",
-   "title": "Rashtrakuta; the Deccan becomes the arbiter of the north",
-   "year": -753,
-   "year_end": null,
-   "era": "ERA.LATE_VEDIC",
-   "class": "FOUNDATION",
-   "magnitude": "W",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "scope": "regional",
-   "region": "RGN.KARNATAKA",
-   "dispute": false
-  },
-  {
-   "id": "EVT.M753.THE_RASHTRAKUTAS",
-   "title": "The Rashtrakutas",
-   "year": -753,
-   "year_end": null,
-   "era": "ERA.LATE_VEDIC",
-   "class": "FOUNDATION",
-   "magnitude": "W",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "scope": "regional",
-   "region": "RGN.MAHARASHTRA",
-   "dispute": false
-  },
-  {
    "id": "EVT.M750.GARGI_VACHAKNAVI_ARGUES_IN_OPEN_ASSEMBLY",
    "title": "Gargi Vachaknavi argues in open assembly",
    "year": -750,
@@ -6951,42 +5422,6 @@
    "trigger": "window",
    "scope": "subcontinental",
    "region": null,
-   "dispute": false,
-   "window": [
-    -765,
-    -735
-   ]
-  },
-  {
-   "id": "EVT.M750.GOPALA_ELECTED_KING_THE_PALA_FOUNDATION_BY_A",
-   "title": "Gopala elected king — the Pala foundation, by assembly",
-   "year": -750,
-   "year_end": null,
-   "era": "ERA.LATE_VEDIC",
-   "class": "FOUNDATION",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.BENGAL",
-   "dispute": false,
-   "window": [
-    -765,
-    -735
-   ]
-  },
-  {
-   "id": "EVT.M750.RATNAGIRI_LALITAGIRI_UDAYAGIRI_THE_BUDDHIST_",
-   "title": "Ratnagiri, Lalitagiri, Udayagiri — the Buddhist diamond triangle",
-   "year": -750,
-   "year_end": null,
-   "era": "ERA.LATE_VEDIC",
-   "class": "FOUNDATION",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.ODISHA",
    "dispute": false,
    "window": [
     -765,
@@ -7030,24 +5465,6 @@
    ]
   },
   {
-   "id": "EVT.M740.KAILASANATHA_AT_KANCHI",
-   "title": "Kailasanatha at Kanchi",
-   "year": -740,
-   "year_end": null,
-   "era": "ERA.LATE_VEDIC",
-   "class": "FOUNDATION",
-   "magnitude": "M",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.TAMILAKAM",
-   "dispute": false,
-   "window": [
-    -755,
-    -725
-   ]
-  },
-  {
    "id": "EVT.M740.RENUNCIATION_APPEARS_AS_A_RECOGNISED_LIFE_ST",
    "title": "Renunciation appears as a recognised life stage",
    "year": -740,
@@ -7084,38 +5501,6 @@
    ]
   },
   {
-   "id": "EVT.M730.THE_GURJARA_PRATIHARAS",
-   "title": "The Gurjara-Pratiharas",
-   "year": -730,
-   "year_end": null,
-   "era": "ERA.LATE_VEDIC",
-   "class": "FOUNDATION",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.RAJASTHAN",
-   "dispute": false,
-   "window": [
-    -745,
-    -715
-   ]
-  },
-  {
-   "id": "EVT.M724.LALITADITYA_MUKTAPIDA_THE_MARTAND_SUN_TEMPLE",
-   "title": "Lalitaditya Muktapida; the Martand sun temple",
-   "year": -724,
-   "year_end": null,
-   "era": "ERA.LATE_VEDIC",
-   "class": "FOUNDATION",
-   "magnitude": "W",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "scope": "regional",
-   "region": "RGN.KASHMIR",
-   "dispute": false
-  },
-  {
    "id": "EVT.M720.UJJAIN_FORTIFIED_THE_MALWA_ROUTE_SECURED",
    "title": "Ujjain fortified; the Malwa route secured",
    "year": -720,
@@ -7131,24 +5516,6 @@
    "window": [
     -734,
     -706
-   ]
-  },
-  {
-   "id": "EVT.M715.ANDAL_THE_ONE_WOMAN_AMONG_THE_TWELVE_ALVARS",
-   "title": "Andal — the one woman among the twelve Alvars",
-   "year": -715,
-   "year_end": null,
-   "era": "ERA.LATE_VEDIC",
-   "class": "WORK",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.TAMILAKAM",
-   "dispute": false,
-   "window": [
-    -729,
-    -701
    ]
   },
   {
@@ -7181,24 +5548,6 @@
    "trigger": "window",
    "scope": "subcontinental",
    "region": null,
-   "dispute": false,
-   "window": [
-    -714,
-    -686
-   ]
-  },
-  {
-   "id": "EVT.M700.PATTADAKAL_NORTHERN_AND_SOUTHERN_STYLES_BUIL",
-   "title": "Pattadakal; northern and southern styles built side by side",
-   "year": -700,
-   "year_end": null,
-   "era": "ERA.LATE_VEDIC",
-   "class": "FOUNDATION",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.KARNATAKA",
    "dispute": false,
    "window": [
     -714,
@@ -7260,24 +5609,6 @@
    ]
   },
   {
-   "id": "EVT.M700.THE_NAYANARS_AND_ALVARS_BHAKTI_ON_THE_PILGRI",
-   "title": "The Nayanars and Alvars; bhakti on the pilgrimage roads",
-   "year": -700,
-   "year_end": null,
-   "era": "ERA.LATE_VEDIC",
-   "class": "WORK",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.TAMILAKAM",
-   "dispute": false,
-   "window": [
-    -714,
-    -686
-   ]
-  },
-  {
    "id": "EVT.M700.THE_TINAI_LANDSCAPE_SCHEME_FIVE_ECOLOGIES_FI",
    "title": "The tinai landscape scheme: five ecologies, five poetic modes",
    "year": -700,
@@ -7332,24 +5663,6 @@
    ]
   },
   {
-   "id": "EVT.M675.THE_SHORE_TEMPLE_AT_MAHABALIPURAM",
-   "title": "The Shore Temple at Mahabalipuram",
-   "year": -675,
-   "year_end": null,
-   "era": "ERA.LATE_VEDIC",
-   "class": "FOUNDATION",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.TAMILAKAM",
-   "dispute": false,
-   "window": [
-    -689,
-    -661
-   ]
-  },
-  {
    "id": "EVT.M670.THE_SHRENI_CRAFT_ASSOCIATIONS_ACQUIRE_STANDI",
    "title": "The shreni: craft associations acquire standing",
    "year": -670,
@@ -7383,24 +5696,6 @@
    "window": [
     -673,
     -647
-   ]
-  },
-  {
-   "id": "EVT.M650.APPAR_AND_THE_SHAIVA_TURN_JAINISM_LOSES_ROYA",
-   "title": "Appar and the Shaiva turn; Jainism loses royal favour",
-   "year": -650,
-   "year_end": null,
-   "era": "ERA.LATE_VEDIC",
-   "class": "REFORM",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.TAMILAKAM",
-   "dispute": false,
-   "window": [
-    -663,
-    -637
    ]
   },
   {
@@ -7440,60 +5735,6 @@
    ]
   },
   {
-   "id": "EVT.M640.THE_NIDHANPUR_COPPER_PLATES",
-   "title": "The Nidhanpur copper plates",
-   "year": -640,
-   "year_end": null,
-   "era": "ERA.LATE_VEDIC",
-   "class": "WORK",
-   "magnitude": "M",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.ASSAM",
-   "dispute": false,
-   "window": [
-    -653,
-    -627
-   ]
-  },
-  {
-   "id": "EVT.M640.XUANZANG_REPORTS_6_000_MONKS_AT_VALABHI",
-   "title": "Xuanzang reports 6,000 monks at Valabhi",
-   "year": -640,
-   "year_end": null,
-   "era": "ERA.LATE_VEDIC",
-   "class": "TRADE",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.GUJARAT",
-   "dispute": false,
-   "window": [
-    -653,
-    -627
-   ]
-  },
-  {
-   "id": "EVT.M634.THE_AIHOLE_INSCRIPTION_OF_RAVIKIRTI",
-   "title": "The Aihole inscription of Ravikirti",
-   "year": -634,
-   "year_end": null,
-   "era": "ERA.LATE_VEDIC",
-   "class": "WORK",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.KARNATAKA",
-   "dispute": false,
-   "window": [
-    -647,
-    -621
-   ]
-  },
-  {
    "id": "EVT.M630.IRON_PRODUCTION_AT_MALHAR_REACHES_INDUSTRIAL",
    "title": "Iron production at Malhar reaches industrial scale",
    "year": -630,
@@ -7509,60 +5750,6 @@
    "window": [
     -643,
     -617
-   ]
-  },
-  {
-   "id": "EVT.M630.MAHENDRAVARMAN_S_MATTAVILASA_PRAHASANA_A_SAT",
-   "title": "Mahendravarman's Mattavilasa Prahasana — a satire by a king",
-   "year": -630,
-   "year_end": null,
-   "era": "ERA.LATE_VEDIC",
-   "class": "WORK",
-   "magnitude": "M",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.TAMILAKAM",
-   "dispute": false,
-   "window": [
-    -643,
-    -617
-   ]
-  },
-  {
-   "id": "EVT.M630.THE_KALAMALLA_INSCRIPTION_EARLY_TELUGU",
-   "title": "The Kalamalla inscription — early Telugu",
-   "year": -630,
-   "year_end": null,
-   "era": "ERA.LATE_VEDIC",
-   "class": "WORK",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.ANDHRA",
-   "dispute": false,
-   "window": [
-    -643,
-    -617
-   ]
-  },
-  {
-   "id": "EVT.M625.THE_KARKOTA_DYNASTY",
-   "title": "The Karkota dynasty",
-   "year": -625,
-   "year_end": null,
-   "era": "ERA.LATE_VEDIC",
-   "class": "FOUNDATION",
-   "magnitude": "M",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.KASHMIR",
-   "dispute": false,
-   "window": [
-    -638,
-    -612
    ]
   },
   {
@@ -7598,78 +5785,6 @@
    "dispute": true
   },
   {
-   "id": "EVT.M600.AIHOLE_125_TEMPLES_AN_ARCHITECTURAL_LABORATO",
-   "title": "Aihole: 125 temples; an architectural laboratory",
-   "year": -600,
-   "year_end": null,
-   "era": "ERA.SECOND_URBAN",
-   "class": "FOUNDATION",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.KARNATAKA",
-   "dispute": false,
-   "window": [
-    -612,
-    -588
-   ]
-  },
-  {
-   "id": "EVT.M600.BHASKARAVARMAN_XUANZANG_VISITS_HIS_COURT",
-   "title": "Bhaskaravarman; Xuanzang visits his court",
-   "year": -600,
-   "year_end": null,
-   "era": "ERA.SECOND_URBAN",
-   "class": "—",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.ASSAM",
-   "dispute": false,
-   "window": [
-    -612,
-    -588
-   ]
-  },
-  {
-   "id": "EVT.M600.ELLORA_BEGUN_BUDDHIST_HINDU_AND_JAIN_CAVES_I",
-   "title": "Ellora begun; Buddhist, Hindu and Jain caves in one cliff",
-   "year": -600,
-   "year_end": null,
-   "era": "ERA.SECOND_URBAN",
-   "class": "FOUNDATION",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.MAHARASHTRA",
-   "dispute": false,
-   "window": [
-    -612,
-    -588
-   ]
-  },
-  {
-   "id": "EVT.M600.JEWISH_AND_CHRISTIAN_MERCHANT_SETTLEMENTS_AT",
-   "title": "Jewish and Christian merchant settlements attested",
-   "year": -600,
-   "year_end": null,
-   "era": "ERA.SECOND_URBAN",
-   "class": "TRADE",
-   "magnitude": "M",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.KERALA",
-   "dispute": false,
-   "window": [
-    -612,
-    -588
-   ]
-  },
-  {
    "id": "EVT.M600.KORKAI_PEARL_FISHERY_AND_PORT",
    "title": "Korkai: pearl fishery and port",
    "year": -600,
@@ -7681,61 +5796,6 @@
    "trigger": "window",
    "scope": "regional",
    "region": "RGN.TAMILAKAM",
-   "dispute": false,
-   "window": [
-    -612,
-    -588
-   ]
-  },
-  {
-   "id": "EVT.M600.PALLAVA_PANDYA_WARS_BEGIN",
-   "title": "Pallava–Pandya wars begin",
-   "year": -600,
-   "year_end": null,
-   "era": "ERA.SECOND_URBAN",
-   "class": "INVASION",
-   "magnitude": "M",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.TAMILAKAM",
-   "dispute": false,
-   "window": [
-    -612,
-    -588
-   ],
-   "becomes": "nothing"
-  },
-  {
-   "id": "EVT.M600.SHAIVISM_AND_BUDDHISM_SHARE_ROYAL_PATRONAGE",
-   "title": "Shaivism and Buddhism share royal patronage",
-   "year": -600,
-   "year_end": null,
-   "era": "ERA.SECOND_URBAN",
-   "class": "REFORM",
-   "magnitude": "M",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.ODISHA",
-   "dispute": false,
-   "window": [
-    -612,
-    -588
-   ]
-  },
-  {
-   "id": "EVT.M600.SHASHANKA_OF_GAUDA_THE_BENGALI_ERA",
-   "title": "Shashanka of Gauda; the Bengali era",
-   "year": -600,
-   "year_end": null,
-   "era": "ERA.SECOND_URBAN",
-   "class": "FOUNDATION",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.BENGAL",
    "dispute": false,
    "window": [
     -612,
@@ -7857,42 +5917,6 @@
    ]
   },
   {
-   "id": "EVT.M575.EASTERN_CHALUKYA_AT_VENGI",
-   "title": "Eastern Chalukya at Vengi",
-   "year": -575,
-   "year_end": null,
-   "era": "ERA.SECOND_URBAN",
-   "class": "FOUNDATION",
-   "magnitude": "M",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.ANDHRA",
-   "dispute": false,
-   "window": [
-    -587,
-    -563
-   ]
-  },
-  {
-   "id": "EVT.M575.KADUNGON_THE_PANDYA_REVIVAL",
-   "title": "Kadungon; the Pandya revival",
-   "year": -575,
-   "year_end": null,
-   "era": "ERA.SECOND_URBAN",
-   "class": "FOUNDATION",
-   "magnitude": "M",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.TAMILAKAM",
-   "dispute": false,
-   "window": [
-    -587,
-    -563
-   ]
-  },
-  {
    "id": "EVT.M570.LONG_DISTANCE_CARAVAN_ROUTES_THE_UTTARAPATHA",
    "title": "Long-distance caravan routes: the uttarapatha and dakshinapatha",
    "year": -570,
@@ -7959,20 +5983,6 @@
     -556,
     -534
    ]
-  },
-  {
-   "id": "EVT.M543.CHALUKYA_FOUNDATION_AT_BADAMI",
-   "title": "Chalukya foundation at Badami",
-   "year": -543,
-   "year_end": null,
-   "era": "ERA.SECOND_URBAN",
-   "class": "FOUNDATION",
-   "magnitude": "W",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "scope": "regional",
-   "region": "RGN.KARNATAKA",
-   "dispute": false
   },
   {
    "id": "EVT.M540.MAKKHALI_GOSALA_AND_THE_AJIVIKAS_THE_THIRD_R",
@@ -8239,20 +6249,6 @@
    ]
   },
   {
-   "id": "EVT.M475.THE_MAITRAKAS_VALABHI_BECOMES_A_UNIVERSITY",
-   "title": "The Maitrakas; Valabhi becomes a university",
-   "year": -475,
-   "year_end": null,
-   "era": "ERA.SECOND_URBAN",
-   "class": "FOUNDATION",
-   "magnitude": "W",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "scope": "regional",
-   "region": "RGN.GUJARAT",
-   "dispute": false
-  },
-  {
    "id": "EVT.M475.VAJJI_FALLS_THE_REPUBLICAN_FORM_LOSES_ITS_GR",
    "title": "Vajji falls; the republican form loses its greatest example",
    "year": -475,
@@ -8289,60 +6285,6 @@
    ]
   },
   {
-   "id": "EVT.M460.SIGIRIYA",
-   "title": "Sigiriya",
-   "year": -460,
-   "year_end": null,
-   "era": "ERA.SECOND_URBAN",
-   "class": "FOUNDATION",
-   "magnitude": "M",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.SRI_LANKA",
-   "dispute": false,
-   "window": [
-    -469,
-    -451
-   ]
-  },
-  {
-   "id": "EVT.M450.AJANTA_S_SECOND_PHASE_UNDER_VAKATAKA_PATRONA",
-   "title": "Ajanta's second phase under Vakataka patronage",
-   "year": -450,
-   "year_end": null,
-   "era": "ERA.SECOND_URBAN",
-   "class": "FOUNDATION",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.MAHARASHTRA",
-   "dispute": false,
-   "window": [
-    -459,
-    -441
-   ]
-  },
-  {
-   "id": "EVT.M450.COPPER_PLATE_LAND_GRANTS_PROLIFERATE",
-   "title": "Copper-plate land grants proliferate",
-   "year": -450,
-   "year_end": null,
-   "era": "ERA.SECOND_URBAN",
-   "class": "TRANSITION",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.BENGAL",
-   "dispute": false,
-   "window": [
-    -459,
-    -441
-   ]
-  },
-  {
    "id": "EVT.M450.HERODOTUS_REPORTS_ON_INDIA_FROM_PERSIAN_SOUR",
    "title": "Herodotus reports on India from Persian sources",
    "year": -450,
@@ -8361,24 +6303,6 @@
    ]
   },
   {
-   "id": "EVT.M450.JAIN_AND_BUDDHIST_INSTITUTIONS_FLOURISH_UNDE",
-   "title": "Jain and Buddhist institutions flourish under the Kalabhras",
-   "year": -450,
-   "year_end": null,
-   "era": "ERA.SECOND_URBAN",
-   "class": "REFORM",
-   "magnitude": "M",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.TAMILAKAM",
-   "dispute": false,
-   "window": [
-    -459,
-    -441
-   ]
-  },
-  {
    "id": "EVT.M450.KODUMANAL_GEM_CUTTING_IRON_AND_HIGH_CARBON_S",
    "title": "Kodumanal: gem cutting, iron and high-carbon steel",
    "year": -450,
@@ -8390,24 +6314,6 @@
    "trigger": "window",
    "scope": "regional",
    "region": "RGN.TAMILAKAM",
-   "dispute": false,
-   "window": [
-    -459,
-    -441
-   ]
-  },
-  {
-   "id": "EVT.M450.THE_HALMIDI_INSCRIPTION_THE_EARLIEST_KANNADA",
-   "title": "The Halmidi inscription — the earliest Kannada text",
-   "year": -450,
-   "year_end": null,
-   "era": "ERA.SECOND_URBAN",
-   "class": "WORK",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.KARNATAKA",
    "dispute": false,
    "window": [
     -459,
@@ -8444,24 +6350,6 @@
    "window": [
     -449,
     -431
-   ]
-  },
-  {
-   "id": "EVT.M430.BUDDHAGHOSA_THE_VISUDDHIMAGGA_AND_THE_COMMEN",
-   "title": "Buddhaghosa; the Visuddhimagga and the commentaries",
-   "year": -430,
-   "year_end": null,
-   "era": "ERA.SECOND_URBAN",
-   "class": "WORK",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.SRI_LANKA",
-   "dispute": false,
-   "window": [
-    -439,
-    -421
    ]
   },
   {
@@ -8519,24 +6407,6 @@
    ]
   },
   {
-   "id": "EVT.M400.FAXIAN_SPENDS_TWO_YEARS_COPYING_TEXTS",
-   "title": "Faxian spends two years copying texts",
-   "year": -400,
-   "year_end": null,
-   "era": "ERA.SECOND_URBAN",
-   "class": "TRADE",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.SRI_LANKA",
-   "dispute": false,
-   "window": [
-    -408,
-    -392
-   ]
-  },
-  {
    "id": "EVT.M400.KALINGA_S_MARITIME_TRADE_TO_SOUTHEAST_ASIA_B",
    "title": "Kalinga's maritime trade to Southeast Asia begins",
    "year": -400,
@@ -8548,24 +6418,6 @@
    "trigger": "window",
    "scope": "regional",
    "region": "RGN.ODISHA",
-   "dispute": false,
-   "window": [
-    -408,
-    -392
-   ]
-  },
-  {
-   "id": "EVT.M400.KASHMIRI_MONKS_CARRY_TEXTS_TO_CENTRAL_ASIA_A",
-   "title": "Kashmiri monks carry texts to Central Asia and China",
-   "year": -400,
-   "year_end": null,
-   "era": "ERA.SECOND_URBAN",
-   "class": "TRADE",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.KASHMIR",
    "dispute": false,
    "window": [
     -408,
@@ -8591,24 +6443,6 @@
    ]
   },
   {
-   "id": "EVT.M400.MATHARA_AND_SAILODBHAVA_LINES",
-   "title": "Mathara and Sailodbhava lines",
-   "year": -400,
-   "year_end": null,
-   "era": "ERA.SECOND_URBAN",
-   "class": "FOUNDATION",
-   "magnitude": "M",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.ODISHA",
-   "dispute": false,
-   "window": [
-    -408,
-    -392
-   ]
-  },
-  {
    "id": "EVT.M400.THE_SUSHRUTA_SURGICAL_TRADITION_TAKES_SHAPE",
    "title": "The Sushruta surgical tradition takes shape",
    "year": -400,
@@ -8620,24 +6454,6 @@
    "trigger": "window",
    "scope": "subcontinental",
    "region": null,
-   "dispute": false,
-   "window": [
-    -408,
-    -392
-   ]
-  },
-  {
-   "id": "EVT.M400.THE_UMACHAL_AND_NAGAJARI_KHANIKARGAON_INSCRI",
-   "title": "The Umachal and Nagajari-Khanikargaon inscriptions",
-   "year": -400,
-   "year_end": null,
-   "era": "ERA.SECOND_URBAN",
-   "class": "WORK",
-   "magnitude": "M",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.ASSAM",
    "dispute": false,
    "window": [
     -408,
@@ -8729,53 +6545,6 @@
     -357,
     -343
    ]
-  },
-  {
-   "id": "EVT.M350.THE_KALABHRA_INTERREGNUM_THE_DARK_AGE_POORLY",
-   "title": "The Kalabhra interregnum — the \"dark age\", poorly evidenced",
-   "year": -350,
-   "year_end": null,
-   "era": "ERA.SECOND_URBAN",
-   "class": "INVASION",
-   "magnitude": "W",
-   "certainty": 0.45,
-   "trigger": "latent",
-   "scope": "regional",
-   "region": "RGN.TAMILAKAM",
-   "dispute": true,
-   "becomes": "nothing"
-  },
-  {
-   "id": "EVT.M350.WESTERN_GANGA_AT_TALAKAD_JAIN_PATRONAGE",
-   "title": "Western Ganga at Talakad; Jain patronage",
-   "year": -350,
-   "year_end": null,
-   "era": "ERA.SECOND_URBAN",
-   "class": "FOUNDATION",
-   "magnitude": "M",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.KARNATAKA",
-   "dispute": false,
-   "window": [
-    -357,
-    -343
-   ]
-  },
-  {
-   "id": "EVT.M345.KADAMBA_FOUNDED_AT_BANAVASI_THE_FIRST_KANNAD",
-   "title": "Kadamba founded at Banavasi — the first Kannada-region dynasty",
-   "year": -345,
-   "year_end": null,
-   "era": "ERA.SECOND_URBAN",
-   "class": "FOUNDATION",
-   "magnitude": "W",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "scope": "regional",
-   "region": "RGN.KARNATAKA",
-   "dispute": false
   },
   {
    "id": "EVT.M345.NANDA_A_VAST_STANDING_ARMY_HEAVY_TAXATION_DE",
@@ -9016,24 +6785,6 @@
    ]
   },
   {
-   "id": "EVT.M300.BAVIKONDA_AND_THOTLAKONDA_THE_COASTAL_MONAST",
-   "title": "Bavikonda and Thotlakonda; the coastal monasteries",
-   "year": -300,
-   "year_end": null,
-   "era": "ERA.MAURYAN",
-   "class": "SITE",
-   "magnitude": "M",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.ANDHRA",
-   "dispute": false,
-   "window": [
-    -306,
-    -294
-   ]
-  },
-  {
    "id": "EVT.M300.BLACK_PEPPER_ENTERS_LONG_DISTANCE_TRADE",
    "title": "Black pepper enters long-distance trade",
    "year": -300,
@@ -9153,24 +6904,6 @@
    "trigger": "window",
    "scope": "regional",
    "region": "RGN.GUJARAT",
-   "dispute": false,
-   "window": [
-    -306,
-    -294
-   ]
-  },
-  {
-   "id": "EVT.M300.TIRUKKURAL",
-   "title": "Tirukkural",
-   "year": -300,
-   "year_end": null,
-   "era": "ERA.MAURYAN",
-   "class": "WORK",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.TAMILAKAM",
    "dispute": false,
    "window": [
     -306,
@@ -9466,24 +7199,6 @@
    ]
   },
   {
-   "id": "EVT.M250.AUVAIYAR_WOMEN_POETS_ACROSS_THE_ANTHOLOGIES",
-   "title": "Auvaiyar; women poets across the anthologies",
-   "year": -250,
-   "year_end": null,
-   "era": "ERA.MAURYAN",
-   "class": "WORK",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.TAMILAKAM",
-   "dispute": false,
-   "window": [
-    -255,
-    -245
-   ]
-  },
-  {
    "id": "EVT.M250.MAHINDA_ARRIVES_BUDDHISM_IS_TRANSMITTED",
    "title": "Mahinda arrives; Buddhism is transmitted",
    "year": -250,
@@ -9513,24 +7228,6 @@
    "trigger": "window",
    "scope": "subcontinental",
    "region": null,
-   "dispute": false,
-   "window": [
-    -255,
-    -245
-   ]
-  },
-  {
-   "id": "EVT.M250.NAGARJUNAKONDA_S_BUDDHIST_UNIVERSITY_AND_STA",
-   "title": "Nagarjunakonda's Buddhist university and stadium",
-   "year": -250,
-   "year_end": null,
-   "era": "ERA.MAURYAN",
-   "class": "FOUNDATION",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.ANDHRA",
    "dispute": false,
    "window": [
     -255,
@@ -9621,24 +7318,6 @@
    "trigger": "window",
    "scope": "regional",
    "region": "RGN.KARNATAKA",
-   "dispute": false,
-   "window": [
-    -255,
-    -245
-   ]
-  },
-  {
-   "id": "EVT.M250.THE_VAKATAKAS",
-   "title": "The Vakatakas",
-   "year": -250,
-   "year_end": null,
-   "era": "ERA.MAURYAN",
-   "class": "FOUNDATION",
-   "magnitude": "M",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.MAHARASHTRA",
    "dispute": false,
    "window": [
     -255,
@@ -9804,96 +7483,6 @@
    ]
   },
   {
-   "id": "EVT.M225.IKSHVAKUS_AT_NAGARJUNAKONDA",
-   "title": "Ikshvakus at Nagarjunakonda",
-   "year": -225,
-   "year_end": null,
-   "era": "ERA.MAURYAN",
-   "class": "FOUNDATION",
-   "magnitude": "M",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.ANDHRA",
-   "dispute": false,
-   "window": [
-    -230,
-    -220
-   ]
-  },
-  {
-   "id": "EVT.M200.BHARUCH_BARYGAZA_ON_THE_ROMAN_CIRCUIT",
-   "title": "Bharuch (Barygaza) on the Roman circuit",
-   "year": -200,
-   "year_end": null,
-   "era": "ERA.MAURYAN",
-   "class": "TRADE",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.GUJARAT",
-   "dispute": false,
-   "window": [
-    -205,
-    -195
-   ]
-  },
-  {
-   "id": "EVT.M200.CHILAPPATIKARAM_S_CHERA_CHAPTERS",
-   "title": "Chilappatikaram's Chera chapters",
-   "year": -200,
-   "year_end": null,
-   "era": "ERA.MAURYAN",
-   "class": "WORK",
-   "magnitude": "M",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.KERALA",
-   "dispute": false,
-   "window": [
-    -205,
-    -195
-   ]
-  },
-  {
-   "id": "EVT.M200.ETTUTHOKAI_AND_PATTUPPATTU_2_381_POEMS_473_P",
-   "title": "Ettuthokai and Pattuppattu — 2,381 poems, 473 poets",
-   "year": -200,
-   "year_end": null,
-   "era": "ERA.MAURYAN",
-   "class": "WORK",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.TAMILAKAM",
-   "dispute": false,
-   "window": [
-    -205,
-    -195
-   ]
-  },
-  {
-   "id": "EVT.M200.KASHMIR_BECOMES_THE_SARVASTIVADA_HEARTLAND",
-   "title": "Kashmir becomes the Sarvastivada heartland",
-   "year": -200,
-   "year_end": null,
-   "era": "ERA.MAURYAN",
-   "class": "REFORM",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.KASHMIR",
-   "dispute": false,
-   "window": [
-    -205,
-    -195
-   ]
-  },
-  {
    "id": "EVT.M200.THE_CHERA_LINE_VANCHI_AND_THE_PERIYAR",
    "title": "The Chera line; Vanchi and the Periyar",
    "year": -200,
@@ -9936,24 +7525,6 @@
    "year_end": null,
    "era": "ERA.MAURYAN",
    "class": "FOUNDATION",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.TAMILAKAM",
-   "dispute": false,
-   "window": [
-    -205,
-    -195
-   ]
-  },
-  {
-   "id": "EVT.M200.TOLKAPPIYAM_GRAMMAR_AND_POETICS_CODIFIED",
-   "title": "Tolkappiyam; grammar and poetics codified",
-   "year": -200,
-   "year_end": null,
-   "era": "ERA.MAURYAN",
-   "class": "WORK",
    "magnitude": "W",
    "certainty": 0.7,
    "trigger": "window",
@@ -10017,24 +7588,6 @@
    "becomes": "nothing"
   },
   {
-   "id": "EVT.M180.YAVANA_SETTLEMENTS_AT_KAVERIPATTINAM_AND_MUZ",
-   "title": "Yavana settlements at Kaveripattinam and Muziris",
-   "year": -180,
-   "year_end": null,
-   "era": "ERA.CLASSICAL",
-   "class": "TRADE",
-   "magnitude": "M",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "subcontinental",
-   "region": null,
-   "dispute": false,
-   "window": [
-    -185,
-    -175
-   ]
-  },
-  {
    "id": "EVT.M175.BHARHUT_S_STUPA_RAILING_NARRATIVE_RELIEF_BEG",
    "title": "Bharhut's stupa railing — narrative relief begins",
    "year": -175,
@@ -10068,24 +7621,6 @@
    "window": [
     -166,
     -156
-   ]
-  },
-  {
-   "id": "EVT.M160.CHARAKA_S_MEDICAL_COMPENDIUM_TAKES_FORM",
-   "title": "Charaka's medical compendium takes form",
-   "year": -160,
-   "year_end": null,
-   "era": "ERA.CLASSICAL",
-   "class": "WORK",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "subcontinental",
-   "region": null,
-   "dispute": false,
-   "window": [
-    -165,
-    -155
    ]
   },
   {
@@ -10143,24 +7678,6 @@
    ]
   },
   {
-   "id": "EVT.M150.AMARAVATI_THE_ANDHRA_STUPA_TRADITION",
-   "title": "Amaravati; the Andhra stupa tradition",
-   "year": -150,
-   "year_end": null,
-   "era": "ERA.CLASSICAL",
-   "class": "FOUNDATION",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "subcontinental",
-   "region": null,
-   "dispute": false,
-   "window": [
-    -155,
-    -145
-   ]
-  },
-  {
    "id": "EVT.M150.GANGARIDAI_IN_GREEK_AND_ROMAN_ACCOUNTS",
    "title": "Gangaridai in Greek and Roman accounts",
    "year": -150,
@@ -10172,24 +7689,6 @@
    "trigger": "window",
    "scope": "regional",
    "region": "RGN.BENGAL",
-   "dispute": false,
-   "window": [
-    -155,
-    -145
-   ]
-  },
-  {
-   "id": "EVT.M150.GAUTAMIPUTRA_SATAKARNI_S_NASIK_INSCRIPTION",
-   "title": "Gautamiputra Satakarni's Nasik inscription",
-   "year": -150,
-   "year_end": null,
-   "era": "ERA.CLASSICAL",
-   "class": "WORK",
-   "magnitude": "M",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.MAHARASHTRA",
    "dispute": false,
    "window": [
     -155,
@@ -10269,24 +7768,6 @@
    ]
   },
   {
-   "id": "EVT.M150.SILAPPATIKARAM_A_MERCHANT_S_WIFE_BURNS_MADUR",
-   "title": "Silappatikaram: a merchant's wife burns Madurai down",
-   "year": -150,
-   "year_end": null,
-   "era": "ERA.CLASSICAL",
-   "class": "WORK",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.TAMILAKAM",
-   "dispute": false,
-   "window": [
-    -155,
-    -145
-   ]
-  },
-  {
    "id": "EVT.M150.TAMIL_BRAHMI_INSCRIPTIONS_IN_THE_MADURAI_CAV",
    "title": "Tamil Brahmi inscriptions in the Madurai caves",
    "year": -150,
@@ -10305,24 +7786,6 @@
    ]
   },
   {
-   "id": "EVT.M150.THE_AMARAVATI_MARBLES_A_DISTINCT_NARRATIVE_I",
-   "title": "The Amaravati marbles; a distinct narrative idiom",
-   "year": -150,
-   "year_end": null,
-   "era": "ERA.CLASSICAL",
-   "class": "WORK",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.ANDHRA",
-   "dispute": false,
-   "window": [
-    -155,
-    -145
-   ]
-  },
-  {
    "id": "EVT.M150.THE_HELIODORUS_PILLAR_AT_BESNAGAR_A_GREEK_EN",
    "title": "The Heliodorus pillar at Besnagar — a Greek envoy's Vaishnava column",
    "year": -150,
@@ -10330,42 +7793,6 @@
    "era": "ERA.CLASSICAL",
    "class": "WORK",
    "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "subcontinental",
-   "region": null,
-   "dispute": false,
-   "window": [
-    -155,
-    -145
-   ]
-  },
-  {
-   "id": "EVT.M150.THE_JUNAGADH_INSCRIPTION_THE_FIRST_LONG_SANS",
-   "title": "The Junagadh inscription — the first long Sanskrit inscription",
-   "year": -150,
-   "year_end": null,
-   "era": "ERA.CLASSICAL",
-   "class": "WORK",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "subcontinental",
-   "region": null,
-   "dispute": false,
-   "window": [
-    -155,
-    -145
-   ]
-  },
-  {
-   "id": "EVT.M150.THE_SUDARSHANA_LAKE_DAM_REPAIRED_AND_THE_REP",
-   "title": "The Sudarshana lake dam repaired, and the repair recorded",
-   "year": -150,
-   "year_end": null,
-   "era": "ERA.CLASSICAL",
-   "class": "STRUCTURE",
-   "magnitude": "M",
    "certainty": 0.7,
    "trigger": "window",
    "scope": "subcontinental",
@@ -10431,42 +7858,6 @@
    ]
   },
   {
-   "id": "EVT.M130.NASIK_AND_KARLE_INSCRIPTIONS_RECORD_GUILD_EN",
-   "title": "Nasik and Karle inscriptions record guild endowments at interest",
-   "year": -130,
-   "year_end": null,
-   "era": "ERA.CLASSICAL",
-   "class": "TRANSITION",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "subcontinental",
-   "region": null,
-   "dispute": false,
-   "window": [
-    -135,
-    -125
-   ]
-  },
-  {
-   "id": "EVT.M120.ASHVAGHOSHA_S_BUDDHACHARITA_SANSKRIT_KAVYA_S",
-   "title": "Ashvaghosha's Buddhacharita — Sanskrit kavya's first great poem",
-   "year": -120,
-   "year_end": null,
-   "era": "ERA.CLASSICAL",
-   "class": "WORK",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "subcontinental",
-   "region": null,
-   "dispute": false,
-   "window": [
-    -125,
-    -115
-   ]
-  },
-  {
    "id": "EVT.M120.THE_HATHIGUMPHA_INSCRIPTION_KHARAVELA_OF_KAL",
    "title": "The Hathigumpha inscription; Kharavela of Kalinga",
    "year": -120,
@@ -10482,24 +7873,6 @@
    "window": [
     -125,
     -115
-   ]
-  },
-  {
-   "id": "EVT.M110.BUDDHISM_MOVES_ALONG_THE_SILK_ROAD_INTO_CENT",
-   "title": "Buddhism moves along the Silk Road into Central Asia and China",
-   "year": -110,
-   "year_end": null,
-   "era": "ERA.CLASSICAL",
-   "class": "TRADE",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "subcontinental",
-   "region": null,
-   "dispute": false,
-   "window": [
-    -115,
-    -105
    ]
   },
   {
@@ -10521,42 +7894,6 @@
    ]
   },
   {
-   "id": "EVT.M100.GANDHARAN_ART_THE_FIRST_IMAGES_OF_THE_BUDDHA",
-   "title": "Gandharan art. The first images of the Buddha",
-   "year": -100,
-   "year_end": null,
-   "era": "ERA.CLASSICAL",
-   "class": "TRANSITION",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "subcontinental",
-   "region": null,
-   "dispute": false,
-   "window": [
-    -105,
-    -95
-   ]
-  },
-  {
-   "id": "EVT.M100.KANISHKA_S_COINAGE_NAMES_GREEK_IRANIAN_AND_I",
-   "title": "Kanishka's coinage names Greek, Iranian and Indian deities together",
-   "year": -100,
-   "year_end": null,
-   "era": "ERA.CLASSICAL",
-   "class": "TRANSITION",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "subcontinental",
-   "region": null,
-   "dispute": false,
-   "window": [
-    -105,
-    -95
-   ]
-  },
-  {
    "id": "EVT.M100.KARIKALA_CHOLA_THE_KALLANAI_DAM_ON_THE_KAVER",
    "title": "Karikala Chola; the Kallanai dam on the Kaveri",
    "year": -100,
@@ -10564,24 +7901,6 @@
    "era": "ERA.CLASSICAL",
    "class": "STRUCTURE",
    "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.TAMILAKAM",
-   "dispute": false,
-   "window": [
-    -105,
-    -95
-   ]
-  },
-  {
-   "id": "EVT.M100.PATTINAPPALAI_AND_THE_PUHAR_POEMS",
-   "title": "Pattinappalai and the Puhar poems",
-   "year": -100,
-   "year_end": null,
-   "era": "ERA.CLASSICAL",
-   "class": "WORK",
-   "magnitude": "M",
    "certainty": 0.7,
    "trigger": "window",
    "scope": "regional",
@@ -10604,42 +7923,6 @@
    "trigger": "window",
    "scope": "regional",
    "region": "RGN.ANDHRA",
-   "dispute": false,
-   "window": [
-    -105,
-    -95
-   ]
-  },
-  {
-   "id": "EVT.M100.THE_MATHURA_SCHOOL_A_PARALLEL_INDEPENDENT_ID",
-   "title": "The Mathura school — a parallel, independent idiom",
-   "year": -100,
-   "year_end": null,
-   "era": "ERA.CLASSICAL",
-   "class": "TRANSITION",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "subcontinental",
-   "region": null,
-   "dispute": false,
-   "window": [
-    -105,
-    -95
-   ]
-  },
-  {
-   "id": "EVT.M100.THE_MUZIRIS_PAPYRUS_RECORDS_A_SINGLE_CARGO_S",
-   "title": "The Muziris papyrus records a single cargo's value",
-   "year": -100,
-   "year_end": null,
-   "era": "ERA.CLASSICAL",
-   "class": "TRADE",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.KERALA",
    "dispute": false,
    "window": [
     -105,
@@ -10683,38 +7966,6 @@
    ]
   },
   {
-   "id": "EVT.M80.FOURTH_BUDDHIST_COUNCIL_MAHAYANA_CRYSTALLISE",
-   "title": "Fourth Buddhist Council; Mahayana crystallises",
-   "year": -80,
-   "year_end": null,
-   "era": "ERA.CLASSICAL",
-   "class": "REFORM",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "subcontinental",
-   "region": null,
-   "dispute": false,
-   "window": [
-    -85,
-    -75
-   ]
-  },
-  {
-   "id": "EVT.M78.SHAKA_ERA_KANISHKA_DATE_CONTESTED_WINDOW",
-   "title": "Shaka era; Kanishka — date contested, window",
-   "year": -78,
-   "year_end": null,
-   "era": "ERA.CLASSICAL",
-   "class": "—",
-   "magnitude": "W",
-   "certainty": 0.45,
-   "trigger": "latent",
-   "scope": "subcontinental",
-   "region": null,
-   "dispute": true
-  },
-  {
    "id": "EVT.M70.THE_YUGA_PURANA_ASTRONOMY_MEETS_PROPHECY",
    "title": "The Yuga Purana; astronomy meets prophecy",
    "year": -70,
@@ -10730,24 +7981,6 @@
    "window": [
     -75,
     -65
-   ]
-  },
-  {
-   "id": "EVT.M60.THE_WESTERN_SATRAPS_DATED_COINAGE_BEGINS_UNU",
-   "title": "The Western Satraps; dated coinage begins — unusual precision",
-   "year": -60,
-   "year_end": null,
-   "era": "ERA.CLASSICAL",
-   "class": "TRANSITION",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "subcontinental",
-   "region": null,
-   "dispute": false,
-   "window": [
-    -65,
-    -55
    ]
   },
   {
@@ -10769,44 +8002,8 @@
    ]
   },
   {
-   "id": "EVT.M52.THOMAS_TRADITION_THE_MALABAR_CHRISTIAN_COMMU",
-   "title": "Thomas tradition; the Malabar Christian community",
-   "year": -52,
-   "year_end": null,
-   "era": "ERA.CLASSICAL",
-   "class": "REFORM",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.KERALA",
-   "dispute": false,
-   "window": [
-    -57,
-    -47
-   ]
-  },
-  {
    "id": "EVT.M50.HIPPALUS_AND_THE_MONSOON_ROUTE_THE_CROSSING_",
    "title": "Hippalus and the monsoon route — the crossing time halves",
-   "year": -50,
-   "year_end": null,
-   "era": "ERA.CLASSICAL",
-   "class": "TRADE",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "subcontinental",
-   "region": null,
-   "dispute": false,
-   "window": [
-    -55,
-    -45
-   ]
-  },
-  {
-   "id": "EVT.M50.MUZIRIS_ROMAN_GOLD_FLOWS_IN_PLINY_COMPLAINS_",
-   "title": "Muziris: Roman gold flows in; Pliny complains about the deficit",
    "year": -50,
    "year_end": null,
    "era": "ERA.CLASSICAL",
@@ -10946,6 +8143,24 @@
    ]
   },
   {
+   "id": "EVT.50.MUZIRIS_ROMAN_GOLD_FLOWS_IN_PLINY_COMPLAINS_",
+   "title": "Muziris: Roman gold flows in; Pliny complains about the deficit",
+   "year": 50,
+   "year_end": null,
+   "era": "ERA.CLASSICAL",
+   "class": "TRADE",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "window": [
+    45,
+    55
+   ]
+  },
+  {
    "id": "EVT.50.MUZIRIS_ROMAN_GOLD_IN_PEPPER_OUT",
    "title": "Muziris: Roman gold in, pepper out",
    "year": 50,
@@ -10982,6 +8197,56 @@
    ]
   },
   {
+   "id": "EVT.52.THOMAS_TRADITION_THE_MALABAR_CHRISTIAN_COMMU",
+   "title": "Thomas tradition; the Malabar Christian community",
+   "year": 52,
+   "year_end": null,
+   "era": "ERA.CLASSICAL",
+   "class": "REFORM",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KERALA",
+   "dispute": false,
+   "window": [
+    47,
+    57
+   ]
+  },
+  {
+   "id": "EVT.60.THE_WESTERN_SATRAPS_DATED_COINAGE_BEGINS_UNU",
+   "title": "The Western Satraps; dated coinage begins — unusual precision",
+   "year": 60,
+   "year_end": null,
+   "era": "ERA.CLASSICAL",
+   "class": "TRANSITION",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "window": [
+    55,
+    65
+   ]
+  },
+  {
+   "id": "EVT.78.SHAKA_ERA_KANISHKA_DATE_CONTESTED_WINDOW",
+   "title": "Shaka era; Kanishka — date contested, window",
+   "year": 78,
+   "year_end": null,
+   "era": "ERA.CLASSICAL",
+   "class": "—",
+   "magnitude": "W",
+   "certainty": 0.45,
+   "trigger": "latent",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": true
+  },
+  {
    "id": "EVT.78.THE_FOURTH_BUDDHIST_COUNCIL_UNDER_KANISHKA",
    "title": "The Fourth Buddhist Council under Kanishka",
    "year": 78,
@@ -10996,6 +8261,24 @@
    "dispute": true
   },
   {
+   "id": "EVT.80.FOURTH_BUDDHIST_COUNCIL_MAHAYANA_CRYSTALLISE",
+   "title": "Fourth Buddhist Council; Mahayana crystallises",
+   "year": 80,
+   "year_end": null,
+   "era": "ERA.CLASSICAL",
+   "class": "REFORM",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "window": [
+    75,
+    85
+   ]
+  },
+  {
    "id": "EVT.100.BALI_JATRA_THE_SAILING_SEASON_TO_JAVA_AND_BA",
    "title": "Bali Jatra: the sailing season to Java and Bali",
    "year": 100,
@@ -11007,6 +8290,42 @@
    "trigger": "window",
    "scope": "regional",
    "region": "RGN.ODISHA",
+   "dispute": false,
+   "window": [
+    95,
+    105
+   ]
+  },
+  {
+   "id": "EVT.100.GANDHARAN_ART_THE_FIRST_IMAGES_OF_THE_BUDDHA",
+   "title": "Gandharan art. The first images of the Buddha",
+   "year": 100,
+   "year_end": null,
+   "era": "ERA.CLASSICAL",
+   "class": "TRANSITION",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "window": [
+    95,
+    105
+   ]
+  },
+  {
+   "id": "EVT.100.KANISHKA_S_COINAGE_NAMES_GREEK_IRANIAN_AND_I",
+   "title": "Kanishka's coinage names Greek, Iranian and Indian deities together",
+   "year": 100,
+   "year_end": null,
+   "era": "ERA.CLASSICAL",
+   "class": "TRANSITION",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
    "dispute": false,
    "window": [
     95,
@@ -11032,6 +8351,24 @@
    ]
   },
   {
+   "id": "EVT.100.PATTINAPPALAI_AND_THE_PUHAR_POEMS",
+   "title": "Pattinappalai and the Puhar poems",
+   "year": 100,
+   "year_end": null,
+   "era": "ERA.CLASSICAL",
+   "class": "WORK",
+   "magnitude": "M",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "window": [
+    95,
+    105
+   ]
+  },
+  {
    "id": "EVT.100.THE_ABHAYAGIRI_SCHISM",
    "title": "The Abhayagiri schism",
    "year": 100,
@@ -11047,6 +8384,132 @@
    "window": [
     95,
     105
+   ]
+  },
+  {
+   "id": "EVT.100.THE_MATHURA_SCHOOL_A_PARALLEL_INDEPENDENT_ID",
+   "title": "The Mathura school — a parallel, independent idiom",
+   "year": 100,
+   "year_end": null,
+   "era": "ERA.CLASSICAL",
+   "class": "TRANSITION",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "window": [
+    95,
+    105
+   ]
+  },
+  {
+   "id": "EVT.100.THE_MUZIRIS_PAPYRUS_RECORDS_A_SINGLE_CARGO_S",
+   "title": "The Muziris papyrus records a single cargo's value",
+   "year": 100,
+   "year_end": null,
+   "era": "ERA.CLASSICAL",
+   "class": "TRADE",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KERALA",
+   "dispute": false,
+   "window": [
+    95,
+    105
+   ]
+  },
+  {
+   "id": "EVT.110.BUDDHISM_MOVES_ALONG_THE_SILK_ROAD_INTO_CENT",
+   "title": "Buddhism moves along the Silk Road into Central Asia and China",
+   "year": 110,
+   "year_end": null,
+   "era": "ERA.CLASSICAL",
+   "class": "TRADE",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "window": [
+    105,
+    115
+   ]
+  },
+  {
+   "id": "EVT.120.ASHVAGHOSHA_S_BUDDHACHARITA_SANSKRIT_KAVYA_S",
+   "title": "Ashvaghosha's Buddhacharita — Sanskrit kavya's first great poem",
+   "year": 120,
+   "year_end": null,
+   "era": "ERA.CLASSICAL",
+   "class": "WORK",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "window": [
+    115,
+    125
+   ]
+  },
+  {
+   "id": "EVT.130.NASIK_AND_KARLE_INSCRIPTIONS_RECORD_GUILD_EN",
+   "title": "Nasik and Karle inscriptions record guild endowments at interest",
+   "year": 130,
+   "year_end": null,
+   "era": "ERA.CLASSICAL",
+   "class": "TRANSITION",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "window": [
+    125,
+    135
+   ]
+  },
+  {
+   "id": "EVT.150.AMARAVATI_THE_ANDHRA_STUPA_TRADITION",
+   "title": "Amaravati; the Andhra stupa tradition",
+   "year": 150,
+   "year_end": null,
+   "era": "ERA.CLASSICAL",
+   "class": "FOUNDATION",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "window": [
+    145,
+    155
+   ]
+  },
+  {
+   "id": "EVT.150.GAUTAMIPUTRA_SATAKARNI_S_NASIK_INSCRIPTION",
+   "title": "Gautamiputra Satakarni's Nasik inscription",
+   "year": 150,
+   "year_end": null,
+   "era": "ERA.CLASSICAL",
+   "class": "WORK",
+   "magnitude": "M",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false,
+   "window": [
+    145,
+    155
    ]
   },
   {
@@ -11068,6 +8531,114 @@
    ]
   },
   {
+   "id": "EVT.150.SILAPPATIKARAM_A_MERCHANT_S_WIFE_BURNS_MADUR",
+   "title": "Silappatikaram: a merchant's wife burns Madurai down",
+   "year": 150,
+   "year_end": null,
+   "era": "ERA.CLASSICAL",
+   "class": "WORK",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "window": [
+    145,
+    155
+   ]
+  },
+  {
+   "id": "EVT.150.THE_AMARAVATI_MARBLES_A_DISTINCT_NARRATIVE_I",
+   "title": "The Amaravati marbles; a distinct narrative idiom",
+   "year": 150,
+   "year_end": null,
+   "era": "ERA.CLASSICAL",
+   "class": "WORK",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ANDHRA",
+   "dispute": false,
+   "window": [
+    145,
+    155
+   ]
+  },
+  {
+   "id": "EVT.150.THE_JUNAGADH_INSCRIPTION_THE_FIRST_LONG_SANS",
+   "title": "The Junagadh inscription — the first long Sanskrit inscription",
+   "year": 150,
+   "year_end": null,
+   "era": "ERA.CLASSICAL",
+   "class": "WORK",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "window": [
+    145,
+    155
+   ]
+  },
+  {
+   "id": "EVT.150.THE_SUDARSHANA_LAKE_DAM_REPAIRED_AND_THE_REP",
+   "title": "The Sudarshana lake dam repaired, and the repair recorded",
+   "year": 150,
+   "year_end": null,
+   "era": "ERA.CLASSICAL",
+   "class": "STRUCTURE",
+   "magnitude": "M",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "window": [
+    145,
+    155
+   ]
+  },
+  {
+   "id": "EVT.160.CHARAKA_S_MEDICAL_COMPENDIUM_TAKES_FORM",
+   "title": "Charaka's medical compendium takes form",
+   "year": 160,
+   "year_end": null,
+   "era": "ERA.CLASSICAL",
+   "class": "WORK",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "window": [
+    155,
+    165
+   ]
+  },
+  {
+   "id": "EVT.180.YAVANA_SETTLEMENTS_AT_KAVERIPATTINAM_AND_MUZ",
+   "title": "Yavana settlements at Kaveripattinam and Muziris",
+   "year": 180,
+   "year_end": null,
+   "era": "ERA.CLASSICAL",
+   "class": "TRADE",
+   "magnitude": "M",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "window": [
+    175,
+    185
+   ]
+  },
+  {
    "id": "EVT.200.AJANTA_FIRST_PHASE",
    "title": "Ajanta, first phase",
    "year": 200,
@@ -11079,6 +8650,78 @@
    "trigger": "window",
    "scope": "subcontinental",
    "region": null,
+   "dispute": false,
+   "window": [
+    195,
+    205
+   ]
+  },
+  {
+   "id": "EVT.200.BHARUCH_BARYGAZA_ON_THE_ROMAN_CIRCUIT",
+   "title": "Bharuch (Barygaza) on the Roman circuit",
+   "year": 200,
+   "year_end": null,
+   "era": "ERA.CLASSICAL",
+   "class": "TRADE",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.GUJARAT",
+   "dispute": false,
+   "window": [
+    195,
+    205
+   ]
+  },
+  {
+   "id": "EVT.200.CHILAPPATIKARAM_S_CHERA_CHAPTERS",
+   "title": "Chilappatikaram's Chera chapters",
+   "year": 200,
+   "year_end": null,
+   "era": "ERA.CLASSICAL",
+   "class": "WORK",
+   "magnitude": "M",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KERALA",
+   "dispute": false,
+   "window": [
+    195,
+    205
+   ]
+  },
+  {
+   "id": "EVT.200.ETTUTHOKAI_AND_PATTUPPATTU_2_381_POEMS_473_P",
+   "title": "Ettuthokai and Pattuppattu — 2,381 poems, 473 poets",
+   "year": 200,
+   "year_end": null,
+   "era": "ERA.CLASSICAL",
+   "class": "WORK",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "window": [
+    195,
+    205
+   ]
+  },
+  {
+   "id": "EVT.200.KASHMIR_BECOMES_THE_SARVASTIVADA_HEARTLAND",
+   "title": "Kashmir becomes the Sarvastivada heartland",
+   "year": 200,
+   "year_end": null,
+   "era": "ERA.CLASSICAL",
+   "class": "REFORM",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KASHMIR",
    "dispute": false,
    "window": [
     195,
@@ -11140,6 +8783,24 @@
    ]
   },
   {
+   "id": "EVT.200.TOLKAPPIYAM_GRAMMAR_AND_POETICS_CODIFIED",
+   "title": "Tolkappiyam; grammar and poetics codified",
+   "year": 200,
+   "year_end": null,
+   "era": "ERA.CLASSICAL",
+   "class": "WORK",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "window": [
+    195,
+    205
+   ]
+  },
+  {
    "id": "EVT.200.TOLKAPPIYAM_TAMIL_GRAMMAR_AND_POETICS_CODIFI",
    "title": "Tolkappiyam; Tamil grammar and poetics codified",
    "year": 200,
@@ -11155,6 +8816,24 @@
    "window": [
     195,
     205
+   ]
+  },
+  {
+   "id": "EVT.225.IKSHVAKUS_AT_NAGARJUNAKONDA",
+   "title": "Ikshvakus at Nagarjunakonda",
+   "year": 225,
+   "year_end": null,
+   "era": "ERA.CLASSICAL",
+   "class": "FOUNDATION",
+   "magnitude": "M",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ANDHRA",
+   "dispute": false,
+   "window": [
+    220,
+    230
    ]
   },
   {
@@ -11176,6 +8855,42 @@
    ]
   },
   {
+   "id": "EVT.250.AUVAIYAR_WOMEN_POETS_ACROSS_THE_ANTHOLOGIES",
+   "title": "Auvaiyar; women poets across the anthologies",
+   "year": 250,
+   "year_end": null,
+   "era": "ERA.CLASSICAL",
+   "class": "WORK",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "window": [
+    245,
+    255
+   ]
+  },
+  {
+   "id": "EVT.250.NAGARJUNAKONDA_S_BUDDHIST_UNIVERSITY_AND_STA",
+   "title": "Nagarjunakonda's Buddhist university and stadium",
+   "year": 250,
+   "year_end": null,
+   "era": "ERA.CLASSICAL",
+   "class": "FOUNDATION",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ANDHRA",
+   "dispute": false,
+   "window": [
+    245,
+    255
+   ]
+  },
+  {
    "id": "EVT.250.ROMAN_TRADE_CONTRACTS_WITH_THE_THIRD_CENTURY",
    "title": "Roman trade contracts with the third-century crisis",
    "year": 250,
@@ -11194,6 +8909,24 @@
    ]
   },
   {
+   "id": "EVT.250.THE_VAKATAKAS",
+   "title": "The Vakatakas",
+   "year": 250,
+   "year_end": null,
+   "era": "ERA.CLASSICAL",
+   "class": "FOUNDATION",
+   "magnitude": "M",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false,
+   "window": [
+    245,
+    255
+   ]
+  },
+  {
    "id": "EVT.300.BANAVASI_UNDER_THE_CHUTUS",
    "title": "Banavasi under the Chutus",
    "year": 300,
@@ -11205,6 +8938,24 @@
    "trigger": "window",
    "scope": "regional",
    "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "window": [
+    294,
+    306
+   ]
+  },
+  {
+   "id": "EVT.300.BAVIKONDA_AND_THOTLAKONDA_THE_COASTAL_MONAST",
+   "title": "Bavikonda and Thotlakonda; the coastal monasteries",
+   "year": 300,
+   "year_end": null,
+   "era": "ERA.CLASSICAL",
+   "class": "SITE",
+   "magnitude": "M",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ANDHRA",
    "dispute": false,
    "window": [
     294,
@@ -11248,6 +8999,24 @@
    ]
   },
   {
+   "id": "EVT.300.TIRUKKURAL_2",
+   "title": "Tirukkural",
+   "year": 300,
+   "year_end": null,
+   "era": "ERA.CLASSICAL",
+   "class": "WORK",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "window": [
+    294,
+    306
+   ]
+  },
+  {
    "id": "EVT.320.GUPTA_FOUNDATION",
    "title": "Gupta foundation",
    "year": 320,
@@ -11278,6 +9047,20 @@
     333,
     347
    ]
+  },
+  {
+   "id": "EVT.345.KADAMBA_FOUNDED_AT_BANAVASI_THE_FIRST_KANNAD",
+   "title": "Kadamba founded at Banavasi — the first Kannada-region dynasty",
+   "year": 345,
+   "year_end": null,
+   "era": "ERA.GUPTA",
+   "class": "FOUNDATION",
+   "magnitude": "W",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false
   },
   {
    "id": "EVT.350.KAMARUPA_THE_VARMAN_DYNASTY",
@@ -11327,6 +9110,39 @@
    "trigger": "window",
    "scope": "subcontinental",
    "region": null,
+   "dispute": false,
+   "window": [
+    343,
+    357
+   ]
+  },
+  {
+   "id": "EVT.350.THE_KALABHRA_INTERREGNUM_THE_DARK_AGE_POORLY",
+   "title": "The Kalabhra interregnum — the \"dark age\", poorly evidenced",
+   "year": 350,
+   "year_end": null,
+   "era": "ERA.GUPTA",
+   "class": "INVASION",
+   "magnitude": "W",
+   "certainty": 0.45,
+   "trigger": "latent",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": true,
+   "becomes": "nothing"
+  },
+  {
+   "id": "EVT.350.WESTERN_GANGA_AT_TALAKAD_JAIN_PATRONAGE",
+   "title": "Western Ganga at Talakad; Jain patronage",
+   "year": 350,
+   "year_end": null,
+   "era": "ERA.GUPTA",
+   "class": "FOUNDATION",
+   "magnitude": "M",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
    "dispute": false,
    "window": [
     343,
@@ -11396,6 +9212,78 @@
    "scope": "subcontinental",
    "region": null,
    "dispute": false
+  },
+  {
+   "id": "EVT.400.FAXIAN_SPENDS_TWO_YEARS_COPYING_TEXTS",
+   "title": "Faxian spends two years copying texts",
+   "year": 400,
+   "year_end": null,
+   "era": "ERA.GUPTA",
+   "class": "TRADE",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.SRI_LANKA",
+   "dispute": false,
+   "window": [
+    392,
+    408
+   ]
+  },
+  {
+   "id": "EVT.400.KASHMIRI_MONKS_CARRY_TEXTS_TO_CENTRAL_ASIA_A",
+   "title": "Kashmiri monks carry texts to Central Asia and China",
+   "year": 400,
+   "year_end": null,
+   "era": "ERA.GUPTA",
+   "class": "TRADE",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KASHMIR",
+   "dispute": false,
+   "window": [
+    392,
+    408
+   ]
+  },
+  {
+   "id": "EVT.400.MATHARA_AND_SAILODBHAVA_LINES",
+   "title": "Mathara and Sailodbhava lines",
+   "year": 400,
+   "year_end": null,
+   "era": "ERA.GUPTA",
+   "class": "FOUNDATION",
+   "magnitude": "M",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ODISHA",
+   "dispute": false,
+   "window": [
+    392,
+    408
+   ]
+  },
+  {
+   "id": "EVT.400.THE_UMACHAL_AND_NAGAJARI_KHANIKARGAON_INSCRI",
+   "title": "The Umachal and Nagajari-Khanikargaon inscriptions",
+   "year": 400,
+   "year_end": null,
+   "era": "ERA.GUPTA",
+   "class": "WORK",
+   "magnitude": "M",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ASSAM",
+   "dispute": false,
+   "window": [
+    392,
+    408
+   ]
   },
   {
    "id": "EVT.402.THE_IRON_PILLAR_OF_DELHI_UNRUSTED_FOR_1_600_",
@@ -11484,6 +9372,42 @@
    ]
   },
   {
+   "id": "EVT.430.BUDDHAGHOSA_THE_VISUDDHIMAGGA_AND_THE_COMMEN",
+   "title": "Buddhaghosa; the Visuddhimagga and the commentaries",
+   "year": 430,
+   "year_end": null,
+   "era": "ERA.GUPTA",
+   "class": "WORK",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.SRI_LANKA",
+   "dispute": false,
+   "window": [
+    421,
+    439
+   ]
+  },
+  {
+   "id": "EVT.450.AJANTA_S_SECOND_PHASE_UNDER_VAKATAKA_PATRONA",
+   "title": "Ajanta's second phase under Vakataka patronage",
+   "year": 450,
+   "year_end": null,
+   "era": "ERA.GUPTA",
+   "class": "FOUNDATION",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false,
+   "window": [
+    441,
+    459
+   ]
+  },
+  {
    "id": "EVT.450.AJANTA_SECOND_PHASE_UNDER_VAKATAKA_PATRONAGE",
    "title": "Ajanta, second phase, under Vakataka patronage",
    "year": 450,
@@ -11495,6 +9419,60 @@
    "trigger": "window",
    "scope": "subcontinental",
    "region": null,
+   "dispute": false,
+   "window": [
+    441,
+    459
+   ]
+  },
+  {
+   "id": "EVT.450.COPPER_PLATE_LAND_GRANTS_PROLIFERATE",
+   "title": "Copper-plate land grants proliferate",
+   "year": 450,
+   "year_end": null,
+   "era": "ERA.GUPTA",
+   "class": "TRANSITION",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.BENGAL",
+   "dispute": false,
+   "window": [
+    441,
+    459
+   ]
+  },
+  {
+   "id": "EVT.450.JAIN_AND_BUDDHIST_INSTITUTIONS_FLOURISH_UNDE",
+   "title": "Jain and Buddhist institutions flourish under the Kalabhras",
+   "year": 450,
+   "year_end": null,
+   "era": "ERA.GUPTA",
+   "class": "REFORM",
+   "magnitude": "M",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "window": [
+    441,
+    459
+   ]
+  },
+  {
+   "id": "EVT.450.THE_HALMIDI_INSCRIPTION_THE_EARLIEST_KANNADA",
+   "title": "The Halmidi inscription — the earliest Kannada text",
+   "year": 450,
+   "year_end": null,
+   "era": "ERA.GUPTA",
+   "class": "WORK",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
    "dispute": false,
    "window": [
     441,
@@ -11517,6 +9495,24 @@
    "window": [
     441,
     459
+   ]
+  },
+  {
+   "id": "EVT.460.SIGIRIYA",
+   "title": "Sigiriya",
+   "year": 460,
+   "year_end": null,
+   "era": "ERA.GUPTA",
+   "class": "FOUNDATION",
+   "magnitude": "M",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.SRI_LANKA",
+   "dispute": false,
+   "window": [
+    451,
+    469
    ]
   },
   {
@@ -11555,6 +9551,20 @@
     479
    ],
    "becomes": "nothing"
+  },
+  {
+   "id": "EVT.475.THE_MAITRAKAS_VALABHI_BECOMES_A_UNIVERSITY",
+   "title": "The Maitrakas; Valabhi becomes a university",
+   "year": 475,
+   "year_end": null,
+   "era": "ERA.GUPTA",
+   "class": "FOUNDATION",
+   "magnitude": "W",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.GUJARAT",
+   "dispute": false
   },
   {
    "id": "EVT.484.SKANDAGUPTA_DIES_HUNA_PRESSURE_INTENSIFIES",
@@ -11682,6 +9692,20 @@
    "dispute": false
   },
   {
+   "id": "EVT.543.CHALUKYA_FOUNDATION_AT_BADAMI_2",
+   "title": "Chalukya foundation at Badami",
+   "year": 543,
+   "year_end": null,
+   "era": "ERA.GUPTA",
+   "class": "FOUNDATION",
+   "magnitude": "W",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false
+  },
+  {
    "id": "EVT.550.GUPTA_COLLAPSE",
    "title": "Gupta collapse",
    "year": 550,
@@ -11732,6 +9756,42 @@
    ]
   },
   {
+   "id": "EVT.575.EASTERN_CHALUKYA_AT_VENGI",
+   "title": "Eastern Chalukya at Vengi",
+   "year": 575,
+   "year_end": null,
+   "era": "ERA.GUPTA",
+   "class": "FOUNDATION",
+   "magnitude": "M",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ANDHRA",
+   "dispute": false,
+   "window": [
+    563,
+    587
+   ]
+  },
+  {
+   "id": "EVT.575.KADUNGON_THE_PANDYA_REVIVAL",
+   "title": "Kadungon; the Pandya revival",
+   "year": 575,
+   "year_end": null,
+   "era": "ERA.GUPTA",
+   "class": "FOUNDATION",
+   "magnitude": "M",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "window": [
+    563,
+    587
+   ]
+  },
+  {
    "id": "EVT.575.MAHENDRAVARMAN_PALLAVA_ROCK_ARCHITECTURE_BEG",
    "title": "Mahendravarman; Pallava rock architecture begins",
    "year": 575,
@@ -11765,6 +9825,133 @@
    "window": [
     568,
     592
+   ]
+  },
+  {
+   "id": "EVT.600.AIHOLE_125_TEMPLES_AN_ARCHITECTURAL_LABORATO",
+   "title": "Aihole: 125 temples; an architectural laboratory",
+   "year": 600,
+   "year_end": null,
+   "era": "ERA.GUPTA",
+   "class": "FOUNDATION",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "window": [
+    588,
+    612
+   ]
+  },
+  {
+   "id": "EVT.600.BHASKARAVARMAN_XUANZANG_VISITS_HIS_COURT",
+   "title": "Bhaskaravarman; Xuanzang visits his court",
+   "year": 600,
+   "year_end": null,
+   "era": "ERA.GUPTA",
+   "class": "—",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ASSAM",
+   "dispute": false,
+   "window": [
+    588,
+    612
+   ]
+  },
+  {
+   "id": "EVT.600.ELLORA_BEGUN_BUDDHIST_HINDU_AND_JAIN_CAVES_I",
+   "title": "Ellora begun; Buddhist, Hindu and Jain caves in one cliff",
+   "year": 600,
+   "year_end": null,
+   "era": "ERA.GUPTA",
+   "class": "FOUNDATION",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false,
+   "window": [
+    588,
+    612
+   ]
+  },
+  {
+   "id": "EVT.600.JEWISH_AND_CHRISTIAN_MERCHANT_SETTLEMENTS_AT",
+   "title": "Jewish and Christian merchant settlements attested",
+   "year": 600,
+   "year_end": null,
+   "era": "ERA.GUPTA",
+   "class": "TRADE",
+   "magnitude": "M",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KERALA",
+   "dispute": false,
+   "window": [
+    588,
+    612
+   ]
+  },
+  {
+   "id": "EVT.600.PALLAVA_PANDYA_WARS_BEGIN",
+   "title": "Pallava–Pandya wars begin",
+   "year": 600,
+   "year_end": null,
+   "era": "ERA.GUPTA",
+   "class": "INVASION",
+   "magnitude": "M",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "window": [
+    588,
+    612
+   ],
+   "becomes": "nothing"
+  },
+  {
+   "id": "EVT.600.SHAIVISM_AND_BUDDHISM_SHARE_ROYAL_PATRONAGE",
+   "title": "Shaivism and Buddhism share royal patronage",
+   "year": 600,
+   "year_end": null,
+   "era": "ERA.GUPTA",
+   "class": "REFORM",
+   "magnitude": "M",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ODISHA",
+   "dispute": false,
+   "window": [
+    588,
+    612
+   ]
+  },
+  {
+   "id": "EVT.600.SHASHANKA_OF_GAUDA_THE_BENGALI_ERA",
+   "title": "Shashanka of Gauda; the Bengali era",
+   "year": 600,
+   "year_end": null,
+   "era": "ERA.GUPTA",
+   "class": "FOUNDATION",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.BENGAL",
+   "dispute": false,
+   "window": [
+    588,
+    612
    ]
   },
   {
@@ -11815,6 +10002,24 @@
    "becomes": "nothing"
   },
   {
+   "id": "EVT.625.THE_KARKOTA_DYNASTY",
+   "title": "The Karkota dynasty",
+   "year": 625,
+   "year_end": null,
+   "era": "ERA.GUPTA",
+   "class": "FOUNDATION",
+   "magnitude": "M",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KASHMIR",
+   "dispute": false,
+   "window": [
+    612,
+    638
+   ]
+  },
+  {
    "id": "EVT.628.BRAHMASPHUTASIDDHANTA_ZERO_BECOMES_A_NUMBER",
    "title": "Brahmasphutasiddhanta — zero becomes a number",
    "year": 628,
@@ -11841,6 +10046,60 @@
    "scope": "subcontinental",
    "region": null,
    "dispute": false
+  },
+  {
+   "id": "EVT.630.MAHENDRAVARMAN_S_MATTAVILASA_PRAHASANA_A_SAT",
+   "title": "Mahendravarman's Mattavilasa Prahasana — a satire by a king",
+   "year": 630,
+   "year_end": null,
+   "era": "ERA.GUPTA",
+   "class": "WORK",
+   "magnitude": "M",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "window": [
+    617,
+    643
+   ]
+  },
+  {
+   "id": "EVT.630.THE_KALAMALLA_INSCRIPTION_EARLY_TELUGU",
+   "title": "The Kalamalla inscription — early Telugu",
+   "year": 630,
+   "year_end": null,
+   "era": "ERA.GUPTA",
+   "class": "WORK",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ANDHRA",
+   "dispute": false,
+   "window": [
+    617,
+    643
+   ]
+  },
+  {
+   "id": "EVT.634.THE_AIHOLE_INSCRIPTION_OF_RAVIKIRTI",
+   "title": "The Aihole inscription of Ravikirti",
+   "year": 634,
+   "year_end": null,
+   "era": "ERA.GUPTA",
+   "class": "WORK",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "window": [
+    621,
+    647
+   ]
   },
   {
    "id": "EVT.640.BANABHATTA_S_HARSHACHARITA_AND_KADAMBARI",
@@ -11879,6 +10138,42 @@
    ]
   },
   {
+   "id": "EVT.640.THE_NIDHANPUR_COPPER_PLATES",
+   "title": "The Nidhanpur copper plates",
+   "year": 640,
+   "year_end": null,
+   "era": "ERA.GUPTA",
+   "class": "WORK",
+   "magnitude": "M",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ASSAM",
+   "dispute": false,
+   "window": [
+    627,
+    653
+   ]
+  },
+  {
+   "id": "EVT.640.XUANZANG_REPORTS_6_000_MONKS_AT_VALABHI",
+   "title": "Xuanzang reports 6,000 monks at Valabhi",
+   "year": 640,
+   "year_end": null,
+   "era": "ERA.GUPTA",
+   "class": "TRADE",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.GUJARAT",
+   "dispute": false,
+   "window": [
+    627,
+    653
+   ]
+  },
+  {
    "id": "EVT.645.NALANDA_AT_ITS_HEIGHT_REPORTEDLY_THOUSANDS_O",
    "title": "Nalanda at its height: reportedly thousands of students, a nine-storey library",
    "year": 645,
@@ -11894,6 +10189,24 @@
    "window": [
     632,
     658
+   ]
+  },
+  {
+   "id": "EVT.650.APPAR_AND_THE_SHAIVA_TURN_JAINISM_LOSES_ROYA",
+   "title": "Appar and the Shaiva turn; Jainism loses royal favour",
+   "year": 650,
+   "year_end": null,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "class": "REFORM",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "window": [
+    637,
+    663
    ]
   },
   {
@@ -11944,6 +10257,24 @@
    "window": [
     657,
     683
+   ]
+  },
+  {
+   "id": "EVT.675.THE_SHORE_TEMPLE_AT_MAHABALIPURAM",
+   "title": "The Shore Temple at Mahabalipuram",
+   "year": 675,
+   "year_end": null,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "class": "FOUNDATION",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "window": [
+    661,
+    689
    ]
   },
   {
@@ -12001,6 +10332,42 @@
    ]
   },
   {
+   "id": "EVT.700.PATTADAKAL_NORTHERN_AND_SOUTHERN_STYLES_BUIL",
+   "title": "Pattadakal; northern and southern styles built side by side",
+   "year": 700,
+   "year_end": null,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "class": "FOUNDATION",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "window": [
+    686,
+    714
+   ]
+  },
+  {
+   "id": "EVT.700.THE_NAYANARS_AND_ALVARS_BHAKTI_ON_THE_PILGRI",
+   "title": "The Nayanars and Alvars; bhakti on the pilgrimage roads",
+   "year": 700,
+   "year_end": null,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "class": "WORK",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "window": [
+    686,
+    714
+   ]
+  },
+  {
    "id": "EVT.712.ARAB_CONQUEST_OF_SINDH_MUHAMMAD_BIN_QASIM",
    "title": "Arab conquest of Sindh (Muhammad bin Qasim)",
    "year": 712,
@@ -12032,6 +10399,38 @@
     701,
     729
    ]
+  },
+  {
+   "id": "EVT.715.ANDAL_THE_ONE_WOMAN_AMONG_THE_TWELVE_ALVARS_2",
+   "title": "Andal — the one woman among the twelve Alvars",
+   "year": 715,
+   "year_end": null,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "class": "WORK",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "window": [
+    701,
+    729
+   ]
+  },
+  {
+   "id": "EVT.724.LALITADITYA_MUKTAPIDA_THE_MARTAND_SUN_TEMPLE",
+   "title": "Lalitaditya Muktapida; the Martand sun temple",
+   "year": 724,
+   "year_end": null,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "class": "FOUNDATION",
+   "magnitude": "W",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.KASHMIR",
+   "dispute": false
   },
   {
    "id": "EVT.725.ELEPHANTA",
@@ -12070,6 +10469,24 @@
    ]
   },
   {
+   "id": "EVT.730.THE_GURJARA_PRATIHARAS",
+   "title": "The Gurjara-Pratiharas",
+   "year": 730,
+   "year_end": null,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "class": "FOUNDATION",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.RAJASTHAN",
+   "dispute": false,
+   "window": [
+    715,
+    745
+   ]
+  },
+  {
    "id": "EVT.736.DELHI_FOUNDED_BY_THE_TOMARAS",
    "title": "Delhi founded by the Tomaras",
    "year": 736,
@@ -12082,6 +10499,24 @@
    "scope": "subcontinental",
    "region": null,
    "dispute": false
+  },
+  {
+   "id": "EVT.740.KAILASANATHA_AT_KANCHI",
+   "title": "Kailasanatha at Kanchi",
+   "year": 740,
+   "year_end": null,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "class": "FOUNDATION",
+   "magnitude": "M",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "window": [
+    725,
+    755
+   ]
   },
   {
    "id": "EVT.740.KAILASANATHA_AT_KANCHI_THE_PALLAVA_HIGH_STYL",
@@ -12099,6 +10534,24 @@
    "window": [
     725,
     755
+   ]
+  },
+  {
+   "id": "EVT.750.GOPALA_ELECTED_KING_THE_PALA_FOUNDATION_BY_A",
+   "title": "Gopala elected king — the Pala foundation, by assembly",
+   "year": 750,
+   "year_end": null,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "class": "FOUNDATION",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.BENGAL",
+   "dispute": false,
+   "window": [
+    735,
+    765
    ]
   },
   {
@@ -12120,6 +10573,24 @@
    ]
   },
   {
+   "id": "EVT.750.RATNAGIRI_LALITAGIRI_UDAYAGIRI_THE_BUDDHIST_",
+   "title": "Ratnagiri, Lalitagiri, Udayagiri — the Buddhist diamond triangle",
+   "year": 750,
+   "year_end": null,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "class": "FOUNDATION",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ODISHA",
+   "dispute": false,
+   "window": [
+    735,
+    765
+   ]
+  },
+  {
    "id": "EVT.753.RASHTRAKUTA_ELLORA_KAILASA_BEGUN",
    "title": "Rashtrakuta; Ellora Kailasa begun",
    "year": 753,
@@ -12131,6 +10602,34 @@
    "trigger": "dated",
    "scope": "subcontinental",
    "region": null,
+   "dispute": false
+  },
+  {
+   "id": "EVT.753.RASHTRAKUTA_THE_DECCAN_BECOMES_THE_ARBITER_O",
+   "title": "Rashtrakuta; the Deccan becomes the arbiter of the north",
+   "year": 753,
+   "year_end": null,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "class": "FOUNDATION",
+   "magnitude": "W",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false
+  },
+  {
+   "id": "EVT.753.THE_RASHTRAKUTAS",
+   "title": "The Rashtrakutas",
+   "year": 753,
+   "year_end": null,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "class": "FOUNDATION",
+   "magnitude": "W",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
    "dispute": false
   },
   {
@@ -12149,6 +10648,24 @@
    "window": [
     745,
     775
+   ]
+  },
+  {
+   "id": "EVT.770.DHARMAPALA_VIKRAMASHILA_AND_SOMAPURA_FOUNDED",
+   "title": "Dharmapala; Vikramashila and Somapura founded",
+   "year": 770,
+   "year_end": null,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "class": "FOUNDATION",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.BENGAL",
+   "dispute": false,
+   "window": [
+    755,
+    785
    ]
   },
   {
@@ -12181,6 +10698,42 @@
    "window": [
     759,
     791
+   ]
+  },
+  {
+   "id": "EVT.780.NANDIVARMAN_III_THE_PALLAVA_HIGH_STYLE_CLOSE",
+   "title": "Nandivarman III; the Pallava high style closes",
+   "year": 780,
+   "year_end": null,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "class": "—",
+   "magnitude": "M",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "window": [
+    764,
+    796
+   ]
+  },
+  {
+   "id": "EVT.780.VALABHI_SACKED_THE_UNIVERSITY_ENDS",
+   "title": "Valabhi sacked; the university ends",
+   "year": 780,
+   "year_end": null,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "class": "CATASTROPHE",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.GUJARAT",
+   "dispute": false,
+   "window": [
+    764,
+    796
    ]
   },
   {
@@ -12234,6 +10787,96 @@
    ]
   },
   {
+   "id": "EVT.800.ELLORA_KAILASA_COMPLETED",
+   "title": "Ellora Kailasa completed",
+   "year": 800,
+   "year_end": null,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "class": "FOUNDATION",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "window": [
+    784,
+    816
+   ]
+  },
+  {
+   "id": "EVT.800.ELLORA_KAILASA_COMPLETED_2",
+   "title": "Ellora Kailasa completed",
+   "year": 800,
+   "year_end": null,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "class": "FOUNDATION",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false,
+   "window": [
+    784,
+    816
+   ]
+  },
+  {
+   "id": "EVT.800.SILK_AND_LAC_FROM_KAMARUPA_REACH_THE_GANGETI",
+   "title": "Silk and lac from Kamarupa reach the Gangetic markets",
+   "year": 800,
+   "year_end": null,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "class": "TRADE",
+   "magnitude": "M",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ASSAM",
+   "dispute": false,
+   "window": [
+    784,
+    816
+   ]
+  },
+  {
+   "id": "EVT.800.SOMAPURA_MAHAVIHARA_AT_PAHARPUR_THE_LARGEST_",
+   "title": "Somapura Mahavihara at Paharpur — the largest south of the Himalaya",
+   "year": 800,
+   "year_end": null,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "class": "FOUNDATION",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.BENGAL",
+   "dispute": false,
+   "window": [
+    784,
+    816
+   ]
+  },
+  {
+   "id": "EVT.800.SRI_LANKAN_MONKS_CARRY_THE_CANON_TO_SOUTHEAS",
+   "title": "Sri Lankan monks carry the canon to Southeast Asia",
+   "year": 800,
+   "year_end": null,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "class": "TRADE",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.SRI_LANKA",
+   "dispute": false,
+   "window": [
+    784,
+    816
+   ]
+  },
+  {
    "id": "EVT.800.THE_CHERA_PERUMALS_OF_MAKOTAI",
    "title": "The Chera Perumals of Makotai",
    "year": 800,
@@ -12252,6 +10895,60 @@
    ]
   },
   {
+   "id": "EVT.800.THE_CHERA_PERUMALS_OF_MAKOTAI_2",
+   "title": "The Chera Perumals of Makotai",
+   "year": 800,
+   "year_end": null,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "class": "FOUNDATION",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KERALA",
+   "dispute": false,
+   "window": [
+    784,
+    816
+   ]
+  },
+  {
+   "id": "EVT.800.THE_DIVYA_PRABANDHAM_COMPILED",
+   "title": "The Divya Prabandham compiled",
+   "year": 800,
+   "year_end": null,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "class": "WORK",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "window": [
+    784,
+    816
+   ]
+  },
+  {
+   "id": "EVT.800.THE_GUHILAS_OF_MEWAR_THE_CHAUHANS_OF_SAKAMBH",
+   "title": "The Guhilas of Mewar; the Chauhans of Sakambhari",
+   "year": 800,
+   "year_end": null,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "class": "FOUNDATION",
+   "magnitude": "M",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.RAJASTHAN",
+   "dispute": false,
+   "window": [
+    784,
+    816
+   ]
+  },
+  {
    "id": "EVT.800.THE_KAILASA_TEMPLE_COMPLETED_AFTER_A_CENTURY",
    "title": "The Kailasa temple completed after a century of excavation",
    "year": 800,
@@ -12263,6 +10960,24 @@
    "trigger": "window",
    "scope": "subcontinental",
    "region": null,
+   "dispute": false,
+   "window": [
+    784,
+    816
+   ]
+  },
+  {
+   "id": "EVT.800.VAJRAYANA_SCHOOLS_FLOURISH_IN_COASTAL_ODISHA",
+   "title": "Vajrayana schools flourish in coastal Odisha",
+   "year": 800,
+   "year_end": null,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "class": "REFORM",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ODISHA",
    "dispute": false,
    "window": [
     784,
@@ -12306,6 +11021,24 @@
    ]
   },
   {
+   "id": "EVT.830.MANIKKAVACHAKAR_S_TIRUVASAGAM",
+   "title": "Manikkavachakar's Tiruvasagam",
+   "year": 830,
+   "year_end": null,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "class": "WORK",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "window": [
+    813,
+    847
+   ]
+  },
+  {
    "id": "EVT.830.THE_BHAGAVATA_PURANA_TAKES_FORM",
    "title": "The Bhagavata Purana takes form",
    "year": 830,
@@ -12343,6 +11076,88 @@
    "becomes": "nothing"
   },
   {
+   "id": "EVT.848.TELUGU_INSCRIPTIONS_MULTIPLY_UNDER_THE_RASHT",
+   "title": "Telugu inscriptions multiply under the Rashtrakutas",
+   "year": 848,
+   "year_end": null,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "class": "WORK",
+   "magnitude": "M",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ANDHRA",
+   "dispute": false,
+   "window": [
+    831,
+    865
+   ]
+  },
+  {
+   "id": "EVT.849.THE_TARISAPPALLI_COPPER_PLATES_A_GRANT_TO_A_",
+   "title": "The Tarisappalli copper plates — a grant to a Christian church",
+   "year": 849,
+   "year_end": null,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "class": "WORK",
+   "magnitude": "W",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.KERALA",
+   "dispute": false
+  },
+  {
+   "id": "EVT.850.KAVIRAJAMARGA_THE_EARLIEST_SURVIVING_KANNADA",
+   "title": "Kavirajamarga — the earliest surviving Kannada literary work",
+   "year": 850,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "WORK",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "window": [
+    833,
+    867
+   ]
+  },
+  {
+   "id": "EVT.850.THE_PALA_SCHOOL_OF_BRONZE_AND_MANUSCRIPT_PAI",
+   "title": "The Pala school of bronze and manuscript painting",
+   "year": 850,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "WORK",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.BENGAL",
+   "dispute": false,
+   "window": [
+    833,
+    867
+   ]
+  },
+  {
+   "id": "EVT.850.VIJAYALAYA_TAKES_THANJAVUR_ERA_13_CARRIES_TH",
+   "title": "Vijayalaya takes Thanjavur → Era 13 carries the rest",
+   "year": 850,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "EPOCH",
+   "magnitude": "W",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false
+  },
+  {
    "id": "EVT.850.VIJAYALAYA_TAKES_THANJAVUR_THE_CHOLA_REVIVAL",
    "title": "Vijayalaya takes Thanjavur. The Chola revival",
    "year": 850,
@@ -12355,6 +11170,24 @@
    "scope": "subcontinental",
    "region": null,
    "dispute": false
+  },
+  {
+   "id": "EVT.855.AVANTIVARMAN_SUYYA_S_ENGINEERING_DRAINS_THE_",
+   "title": "Avantivarman; Suyya's engineering drains the Jhelum floods",
+   "year": 855,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "STRUCTURE",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KASHMIR",
+   "dispute": false,
+   "window": [
+    838,
+    872
+   ]
   },
   {
    "id": "EVT.860.THE_NADU_AND_BRAHMADEYA_TWO_PARALLEL_SYSTEMS",
@@ -12426,6 +11259,42 @@
    "window": [
     872,
     908
+   ]
+  },
+  {
+   "id": "EVT.900.ANANDAVARDHANA_S_DHVANYALOKA_POETICS_AS_PHIL",
+   "title": "Anandavardhana's Dhvanyaloka — poetics as philosophy",
+   "year": 900,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "WORK",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KASHMIR",
+   "dispute": false,
+   "window": [
+    882,
+    918
+   ]
+  },
+  {
+   "id": "EVT.900.THE_PALA_LINE_OF_KAMARUPA",
+   "title": "The Pala line of Kamarupa",
+   "year": 900,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "FOUNDATION",
+   "magnitude": "M",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ASSAM",
+   "dispute": false,
+   "window": [
+    882,
+    918
    ]
   },
   {
@@ -12503,6 +11372,24 @@
    ]
   },
   {
+   "id": "EVT.940.PAMPA_S_VIKRAMARJUNA_VIJAYA_THE_THREE_GEMS_O",
+   "title": "Pampa's Vikramarjuna Vijaya; the \"three gems\" of Kannada",
+   "year": 940,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "WORK",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "window": [
+    921,
+    959
+   ]
+  },
+  {
    "id": "EVT.940.VILLAGE_ASSEMBLIES_SABHA_UR_MANAGE_IRRIGATIO",
    "title": "Village assemblies (sabha, ur) manage irrigation shares",
    "year": 940,
@@ -12519,6 +11406,20 @@
     921,
     959
    ]
+  },
+  {
+   "id": "EVT.941.THE_CHAULUKYAS_SOLANKIS",
+   "title": "The Chaulukyas (Solankis)",
+   "year": 941,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "FOUNDATION",
+   "magnitude": "M",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.GUJARAT",
+   "dispute": false
   },
   {
    "id": "EVT.949.TAKKOLAM_THE_RASHTRAKUTAS_CHECK_CHOLA_EXPANS",
@@ -12540,6 +11441,42 @@
    "becomes": "nothing"
   },
   {
+   "id": "EVT.950.OSIAN_AND_THE_MARU_GURJARA_TEMPLE_STYLE",
+   "title": "Osian and the Maru-Gurjara temple style",
+   "year": 950,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "FOUNDATION",
+   "magnitude": "M",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.RAJASTHAN",
+   "dispute": false,
+   "window": [
+    931,
+    969
+   ]
+  },
+  {
+   "id": "EVT.950.THE_SHILAHARAS_ON_THE_KONKAN_COAST",
+   "title": "The Shilaharas on the Konkan coast",
+   "year": 950,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "FOUNDATION",
+   "magnitude": "M",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false,
+   "window": [
+    931,
+    969
+   ]
+  },
+  {
    "id": "EVT.960.TEMPLE_TREASURIES_BEGIN_LENDING_AT_INTEREST_",
    "title": "Temple treasuries begin lending at interest to villages",
    "year": 960,
@@ -12555,6 +11492,38 @@
    "window": [
     941,
     979
+   ]
+  },
+  {
+   "id": "EVT.973.WESTERN_CHALUKYA_AT_KALYANI",
+   "title": "Western Chalukya at Kalyani",
+   "year": 973,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "FOUNDATION",
+   "magnitude": "M",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false
+  },
+  {
+   "id": "EVT.975.ABHINAVAGUPTA_KASHMIR_SHAIVISM_AND_THE_TANTR",
+   "title": "Abhinavagupta; Kashmir Shaivism and the Tantraloka",
+   "year": 975,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "WORK",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KASHMIR",
+   "dispute": false,
+   "window": [
+    955,
+    995
    ]
   },
   {
@@ -12574,6 +11543,20 @@
     960,
     1000
    ]
+  },
+  {
+   "id": "EVT.983.GOMMATESHWARA_AT_SHRAVANABELAGOLA_17_M_FROM_",
+   "title": "Gommateshwara at Shravanabelagola — 17 m from a single rock",
+   "year": 983,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "FOUNDATION",
+   "magnitude": "W",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false
   },
   {
    "id": "EVT.985.RAJARAJA_I_ACCEDES",
@@ -12608,6 +11591,21 @@
    ]
   },
   {
+   "id": "EVT.993.CHOLA_CONQUEST_ANURADHAPURA_FALLS",
+   "title": "Chola conquest; Anuradhapura falls",
+   "year": 993,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "INVASION",
+   "magnitude": "W",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.SRI_LANKA",
+   "dispute": false,
+   "becomes": "nothing"
+  },
+  {
    "id": "EVT.993.THE_CONQUEST_OF_SRI_LANKA_BEGINS_ANURADHAPUR",
    "title": "The conquest of Sri Lanka begins; Anuradhapura taken",
    "year": 993,
@@ -12627,6 +11625,42 @@
    "becomes": "nothing"
   },
   {
+   "id": "EVT.1000.ATISHA_DIPANKARA_LEAVES_FOR_TIBET",
+   "title": "Atisha Dipankara leaves for Tibet",
+   "year": 1000,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "TRADE",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.BENGAL",
+   "dispute": false,
+   "window": [
+    980,
+    1020
+   ]
+  },
+  {
+   "id": "EVT.1000.NANNAYA_S_ANDHRA_MAHABHARATAMU_TELUGU_LITERA",
+   "title": "Nannaya's Andhra Mahabharatamu — Telugu literature begins",
+   "year": 1000,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "WORK",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ANDHRA",
+   "dispute": false,
+   "window": [
+    980,
+    1020
+   ]
+  },
+  {
    "id": "EVT.1000.REVENUE_CLASSIFIED_BY_SOIL_WATER_ACCESS_AND_",
    "title": "Revenue classified by soil, water access and crop",
    "year": 1000,
@@ -12638,6 +11672,78 @@
    "trigger": "window",
    "scope": "subcontinental",
    "region": null,
+   "dispute": false,
+   "window": [
+    980,
+    1020
+   ]
+  },
+  {
+   "id": "EVT.1000.THE_JEWISH_COPPER_PLATES_OF_BHASKARA_RAVI_VA",
+   "title": "The Jewish copper plates of Bhaskara Ravi Varman",
+   "year": 1000,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "WORK",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KERALA",
+   "dispute": false,
+   "window": [
+    980,
+    1020
+   ]
+  },
+  {
+   "id": "EVT.1000.THE_KAMAKHYA_TEMPLE_TRADITION_TANTRIC_TRANSM",
+   "title": "The Kamakhya temple tradition; Tantric transmission",
+   "year": 1000,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "REFORM",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ASSAM",
+   "dispute": false,
+   "window": [
+    980,
+    1020
+   ]
+  },
+  {
+   "id": "EVT.1000.THE_KATHASARITSAGARA_S_KASHMIRI_COURT_PATRON",
+   "title": "The Kathasaritsagara's Kashmiri court patronage",
+   "year": 1000,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "WORK",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KASHMIR",
+   "dispute": false,
+   "window": [
+    980,
+    1020
+   ]
+  },
+  {
+   "id": "EVT.1000.THE_MANIPRAVALAM_REGISTER_SANSKRIT_AND_MALAY",
+   "title": "The Manipravalam register: Sanskrit and Malayalam fused",
+   "year": 1000,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "WORK",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KERALA",
    "dispute": false,
    "window": [
     980,
@@ -12816,6 +11922,35 @@
    "dispute": false
   },
   {
+   "id": "EVT.1026.HOYSALA_FOUNDATION",
+   "title": "Hoysala foundation",
+   "year": 1026,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "FOUNDATION",
+   "magnitude": "M",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false
+  },
+  {
+   "id": "EVT.1026.SOMNATH_RAIDED_BY_MAHMUD_OF_GHAZNI",
+   "title": "Somnath raided by Mahmud of Ghazni",
+   "year": 1026,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "INVASION",
+   "magnitude": "W",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.GUJARAT",
+   "dispute": false,
+   "becomes": "nothing"
+  },
+  {
    "id": "EVT.1030.EMBASSIES_TO_SONG_CHINA_THE_QUANZHOU_TRADE",
    "title": "Embassies to Song China; the Quanzhou trade",
    "year": 1030,
@@ -12832,6 +11967,20 @@
     1009,
     1051
    ]
+  },
+  {
+   "id": "EVT.1031.THE_DILWARA_TEMPLES_AT_MOUNT_ABU",
+   "title": "The Dilwara temples at Mount Abu",
+   "year": 1031,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "FOUNDATION",
+   "magnitude": "W",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.GUJARAT",
+   "dispute": false
   },
   {
    "id": "EVT.1035.CHOLA_BRONZE_CASTING_AT_ITS_HEIGHT_THE_NATAR",
@@ -12889,6 +12038,24 @@
    ]
   },
   {
+   "id": "EVT.1050.PALA_BUDDHISM_TRANSMITS_WHOLESALE_TO_TIBET",
+   "title": "Pala Buddhism transmits wholesale to Tibet",
+   "year": 1050,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "TRADE",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.BENGAL",
+   "dispute": false,
+   "window": [
+    1029,
+    1071
+   ]
+  },
+  {
    "id": "EVT.1060.THE_AYYAVOLE_GUILD_OPERATES_FROM_JAVA_TO_THE",
    "title": "The Ayyavole guild operates from Java to the Persian Gulf",
    "year": 1060,
@@ -12925,6 +12092,56 @@
    ]
   },
   {
+   "id": "EVT.1070.KULOTTUNGA_UNITES_CHOLA_AND_EASTERN_CHALUKYA",
+   "title": "Kulottunga unites Chola and Eastern Chalukya lines",
+   "year": 1070,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "—",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ANDHRA",
+   "dispute": false,
+   "window": [
+    1049,
+    1091
+   ]
+  },
+  {
+   "id": "EVT.1070.THE_SENAS_BRAHMANICAL_REORDERING",
+   "title": "The Senas; brahmanical reordering",
+   "year": 1070,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "FOUNDATION",
+   "magnitude": "M",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.BENGAL",
+   "dispute": false,
+   "window": [
+    1049,
+    1091
+   ]
+  },
+  {
+   "id": "EVT.1070.VIJAYABAHU_RESTORES_INDEPENDENCE_POLONNARUWA",
+   "title": "Vijayabahu restores independence; Polonnaruwa",
+   "year": 1070,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "FOUNDATION",
+   "magnitude": "M",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.SRI_LANKA",
+   "dispute": false
+  },
+  {
    "id": "EVT.1077.AN_EMBASSY_OF_SEVENTY_TWO_MERCHANTS_REACHES_",
    "title": "An embassy of seventy-two merchants reaches the Song court",
    "year": 1077,
@@ -12941,6 +12158,20 @@
     1055,
     1099
    ]
+  },
+  {
+   "id": "EVT.1078.THE_EASTERN_GANGAS",
+   "title": "The Eastern Gangas",
+   "year": 1078,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "FOUNDATION",
+   "magnitude": "W",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.ODISHA",
+   "dispute": false
   },
   {
    "id": "EVT.1080.KULOTTUNGA_ABOLISHES_TOLLS_SUNGAM_TAVIRTTA",
@@ -12961,6 +12192,20 @@
    ]
   },
   {
+   "id": "EVT.1083.KAKATIYA_FOUNDATION",
+   "title": "Kakatiya foundation",
+   "year": 1083,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "FOUNDATION",
+   "magnitude": "W",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.ANDHRA",
+   "dispute": false
+  },
+  {
    "id": "EVT.1090.AIRAVATESVARA_AT_DARASURAM_BEGUN",
    "title": "Airavatesvara at Darasuram begun",
    "year": 1090,
@@ -12976,6 +12221,61 @@
    "window": [
     1068,
     1112
+   ]
+  },
+  {
+   "id": "EVT.1090.THE_CHOLA_WARS_EXHAUST_THE_CHERAS",
+   "title": "The Chola wars exhaust the Cheras",
+   "year": 1090,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "INVASION",
+   "magnitude": "M",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KERALA",
+   "dispute": false,
+   "window": [
+    1068,
+    1112
+   ],
+   "becomes": "nothing"
+  },
+  {
+   "id": "EVT.1100.HEMACHANDRA_JAIN_SCHOLARSHIP_AND_THE_SIDDHA_",
+   "title": "Hemachandra; Jain scholarship and the Siddha-Hema",
+   "year": 1100,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "WORK",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.GUJARAT",
+   "dispute": false,
+   "window": [
+    1078,
+    1122
+   ]
+  },
+  {
+   "id": "EVT.1100.KAMARUPA_FRAGMENTS_THE_CHUTIYA_AND_KACHARI_R",
+   "title": "Kamarupa fragments; the Chutiya and Kachari rise",
+   "year": 1100,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "FOUNDATION",
+   "magnitude": "M",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ASSAM",
+   "dispute": false,
+   "window": [
+    1078,
+    1122
    ]
   },
   {
@@ -12995,6 +12295,56 @@
     1078,
     1122
    ]
+  },
+  {
+   "id": "EVT.1100.THE_CHARYAPADA_THE_EARLIEST_BENGALI_AND_ASSA",
+   "title": "The Charyapada — the earliest Bengali (and Assamese, and Odia) verse",
+   "year": 1100,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "WORK",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.BENGAL",
+   "dispute": false,
+   "window": [
+    1078,
+    1122
+   ]
+  },
+  {
+   "id": "EVT.1100.VIJNANESHWARA_S_MITAKSHARA_THE_STANDARD_COMM",
+   "title": "Vijnaneshwara's Mitakshara — the standard commentary on Hindu law",
+   "year": 1100,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "WORK",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "window": [
+    1078,
+    1122
+   ]
+  },
+  {
+   "id": "EVT.1102.THE_CHERA_PERUMALS_END_KERALA_FRAGMENTS_INTO",
+   "title": "The Chera Perumals end; Kerala fragments into chiefdoms",
+   "year": 1102,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "EPOCH",
+   "magnitude": "W",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.KERALA",
+   "dispute": false
   },
   {
    "id": "EVT.1110.TEMPLE_ENTRY_DISPUTES_RECORDED_IN_INSCRIPTIO",
@@ -13030,6 +12380,24 @@
    "window": [
     1098,
     1142
+   ]
+  },
+  {
+   "id": "EVT.1130.BASAVA_AND_THE_SHARANAS_THE_ANUBHAVA_MANTAPA",
+   "title": "Basava and the Sharanas; the Anubhava Mantapa",
+   "year": 1130,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "REFORM",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "window": [
+    1107,
+    1153
    ]
   },
   {
@@ -13069,6 +12437,38 @@
    ]
   },
   {
+   "id": "EVT.1140.AKKA_MAHADEVI_VACHANAS_BY_WEAVERS_POTTERS_WA",
+   "title": "Akka Mahadevi; vachanas by weavers, potters, washerwomen",
+   "year": 1140,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "WORK",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "window": [
+    1117,
+    1163
+   ]
+  },
+  {
+   "id": "EVT.1148.KALHANA_S_RAJATARANGINI",
+   "title": "Kalhana's Rajatarangini",
+   "year": 1148,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "WORK",
+   "magnitude": "W",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.KASHMIR",
+   "dispute": false
+  },
+  {
    "id": "EVT.1148.RAJATARANGINI_THE_FIRST_INDIAN_WORK_THAT_IS_",
    "title": "Rajatarangini — the first Indian work that is recognisably history",
    "year": 1148,
@@ -13084,6 +12484,24 @@
    "window": [
     1125,
     1171
+   ]
+  },
+  {
+   "id": "EVT.1150.BELUR_AND_HALEBIDU_THE_HOYSALA_STYLE",
+   "title": "Belur and Halebidu; the Hoysala style",
+   "year": 1150,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "FOUNDATION",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "window": [
+    1127,
+    1173
    ]
   },
   {
@@ -13123,6 +12541,60 @@
    ]
   },
   {
+   "id": "EVT.1150.JAIN_BHANDARA_LIBRARIES_AT_JAISALMER_AND_PAT",
+   "title": "Jain bhandara libraries at Jaisalmer and Patan",
+   "year": 1150,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "TRANSITION",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.RAJASTHAN",
+   "dispute": false,
+   "window": [
+    1127,
+    1173
+   ]
+  },
+  {
+   "id": "EVT.1150.JAIN_MERCHANT_CAPITAL_FUNDS_LIBRARIES_THE_BH",
+   "title": "Jain merchant capital funds libraries — the bhandaras",
+   "year": 1150,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "TRANSITION",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.GUJARAT",
+   "dispute": false,
+   "window": [
+    1127,
+    1173
+   ]
+  },
+  {
+   "id": "EVT.1150.KAMBA_RAMAYANAM_A_RIVAL_NOT_A_TRANSLATION",
+   "title": "Kamba Ramayanam — a rival, not a translation",
+   "year": 1150,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "WORK",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "window": [
+    1127,
+    1173
+   ]
+  },
+  {
    "id": "EVT.1150.KAMBA_RAMAYANAM_NOT_A_TRANSLATION_BUT_A_RIVA",
    "title": "Kamba Ramayanam — not a translation but a rival",
    "year": 1150,
@@ -13138,6 +12610,74 @@
    "window": [
     1127,
     1173
+   ]
+  },
+  {
+   "id": "EVT.1160.PARAKRAMABAHU_I_THE_TANK_SYSTEM_AT_MAXIMUM_E",
+   "title": "Parakramabahu I; the tank system at maximum extent",
+   "year": 1160,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "STRUCTURE",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.SRI_LANKA",
+   "dispute": false,
+   "window": [
+    1137,
+    1183
+   ]
+  },
+  {
+   "id": "EVT.1161.THE_JAGANNATH_TEMPLE_AT_PURI_COMPLETED",
+   "title": "The Jagannath temple at Puri completed",
+   "year": 1161,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "FOUNDATION",
+   "magnitude": "W",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.ODISHA",
+   "dispute": false
+  },
+  {
+   "id": "EVT.1170.JAYADEVA_S_GITA_GOVINDA",
+   "title": "Jayadeva's Gita Govinda",
+   "year": 1170,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "WORK",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.BENGAL",
+   "dispute": false,
+   "window": [
+    1147,
+    1193
+   ]
+  },
+  {
+   "id": "EVT.1170.TANK_IRRIGATION_TRANSFORMS_THE_TELANGANA_UPL",
+   "title": "Tank irrigation transforms the Telangana uplands",
+   "year": 1170,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "STRUCTURE",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ANDHRA",
+   "dispute": false,
+   "window": [
+    1147,
+    1193
    ]
   },
   {
@@ -13157,6 +12697,20 @@
     1147,
     1193
    ]
+  },
+  {
+   "id": "EVT.1187.THE_YADAVAS_OF_DEVAGIRI",
+   "title": "The Yadavas of Devagiri",
+   "year": 1187,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "FOUNDATION",
+   "magnitude": "M",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false
   },
   {
    "id": "EVT.1190.PANDYA_RESURGENCE_CHOLA_TERRITORY_CONTRACTS",
@@ -13192,6 +12746,21 @@
    "becomes": "nothing"
   },
   {
+   "id": "EVT.1192.SECOND_TARAIN",
+   "title": "Second Tarain",
+   "year": 1192,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "INVASION",
+   "magnitude": "W",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.RAJASTHAN",
+   "dispute": false,
+   "becomes": "nothing"
+  },
+  {
    "id": "EVT.1192.SECOND_TARAIN_THE_HINGE_OF_THE_MEDIEVAL_PERI",
    "title": "Second Tarain. The hinge of the medieval period",
    "year": 1192,
@@ -13219,6 +12788,108 @@
    "scope": "subcontinental",
    "region": null,
    "dispute": false
+  },
+  {
+   "id": "EVT.1200.CALICUT_RISES_THE_ZAMORIN_AND_THE_PEPPER_TRA",
+   "title": "Calicut rises; the Zamorin and the pepper trade",
+   "year": 1200,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "FOUNDATION",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KERALA",
+   "dispute": false,
+   "window": [
+    1176,
+    1224
+   ]
+  },
+  {
+   "id": "EVT.1200.KASHMIRI_SANSKRIT_SCHOLARSHIP_AT_ITS_WIDEST_",
+   "title": "Kashmiri Sanskrit scholarship at its widest influence",
+   "year": 1200,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "WORK",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KASHMIR",
+   "dispute": false,
+   "window": [
+    1176,
+    1224
+   ]
+  },
+  {
+   "id": "EVT.1200.RAMAPPA_TEMPLE_FLOATING_BRICK_AND_SANDBOX_FO",
+   "title": "Ramappa temple; floating brick and sandbox foundations",
+   "year": 1200,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "FOUNDATION",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ANDHRA",
+   "dispute": false,
+   "window": [
+    1176,
+    1224
+   ]
+  },
+  {
+   "id": "EVT.1200.THE_JAGANNATH_CULT_ABSORBS_TRIBAL_JAIN_AND_B",
+   "title": "The Jagannath cult absorbs tribal, Jain and Buddhist strands",
+   "year": 1200,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "REFORM",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ODISHA",
+   "dispute": false,
+   "window": [
+    1176,
+    1224
+   ]
+  },
+  {
+   "id": "EVT.1204.BAKHTIYAR_KHALJI_TAKES_NADIA",
+   "title": "Bakhtiyar Khalji takes Nadia",
+   "year": 1204,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "INVASION",
+   "magnitude": "W",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.BENGAL",
+   "dispute": false,
+   "becomes": "nothing"
+  },
+  {
+   "id": "EVT.1206.BAKHTIYAR_KHALJI_S_TIBET_EXPEDITION_DESTROYE",
+   "title": "Bakhtiyar Khalji's Tibet expedition destroyed in the hills",
+   "year": 1206,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "INVASION",
+   "magnitude": "W",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.ASSAM",
+   "dispute": false,
+   "becomes": "nothing"
   },
   {
    "id": "EVT.1206.THE_DELHI_SULTANATE_FOUNDED",
@@ -13250,6 +12921,38 @@
    "becomes": "nothing"
   },
   {
+   "id": "EVT.1228.SUKAPHAA_CROSSES_THE_PATKAI_THE_AHOM_KINGDOM",
+   "title": "Sukaphaa crosses the Patkai — the Ahom kingdom begins",
+   "year": 1228,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "FOUNDATION",
+   "magnitude": "W",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.ASSAM",
+   "dispute": false
+  },
+  {
+   "id": "EVT.1250.KONARK_THE_SUN_TEMPLE_AS_A_STONE_CHARIOT",
+   "title": "Konark; the Sun Temple as a stone chariot",
+   "year": 1250,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "FOUNDATION",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ODISHA",
+   "dispute": false,
+   "window": [
+    1225,
+    1275
+   ]
+  },
+  {
    "id": "EVT.1250.THE_KONARK_SUN_TEMPLE",
    "title": "The Konark Sun Temple",
    "year": 1250,
@@ -13268,6 +12971,60 @@
    ]
   },
   {
+   "id": "EVT.1250.THE_MAHANUBHAVA_SECT_PROSE_IN_MARATHI",
+   "title": "The Mahanubhava sect; prose in Marathi",
+   "year": 1250,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "WORK",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false,
+   "window": [
+    1225,
+    1275
+   ]
+  },
+  {
+   "id": "EVT.1250.THE_PAIK_SYSTEM_LABOUR_SERVICE_AS_THE_BASIS_",
+   "title": "The paik system: labour service as the basis of the state",
+   "year": 1250,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "TRANSITION",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ASSAM",
+   "dispute": false,
+   "window": [
+    1225,
+    1275
+   ]
+  },
+  {
+   "id": "EVT.1262.RANI_RUDRAMA_DEVI_RULES_IN_HER_OWN_NAME",
+   "title": "Rani Rudrama Devi rules in her own name",
+   "year": 1262,
+   "year_end": null,
+   "era": "ERA.CHOLA",
+   "class": "—",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ANDHRA",
+   "dispute": false,
+   "window": [
+    1237,
+    1287
+   ]
+  },
+  {
    "id": "EVT.1279.THE_LAST_CHOLA_THE_FOCUS_PERIOD_CLOSES",
    "title": "The last Chola. The focus period closes",
    "year": 1279,
@@ -13280,6 +13037,60 @@
    "scope": "subcontinental",
    "region": null,
    "dispute": false
+  },
+  {
+   "id": "EVT.1280.TWIPRA_MANIKYA_IN_THE_TRIPURA_HILLS",
+   "title": "Twipra (Manikya) in the Tripura hills",
+   "year": 1280,
+   "year_end": null,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "class": "FOUNDATION",
+   "magnitude": "M",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ASSAM",
+   "dispute": false,
+   "window": [
+    1254,
+    1306
+   ]
+  },
+  {
+   "id": "EVT.1290.JNANESHWAR_S_JNANESHWARI_MARATHI_LITERATURE_",
+   "title": "Jnaneshwar's Jnaneshwari — Marathi literature arrives",
+   "year": 1290,
+   "year_end": null,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "class": "WORK",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false,
+   "window": [
+    1264,
+    1316
+   ]
+  },
+  {
+   "id": "EVT.1290.PALKURIKI_SOMANATHA_TELUGU_DEVOTIONAL_LITERA",
+   "title": "Palkuriki Somanatha; Telugu devotional literature",
+   "year": 1290,
+   "year_end": null,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "class": "WORK",
+   "magnitude": "M",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ANDHRA",
+   "dispute": false,
+   "window": [
+    1264,
+    1316
+   ]
   },
   {
    "id": "EVT.1296.ALAUDDIN_S_MARKET_CONTROLS",
@@ -13296,6 +13107,21 @@
    "dispute": false
   },
   {
+   "id": "EVT.1296.DEVAGIRI_RAIDED_BY_ALAUDDIN_KHALJI",
+   "title": "Devagiri raided by Alauddin Khalji",
+   "year": 1296,
+   "year_end": null,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "class": "INVASION",
+   "magnitude": "W",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false,
+   "becomes": "nothing"
+  },
+  {
    "id": "EVT.1297.MONGOL_INVASIONS_REPELLED",
    "title": "Mongol invasions repelled",
    "year": 1297,
@@ -13309,6 +13135,52 @@
    "region": null,
    "dispute": false,
    "becomes": "nothing"
+  },
+  {
+   "id": "EVT.1300.NAMDEV_THE_VARKARI_PILGRIMAGE_TO_PANDHARPUR",
+   "title": "Namdev; the Varkari pilgrimage to Pandharpur",
+   "year": 1300,
+   "year_end": null,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "class": "REFORM",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false,
+   "window": [
+    1274,
+    1326
+   ]
+  },
+  {
+   "id": "EVT.1317.THE_YADAVAS_END",
+   "title": "The Yadavas end",
+   "year": 1317,
+   "year_end": null,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "class": "—",
+   "magnitude": "M",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false
+  },
+  {
+   "id": "EVT.1323.KAKATIYA_FALLS_TO_THE_TUGHLAQS",
+   "title": "Kakatiya falls to the Tughlaqs",
+   "year": 1323,
+   "year_end": null,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "class": "CATASTROPHE",
+   "magnitude": "W",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.ANDHRA",
+   "dispute": false
   },
   {
    "id": "EVT.1327.DAULATABAD",
@@ -13367,6 +13239,38 @@
    "dispute": false
   },
   {
+   "id": "EVT.1339.THE_KASHMIR_SULTANATE",
+   "title": "The Kashmir Sultanate",
+   "year": 1339,
+   "year_end": null,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "class": "FOUNDATION",
+   "magnitude": "W",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.KASHMIR",
+   "dispute": false
+  },
+  {
+   "id": "EVT.1340.MADHAVA_OF_SANGAMAGRAMA_FOUNDS_THE_KERALA_SC",
+   "title": "Madhava of Sangamagrama founds the Kerala school",
+   "year": 1340,
+   "year_end": null,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "class": "WORK",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KERALA",
+   "dispute": false,
+   "window": [
+    1313,
+    1367
+   ]
+  },
+  {
    "id": "EVT.1347.BAHMANI_SECESSION",
    "title": "Bahmani secession",
    "year": 1347,
@@ -13399,6 +13303,20 @@
    ]
   },
   {
+   "id": "EVT.1352.THE_BENGAL_SULTANATE_A_DISTINCT_LITERARY_PAT",
+   "title": "The Bengal Sultanate; a distinct literary patron",
+   "year": 1352,
+   "year_end": null,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "class": "FOUNDATION",
+   "magnitude": "W",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.BENGAL",
+   "dispute": false
+  },
+  {
    "id": "EVT.1398.TIMUR_SACKS_DELHI",
    "title": "Timur sacks Delhi",
    "year": 1398,
@@ -13412,6 +13330,56 @@
    "region": null,
    "dispute": false,
    "becomes": "nothing"
+  },
+  {
+   "id": "EVT.1400.INFINITE_SERIES_FOR_SINE_AND_COSINE_WITH_PRO",
+   "title": "Infinite series for π, sine and cosine — with proofs",
+   "year": 1400,
+   "year_end": null,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "class": "WORK",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KERALA",
+   "dispute": false,
+   "window": [
+    1372,
+    1428
+   ]
+  },
+  {
+   "id": "EVT.1400.THE_BURANJI_CHRONICLE_TRADITION_BEGINS_HISTO",
+   "title": "The buranji chronicle tradition begins — history as state practice",
+   "year": 1400,
+   "year_end": null,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "class": "WORK",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ASSAM",
+   "dispute": false,
+   "window": [
+    1372,
+    1428
+   ]
+  },
+  {
+   "id": "EVT.1434.THE_GAJAPATIS",
+   "title": "The Gajapatis",
+   "year": 1434,
+   "year_end": null,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "class": "FOUNDATION",
+   "magnitude": "M",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.ODISHA",
+   "dispute": false
   },
   {
    "id": "EVT.1440.KABIR",
@@ -13429,6 +13397,24 @@
    "window": [
     1430,
     1528
+   ]
+  },
+  {
+   "id": "EVT.1450.SANKARDEV_THE_EKASARANA_MOVEMENT_AND_ASSAMES",
+   "title": "Sankardev; the Ekasarana movement and Assamese literature",
+   "year": 1450,
+   "year_end": null,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "class": "REFORM",
+   "magnitude": "W",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ASSAM",
+   "dispute": false,
+   "window": [
+    1421,
+    1479
    ]
   },
   {
@@ -13461,6 +13447,20 @@
   },
   {
    "id": "EVT.1498.VASCO_DA_GAMA_AT_CALICUT",
+   "title": "Vasco da Gama at Calicut",
+   "year": 1498,
+   "year_end": null,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "class": "COLONIAL",
+   "magnitude": "W",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.KERALA",
+   "dispute": false
+  },
+  {
+   "id": "EVT.1498.VASCO_DA_GAMA_AT_CALICUT_2",
    "title": "Vasco da Gama at Calicut",
    "year": 1498,
    "year_end": null,
@@ -13849,7 +13849,7 @@
   "total": 789,
   "subcontinental": 537,
   "regional": 252,
-  "pre_1300": 752,
+  "pre_1300": 741,
   "by_magnitude": {
    "W": 455,
    "M": 306,
@@ -13868,10 +13868,10 @@
    "SITE": 112,
    "WORK": 142,
    "CATASTROPHE": 14,
-   "COLONIAL": 5,
+   "INVASION": 41,
    "FOUNDATION": 112,
    "—": 24,
-   "INVASION": 41
+   "COLONIAL": 5
   },
   "by_trigger": {
    "window": 638,

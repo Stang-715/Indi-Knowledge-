@@ -60,35 +60,42 @@ function clean(s) {
 }
 
 /**
- * Parse a year cell. Handles: `~6000`, `~2172 BCE`, `261`, `563–480`, `327–325`,
- * `~29 BCE`, `1010`, `~30 CE`. Returns {year, yearEnd, approx}.
+ * Parse a year cell. Handles: `~6000`, `~2172 BCE`, `261`, `563–480`, `~29 BCE`,
+ * `~30 CE`. Returns {year, yearEnd, approx}.
  *
- * The sign convention: inside a BCE era block, bare numbers are BCE. That is why
- * this needs the era's own sign as context — `250` in Era 9 is 250 BCE, but `250`
- * in Era 10 is ambiguous and the doc marks it `CE`.
+ * The sign convention is the fiddly part, and getting it wrong is silent: a table
+ * that reads "780 Valabhi sacked" means 780 CE, but a naive rule inside a span
+ * that starts in 6000 BCE reads it as 780 BCE and files a Gupta-era catastrophe
+ * in the Vedic period.
+ *
+ * The document's own convention is what to follow: every table that crosses the
+ * epoch marks the crossing explicitly with `CE`, and all twelve regional spines
+ * do. So track a mode per table and flip it only on an explicit marker.
+ *
+ * An earlier version also flipped when a bare year stopped descending, on the
+ * theory that BCE years count down. That is true of the data but not of the
+ * prose: the 8.2 kiloyear event is written mid-table, out of order, because it
+ * is thematically placed — and the heuristic read it as the epoch crossing and
+ * inverted the entire Neolithic. Explicit markers only.
  */
-function parseYear(cell, eraFrom, eraTo) {
+function parseYear(cell, ctx) {
   const raw = clean(cell);
   const approx = /~/.test(raw);
   const bce = /\bBCE\b/.test(raw);
   const ce  = /\bCE\b/.test(raw);
-  const nums = raw.replace(/[~]/g,'').match(/\d+/g);
+  const nums = raw.replace(/[~]/g, '').match(/\d+/g);
   if (!nums) return null;
 
   let a = parseInt(nums[0], 10);
   let b = nums.length > 1 ? parseInt(nums[1], 10) : null;
 
-  // Decide the sign. Explicit markers win; otherwise inherit from the era.
-  let sign;
-  if (bce) sign = -1;
-  else if (ce) sign = 1;
-  else if (eraFrom < 0 && eraTo <= 0) sign = -1;
-  else if (eraFrom >= 0) sign = 1;
-  else {
-    // Era straddles the epoch (e.g. 185 BCE – 320 CE). A bare number is BCE if it
-    // falls inside the BCE half of the span.
-    sign = a > Math.abs(eraTo) || a <= Math.abs(eraFrom) ? -1 : 1;
-  }
+  if (ce)  ctx.mode = 1;
+  if (bce) ctx.mode = -1;
+
+  // A span wholly after the epoch cannot hold BCE years.
+  if (ctx.from >= 0) ctx.mode = 1;
+  const sign = ctx.mode;
+  ctx.lastAbs = a;
 
   let year = sign * a;
   let yearEnd = b === null ? null : sign * b;
@@ -164,7 +171,8 @@ function parseTables(md) {
     const eraM = line.match(/^## Era (\d+) ·/);
     if (eraM) {
       const era = ERAS.find(e => e.n === parseInt(eraM[1], 10));
-      ctx = { eraId: era.id, from: era.from, to: era.to, scope: 'subcontinental', region: null };
+      ctx = { eraId: era.id, from: era.from, to: era.to, scope: 'subcontinental', region: null,
+              mode: era.from < 0 ? -1 : 1, lastAbs: null };
       inTable = false;
       continue;
     }
@@ -188,7 +196,8 @@ function parseTables(md) {
       const name = clean(regM[1]).replace(/ — coupled external$/, '');
       const id = REGIONS[name];
       if (id) {
-        ctx = { eraId: null, from: -6000, to: 1947, scope: 'regional', region: id, regionName: name };
+        ctx = { eraId: null, from: -6000, to: 1947, scope: 'regional', region: id, regionName: name,
+                mode: -1, lastAbs: null };
         inTable = false;
       }
       continue;
@@ -207,7 +216,7 @@ function parseTables(md) {
     const [yearCell, titleCell, classCell, magCell] = cells;
     if (!clean(yearCell)) continue;                       // indented commentary row
 
-    const y = parseYear(yearCell, ctx.from, ctx.to);
+    const y = parseYear(yearCell, ctx);
     if (!y) continue;
 
     const title = clean(titleCell);
