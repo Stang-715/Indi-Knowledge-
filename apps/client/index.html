@@ -20,6 +20,17 @@
   #year { font-size:19px; font-weight:600; font-variant-numeric:tabular-nums; min-width:104px; }
   #era  { font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); }
 
+  #start { position:absolute; inset:0; display:grid; place-items:center; z-index:30;
+           background:rgba(42,33,24,.55); }
+  #start.off { display:none; }
+  .startcard { background:var(--paper); border:1px solid var(--rule); max-width:520px;
+               padding:26px 28px 24px; box-shadow:var(--shadow-lift); }
+  .startcard h1 { margin:0 0 4px; font-size:30px; letter-spacing:.01em; }
+  .startcard .lede { margin:0 0 18px; color:var(--ink-soft); font-size:14px; line-height:1.5; }
+  .picks { display:flex; flex-direction:column; gap:8px; }
+  .picks .btn { text-align:left; padding:11px 14px; display:flex; flex-direction:column; gap:3px; }
+  .picks .btn b { font-size:15px; }
+  .picks .btn span { font-size:12px; opacity:.8; font-weight:400; }
   #scrub { position:absolute; left:14px; bottom:52px; display:flex; align-items:center; gap:8px;
            background:var(--paper); border:1px solid var(--rule); padding:5px 10px;
            box-shadow:var(--shadow-contact); }
@@ -103,6 +114,21 @@
       title="Scrub the campaign. A replay is the same world evaluated at a different year."><span id="scrub-year"></span></div>
     <div id="modes" class="tabs"></div>
     <div id="notices"></div>
+    <div id="start">
+      <div class="startcard">
+        <h1>Paramountcy</h1>
+        <p class="lede">An India-only grand strategy game where the economy you
+          protect is a library.</p>
+        <div class="picks">
+          <button class="btn btn--primary" data-campaign="chola">
+            <b>The Chola Age</b><span>850 – 1279 · Thanjavur · the era the record
+            actually documents, at village resolution</span></button>
+          <button class="btn" data-campaign="full">
+            <b>The long campaign</b><span>6000 BCE – 1947 · the whole
+            seven thousand nine hundred and forty-seven years</span></button>
+        </div>
+      </div>
+    </div>
     <div id="drawer"><div id="drawer-inner"></div>
       <button class="btn" id="drawer-close">close</button></div>
   </div>

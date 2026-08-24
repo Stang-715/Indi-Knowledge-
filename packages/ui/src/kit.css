@@ -321,3 +321,12 @@ body {
 #drawer-close {
   position: absolute; top: 14px; right: 14px;
 }
+
+/* --- The reckoning ------------------------------------------------------- */
+.reck { display: grid; gap: 4px; margin: 10px 14px 0; }
+.reck ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 3px; }
+.reck li { display: grid; gap: 1px; padding: 5px 9px; font-size: 12px; }
+.reck li b { font-size: 13px; }
+.reck li span { color: var(--ink-soft); }
+.reck li.met    { background: var(--sheet-shade); box-shadow: inset 3px 0 0 var(--land-fertile); }
+.reck li.missed { background: var(--sheet); box-shadow: inset 3px 0 0 var(--rule); opacity: .62; }

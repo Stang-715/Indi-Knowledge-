@@ -21,7 +21,7 @@ npm run serve      # → http://localhost:8420/
 npm run campaign            # the whole campaign, as text
 npm run campaign -- --gate  # the 1193 scenario: copy out, or don't
 npm run campaign -- --tend --color
-npm test                    # 111 tests
+npm test                    # 247 tests
 npm run check               # the determinism guard
 ```
 
@@ -67,10 +67,21 @@ it is. `npm run check` fails the build if it does.
    as a visual emphasis mask and **must be replaced with Survey of India
    geometry before any India release.**
 
+## Two campaigns
+
+**The Chola Age**, 850–1279 — the era the record actually documents, played at
+village resolution on real inscriptions. Six chapters, eight objectives, and a
+reckoning at the end that reports what survived and what it cost without adding
+them up.
+
+**The long campaign**, 6000 BCE – 1947 — all 7,947 years.
+
 ## Status
 
-All eleven phases of the build plan are implemented and tested. A full
-7,947-year campaign runs headless in 53 ms; the client paints in 1.0 s.
+Both build plans are implemented and tested: 22 phases, **247 tests**. A full
+campaign runs headless in 53 ms; the client paints in 0.25 s and dives from the
+whole subcontinent to the streets of Thanjavur.
 
-Not yet built: `render-city` (ladder levels 10–16), the ~85 generated sprite
-assets, and roughly 360 more timeline events. See `docs/HANDOFF.md` §6.
+Not built: the ~85 generated sprite assets (procedural stand-ins hold their
+place), roughly 360 more timeline events, and the historian and archaeologist
+review that phases 12, 14 and 17 need before release. See `docs/HANDOFF.md` §6.

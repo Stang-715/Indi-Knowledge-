@@ -39,6 +39,7 @@ is generated from 138 KB of control data rather than shipped as an image.
 | `docs/08-visual-design.md` | **The design MD.** The Cartographer's Table — palette, lighting rig, 18 UI components, sprite manifest, generation pipeline |
 | `docs/09-procedural-map.md` | The base map: skeleton-plus-field approach, terrain types, the water model |
 | `docs/10-buildplan.md` | **Start here for dev.** Codebase explained plainly, the fundamental rule, and the eleven phases to a playable slice |
+| `docs/13-datapacks.md` | **The contribution contract.** Datapack format, the two absolute rules, and how to validate a pack |
 | `docs/12-buildplan-2.md` | **Phases 12-22.** From the playable slice to a hundred-hour game: event cards, the survey, named people, the sovereignty stack |
 | `docs/11-trade-network.md` | **The trade system.** The offer, the trust ladder, routes as four numbers, transit and settlement time, escorts, the five chokes, the missionary vector |
 | `docs/map-density-and-animation-spec.md` | The original Victoria 3 density comparison and web performance criteria |
@@ -122,8 +123,14 @@ npm run serve         # then open http://localhost:8420/
 | `apps/client/` | The playable game |
 | `apps/cli/` | The campaign as text |
 
+**Phases 12–22 are also done.** Event cards with evidence and dispute slots, the
+survey, 87 named people with lineages and compounding endowments, the sovereignty
+stack, pillars that gate, the frontier, save/load/replay/share, worldgen in a
+worker, sound generated from the corpus, public datapacks, and the Chola campaign
+850–1279 with a reckoning at the end. **247 tests green.**
+
 **Measured:** a full 7,947-year campaign runs headless in **53 ms**. The client's
-first paint is **1.0 s**, full-quality pass at **1.4 s**.
+first paint is **0.25 s**, full-quality pass at **1.4 s**.
 
 **The gate result:** two identical campaigns, one decision apart. Doing nothing
 leaves 34 works extant with 15 burned in 1193. Sending teachers to Tibet in 1050

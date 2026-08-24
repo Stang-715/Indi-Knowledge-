@@ -34,6 +34,8 @@ import { LAYERS, LAYER_INFO, yieldTo } from '../../../packages/sim/src/sovereign
 import { save as mkSave, load as loadSave, reconcile, toURLFragment, fromURLFragment,
          replayStops, saveSize } from '../../../packages/sim/src/save.js';
 import { Sound } from '../../../packages/ui/src/sound.js';
+import { CHOLA, CHAPTERS, chapterAt, reckoning, openingState }
+  from '../../../packages/sim/src/campaign.js';
 
 const $ = (id) => document.getElementById(id);
 
@@ -538,6 +540,7 @@ if (location.hash.length > 2) {
   }
 }
 let state = null;
+let campaign = null;          // null = the long campaign
 let target = -6000;
 let playing = false;
 let speed = 1;
@@ -547,8 +550,64 @@ let speedIdx = 0;
 
 /** Recompute the world from (datapack, seed, decisions). The rule, literally. */
 function recompute() {
-  state = run(DP, SEED, decisions, { to: target });
+  state = run(DP, SEED, decisions, campaign
+    ? { from: campaign.from, to: target, initial: openingState(campaign) }
+    : { to: target });
   paint();
+}
+
+/* ── Campaigns ──────────────────────────────────────────────────────────── */
+
+$('start').addEventListener('click', (e) => {
+  const b = e.target.closest('[data-campaign]');
+  if (!b) return;
+  if (b.dataset.campaign === 'chola') {
+    campaign = CHOLA;
+    target = CHOLA.from;
+    cam.cx = 79.14; cam.cy = 10.79; cam.span = 9;
+  } else {
+    campaign = null;
+    target = -6000;
+  }
+  decisions = [];
+  $('start').classList.add('off');
+  recompute(); syncScrub(); draw(3); scheduleFull();
+});
+
+/**
+ * The reckoning.
+ *
+ * Reports what survived, then what it cost, and does not add them up. A number
+ * would let the player stop reading.
+ */
+let reckoned = false;
+function showReckoning() {
+  if (reckoned) return;
+  reckoned = true;
+  const r = reckoning(state);
+  const list = (items, cls) => items.map(o =>
+    `<li class="${cls}"><b>${o.name}</b><span>${o.note}</span></li>`).join('');
+  $('drawer-inner').innerHTML = `<article class="card">
+    <header class="ribbon"><span>${formatYear(r.year)}</span>
+      <span>${campaign ? campaign.name : 'The long campaign'}</span>
+      <span>the reckoning</span></header>
+    <h3>${r.verdict}</h3>
+    <p class="what">${r.corpus.extant} works extant · ${r.corpus.lost} lost ·
+      ${r.savedAbroad} of them somewhere other than home.
+      ${r.schools} schools standing, ${r.schoolsLost} ended.
+      ${r.survey.surveyed} districts surveyed, ${r.survey.absent} never looked at.</p>
+    ${r.savedTitles.length ? `<p class="why">Out of reach when it mattered:
+      ${r.savedTitles.join(', ')}.</p>` : ''}
+    <div class="reck">
+      <ul class="reck-met">${list(r.met, 'met')}</ul>
+      <ul class="reck-missed">${list(r.missed, 'missed')}</ul>
+    </div>
+    ${r.frontier.length ? `<div class="evidence"><b>The treeline</b><p>${
+      r.frontier.map(f => `${f.name.replace(/^The /, '')}: ${
+        f.taught.length ? `taught you ${f.taught.length}` : 'taught you nothing'}${
+        f.displaced ? `, ${f.displaced}% displaced` : ''}`).join('. ')}.</p></div>` : ''}
+  </article>`;
+  $('drawer').classList.add('on');
 }
 
 function decide(action, extra = {}) {
@@ -570,7 +629,8 @@ function paint() {
   const s = state;
   $('year').textContent = formatYear(s.year);
   const era = timeline.eras.find(e => s.year >= e.from && s.year < e.to) ?? timeline.eras[15];
-  $('era').textContent = era.name;
+  $('era').textContent = campaign ? chapterAt(s.year).name : era.name;
+  if (campaign) $('era').title = chapterAt(s.year).asks;
   document.body.dataset.era = ERA_MATERIAL(s.year);
   $('gnomon').style.setProperty('--sun', `${((s.year + 6000) / 7947 * 300 - 150).toFixed(0)}deg`);
 
@@ -983,7 +1043,8 @@ function flash(el, msg) {
  */
 let stops = [];
 function syncScrub() {
-  stops = replayStops(mkSave(SEED, decisions), { from: -6000, to: 1947 });
+  stops = replayStops(mkSave(SEED, decisions),
+    { from: campaign ? campaign.from : -6000, to: campaign ? campaign.to : 1947 });
   const i = stops.findIndex(y => y >= target);
   $('scrubber').max = String(stops.length - 1);
   $('scrubber').value = String(i < 0 ? stops.length - 1 : i);
@@ -1025,7 +1086,7 @@ function tick(t) {
   while (acc >= step) {
     acc -= step;
     const years = state.year < -1300 ? 5 * speed : 1 * speed;
-    target = Math.min(1947, target + years);
+    target = Math.min(campaign ? campaign.to : 1947, target + years);
   }
   if (target !== state.year) {
     recompute();
@@ -1033,7 +1094,12 @@ function tick(t) {
     // The map must redraw as the world changes, or destroyed sites go on
     // showing as live. This is the P0 fault from HANDOFF.md.
     draw(3);
-    if (target >= 1947) { playing = false; $('play').textContent = '▶ play'; }
+    const end = campaign ? campaign.to : 1947;
+    if (target >= end) {
+      playing = false; $('play').textContent = '▶ play';
+      target = end;
+      showReckoning();
+    }
   }
 }
 
