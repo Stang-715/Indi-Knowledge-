@@ -38,6 +38,7 @@ is generated from 138 KB of control data rather than shipped as an image.
 | `docs/07-timeline.md` | **787 events across sixteen eras.** Information architecture, 210-hour cadence, twelve regional spines, event-card spec |
 | `docs/08-visual-design.md` | **The design MD.** The Cartographer's Table — palette, lighting rig, 18 UI components, sprite manifest, generation pipeline |
 | `docs/09-procedural-map.md` | The base map: skeleton-plus-field approach, terrain types, the water model |
+| `docs/10-buildplan.md` | **Start here for dev.** Codebase explained plainly, the fundamental rule, and the eleven phases to a playable slice |
 | `docs/map-density-and-animation-spec.md` | The original Victoria 3 density comparison and web performance criteria |
 
 ### Data — all generated and validated
@@ -98,7 +99,9 @@ node tools/build-basemap.mjs    # → dist/basemap.html
 
 ## 5. Where to pick up
 
-**Unbuilt, and the next thing:** the **trade and export system**. Barter before coinage,
+**Start here:** [`10-buildplan.md`](10-buildplan.md) — the codebase explained plainly, the fundamental rule, and eleven phases to a playable slice. Phase 1 is the determinism test; phase 5 is the go/no-go.
+
+**Unbuilt, and the next thing after the plan:** the **trade and export system**. Barter before coinage,
 one-click export of knowledge and spices, and the goods list itself growing as history
 brings new things to the map — paper ~1350 (which halves recopying cost), then chilli,
 potato, tomato, maize, tobacco after 1498.
