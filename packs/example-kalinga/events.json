@@ -1,0 +1,35 @@
+{
+  "note": "Events use the same shape the timeline generator emits. Provenance is mandatory; anything claiming SOURCED must say where from.",
+  "events": [
+    {
+      "id": "EVT.M700.SISUPALGARH_LAID_OUT",
+      "title": "Sisupalgarh laid out on a grid",
+      "provenance": "SOURCED",
+      "evidence": "Excavation of the ramparts, gateways and interior street alignments.",
+      "year": -700, "year_end": null,
+      "era": "ERA.LATE_VEDIC", "class": "SITE", "magnitude": "M",
+      "certainty": 0.75, "trigger": "window", "window": [-750, -650],
+      "scope": "regional", "region": "RGN.ODISHA", "dispute": false
+    },
+    {
+      "id": "EVT.M400.SISUPALGARH_RAMPARTS",
+      "title": "The Sisupalgarh ramparts raised",
+      "provenance": "SOURCED",
+      "evidence": "The rampart itself, and the excavated gateway sequence.",
+      "year": -400, "year_end": null,
+      "era": "ERA.SECOND_URBAN", "class": "STRUCTURE", "magnitude": "M",
+      "certainty": 0.8, "trigger": "window", "window": [-450, -350],
+      "scope": "regional", "region": "RGN.ODISHA", "dispute": false
+    },
+    {
+      "id": "EVT.M260.KALINGA_EDICTS",
+      "title": "The separate Kalinga edicts",
+      "provenance": "SOURCED",
+      "evidence": "The edicts at Dhauli and Jaugada, which differ from those issued elsewhere.",
+      "year": -260, "year_end": null,
+      "era": "ERA.MAURYAN", "class": "WORK", "magnitude": "W",
+      "certainty": 0.9, "trigger": "dated",
+      "scope": "regional", "region": "RGN.ODISHA", "dispute": false
+    }
+  ]
+}

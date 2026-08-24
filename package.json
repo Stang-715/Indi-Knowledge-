@@ -6,9 +6,10 @@
   "description": "An India-only grand strategy game, 6000 BCE to 1947.",
   "workspaces": ["packages/*", "apps/*"],
   "scripts": {
-    "test": "node --test \"packages/*/test/*.test.js\"",
+    "test": "node --test \"packages/*/test/*.test.js\" \"tools/test/*.test.js\"",
     "check": "node tools/check-determinism-rules.mjs",
     "verify": "npm run check && npm test",
+    "pack": "node tools/validate-datapack.mjs",
     "timeline": "node tools/build-timeline.mjs",
     "campaign": "node apps/cli/campaign.js",
     "serve": "node tools/serve.mjs"

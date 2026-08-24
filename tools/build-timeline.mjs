@@ -48,6 +48,24 @@ const REGIONS = {
   'Sri Lanka':'RGN.SRI_LANKA',
 };
 
+/** What kind of thing tells us an event of this class happened at all. */
+const EVIDENCE = {
+  SITE:        'Excavation: stratigraphy, pottery sequence and radiocarbon from the site itself.',
+  WORK:        'The text, and the works that quote or answer it.',
+  TRANSITION:  'Material remains — the object, its composition, and an absolute date where one exists.',
+  CLIMATE:     'Speleothem records, lake cores, and settlement abandonment sequences.',
+  CATASTROPHE: 'Destruction layers, and accounts written afterwards by people with a position.',
+  INVASION:    'Inscriptions, coinage, and chronicles — usually the victor\'s.',
+  TRADE:       'Goods found far from where they were made, and the documents of the people who moved them.',
+  FOUNDATION:  'Inscriptions, copper plates and land grants.',
+  REFORM:      'Texts, and the institutions that outlived the argument.',
+  STRUCTURE:   'The building, and the inscription on it.',
+  AGRICULTURE: 'Archaeobotany: seeds, phytoliths and field systems.',
+  FRONTIER:    'Faunal remains, settlement pattern, and the silence of the settled record.',
+  EPOCH:       'A convention. Eras are drawn by historians, not lived by anyone.',
+  COLONIAL:    'Company and government records, which are voluminous and interested.',
+};
+
 const CLASSES = new Set(['SITE','WORK','REFORM','FOUNDATION','TRANSITION','INVASION',
   'CATASTROPHE','TRADE','FRONTIER','CLIMATE','COLONIAL','EPOCH','STRUCTURE','AGRICULTURE','—']);
 
@@ -147,6 +165,8 @@ function parseSkim(text, era, seenIds) {
     const ev = {
       id, title, year, year_end: yearEnd, era: era.id, class: cls,
       magnitude: bold ? 'W' : 'M', certainty, trigger,
+      provenance: certainty >= 0.9 ? 'SOURCED' : 'DERIVED',
+      evidence: EVIDENCE[cls] ?? 'The record, such as it is.',
       scope: 'subcontinental', region: null, dispute: false,
     };
     if (trigger === 'window') ev.window = [year - 10, (yearEnd ?? year) + 10];
@@ -252,9 +272,19 @@ function parseTables(md) {
     // inherits rather than something that happens to them.
     const scope = y.year < -6000 ? 'prologue' : ctx.scope;
 
+    // Provenance, derived from certainty and dispute. Every entity that asserts
+    // a fact about the world has to say what kind of claim it is — the datapack
+    // validator enforces it, and it caught all 789 of these missing.
+    const provenance = dispute ? 'DERIVED'
+                     : certainty >= 0.9 ? 'SOURCED'
+                     : certainty >= 0.6 ? 'DERIVED'
+                     : 'SYNTHESIZED';
+
     const ev = {
       id,
       title,
+      provenance,
+      evidence: EVIDENCE[cls] ?? 'The record, such as it is.',
       year: y.year,
       year_end: y.yearEnd,
       era: eraId,

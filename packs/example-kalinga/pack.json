@@ -1,0 +1,9 @@
+{
+  "pack": "example-kalinga",
+  "title": "Kalinga, expanded",
+  "version": "0.1.0",
+  "for": "paramountcy >= 0.1",
+  "author": "example",
+  "licence": "CC BY 4.0",
+  "note": "A worked example of a community datapack. Adds one city skeleton, three events and two people to the Kalinga region. Copy this directory, change the ids, and run tools/validate-datapack.mjs on it."
+}

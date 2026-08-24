@@ -1,0 +1,20 @@
+{
+  "people": [
+    {
+      "id": "PACK.KAL.KHARAVELA_SCRIBE",
+      "name": "The Hathigumpha engraver",
+      "role": "scribe",
+      "provenance": "SYNTHESIZED",
+      "note": "The inscription exists; the person who cut it is not named. This entity stands in for them and says so.",
+      "region": "RGN.ODISHA", "floruit": [-160, -140], "certainty": 0.2
+    },
+    {
+      "id": "PACK.KAL.BALI_JATRA_MASTER",
+      "name": "A Bali Jatra shipmaster",
+      "role": "merchant",
+      "provenance": "SYNTHESIZED",
+      "note": "The sailing season to Java and Bali is attested in practice and memory; no individual master is recoverable.",
+      "region": "RGN.ODISHA", "floruit": [100, 140], "certainty": 0.2
+    }
+  ]
+}

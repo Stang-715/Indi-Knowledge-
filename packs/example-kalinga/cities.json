@@ -1,0 +1,21 @@
+{
+  "note": "A city skeleton is about 900 bytes. Anchors are the only part of a real city that is not generic; the streets, blocks and buildings are generated from these numbers.",
+  "cities": [
+    {
+      "id": "sisupalgarh",
+      "name": "Sisupalgarh",
+      "provenance": "SOURCED",
+      "note": "Excavated fortified city with a near-square rampart and a regular gate plan; the ramparts and gateways are the sourced part.",
+      "certainty": 0.8,
+      "lon": 85.8410, "lat": 20.2280,
+      "founded": -700, "walled": -400,
+      "core": 120, "rings": 6, "gates": 8, "aspect": 1.0,
+      "minRadius": 220, "maxRadius": 1100,
+      "anchors": [
+        { "kind": "temple", "name": "Central enclosure", "at": [0, 0], "size": [200, 200],
+          "from": -400, "vimana": [0, 0], "vimanaSize": [70, 70], "height": 18 },
+        { "kind": "tank", "name": "Eastern tank", "at": [330, 60], "size": [150, 120], "from": -300 }
+      ]
+    }
+  ]
+}
