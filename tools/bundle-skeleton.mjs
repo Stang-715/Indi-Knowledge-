@@ -17,6 +17,8 @@ function pack(rings) {
   return a;
 }
 const land   = pack(L.land);
+const india  = pack(L.india);
+const neigh  = pack(L.neigh);
 const lakes  = pack(L.lakes);
 const rivers = pack(L.rivers.map(r => r.p));
 const ranks  = Uint16Array.from(L.rivers.map(r => r.r));
@@ -24,7 +26,8 @@ const ranks  = Uint16Array.from(L.rivers.map(r => r.r));
 const b64 = a => Buffer.from(a.buffer, a.byteOffset, a.byteLength).toString('base64');
 const blob = {
   bbox: sk.bbox, lod: LOD,
-  land: b64(land), lakes: b64(lakes), rivers: b64(rivers), riverRanks: b64(ranks),
+  land: b64(land), india: b64(india), neigh: b64(neigh),
+  lakes: b64(lakes), rivers: b64(rivers), riverRanks: b64(ranks),
   oro,
 };
 const js = JSON.stringify(blob);
@@ -32,4 +35,5 @@ writeFileSync('data/skeleton/bundle.json', js);
 console.log(`LOD ${LOD} bundle: ${(js.length/1024).toFixed(1)} KB`);
 console.log(`  land   ${L.land.length} rings, ${land.length*2/1024|0} KB packed`);
 console.log(`  rivers ${L.rivers.length} lines, ${rivers.length*2/1024|0} KB packed`);
+console.log(`  india  ${L.india.length} rings, ${india.length*2/1024|0} KB packed`);
 console.log(`  lakes  ${L.lakes.length} rings`);

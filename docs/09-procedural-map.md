@@ -38,7 +38,26 @@ adds detail that is *plausible* rather than surveyed. Which is exactly where Ind
 Geospatial Data Guidelines 2021 draw the line at one metre: **the legal boundary and the
 technical boundary are the same boundary** (see [`00-plan.md`](00-plan.md) §5).
 
-## 3. The pipeline, five stages
+## 3. Terrain type drives texture
+
+The first version scaled micro-relief by **slope alone**, which gives every landform the
+same grain — the tell that terrain was generated. Real Indian terrain has signatures:
+
+| Kind | Where | Signature |
+|---|---|---|
+| `dunes` | Thar, Cholistan | Longitudinal ridges running SW–NE, other detail suppressed |
+| `saltflat` | Great and Little Rann, Sambhar | Forced flat at 3–4 m with faint polygonal cracking |
+| `depression` | **Kuttanad (−2 m)**, Chilika, Vembanad | Pulled below the surrounding land |
+| `mesa` | Deccan traps, Malwa, Chota Nagpur | Height quantised into terraces — flat tops, steep risers |
+| `badlands` | Chambal | Deep gullying, carved as a fraction of local relief |
+| `delta` | Sundarbans, Ganga, Indus, Godavari | Near sea level with braided channel texture |
+| `fan` | Terai / Bhabar | Gravel-fan grain along the Himalayan foot |
+
+17 regions, ~1 KB of authored data. Each also carries a **texture multiplier** that
+suppresses the generic slope-driven grain where it supplies its own — a salt flat should
+be glassy, not noisy.
+
+## 4. The pipeline, five stages
 
 1. **Rasterise.** 302 coastline rings filled to a mask. Exact where the data is exact —
    no noise ever touches the outline.
@@ -52,7 +71,7 @@ technical boundary are the same boundary** (see [`00-plan.md`](00-plan.md) §5).
    [`08-visual-design.md`](08-visual-design.md) — warm key, upper-left, 35°, fill at 15%,
    never black — then a biome ramp keyed on height, rainfall and latitude.
 
-## 4. Rainfall is derived, not painted
+## 5. Rainfall is derived, not painted
 
 For every cell the model walks **upwind** and totals the terrain rise the air had to climb
 to get there. More climbing upwind means it already rained. India has two monsoon
@@ -67,7 +86,7 @@ fall out of 103 control points and a monsoon direction. That is the argument for
 approach: the map is not a picture of India, it is a small model of why India looks the
 way it does.
 
-## 5. Progressive, in three senses
+## 6. Progressive, in three senses
 
 - **Within a frame** — renders at ⅛ scale, then ¼, ½, 1:1. Instant, then sharpens.
   Dragging drops back to ⅛ so panning stays fluid.
@@ -80,7 +99,7 @@ The generator is a pure function of `(lon, lat, seed)` — the same determinism 
 simulation core already requires ([`02-data-spine.md`](02-data-spine.md) §3), so tiles
 seam and multiplayer clients agree without exchanging a pixel.
 
-## 6. Legal posture
+## 7. Legal posture
 
 The base map uses **land polygons, not country polygons**. It depicts no international
 boundary at all, which keeps it clear of the Criminal Law (Amendment) Act 1990 issue
@@ -89,7 +108,7 @@ swapped per distribution region without touching the terrain.
 
 Natural Earth is public domain. No attribution obligation, no share-alike.
 
-## 7. Known faults in v1
+## 8. Known faults
 
 Found by rendering it and looking, not by inspection:
 
@@ -97,6 +116,10 @@ Found by rendering it and looking, not by inspection:
   independent Gaussian falloff. Needs more control points and overlapping widths.
 - **Tibet is still somewhat disc-like** despite domain warping. A radial swell is the
   wrong primitive for a plateau; it wants a polygon with a noisy edge.
+- **A clamp bug, found by probing rather than by looking.** Removing `max(0,h)` so Kuttanad
+  could sit below sea level let the ±120 m base noise push **18.7% of the country** under
+  zero, tinting great patches of the Deccan as marsh. Only a typed region may now go
+  negative; everything else floors at 2 m. It was invisible in the render until measured.
 - **No coastline detail below ~660 m.** The procedural sub-LOD layer described in §5 is
   specified but not yet implemented — LOD 4 is currently the floor.
 - Both height and rainfall run on the main thread. They belong in a worker before this

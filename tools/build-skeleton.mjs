@@ -132,6 +132,32 @@ console.log('reading Natural Earth 10m…');
 const landRings  = ringsFrom(load('ne_10m_land'), 0.0004);      // ~5 km² floor
 const lakeRings  = ringsFrom(load('ne_10m_lakes'), 0.002);
 
+// Admin outlines, used ONLY as a visual emphasis mask (India in colour, neighbours blank).
+// !! Natural Earth's depiction of J&K, Aksai Chin and Arunachal does NOT necessarily match
+// !! Survey of India. This layer must be replaced with SOI geometry before any India
+// !! release — see docs/00-plan.md §5. The terrain layers carry no boundary at all.
+const admin = load('ne_10m_admin_0_countries');
+const nameOf = f => f.properties?.NAME || '';
+const adminRings = (pred, minArea) => {
+  const out = [];
+  for (const f of admin.features) {
+    if (!pred(nameOf(f))) continue;
+    const g = f.geometry; if (!g) continue;
+    const polys = g.type === 'Polygon' ? [g.coordinates] : g.coordinates;
+    for (const poly of polys) for (const ring of poly) {
+      let mnx=1e9,mny=1e9,mxx=-1e9,mxy=-1e9;
+      for (const [x,y] of ring){if(x<mnx)mnx=x;if(x>mxx)mxx=x;if(y<mny)mny=y;if(y>mxy)mxy=y;}
+      if (mxx < BBOX.w || mnx > BBOX.e || mxy < BBOX.s || mny > BBOX.n) continue;
+      const c = clipRing(ring);
+      if (c.length >= 4 && areaOf(c) >= minArea) out.push(c);
+    }
+  }
+  return out;
+};
+const indiaRings     = adminRings(n => n === 'India', 0.0002);
+const neighbourRings = adminRings(n => n !== 'India', 0.004);
+console.log(`admin: ${indiaRings.length} India rings · ${neighbourRings.length} neighbour rings`);
+
 const riversGJ = load('ne_10m_rivers_lake_centerlines');
 const rivers = [];
 for (const f of riversGJ.features) {
@@ -146,20 +172,25 @@ console.log(`clipped: ${landRings.length} land rings · ${lakeRings.length} lake
 
 // ---------- build LODs ----------
 const out = { bbox: BBOX, quant: QMAX, note: 'Natural Earth 10m (public domain). LAND polygons only — no political boundaries. See docs/09-procedural-map.md.', lods: {} };
-console.log('\nlvl   tol°     land pts   river pts   lake pts      bytes');
-console.log('-'.repeat(62));
+console.log('\nlvl   tol°     land pts   river pts   lake pts  india pts      bytes');
+console.log('-'.repeat(72));
 for (const { level, tol } of LODS) {
   const land   = landRings.map(r => simplify(r, tol)).filter(r => r.length >= 4);
+  const india  = indiaRings.map(r => simplify(r, tol)).filter(r => r.length >= 4);
+  const neigh  = neighbourRings.map(r => simplify(r, tol)).filter(r => r.length >= 4);
   const lakes  = lakeRings.map(r => simplify(r, tol)).filter(r => r.length >= 4);
   const rivs   = rivers
     .filter(r => r.rank <= 4 + level * 2)                   // fewer rivers when zoomed out
     .map(r => ({ rank: r.rank, name: r.name, pts: simplify(r.pts, tol) }))
     .filter(r => r.pts.length > 1);
+  const ip = india.reduce((s, r) => s + r.length, 0);
   const lp = land.reduce((s, r) => s + r.length, 0);
   const rp = rivs.reduce((s, r) => s + r.pts.length, 0);
   const kp = lakes.reduce((s, r) => s + r.length, 0);
   out.lods[level] = {
     land:   land.map(quantise),
+    india:  india.map(quantise),
+    neigh:  neigh.map(quantise),
     lakes:  lakes.map(quantise),
     rivers: rivs.map(r => ({ r: r.rank, n: r.name, p: quantise(r.pts) })),
   };
@@ -167,7 +198,7 @@ for (const { level, tol } of LODS) {
   console.log(
     String(level).padEnd(6) + String(tol).padEnd(9) +
     lp.toLocaleString().padStart(9) + rp.toLocaleString().padStart(12) +
-    kp.toLocaleString().padStart(11) + (bytes/1024).toFixed(1).padStart(11) + ' KB'
+    kp.toLocaleString().padStart(11) + ip.toLocaleString().padStart(10) + (bytes/1024).toFixed(1).padStart(11) + ' KB'
   );
 }
 
