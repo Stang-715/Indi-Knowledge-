@@ -1,0 +1,105 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "timeline.schema.json",
+  "title": "Timeline",
+  "description": "The event spine. Generated from docs/07-timeline.md by tools/build-timeline.mjs.",
+  "type": "object",
+  "required": ["span", "campaign_hours", "eras", "events"],
+  "properties": {
+    "span": {
+      "type": "object",
+      "required": ["from", "to", "years"],
+      "properties": {
+        "from": { "type": "integer", "const": -6000 },
+        "to": { "type": "integer", "const": 1947 },
+        "years": { "type": "integer" }
+      }
+    },
+    "campaign_hours": { "type": "integer", "const": 210 },
+    "eras": {
+      "type": "array",
+      "minItems": 16, "maxItems": 16,
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "from", "to", "hours", "tick"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^ERA\\.[A-Z_0-9]+$" },
+          "name": { "type": "string" },
+          "from": { "type": "integer" },
+          "to": { "type": "integer" },
+          "hours": { "type": "integer", "minimum": 1 },
+          "tick": {
+            "type": "integer",
+            "description": "Years per tick. 5 in the deep past, 1 from 1300 BCE.",
+            "enum": [1, 5]
+          },
+          "number": { "type": "integer", "minimum": 1, "maximum": 16 }
+        }
+      }
+    },
+    "events": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/event" }
+    }
+  },
+  "definitions": {
+    "event": {
+      "type": "object",
+      "required": ["id", "title", "year", "era", "class", "magnitude", "certainty", "trigger", "scope"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^EVT\\." },
+        "title": { "type": "string", "minLength": 3 },
+        "year": { "type": "integer", "minimum": -6300, "maximum": 1947 },
+        "year_end": { "type": ["integer", "null"] },
+        "era": { "type": "string", "pattern": "^ERA\\." },
+        "class": {
+          "type": "string",
+          "enum": ["SITE","WORK","REFORM","FOUNDATION","TRANSITION","INVASION",
+                   "CATASTROPHE","TRADE","FRONTIER","CLIMATE","COLONIAL","EPOCH",
+                   "STRUCTURE","AGRICULTURE","—"]
+        },
+        "magnitude": {
+          "type": "string",
+          "description": "W world-altering, M major, R regional, m minor.",
+          "enum": ["W", "M", "R", "m"]
+        },
+        "certainty": { "type": "number", "minimum": 0, "maximum": 1 },
+        "trigger": {
+          "type": "string",
+          "description": "Certainty as mechanics. Nothing below 0.9 may be `dated`.",
+          "enum": ["dated", "window", "conditional", "player", "latent"]
+        },
+        "window": {
+          "type": "array",
+          "items": { "type": "integer" },
+          "minItems": 2, "maxItems": 2
+        },
+        "scope": {
+          "type": "string",
+          "description": "prologue events predate the 6000 BCE campaign start and never fire.",
+          "enum": ["subcontinental", "regional", "prologue"]
+        },
+        "region": { "type": ["string", "null"], "pattern": "^RGN\\." },
+        "dispute": { "type": "boolean" },
+        "becomes": {
+          "type": "string",
+          "description": "Required on INVASION. What the invader turned into."
+        }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "trigger": { "const": "dated" } }, "required": ["trigger"] },
+          "then": { "properties": { "certainty": { "minimum": 0.9 } } }
+        },
+        {
+          "if": { "properties": { "class": { "const": "INVASION" } }, "required": ["class"] },
+          "then": { "required": ["becomes"] }
+        },
+        {
+          "if": { "properties": { "dispute": { "const": true } }, "required": ["dispute"] },
+          "then": { "properties": { "certainty": { "exclusiveMaximum": 0.9 } } }
+        }
+      ]
+    }
+  }
+}
