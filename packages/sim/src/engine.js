@@ -17,6 +17,7 @@ import { initPeople, tickPeople, oralCapacity, DECISIONS as PEOPLE_DECISIONS } f
 import { initSurvey, DECISIONS as SURVEY_DECISIONS } from './survey.js';
 import { initSovereignty, DECISIONS as SOV_DECISIONS } from './sovereignty.js';
 import { blocked } from './pillars.js';
+import { compareDecisions } from './save.js';
 import { initFrontier, tickFrontier, DECISIONS as FRONTIER_DECISIONS } from './frontier.js';
 
 /** Pillar deltas by event class. Coarse, deliberately — tuning comes later. */
@@ -78,6 +79,10 @@ export function run(datapack, seed, decisionLog = [], opts = {}) {
     if (!decisionsByYear.has(d.year)) decisionsByYear.set(d.year, []);
     decisionsByYear.get(d.year).push(d);
   }
+  // Canonical order within a year, so the decision log is a SET and not a
+  // sequence. Otherwise sorting a save — which any serialiser will do — quietly
+  // produces a different world from the one that was saved.
+  for (const list of decisionsByYear.values()) list.sort(compareDecisions);
 
   const clock = new Clock({ from, to });
   const applied = new Set();

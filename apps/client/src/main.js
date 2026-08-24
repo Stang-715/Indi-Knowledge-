@@ -30,6 +30,8 @@ import { surveyable, surveySummary, TIER, SURVEY_COST }
 import { blocked, locked, trustRung, nextRung } from '../../../packages/sim/src/pillars.js';
 import { frontierPresent, frontierLedger, STANCE } from '../../../packages/sim/src/frontier.js';
 import { LAYERS, LAYER_INFO, yieldTo } from '../../../packages/sim/src/sovereignty.js';
+import { save as mkSave, load as loadSave, reconcile, toURLFragment, fromURLFragment,
+         replayStops, saveSize } from '../../../packages/sim/src/save.js';
 
 const $ = (id) => document.getElementById(id);
 
@@ -466,8 +468,24 @@ $('modes').addEventListener('click', (e) => {
 
 /* ── The game ───────────────────────────────────────────────────────────── */
 
-const SEED = new URLSearchParams(location.search).get('seed') ?? 'paramountcy';
+/* ── Save, load, share ──────────────────────────────────────────────────── */
+
+let SEED = new URLSearchParams(location.search).get('seed') ?? 'paramountcy';
 let decisions = [];
+
+// A campaign in a link. The fragment is the save, so opening somebody's link
+// opens their exact campaign — the whole point of storing decisions.
+if (location.hash.length > 2) {
+  try {
+    const sv = reconcile(fromURLFragment(location.hash.slice(1)), DP);
+    SEED = String(sv.seed);
+    decisions = sv.d;
+    if (sv.at) queueMicrotask(() => { target = sv.at; recompute(); draw(1); });
+    if (sv.dropped) console.info(`${sv.dropped} decision(s) dropped — the datapack has moved on.`);
+  } catch (e) {
+    console.warn('That link is not a campaign:', e.message);
+  }
+}
 let state = null;
 let target = -6000;
 let playing = false;
@@ -485,6 +503,7 @@ function recompute() {
 function decide(action, extra = {}) {
   decisions.push({ year: state.year, action, ...extra });
   recompute();
+  syncScrub();
 }
 
 /* ── Painting the UI ────────────────────────────────────────────────────── */
@@ -860,6 +879,67 @@ $('speed').addEventListener('click', () => {
   $('speed').textContent = `${speed}×`;
 });
 
+$('share').addEventListener('click', async () => {
+  const sv = mkSave(SEED, decisions, { year: state.year });
+  const url = `${location.origin}${location.pathname}#${toURLFragment(sv)}`;
+  try { await navigator.clipboard.writeText(url); flash($('share'), 'copied'); }
+  catch { location.hash = toURLFragment(sv); flash($('share'), 'in the bar'); }
+});
+
+$('savebtn').addEventListener('click', () => {
+  const sv = mkSave(SEED, decisions, { year: state.year });
+  const blob = new Blob([JSON.stringify(sv, null, 1)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `paramountcy-${state.year < 0 ? -state.year + 'bce' : state.year}.json`;
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+  flash($('savebtn'), `${(saveSize(sv) / 1024).toFixed(1)} kB`);
+});
+
+$('loadfile').addEventListener('change', async (e) => {
+  const f = e.target.files?.[0];
+  if (!f) return;
+  try {
+    const sv = reconcile(loadSave(await f.text()), DP);
+    SEED = String(sv.seed);
+    decisions = sv.d;
+    target = sv.at ?? 1947;
+    recompute(); draw(1); syncScrub();
+    flash($('loadfile').parentElement, sv.dropped ? `−${sv.dropped} stale` : 'loaded');
+  } catch (err) {
+    flash($('loadfile').parentElement, 'not a save');
+    console.warn(err);
+  }
+});
+
+function flash(el, msg) {
+  const was = el.textContent;
+  el.textContent = msg;
+  setTimeout(() => { el.textContent = was; }, 1600);
+}
+
+/* ── Replay ─────────────────────────────────────────────────────────────── */
+
+/**
+ * Scrubbing is not playback. It re-evaluates the same pure function at a
+ * different year, which is only possible because the world was never stored.
+ */
+let stops = [];
+function syncScrub() {
+  stops = replayStops(mkSave(SEED, decisions), { from: -6000, to: 1947 });
+  const i = stops.findIndex(y => y >= target);
+  $('scrubber').max = String(stops.length - 1);
+  $('scrubber').value = String(i < 0 ? stops.length - 1 : i);
+  $('scrub-year').textContent = formatYear(target);
+}
+$('scrubber').addEventListener('input', () => {
+  playing = false; $('play').textContent = '▶ play';
+  target = stops[+$('scrubber').value] ?? 1947;
+  $('scrub-year').textContent = formatYear(target);
+  recompute(); draw(3); scheduleFull();
+});
+
 let acc = 0, lastT = 0;
 function tick(t) {
   requestAnimationFrame(tick);
@@ -875,6 +955,7 @@ function tick(t) {
   }
   if (target !== state.year) {
     recompute();
+    $('scrub-year').textContent = formatYear(target);
     // The map must redraw as the world changes, or destroyed sites go on
     // showing as live. This is the P0 fault from HANDOFF.md.
     draw(3);
@@ -904,6 +985,6 @@ requestAnimationFrame(() => {
 // Handy in the console: the save file is the decision log.
 Object.assign(globalThis, {
   paramountcy: { get state() { return state; }, decisions, cam, draw, recompute, marks,
-                 timeline, openCard, openYear,
+                 timeline, openCard, openYear, get stops(){return stops;},
                  save: () => JSON.stringify({ seed: SEED, decisions }) },
 });

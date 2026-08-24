@@ -20,6 +20,11 @@
   #year { font-size:19px; font-weight:600; font-variant-numeric:tabular-nums; min-width:104px; }
   #era  { font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); }
 
+  #scrub { position:absolute; left:14px; bottom:52px; display:flex; align-items:center; gap:8px;
+           background:var(--paper); border:1px solid var(--rule); padding:5px 10px;
+           box-shadow:var(--shadow-contact); }
+  #scrubber { width:280px; accent-color:var(--gold); }
+  #scrub-year { font-family:var(--mono); font-size:11px; min-width:66px; }
   #modes { position:absolute; left:14px; bottom:14px; display:flex; gap:2px; }
   #notices { position:absolute; right:14px; top:14px; width:290px;
              display:flex; flex-direction:column; gap:6px; pointer-events:none; }
@@ -87,7 +92,14 @@
       <div class="rule" style="width:1px;height:30px;margin:0 4px"></div>
       <button class="btn" id="play">▶ play</button>
       <button class="btn" id="speed">1×</button>
+      <div class="rule" style="width:1px;height:30px;margin:0 4px"></div>
+      <button class="btn" id="share" title="Copy a link that opens this exact campaign.">share</button>
+      <button class="btn" id="savebtn" title="Download the campaign. It is a few kilobytes.">save</button>
+      <label class="btn" for="loadfile" title="Open a saved campaign.">load
+        <input type="file" id="loadfile" accept=".json" hidden></label>
     </div>
+    <div id="scrub"><input type="range" id="scrubber" min="0" max="100" value="100"
+      title="Scrub the campaign. A replay is the same world evaluated at a different year."><span id="scrub-year"></span></div>
     <div id="modes" class="tabs"></div>
     <div id="notices"></div>
     <div id="drawer"><div id="drawer-inner"></div>
