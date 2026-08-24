@@ -71,20 +71,47 @@ be glassy, not noisy.
    [`08-visual-design.md`](08-visual-design.md) — warm key, upper-left, 35°, fill at 15%,
    never black — then a biome ramp keyed on height, rainfall and latitude.
 
-## 5. Rainfall is derived, not painted
+## 5. Water: three models, not one
 
-For every cell the model walks **upwind** and totals the terrain rise the air had to climb
-to get there. More climbing upwind means it already rained. India has two monsoon
-branches — Arabian Sea from the south-west, Bay of Bengal from the south-east — so both
-are traced and blended by a soft-max.
+The first attempt was a single upwind ray march. It could not work, and measuring it said
+so plainly: **Assam came out at 0.07 — the wettest place on earth rendering as desert.**
+Three separate corrections were needed.
 
-A local escarpment is weighted far more heavily than a distant range, which is what
-separates the Konkan from the Deccan.
+**Advection, not ray-marching.** Assam is wet because moist air travels up the Brahmaputra
+valley from a Ganga plain that is *itself* already moist. A one-shot ray cannot know that;
+the field has to propagate. Moisture now relaxes across a 220×220 grid over 90 sweeps with
+sea cells as permanent sources, along **four** monsoon arms — Arabian Sea north-east, Bay
+of Bengal north, the Gangetic funnel west-north-west from the delta, and the Brahmaputra
+funnel east-north-east up the valley. Tracing the bay arm from the *south-east* had put
+Assam behind the Myanmar ranges.
 
-**Nobody painted the Thar, the Deccan rain shadow, the wet Malabar strip or Assam.** They
-fall out of 103 control points and a monsoon direction. That is the argument for the whole
-approach: the map is not a picture of India, it is a small model of why India looks the
-way it does.
+**Air moisture is not rainfall.** Moist air crossing flat desert does not rain; it needs
+lifting. Separating carried moisture from delivered rain is what finally made the Thar
+arid (0.66 → 0.23) while leaving the Konkan drowned — the air over both is damp, only one
+has a mountain in the way. A subtropical subsidence term over the north-west does the rest.
+
+**Rivers make land fertile independently of rain.** The Ganga plain, the Punjab doab and
+the Kaveri and Krishna deltas are green because of alluvium and water on the ground, not
+because it rains on them. A rank-weighted distance field off the river network supplies a
+fertility belt roughly 0.6° wide. Without it the monsoon model was being asked to explain
+greenery it was never going to explain — and every attempt to tune it broke somewhere else.
+
+| | Model | Expected |
+|---|---:|---:|
+| Kerala / Malabar | 0.28* | high |
+| Konkan | 0.80 | high |
+| Deccan interior | 0.36 | low-mid |
+| **Thar** | **0.23** | very low |
+| Gangetic mid | 0.59 | mid |
+| Bengal | 1.00 | very high |
+| **Assam** | **0.77** | very high |
+
+\* the sample sits in the Palakkad Gap, where there genuinely is little orographic lift.
+
+**Nobody painted the Thar, the Deccan rain shadow, the Malabar strip, Assam or the green
+river corridors.** They fall out of 103 control points, four wind directions and the river
+network. The map is not a picture of India; it is a small model of why India looks the way
+it does.
 
 ## 6. Progressive, in three senses
 

@@ -1,4 +1,4 @@
-<title>Shaded Relief India</title>
+<title>The Base Map</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Gentium+Book+Plus:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
@@ -74,24 +74,13 @@
   .colo{margin-top:56px;padding-top:16px;border-top:1px solid var(--rule);font-family:"IBM Plex Mono",monospace;font-size:11px;line-height:1.6;color:var(--ink-faint);max-width:80ch}
 </style>
 <style>
-  body{background:#E6E2D9}
-  @media(prefers-color-scheme:dark){:root:not([data-theme="light"]) body{background:#1A1712}}
-  :root[data-theme="dark"] body{background:#1A1712}
+  body{background:#C3A578}
+  @media(prefers-color-scheme:dark){:root:not([data-theme="light"]) body{background:#241C12}}
+  :root[data-theme="dark"] body{background:#241C12}
   .stage{background:var(--sheet);border:1px solid var(--rule);box-shadow:var(--lift);padding:14px}
-  .canvas-hold{position:relative;background:#E6E2D9;border:1px solid var(--rule);overflow:hidden}
+  .canvas-hold{position:relative;background:#1C5464;border:1px solid var(--rule);overflow:hidden}
   canvas{display:block;width:100%;height:auto;cursor:grab}
   canvas:active{cursor:grabbing}
-  .plate{position:absolute;right:5%;top:12%;text-align:center;pointer-events:none;color:#33302A;
-    text-shadow:0 1px 0 rgba(255,255,255,.55)}
-  .ptitle{font-family:"Cormorant Garamond",serif;font-weight:400;font-size:clamp(20px,3.1vw,40px);
-    letter-spacing:.34em;line-height:1;margin-right:-.34em}
-  .pdev{font-family:"Gentium Book Plus",serif;font-size:clamp(11px,1.5vw,18px);margin-top:5px;opacity:.72}
-  .pscale{margin-top:14px;display:flex;flex-direction:column;align-items:center;gap:4px}
-  .pscale .bar{display:block;width:clamp(70px,11vw,140px);height:3px;
-    background:linear-gradient(90deg,#33302A 0 25%,transparent 25% 50%,#33302A 50% 75%,transparent 75%);
-    border:1px solid #33302A}
-  .pscale .sl{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.14em}
-  .pnote{font-family:"IBM Plex Mono",monospace;font-size:8px;letter-spacing:.2em;text-transform:uppercase;margin-top:9px;opacity:.55}
   .bar2{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin-top:12px}
   .btn{font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;
     padding:7px 12px;cursor:pointer;border:1px solid var(--incise);background:var(--sheet-2);color:var(--ink);box-shadow:var(--lift)}
@@ -112,8 +101,8 @@
 
 <header class="mast">
   <p class="eyebrow">Base map · v2 · Indi-Knowledge</p>
-  <h1>Shaded Relief</h1>
-  <p class="sub">India, generated — elevation, micro-texture and tint from 103 control points</p>
+  <h1>The Base Map</h1>
+  <p class="sub">Terrain, rainfall and colour, generated from 103 control points and 17 typed regions</p>
   <p class="stand">No image, no mesh, no DEM. The landform comes from control curves; the <strong>micro-texture is slope-scaled ridged noise</strong> layered under a two-scale hillshade — the same technique a cartographer uses, done in a shader instead of by hand. Drag to pan, scroll to zoom.</p>
 </header>
 
@@ -121,22 +110,18 @@
   <div class="sh"><span class="sn">01</span><h2>The map</h2></div>
   <div class="stage">
     <div class="canvas-hold">
-      <canvas id="map" width="1000" height="1240"></canvas>
-      <div class="plate">
-        <div class="ptitle">INDIA</div>
-        <div class="pdev">भारत</div>
-        <div class="pscale"><span class="bar"></span><span class="sl" id="scaleLabel">—</span></div>
-        <div class="pnote">Shaded relief · generated</div>
+      <canvas id="map" width="1000" height="1120"></canvas>
       </div>
     </div>
     <div class="bar2">
       <span class="lbl">Layer</span>
       <button class="btn on" data-layer="final">Relief</button>
       <button class="btn" data-layer="hypso">Tint only</button>
+      <button class="btn" data-layer="rain">Rainfall</button>
       <button class="btn" data-layer="shade">Shade only</button>
       <button class="btn" data-layer="micro">Micro-texture</button>
       <span class="spacer"></span>
-      <label class="chk"><input type="checkbox" id="neigh"> Neighbours</label>
+      <label class="chk"><input type="checkbox" id="neigh" checked> Full-colour neighbours</label>
       <button class="btn" id="reset">Reset</button>
       <span class="stat" id="stat">—</span>
     </div>
@@ -257,26 +242,168 @@ function applyRegions(lon,lat,h){
   return {h,tex};
 }
 
-/* ---------- hypsometric ramp, sampled from the reference ---------- */
-const STOPS=[[0,[0x9E,0xB8,0x7C]],[120,[0xA6,0xBC,0x80]],[300,[0xB4,0xC0,0x86]],[550,[0xC5,0xBE,0x88]],
-  [900,[0xC9,0xB0,0x76]],[1400,[0xBC,0x97,0x60]],[2000,[0xA8,0x7C,0x50]],[2800,[0x8E,0x63,0x43]],
-  [3500,[0x7A,0x5A,0x44]],[4200,[0x93,0x86,0x76]],[4800,[0xCF,0xCB,0xC2]],[5600,[0xFA,0xFA,0xF8]]];
-function hypso(h){
-  if(h<-0.5)return [0x8E,0xA8,0x8E];               // below sea level: Kuttanad, the Ranns
-  if(h<=STOPS[0][0])return STOPS[0][1];
-  for(let i=1;i<STOPS.length;i++){ if(h<=STOPS[i][0]){
-    const [a,ca]=STOPS[i-1],[b,cb]=STOPS[i],t=(h-a)/(b-a);
-    return [ca[0]+(cb[0]-ca[0])*t,ca[1]+(cb[1]-ca[1])*t,ca[2]+(cb[2]-ca[2])*t];}}
-  return STOPS[STOPS.length-1][1];
+// One definition of ground height, used by the rainfall pass and the renderer alike.
+function landHeight(lon,lat){ return applyRegions(lon,lat,Math.max(2,baseHeight(lon,lat))).h; }
+
+/* ---------- rainfall: upwind advection relaxation ----------
+   A single ray march cannot work here. Assam is wet because moist air comes up the
+   Brahmaputra valley from a Ganga plain that is itself already moist — so the field has
+   to propagate. This relaxes moisture across the grid over many sweeps, with sea cells
+   as permanent sources and terrain rise as the loss term. India's four monsoon arms are
+   the advection directions; a cell takes the wettest arm that reaches it. */
+const MW=220,MH=220;
+const MOIST=new Float32Array(MW*MH);
+const HG=new Float32Array(MW*MH);
+const LIFT=new Float32Array(MW*MH);
+(function buildMoisture(){
+  const mc=document.createElement('canvas'); mc.width=MW; mc.height=MH;
+  const mg=mc.getContext('2d',{willReadFrequently:true});
+  mg.fillStyle='#000'; mg.fillRect(0,0,MW,MH);
+  mg.fillStyle='#fff'; mg.beginPath();
+  for(const r of LAND){
+    for(let i=0;i<r.length;i+=2){
+      const X=(LON(r[i])-BB.w)/(BB.e-BB.w)*MW, Y=(1-(LAT(r[i+1])-BB.s)/(BB.n-BB.s))*MH;
+      if(i===0)mg.moveTo(X,Y);else mg.lineTo(X,Y);
+    }
+    mg.closePath();
+  }
+  mg.fill('evenodd');
+  const md=mg.getImageData(0,0,MW,MH).data;
+  const isSea=new Uint8Array(MW*MH);
+  for(let j=0;j<MH;j++)for(let i=0;i<MW;i++){
+    const lon=BB.w+(i+.5)/MW*(BB.e-BB.w), lat=BB.s+(j+.5)/MH*(BB.n-BB.s);
+    const land=md[((MH-1-j)*MW+i)*4]>127;
+    isSea[j*MW+i]=land?0:1;
+    HG[j*MW+i]= land ? Math.max(0,landHeight(lon,lat)) : 0;
+  }
+  const dLon=(BB.e-BB.w)/MW, dLat=(BB.n-BB.s)/MH;
+  // travel directions, in grid cells per step
+  const ARMS=[[ 0.74, 0.67],   // Arabian Sea  → NE over the Konkan and Malabar
+              [ 0.18, 0.98],   // Bay of Bengal → N up the bay
+              [-0.93, 0.30],   // Gangetic funnel → WNW from the delta
+              [ 0.90, 0.25]]   // Brahmaputra funnel → ENE up the valley
+    .map(([dx,dy])=>[dx/dLon*0.30, dy/dLat*0.30]);
+  let cur=new Float32Array(MW*MH), nxt=new Float32Array(MW*MH);
+  for(let i=0;i<cur.length;i++)cur[i]=isSea[i]?1:0.05;
+  const sample=(f,fx,fy)=>{
+    fx=Math.max(0,Math.min(MW-1,fx)); fy=Math.max(0,Math.min(MH-1,fy));
+    const i=Math.floor(fx),j=Math.floor(fy),u=fx-i,v=fy-j;
+    const i2=Math.min(MW-1,i+1),j2=Math.min(MH-1,j+1);
+    const a=f[j*MW+i],b=f[j*MW+i2],c=f[j2*MW+i],d=f[j2*MW+i2];
+    return (a+(b-a)*u)*(1-v)+(c+(d-c)*u)*v;
+  };
+  for(let it=0;it<90;it++){
+    for(let j=0;j<MH;j++)for(let i=0;i<MW;i++){
+      const idx=j*MW+i;
+      if(isSea[idx]){nxt[idx]=1;continue;}
+      const h=HG[idx];
+      let best=0.05, bestLift=0;
+      for(const [ax,ay] of ARMS){
+        const ux=i-ax, uy=j-ay;                       // one step upwind
+        const mu=sample(cur,ux,uy);
+        const hu=sample(HG,ux,uy);
+        const dh=Math.max(0,h-hu);
+        const m=mu*Math.exp(-dh/620)*0.988;           // orographic loss, then slow drying
+        if(m>best){best=m;bestLift=dh;}
+      }
+      nxt[idx]=Math.min(1,best);
+      LIFT[idx]=bestLift;
+    }
+    const t=cur;cur=nxt;nxt=t;
+  }
+  // Rivers make land fertile independently of rain. The Ganga plain, the Punjab doab and
+  // the Kaveri and Krishna deltas are green because of alluvium and water on the ground,
+  // not because it rains on them. Without this the whole model fights the monsoon to
+  // explain greenery it was never going to explain.
+  const RIV=new Float32Array(MW*MH);
+  {
+    const rc=document.createElement('canvas'); rc.width=MW; rc.height=MH;
+    const rg=rc.getContext('2d',{willReadFrequently:true});
+    rg.fillStyle='#000'; rg.fillRect(0,0,MW,MH);
+    rg.lineCap='round'; rg.lineJoin='round';
+    for(let k=0;k<RIVERS.length;k++){
+      const r=RIVERS[k], rank=RANKS[k];
+      rg.strokeStyle='#fff'; rg.lineWidth=Math.max(.8,(10-rank)*0.42);   // big rivers, wide belts
+      rg.beginPath();
+      for(let i=0;i<r.length;i+=2){
+        const X=(LON(r[i])-BB.w)/(BB.e-BB.w)*MW, Y=(1-(LAT(r[i+1])-BB.s)/(BB.n-BB.s))*MH;
+        if(i===0)rg.moveTo(X,Y);else rg.lineTo(X,Y);
+      }
+      rg.stroke();
+    }
+    const rd=rg.getImageData(0,0,MW,MH).data;
+    const d=new Float32Array(MW*MH); const INF=1e7;
+    for(let j=0;j<MH;j++)for(let i=0;i<MW;i++)d[j*MW+i]=rd[((MH-1-j)*MW+i)*4]>90?0:INF;
+    for(let j=0;j<MH;j++)for(let i=0;i<MW;i++){const x=j*MW+i;if(!d[x])continue;let v=d[x];
+      if(i>0)v=Math.min(v,d[x-1]+3);if(j>0)v=Math.min(v,d[x-MW]+3);
+      if(i>0&&j>0)v=Math.min(v,d[x-MW-1]+4);if(i<MW-1&&j>0)v=Math.min(v,d[x-MW+1]+4);d[x]=v;}
+    for(let j=MH-1;j>=0;j--)for(let i=MW-1;i>=0;i--){const x=j*MW+i;if(!d[x])continue;let v=d[x];
+      if(i<MW-1)v=Math.min(v,d[x+1]+3);if(j<MH-1)v=Math.min(v,d[x+MW]+3);
+      if(i<MW-1&&j<MH-1)v=Math.min(v,d[x+MW+1]+4);if(i>0&&j<MH-1)v=Math.min(v,d[x+MW-1]+4);d[x]=v;}
+    for(let i=0;i<RIV.length;i++)RIV[i]=Math.exp(-(d[i]/3)/2.6);   // ~0.6° fertile belt
+  }
+  // spread lift slightly upwind, so a windward coast gets the rain its mountain wrings out
+  const LB=Float32Array.from(LIFT);
+  for(let j=1;j<MH-1;j++)for(let i=1;i<MW-1;i++)
+    LB[j*MW+i]=(LIFT[j*MW+i]*3+LIFT[j*MW+i-1]+LIFT[j*MW+i+1]+LIFT[(j-1)*MW+i]+LIFT[(j+1)*MW+i])/7;
+
+  // Air moisture is not rainfall. Moist air crossing flat desert does not rain — it needs
+  // lifting. This is why the Thar is dry despite sitting downwind of the Arabian Sea, and
+  // why the Konkan drowns while the Deccan twenty miles inland does not.
+  for(let j=0;j<MH;j++)for(let i=0;i<MW;i++){
+    const idx=j*MW+i;
+    if(isSea[idx]){MOIST[idx]=0;continue;}
+    const lat=BB.s+(j+.5)/MH*(BB.n-BB.s), lon=BB.w+(i+.5)/MW*(BB.e-BB.w);
+    const lift=Math.min(1,Math.max(LIFT[idx],LB[idx]*0.95)/240);
+    // subtropical subsidence over the north-west — the descending limb that keeps the
+    // Thar arid even when the air above it is damp
+    const sub=Math.max(0,Math.min(1,(lat-21)/9))*Math.max(0,Math.min(1,(76.5-lon)/7));
+    const rain=cur[idx]*(0.34+0.92*lift)*(1-0.62*sub);
+    MOIST[idx]=Math.min(1, rain + RIV[idx]*0.58*(0.35+0.65*cur[idx]));
+  }
+  {const srt=Float32Array.from(MOIST.filter((_,i)=>!isSea[i])).sort();
+   const hi=srt[Math.floor(srt.length*0.93)]||1;
+   for(let i=0;i<MOIST.length;i++)MOIST[i]=Math.min(1,MOIST[i]/hi);}
+  const tmp=Float32Array.from(MOIST);
+  for(let p=0;p<2;p++){
+    for(let j=1;j<MH-1;j++)for(let i=1;i<MW-1;i++)
+      MOIST[j*MW+i]=(tmp[j*MW+i]*4+tmp[j*MW+i-1]+tmp[j*MW+i+1]+tmp[(j-1)*MW+i]+tmp[(j+1)*MW+i])/8;
+    tmp.set(MOIST);
+  }
+})();
+function moistAt(lon,lat){
+  const fx=(lon-BB.w)/(BB.e-BB.w)*MW-.5, fy=(lat-BB.s)/(BB.n-BB.s)*MH-.5;
+  const i=Math.max(0,Math.min(MW-2,Math.floor(fx))), j=Math.max(0,Math.min(MH-2,Math.floor(fy)));
+  const u=Math.max(0,Math.min(1,fx-i)), v=Math.max(0,Math.min(1,fy-j));
+  const a=MOIST[j*MW+i],b=MOIST[j*MW+i+1],c=MOIST[(j+1)*MW+i],d=MOIST[(j+1)*MW+i+1];
+  return (a+(b-a)*u)*(1-v)+(c+(d-c)*u)*v;
 }
-const BONE=[0xE6,0xE2,0xD9], SEA=[0xD6,0xE0,0xE3], SEA2=[0xC2,0xD2,0xD8];
+
+/* ---------- colour: rainfall decides the lowlands, elevation takes over above ---------- */
+const mix=(a,b,t)=>[a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t,a[2]+(b[2]-a[2])*t];
+const ARID=[0xD2,0xAF,0x63],SCRUB=[0xC0,0xAC,0x64],GRASS=[0x9A,0xA7,0x59],
+      FOR=[0x67,0x87,0x44],WET=[0x4E,0x76,0x3E],
+      ROCK=[0x9C,0x86,0x64],HIGH=[0x90,0x83,0x72],SNOW=[0xF0,0xF2,0xF0];
+function tint(h,mo){
+  let c;
+  if(mo<0.17) c=ARID;
+  else if(mo<0.33) c=mix(ARID,SCRUB,(mo-0.17)/0.16);
+  else if(mo<0.50) c=mix(SCRUB,GRASS,(mo-0.33)/0.17);
+  else if(mo<0.70) c=mix(GRASS,FOR,(mo-0.50)/0.20);
+  else c=mix(FOR,WET,Math.min(1,(mo-0.70)/0.30));
+  if(h>700)  c=mix(c,ROCK,Math.min(1,(h-700)/1900));      // vegetation thins
+  if(h>2600) c=mix(c,HIGH,Math.min(1,(h-2600)/1500));     // bare rock
+  if(h>4100) c=mix(c,SNOW,Math.min(1,(h-4100)/900));      // permanent snow
+  return c;
+}
+const SEA_D=[0x1B,0x52,0x63],SEA_M=[0x33,0x79,0x8C],SEA_S=[0x74,0xAD,0xBA],SHELF=[0x8C,0xBE,0xC7];
 
 /* ---------- view ---------- */
 const cv=document.getElementById('map'),ctx=cv.getContext('2d',{willReadFrequently:true});
 const off=document.createElement('canvas'),octx=off.getContext('2d',{willReadFrequently:true});
-const HOME={w:67.0,s:5.8,e:98.4,n:37.4};
+const HOME={w:66.4,s:5.4,e:99.0,n:37.6};
 let view={cx:0,cy:0,span:1},layer='final',raf=0,pass=0,dragging=false,last=null;
-function sizeCanvas(){const w=Math.min(1000,cv.parentElement.clientWidth);cv.width=Math.round(w);cv.height=Math.round(w*1.24);}
+function sizeCanvas(){const w=Math.min(1000,cv.parentElement.clientWidth);cv.width=Math.round(w);cv.height=Math.round(w*1.12);}
 function fitView(){const W=cv.width,H=cv.height;
   view.span=Math.max(HOME.e-HOME.w,(HOME.n-HOME.s)*W/(KX*H))*1.04;
   view.cx=(HOME.w+HOME.e)/2;view.cy=(HOME.s+HOME.n)/2;}
@@ -364,21 +491,30 @@ function render(step){
   const scl=1/(cellLon*111000);
   for(let y=0;y<H;y++)for(let x=0;x<W;x++){
     const i=y*W+x,q=i*4;
-    if(!mLand[i]){px[q]=BONE[0];px[q+1]=BONE[1];px[q+2]=BONE[2];px[q+3]=255;continue;}
+    if(!mLand[i]){
+      const d=ds[i]*cellLon;
+      let c;
+      if(d<0.09)      c=mix(SHELF,SEA_S,d/0.09);
+      else if(d<1.6)  c=mix(SEA_S,SEA_M,(d-0.09)/1.51);
+      else            c=mix(SEA_M,SEA_D,Math.min(1,(d-1.6)/3.6));
+      const rip=(vn((p.x0+(x+.5)/W*view.span)*38,(p.y1-(y+.5)/H*p.spanY)*38,91)-.5)*6;
+      px[q]=c[0]+rip;px[q+1]=c[1]+rip;px[q+2]=c[2]+rip;px[q+3]=255;continue;}
     const coarse=shadeOf(base,W,H,x,y,scl,Math.max(2,Math.round(5/step)));
     const fine=shadeOf(hb,W,H,x,y,scl,1);
     const lam=coarse*.55+fine*.45;
-    let sh=.46+.72*lam - rough[i]*.06;
+    let sh=.50+.70*lam - rough[i]*.05;
     let c;
-    if(layer==='shade')c=[0xEC,0xE8,0xE0];
+    if(layer==='shade')c=[0xD9,0xD4,0xC6];
     else if(layer==='micro'){const v=(hb[i]-base[i])*1.7;c=[0xD8+v,0xD4+v,0xCC+v];sh=1;}
-    else c=hypso(hb[i]);
+    else c=tint(hb[i],moistAt(p.x0+(x+.5)/W*view.span,p.y1-(y+.5)/H*p.spanY));
+    if(layer==='rain'){const mo=moistAt(p.x0+(x+.5)/W*view.span,p.y1-(y+.5)/H*p.spanY);
+      c=mix(ARID,[0x2E,0x6B,0x4A],mo);sh=1;}
     if(layer==='hypso')sh=1;
-    if(!mIndia[i]){
-      if(!showNeigh){px[q]=BONE[0];px[q+1]=BONE[1];px[q+2]=BONE[2];px[q+3]=255;continue;}
-      const g=.90;                                  // ghost: almost entirely bone
-      c=[c[0]+(0xF2-c[0])*g,c[1]+(0xF0-c[1])*g,c[2]+(0xEA-c[2])*g];
-      sh=.90+(sh-.90)*.40;}
+    if(!mIndia[i]&&!showNeigh){       // moderated, not blank: same model, less voice
+      const gy=(c[0]*.34+c[1]*.5+c[2]*.16);
+      c=[c[0]+(gy-c[0])*.42,c[1]+(gy-c[1])*.42,c[2]+(gy-c[2])*.42];
+      c=[c[0]+(0xDE-c[0])*.26,c[1]+(0xDC-c[1])*.26,c[2]+(0xD2-c[2])*.26];
+      sh=.86+(sh-.86)*.72;}
     px[q]=Math.max(0,Math.min(255,c[0]*sh));
     px[q+1]=Math.max(0,Math.min(255,c[1]*sh));
     px[q+2]=Math.max(0,Math.min(255,c[2]*sh));px[q+3]=255;}
@@ -387,36 +523,29 @@ function render(step){
 
   // compose: bone ground, drop shadow under India, then the relief
   ctx.setTransform(1,0,0,1,0,0);
-  ctx.fillStyle=`rgb(${BONE[0]},${BONE[1]},${BONE[2]})`;ctx.fillRect(0,0,p.W,p.H);
   const path=new Path2D();
   for(const r of INDIA){for(let i=0;i<r.length;i+=2){
     const X=(LON(r[i])-p.x0)*p.sx,Y=(p.y1-LAT(r[i+1]))*p.sy;
     if(i===0)path.moveTo(X,Y);else path.lineTo(X,Y);}path.closePath();}
-  ctx.save();ctx.filter='blur(16px)';ctx.globalAlpha=.34;ctx.fillStyle='#7A7060';
-  ctx.translate(11,16);ctx.fill(path,'evenodd');ctx.restore();
-  ctx.save();ctx.filter='blur(4px)';ctx.globalAlpha=.22;ctx.fillStyle='#5E5648';
-  ctx.translate(3,5);ctx.fill(path,'evenodd');ctx.restore();
   ctx.imageSmoothingEnabled=step>1;
   ctx.drawImage(off,0,0,W,H,0,0,p.W,p.H);
 
   if(layer==='final'){
-    ctx.save();ctx.clip(path,'evenodd');
     ctx.lineCap='round';ctx.lineJoin='round';
     for(let k=0;k<RIVERS.length;k++){const r=RIVERS[k];
       ctx.beginPath();
       for(let i=0;i<r.length;i+=2){const X=(LON(r[i])-p.x0)*p.sx,Y=(p.y1-LAT(r[i+1]))*p.sy;if(i===0)ctx.moveTo(X,Y);else ctx.lineTo(X,Y);}
-      ctx.strokeStyle='rgba(120,150,158,.62)';
+      ctx.strokeStyle='rgba(96,162,180,.80)';
       ctx.lineWidth=Math.max(.5,(9-RANKS[k])*.22*Math.max(.7,Math.min(2.2,31/view.span)));ctx.stroke();}
-    ctx.fillStyle='rgba(160,190,198,.75)';
+    ctx.fillStyle='rgba(90,156,176,.88)';
     for(const r of LAKES){ctx.beginPath();for(let i=0;i<r.length;i+=2){const X=(LON(r[i])-p.x0)*p.sx,Y=(p.y1-LAT(r[i+1]))*p.sy;if(i===0)ctx.moveTo(X,Y);else ctx.lineTo(X,Y);}ctx.closePath();ctx.fill();}
-    ctx.restore();
-    ctx.strokeStyle='rgba(70,64,52,.42)';ctx.lineWidth=.9;ctx.stroke(path);
+    ctx.strokeStyle='rgba(26,22,16,.40)';ctx.lineWidth=.9;
+    for(const r of LAND){ctx.beginPath();
+      for(let i=0;i<r.length;i+=2){const X=(LON(r[i])-p.x0)*p.sx,Y=(p.y1-LAT(r[i+1]))*p.sy;if(i===0)ctx.moveTo(X,Y);else ctx.lineTo(X,Y);}
+      ctx.closePath();ctx.stroke();}
   }
   document.getElementById('stat').textContent=`${W}×${H} · ${kmpx.toFixed(1)} km/px`;
-  const barPx=document.querySelector('.pscale .bar').getBoundingClientRect().width||110;
-  const km=barPx*(cv.width/cv.clientWidth)*kmpx;
-  const round=[100,200,250,500,1000,2000].reduce((a,b)=>Math.abs(b-km)<Math.abs(a-km)?b:a);
-  document.getElementById('scaleLabel').textContent=`${round.toLocaleString()} km`;
+
 }
 
 const STEPS=[8,4,2,1];
