@@ -1002,15 +1002,25 @@ $('share').addEventListener('click', async () => {
   catch { location.hash = toURLFragment(sv); flash($('share'), 'in the bar'); }
 });
 
-$('savebtn').addEventListener('click', () => {
+/**
+ * Save copies the campaign to the clipboard rather than downloading it.
+ *
+ * A blob download works on a served page and does nothing at all inside an
+ * embedded viewer, which is where most people will meet this — a control that
+ * silently fails is worse than one that does something slightly different. The
+ * clipboard works in both, and the text it copies is exactly what Load accepts.
+ */
+$('savebtn').addEventListener('click', async () => {
   const sv = mkSave(SEED, decisions, { year: state.year });
-  const blob = new Blob([JSON.stringify(sv, null, 1)], { type: 'application/json' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = `paramountcy-${state.year < 0 ? -state.year + 'bce' : state.year}.json`;
-  a.click();
-  setTimeout(() => URL.revokeObjectURL(a.href), 2000);
-  flash($('savebtn'), `${(saveSize(sv) / 1024).toFixed(1)} kB`);
+  const text = JSON.stringify(sv, null, 1);
+  try {
+    await navigator.clipboard.writeText(text);
+    flash($('savebtn'), `${(saveSize(sv) / 1024).toFixed(1)} kB copied`);
+  } catch {
+    // No clipboard either: put it somewhere the player can reach it.
+    console.info('Your campaign:\n' + text);
+    flash($('savebtn'), 'in the console');
+  }
 });
 
 $('loadfile').addEventListener('change', async (e) => {
