@@ -35,6 +35,12 @@
               text-transform:uppercase; color:var(--ink-soft); font-weight:600; }
   .acts { display:flex; flex-wrap:wrap; gap:5px; }
   #chest { max-height:270px; overflow-y:auto; }
+  #frontier { font-size:12px; }
+  #locked { margin-top:8px; font-size:11px; color:var(--ink-soft); }
+  #locked div { padding:2px 0; }
+  #locked b { color:var(--warn); }
+  .stances { display:flex; gap:3px; }
+  .stances button { font-size:10px; padding:1px 6px; }
   #people { font-size:12px; }
   .per { display:flex; align-items:baseline; gap:7px; padding:4px 0;
          border-bottom:1px solid rgba(42,33,24,.08); }
@@ -111,6 +117,11 @@
     </div>
 
     <div class="panel">
+      <h2>The Frontier <span class="tiny muted" id="frontier-sum"></span></h2>
+      <div id="frontier"></div>
+    </div>
+
+    <div class="panel">
       <h2>Survey <span class="tiny muted" id="survey-sum"></span></h2>
       <div id="survey"></div>
     </div>
@@ -122,8 +133,9 @@
     </div>
 
     <div class="panel">
-      <h2>Pillars</h2>
+      <h2>Pillars <span class="tiny muted" id="trust-rung"></span></h2>
       <div id="pillars"></div>
+      <div id="locked"></div>
     </div>
 
     <div class="panel">

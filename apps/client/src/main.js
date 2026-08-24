@@ -27,6 +27,9 @@ import { cardModel, renderCard, renderYearPage, indexCards, authoredFor }
   from '../../../packages/ui/src/eventcard.js';
 import { surveyable, surveySummary, TIER, SURVEY_COST }
   from '../../../packages/sim/src/survey.js';
+import { blocked, locked, trustRung, nextRung } from '../../../packages/sim/src/pillars.js';
+import { frontierPresent, frontierLedger, STANCE } from '../../../packages/sim/src/frontier.js';
+import { LAYERS, LAYER_INFO, yieldTo } from '../../../packages/sim/src/sovereignty.js';
 
 const $ = (id) => document.getElementById(id);
 
@@ -548,7 +551,72 @@ function paint() {
   paintRoutes();
   paintPeople();
   paintSurvey();
+  paintFrontier();
+  paintLocks();
 }
+
+/**
+ * The frontier panel.
+ *
+ * Learn and clear sit next to each other on purpose. Both were available and
+ * both happened; the game keeps score of which you chose, and the ledger below
+ * does not let you forget.
+ */
+function paintFrontier() {
+  const s = state;
+  if (!s.frontier) return;
+  const here = frontierPresent(s);
+  const led = frontierLedger(s);
+  const taught = led.reduce((n, x) => n + x.taught.length, 0);
+  const gone = led.filter(x => x.gone).length;
+  $('frontier-sum').textContent = here.length
+    ? `${here.length} on the treeline${taught ? ` · ${taught} learned` : ''}${gone ? ` · ${gone} gone` : ''}`
+    : (gone ? `${gone} gone` : '');
+
+  $('frontier').innerHTML = here.length ? here.slice(0, 5).map(f => {
+    const can = (how) => s.grain >= STANCE[how].cost;
+    const learned = f.taught.length, total = f.knows.length;
+    return `<div class="per" title="${(f.note ?? '')} They know: ${f.knows.join('; ')}.">
+      <span class="nm">${f.name.replace(/^The /, '')}
+        <span class="role">${f.practice}${learned ? ` · learned ${learned}/${total}` : ''}${
+          f.displaced > 0 ? ` · ${Math.round(f.displaced * 100)}% displaced` : ''}</span></span>
+      <span class="stances">
+        <button class="btn" data-frontier="${f.id}" data-how="trade" ${can('trade') ? '' : 'disabled'}
+          title="40 grain. Opens exchange.">trade</button>
+        <button class="btn btn--primary" data-frontier="${f.id}" data-how="learn"
+          ${can('learn') && learned < total ? '' : 'disabled'}
+          title="90 grain. Their knowledge enters your corpus — which the historical record mostly did not do.">learn</button>
+        <button class="btn" data-frontier="${f.id}" data-how="clear" ${can('clear') ? '' : 'disabled'}
+          title="150 grain. Takes a third of their range for the plough, and costs you their regard for good.">clear</button>
+      </span></div>`;
+  }).join('') : `<div class="tiny muted">Nobody on the treeline here.</div>`;
+
+  if (led.length) {
+    $('frontier').innerHTML += `<div class="rule"></div>` + led.map(x =>
+      `<div class="endw ${x.gone ? 'dead' : ''}">
+        <span>${x.name.replace(/^The /, '')}</span>
+        <span class="num">${x.taught.length ? `+${x.taught.length} learned` : ''}${
+          x.displaced ? ` −${x.displaced}%` : ''}</span></div>`).join('');
+  }
+}
+
+/** What is locked, and what would unlock it. A horizon, not a wall. */
+function paintLocks() {
+  const s = state;
+  const rung = trustRung(s), next = nextRung(s);
+  $('trust-rung').textContent = `trust: ${rung.name}${next ? ` → ${next.name} at ${next.need}` : ''}`;
+  const l = locked(s);
+  $('locked').innerHTML = l.length
+    ? l.slice(0, 4).map(x =>
+        `<div title="${x.block.why}"><b>${x.action}</b> needs ${
+          x.block.pillar.toLowerCase()} ${x.block.need} — you have ${x.block.have}</div>`).join('')
+    : '';
+}
+
+$('frontier').addEventListener('click', (e) => {
+  const b = e.target.closest('[data-frontier]');
+  if (b && !b.disabled) decide('frontier', { people: b.dataset.frontier, how: b.dataset.how });
+});
 
 function paintSurvey() {
   const s = state;
@@ -729,14 +797,18 @@ $('route-acts').addEventListener('click', (e) => {
 function paintActions() {
   const s = state;
   const atRisk = worksAtRisk(s, 'home').filter(w => w.carriers <= 3);
+  const gate = (a) => blocked(s, a);
   const acts = [
-    { a:'patronise',    label:'Feed a reciter',   ok: s.grain >= 50,
+    { a:'patronise',      label:'Feed a reciter',   ok: s.grain >= 50,
       tip:'50 grain. One more work held in living memory.' },
-    { a:'train-scribe', label:'Train a scribe',   ok: s.grain >= 80 && s.pillars.IT >= 8,
+    { a:'train-scribe',   label:'Train a scribe',   ok: s.grain >= 80,
       tip:'80 grain. Scribes maintain manuscripts and make new ones.' },
     { a:'raise-soldiers', label:'Raise 5 soldiers', ok: s.grain >= 100,
       tip:'100 grain. Soldiers make roads safe for caravans.' },
-  ];
+  ].map(x => {
+    const g = gate(x.a);
+    return g ? { ...x, ok: false, tip: g.why } : x;
+  });
   let html = acts.map(x =>
     `<button class="btn" data-act="${x.a}" ${x.ok ? '' : 'disabled'} title="${x.tip}">${x.label}</button>`
   ).join('');

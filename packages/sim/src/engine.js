@@ -15,6 +15,9 @@ import { initCorpus, tickCorpus, applyWorkEvent, catastrophe, copyOut, worksAtRi
 import { initTrade, tickTrade, applyTradeEvent, DECISIONS as TRADE_DECISIONS } from './trade.js';
 import { initPeople, tickPeople, oralCapacity, DECISIONS as PEOPLE_DECISIONS } from './people.js';
 import { initSurvey, DECISIONS as SURVEY_DECISIONS } from './survey.js';
+import { initSovereignty, DECISIONS as SOV_DECISIONS } from './sovereignty.js';
+import { blocked } from './pillars.js';
+import { initFrontier, tickFrontier, DECISIONS as FRONTIER_DECISIONS } from './frontier.js';
 
 /** Pillar deltas by event class. Coarse, deliberately — tuning comes later. */
 const CLASS_EFFECTS = {
@@ -66,6 +69,8 @@ export function run(datapack, seed, decisionLog = [], opts = {}) {
   initTrade(state, datapack, from);
   initPeople(state, datapack, from);
   initSurvey(state, datapack, from);
+  initSovereignty(state, datapack, from);
+  initFrontier(state, datapack, from);
 
   // Decisions indexed by the year they are taken.
   const decisionsByYear = new Map();
@@ -103,6 +108,7 @@ export function run(datapack, seed, decisionLog = [], opts = {}) {
     tickPeople(state, span, rng.people, datapack);
     tickCorpus(state, span, rng.corpus, datapack);
     tickTrade(state, span, rng.trade);
+    tickFrontier(state, span, rng.world);
     tickEconomy(state, span);
 
     if (opts.onYear) opts.onYear(state, next, span);
@@ -215,6 +221,12 @@ function tickEconomy(state, span) {
 
 /** Apply one player decision. This is the only way the player touches the world. */
 export function applyDecision(state, d, datapack, rng) {
+  // A pillar that never stops anything is decoration. Refusals are silent in
+  // the log — the interface disables the control and says why — but they are
+  // enforced here, so a hand-written decision log cannot route around them.
+  const gate = blocked(state, d.action);
+  if (gate) { state.stats.blocked = (state.stats.blocked ?? 0) + 1; return; }
+
   switch (d.action) {
     case 'patronise':                    // grain to reciters
       if (state.grain >= 50) { state.grain -= 50; state.pops.reciters += 1;
@@ -238,6 +250,8 @@ export function applyDecision(state, d, datapack, rng) {
     default:
       if (PEOPLE_DECISIONS[d.action]) return PEOPLE_DECISIONS[d.action](state, d, rng.people);
       if (SURVEY_DECISIONS[d.action]) return SURVEY_DECISIONS[d.action](state, d, rng.world);
+      if (SOV_DECISIONS[d.action])    return SOV_DECISIONS[d.action](state, d, rng.world);
+      if (FRONTIER_DECISIONS[d.action]) return FRONTIER_DECISIONS[d.action](state, d, rng.world);
       if (TRADE_DECISIONS[d.action])  return TRADE_DECISIONS[d.action](state, d, rng.trade);
       return;
   }
