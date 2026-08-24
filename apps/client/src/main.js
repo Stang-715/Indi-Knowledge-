@@ -18,6 +18,8 @@ import { Camera, fitSpan }   from '../../../packages/render-realm/src/camera.js'
 import { run }               from '../../../packages/sim/src/engine.js';
 import { corpusSummary, worksAtRisk } from '../../../packages/sim/src/corpus.js';
 import { formatYear }        from '../../../packages/sim/src/clock.js';
+import { spriteURL, spriteFor } from '../../../packages/ui/src/sprites.js';
+import { throughput, CHOKES } from '../../../packages/sim/src/trade.js';
 
 const $ = (id) => document.getElementById(id);
 
@@ -151,25 +153,88 @@ function draw(step) {
    temple is four pixels wide; a symbol carries meaning that scale cannot. */
 
 const SITES = [
-  { id:'thanjavur', name:'Thanjavur',   lon:79.14, lat:10.79, from:850  },
-  { id:'muziris',   name:'Muziris',     lon:76.25, lat:10.18, from:-300 },
-  { id:'nalanda',   name:'Nalanda',     lon:85.44, lat:25.14, from:415  },
-  { id:'kanchi',    name:'Kanchipuram', lon:79.70, lat:12.84, from:-300 },
-  { id:'madurai',   name:'Madurai',     lon:78.12, lat:9.93,  from:-300 },
-  { id:'anuradha',  name:'Anuradhapura',lon:80.40, lat:8.31,  from:-900 },
-  { id:'dholavira', name:'Dholavira',   lon:70.22, lat:23.89, from:-2600, to:-1900 },
-  { id:'mohenjo',   name:'Mohenjo-daro',lon:68.14, lat:27.32, from:-2600, to:-1900 },
-  { id:'pataliputra',name:'Pataliputra',lon:85.14, lat:25.61, from:-490 },
-  { id:'ujjain',    name:'Ujjain',      lon:75.78, lat:23.18, from:-720 },
-  { id:'taxila',    name:'Taxila',      lon:72.84, lat:33.74, from:-580, to:500 },
-  { id:'mehrgarh',  name:'Mehrgarh',    lon:67.72, lat:29.38, from:-6000, to:-2600 },
+  { id:'mehrgarh',   name:'Mehrgarh',     lon:67.72, lat:29.38, from:-6000, to:-2600, sprite:'mudbrick' },
+  { id:'mohenjo',    name:'Mohenjo-daro', lon:68.14, lat:27.32, from:-2600, to:-1900, sprite:'bath' },
+  { id:'dholavira',  name:'Dholavira',    lon:70.22, lat:23.89, from:-2600, to:-1900, sprite:'reservoir' },
+  { id:'lothal',     name:'Lothal',       lon:72.25, lat:22.52, from:-2700, to:-1900, sprite:'basin' },
+  { id:'utnur',      name:'Utnur',        lon:78.72, lat:19.38, from:-4500, to:-1500, sprite:'ashmound' },
+  { id:'adichanallur',name:'Adichanallur',lon:77.87, lat:8.63,  from:-1380, to:-300,  sprite:'megalith' },
+  { id:'taxila',     name:'Taxila',       lon:72.84, lat:33.74, from:-580,  to:500,   sprite:'vihara' },
+  { id:'ujjain',     name:'Ujjain',       lon:75.78, lat:23.18, from:-720,  sprite:'rampart' },
+  { id:'pataliputra',name:'Pataliputra',  lon:85.14, lat:25.61, from:-490,  sprite:'city' },
+  { id:'sanchi',     name:'Sanchi',       lon:77.74, lat:23.48, from:-250,  sprite:'stupa' },
+  { id:'madurai',    name:'Madurai',      lon:78.12, lat:9.93,  from:-300,  sprite:'city' },
+  { id:'muziris',    name:'Muziris',      lon:76.25, lat:10.18, from:-300,  sprite:'port', port:true },
+  { id:'anuradha',   name:'Anuradhapura', lon:80.40, lat:8.31,  from:-900,  sprite:'stupa' },
+  { id:'nalanda',    name:'Nalanda',      lon:85.44, lat:25.14, from:415,   sprite:'vihara' },
+  { id:'kanchi',     name:'Kanchipuram',  lon:79.70, lat:12.84, from:-300,  sprite:'vimana' },
+  { id:'thanjavur',  name:'Thanjavur',    lon:79.14, lat:10.79, from:850,   sprite:'vimana' },
+  { id:'konark',     name:'Konark',       lon:86.09, lat:19.89, from:1250,  sprite:'wheel' },
+  { id:'bharuch',    name:'Bharuch',      lon:72.99, lat:21.71, from:-300,  sprite:'port', port:true },
+  { id:'kaveripattinam',name:'Kaveripattinam',lon:79.85,lat:11.14,from:-400,sprite:'port', port:true },
 ];
+const SITE_BY_ID = new Map(SITES.map(s => [s.id, s]));
+
+/** Sprite images, rasterised once. */
+const SPRITE_IMG = new Map();
+function spriteImage(name) {
+  if (!SPRITE_IMG.has(name)) {
+    const img = new Image();
+    img.src = spriteURL(name, 96);
+    SPRITE_IMG.set(name, img);
+  }
+  return SPRITE_IMG.get(name);
+}
+for (const s of SITES) spriteImage(s.sprite);
 
 function drawSites(proj, level) {
   const year = state ? state.year : -6000;
-  const r = Math.max(2.4, 2.0 + level * 0.55) * dpr;
-  const placed = [];
   ctx.save();
+
+  // Routes first, under the markers. A route is drawn by its condition, not as
+  // a line on a map: thickness is throughput, and a choke shows as a broken
+  // line with a mark on it.
+  if (state) {
+    for (const r of state.routes.values()) {
+      const a = SITE_BY_ID.get(r.from), b = SITE_BY_ID.get(r.to);
+      if (!a || !b) continue;
+      const x1 = proj.toX(a.lon), y1 = proj.toY(a.lat);
+      const x2 = proj.toX(b.lon), y2 = proj.toY(b.lat);
+      const t = throughput(r, year);
+      ctx.lineWidth = Math.max(1, Math.min(7, t * 0.5)) * dpr;
+      ctx.strokeStyle = r.choke ? 'rgba(168,100,43,.85)' : 'rgba(201,162,39,.72)';
+      ctx.setLineDash(r.choke ? [6 * dpr, 5 * dpr] : []);
+      ctx.beginPath(); ctx.moveTo(x1, y1);
+      // Bow the line so it reads as a road, not a ruler.
+      const mx = (x1 + x2) / 2 - (y2 - y1) * 0.12, my = (y1 + y2) / 2 + (x2 - x1) * 0.12;
+      ctx.quadraticCurveTo(mx, my, x2, y2); ctx.stroke();
+      ctx.setLineDash([]);
+      if (r.choke) {
+        ctx.fillStyle = '#A8642B';
+        ctx.beginPath(); ctx.arc(mx, my, 4.5 * dpr, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = '#E8DCC2'; ctx.font = `bold ${9 * dpr}px Georgia`;
+        ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+        ctx.fillText('!', mx, my + 0.5 * dpr);
+        ctx.textAlign = 'start';
+      }
+    }
+    // Caravans in transit, as marks moving along the road.
+    for (const c of state.caravans) {
+      const r = state.routes.get(c.route); if (!r) continue;
+      const a = SITE_BY_ID.get(r.from), b = SITE_BY_ID.get(r.to); if (!a || !b) continue;
+      const k = c.state === 'outbound' ? Math.min(1, c.progress / c.days) : 1;
+      const x = proj.toX(a.lon + (b.lon - a.lon) * k);
+      const y = proj.toY(a.lat + (b.lat - a.lat) * k);
+      ctx.fillStyle = '#2A2118';
+      ctx.beginPath(); ctx.arc(x, y, 3 * dpr, 0, Math.PI * 2); ctx.fill();
+    }
+  }
+
+  // Landmarks. Symbolic markers at fixed screen size, deliberately out of
+  // scale — pictorial-map grammar (docs/08-visual-design.md §6.3). At L10 a real
+  // temple is four pixels wide; a symbol carries meaning that scale cannot.
+  const placed = [];
+  const scale = (0.55 + Math.min(level, 6) * 0.10) * dpr;
   ctx.font = `${Math.round(11 * dpr)}px Georgia, serif`;
   ctx.textBaseline = 'middle';
 
@@ -177,27 +242,29 @@ function drawSites(proj, level) {
     if (year < s.from) continue;
     const dead = s.to != null && year > s.to;
     const x = proj.toX(s.lon), y = proj.toY(s.lat);
-    if (x < -40 || y < -40 || x > cv.width + 40 || y > cv.height + 40) continue;
+    if (x < -60 || y < -60 || x > cv.width + 60 || y > cv.height + 60) continue;
 
-    ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2);
-    ctx.fillStyle = dead ? 'rgba(110,106,98,.75)' : '#C9A227';
-    ctx.fill();
-    ctx.lineWidth = 1 * dpr; ctx.strokeStyle = 'rgba(42,33,24,.65)'; ctx.stroke();
+    const img = spriteImage(spriteFor(s, year));
+    const w = 46 * scale, h = 35 * scale;
+    ctx.globalAlpha = dead ? 0.42 : 1;
+    if (img.complete && img.naturalWidth) ctx.drawImage(img, x - w / 2, y - h + 4 * scale, w, h);
+    else { ctx.fillStyle = dead ? '#6E6A62' : '#C9A227';
+           ctx.beginPath(); ctx.arc(x, y, 4 * dpr, 0, Math.PI * 2); ctx.fill(); }
+    ctx.globalAlpha = 1;
 
-    if (level < 1.4) continue;
-    // Label collision: sites in the Magadha cluster sit within 0.9°, so
-    // unresolved labels stack into an unreadable smear. Skip, don't overlap.
-    const label = s.name;
-    const tw = ctx.measureText(label).width;
-    const bx = x + r + 4 * dpr, by = y;
-    const box = { x0: bx, y0: by - 8 * dpr, x1: bx + tw, y1: by + 8 * dpr };
+    if (level < 1.1) continue;
+    // Label collision: the Magadha cluster puts five sites within 0.9 degrees,
+    // and unresolved labels stack into an unreadable smear. Skip, do not overlap.
+    const tw = ctx.measureText(s.name).width;
+    const bx = x - tw / 2, by = y + 8 * scale;
+    const box = { x0: bx - 3, y0: by - 8 * dpr, x1: bx + tw + 3, y1: by + 8 * dpr };
     if (placed.some(p => !(box.x1 < p.x0 || box.x0 > p.x1 || box.y1 < p.y0 || box.y0 > p.y1))) continue;
     placed.push(box);
 
-    ctx.lineWidth = 3 * dpr; ctx.strokeStyle = 'rgba(232,220,194,.86)';
-    ctx.strokeText(label, bx, by);
+    ctx.lineWidth = 3 * dpr; ctx.strokeStyle = 'rgba(232,220,194,.9)';
+    ctx.strokeText(s.name, bx, by);
     ctx.fillStyle = dead ? 'rgba(42,33,24,.5)' : '#2A2118';
-    ctx.fillText(label, bx, by);
+    ctx.fillText(s.name, bx, by);
   }
   ctx.restore();
 }
@@ -326,7 +393,82 @@ function paint() {
   lastLogLen = interesting.length;
 
   paintActions();
+  paintRoutes();
 }
+
+/**
+ * Routes, shown as their four numbers rather than as lines on a map.
+ *
+ * Throughput is capacity x hold x safety x season — a product, so a route is
+ * only as good as its worst number (docs/11-trade-network.md §3). Showing all
+ * four is what makes that legible: a magnificent road you do not control
+ * delivers nothing, and the player should be able to see which number is the
+ * one holding them back.
+ */
+function paintRoutes() {
+  const s = state;
+  const rs = [...s.routes.values()];
+  $('routes').innerHTML = rs.length ? rs.map(r => {
+    const bar = (v) => `<span><i><b style="width:${Math.round(v * 100)}%"></b></i></span>`;
+    const t = throughput(r, s.year);
+    return `<div class="route ${r.choke ? 'choked' : ''}">
+      <div class="nm"><span>${r.from} → ${r.to}</span>
+        <span class="num">${r.choke ? CHOKES[r.choke.kind].label : t.toFixed(1) + '/yr'}</span></div>
+      <div class="four" title="capacity · hold · safety · season">
+        ${bar(Math.min(1, r.capacity / 20))}${bar(r.hold)}${bar(r.safety)}${bar(0.9)}</div>
+    </div>`;
+  }).join('') : `<div class="tiny muted">No routes yet. Trade begins with the people you already know.</div>`;
+
+  const acts = [];
+  // The trust ladder: you start with your relatives and those nearby.
+  const OPENABLE = [
+    { id:'R.KAVERI',  from:'thanjavur', to:'kaveripattinam', days:6,  capacity:8,  need:850,  mode:'land' },
+    { id:'R.MALABAR', from:'thanjavur', to:'muziris',        days:22, capacity:12, need:-300, mode:'land' },
+    { id:'R.WEST',    from:'muziris',   to:'bharuch',        days:48, capacity:16, need:-300, mode:'sea'  },
+  ];
+  for (const r of OPENABLE) {
+    if (s.routes.has(r.id) || s.year < r.need) continue;
+    const from = SITE_BY_ID.get(r.from), to = SITE_BY_ID.get(r.to);
+    if (!from || s.year < from.from || !to || s.year < to.from) continue;
+    acts.push(`<button class="btn" data-route="open" data-id="${r.id}"
+      data-from="${r.from}" data-to="${r.to}" data-days="${r.days}"
+      data-capacity="${r.capacity}" data-mode="${r.mode}"
+      title="Opening a route costs nothing but attention. Keeping it open costs everything else.">
+      Open ${to.name} route</button>`);
+  }
+  for (const r of s.routes.values()) {
+    if (r.choke) {
+      const spec = CHOKES[r.choke.kind];
+      const method = spec.works[0];
+      acts.push(`<button class="btn btn--primary" data-route="clear" data-id="${r.id}"
+        data-method="${method}" title="${spec.label} — try to ${method}">
+        ${method === 'reroute' ? 'Reroute' : method === 'pay' ? 'Pay the toll' : 'Clear'} ${r.to}</button>`);
+    } else {
+      acts.push(`<button class="btn" data-route="caravan" data-id="${r.id}"
+        title="Goods take days. Payment takes longer.">Send caravan</button>`);
+      if (r.safety < 0.9 && s.pops.soldiers >= 5)
+        acts.push(`<button class="btn" data-route="escort" data-id="${r.id}"
+          title="Safety and speed trade against each other.">Escort</button>`);
+      if (r.hold < 0.9 && s.pops.soldiers >= 5)
+        acts.push(`<button class="btn" data-route="garrison" data-id="${r.id}"
+          title="Hold is how much of the road is actually yours.">Garrison</button>`);
+    }
+  }
+  $('route-acts').innerHTML = acts.join('');
+}
+
+$('route-acts').addEventListener('click', (e) => {
+  const b = e.target.closest('[data-route]');
+  if (!b) return;
+  const d = b.dataset;
+  if (d.route === 'open')
+    decide('open-route', { id: d.id, from: d.from, to: d.to,
+                           days: +d.days, capacity: +d.capacity, mode: d.mode });
+  else if (d.route === 'clear')    decide('clear-choke', { route: d.id, method: d.method });
+  else if (d.route === 'caravan')  decide('send-caravan', { route: d.id });
+  else if (d.route === 'escort')   decide('escort',   { route: d.id });
+  else if (d.route === 'garrison') decide('garrison', { route: d.id });
+});
 
 function paintActions() {
   const s = state;

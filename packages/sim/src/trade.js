@@ -66,8 +66,8 @@ export function addRoute(state, { id, from, to, days, capacity = 10, mode = 'lan
   state.routes.set(id, {
     id, from, to, days, mode,
     capacity,
-    hold: 0.35,             // how much of it you actually control
-    safety: 0.6,            // how likely a caravan survives
+    hold: 0.50,             // how much of it you actually control
+    safety: 0.65,           // how likely a caravan survives
     communication: 0.3,     // how fast you learn what happened on it
     open: true,
     choke: null,
@@ -130,12 +130,20 @@ export function tickTrade(state, span, rng) {
 
   // Routes drift. Unattended hold decays; safety follows soldiers.
   for (const r of state.routes.values()) {
-    r.hold = Math.max(0.05, r.hold - 0.004 * span);
+    // Hold decays because a road nobody walks stops being yours — but at the
+    // old rate a route was worthless within a century of opening, which made
+    // garrisoning a tax rather than a choice.
+    r.hold = Math.max(0.08, r.hold - 0.0012 * span);
     const cover = state.pops.soldiers > 0 ? Math.min(0.4, state.pops.soldiers / 60) : 0;
     r.safety = Math.max(0.1, Math.min(0.95, r.safety * 0.998 + cover * 0.02 * span));
 
     // A choke appears. Rarely, and one of the five kinds.
-    if (!r.choke && rng.chance(0.004 * span)) {
+    //
+    // Rate matters more than it looks: at one chance in 250 a year, a route
+    // opened in 850 is choked several times before the Cholas fall, and in
+    // practice the player never gets a caravan out at all. Once a century is
+    // enough to make the road feel contested without making it useless.
+    if (!r.choke && rng.chance(0.0011 * span)) {
       const kinds = Object.keys(CHOKES);
       const kind = kinds[rng.next() % kinds.length];
       r.choke = { kind, since: year };
@@ -144,6 +152,14 @@ export function tickTrade(state, span, rng) {
       record(state, year, 'choke',
         `${r.id}: ${CHOKES[kind].label}.`, { route: r.id, kind });
     }
+    // The rot is not cleared, it is outlived: a river finds a new channel, a
+    // flood recedes. The other four kinds wait for the player.
+    if (r.choke && r.choke.kind === 'rot' && year - r.choke.since > 25) {
+      r.choke = null; r.open = true;
+      record(state, year, 'choke', `${r.id}: the water has found a new way through.`,
+        { route: r.id });
+    }
+
     if (r.open) {
       const t = throughput(r, year);
       r.delivered += t * span;

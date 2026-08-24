@@ -35,6 +35,15 @@
               text-transform:uppercase; color:var(--ink-soft); font-weight:600; }
   .acts { display:flex; flex-wrap:wrap; gap:5px; }
   #chest { max-height:270px; overflow-y:auto; }
+  #routes { font-size:12px; }
+  .route { padding:4px 0; border-bottom:1px solid rgba(42,33,24,.08); }
+  .route .nm { display:flex; justify-content:space-between; }
+  .route .four { display:flex; gap:6px; margin-top:3px; }
+  .route .four span { flex:1; }
+  .route .four i { display:block; height:4px; background:var(--sheet-shade);
+                   box-shadow:inset 0 1px 2px rgba(42,33,24,.3); }
+  .route .four i b { display:block; height:100%; background:var(--table-deep); }
+  .route.choked .nm { color:var(--warn); font-weight:600; }
   #log { max-height:150px; overflow-y:auto; font-size:12px; line-height:1.5; }
   #log div { padding:1px 0; }
   #log .y { color:var(--ink-faint); font-family:var(--mono); font-size:10px; margin-right:6px; }
@@ -75,6 +84,12 @@
     <div class="panel">
       <h2>Decisions</h2>
       <div class="acts" id="acts"></div>
+    </div>
+
+    <div class="panel">
+      <h2>Routes</h2>
+      <div id="routes"></div>
+      <div class="acts" id="route-acts" style="margin-top:6px"></div>
     </div>
 
     <div class="panel">
