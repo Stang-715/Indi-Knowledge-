@@ -33,6 +33,7 @@ import { frontierPresent, frontierLedger, STANCE } from '../../../packages/sim/s
 import { LAYERS, LAYER_INFO, yieldTo } from '../../../packages/sim/src/sovereignty.js';
 import { save as mkSave, load as loadSave, reconcile, toURLFragment, fromURLFragment,
          replayStops, saveSize } from '../../../packages/sim/src/save.js';
+import { Sound } from '../../../packages/ui/src/sound.js';
 
 const $ = (id) => document.getElementById(id);
 
@@ -613,8 +614,13 @@ function paint() {
   // New notices since the last paint.
   for (const l of interesting.slice(lastLogLen)) {
     if (['catastrophe','epoch','loss'].includes(l.kind)) notice(l);
+    // One deliberate silence, in 1193.
+    if (l.kind === 'catastrophe' && /Nalanda sacked/.test(l.text)) sound.silence(4);
+    else if (l.kind === 'catastrophe') sound.strike('loss');
+    else if (l.kind === 'epoch') sound.strike('epoch');
   }
   lastLogLen = interesting.length;
+  syncSound();
 
   paintActions();
   paintRoutes();
@@ -989,6 +995,24 @@ $('scrubber').addEventListener('input', () => {
   $('scrub-year').textContent = formatYear(target);
   recompute(); draw(3); scheduleFull();
 });
+
+/* ── Sound ──────────────────────────────────────────────────────────────── */
+
+const sound = new Sound();
+$('soundbtn').addEventListener('click', async () => {
+  if (sound.on) { sound.disable(); $('soundbtn').textContent = '♪ off'; return; }
+  const ok = await sound.enable();
+  $('soundbtn').textContent = ok ? '♪ on' : '♪ —';
+  if (ok) syncSound(true);
+});
+
+/** Keep the drone in step with the corpus. Called on every repaint. */
+function syncSound(force = false) {
+  if (!sound.on || !state) return;
+  const cs = corpusSummary(state);
+  sound.set(state.year, { extant: cs.extant, lost: cs.lost,
+                          schools: state.schools.size, total: cs.total });
+}
 
 let acc = 0, lastT = 0;
 function tick(t) {
