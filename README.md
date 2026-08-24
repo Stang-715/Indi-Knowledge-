@@ -19,6 +19,11 @@ varies in density by six orders of magnitude across those six thousand years. Da
 completeness *is* the fog of war — a 3000 BCE map should be vague because it honestly is
 — and pouring in real data makes the world truer without a code change or a broken save.
 
+The world is not a drawn map but a **made object** — a relief model on a survey sheet,
+lit from the upper left. Every interface element is a thing lying on that table, and the
+table's materials change with the era, so the player reads the date off the desk.
+[Live design kit →](https://claude.ai/code/artifact/4aac5251-73ad-4bce-8f9f-a677f7a3dde1)
+
 Sovereignty is stored as a **stack, not a colour**: every place at every moment has a
 holder, a revenue claimant, a tributary superior and a paramount. For most of these six
 thousand years those were different parties, and that gap is where the history happens.
@@ -40,6 +45,8 @@ fire coming** — the game is about making copies before it arrives.
 | [**04 · The Temporal Ladder**](docs/04-eras.md) | Thirteen eras, era-swappable extraction and sovereignty models, and why Victoria 3's machinery only fits 3% of the timeline |
 | [**05 · The Knowledge Economy**](docs/05-knowledge-economy.md) | **The core system.** Works as goods with strange physics, the grain standard, recopying upkeep, redundancy against catastrophe, and the commentary economy |
 | [06 · Pillars & Campaign](docs/06-pillars-and-campaign.md) | The eight development axes, the within-India constraint, the invasion schedule, and what winning means |
+| [**07 · The Timeline**](docs/07-timeline.md) | **787 events across sixteen eras**, 6000 BCE–1947. Information architecture, the 210-hour cadence, regional spines, and the event-card spec |
+| [**08 · Visual Design**](docs/08-visual-design.md) | **The Cartographer's Table.** Locked palette and lighting rig, 18 UI components, sprite manifest and generation pipeline |
 | [Map density & animation](docs/map-density-and-animation-spec.md) | The original Victoria 3 density comparison and the web performance criteria |
 
 ## Schemas
