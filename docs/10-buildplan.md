@@ -142,10 +142,11 @@ kill the project is phase 5, not phase 11.
 | 7 | The dive | zoom L0→L9 with the tilt-shift falling away | 2 w |
 | 8 | The hands | use the ledger, the slips, the chest | 1.5 w |
 | 9 | The pieces | see era-correct landmarks on the terrain | 1 w |
-| 10 | The exchange | barter, then coin; export knowledge and pepper | 1.5 w |
+| 10a | The exchange | barter, then coin; export knowledge and pepper | 1.5 w |
+| 10b | The network | routes, escorts, chokes, merchants, monks | 2.5 w |
 | 11 | The slice | play 20 continuous minutes, in a browser | 2 w |
 
-**≈ 16 weeks solo · ≈ 9 weeks with two people.** Phases 6–9 parallelise cleanly against 3–5;
+**≈ 18 weeks solo · ≈ 10 weeks with two people.** Phases 6–9 parallelise cleanly against 3–5;
 phases 1–5 do not parallelise and should not be rushed.
 
 ---
@@ -330,25 +331,57 @@ Sisupalgarh. **The Taj Mahal is 1653 and anachronistic for 95% of this campaign.
 
 ---
 
-## Phase 10 · The exchange
+## Phase 10a · The exchange
 *Trade, in the order history actually did it.*
 
 - **Barter first.** Grain against knowledge, shell against copper, pepper against everything.
   No abstract store of value exists, and the UI should not pretend one does.
 - **Then coin.** Bent-bar silver ~660 BCE → punch-marked karshapana ~550 BCE → the full
-  monetary ladder. **The arrival of money is an era transition the player feels.**
-- **Export knowledge, early.** A text goes out with a monk or a merchant.
-- **Export spices, early.** Pepper enters long-distance trade around 300 BCE and never leaves.
+  monetary ladder.
 - **Goods arrive by calendar, through trade.** Paper displaces palm leaf ~1350 and recopying
   costs collapse. Chilli, potato, tomato, maize and tobacco appear only after 1498 — and they
   arrive **because a ship arrived**, not because a tech unlocked.
 
-> **The one open design question, and phase 10 is where it has to be answered:** when you
-> export a text, does that also create a **surviving copy abroad**? Say yes and trade income
-> and corpus survival become the same decision — which is what actually happened at
-> Aluvihare, at Tibet, and with Xuanzang's 657 texts. My recommendation is **yes**, because it
-> makes the game's two biggest systems into one system instead of two. It is your call and it
-> should be made before this phase starts, not during.
+> **Money is a revolution because barter has bad physics, not because it is primitive.**
+> Grain is heavy, perishable, and worth least exactly when everyone has it. Silver is the
+> same value in a hundredth of the volume and does not rot. The player should feel coinage
+> arrive as **settlement latency and spoilage falling off a cliff**, in a system they have
+> been fighting for three thousand years. Full treatment in
+> [`11-trade-network.md`](11-trade-network.md) §4.
+
+---
+
+## Phase 10b · The network
+*Routes as living things. Full design in [`11-trade-network.md`](11-trade-network.md).*
+
+- **The offer.** Every good first produced asks: export, share, or keep — and the answers
+  accumulate into an **intent map**. The gap between where goods want to go and where they
+  can go is the player's to-do list, and it draws itself.
+- **The trust ladder.** Kin → neighbour → shared shrine → marriage → **guild charter** →
+  state treaty. Rung 5 arrives ~825 CE and lifts a constraint that has bound the player for
+  five thousand years.
+- **Routes are four numbers** — capacity, hold, safety, communication — multiplied, so a
+  route is only as good as its worst one. Low communication means you learn a caravan died
+  three months later, which is 2000 BCE rendered honestly.
+- **Transit computed off the real terrain field** from phase 6, not a lookup table. The
+  monsoon that waters the Deccan is the same monsoon that carries the ships, and Hippalus
+  (~50 CE) is a **timeline event that rewrites a physics constant**.
+- **Merchants are agents on the map.** Escorts trade safety against speed, so no setting
+  dominates.
+- **One resolver, five skins** — the pass, the toll, the raid, the blockade, and **the rot**,
+  which has no enemy at all and can only be routed around. Do not build five bespoke
+  minigames; the variety is in the situation and the choice, not in five rule-sets.
+- **Your neighbour's segment caps your income**, because safety is the minimum across a
+  route, not the average. Alliances, subsidies and joint patrols fall out of that one rule
+  with no diplomacy screen written.
+- **The missionary vector.** Monks and priests travel where caravans cannot, so a blockaded
+  player always has a move — and a monk who arrives **creates a carrier abroad for every
+  work he carries.**
+
+> **This settles the open question.** Exporting a text does create a surviving copy abroad,
+> and the mechanism is a person. Trade income and corpus survival become one decision — so a
+> player who spent a century sending teachers abroad discovers at 1193 that they already
+> saved the library, six centuries early, for reasons that had nothing to do with 1193.
 
 ---
 

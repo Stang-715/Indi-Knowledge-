@@ -39,6 +39,7 @@ is generated from 138 KB of control data rather than shipped as an image.
 | `docs/08-visual-design.md` | **The design MD.** The Cartographer's Table — palette, lighting rig, 18 UI components, sprite manifest, generation pipeline |
 | `docs/09-procedural-map.md` | The base map: skeleton-plus-field approach, terrain types, the water model |
 | `docs/10-buildplan.md` | **Start here for dev.** Codebase explained plainly, the fundamental rule, and the eleven phases to a playable slice |
+| `docs/11-trade-network.md` | **The trade system.** The offer, the trust ladder, routes as four numbers, transit and settlement time, escorts, the five chokes, the missionary vector |
 | `docs/map-density-and-animation-spec.md` | The original Victoria 3 density comparison and web performance criteria |
 
 ### Data — all generated and validated
@@ -101,15 +102,16 @@ node tools/build-basemap.mjs    # → dist/basemap.html
 
 **Start here:** [`10-buildplan.md`](10-buildplan.md) — the codebase explained plainly, the fundamental rule, and eleven phases to a playable slice. Phase 1 is the determinism test; phase 5 is the go/no-go.
 
-**Unbuilt, and the next thing after the plan:** the **trade and export system**. Barter before coinage,
-one-click export of knowledge and spices, and the goods list itself growing as history
-brings new things to the map — paper ~1350 (which halves recopying cost), then chilli,
-potato, tomato, maize, tobacco after 1498.
+**Designed, not built:** the **trade and export system** — [`11-trade-network.md`](11-trade-network.md).
+Barter before coinage, routes that must be held and protected, merchants as agents on the
+map, choke-clearing missions, and the goods list growing as history brings new things —
+paper ~1350 (which halves recopying cost), then chilli, potato, tomato, maize and tobacco
+after 1498.
 
-**One open design question:** should exporting a text also create a copy of it abroad? If
-yes, trade income and corpus survival become a single decision — which is what actually
-happened, since the *Abhidharmakosha* survives only because it reached Tibet. If no, they
-stay two competing budgets.
+**Answered:** exporting a text *does* create a surviving copy abroad, and the mechanism is
+a **person** — a monk or teacher who arrives becomes a carrier for every work they carry.
+Trade income and corpus survival are therefore one decision, as they were historically.
+See [`11-trade-network.md`](11-trade-network.md) §7.
 
 **Also outstanding**
 - ~363 more timeline events to reach the ~1,150 target; eras 1, 2 and 5 fail the density check
