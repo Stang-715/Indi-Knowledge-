@@ -1,0 +1,144 @@
+{
+  "note": "Authored copy for Tier 1 cards. Overrides the generated text in packages/ui/src/eventcard.js. Keys are matched against an event title fragment, because event ids are derived from titles and may shift as the timeline doc is edited. NOT historian-reviewed.",
+  "cards": [
+    {
+      "match": "Nalanda sacked",
+      "what": "A raiding force under Bakhtiyar Khalji takes the monastic city. Vikramashila and Odantapuri follow. These were not only monasteries but the largest libraries in the eastern world, holding texts that existed nowhere else because nobody had needed them to.",
+      "why": "What is not copied out beforehand is not recoverable afterwards.",
+      "evidence": "Persian chronicles written for the victors; a destruction layer at the site; and the negative evidence of texts that survive only in Tibetan and Chinese translation.",
+      "becomes": "Tibetan monasteries inherit the curriculum, and the Pala scholarly tradition continues abroad for centuries."
+    },
+    {
+      "match": "Uttaramerur",
+      "what": "A village near Kanchipuram cuts its own constitution into its temple wall. It sets out who may stand for the committees that run the tanks, the gardens, the gold and the courts, and how they are chosen: names on palm leaf, drawn from a pot by a child. It disqualifies anyone who has not submitted audited accounts, and it caps terms.",
+      "why": "Election by lot, with eligibility rules and term limits, a thousand years ago, cut in stone because it was ordinary.",
+      "evidence": "The inscriptions themselves, still on the temple wall at Uttaramerur."
+    },
+    {
+      "match": "Keeladi",
+      "what": "Excavation on the Vaigai reveals a substantial urban settlement — brick structures, drainage, industrial residues, and graffiti-bearing sherds — on a scale that pushes urbanism in the far south considerably earlier than the standard account allows.",
+      "why": "If the dates hold, the second urbanisation was not a northern event that spread south.",
+      "evidence": "AMS dates on charcoal from the excavated levels, with the associated artefact assemblage.",
+      "dispute_text": "The Tamil Nadu State Department of Archaeology dates the settlement from the 6th century BCE. A 2023 report by the original excavator placed it 8th–3rd century BCE; the Archaeological Survey of India asked for that report to be reworked, and the disagreement between the Centre and the State remains open as of 2025. The question is live politically as well as archaeologically, and this game does not take a side."
+    },
+    {
+      "match": "Iron at Mayiladumparai, Tamil Nadu",
+      "what": "Iron artefacts from a Tamil Nadu site return AMS dates around 2172 BCE — the oldest confirmed iron in India, roughly a millennium earlier than the Gangetic Iron Age.",
+      "why": "The south is not a periphery that received iron. It may have had it first.",
+      "evidence": "AMS radiocarbon on charcoal associated with the iron, from the excavated context.",
+      "dispute_text": "The Mayiladumparai dates are broadly accepted. The far earlier claim from Sivagalai — around 3345 BCE — is contested: rice from the same intact urn as the iron dates to roughly 1248 and 1155 BCE, and critics point to stratigraphic mixing and to selective emphasis on the earliest charcoal in the sequence."
+    },
+    {
+      "match": "Indo-Aryan migration",
+      "what": "Speakers of an Indo-Aryan language enter the northwest and their language becomes dominant across the north over subsequent centuries. Whether this was migration, a series of small movements, elite transmission, or something else is the most argued question in Indian prehistory.",
+      "why": "Almost everything about the Vedic period depends on what you think happened here.",
+      "evidence": "Comparative linguistics; the Rigveda's own geography; ancient DNA from Rakhigarhi and Central Asian sites; the absence of a destruction horizon.",
+      "dispute_text": "Positions range from substantial migration to none at all, and the debate is entangled with contemporary politics in India. Because the evidence genuinely does not settle it, this event is latent: it does not occur in every campaign, and when it does the game presents it as argued rather than established."
+    },
+    {
+      "match": "4.2 kiloyear",
+      "what": "Across the northern hemisphere the climate dries, sharply and for centuries. In the subcontinent the monsoon weakens and the Ghaggar-Hakra — which had carried water past dozens of Indus towns — begins to fail. Nobody attacks. The cities simply become harder to feed, and one by one their people move east toward rivers that still run.",
+      "why": "A civilisation can end without a conqueror.",
+      "evidence": "Speleothem records from Indian and Omani caves, lake cores, and the abandonment sequence of the Ghaggar sites themselves.",
+      "dispute_text": "How much of the Indus decline this explains is argued. Some read it as the principal cause; others as one pressure among several, including river avulsion and the collapse of Mesopotamian demand."
+    },
+    {
+      "match": "Deurbanisation",
+      "what": "The Indus cities empty. There is no destruction layer, no mass grave, no conquest horizon. Settlement counts actually rise as size falls: people disperse eastward into hundreds of smaller villages, taking their crafts with them at a scale the household can support.",
+      "why": "The end of a civilisation looked, from the inside, like a series of reasonable decisions.",
+      "evidence": "Settlement survey across the Ghaggar and Indus systems; the absence of the destruction evidence that would be there if this had been a conquest."
+    },
+    {
+      "match": "Last use of the Indus script",
+      "what": "The sign system falls out of use. Literacy does not return to the subcontinent for roughly sixteen hundred years, until Ashoka has edicts carved in Brahmi. In between, everything that is known is held in living memory and taught mouth to ear.",
+      "why": "For most of this game, forgetting is the only way to lose knowledge — and the only defence against it is people.",
+      "evidence": "The seals and inscribed objects themselves, and their absence from later levels. The script remains undeciphered."
+    },
+    {
+      "match": "Aluvihare",
+      "what": "Facing famine and war, the Sri Lankan sangha decides the canon can no longer be trusted to the reciters who carry it, and commits it to palm leaf. It is a deliberate act of redundancy against a specific, foreseen risk.",
+      "why": "The clearest case in the record of somebody making exactly the decision this game asks you to make — and it worked.",
+      "evidence": "The Sri Lankan chronicles, and the fact that the Pali canon exists."
+    },
+    {
+      "match": "Xuanzang studies at Nalanda",
+      "what": "A Chinese monk spends sixteen years travelling and studying, much of it at Nalanda, and leaves with six hundred and fifty-seven texts. He then spends the rest of his life translating them.",
+      "why": "Five and a half centuries before Nalanda burned, one man moved a substantial part of its library out of reach.",
+      "evidence": "His own travel account, his translations, and the Chinese Buddhist canon."
+    },
+    {
+      "match": "Brahmasphutasiddhanta",
+      "what": "Brahmagupta sets out rules for zero as a number in its own right — what happens when you add it, subtract it, multiply by it — and rules for negative quantities, which he describes as debts.",
+      "why": "Reached Baghdad in 771 and never stopped travelling.",
+      "evidence": "The text, its Arabic transmission, and its citation by later Indian and Islamic mathematicians."
+    },
+    {
+      "match": "Aryabhatiya",
+      "what": "Aryabhata gives a place-value system, a sine table, an approximation of pi accurate to four decimal places, and an explanation of day and night as the earth's rotation. He states that he was twenty-three years old.",
+      "why": "One of the few ancient Indian dates that is firm, because the author supplied it.",
+      "evidence": "The text dates itself against an era whose epoch is independently known."
+    },
+    {
+      "match": "The Great Bath",
+      "what": "A watertight tank of fitted brick sealed with bitumen, at the highest point of Mohenjo-daro, with steps at both ends and rooms around it. It is the most carefully built structure in the city.",
+      "why": "The Indus built its finest public architecture around water, and nothing that reads as a throne room.",
+      "evidence": "The structure itself, and its position in the city plan.",
+      "dispute_text": "It is universally called a ritual bath and there is no direct evidence of what it was for. The label is an inference from its form and prominence, and it has stuck."
+    },
+    {
+      "match": "No temples. No palaces",
+      "what": "Across a civilisation of a thousand settlements and several large cities, excavation finds no structure that reads unambiguously as a temple, no palace, and no royal burial. Grave goods are modest and evenly distributed by the standards of any contemporary society.",
+      "why": "Every model of how a complex society must be organised has to explain this, and none of them does comfortably.",
+      "evidence": "Negative evidence across a century of excavation, which is weaker than positive evidence and is nonetheless very striking."
+    },
+    {
+      "match": "Meluhha ships",
+      "what": "Akkadian records name ships from Meluhha moored at Sargon's quay, alongside vessels from Magan and Dilmun. A Mesopotamian seal identifies its owner as an interpreter of the Meluhhan tongue, and a Meluhhan village is attested inland.",
+      "why": "Somebody in Mesopotamia had a full-time job translating an Indus language, which means there was enough traffic to need one.",
+      "evidence": "Cuneiform records; the Shu-ilishu cylinder seal; Indus-style objects and weights in Mesopotamian contexts."
+    },
+    {
+      "match": "Kalinga war. ~100,000 dead",
+      "what": "Ashoka takes Kalinga at a cost he later gives as a hundred thousand killed, many times that dead of its consequences, and a hundred and fifty thousand deported. He then has an account of his own remorse carved on rock, in public, across his empire.",
+      "why": "No other ancient ruler published their regret. It is the single most unusual document in ancient Indian history.",
+      "evidence": "The thirteenth Major Rock Edict, in Ashoka's own voice — and its conspicuous absence from the edicts placed in Kalinga itself, which received two different ones."
+    },
+    {
+      "match": "Major Rock Edicts",
+      "what": "Writing returns to the subcontinent after roughly sixteen centuries, in the form of a ruler addressing his subjects directly in the local vernacular, in a script most of them could not read, on rocks beside roads.",
+      "why": "The technology of the corpus changes here, and everything downstream depends on it.",
+      "evidence": "The edicts themselves, at more than thirty sites, in Brahmi, Kharoshthi, Greek and Aramaic."
+    },
+    {
+      "match": "Brihadeeswarar",
+      "what": "The temple is completed at Thanjavur, its vimana rising sixty-six metres — the tallest structure in India. Its walls are then covered in inscriptions recording every endowment: land, gold, lamps, and four hundred temple women settled on named streets, listed individually.",
+      "why": "It is a building that doubles as an archive, and it is why the Chola era can be played at village resolution.",
+      "evidence": "The inscriptions, in situ, running to hundreds of records on the temple itself."
+    },
+    {
+      "match": "Sungam Tavirtta",
+      "what": "Kulottunga I abolishes tolls, and takes the abolition as a title — 'he who abolished tolls'. It is remembered as such in inscriptions for generations after him.",
+      "why": "A ruler who decided that the throughput of a road was worth more than the revenue from choking it.",
+      "evidence": "Inscriptions using the epithet, and the surrounding record of Chola commerce."
+    },
+    {
+      "match": "naval expedition to Srivijaya",
+      "what": "A Chola fleet crosses the Bay of Bengal and raids the ports of the Srivijayan thalassocracy, from the Malay peninsula to Sumatra. It does not attempt occupation.",
+      "why": "The one large-scale overseas naval expedition mounted from India before the modern period.",
+      "evidence": "The Tanjore inscription of Rajendra I listing the ports taken; Southeast Asian and Chinese sources."
+    },
+    {
+      "match": "Surkotada's horse",
+      "what": "Bones identified by one specialist as domestic horse are recovered from a Harappan context, which would place the horse in India well before the conventional date.",
+      "why": "The horse is load-bearing for several competing accounts of the second millennium BCE, which is why the bones are argued about.",
+      "evidence": "The faunal remains, and the disagreement between specialists reading them.",
+      "dispute_text": "Distinguishing horse from onager and khur from post-cranial bones and teeth is genuinely difficult, and the specialists who have examined this material do not agree. The identification is neither established nor refuted, and this game therefore treats the event as latent."
+    },
+    {
+      "match": "Ayyavole 500 and Manigramam",
+      "what": "Merchant guilds operating under their own charters, with their own guards, their own courts and their own inscriptions, trading from Java to the Persian Gulf and policing roads across the territory of four kingdoms because no single kingdom could.",
+      "why": "The invention that lets strangers trade at scale — a portable, enforceable membership replacing the personal knowledge that kin and neighbour trade depends on.",
+      "evidence": "Guild inscriptions across South India and Southeast Asia, recording their own rules and grants."
+    }
+  ]
+}

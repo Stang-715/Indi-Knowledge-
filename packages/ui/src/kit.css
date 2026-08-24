@@ -251,3 +251,73 @@ body {
 .tiny  { font-size: 11px; }
 .num   { font-family: var(--mono); font-variant-numeric: tabular-nums; }
 .rule  { height: 1px; background: var(--rule); margin: 10px 0; }
+
+/* --- 4b. The event card, expanded (docs/07-timeline.md §8.3) ------------- */
+.card { max-width: 560px; }
+.card .ribbon .cert { text-transform: none; letter-spacing: .04em; }
+.cert--firm        { color: var(--paper); }
+.cert--approximate { opacity: .8; }
+.cert--uncertain   { opacity: .7; font-style: italic; }
+.cert--doubtful    { opacity: .6; font-style: italic; }
+.cert--contested   { color: #F0C98A; font-weight: 600; }
+
+.card-plate {
+  display: grid; place-items: center;
+  background: var(--sheet-shade);
+  border-bottom: 1px solid var(--rule);
+  padding: 14px 0 8px;
+}
+.card-plate img { width: 112px; height: 84px; }
+.card--t2 .card-plate { padding: 8px 0 4px; }
+.card--t2 .card-plate img { width: 64px; height: 48px; }
+
+.card-effects { display: flex; flex-wrap: wrap; gap: 4px; margin: 8px 14px; }
+.eff {
+  font-size: 11px; padding: 2px 7px; letter-spacing: .03em;
+  background: var(--sheet-shade); border: 1px solid var(--rule);
+}
+.eff--up   { box-shadow: inset 2px 0 0 var(--land-fertile); }
+.eff--down { box-shadow: inset 2px 0 0 var(--warn); }
+
+.card .becomes { font-size: 13px; }
+.card .becomes b {
+  font-size: 10px; text-transform: uppercase; letter-spacing: .1em;
+  color: var(--ink-soft); margin-right: 5px;
+}
+
+/* Evidence is the teaching mechanism. It gets a rule above it and its own
+   voice — quieter than the narration, and never skippable. */
+.card .evidence, .card .dispute, .card .card-people {
+  margin: 10px 14px 0; padding-top: 8px; border-top: 1px solid var(--rule);
+  font-size: 12px; color: var(--ink-soft);
+}
+.card .evidence b, .card .dispute b, .card .card-people b {
+  display: block; text-transform: uppercase; letter-spacing: .1em;
+  font-size: 10px; margin-bottom: 3px;
+}
+.card .evidence p, .card .dispute p { margin: 0; line-height: 1.5; }
+.card .dispute { border-top-color: var(--warn); }
+.card .dispute b { color: var(--warn); }
+
+/* --- The year page (Tier 3): composed at runtime, never authored -------- */
+.yearpage { background: var(--paper); border: 1px solid var(--rule); padding: 0 0 12px; }
+.yearpage-head {
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding: 9px 14px; background: var(--table-deep); color: var(--paper);
+}
+.yearpage-head h2 { margin: 0; font-size: 18px; }
+.yearpage-head span { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }
+.yearpage .quiet { margin: 16px 14px; font-style: italic; color: var(--ink-soft); }
+.yearpage-log { margin: 10px 14px 0; padding-left: 16px; font-size: 12px; color: var(--ink-soft); }
+.yearpage-log li { padding: 1px 0; }
+
+/* --- The card drawer ----------------------------------------------------- */
+#drawer {
+  position: absolute; inset: 0; display: none; place-items: center;
+  background: rgba(42,33,24,.42); z-index: 20; padding: 20px;
+}
+#drawer.on { display: grid; }
+#drawer-inner { max-height: 88%; overflow-y: auto; box-shadow: var(--shadow-lift); }
+#drawer-close {
+  position: absolute; top: 14px; right: 14px;
+}

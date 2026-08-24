@@ -23,6 +23,8 @@ import { throughput, CHOKES } from '../../../packages/sim/src/trade.js';
 import { CityRenderer }      from '../../../packages/render-city/src/renderer.js';
 import { endowable, endowmentLedger, living, lineageOf }
   from '../../../packages/sim/src/people.js';
+import { cardModel, renderCard, renderYearPage, indexCards, authoredFor }
+  from '../../../packages/ui/src/eventcard.js';
 
 const $ = (id) => document.getElementById(id);
 
@@ -33,12 +35,13 @@ const mark = (label) => { marks.push([label, performance.now() - T0]); };
 
 /* ── World ──────────────────────────────────────────────────────────────── */
 
-const [bundle, timeline, works, cityData, people] = await Promise.all([
+const [bundle, timeline, works, cityData, people, cardsDoc] = await Promise.all([
   fetch('../../data/skeleton/bundle.json').then(r => r.json()),
   fetch('../../data/timeline/timeline.json').then(r => r.json()),
   fetch('../../data/corpus/works.json').then(r => r.json()),
   fetch('../../data/cities/cities.json').then(r => r.json()),
   fetch('../../data/people/people.json').then(r => r.json()),
+  fetch('../../data/timeline/cards.json').then(r => r.json()),
 ]);
 
 mark('fetch');
@@ -50,6 +53,24 @@ mark('climate');
 const renderer = new RealmRenderer({ skeleton: SK, climate });
 const cityRenderer = new CityRenderer({ cities: cityData.cities });
 const DP = { timeline, works, people };
+const CARDS = indexCards(cardsDoc);
+const eraOf = (y) => timeline.eras.find(e => y >= e.from && y < e.to) ?? timeline.eras[15];
+
+/** Open a full event card. This is where `evidence` and `dispute` get read. */
+function openCard(ev) {
+  const m = cardModel(ev, { era: eraOf(ev.year), authored: authoredFor(CARDS, ev) });
+  $('drawer-inner').innerHTML = renderCard(m);
+  $('drawer').classList.add('on');
+}
+
+/** Open the year page — composed, never authored. */
+function openYear(year) {
+  const evs = timeline.events.filter(e => e.year === year && e.scope !== 'prologue');
+  const models = evs.map(e => cardModel(e, { era: eraOf(year), authored: authoredFor(CARDS, e) }));
+  const log = state.log.filter(l => l.year === year);
+  $('drawer-inner').innerHTML = renderYearPage(year, { events: models, log, era: eraOf(year) });
+  $('drawer').classList.add('on');
+}
 
 /* ── Camera ─────────────────────────────────────────────────────────────── */
 
@@ -433,7 +454,8 @@ function paint() {
   const interesting = s.log.filter(l =>
     ['epoch','catastrophe','loss','goods','teacher','decision','famine'].includes(l.kind));
   $('log').innerHTML = interesting.slice(-40).reverse().map(l =>
-    `<div><span class="y">${formatYear(l.year)}</span>${l.text}</div>`).join('');
+    `<div data-year="${l.year}" title="Open the year page for ${formatYear(l.year)}"
+        style="cursor:pointer"><span class="y">${formatYear(l.year)}</span>${l.text}</div>`).join('');
 
   // New notices since the last paint.
   for (const l of interesting.slice(lastLogLen)) {
@@ -497,6 +519,26 @@ function paintPeople() {
            <span class="num">${Math.round(e.returned)} · ${Math.round(e.years)}y</span></div>`).join('')
     : '';
 }
+
+$('drawer-close').addEventListener('click', () => $('drawer').classList.remove('on'));
+$('drawer').addEventListener('click', (e) => {
+  if (e.target === $('drawer')) $('drawer').classList.remove('on');
+});
+addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') $('drawer').classList.remove('on');
+});
+
+// The chronicle opens the year page; a notice opens its own card.
+$('log').addEventListener('click', (e) => {
+  const row = e.target.closest('[data-year]');
+  if (row) openYear(+row.dataset.year);
+});
+$('notices').addEventListener('click', (e) => {
+  const n = e.target.closest('[data-event]');
+  if (!n) return;
+  const ev = timeline.events.find(x => x.id === n.dataset.event);
+  if (ev) openCard(ev);
+});
 
 $('people').addEventListener('click', (e) => {
   const b = e.target.closest('[data-endow]');
@@ -618,6 +660,8 @@ function notice(l) {
              : l.kind === 'epoch' ? 'notice--epoch' : 'notice--good';
   const el = document.createElement('div');
   el.className = `notice ${kind}`;
+  if (l.id) { el.dataset.event = l.id; el.style.cursor = 'pointer';
+              el.title = 'Open the card'; el.style.pointerEvents = 'auto'; }
   el.innerHTML = `<b>${formatYear(l.year)}</b> — ${l.text}`;
   $('notices').append(el);
   setTimeout(() => { el.style.transition = 'opacity 500ms'; el.style.opacity = 0;
@@ -681,5 +725,6 @@ requestAnimationFrame(() => {
 // Handy in the console: the save file is the decision log.
 Object.assign(globalThis, {
   paramountcy: { get state() { return state; }, decisions, cam, draw, recompute, marks,
+                 timeline, openCard, openYear,
                  save: () => JSON.stringify({ seed: SEED, decisions }) },
 });
