@@ -7,7 +7,7 @@
  * structured spine the simulation reads, and enforces the seven validations from
  * docs/07-timeline.md §5.2.
  */
-import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
@@ -295,6 +295,7 @@ function parseTables(md) {
       scope,
       region: ctx.region,
       dispute,
+      ...(dispute ? { dispute_scope: 'date' } : {}),
     };
     if (trigger === 'window') ev.window = [y.year - spread, (y.yearEnd ?? y.year) + spread];
     // Every INVASION carries a `becomes` field, even if the value is "nothing".
@@ -329,10 +330,24 @@ function validate(doc) {
     if (ev.class === 'INVASION' && typeof ev.becomes !== 'string')
       errors.push(`${ev.id}: INVASION without becomes`);
 
-  // 5. Every disputed event has certainty < 0.9.
-  for (const ev of doc.events)
-    if (ev.dispute && ev.certainty >= 0.9)
-      errors.push(`${ev.id}: dispute with certainty ${ev.certainty}`);
+  // 5. A disputed event may not claim near-certainty — but only when what is
+  //    disputed is whether it happened, or when.
+  //
+  //    Authoring the climate events exposed this: the Bengal famine of 1943
+  //    certainly happened, and what is argued is its CAUSATION. Forcing its
+  //    certainty below 0.9 would have the game state that the famine is
+  //    doubtful, which is both false and offensive. So a disputed event now
+  //    declares dispute_scope, and the certainty rule applies to the two scopes
+  //    where certainty is the thing at issue.
+  const CERTAINTY_SCOPES = new Set(['occurrence', 'date']);
+  for (const ev of doc.events) {
+    if (!ev.dispute) continue;
+    const scope = ev.dispute_scope ?? 'occurrence';
+    if (!['occurrence', 'date', 'causation', 'interpretation'].includes(scope))
+      errors.push(`${ev.id}: dispute_scope "${scope}" is not one of occurrence/date/causation/interpretation`);
+    if (CERTAINTY_SCOPES.has(scope) && ev.certainty >= 0.9)
+      errors.push(`${ev.id}: ${scope} is disputed and certainty is ${ev.certainty}`);
+  }
 
   // 6. Cadence hours sum to 210; pre-1300 share >= 80%.
   const total = doc.eras.reduce((s, e) => s + e.hours, 0);
@@ -357,6 +372,56 @@ function validate(doc) {
 
 const md = readFileSync(SRC, 'utf8');
 const events = parseTables(md);
+
+/**
+ * Merge the supplements.
+ *
+ * The 363 events of phases 23-33 are authored as JSON under
+ * data/timeline/supplement/ rather than as more markdown tables. The document
+ * stays what a historian edits for the narrative spine; the supplements are
+ * where bulk goes, in exactly the shape a community datapack uses — so the
+ * same validator checks both and there is one format, not two.
+ */
+const SUPP = join(ROOT, 'data/timeline/supplement');
+const supplements = [];
+try {
+  for (const f of readdirSync(SUPP).filter(x => x.endsWith('.json')).sort()) {
+    const doc = JSON.parse(readFileSync(join(SUPP, f), 'utf8'));
+    for (const ev of doc.events ?? []) supplements.push({ ...ev, _from: f });
+  }
+} catch (e) { if (e.code !== 'ENOENT') throw e; }
+
+/**
+ * A supplement event may SUPERSEDE a document event, by title fragment.
+ *
+ * The document's skim carries "1943 the Bengal Famine" as five words; the
+ * supplement carries the same famine with an evidence line, a dispute scope and
+ * a provenance tier. Without this both end up in the timeline and the same
+ * famine happens twice — which is what the first merge did, seven times over.
+ */
+const seenSupp = new Set(events.map(e => e.id));
+let merged = 0, collided = 0, superseded = 0;
+const supersededTitles = [];
+for (const ev of supplements) {
+  if (seenSupp.has(ev.id)) { collided++; continue; }
+  const { _from, replaces, ...rest } = ev;
+  if (replaces) {
+    const frags = Array.isArray(replaces) ? replaces : [replaces];
+    for (const frag of frags) {
+      const f = frag.toLowerCase();
+      for (let i = events.length - 1; i >= 0; i--) {
+        if (!events[i].title.toLowerCase().includes(f)) continue;
+        if (Math.abs(events[i].year - rest.year) > 200) continue;
+        supersededTitles.push(`${events[i].title.slice(0, 46)} -> ${rest.id}`);
+        events.splice(i, 1);
+        superseded++;
+      }
+    }
+  }
+  seenSupp.add(ev.id);
+  events.push(rest);
+  merged++;
+}
 
 /**
  * An event's era is whichever era contains its year — not the block it was
@@ -405,7 +470,13 @@ doc.census = {
   disputed: events.filter(e => e.dispute).length,
 };
 
-console.log(`\n  Events parsed        ${events.length}`);
+console.log(`\n  Events total         ${events.length}`);
+console.log(`    from the document  ${events.length - merged}`);
+console.log(`    from supplements   ${merged}${collided ? `  (${collided} duplicate id(s) skipped)` : ''}`);
+if (superseded) {
+  console.log(`    superseded         ${superseded} thin document line(s) replaced by a richer supplement entry`);
+  for (const t of supersededTitles) console.log(`      ~ ${t}`);
+}
 console.log(`    subcontinental     ${sub}`);
 console.log(`    regional spines    ${reg}`);
 console.log(`    pre-1300           ${ancientEvents}  (${(ancientEvents/events.length*100).toFixed(1)}%)`);

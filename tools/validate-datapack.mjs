@@ -116,8 +116,12 @@ function checkEntity(file, collection, e, errors, warnings, seen) {
   if ('certainty' in e) {
     if (typeof e.certainty !== 'number' || e.certainty < 0 || e.certainty > 1)
       errors.push(`${file}: ${id} certainty must be a number in 0..1`);
-    else if (e.dispute && e.certainty >= 0.9)
-      errors.push(`${file}: ${id} is disputed and claims certainty ${e.certainty}`);
+    else if (e.dispute && ['occurrence', 'date'].includes(e.dispute_scope ?? 'occurrence')
+             && e.certainty >= 0.9)
+      errors.push(`${file}: ${id} has its ${e.dispute_scope ?? 'occurrence'} disputed and claims certainty ${e.certainty}`);
+  }
+  if (e.dispute && !e.dispute_scope) {
+    warnings.push(`${file}: ${id} is disputed but does not say what is disputed`);
   }
 }
 

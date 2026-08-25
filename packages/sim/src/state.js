@@ -20,6 +20,17 @@ export function newState(opts = {}) {
     /** The pre-coinage economy. Grain is the store of value for ~3,000 years. */
     grain: opts.grain ?? 400,
     underfed: 0,
+
+    /**
+     * Transient shocks.
+     *
+     * A drought reduces this year's yield; it does not permanently destroy a
+     * society's knowledge of how to farm. Adding forty-three climate events
+     * made that distinction load-bearing: as permanent pillar damage they took
+     * AGRICULTURE from 55 to zero and the campaign became unsurvivable by
+     * 1200. A famine is a shock, and shocks heal.
+     */
+    shocks: [],
     coin: 0,
     coinageKnown: false,
 
@@ -65,6 +76,30 @@ export function newState(opts = {}) {
   };
 }
 
+/**
+ * Apply a transient penalty to a pillar. It decays linearly over `years`.
+ */
+export function shock(state, pillar, amount, years) {
+  if (!(pillar in state.pillars) || amount <= 0) return;
+  state.shocks.push({ pillar, amount, years, age: 0 });
+}
+
+/** Age the shocks and drop the spent ones. */
+export function tickShocks(state, span) {
+  for (const s of state.shocks) s.age += span;
+  state.shocks = state.shocks.filter(s => s.age < s.years);
+}
+
+/** A pillar as it is actually functioning right now, shocks included. */
+export function effectivePillar(state, pillar) {
+  let v = state.pillars[pillar] ?? 0;
+  for (const s of state.shocks) {
+    if (s.pillar !== pillar) continue;
+    v -= s.amount * (1 - s.age / s.years);
+  }
+  return Math.max(0, v);
+}
+
 /** Clamp a pillar to its range. */
 export function bumpPillar(state, pillar, delta) {
   if (!(pillar in state.pillars)) return;
@@ -92,6 +127,7 @@ export function fingerprint(state) {
     routes: sortedMap(state.routes, ([id, r]) => [id, r.open, Math.round(r.safety * 1000), Math.round(r.hold * 1000)]),
     standing: sortedMap(state.standing, ([id, v]) => [id, Math.round(v)]),
     goods: [...state.goods].sort(),
+    shocks: state.shocks.length,
     people: sortedMap(state.people, ([id, p]) => [id, p.alive ? 1 : 0, p.patronised ? 1 : 0, Math.round(p.returned)]),
     schools: sortedMap(state.schools, ([id, s]) => [id, s.members?.length ?? 0, s.works?.length ?? 0]),
     districts: sortedMap(state.districts, ([id, d]) => [id, d.tier, d.surveyed ?? 0, d.truth ?? 0]),

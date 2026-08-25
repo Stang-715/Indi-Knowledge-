@@ -81,6 +81,11 @@
         },
         "region": { "type": ["string", "null"], "pattern": "^RGN\\." },
         "dispute": { "type": "boolean" },
+        "dispute_scope": {
+          "type": "string",
+          "description": "What is actually argued about. The certainty rule binds only on occurrence and date — an event whose causation is disputed may still be certain to have happened.",
+          "enum": ["occurrence", "date", "causation", "interpretation"]
+        },
         "becomes": {
           "type": "string",
           "description": "Required on INVASION. What the invader turned into."
@@ -96,8 +101,18 @@
           "then": { "required": ["becomes"] }
         },
         {
-          "if": { "properties": { "dispute": { "const": true } }, "required": ["dispute"] },
+          "if": {
+            "properties": {
+              "dispute": { "const": true },
+              "dispute_scope": { "enum": ["occurrence", "date"] }
+            },
+            "required": ["dispute", "dispute_scope"]
+          },
           "then": { "properties": { "certainty": { "exclusiveMaximum": 0.9 } } }
+        },
+        {
+          "if": { "properties": { "dispute": { "const": true } }, "required": ["dispute"] },
+          "then": { "required": ["dispute_scope"] }
         }
       ]
     }

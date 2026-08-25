@@ -9,7 +9,7 @@
  */
 import { Clock, START_YEAR, END_YEAR, formatYear } from './clock.js';
 import { buildSchedule, eventsIn } from './events.js';
-import { newState, record, bumpPillar, fingerprint } from './state.js';
+import { newState, record, bumpPillar, fingerprint, shock, tickShocks, effectivePillar } from './state.js';
 import { Rng } from './rng.js';
 import { initCorpus, tickCorpus, applyWorkEvent, catastrophe, copyOut, worksAtRisk } from './corpus.js';
 import { initTrade, tickTrade, applyTradeEvent, DECISIONS as TRADE_DECISIONS } from './trade.js';
@@ -114,6 +114,7 @@ export function run(datapack, seed, decisionLog = [], opts = {}) {
     tickCorpus(state, span, rng.corpus, datapack);
     tickTrade(state, span, rng.trade);
     tickFrontier(state, span, rng.world);
+    tickShocks(state, span);
     tickEconomy(state, span);
 
     if (opts.onYear) opts.onYear(state, next, span);
@@ -136,11 +137,19 @@ export function run(datapack, seed, decisionLog = [], opts = {}) {
   return state;
 }
 
+/** How long a shock from each class takes to heal, in years. */
+const SHOCK_YEARS = { CLIMATE: 60, CATASTROPHE: 90, INVASION: 40 };
+
 function fireEvent(state, ev, datapack, rng) {
   state.stats.eventsFired++;
   const w = MAG_WEIGHT[ev.magnitude] ?? 0.5;
-  for (const [pillar, delta] of Object.entries(CLASS_EFFECTS[ev.class] ?? {}))
-    bumpPillar(state, pillar, delta * w);
+  const heals = SHOCK_YEARS[ev.class];
+  for (const [pillar, delta] of Object.entries(CLASS_EFFECTS[ev.class] ?? {})) {
+    // Gains are permanent; harm from weather, fire and war is a shock that
+    // heals. A society that survives a drought still knows how to farm.
+    if (heals && delta < 0) shock(state, pillar, -delta * w, heals);
+    else bumpPillar(state, pillar, delta * w);
+  }
 
   if (ev.class === 'WORK')       applyWorkEvent(state, ev, datapack);
   if (ev.class === 'TRADE')      applyTradeEvent(state, ev, datapack);
@@ -176,10 +185,10 @@ function tickEconomy(state, span) {
 
   // Carrying capacity. Foraging supports very few; irrigation and double-cropping
   // support an order of magnitude more.
-  const K = 1000 * (1 + state.pillars.AGRICULTURE / 10);
+  const K = 1000 * (1 + effectivePillar(state, 'AGRICULTURE') / 10);
   const farmers = state.pops.farmers;
 
-  const yieldPerFarmer = 0.035 * (0.55 + state.pillars.AGRICULTURE / 120);
+  const yieldPerFarmer = 0.035 * (0.55 + effectivePillar(state, 'AGRICULTURE') / 120);
   const produced = farmers * yieldPerFarmer * span;
   // Teachers abroad are not in this sum. They eat at the monastery that took
   // them in — the cost of sending one is the journey, and the maintainer you no

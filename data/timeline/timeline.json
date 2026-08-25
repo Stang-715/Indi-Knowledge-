@@ -206,6 +206,45 @@
  ],
  "events": [
   {
+   "id": "EVT.CLI.HOLOCENE_OPTIMUM",
+   "title": "The Holocene climatic optimum opens",
+   "class": "CLIMATE",
+   "magnitude": "W",
+   "year": -7000,
+   "year_end": -6000,
+   "era": "ERA.EARLY_NEOLITHIC",
+   "provenance": "DERIVED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "window": [
+    -7200,
+    -6600
+   ],
+   "scope": "prologue",
+   "region": null,
+   "dispute": false,
+   "evidence": "Speleothem oxygen-isotope records from Mawmluh and Sahiya caves; lake high-stands in the Thar."
+  },
+  {
+   "id": "EVT.CLI.LUNKARANSAR_HIGH",
+   "title": "Lunkaransar lake stands full in the Thar",
+   "class": "CLIMATE",
+   "magnitude": "M",
+   "year": -6300,
+   "era": "ERA.EARLY_NEOLITHIC",
+   "provenance": "SOURCED",
+   "certainty": 0.65,
+   "trigger": "window",
+   "window": [
+    -6600,
+    -6000
+   ],
+   "scope": "prologue",
+   "region": "RGN.RAJASTHAN",
+   "dispute": false,
+   "evidence": "Lake sediment cores and pollen from Lunkaransar and Didwana: freshwater ostracods where there is now sand."
+  },
+  {
    "id": "EVT.M6200.THE_8_2_KILOYEAR_COOLING_EVENT",
    "title": "The 8.2 kiloyear cooling event",
    "provenance": "DERIVED",
@@ -244,6 +283,27 @@
     -6222,
     -5978
    ]
+  },
+  {
+   "id": "EVT.CLI.SUTLEJ_AVULSION",
+   "title": "The Sutlej abandons the Ghaggar for the Indus",
+   "class": "CLIMATE",
+   "magnitude": "W",
+   "year": -6000,
+   "era": "ERA.EARLY_NEOLITHIC",
+   "provenance": "DERIVED",
+   "certainty": 0.4,
+   "trigger": "latent",
+   "window": [
+    -8000,
+    -3000
+   ],
+   "scope": "regional",
+   "region": "RGN.RAJASTHAN",
+   "dispute": true,
+   "evidence": "Optically stimulated luminescence dating of buried channel sands beneath the Ghaggar plain.",
+   "dispute_text": "Recent OSL work places the Sutlej's avulsion well before the Harappan cities, which would mean the Ghaggar was already seasonal when they were built. Older reconstructions put it much later and make river capture a cause of their decline. The two readings imply opposite stories and the evidence does not yet settle it.",
+   "dispute_scope": "date"
   },
   {
    "id": "EVT.M6000.DENTAL_DRILLING_AT_MEHRGARH_THE_EARLIEST_KNO",
@@ -404,6 +464,25 @@
     -5967,
     -5733
    ]
+  },
+  {
+   "id": "EVT.CLI.MONSOON_MAX_5800",
+   "title": "The summer monsoon reaches its Holocene maximum",
+   "class": "CLIMATE",
+   "magnitude": "W",
+   "year": -5800,
+   "era": "ERA.EARLY_NEOLITHIC",
+   "provenance": "DERIVED",
+   "certainty": 0.6,
+   "trigger": "window",
+   "window": [
+    -6000,
+    -5400
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Arabian Sea upwelling proxies, speleothem isotopes, and lake levels agreeing across three independent records."
   },
   {
    "id": "EVT.M5800.GRANARY_BLOCKS_AT_MEHRGARH_STORAGE_MEANS_SUR",
@@ -619,7 +698,8 @@
    "trigger": "latent",
    "scope": "subcontinental",
    "region": null,
-   "dispute": true
+   "dispute": true,
+   "dispute_scope": "date"
   },
   {
    "id": "EVT.M5100.POPULATION_RISES_MEHRGARH_EXPANDS_ACROSS_THE",
@@ -640,6 +720,25 @@
     -5202,
     -4998
    ]
+  },
+  {
+   "id": "EVT.CLI.HIMALAYAN_GLACIERS",
+   "title": "Himalayan glaciers retreat and the rivers run high",
+   "class": "CLIMATE",
+   "magnitude": "R",
+   "year": -5000,
+   "era": "ERA.EARLY_NEOLITHIC",
+   "provenance": "DERIVED",
+   "certainty": 0.45,
+   "trigger": "window",
+   "window": [
+    -5500,
+    -4500
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Moraine dating in the western Himalaya; the downstream discharge effect is inferred rather than measured."
   },
   {
    "id": "EVT.M5000.JHUSI_AND_THE_MIDDLE_GANGA_NEOLITHIC",
@@ -695,7 +794,8 @@
    "trigger": "latent",
    "scope": "subcontinental",
    "region": null,
-   "dispute": true
+   "dispute": true,
+   "dispute_scope": "date"
   },
   {
    "id": "EVT.M4950.MUNGBEAN_AND_HORSEGRAM_ENTER_CULTIVATION_IN_",
@@ -1298,6 +1398,26 @@
    ]
   },
   {
+   "id": "EVT.CLI.SEA_HIGHSTAND",
+   "title": "The sea stands two metres higher than today",
+   "class": "CLIMATE",
+   "magnitude": "W",
+   "year": -4000,
+   "year_end": -2000,
+   "era": "ERA.LATE_NEOLITHIC",
+   "provenance": "DERIVED",
+   "certainty": 0.65,
+   "trigger": "window",
+   "window": [
+    -4400,
+    -3600
+   ],
+   "scope": "regional",
+   "region": "RGN.GUJARAT",
+   "dispute": false,
+   "evidence": "Raised beach ridges and mangrove peats along Saurashtra and Kutch. It is why Lothal's basin now sits inland."
+  },
+  {
    "id": "EVT.M4000.BALATHAL_S_FORTIFICATION_WALL_EARLY_AND_UNEX",
    "title": "Balathal's fortification wall — early, and unexplained",
    "provenance": "DERIVED",
@@ -1331,7 +1451,8 @@
    "trigger": "latent",
    "scope": "subcontinental",
    "region": null,
-   "dispute": true
+   "dispute": true,
+   "dispute_scope": "date"
   },
   {
    "id": "EVT.M3950.ANARTA_TRADITION_IN_NORTHERN_GUJARAT",
@@ -1532,6 +1653,25 @@
     -3621,
     -3479
    ]
+  },
+  {
+   "id": "EVT.CLI.RANN_GULF",
+   "title": "The Rann of Kutch is still a navigable gulf",
+   "class": "CLIMATE",
+   "magnitude": "M",
+   "year": -3500,
+   "era": "ERA.LATE_NEOLITHIC",
+   "provenance": "DERIVED",
+   "certainty": 0.55,
+   "trigger": "window",
+   "window": [
+    -3800,
+    -3000
+   ],
+   "scope": "regional",
+   "region": "RGN.GUJARAT",
+   "dispute": false,
+   "evidence": "Marine microfauna in Rann sediments, and Harappan coastal sites now stranded far from water."
   },
   {
    "id": "EVT.M3500.CROSS_PLOUGHING_IMPLIES_TWO_CROPS_IN_ONE_FIE",
@@ -1767,7 +1907,8 @@
    "trigger": "latent",
    "scope": "subcontinental",
    "region": null,
-   "dispute": true
+   "dispute": true,
+   "dispute_scope": "date"
   },
   {
    "id": "EVT.M3330.REHMAN_DHERI_LAID_OUT_ON_A_GRID_BEFORE_THE_M",
@@ -1868,6 +2009,27 @@
     -3376,
     -3244
    ]
+  },
+  {
+   "id": "EVT.CLI.GHAGGAR_PERENNIAL",
+   "title": "The Ghaggar runs strong and perennial",
+   "class": "CLIMATE",
+   "magnitude": "W",
+   "year": -3300,
+   "era": "ERA.EARLY_HARAPPAN",
+   "provenance": "DERIVED",
+   "certainty": 0.55,
+   "trigger": "window",
+   "window": [
+    -3600,
+    -3000
+   ],
+   "scope": "regional",
+   "region": "RGN.RAJASTHAN",
+   "dispute": true,
+   "evidence": "Palaeo-channel mapping and settlement density along the Ghaggar-Hakra.",
+   "dispute_text": "Whether the Ghaggar was a large perennial Himalayan-fed river at this date, or already a monsoon-fed seasonal one, is actively argued. The identification with the Rigvedic Sarasvati is a further and separate dispute, and a politically live one.",
+   "dispute_scope": "interpretation"
   },
   {
    "id": "EVT.M3300.DAMB_SADAAT_IN_THE_QUETTA_VALLEY",
@@ -2183,7 +2345,27 @@
    "trigger": "latent",
    "scope": "subcontinental",
    "region": null,
-   "dispute": true
+   "dispute": true,
+   "dispute_scope": "date"
+  },
+  {
+   "id": "EVT.CLI.KASHMIR_LAKE",
+   "title": "The Kashmir valley lakes shrink and the terraces are farmed",
+   "class": "CLIMATE",
+   "magnitude": "R",
+   "year": -3000,
+   "era": "ERA.EARLY_HARAPPAN",
+   "provenance": "DERIVED",
+   "certainty": 0.45,
+   "trigger": "window",
+   "window": [
+    -3400,
+    -2600
+   ],
+   "scope": "regional",
+   "region": "RGN.KASHMIR",
+   "dispute": false,
+   "evidence": "Karewa lake sediments and the Neolithic occupation sequence at Burzahom."
   },
   {
    "id": "EVT.M3000.BURZAHOM_PIT_DWELLINGS_AND_A_CARVED_HUNTING_",
@@ -2666,6 +2848,27 @@
    ]
   },
   {
+   "id": "EVT.CLI.YAMUNA_CAPTURE",
+   "title": "The Yamuna turns east into the Ganga system",
+   "class": "CLIMATE",
+   "magnitude": "M",
+   "year": -2600,
+   "era": "ERA.INDUS",
+   "provenance": "DERIVED",
+   "certainty": 0.35,
+   "trigger": "latent",
+   "window": [
+    -5000,
+    -1500
+   ],
+   "scope": "regional",
+   "region": "RGN.RAJASTHAN",
+   "dispute": true,
+   "evidence": "Abandoned channel traces west of the modern Yamuna; sediment provenance studies.",
+   "dispute_text": "Both the timing and whether a single capture event occurred at all are disputed. Some workers see progressive avulsion over millennia rather than one turn.",
+   "dispute_scope": "date"
+  },
+  {
    "id": "EVT.M2600.DHOLAVIRA_ON_KHADIR_ISLAND_SIXTEEN_RESERVOIR",
    "title": "Dholavira on Khadir island; sixteen reservoirs",
    "provenance": "DERIVED",
@@ -2699,7 +2902,8 @@
    "trigger": "latent",
    "scope": "subcontinental",
    "region": null,
-   "dispute": true
+   "dispute": true,
+   "dispute_scope": "date"
   },
   {
    "id": "EVT.M2600.NAUSHARO_TRANSITIONS_TO_HARAPPAN_FORMS_WITHO",
@@ -2915,7 +3119,8 @@
    "trigger": "latent",
    "scope": "subcontinental",
    "region": null,
-   "dispute": true
+   "dispute": true,
+   "dispute_scope": "date"
   },
   {
    "id": "EVT.M2550.WELLS_IN_MOST_HOUSES_MOHENJO_DARO_ALONE_HAS_",
@@ -3191,7 +3396,8 @@
    "trigger": "latent",
    "scope": "subcontinental",
    "region": null,
-   "dispute": true
+   "dispute": true,
+   "dispute_scope": "date"
   },
   {
    "id": "EVT.M2450.LOTHAL_S_BEAD_FACTORY_THE_FINEST_DRILLED_CAR",
@@ -3407,7 +3613,8 @@
    "trigger": "latent",
    "scope": "subcontinental",
    "region": null,
-   "dispute": true
+   "dispute": true,
+   "dispute_scope": "date"
   },
   {
    "id": "EVT.M2280.BANAWALI_AND_BHIRRANA_AT_THEIR_FULLEST_EXTEN",
@@ -3443,7 +3650,8 @@
    "trigger": "latent",
    "scope": "subcontinental",
    "region": null,
-   "dispute": true
+   "dispute": true,
+   "dispute_scope": "date"
   },
   {
    "id": "EVT.M2260.KALIBANGAN_EVIDENCE_READ_AS_EARTHQUAKE_DAMAG_2",
@@ -3459,7 +3667,8 @@
    "trigger": "latent",
    "scope": "regional",
    "region": "RGN.RAJASTHAN",
-   "dispute": true
+   "dispute": true,
+   "dispute_scope": "date"
   },
   {
    "id": "EVT.M2250.SUTKAGEN_DOR_THE_WESTERN_FRONTIER_ON_THE_MAK",
@@ -3502,6 +3711,26 @@
    ]
   },
   {
+   "id": "EVT.CLI.MONSOON_WEAK_2200",
+   "title": "The summer monsoon weakens across the northwest",
+   "class": "CLIMATE",
+   "magnitude": "W",
+   "year": -2200,
+   "year_end": -1900,
+   "era": "ERA.INDUS",
+   "provenance": "DERIVED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "window": [
+    -2300,
+    -2050
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Speleothem and lake records, and the abandonment sequence of the Ghaggar sites."
+  },
+  {
    "id": "EVT.M2200.DHOLAVIRA_S_SIXTEEN_RESERVOIRS_AT_MAXIMUM_EX",
    "title": "Dholavira's sixteen reservoirs at maximum extent",
    "provenance": "DERIVED",
@@ -3542,6 +3771,25 @@
    ]
   },
   {
+   "id": "EVT.CLI.MAWMLUH_42",
+   "title": "Mawmluh Cave becomes the global reference for the 4.2 kiloyear event",
+   "class": "CLIMATE",
+   "magnitude": "W",
+   "year": -2190,
+   "era": "ERA.INDUS",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "window": [
+    -2250,
+    -2100
+   ],
+   "scope": "regional",
+   "region": "RGN.ASSAM",
+   "dispute": false,
+   "evidence": "The Mawmluh Cave speleothem in Meghalaya, which is the global reference section defining the base of the Meghalayan age."
+  },
+  {
    "id": "EVT.M2172.IRON_AT_MAYILADUMPARAI_OLDEST_AMS_DATED_IN_I",
    "title": "Iron at Mayiladumparai — oldest AMS-dated in India",
    "provenance": "DERIVED",
@@ -3555,7 +3803,8 @@
    "trigger": "latent",
    "scope": "regional",
    "region": "RGN.TAMILAKAM",
-   "dispute": true
+   "dispute": true,
+   "dispute_scope": "date"
   },
   {
    "id": "EVT.M2172.IRON_AT_MAYILADUMPARAI_TAMIL_NADU_THE_OLDEST",
@@ -3571,7 +3820,8 @@
    "trigger": "latent",
    "scope": "subcontinental",
    "region": null,
-   "dispute": true
+   "dispute": true,
+   "dispute_scope": "date"
   },
   {
    "id": "EVT.M2150.MELUHHA_DISAPPEARS_FROM_MESOPOTAMIAN_RECORDS",
@@ -3592,6 +3842,25 @@
     -2193,
     -2107
    ]
+  },
+  {
+   "id": "EVT.CLI.KOTLA_DAHAR",
+   "title": "Kotla Dahar lake shrinks to a salt pan",
+   "class": "CLIMATE",
+   "magnitude": "M",
+   "year": -2100,
+   "era": "ERA.INDUS",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "window": [
+    -2200,
+    -2000
+   ],
+   "scope": "regional",
+   "region": "RGN.RAJASTHAN",
+   "dispute": false,
+   "evidence": "Oxygen isotopes in gastropod shells from the Kotla Dahar core in Haryana, showing an abrupt evaporation step."
   },
   {
    "id": "EVT.M2100.GHAGGAR_HAKRA_FLOW_DECLINES_SETTLEMENT_SHIFT",
@@ -3712,6 +3981,25 @@
     -2071,
     -1989
    ]
+  },
+  {
+   "id": "EVT.CLI.GHAGGAR_SEASONAL",
+   "title": "The Ghaggar becomes seasonal along its whole course",
+   "class": "CLIMATE",
+   "magnitude": "W",
+   "year": -2000,
+   "era": "ERA.INDUS",
+   "provenance": "DERIVED",
+   "certainty": 0.55,
+   "trigger": "window",
+   "window": [
+    -2200,
+    -1800
+   ],
+   "scope": "regional",
+   "region": "RGN.RAJASTHAN",
+   "dispute": false,
+   "evidence": "Channel sedimentology and the eastward drift of settlement away from the Hakra bed."
   },
   {
    "id": "EVT.M2000.KHARIF_AND_RABI_DOUBLE_CROPPING_BEGINS",
@@ -3974,6 +4262,25 @@
    ]
   },
   {
+   "id": "EVT.CLI.INDUS_AVULSION_1900",
+   "title": "The Indus shifts its course past Mohenjo-daro",
+   "class": "CLIMATE",
+   "magnitude": "M",
+   "year": -1900,
+   "era": "ERA.LATE_HARAPPAN",
+   "provenance": "DERIVED",
+   "certainty": 0.45,
+   "trigger": "window",
+   "window": [
+    -2100,
+    -1700
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Flood silts in the upper levels of the city and abandoned channel traces on the plain."
+  },
+  {
    "id": "EVT.M1900.CEMETERY_H_IN_THE_PUNJAB_JHUKAR_IN_SINDH",
    "title": "Cemetery H in the Punjab; Jhukar in Sindh",
    "provenance": "DERIVED",
@@ -4134,6 +4441,25 @@
    ]
   },
   {
+   "id": "EVT.CLI.WINTER_RAIN_SHIFT",
+   "title": "Winter rainfall retreats from the northwest",
+   "class": "CLIMATE",
+   "magnitude": "M",
+   "year": -1800,
+   "era": "ERA.LATE_HARAPPAN",
+   "provenance": "DERIVED",
+   "certainty": 0.5,
+   "trigger": "window",
+   "window": [
+    -2000,
+    -1600
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Archaeobotany: the winter wheat-barley package gives ground to summer millets and rice."
+  },
+  {
    "id": "EVT.M1800.ROJDI_AND_KUNTASI_CONTINUE_HARAPPAN_FORMS_WI",
    "title": "Rojdi and Kuntasi continue Harappan forms without cities",
    "provenance": "DERIVED",
@@ -4227,7 +4553,8 @@
    "trigger": "latent",
    "scope": "subcontinental",
    "region": null,
-   "dispute": true
+   "dispute": true,
+   "dispute_scope": "date"
   },
   {
    "id": "EVT.M1700.CRAFT_SKILL_SURVIVES_THE_SCALE_OF_ORGANISATI",
@@ -4383,7 +4710,8 @@
    "trigger": "latent",
    "scope": "regional",
    "region": "RGN.TAMILAKAM",
-   "dispute": true
+   "dispute": true,
+   "dispute_scope": "date"
   },
   {
    "id": "EVT.M1510.IRON_AT_MANGADU_SALEM_SOUTHERN_METALLURGY_CO",
@@ -4399,7 +4727,27 @@
    "trigger": "latent",
    "scope": "subcontinental",
    "region": null,
-   "dispute": true
+   "dispute": true,
+   "dispute_scope": "date"
+  },
+  {
+   "id": "EVT.CLI.THAR_ADVANCE",
+   "title": "The desert advances across the western dry zone",
+   "class": "CLIMATE",
+   "magnitude": "M",
+   "year": -1500,
+   "era": "ERA.LATE_HARAPPAN",
+   "provenance": "DERIVED",
+   "certainty": 0.5,
+   "trigger": "window",
+   "window": [
+    -1800,
+    -1200
+   ],
+   "scope": "regional",
+   "region": "RGN.RAJASTHAN",
+   "dispute": false,
+   "evidence": "Dune reactivation dated by luminescence, and the retreat of settlement from the western margin."
   },
   {
    "id": "EVT.M1500.CONTACT_WITH_THE_SWAT_VALLEY_AND_CENTRAL_ASI",
@@ -4475,7 +4823,8 @@
    "trigger": "latent",
    "scope": "subcontinental",
    "region": null,
-   "dispute": true
+   "dispute": true,
+   "dispute_scope": "date"
   },
   {
    "id": "EVT.M1500.JHUM_SHIFTING_CULTIVATION_ESTABLISHED_IN_THE",
@@ -4698,6 +5047,27 @@
    ]
   },
   {
+   "id": "EVT.CLI.JORWE_DROUGHT",
+   "title": "The Deccan dries and the Jorwe settlements contract",
+   "class": "CLIMATE",
+   "magnitude": "M",
+   "year": -1350,
+   "era": "ERA.LATE_HARAPPAN",
+   "provenance": "DERIVED",
+   "certainty": 0.55,
+   "trigger": "window",
+   "window": [
+    -1450,
+    -1250
+   ],
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": true,
+   "evidence": "Settlement contraction at Inamgaon and across the Jorwe sites, with supporting lake evidence.",
+   "dispute_text": "Whether the contraction was driven by drought or by social reorganisation is argued; the two are not mutually exclusive and the evidence supports either reading.",
+   "dispute_scope": "interpretation"
+  },
+  {
    "id": "EVT.M1350.CATTLE_KEEPING_AND_MOBILITY_RISE_AS_FARMING_",
    "title": "Cattle-keeping and mobility rise as farming intensity falls",
    "provenance": "DERIVED",
@@ -4716,38 +5086,6 @@
     -1377,
     -1323
    ]
-  },
-  {
-   "id": "EVT.M1350.JORWE_SETTLEMENTS_CONTRACT_A_REGIONAL_DROUGH",
-   "title": "Jorwe settlements contract; a regional drought",
-   "provenance": "DERIVED",
-   "evidence": "Speleothem records, lake cores, and settlement abandonment sequences.",
-   "year": -1350,
-   "year_end": null,
-   "era": "ERA.LATE_HARAPPAN",
-   "class": "CLIMATE",
-   "magnitude": "M",
-   "certainty": 0.45,
-   "trigger": "latent",
-   "scope": "regional",
-   "region": "RGN.MAHARASHTRA",
-   "dispute": true
-  },
-  {
-   "id": "EVT.M1350.JORWE_SETTLEMENTS_CONTRACT_SHARPLY_A_REGIONA",
-   "title": "Jorwe settlements contract sharply — a regional drought",
-   "provenance": "DERIVED",
-   "evidence": "Speleothem records, lake cores, and settlement abandonment sequences.",
-   "year": -1350,
-   "year_end": null,
-   "era": "ERA.LATE_HARAPPAN",
-   "class": "CLIMATE",
-   "magnitude": "M",
-   "certainty": 0.45,
-   "trigger": "latent",
-   "scope": "subcontinental",
-   "region": null,
-   "dispute": true
   },
   {
    "id": "EVT.M1330.INAMGAON_S_POPULATION_FALLS_THE_CHIEF_S_HOUS",
@@ -4843,7 +5181,8 @@
    "trigger": "latent",
    "scope": "subcontinental",
    "region": null,
-   "dispute": true
+   "dispute": true,
+   "dispute_scope": "date"
   },
   {
    "id": "EVT.M1300.NORTHEAST_DAOJALI_HADING_THE_EASTERN_NEOLITH",
@@ -5140,7 +5479,8 @@
    "trigger": "latent",
    "scope": "subcontinental",
    "region": null,
-   "dispute": true
+   "dispute": true,
+   "dispute_scope": "date"
   },
   {
    "id": "EVT.M1180.THE_IRON_AXE_CHANGES_WHAT_LAND_CAN_BE_FARMED",
@@ -5456,27 +5796,27 @@
    "trigger": "latent",
    "scope": "subcontinental",
    "region": null,
-   "dispute": true
+   "dispute": true,
+   "dispute_scope": "date"
   },
   {
-   "id": "EVT.M950.THE_HASTINAPURA_FLOOD_LAYER",
-   "title": "The Hastinapura flood layer",
-   "provenance": "DERIVED",
-   "evidence": "Destruction layers, and accounts written afterwards by people with a position.",
-   "year": -950,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "CATASTROPHE",
+   "id": "EVT.CLI.HASTINAPURA_FLOOD",
+   "title": "The Ganga takes Hastinapura",
+   "class": "CLIMATE",
    "magnitude": "M",
-   "certainty": 0.7,
+   "year": -950,
+   "era": "ERA.EARLY_VEDIC",
+   "provenance": "SOURCED",
+   "certainty": 0.6,
    "trigger": "window",
+   "window": [
+    -1000,
+    -900
+   ],
    "scope": "subcontinental",
    "region": null,
    "dispute": false,
-   "window": [
-    -969,
-    -931
-   ]
+   "evidence": "A flood layer in the excavated sequence, and the later textual memory of an abandonment."
   },
   {
    "id": "EVT.M940.KAUSAMBI_OCCUPIED_AS_HASTINAPURA_DECLINES",
@@ -6412,7 +6752,8 @@
    "trigger": "latent",
    "scope": "subcontinental",
    "region": null,
-   "dispute": true
+   "dispute": true,
+   "dispute_scope": "date"
   },
   {
    "id": "EVT.M600.KORKAI_PEARL_FISHERY_AND_PORT",
@@ -6488,7 +6829,8 @@
    "trigger": "latent",
    "scope": "subcontinental",
    "region": null,
-   "dispute": true
+   "dispute": true,
+   "dispute_scope": "date"
   },
   {
    "id": "EVT.M590.THE_GANA_SANGHA_VAJJI_MALLA_SHAKYA_GOVERN_BY",
@@ -6524,7 +6866,8 @@
    "trigger": "latent",
    "scope": "subcontinental",
    "region": null,
-   "dispute": true
+   "dispute": true,
+   "dispute_scope": "date"
   },
   {
    "id": "EVT.M585.KEELADI_URBAN_SETTLEMENT_ON_THE_VAIGAI_LIVE_",
@@ -6540,7 +6883,8 @@
    "trigger": "latent",
    "scope": "regional",
    "region": "RGN.TAMILAKAM",
-   "dispute": true
+   "dispute": true,
+   "dispute_scope": "date"
   },
   {
    "id": "EVT.M580.TAXILA_BECOMES_A_CENTRE_OF_LEARNING",
@@ -6596,7 +6940,8 @@
    "trigger": "latent",
    "scope": "subcontinental",
    "region": null,
-   "dispute": true
+   "dispute": true,
+   "dispute_scope": "date"
   },
   {
    "id": "EVT.M550.PUNCH_MARKED_COINAGE_MONEY_ENTERS_THE_GAME",
@@ -6776,6 +7121,25 @@
    ]
   },
   {
+   "id": "EVT.CLI.MONSOON_STRONG_500BCE",
+   "title": "The monsoon strengthens and the eastern clearance accelerates",
+   "class": "CLIMATE",
+   "magnitude": "M",
+   "year": -500,
+   "era": "ERA.SECOND_URBAN",
+   "provenance": "DERIVED",
+   "certainty": 0.5,
+   "trigger": "window",
+   "window": [
+    -700,
+    -400
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Speleothem records and the rise of rice agriculture in the middle Ganga."
+  },
+  {
    "id": "EVT.M500.DHULIKATTA_AND_KOTALINGALA_EARLY_URBAN_CENTR",
    "title": "Dhulikatta and Kotalingala: early urban centres",
    "provenance": "DERIVED",
@@ -6849,7 +7213,8 @@
    "trigger": "latent",
    "scope": "regional",
    "region": "RGN.TAMILAKAM",
-   "dispute": true
+   "dispute": true,
+   "dispute_scope": "date"
   },
   {
    "id": "EVT.M500.TERRACED_WET_RICE_CULTIVATION_BEGINS_IN_THE_",
@@ -7026,7 +7391,8 @@
    "trigger": "latent",
    "scope": "regional",
    "region": "RGN.BENGAL",
-   "dispute": true
+   "dispute": true,
+   "dispute_scope": "date"
   },
   {
    "id": "EVT.M440.THE_NIGAMA_MARKET_TOWN_CORPORATIONS",
@@ -7222,7 +7588,8 @@
    "trigger": "latent",
    "scope": "subcontinental",
    "region": null,
-   "dispute": true
+   "dispute": true,
+   "dispute_scope": "date"
   },
   {
    "id": "EVT.M360.KHAROSHTHI_IN_THE_NORTHWEST_DERIVED_FROM_ARA",
@@ -7952,7 +8319,8 @@
    "trigger": "latent",
    "scope": "regional",
    "region": "RGN.KASHMIR",
-   "dispute": true
+   "dispute": true,
+   "dispute_scope": "date"
   },
   {
    "id": "EVT.M250.ASHOKAN_EDICTS_AT_BRAHMAGIRI_JATINGA_RAMESHW",
@@ -8768,6 +9136,26 @@
    ]
   },
   {
+   "id": "EVT.CLI.ROMAN_WARM",
+   "title": "A warm centuries-long interval steadies the sea route",
+   "class": "CLIMATE",
+   "magnitude": "R",
+   "year": -100,
+   "year_end": 300,
+   "era": "ERA.CLASSICAL",
+   "provenance": "DERIVED",
+   "certainty": 0.45,
+   "trigger": "window",
+   "window": [
+    -200,
+    0
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Northern-hemisphere temperature proxies; the correlation with the Indian Ocean trade boom is suggestive rather than demonstrated."
+  },
+  {
    "id": "EVT.M100.KARIKALA_CHOLA_THE_KALLANAI_DAM_ON_THE_KAVER",
    "title": "Karikala Chola; the Kallanai dam on the Kaveri",
    "provenance": "DERIVED",
@@ -9002,7 +9390,8 @@
    "trigger": "latent",
    "scope": "regional",
    "region": "RGN.ASSAM",
-   "dispute": true
+   "dispute": true,
+   "dispute_scope": "date"
   },
   {
    "id": "EVT.50.ARIKAMEDU_AMPHORAE_ARRETINE_WARE_A_YAVANA_QU",
@@ -9158,7 +9547,8 @@
    "trigger": "latent",
    "scope": "subcontinental",
    "region": null,
-   "dispute": true
+   "dispute": true,
+   "dispute_scope": "date"
   },
   {
    "id": "EVT.78.THE_FOURTH_BUDDHIST_COUNCIL_UNDER_KANISHKA",
@@ -9174,7 +9564,8 @@
    "trigger": "latent",
    "scope": "regional",
    "region": "RGN.KASHMIR",
-   "dispute": true
+   "dispute": true,
+   "dispute_scope": "date"
   },
   {
    "id": "EVT.80.FOURTH_BUDDHIST_COUNCIL_MAHAYANA_CRYSTALLISE",
@@ -9555,6 +9946,21 @@
     145,
     155
    ]
+  },
+  {
+   "id": "EVT.CLI.SUDARSHANA_BURST_150",
+   "title": "The Sudarshana dam bursts in a storm",
+   "class": "CLIMATE",
+   "magnitude": "M",
+   "year": 150,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.GUJARAT",
+   "dispute": false,
+   "evidence": "Rudradaman's Junagadh inscription, which describes the storm, the breach and the repair in unusual technical detail."
   },
   {
    "id": "EVT.160.CHARAKA_S_MEDICAL_COMPENDIUM_TAKES_FORM",
@@ -10017,6 +10423,25 @@
    ]
   },
   {
+   "id": "EVT.CLI.MONSOON_FAIL_300",
+   "title": "A run of failed monsoons in the peninsula",
+   "class": "CLIMATE",
+   "magnitude": "M",
+   "year": 300,
+   "era": "ERA.CLASSICAL",
+   "provenance": "DERIVED",
+   "certainty": 0.4,
+   "trigger": "window",
+   "window": [
+    250,
+    400
+   ],
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "evidence": "Speleothem growth interruptions in peninsular caves; the Sangam poems' famine imagery is suggestive but not evidence."
+  },
+  {
    "id": "EVT.320.GUPTA_FOUNDATION",
    "title": "Gupta foundation",
    "provenance": "SOURCED",
@@ -10143,6 +10568,7 @@
    "scope": "regional",
    "region": "RGN.TAMILAKAM",
    "dispute": true,
+   "dispute_scope": "date",
    "becomes": "nothing"
   },
   {
@@ -10316,6 +10742,26 @@
     392,
     408
    ]
+  },
+  {
+   "id": "EVT.CLI.KAVERI_DELTA_BUILD",
+   "title": "The Kaveri builds its delta seaward",
+   "class": "CLIMATE",
+   "magnitude": "M",
+   "year": 400,
+   "year_end": 1200,
+   "era": "ERA.GUPTA",
+   "provenance": "DERIVED",
+   "certainty": 0.6,
+   "trigger": "window",
+   "window": [
+    300,
+    600
+   ],
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "evidence": "Delta stratigraphy and the inland stranding of former ports such as Kaveripattinam."
   },
   {
    "id": "EVT.402.THE_IRON_PILLAR_OF_DELHI_UNRUSTED_FOR_1_600_",
@@ -10554,6 +11000,21 @@
    ]
   },
   {
+   "id": "EVT.CLI.SUDARSHANA_BURST_456",
+   "title": "The Sudarshana dam bursts again, and is repaired again",
+   "class": "CLIMATE",
+   "magnitude": "R",
+   "year": 456,
+   "era": "ERA.GUPTA",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.GUJARAT",
+   "dispute": false,
+   "evidence": "Skandagupta's Junagadh inscription, recording the second breach and reconstruction."
+  },
+  {
    "id": "EVT.460.SIGIRIYA",
    "title": "Sigiriya",
    "provenance": "DERIVED",
@@ -10697,7 +11158,27 @@
    "trigger": "latent",
    "scope": "regional",
    "region": "RGN.RAJASTHAN",
-   "dispute": true
+   "dispute": true,
+   "dispute_scope": "date"
+  },
+  {
+   "id": "EVT.CLI.GODAVARI_DELTA",
+   "title": "The Godavari delta advances into the bay",
+   "class": "CLIMATE",
+   "magnitude": "R",
+   "year": 500,
+   "era": "ERA.GUPTA",
+   "provenance": "DERIVED",
+   "certainty": 0.5,
+   "trigger": "window",
+   "window": [
+    300,
+    800
+   ],
+   "scope": "regional",
+   "region": "RGN.ANDHRA",
+   "dispute": false,
+   "evidence": "Delta-front sediment sequences and the abandonment of older coastal anchorages."
   },
   {
    "id": "EVT.505.VARAHAMIHIRA_S_PANCHASIDDHANTIKA",
@@ -12763,6 +13244,27 @@
    ]
   },
   {
+   "id": "EVT.CLI.MEDIEVAL_ANOMALY",
+   "title": "The medieval climate anomaly: strong monsoons for three centuries",
+   "class": "CLIMATE",
+   "magnitude": "W",
+   "year": 950,
+   "year_end": 1250,
+   "era": "ERA.CHOLA",
+   "provenance": "DERIVED",
+   "certainty": 0.65,
+   "trigger": "window",
+   "window": [
+    900,
+    1000
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Speleothem records from Dandak and Jhumar caves and from Sahiya, showing sustained high rainfall.",
+   "note": "It coincides exactly with the Chola tank-building programme and the peak of the temple economy. Which caused which is not settled."
+  },
+  {
    "id": "EVT.960.TEMPLE_TREASURIES_BEGIN_LENDING_AT_INTEREST_",
    "title": "Temple treasuries begin lending at interest to villages",
    "provenance": "DERIVED",
@@ -13410,6 +13912,25 @@
    ]
   },
   {
+   "id": "EVT.CLI.KAVERI_FLOOD_1050",
+   "title": "The Kaveri floods across the delta",
+   "class": "CLIMATE",
+   "magnitude": "R",
+   "year": 1050,
+   "era": "ERA.CHOLA",
+   "provenance": "SYNTHESIZED",
+   "certainty": 0.3,
+   "trigger": "window",
+   "window": [
+    1000,
+    1100
+   ],
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "evidence": "Inferred from repair endowments in temple inscriptions rather than from a flood record. Generated to stand for a class of event the inscriptions imply and do not date."
+  },
+  {
    "id": "EVT.1060.THE_AYYAVOLE_GUILD_OPERATES_FROM_JAVA_TO_THE",
    "title": "The Ayyavole guild operates from Java to the Persian Gulf",
    "provenance": "DERIVED",
@@ -14031,24 +14552,42 @@
    ]
   },
   {
-   "id": "EVT.1160.PARAKRAMABAHU_I_THE_TANK_SYSTEM_AT_MAXIMUM_E",
-   "title": "Parakramabahu I; the tank system at maximum extent",
-   "provenance": "DERIVED",
-   "evidence": "The building, and the inscription on it.",
-   "year": 1160,
-   "year_end": null,
+   "id": "EVT.CLI.TANK_SILTING",
+   "title": "The great tanks begin to silt faster than they are dredged",
+   "class": "CLIMATE",
+   "magnitude": "M",
+   "year": 1150,
    "era": "ERA.CHOLA",
-   "class": "STRUCTURE",
-   "magnitude": "W",
+   "provenance": "DERIVED",
+   "certainty": 0.45,
+   "trigger": "window",
+   "window": [
+    1100,
+    1250
+   ],
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "evidence": "Tank sediment profiles, and the rising frequency of desilting endowments in the inscriptions."
+  },
+  {
+   "id": "EVT.CLI.SRI_LANKA_TANKS",
+   "title": "The Sri Lankan tank system reaches its greatest extent",
+   "class": "CLIMATE",
+   "magnitude": "M",
+   "year": 1160,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
    "certainty": 0.7,
    "trigger": "window",
+   "window": [
+    1140,
+    1190
+   ],
    "scope": "regional",
    "region": "RGN.SRI_LANKA",
    "dispute": false,
-   "window": [
-    1137,
-    1183
-   ]
+   "evidence": "The tanks themselves, and the Culavamsa account of Parakramabahu's works."
   },
   {
    "id": "EVT.1161.THE_JAGANNATH_TEMPLE_AT_PURI_COMPLETED",
@@ -14823,6 +15362,26 @@
    "dispute": false
   },
   {
+   "id": "EVT.CLI.DURGA_DEVI",
+   "title": "The Durga Devi famine empties the Deccan",
+   "class": "CLIMATE",
+   "magnitude": "W",
+   "year": 1396,
+   "year_end": 1407,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.6,
+   "trigger": "window",
+   "window": [
+    1390,
+    1400
+   ],
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false,
+   "evidence": "Persian and Marathi chronicle accounts of a famine lasting more than a decade. The duration is probably compressed memory of several."
+  },
+  {
    "id": "EVT.1398.TIMUR_SACKS_DELHI",
    "title": "Timur sacks Delhi",
    "year": 1398,
@@ -14880,6 +15439,26 @@
    ]
   },
   {
+   "id": "EVT.CLI.LIA_ONSET",
+   "title": "The Little Ice Age begins and the monsoon weakens",
+   "class": "CLIMATE",
+   "magnitude": "W",
+   "year": 1400,
+   "year_end": 1800,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "DERIVED",
+   "certainty": 0.6,
+   "trigger": "window",
+   "window": [
+    1350,
+    1450
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Speleothem and tree-ring records; the correlation with the medieval famine sequence is strong."
+  },
+  {
    "id": "EVT.1434.THE_GAJAPATIS",
    "title": "The Gajapatis",
    "provenance": "SOURCED",
@@ -14934,6 +15513,25 @@
     1421,
     1479
    ]
+  },
+  {
+   "id": "EVT.CLI.DAMAJIPANT",
+   "title": "The Damajipant famine",
+   "class": "CLIMATE",
+   "magnitude": "M",
+   "year": 1460,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "DERIVED",
+   "certainty": 0.45,
+   "trigger": "window",
+   "window": [
+    1450,
+    1475
+   ],
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false,
+   "evidence": "Chronicle and hagiographical accounts; the date is traditional."
   },
   {
    "id": "EVT.1469.GURU_NANAK",
@@ -15117,6 +15715,26 @@
    "dispute": false
   },
   {
+   "id": "EVT.CLI.GUJARAT_FAMINE_1630",
+   "title": "The Deccan and Gujarat famine",
+   "class": "CLIMATE",
+   "magnitude": "W",
+   "year": 1630,
+   "year_end": 1632,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "window": [
+    1629,
+    1632
+   ],
+   "scope": "regional",
+   "region": "RGN.GUJARAT",
+   "dispute": false,
+   "evidence": "Mughal court records and Dutch and English factory correspondence, which agree on its severity."
+  },
+  {
    "id": "EVT.1657.DARA_SHIKOH_S_SIRR_I_AKBAR",
    "title": "Dara Shikoh's Sirr-i-Akbar",
    "year": 1657,
@@ -15179,6 +15797,27 @@
    "scope": "subcontinental",
    "region": null,
    "dispute": false
+  },
+  {
+   "id": "EVT.CLI.BENGAL_CYCLONE_1737",
+   "title": "A cyclone and surge destroy the Hooghly shipping",
+   "class": "CLIMATE",
+   "magnitude": "M",
+   "year": 1737,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "DERIVED",
+   "certainty": 0.5,
+   "trigger": "window",
+   "window": [
+    1735,
+    1740
+   ],
+   "scope": "regional",
+   "region": "RGN.BENGAL",
+   "dispute": true,
+   "evidence": "European trading records.",
+   "dispute_text": "Contemporary accounts conflate a cyclone with an earthquake reported the same night, and the casualty figures that circulated were later shown to be wildly inflated.",
+   "dispute_scope": "interpretation"
   },
   {
    "id": "EVT.1739.NADIR_SHAH",
@@ -15247,6 +15886,26 @@
    "dispute": false
   },
   {
+   "id": "EVT.CLI.DOJI_BARA",
+   "title": "The Doji bara, the skull famine",
+   "class": "CLIMATE",
+   "magnitude": "W",
+   "year": 1791,
+   "year_end": 1792,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "window": [
+    1789,
+    1792
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Company records; and it is one of the earliest famines that can be tied to a documented El Nino event."
+  },
+  {
    "id": "EVT.1793.THE_PERMANENT_SETTLEMENT",
    "title": "the Permanent Settlement",
    "year": 1793,
@@ -15279,6 +15938,37 @@
    "dispute": false
   },
   {
+   "id": "EVT.CLI.AGRA_FAMINE_1837",
+   "title": "The Agra famine",
+   "class": "CLIMATE",
+   "magnitude": "M",
+   "year": 1837,
+   "year_end": 1838,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.92,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Company revenue and relief records."
+  },
+  {
+   "id": "EVT.CLI.CORINGA_1839",
+   "title": "The Coringa cyclone",
+   "class": "CLIMATE",
+   "magnitude": "M",
+   "year": 1839,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.ANDHRA",
+   "dispute": false,
+   "evidence": "Company records of the destruction of the port, which was never rebuilt to its former size."
+  },
+  {
    "id": "EVT.1853.RAILWAY_AND_TELEGRAPH",
    "title": "railway and telegraph",
    "year": 1853,
@@ -15295,20 +15985,35 @@
    "dispute": false
   },
   {
-   "id": "EVT.1876.THE_GREAT_FAMINE",
-   "title": "the Great Famine",
+   "id": "EVT.CLI.ORISSA_FAMINE_1866",
+   "title": "The Orissa famine",
+   "class": "CLIMATE",
+   "magnitude": "W",
+   "year": 1866,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.ODISHA",
+   "dispute": false,
+   "evidence": "The Famine Commission report of 1867, which found the deaths avoidable."
+  },
+  {
+   "id": "EVT.CLI.GREAT_FAMINE_1876",
+   "title": "The Great Famine of the south",
+   "class": "CLIMATE",
+   "magnitude": "W",
    "year": 1876,
    "year_end": 1878,
    "era": "ERA.COLONIAL",
-   "class": "CATASTROPHE",
-   "magnitude": "M",
-   "certainty": 0.95,
-   "trigger": "dated",
    "provenance": "SOURCED",
-   "evidence": "Destruction layers, and accounts written afterwards by people with a position.",
+   "certainty": 0.9,
+   "trigger": "dated",
    "scope": "subcontinental",
    "region": null,
-   "dispute": false
+   "dispute": false,
+   "evidence": "Famine Commission reports and grain export figures for the same years."
   },
   {
    "id": "EVT.1885.CONGRESS",
@@ -15325,6 +16030,41 @@
    "scope": "subcontinental",
    "region": null,
    "dispute": false
+  },
+  {
+   "id": "EVT.CLI.FAMINE_1899",
+   "title": "The Indian famine of 1899",
+   "class": "CLIMATE",
+   "magnitude": "W",
+   "year": 1899,
+   "year_end": 1900,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Famine Commission of 1901; the failure of the monsoon that year is instrumentally recorded."
+  },
+  {
+   "id": "EVT.CLI.ENSO_LINK",
+   "title": "Monsoon failure is understood to follow the Pacific",
+   "class": "CLIMATE",
+   "magnitude": "M",
+   "year": 1904,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "window": [
+    1900,
+    1924
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Walker's statistical work on the Southern Oscillation, undertaken by the India Meteorological Department expressly to forecast famine."
   },
   {
    "id": "EVT.1905.PARTITION_OF_BENGAL",
@@ -15391,20 +16131,21 @@
    "dispute": false
   },
   {
-   "id": "EVT.1943.THE_BENGAL_FAMINE",
-   "title": "the Bengal Famine",
+   "id": "EVT.CLI.BENGAL_1943",
+   "title": "The Bengal famine",
+   "class": "CLIMATE",
+   "magnitude": "W",
    "year": 1943,
-   "year_end": null,
    "era": "ERA.COLONIAL",
-   "class": "CATASTROPHE",
-   "magnitude": "M",
-   "certainty": 0.95,
-   "trigger": "dated",
    "provenance": "SOURCED",
-   "evidence": "Destruction layers, and accounts written afterwards by people with a position.",
-   "scope": "subcontinental",
-   "region": null,
-   "dispute": false
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.BENGAL",
+   "dispute": true,
+   "evidence": "Provincial and imperial records, the Famine Inquiry Commission of 1945, and price series.",
+   "dispute_text": "That the famine happened and that it killed on the order of millions is not in question. Its causation is: crop shortfall, wartime procurement, the denial policy, provincial trade barriers and refusals of imports have all been argued as primary. The game presents the positions.",
+   "dispute_scope": "causation"
   },
   {
    "id": "EVT.1947.INDEPENDENCE_AND_PARTITION",
@@ -15424,38 +16165,38 @@
   }
  ],
  "census": {
-  "total": 789,
-  "subcontinental": 537,
-  "regional": 252,
-  "pre_1300": 741,
+  "total": 826,
+  "subcontinental": 548,
+  "regional": 278,
+  "pre_1300": 767,
   "by_magnitude": {
-   "W": 455,
-   "M": 306,
-   "R": 24,
+   "W": 471,
+   "M": 321,
+   "R": 30,
    "m": 4
   },
   "by_class": {
-   "CLIMATE": 8,
+   "CLIMATE": 49,
    "FRONTIER": 11,
    "TRANSITION": 118,
    "EPOCH": 19,
-   "STRUCTURE": 28,
+   "STRUCTURE": 27,
    "AGRICULTURE": 24,
    "TRADE": 60,
    "REFORM": 71,
    "SITE": 112,
    "WORK": 142,
-   "CATASTROPHE": 14,
+   "CATASTROPHE": 11,
    "INVASION": 41,
    "FOUNDATION": 112,
    "—": 24,
    "COLONIAL": 5
   },
   "by_trigger": {
-   "window": 638,
+   "window": 669,
    "latent": 36,
-   "dated": 115
+   "dated": 121
   },
-  "disputed": 36
+  "disputed": 40
  }
 }

@@ -37,9 +37,26 @@ test('every INVASION carries a becomes field', () => {
   assert.deepEqual(bad.map(e => e.id), []);
 });
 
-test('every disputed event is below 0.9 certainty', () => {
-  const bad = TL.events.filter(e => e.dispute && e.certainty >= 0.9);
+test('every disputed event declares what is disputed', () => {
+  const ok = new Set(['occurrence', 'date', 'causation', 'interpretation']);
+  for (const e of TL.events.filter(x => x.dispute))
+    assert.ok(ok.has(e.dispute_scope), `${e.id}: dispute_scope is ${e.dispute_scope}`);
+});
+
+test('certainty is only forced down where certainty is what is disputed', () => {
+  // The Bengal famine of 1943 certainly happened; what is argued is its
+  // causation. Forcing its certainty below 0.9 would have the game state that
+  // the famine is doubtful, which is false and offensive. So the rule binds on
+  // occurrence and date, and not on causation or interpretation.
+  const bad = TL.events.filter(e =>
+    e.dispute && ['occurrence', 'date'].includes(e.dispute_scope) && e.certainty >= 0.9);
   assert.deepEqual(bad.map(e => e.id), []);
+
+  const bengal = TL.events.find(e => /Bengal famine/i.test(e.title) && e.year === 1943);
+  if (bengal) {
+    assert.equal(bengal.dispute_scope, 'causation');
+    assert.ok(bengal.certainty >= 0.9, 'and it is not made doubtful to satisfy a rule');
+  }
 });
 
 test('every event sits inside its era, except prologue', () => {
