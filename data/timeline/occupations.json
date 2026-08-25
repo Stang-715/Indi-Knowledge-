@@ -1,0 +1,199 @@
+{
+ "note": "Occupations (07-timeline §1.4): rule as a standing state, not an event. `extract` is grain skimmed per year; `patronage` is what the court funds, as pillar drip; `trustCap` caps the trust ladder while active. The `becomes` fields written in phase 29 are the source material for these numbers' signs.",
+ "occupations": [
+  {
+   "id": "OCC.ACHAEMENID",
+   "name": "The Achaemenid satrapies",
+   "from": -518,
+   "to": -330,
+   "where": [
+    "RGN.KASHMIR"
+   ],
+   "extract": 2,
+   "patronage": {
+    "IT": 0.01
+   },
+   "note": "Gandhara and Hindush assessed in gold dust; Aramaic clerks at work. Literacy returns as paperwork."
+  },
+  {
+   "id": "OCC.INDO_GREEK",
+   "name": "The Indo-Greek kingdoms",
+   "from": -180,
+   "to": -10,
+   "where": [],
+   "extract": 1,
+   "patronage": {
+    "DESIGN": 0.008,
+    "NETWORKING": 0.004
+   },
+   "note": "Bilingual coinage, portrait dies, and a king inside the Pali canon's orbit."
+  },
+  {
+   "id": "OCC.SAKA_KSHATRAPA",
+   "name": "The Western Satraps",
+   "from": 35,
+   "to": 405,
+   "where": [
+    "RGN.GUJARAT"
+   ],
+   "extract": 2,
+   "patronage": {
+    "TRADE": 0.008
+   },
+   "note": "Dated silver year by year; the Junagadh dam repaired and the repair recorded."
+  },
+  {
+   "id": "OCC.KUSHAN",
+   "name": "The Kushan peace",
+   "from": 30,
+   "to": 375,
+   "where": [],
+   "extract": 2,
+   "patronage": {
+    "DESIGN": 0.012,
+    "NETWORKING": 0.01,
+    "TRADE": 0.008
+   },
+   "note": "Two capitals, five pantheons on the coins, and the Silk Road open at both ends."
+  },
+  {
+   "id": "OCC.HUNA",
+   "name": "The Alchon disruption",
+   "from": 470,
+   "to": 540,
+   "where": [],
+   "extract": 4,
+   "patronage": {},
+   "note": "The fisc breaks and the northwest's schools do not recover."
+  },
+  {
+   "id": "OCC.ARAB_SINDH",
+   "name": "Arab Sindh",
+   "from": 712,
+   "to": 1000,
+   "where": [],
+   "extract": 1,
+   "patronage": {
+    "IT": 0.006,
+    "NETWORKING": 0.006
+   },
+   "note": "A durable link to the Abbasid world; the numerals leave through this door."
+  },
+  {
+   "id": "OCC.GHAZNAVID",
+   "name": "The Ghaznavid raids' shadow",
+   "from": 1000,
+   "to": 1187,
+   "where": [],
+   "extract": 2,
+   "patronage": {},
+   "note": "Raids, tribute and a scholar attached to the campaigns who learned Sanskrit."
+  },
+  {
+   "id": "OCC.DELHI_SULTANATE",
+   "name": "The Delhi Sultanate",
+   "from": 1206,
+   "to": 1398,
+   "where": [],
+   "extract": 3,
+   "patronage": {
+    "IT": 0.01,
+    "STRUCTURE": 0.008,
+    "DESIGN": 0.006
+   },
+   "note": "The tanka, paper, Persian at court — and the iqta transferring officers before they root.",
+   "trustCap": 80
+  },
+  {
+   "id": "OCC.SULTANATE_REGIONAL",
+   "name": "The regional sultanates",
+   "from": 1398,
+   "to": 1526,
+   "where": [
+    "RGN.BENGAL",
+    "RGN.GUJARAT"
+   ],
+   "extract": 2,
+   "patronage": {
+    "CLASSICISM": 0.01,
+    "DESIGN": 0.008
+   },
+   "note": "Jaunpur, Malwa, Gujarat, Bengal: the fragments each become a patron in a regional tongue."
+  },
+  {
+   "id": "OCC.VIJAYANAGARA",
+   "name": "The Vijayanagara order",
+   "from": 1336,
+   "to": 1565,
+   "where": [
+    "RGN.KARNATAKA",
+    "RGN.ANDHRA",
+    "RGN.TAMILAKAM"
+   ],
+   "extract": 2,
+   "patronage": {
+    "CULTIVATION": 0.012,
+    "STRUCTURE": 0.01
+   },
+   "note": "Nayankara assignment, temple patronage, and Sayana's Rigveda on the state's account."
+  },
+  {
+   "id": "OCC.MUGHAL",
+   "name": "The Mughal peace",
+   "from": 1526,
+   "to": 1707,
+   "where": [],
+   "extract": 3,
+   "patronage": {
+    "DESIGN": 0.014,
+    "CLASSICISM": 0.01,
+    "STRUCTURE": 0.008
+   },
+   "note": "The zabt's measured rates, the atelier's named painters, an empire described in numbers.",
+   "trustCap": 90
+  },
+  {
+   "id": "OCC.MARATHA",
+   "name": "The Maratha ascendancy",
+   "from": 1707,
+   "to": 1818,
+   "where": [
+    "RGN.MAHARASHTRA"
+   ],
+   "extract": 3,
+   "patronage": {
+    "NETWORKING": 0.006
+   },
+   "note": "Chauth: a claim on somebody else's tax, cheaper to enforce than a province and harder to remove."
+  },
+  {
+   "id": "OCC.COMPANY",
+   "name": "Company rule",
+   "from": 1757,
+   "to": 1858,
+   "where": [
+    "RGN.BENGAL"
+   ],
+   "extract": 5,
+   "patronage": {
+    "IT": 0.008
+   },
+   "note": "The diwani: goods bought with Indian taxes. Collection held steady through the famine of 1770.",
+   "trustCap": 60
+  },
+  {
+   "id": "OCC.CROWN",
+   "name": "Crown rule",
+   "from": 1858,
+   "to": 1947,
+   "where": [],
+   "extract": 4,
+   "patronage": {
+    "IT": 0.012,
+    "STRUCTURE": 0.01
+   },
+   "note": "Census, survey and category; the railway's timetable and the famine code's arithmetic.",
+   "trustCap": 60
+  }
+ ]
+}

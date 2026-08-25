@@ -10681,6 +10681,7 @@
     "TRADE": 4,
     "NETWORKING": 2
    },
+   "grants": "coinage",
    "teaches": "Money enters the game, and with it every later problem about who is allowed to issue it.",
    "threads": [
     "THR.THE_MONETARY_LADDER"
@@ -11018,6 +11019,39 @@
    },
    "threads": [
     "THR.THE_RIVERS"
+   ]
+  },
+  {
+   "id": "EVT.CND.MONEYLENDING",
+   "title": "Lending against coin begins in the market towns",
+   "class": "TRANSITION",
+   "magnitude": "M",
+   "year": -500,
+   "era": "ERA.SECOND_URBAN",
+   "provenance": "DERIVED",
+   "certainty": 0.7,
+   "trigger": "conditional",
+   "condition": {
+    "coinage": true
+   },
+   "window": [
+    -560,
+    -300
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Pali canon's debt vocabulary and the earliest usury discussions, which presuppose coined money.",
+   "note": "Fires only after coinage exists in this campaign — debt at interest needs a unit.",
+   "where": [],
+   "affects": {
+    "DESIGN": 1.17,
+    "IT": 1.21
+   },
+   "teaches": "Fires only after coinage exists in this campaign — debt at interest needs a unit.",
+   "threads": [
+    "THR.THE_MONETARY_LADDER",
+    "THR.THE_TEMPLE_ECONOMY"
    ]
   },
   {
@@ -11683,6 +11717,12 @@
     -449,
     -431
    ],
+   "condition": {
+    "coinage": true,
+    "pillarMin": {
+     "TRADE": 18
+    }
+   },
    "where": [
     "ter"
    ],
@@ -12044,6 +12084,40 @@
    "teaches": "A schism over whether a monk may accept coins. Small rules are never small."
   },
   {
+   "id": "EVT.CND.GUILD_DEPOSITS",
+   "title": "Guilds begin taking deposits at interest",
+   "class": "TRANSITION",
+   "magnitude": "W",
+   "year": -380,
+   "era": "ERA.SECOND_URBAN",
+   "provenance": "DERIVED",
+   "certainty": 0.7,
+   "trigger": "conditional",
+   "condition": {
+    "coinage": true,
+    "pillarMin": {
+     "NETWORKING": 20
+    }
+   },
+   "window": [
+    -480,
+    -150
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The shreni-nigama banking references, and the later cave inscriptions recording endowments held at interest.",
+   "note": "The perpetual endowment's precondition: an institution that outlives the depositor.",
+   "where": [
+    "ter"
+   ],
+   "affects": {
+    "DESIGN": 2.14,
+    "IT": 2.02
+   },
+   "teaches": "The perpetual endowment's precondition: an institution that outlives the depositor."
+  },
+  {
    "id": "EVT.M370.THE_BRAHMI_SCRIPT_EMERGES_ORIGIN_ACTIVELY_CO",
    "title": "The Brahmi script emerges — origin actively contested",
    "provenance": "DERIVED",
@@ -12101,6 +12175,36 @@
    "threads": [
     "THR.THE_WRITING_LADDER"
    ]
+  },
+  {
+   "id": "EVT.CND.WRITTEN_CONTRACTS",
+   "title": "Contracts move from witnesses to writing",
+   "class": "TRANSITION",
+   "magnitude": "M",
+   "year": -350,
+   "era": "ERA.SECOND_URBAN",
+   "provenance": "DERIVED",
+   "certainty": 0.7,
+   "trigger": "conditional",
+   "condition": {
+    "writtenWorks": 3,
+    "coinage": true
+   },
+   "window": [
+    -450,
+    -100
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The dharmasutra provisions on documents versus witnesses, and the earliest deed formulae.",
+   "note": "Needs both writing in use and money to count in.",
+   "where": [],
+   "affects": {
+    "DESIGN": 1.09,
+    "IT": 0.89
+   },
+   "teaches": "Needs both writing in use and money to count in."
   },
   {
    "id": "EVT.M350.IRON_PRODUCTION_AT_UJJAIN_AND_RAJGIR_SCALES_",
@@ -14280,6 +14384,35 @@
     "THR.THE_CORPUS_AT_RISK",
     "THR.THE_WRITING_LADDER"
    ]
+  },
+  {
+   "id": "EVT.CND.SCRIPTORIUM",
+   "title": "The copying workshop becomes a standing institution",
+   "class": "TRANSITION",
+   "magnitude": "M",
+   "year": -200,
+   "era": "ERA.MAURYAN",
+   "provenance": "DERIVED",
+   "certainty": 0.7,
+   "trigger": "conditional",
+   "condition": {
+    "writtenWorks": 5
+   },
+   "window": [
+    -300,
+    200
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The jump in recension stability once professional copying begins.",
+   "note": "Fires when five works exist in writing — a scriptorium needs a shelf.",
+   "where": [],
+   "affects": {
+    "DESIGN": 1.05,
+    "IT": 1.21
+   },
+   "teaches": "Fires when five works exist in writing — a scriptorium needs a shelf."
   },
   {
    "id": "EVT.FRT.NAGA_REPUBLICS",
@@ -28335,6 +28468,36 @@
    }
   },
   {
+   "id": "EVT.CND.PERSIAN_CHANCERY",
+   "title": "Persian becomes the language of record beyond the court",
+   "class": "TRANSITION",
+   "magnitude": "M",
+   "year": 1280,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "DERIVED",
+   "certainty": 0.7,
+   "trigger": "conditional",
+   "condition": {
+    "occupation": "OCC.DELHI_SULTANATE",
+    "pillarMin": {
+     "IT": 35
+    }
+   },
+   "window": [
+    1220,
+    1380
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The spread of Persian documentary conventions into provincial and eventually Maratha and Rajput chanceries.",
+   "where": [],
+   "affects": {
+    "DESIGN": 0.83,
+    "IT": 0.99
+   }
+  },
+  {
    "id": "EVT.1290.JNANESHWAR_S_JNANESHWARI_MARATHI_LITERATURE_",
    "title": "Jnaneshwar's Jnaneshwari — Marathi literature arrives",
    "provenance": "DERIVED",
@@ -28675,6 +28838,33 @@
     "THR.THE_CORPUS_AT_RISK",
     "THR.THE_LONG_NETWORKS"
    ]
+  },
+  {
+   "id": "EVT.CND.SULTANATE_KARKHANA",
+   "title": "The royal workshops organise craft production at scale",
+   "class": "TRANSITION",
+   "magnitude": "M",
+   "year": 1300,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "DERIVED",
+   "certainty": 0.7,
+   "trigger": "conditional",
+   "condition": {
+    "occupation": "OCC.DELHI_SULTANATE"
+   },
+   "window": [
+    1250,
+    1400
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The karkhana accounts in the Sultanate sources, thousands of artisans on the state's books.",
+   "where": [],
+   "affects": {
+    "DESIGN": 0.87,
+    "IT": 0.78
+   }
   },
   {
    "id": "EVT.FRT.GOND_KINGDOMS",
@@ -29373,6 +29563,7 @@
    "affects": {
     "IT": 5
    },
+   "grants": "good:paper",
    "teaches": "The biggest change to the knowledge economy between writing and printing, and nobody fought over it."
   },
   {
@@ -29639,6 +29830,40 @@
     "CLASSICISM": 2.2
    },
    "teaches": "An empire pays to explain a three-thousand-year-old text, completely — and the explanation survives."
+  },
+  {
+   "id": "EVT.CND.PAPER_RECORDS",
+   "title": "Administration moves its daily records to paper",
+   "class": "TRANSITION",
+   "magnitude": "M",
+   "year": 1380,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "DERIVED",
+   "certainty": 0.7,
+   "trigger": "conditional",
+   "condition": {
+    "good": "paper"
+   },
+   "window": [
+    1350,
+    1450
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The survival curve of routine documents, which steepens an order of magnitude after paper.",
+   "note": "Conditional on paper actually existing in this campaign's world.",
+   "where": [
+    "ter"
+   ],
+   "affects": {
+    "DESIGN": 0.88,
+    "IT": 1.16
+   },
+   "teaches": "Conditional on paper actually existing in this campaign's world.",
+   "threads": [
+    "THR.THE_WRITING_LADDER"
+   ]
   },
   {
    "id": "EVT.DVJ.HINDAVI_LITERATURE",
@@ -30473,6 +30698,36 @@
    "affects": {
     "STRUCTURE": 1.14,
     "NETWORKING": 1.21
+   }
+  },
+  {
+   "id": "EVT.CND.PAPER_LIBRARIES",
+   "title": "Private libraries multiply beyond courts and temples",
+   "class": "TRANSITION",
+   "magnitude": "M",
+   "year": 1420,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "DERIVED",
+   "certainty": 0.7,
+   "trigger": "conditional",
+   "condition": {
+    "good": "paper",
+    "pillarMin": {
+     "IT": 40
+    }
+   },
+   "window": [
+    1360,
+    1520
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The manuscript colophons naming merchant and household owners in growing numbers.",
+   "where": [],
+   "affects": {
+    "DESIGN": 1.24,
+    "IT": 1.05
    }
   },
   {
@@ -32002,6 +32257,36 @@
    "teaches": "The first book printed in an Indian script came off a press in India in 1578. Not 1800."
   },
   {
+   "id": "EVT.CND.MUGHAL_ROADS",
+   "title": "The sarai network makes the trunk roads bankable",
+   "class": "TRANSITION",
+   "magnitude": "M",
+   "year": 1580,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "DERIVED",
+   "certainty": 0.7,
+   "trigger": "conditional",
+   "condition": {
+    "occupation": "OCC.MUGHAL",
+    "pillarMin": {
+     "TRADE": 45
+    }
+   },
+   "window": [
+    1540,
+    1650
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The kos minars and sarai chains, and the insurance rates that fell with them.",
+   "where": [],
+   "affects": {
+    "DESIGN": 1.13,
+    "IT": 1.29
+   }
+  },
+  {
    "id": "EVT.FRT.MUGHAL_HUNT",
    "title": "The imperial hunt claims the forest as a royal preserve",
    "class": "FRONTIER",
@@ -32780,6 +33065,44 @@
    "affects": {
     "STRUCTURE": 1.13
    }
+  },
+  {
+   "id": "EVT.CND.HUNDI_NETWORK",
+   "title": "The hundi clears across the subcontinent",
+   "class": "TRANSITION",
+   "magnitude": "W",
+   "year": 1650,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "DERIVED",
+   "certainty": 0.7,
+   "trigger": "conditional",
+   "condition": {
+    "pillarMin": {
+     "TRADE": 50,
+     "NETWORKING": 50
+    }
+   },
+   "window": [
+    1600,
+    1750
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Bills drawn in Surat and honoured in Murshidabad; the discount rates the firms' ledgers record.",
+   "note": "No single ruler makes this happen — it fires when trade and trust are both deep enough.",
+   "where": [
+    "murshidabad",
+    "surat"
+   ],
+   "affects": {
+    "DESIGN": 2.1,
+    "IT": 2.52
+   },
+   "teaches": "No single ruler makes this happen — it fires when trade and trust are both deep enough.",
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ]
   },
   {
    "id": "EVT.RGN.KER_KATHAKALI",
@@ -35368,6 +35691,41 @@
    }
   },
   {
+   "id": "EVT.CND.PRINT_VERNACULAR",
+   "title": "Job printing reaches the district towns",
+   "class": "TRANSITION",
+   "magnitude": "M",
+   "year": 1870,
+   "era": "ERA.COLONIAL",
+   "provenance": "DERIVED",
+   "certainty": 0.7,
+   "trigger": "conditional",
+   "condition": {
+    "occupation": "OCC.CROWN",
+    "pillarMin": {
+     "IT": 55
+    }
+   },
+   "window": [
+    1840,
+    1910
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The provincial press registers: wedding invitations, almanacs, caste-association tracts.",
+   "where": [
+    "ter"
+   ],
+   "affects": {
+    "DESIGN": 0.83,
+    "IT": 1.19
+   },
+   "threads": [
+    "THR.THE_WRITING_LADDER"
+   ]
+  },
+  {
    "id": "EVT.FRT.SHIFTING_ARGUMENT",
    "title": "Shifting cultivation is declared wasteful by people who do not practise it",
    "class": "FRONTIER",
@@ -36909,20 +37267,20 @@
   }
  ],
  "census": {
-  "total": 1351,
-  "subcontinental": 752,
+  "total": 1362,
+  "subcontinental": 763,
   "regional": 599,
-  "pre_1300": 1033,
+  "pre_1300": 1038,
   "by_magnitude": {
-   "W": 589,
-   "M": 631,
+   "W": 591,
+   "M": 640,
    "R": 127,
    "m": 4
   },
   "by_class": {
    "CLIMATE": 49,
    "FRONTIER": 61,
-   "TRANSITION": 134,
+   "TRANSITION": 145,
    "EPOCH": 18,
    "STRUCTURE": 38,
    "SITE": 197,
@@ -36939,6 +37297,7 @@
   "by_trigger": {
    "window": 1078,
    "latent": 39,
+   "conditional": 11,
    "dated": 234
   },
   "disputed": 72

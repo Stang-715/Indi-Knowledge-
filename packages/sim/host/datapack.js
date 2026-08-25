@@ -14,5 +14,6 @@ export function loadDatapack(root) {
     people:   read('data/people/people.json'),
     gazetteer: read('data/gazetteer/places.json'),
     texture:  read('data/timeline/texture.json'),
+    occupations: read('data/timeline/occupations.json'),
   };
 }

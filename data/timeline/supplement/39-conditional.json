@@ -1,0 +1,299 @@
+{
+ "phase": 39,
+ "name": "The machinery of rule",
+ "note": "Twelve conditional events — fired by the world, not the calendar. Each declares its condition against live state; if the condition never comes true in a campaign, the event honestly never happens.",
+ "events": [
+  {
+   "id": "EVT.CND.MONEYLENDING",
+   "title": "Lending against coin begins in the market towns",
+   "class": "TRANSITION",
+   "magnitude": "M",
+   "year": -500,
+   "era": "ERA.SECOND_URBAN",
+   "provenance": "DERIVED",
+   "certainty": 0.7,
+   "trigger": "conditional",
+   "condition": {
+    "coinage": true
+   },
+   "window": [
+    -560,
+    -300
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Pali canon's debt vocabulary and the earliest usury discussions, which presuppose coined money.",
+   "note": "Fires only after coinage exists in this campaign — debt at interest needs a unit."
+  },
+  {
+   "id": "EVT.CND.WRITTEN_CONTRACTS",
+   "title": "Contracts move from witnesses to writing",
+   "class": "TRANSITION",
+   "magnitude": "M",
+   "year": -350,
+   "era": "ERA.SECOND_URBAN",
+   "provenance": "DERIVED",
+   "certainty": 0.7,
+   "trigger": "conditional",
+   "condition": {
+    "writtenWorks": 3,
+    "coinage": true
+   },
+   "window": [
+    -450,
+    -100
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The dharmasutra provisions on documents versus witnesses, and the earliest deed formulae.",
+   "note": "Needs both writing in use and money to count in."
+  },
+  {
+   "id": "EVT.CND.MARKET_TOWNS",
+   "title": "The nigama: market towns incorporate",
+   "class": "TRANSITION",
+   "magnitude": "M",
+   "year": -420,
+   "era": "ERA.SECOND_URBAN",
+   "provenance": "DERIVED",
+   "certainty": 0.7,
+   "trigger": "conditional",
+   "condition": {
+    "coinage": true,
+    "pillarMin": {
+     "TRADE": 18
+    }
+   },
+   "window": [
+    -520,
+    -250
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Nigama coin legends and seals, which are towns speaking as corporate persons."
+  },
+  {
+   "id": "EVT.CND.GUILD_DEPOSITS",
+   "title": "Guilds begin taking deposits at interest",
+   "class": "TRANSITION",
+   "magnitude": "W",
+   "year": -380,
+   "era": "ERA.SECOND_URBAN",
+   "provenance": "DERIVED",
+   "certainty": 0.7,
+   "trigger": "conditional",
+   "condition": {
+    "coinage": true,
+    "pillarMin": {
+     "NETWORKING": 20
+    }
+   },
+   "window": [
+    -480,
+    -150
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The shreni-nigama banking references, and the later cave inscriptions recording endowments held at interest.",
+   "note": "The perpetual endowment's precondition: an institution that outlives the depositor."
+  },
+  {
+   "id": "EVT.CND.SCRIPTORIUM",
+   "title": "The copying workshop becomes a standing institution",
+   "class": "TRANSITION",
+   "magnitude": "M",
+   "year": -200,
+   "era": "ERA.SECOND_URBAN",
+   "provenance": "DERIVED",
+   "certainty": 0.7,
+   "trigger": "conditional",
+   "condition": {
+    "writtenWorks": 5
+   },
+   "window": [
+    -300,
+    200
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The jump in recension stability once professional copying begins.",
+   "note": "Fires when five works exist in writing — a scriptorium needs a shelf."
+  },
+  {
+   "id": "EVT.CND.PAPER_RECORDS",
+   "title": "Administration moves its daily records to paper",
+   "class": "TRANSITION",
+   "magnitude": "M",
+   "year": 1380,
+   "era": "ERA.SECOND_URBAN",
+   "provenance": "DERIVED",
+   "certainty": 0.7,
+   "trigger": "conditional",
+   "condition": {
+    "good": "paper"
+   },
+   "window": [
+    1350,
+    1450
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The survival curve of routine documents, which steepens an order of magnitude after paper.",
+   "note": "Conditional on paper actually existing in this campaign's world."
+  },
+  {
+   "id": "EVT.CND.PAPER_LIBRARIES",
+   "title": "Private libraries multiply beyond courts and temples",
+   "class": "TRANSITION",
+   "magnitude": "M",
+   "year": 1420,
+   "era": "ERA.SECOND_URBAN",
+   "provenance": "DERIVED",
+   "certainty": 0.7,
+   "trigger": "conditional",
+   "condition": {
+    "good": "paper",
+    "pillarMin": {
+     "IT": 40
+    }
+   },
+   "window": [
+    1360,
+    1520
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The manuscript colophons naming merchant and household owners in growing numbers."
+  },
+  {
+   "id": "EVT.CND.SULTANATE_KARKHANA",
+   "title": "The royal workshops organise craft production at scale",
+   "class": "TRANSITION",
+   "magnitude": "M",
+   "year": 1300,
+   "era": "ERA.SECOND_URBAN",
+   "provenance": "DERIVED",
+   "certainty": 0.7,
+   "trigger": "conditional",
+   "condition": {
+    "occupation": "OCC.DELHI_SULTANATE"
+   },
+   "window": [
+    1250,
+    1400
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The karkhana accounts in the Sultanate sources, thousands of artisans on the state's books."
+  },
+  {
+   "id": "EVT.CND.PERSIAN_CHANCERY",
+   "title": "Persian becomes the language of record beyond the court",
+   "class": "TRANSITION",
+   "magnitude": "M",
+   "year": 1280,
+   "era": "ERA.SECOND_URBAN",
+   "provenance": "DERIVED",
+   "certainty": 0.7,
+   "trigger": "conditional",
+   "condition": {
+    "occupation": "OCC.DELHI_SULTANATE",
+    "pillarMin": {
+     "IT": 35
+    }
+   },
+   "window": [
+    1220,
+    1380
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The spread of Persian documentary conventions into provincial and eventually Maratha and Rajput chanceries."
+  },
+  {
+   "id": "EVT.CND.MUGHAL_ROADS",
+   "title": "The sarai network makes the trunk roads bankable",
+   "class": "TRANSITION",
+   "magnitude": "M",
+   "year": 1580,
+   "era": "ERA.SECOND_URBAN",
+   "provenance": "DERIVED",
+   "certainty": 0.7,
+   "trigger": "conditional",
+   "condition": {
+    "occupation": "OCC.MUGHAL",
+    "pillarMin": {
+     "TRADE": 45
+    }
+   },
+   "window": [
+    1540,
+    1650
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The kos minars and sarai chains, and the insurance rates that fell with them."
+  },
+  {
+   "id": "EVT.CND.HUNDI_NETWORK",
+   "title": "The hundi clears across the subcontinent",
+   "class": "TRANSITION",
+   "magnitude": "W",
+   "year": 1650,
+   "era": "ERA.SECOND_URBAN",
+   "provenance": "DERIVED",
+   "certainty": 0.7,
+   "trigger": "conditional",
+   "condition": {
+    "pillarMin": {
+     "TRADE": 50,
+     "NETWORKING": 50
+    }
+   },
+   "window": [
+    1600,
+    1750
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Bills drawn in Surat and honoured in Murshidabad; the discount rates the firms' ledgers record.",
+   "note": "No single ruler makes this happen — it fires when trade and trust are both deep enough."
+  },
+  {
+   "id": "EVT.CND.PRINT_VERNACULAR",
+   "title": "Job printing reaches the district towns",
+   "class": "TRANSITION",
+   "magnitude": "M",
+   "year": 1870,
+   "era": "ERA.SECOND_URBAN",
+   "provenance": "DERIVED",
+   "certainty": 0.7,
+   "trigger": "conditional",
+   "condition": {
+    "occupation": "OCC.CROWN",
+    "pillarMin": {
+     "IT": 55
+    }
+   },
+   "window": [
+    1840,
+    1910
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The provincial press registers: wedding invitations, almanacs, caste-association tracts."
+  }
+ ]
+}

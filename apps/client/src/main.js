@@ -47,7 +47,7 @@ const mark = (label) => { marks.push([label, performance.now() - T0]); };
 
 /* ── World ──────────────────────────────────────────────────────────────── */
 
-const [bundle, timeline, works, cityData, people, cardsDoc, gazetteer, texture] = await Promise.all([
+const [bundle, timeline, works, cityData, people, cardsDoc, gazetteer, texture, occupations] = await Promise.all([
   fetch('../../data/skeleton/bundle.json').then(r => r.json()),
   fetch('../../data/timeline/timeline.json').then(r => r.json()),
   fetch('../../data/corpus/works.json').then(r => r.json()),
@@ -56,6 +56,7 @@ const [bundle, timeline, works, cityData, people, cardsDoc, gazetteer, texture] 
   fetch('../../data/timeline/cards.json').then(r => r.json()),
   fetch('../../data/gazetteer/places.json').then(r => r.json()),
   fetch('../../data/timeline/texture.json').then(r => r.json()),
+  fetch('../../data/timeline/occupations.json').then(r => r.json()),
 ]);
 const PLACE_BY_ID = new Map(gazetteer.places.map(g => [g.id, g]));
 
@@ -116,7 +117,7 @@ async function upgradeClimate() {
   draw(3); scheduleFull();
 }
 const cityRenderer = new CityRenderer({ cities: cityData.cities });
-const DP = { timeline, works, people, gazetteer, texture };
+const DP = { timeline, works, people, gazetteer, texture, occupations };
 const CARDS = indexCards(cardsDoc);
 const THREAD_IDX = indexThreads(timeline);
 const eraOf = (y) => timeline.eras.find(e => y >= e.from && y < e.to) ?? timeline.eras[15];

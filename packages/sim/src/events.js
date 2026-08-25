@@ -81,3 +81,49 @@ export function eventsIn(schedule, from, to) {
   }
   return out;
 }
+
+/* ── Conditional triggers (phase 39) ─────────────────────────────────────── */
+
+/**
+ * A conditional event's `condition` is a small declarative object tested
+ * against live world state — never code in a datapack (the fourth boundary).
+ * Supported keys, all of which must hold:
+ *
+ *   good        a named good exists            { "good": "paper" }
+ *   coinage     coinage is known               { "coinage": true }
+ *   pillarMin   effective pillar floors        { "pillarMin": { "TRADE": 30 } }
+ *   tradeVolume total delivered route volume   { "tradeVolume": 200 }
+ *   occupation  an occupation is active        { "occupation": "OCC.DELHI_SULTANATE" }
+ *   writtenWorks at least n works have a written carrier
+ *
+ * The event also respects its window: the condition is only consulted once
+ * the world reaches `window[0]` (or its nominal year), and if the condition
+ * never comes true the event never fires — which is the honest reading of
+ * "coinage arrives when trade demands it".
+ */
+export function conditionMet(cond, state) {
+  if (!cond) return true;
+  if (cond.good && !state.goods.has(cond.good)) return false;
+  if (cond.coinage !== undefined && state.coinageKnown !== cond.coinage) return false;
+  if (cond.pillarMin)
+    for (const [p, min] of Object.entries(cond.pillarMin))
+      if ((state.pillars[p] ?? 0) < min) return false;
+  if (cond.tradeVolume) {
+    let v = 0;
+    for (const r of state.routes.values()) v += r.volume ?? 0;
+    if (v < cond.tradeVolume) return false;
+  }
+  if (cond.occupation && !state.occupationsActive?.has(cond.occupation)) return false;
+  if (cond.writtenWorks) {
+    let n = 0;
+    for (const c of state.corpus.values())
+      if (c.exists && !c.lost && c.carriers.some(x => x.medium !== 'memory')) n++;
+    if (n < cond.writtenWorks) return false;
+  }
+  return true;
+}
+
+/** The conditional events of a timeline, for the engine's per-tick check. */
+export function conditionalEvents(timeline) {
+  return timeline.events.filter(e => e.trigger === 'conditional');
+}

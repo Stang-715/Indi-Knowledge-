@@ -34,8 +34,13 @@ export const TRUST_RUNGS = [
   { rung: 6, name: 'state treaty',   need: 70, range: 'international' },
 ];
 
-export function trustRung(state) {
-  const n = state.pillars.NETWORKING;
+export function trustRung(state, ceiling = null) {
+  // An occupation can cap the ladder (phase 39): a state treaty needs a
+  // state that treats you as a party to one, and under Company rule there
+  // is no such state. The cap is a ceiling on effective NETWORKING, not a
+  // penalty — lift the occupation and the standing is still there.
+  let n = state.pillars.NETWORKING;
+  if (ceiling != null) n = Math.min(n, ceiling);
   let cur = TRUST_RUNGS[0];
   for (const r of TRUST_RUNGS) if (n >= r.need) cur = r;
   return cur;

@@ -14,6 +14,8 @@ import { Rng } from './rng.js';
 import { CLASS_EFFECTS, MAG_WEIGHT } from './effects.js';
 import { tickTexture } from './texture.js';
 import { initIndus, tickIndus, INDUS_DECISIONS } from './indus.js';
+import { initOccupations, tickOccupations } from './occupations.js';
+import { conditionMet, conditionalEvents } from './events.js';
 import { initCorpus, tickCorpus, applyWorkEvent, catastrophe, preserve, copyOut, worksAtRisk } from './corpus.js';
 import { initTrade, tickTrade, applyTradeEvent, DECISIONS as TRADE_DECISIONS } from './trade.js';
 import { initPeople, tickPeople, oralCapacity, DECISIONS as PEOPLE_DECISIONS } from './people.js';
@@ -43,6 +45,7 @@ export function run(datapack, seed, decisionLog = [], opts = {}) {
   state.year = from;
   state.seed = seed;
   initIndus(state);
+  initOccupations(state, datapack);
 
   // Subsystems fork the seed ONCE, by name. That keeps them independent: adding
   // a trade roll cannot silently rewrite the corpus (see rng.js).
@@ -54,6 +57,8 @@ export function run(datapack, seed, decisionLog = [], opts = {}) {
   };
 
   const schedule = buildSchedule(datapack.timeline, seed);
+  let condPending = conditionalEvents(datapack.timeline);
+  const condFired = new Set();
   initCorpus(state, datapack, from);
   initTrade(state, datapack, from);
   initPeople(state, datapack, from);
@@ -109,6 +114,24 @@ export function run(datapack, seed, decisionLog = [], opts = {}) {
     // everything else. A datapack without texture data plays without it.
     tickTexture(state, datapack, span, seed);
     tickIndus(state, span, seed);
+    tickOccupations(state, datapack, span);
+
+    // Conditional events: fired by the world, not the calendar. Once the
+    // clock passes an event's window start, its condition is consulted each
+    // tick and it fires the first time the world satisfies it — "coinage
+    // arrives when trade demands it" as machinery instead of a title regex.
+    for (const ev of condPending) {
+      const start = ev.window?.[0] ?? ev.year;
+      const end   = ev.window?.[1] ?? (ev.year + 400);
+      if (state.year < start || state.year > end) continue;
+      if (!conditionMet(ev.condition, state)) continue;
+      fireEvent(state, { ...ev, year: state.year }, datapack, rng);
+      condFired.add(ev.id);
+    }
+    if (condFired.size) {
+      condPending = condPending.filter(e => !condFired.has(e.id));
+      condFired.clear();
+    }
 
     if (opts.onYear) opts.onYear(state, next, span);
   }
@@ -170,16 +193,21 @@ function fireEvent(state, ev, datapack, rng) {
            (!ev.corpus && ev.class === 'CATASTROPHE' && ev.magnitude === 'W'))
     catastrophe(state, ev, rng.corpus);
 
-  // Coinage: the moment the settlement problem stops being physical.
-  if (!state.coinageKnown && ev.year >= -600 &&
-      /coin|karshapana|bent-bar|punch-marked|money/i.test(ev.title)) {
+  // Coinage: the moment the settlement problem stops being physical. Granted
+  // by the event's own `grants` field (baked by the generator) — the title
+  // regex that used to sit here was the last text-matching hack in the
+  // engine, deleted in phase 39.
+  if (ev.grants === 'coinage' && !state.coinageKnown) {
     state.coinageKnown = true;
     state.coin = Math.floor(state.grain * 0.05);
     record(state, ev.year, 'epoch',
       'Money. Value stops being heavy, stops rotting, and stops taking a season to arrive.');
   }
+  if (ev.grants && ev.grants.startsWith('good:')) state.goods.add(ev.grants.slice(5));
 
-  if (ev.magnitude === 'W' || ev.class === 'EPOCH')
+  // W events and epochs always record; so does any conditional fire — the
+  // world just satisfied a condition, and a payoff nobody hears is a bug.
+  if (ev.magnitude === 'W' || ev.class === 'EPOCH' || ev.trigger === 'conditional')
     record(state, ev.year, ev.class.toLowerCase(), ev.title, { id: ev.id, mag: ev.magnitude });
 }
 

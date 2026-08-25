@@ -613,6 +613,13 @@ for (const ev of events) {
     if (ev.affects) affected++;
   } else affected++;
 
+  // grants — the engine hooks that used to be title regexes
+  if (!ev.grants) {
+    const t = ev.title.toLowerCase();
+    if (/punch-marked coinage|money enters the game/.test(t)) ev.grants = 'coinage';
+    else if (/paper displaces palm leaf/.test(t)) ev.grants = 'good:paper';
+  }
+
   // teaches
   if (!ev.teaches) {
     const card = authoredFor(CARD_IDX, ev);
