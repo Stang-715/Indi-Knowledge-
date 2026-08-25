@@ -120,11 +120,15 @@ const cityRenderer = new CityRenderer({ cities: cityData.cities });
 const DP = { timeline, works, people, gazetteer, texture, occupations };
 const CARDS = indexCards(cardsDoc);
 const THREAD_IDX = indexThreads(timeline);
+const CHAPTER_BY_ID = new Map((timeline.chapters ?? []).map(c => [c.id, c]));
+const withChapter = (ev) =>
+  ev.chapter && CHAPTER_BY_ID.has(ev.chapter)
+    ? { ...ev, chapterName: CHAPTER_BY_ID.get(ev.chapter).name } : ev;
 const eraOf = (y) => timeline.eras.find(e => y >= e.from && y < e.to) ?? timeline.eras[15];
 
 /** Open a full event card. This is where `evidence` and `dispute` get read. */
 function openCard(ev) {
-  const m = cardModel(ev, { era: eraOf(ev.year), authored: authoredFor(CARDS, ev),
+  const m = cardModel(withChapter(ev), { era: eraOf(ev.year), authored: authoredFor(CARDS, ev),
                             threads: threadsFor(THREAD_IDX, ev) });
   $('drawer-inner').innerHTML = renderCard(m);
   $('drawer').classList.add('on');
@@ -163,7 +167,7 @@ document.addEventListener('click', (e) => {
 
 function openYear(year) {
   const evs = timeline.events.filter(e => e.year === year && e.scope !== 'prologue');
-  const models = evs.map(e => cardModel(e, { era: eraOf(year), authored: authoredFor(CARDS, e),
+  const models = evs.map(e => cardModel(withChapter(e), { era: eraOf(year), authored: authoredFor(CARDS, e),
                                              threads: threadsFor(THREAD_IDX, e) }));
   const log = state.log.filter(l => l.year === year);
   $('drawer-inner').innerHTML = renderYearPage(year, { events: models, log, era: eraOf(year) });

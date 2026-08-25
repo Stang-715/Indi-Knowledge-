@@ -371,6 +371,13 @@ function validate(doc) {
       `density: ${era.name} — ${n} events across ${era.hours} h = one per ${gap === Infinity ? '∞' : gap.toFixed(1)} min`);
   }
 
+  // Rule 5, enforceable at last: every disputed event carries at least two
+  // citations. For nine years of this project the rule existed and nothing
+  // could check it.
+  for (const ev of doc.events)
+    if (ev.dispute && (!ev.sources || ev.sources.length < 2))
+      errors.push(`${ev.id}: disputed with ${ev.sources?.length ?? 0} citation(s)`);
+
   return { errors, warnings, share, total };
 }
 
@@ -563,6 +570,8 @@ const AFFECTS = JSON.parse(readFileSync(join(ROOT, 'data/timeline/affects.json')
   .affects.sort((a, b) => b.match.length - a.match.length);
 
 const CARDS = JSON.parse(readFileSync(join(ROOT, 'data/timeline/cards.json'), 'utf8'));
+const SOURCES = JSON.parse(readFileSync(join(ROOT, 'data/timeline/sources.json'), 'utf8'));
+const SOURCE_KEYS = Object.keys(SOURCES.sources).sort((a, b) => b.length - a.length);
 const CARD_IDX = indexCards(CARDS);
 
 // Deterministic 32-bit hash for the jitter. No Math.random in a build tool
@@ -612,6 +621,37 @@ for (const ev of events) {
     }
     if (ev.affects) affected++;
   } else affected++;
+
+  // becomes — the last eighteen placeholders, filled by table (phase 40)
+  if (ev.class === 'INVASION' && (!ev.becomes || ev.becomes === 'nothing')) {
+    const t = ev.title;
+    if (t.includes("Dasarajna")) ev.becomes = "Bharata hegemony on the Ravi, and a battle remembered in hymn so long it becomes the epic tradition's seed.";
+    if (t.includes("Ajatashatru; the war with Vajji")) ev.becomes = "Magadhan primacy, siege engineering as a discipline, and the republican form's strongest example gone \u2014 the template for absorbing an assembly-state.";
+    if (t.includes("Porus and the elephant line")) ev.becomes = "Porus restored as a satrap-king \u2014 the mandala's logic applied by a Macedonian \u2014 and the elephant priced into every later army's budget.";
+    if (t.includes("Revolt in the satrapies")) ev.becomes = "The power vacuum Chandragupta walks into; within a decade the northwest is Mauryan.";
+    if (t.includes("Skandagupta dies")) ev.becomes = "The fiscal exhaustion visible in the debased late Gupta coinage; the empire's western provinces slip within a generation.";
+    if (t.includes("Pallava\u2013Pandya wars begin")) ev.becomes = "Three centuries of contest that fund temple-building as competitive display \u2014 the southern architectural tradition is partly an arms race in stone.";
+    if (t.includes("Pratihara\u2013Pala\u2013Rashtrakuta struggle")) ev.becomes = "Three exhausted empires and a power vacuum at Kannauj \u2014 the ground on which the Ghurid conquest will find no united answer.";
+    if (t.includes("Parantaka I")) ev.becomes = "Chola consolidation of the Tamil plain and the endowment surge at Chidambaram \u2014 victory converted directly into temple gold.";
+    if (t.includes("Chola\u2013Pandya wars open")) ev.becomes = "A two-century rivalry that keeps the far south militarised and makes Sri Lanka the recurring second front.";
+    if (t.includes("Takkolam")) ev.becomes = "A generation's pause in Chola expansion, and the Rashtrakuta claim to be the arbiter of the whole peninsula at its zenith.";
+    if (t.includes("conquest of Sri Lanka begins")) ev.becomes = "Chola Rajarata: Polonnaruwa as a provincial capital, Shiva temples on the island, and a Tamil military-mercantile presence that outlasts the occupation.";
+    if (t.includes("Kerala and Pandya campaigns")) ev.becomes = "The western ports brought inside the Chola trade system \u2014 the pepper coast now ships under Chola protection.";
+    if (t.includes("Sri Lanka campaign completed")) ev.becomes = "Direct rule from Polonnaruwa for fifty years; when Vijayabahu expels the Cholas, he keeps their capital and much of their administration.";
+    if (t.includes("Ganges expedition")) ev.becomes = "A new capital named for the deed, Ganges water in its tank, and the northern campaign converted wholly into sacral legitimacy.";
+    if (t.includes("Chola wars exhaust the Cheras")) ev.becomes = "The Chera Perumal state's collapse into chiefdoms \u2014 and out of the fragments, the port polities that will meet the Portuguese.";
+    if (t.includes("First Tarain")) ev.becomes = "A won battle and an unchanged strategy; the reprieve lasts one year and enters legend as the high-water mark of Rajput cavalry.";
+    if (t.includes("Tibet expedition destroyed")) ev.becomes = "The eastern frontier fixed at the hills for five centuries, and Bengal's conquerors turned south and east instead \u2014 toward the delta.";
+    if (t.includes("Mongol invasions repelled")) ev.becomes = "The standing army and market controls built to pay for it \u2014 a fiscal-military state assembled against the steppe and then pointed at the Deccan.";
+  }
+
+  // sources — citations on every disputed event (phase 40; rule 5 finally
+  // enforceable)
+  if (ev.dispute && !ev.sources) {
+    const hit = SOURCE_KEYS.find(k =>
+      ev.id.includes(k) || ev.title.toLowerCase().includes(k.toLowerCase()));
+    if (hit) ev.sources = SOURCES.sources[hit];
+  }
 
   // grants — the engine hooks that used to be title regexes
   if (!ev.grants) {
@@ -685,6 +725,50 @@ for (const ev of events) {
     ` (smallest: ${Math.min(...perThread.values())})`);
 }
 
+/* ── Phase 40: chapters — the narrative unit between era and event ───────
+ *
+ * The doc has always named them (the "*Chapters: ...*" line under each era
+ * heading); nothing ever read those lines. Each era's chapters are parsed
+ * from its own line and its events are split into them by quantile, so every
+ * chapter holds a comparable share of the era's happenings — narrative
+ * grouping for the UI, no mechanical weight.
+ */
+const chapterDefs = [];
+{
+  const eraHeads = [...md.matchAll(/^#{2,3} Era (\d+)[^\n]*\n+\*Chapters: ([^*]+)\*/gm)];
+  for (const m of eraHeads) {
+    const era = ERAS.find(e => e.n === Number(m[1]));
+    if (!era) continue;
+    const names = m[2].split('·').map(x => x.trim()).filter(Boolean);
+    const evs = events.filter(e => e.era === era.id).sort((a, b) => a.year - b.year);
+    const per = Math.max(1, evs.length / names.length);
+    names.forEach((name, i) => {
+      const lo = evs[Math.floor(i * per)]?.year ?? era.from;
+      const hi = i === names.length - 1 ? era.to
+               : (evs[Math.floor((i + 1) * per)]?.year ?? era.to);
+      const id = 'CHP.' + era.id.replace('ERA.', '') + '.' +
+        name.toUpperCase().replace(/[^A-Z0-9]+/g, '_').replace(/^_|_$/g, '');
+      chapterDefs.push({ id, era: era.id, name, from: i === 0 ? era.from : lo, to: hi });
+    });
+    // Same-year event clusters produce zero-width quantiles; force each
+    // chapter to start where the last one ended and to span at least a year,
+    // with the era's last chapter always reaching the era boundary.
+    const chs = chapterDefs.filter(c => c.era === era.id);
+    for (let i = 0; i < chs.length; i++) {
+      if (i > 0) chs[i].from = chs[i - 1].to;
+      if (chs[i].to <= chs[i].from) chs[i].to = chs[i].from + 1;
+      if (i === chs.length - 1) chs[i].to = era.to;
+    }
+  }
+  // Assign each event its chapter.
+  for (const ev of events) {
+    const ch = chapterDefs.find(c => c.era === ev.era && ev.year >= c.from && ev.year < c.to)
+            ?? chapterDefs.filter(c => c.era === ev.era).at(-1);
+    if (ch) ev.chapter = ch.id;
+  }
+  console.log(`  Chapters   ${chapterDefs.length} across ${new Set(chapterDefs.map(c => c.era)).size} eras`);
+}
+
 const doc = {
   $schema: '../../packages/schema/timeline.schema.json',
   note: 'Generated from docs/07-timeline.md. The document is the source of truth; edit it, not this file. NOT yet historian-reviewed.',
@@ -693,6 +777,7 @@ const doc = {
   campaign_hours: 210,
   eras: ERAS.map(({ n, ...e }) => ({ ...e, number: n })),
   threads: THREADS.threads.map(t => ({ ...t })),
+  chapters: chapterDefs,
   regions: Object.entries(REGIONS).map(([name, id]) => ({ id, name })),
   events,
 };

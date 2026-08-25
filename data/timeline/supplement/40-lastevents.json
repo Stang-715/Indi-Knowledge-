@@ -1,0 +1,400 @@
+{
+ "phase": 40,
+ "name": "The last events",
+ "note": "Twenty events for the two classes the retired targets left materially short: twelve invasions chosen for what they became, eight sites chosen for what they teach. The counting stops here; density and silence rules bind from now on.",
+ "events": [
+  {
+   "id": "EVT.INV40.TORAMANA",
+   "title": "Toramana carries Huna rule deep into central India",
+   "class": "INVASION",
+   "magnitude": "M",
+   "year": 500,
+   "era": "ERA.GUPTA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Eran boar inscription dated in his reign, and his coins across Malwa.",
+   "window": [
+    475,
+    525
+   ],
+   "becomes": "A Huna king using Sanskrit inscriptions and local administrative forms within a generation — the assimilation running faster than the war."
+  },
+  {
+   "id": "EVT.INV40.SONDANI",
+   "title": "Mihirakula is broken at Sondani by an Indian coalition",
+   "class": "INVASION",
+   "magnitude": "M",
+   "year": 528,
+   "era": "ERA.GUPTA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Yashodharman's victory pillars at Sondani, boasting rule from the Brahmaputra to the western ocean.",
+   "window": [
+    503,
+    553
+   ],
+   "becomes": "The Huna threat ends as a political force; the coalition dissolves within a decade, and the pillar's empire never outlives its inscription.",
+   "note": "The victory column outlasted the victory by fourteen centuries."
+  },
+  {
+   "id": "EVT.INV40.KOPPAM",
+   "title": "Koppam: the Chola and Chalukya armies bleed each other on the Krishna",
+   "class": "INVASION",
+   "magnitude": "M",
+   "year": 1052,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "evidence": "Both dynasties' inscriptions claiming the day; a Chola king dies on the field and his brother is crowned on it.",
+   "window": [
+    1027,
+    1077
+   ],
+   "becomes": "A succession made on the battlefield — Rajendra II crowned amid the fighting — and a rivalry pushed one generation closer to exhaustion."
+  },
+  {
+   "id": "EVT.INV40.KALYANI_SACK",
+   "title": "The Cholas sack Kalyani and carry off a door-guardian",
+   "class": "INVASION",
+   "magnitude": "R",
+   "year": 1045,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "evidence": "The dvarapala taken to Darasuram, where it still stands, inscribed as loot from Kalyani.",
+   "window": [
+    1020,
+    1070
+   ],
+   "becomes": "A trophy with a label: the clearest surviving object of inter-imperial war in the medieval south."
+  },
+  {
+   "id": "EVT.INV40.MALIK_KAFUR",
+   "title": "Malik Kafur rides to Madurai and back",
+   "class": "INVASION",
+   "magnitude": "W",
+   "year": 1311,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Amir Khusrau's campaign account, and the sudden appearance of southern temple gold in Delhi's treasury records.",
+   "window": [
+    1286,
+    1336
+   ],
+   "becomes": "No annexation — a demonstration: the south is reachable. Vijayanagara is founded within a generation by men who absorbed the lesson.",
+   "threads": [
+    "THR.THE_NORTHWEST_GATE"
+   ]
+  },
+  {
+   "id": "EVT.INV40.RAICHUR",
+   "title": "Raichur: Vijayanagara takes the doab with massed matchlocks",
+   "class": "INVASION",
+   "magnitude": "M",
+   "year": 1520,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "evidence": "The Portuguese eyewitness account of Fernão Nunes, and the Bijapur chronicles' admission of the loss.",
+   "window": [
+    1495,
+    1545
+   ],
+   "becomes": "Krishnadevaraya at his zenith and gunpowder decisive in a Deccan field battle — the sultanates ally within a generation, and Talikota is the answer."
+  },
+  {
+   "id": "EVT.INV40.TURBAK",
+   "title": "The Ahoms destroy Turbak's invasion and take his guns",
+   "class": "INVASION",
+   "magnitude": "M",
+   "year": 1533,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ASSAM",
+   "dispute": false,
+   "evidence": "The buranjis' detailed account, including the captured firearms reverse-engineered afterwards.",
+   "window": [
+    1508,
+    1558
+   ],
+   "becomes": "Ahom firearms manufacture begins from captured pieces — the frontier state arms itself with the invader's own technology."
+  },
+  {
+   "id": "EVT.INV40.COLACHEL",
+   "title": "Colachel: Travancore defeats a European power in pitched battle",
+   "class": "INVASION",
+   "magnitude": "M",
+   "year": 1741,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.KERALA",
+   "dispute": false,
+   "evidence": "The Dutch East India Company's own records of the defeat, and the captured commander De Lannoy's later service.",
+   "becomes": "The Dutch never recover on the Malabar coast; their captured commander rebuilds Travancore's army on European lines for its own king.",
+   "note": "The losing commander switched sides and spent thirty years building his captor's army. Both parties considered it a good bargain."
+  },
+  {
+   "id": "EVT.INV40.ANGRE",
+   "title": "Kanhoji Angre's fleet makes the Konkan coast unsafe for Europe",
+   "class": "INVASION",
+   "magnitude": "M",
+   "year": 1712,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false,
+   "evidence": "Company and Portuguese records of captured ships and failed punitive expeditions across three decades.",
+   "window": [
+    1687,
+    1737
+   ],
+   "year_end": 1756,
+   "becomes": "Proof that European navies could be resisted in coastal waters — a proof that died with the Angre fleet in 1756, one year before Plassey."
+  },
+  {
+   "id": "EVT.INV40.MANIPUR_BURMA",
+   "title": "The Seven Years' Devastation empties Manipur",
+   "class": "INVASION",
+   "magnitude": "M",
+   "year": 1819,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ASSAM",
+   "dispute": false,
+   "evidence": "The Manipuri chronicle's account of the Burmese occupation, and the refugee settlements in Cachar.",
+   "window": [
+    1794,
+    1844
+   ],
+   "year_end": 1826,
+   "becomes": "Manipur's depopulation and the Anglo-Burmese war's eastern casus belli — the valley re-founded under a British-aligned king."
+  },
+  {
+   "id": "EVT.INV40.ABDALI_DELHI",
+   "title": "Abdali sacks Delhi the year of Plassey",
+   "class": "INVASION",
+   "magnitude": "M",
+   "year": 1757,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Delhi chronicles of the sack, and the Company's simultaneous correspondence from Bengal.",
+   "becomes": "The old empire is stripped in the same twelve months the new power takes Bengal's revenue — the succession happens at both ends at once.",
+   "threads": [
+    "THR.THE_NORTHWEST_GATE"
+   ]
+  },
+  {
+   "id": "EVT.INV40.CHITTOR_1567",
+   "title": "Akbar takes Chittor and the memory outlives the war",
+   "class": "INVASION",
+   "magnitude": "M",
+   "year": 1567,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.RAJASTHAN",
+   "dispute": false,
+   "evidence": "The Akbarnama's own account of the massacre after the fall, and the fort's abandonment as a capital.",
+   "becomes": "Mewar moves its capital to the hills and never submits fully; the siege enters Rajput memory beside 1303, and Udaipur is the consequence."
+  },
+  {
+   "id": "EVT.SIT40.SIRKAP",
+   "title": "Sirkap: Taxila's second city, laid out on a Greek grid",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": -180,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Marshall's excavation of the gridded city with its stupas, temples and the double-headed eagle shrine.",
+   "window": [
+    -205,
+    -155
+   ],
+   "note": "A Greek plan filling up with Buddhist shrines — the whole northwest in one street plan."
+  },
+  {
+   "id": "EVT.SIT40.CHUDAMANI",
+   "title": "The Chudamani Vihara: Srivijaya builds a monastery at Nagapattinam",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": 1006,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "evidence": "The larger Leiden copper plates recording the Srivijayan king's endowment and Rajaraja's grant of a village to it.",
+   "window": [
+    981,
+    1031
+   ],
+   "note": "The empire the Cholas would raid in 1025 was funding a monastery in the Chola port in 1006. Trade, faith and war shared one sea."
+  },
+  {
+   "id": "EVT.SIT40.BHITARI",
+   "title": "Bhitari: the pillar where the Gupta-Huna war is narrated",
+   "class": "SITE",
+   "magnitude": "R",
+   "year": 456,
+   "era": "ERA.GUPTA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Skandagupta's Bhitari pillar inscription describing the war, the shaken throne and the restoration.",
+   "window": [
+    431,
+    481
+   ]
+  },
+  {
+   "id": "EVT.SIT40.VATAPI_CAVES",
+   "title": "Badami's cave temples are cut into the sandstone gorge",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": 578,
+   "era": "ERA.GUPTA",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "evidence": "Cave 3's dedicatory inscription of Mangalesha, dated by regnal year — the earliest dated Chalukya monument.",
+   "window": [
+    553,
+    603
+   ]
+  },
+  {
+   "id": "EVT.SIT40.KAVERIPATTINAM_END",
+   "title": "Kaveripattinam declines as the sea and the river both withdraw",
+   "class": "SITE",
+   "magnitude": "R",
+   "year": 300,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.6,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "evidence": "The abandonment horizon in the excavated wharf area, and the Manimekalai's memory of a city taken by the sea.",
+   "window": [
+    275,
+    325
+   ]
+  },
+  {
+   "id": "EVT.SIT40.BHINMAL",
+   "title": "Bhinmal: where Brahmagupta computed, a market city of the west",
+   "class": "SITE",
+   "magnitude": "R",
+   "year": 628,
+   "era": "ERA.GUPTA",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.RAJASTHAN",
+   "dispute": false,
+   "evidence": "Xuanzang's description of Pi-lo-mo-lo, and the Brahmasphutasiddhanta's own colophon placing its author there.",
+   "window": [
+    603,
+    653
+   ]
+  },
+  {
+   "id": "EVT.SIT40.LAKHMANDAL",
+   "title": "Lakhamandal and the Yamuna valley's stone temples",
+   "class": "SITE",
+   "magnitude": "R",
+   "year": 750,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "provenance": "SOURCED",
+   "certainty": 0.65,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The temple complex and its inscription naming a queen's endowment.",
+   "window": [
+    725,
+    775
+   ]
+  },
+  {
+   "id": "EVT.SIT40.UDAYAGIRI_GUPTA",
+   "title": "Udayagiri: the Gupta caves where kingship and cosmology are carved together",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": 401,
+   "era": "ERA.GUPTA",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Cave 5's Varaha panel with Chandragupta II's inscribed date — the boar raising the earth as the king watches.",
+   "window": [
+    376,
+    426
+   ],
+   "note": "A political statement in mythological grammar, dated to the year."
+  }
+ ]
+}

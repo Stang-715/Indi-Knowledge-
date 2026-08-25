@@ -96,6 +96,7 @@ export function cardModel(ev, { era, threads = [], people = [], authored = null 
     yearEnd: ev.year_end,
     approx,
     era: era?.name ?? '',
+    chapter: ev.chapterName ?? null,
     certainty: certaintyLabel(ev),
     magnitude: MAG_LABEL[ev.magnitude] ?? '',
     title: ev.title,
@@ -196,7 +197,7 @@ export function renderCard(m) {
     <header class="ribbon">
       <span>${m.approx ? '~' : ''}${fmtYear(m.year)}${
         m.yearEnd && m.yearEnd !== m.year ? `–${fmtYear(m.yearEnd)}` : ''}</span>
-      <span>${m.era}</span>
+      <span>${m.chapter ? `${m.chapter} · ` : ''}${m.era}</span>
       <span class="cert cert--${m.certainty}">${m.certainty}</span>
     </header>
 

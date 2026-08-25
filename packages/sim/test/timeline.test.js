@@ -270,3 +270,31 @@ test('the assemblies run from the sabha to the Constituent Assembly', () => {
   assert.ok(beats[0].year <= -900, `first beat is ${beats[0].year}`);
   assert.ok(beats.at(-1).year >= 1900, `last beat is ${beats.at(-1).year}`);
 });
+
+/* ── Phase 40: the last events ──────────────────────────────────────────── */
+
+test('no invasion carries the placeholder any more', () => {
+  const bad = TL.events.filter(e => e.class === 'INVASION' && e.becomes === 'nothing');
+  assert.deepEqual(bad.map(e => e.title), []);
+});
+
+test('every disputed event carries at least two citations', () => {
+  for (const e of TL.events)
+    if (e.dispute)
+      assert.ok((e.sources ?? []).length >= 2, `${e.id} has ${e.sources?.length ?? 0}`);
+});
+
+test('chapters exist, cover their eras, and every event has one', () => {
+  assert.ok(TL.chapters.length >= 62, `${TL.chapters.length} chapters`);
+  for (const c of TL.chapters) assert.ok(c.to > c.from, `${c.id} is degenerate`);
+  for (const e of TL.events)
+    assert.ok(e.chapter, `${e.id} has no chapter`);
+  // Chapters tile each era without gaps.
+  for (const era of TL.eras) {
+    const chs = TL.chapters.filter(c => c.era === era.id).sort((a, b) => a.from - b.from);
+    assert.ok(chs.length >= 3, `${era.id} has ${chs.length} chapters`);
+    assert.equal(chs[0].from, era.from);
+    assert.equal(chs.at(-1).to, era.to);
+    for (let i = 1; i < chs.length; i++) assert.equal(chs[i].from, chs[i - 1].to);
+  }
+});

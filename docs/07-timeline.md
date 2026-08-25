@@ -1164,6 +1164,8 @@ Systems all run; event density drops roughly 5× and chapters coarsen.
 
 ### Era 14 · Delhi & Vijayanagara — 1279–1526 · 14 h
 
+*Chapters: The Sultanate Machine · Paper and the Tanka · The Southern Answer · The Fragments as Patrons*
+
 1221 Genghis at the Indus · 1297–1308 Mongol invasions repelled · 1296–1316 Alauddin's
 market controls · 1327 Daulatabad · 1330 token currency fails · 1333 Ibn Battuta ·
 **1336 Vijayanagara founded** · 1347 Bahmani secession · **~1350 paper displaces palm
@@ -1173,12 +1175,16 @@ leaf — recopying costs collapse** · 1398 Timur sacks Delhi · ~1440–1518 Ka
 
 ### Era 15 · Early Modern — 1526–1757 · 10 h
 
+*Chapters: The Gunpowder Turn · The Measured Empire · The Argument at Court · The Provinces Take Over*
+
 1526 First Panipat · 1540–55 Sher Shah: the rupiya, the Grand Trunk Road, revenue survey ·
 1565 Talikota · **1595 the *Ain-i-Akbari*** · 1600 the East India Company chartered ·
 1604 the Adi Granth · 1657 Dara Shikoh's *Sirr-i-Akbar* · 1674 Shivaji crowned ·
 1699 the Khalsa · 1707 Aurangzeb dies · 1739 Nadir Shah · 1761 Third Panipat
 
 ### Era 16 · Colonial — 1757–1947 · 13 h
+
+*Chapters: The Diwani · The Survey State · The Drain and the Loom · The Awakening · The Endgame*
 
 1757/1765 Plassey and the Diwani — **the Drain opens** · 1770 the Great Bengal Famine ·
 1784–1947 colonial manuscript removal — displacement, not destruction · 1793 the
