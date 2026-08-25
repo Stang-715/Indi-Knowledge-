@@ -10807,15 +10807,12 @@
    "era": "ERA.CLASSICAL",
    "class": "STRUCTURE",
    "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
+   "certainty": 0.45,
+   "trigger": "latent",
    "scope": "regional",
    "region": "RGN.TAMILAKAM",
-   "dispute": false,
-   "window": [
-    -105,
-    -95
-   ]
+   "dispute": true,
+   "dispute_scope": "date"
   },
   {
    "id": "EVT.M100.THE_KRISHNA_VALLEY_TRADE_ROUTE_TO_THE_COAST",
@@ -11650,15 +11647,12 @@
    "era": "ERA.CLASSICAL",
    "class": "REFORM",
    "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
+   "certainty": 0.45,
+   "trigger": "latent",
    "scope": "subcontinental",
    "region": null,
-   "dispute": false,
-   "window": [
-    75,
-    85
-   ]
+   "dispute": true,
+   "dispute_scope": "date"
   },
   {
    "id": "EVT.100.BALI_JATRA_THE_SAILING_SEASON_TO_JAVA_AND_BA",
@@ -14616,15 +14610,12 @@
    "era": "ERA.GUPTA",
    "class": "FOUNDATION",
    "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
+   "certainty": 0.45,
+   "trigger": "latent",
    "scope": "regional",
    "region": "RGN.BENGAL",
-   "dispute": false,
-   "window": [
-    588,
-    612
-   ]
+   "dispute": true,
+   "dispute_scope": "date"
   },
   {
    "id": "EVT.600.THE_ALVARS_AND_NAYANARS_BEGIN_BHAKTI_IN_TAMI",
@@ -26595,10 +26586,10 @@
    "COLONIAL": 54
   },
   "by_trigger": {
-   "window": 1082,
-   "latent": 34,
+   "window": 1079,
+   "latent": 37,
    "dated": 235
   },
-  "disputed": 65
+  "disputed": 68
  }
 }

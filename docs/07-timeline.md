@@ -653,7 +653,7 @@ pays for 648,802 settlements.
 | ~50 | Muziris: Roman gold flows in; Pliny complains about the deficit | TRADE | W |
 | ~60 | The Western Satraps; dated coinage begins — unusual precision | TRANSITION | W |
 | ~78 | Shaka era; Kanishka ‡ — *date contested, `window`* | — | W |
-| ~80 | Fourth Buddhist Council; Mahayana crystallises | REFORM | W |
+| ~80 | Fourth Buddhist Council; Mahayana crystallises ‡ | REFORM | W |
 | **~100** | **Gandharan art. The first images of the Buddha** | TRANSITION | **W** |
 | ~100 | The Mathura school — a parallel, independent idiom | TRANSITION | W |
 | ~100 | Kanishka's coinage names Greek, Iranian and Indian deities together | TRANSITION | W |
@@ -856,7 +856,7 @@ Running total: **496 + 250 = 746 ancient events**, plus 41 in the skim = **787**
 | ~250 | Ashokan edicts name the Cholas, Pandyas and Keralaputras | WORK | W |
 | ~200 | The three crowned kings: Chera, Chola, Pandya | FOUNDATION | W |
 | ~150 | Muziris and Korkai on the Roman circuit | TRADE | W |
-| ~100 | Karikala Chola; the Kallanai dam on the Kaveri | STRUCTURE | W |
+| ~100 | Karikala Chola; the Kallanai dam on the Kaveri ‡ | STRUCTURE | W |
 | ~50 CE | Arikamedu: amphorae, Arretine ware, a Yavana quarter | SITE | W |
 | ~100 | Pattinappalai and the Puhar poems | WORK | M |
 | ~150 | *Silappatikaram*: a merchant's wife burns Madurai down | WORK | W |
@@ -979,7 +979,7 @@ Running total: **496 + 250 = 746 ancient events**, plus 41 in the skim = **787**
 | ~150 | Gangaridai in Greek and Roman accounts | TRADE | M |
 | ~350 CE | Samatata and Vanga as distinct polities | FOUNDATION | M |
 | ~450 | Copper-plate land grants proliferate | TRANSITION | W |
-| ~600 | **Shashanka of Gauda; the Bengali era** | FOUNDATION | W |
+| ~600 | **Shashanka of Gauda; the Bengali era** ‡ | FOUNDATION | W |
 | ~750 | **Gopala elected king — the Pala foundation, by assembly** | FOUNDATION | **W** |
 | ~770 | Dharmapala; Vikramashila and Somapura founded | FOUNDATION | W |
 | ~800 | Somapura Mahavihara at Paharpur — the largest south of the Himalaya | FOUNDATION | W |
