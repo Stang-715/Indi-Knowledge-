@@ -401,6 +401,26 @@ const SITES = [
   { id:'kaveripattinam',name:'Kaveripattinam',lon:79.85,lat:11.14,from:-400,sprite:'port', port:true },
 ];
 const SITE_BY_ID = new Map(SITES.map(s => [s.id, s]));
+// Native names (phase 41): each site borrows its gazetteer entry's native
+// form and script, matched by name. The label is drawn native-first at close
+// zoom; a site without a native form stays Latin — never tofu.
+for (const s of SITES) {
+  const g = gazetteer.places.find(p =>
+    p.name.toLowerCase().split(' (')[0] === s.name.toLowerCase()
+    || p.id === s.id);
+  if (g?.native) { s.native = g.native; s.script = g.script; }
+}
+// data-URI faces load lazily and fonts.ready resolves before they do —
+// load each script we will actually draw, with a sample glyph, then repaint.
+let INDIC_READY = false;
+{
+  const wanted = new Map();
+  for (const s of SITES) if (s.native) wanted.set(s.script, s.native[0]);
+  Promise.all([...wanted].map(([sc, ch]) =>
+    document.fonts?.load?.(`10px 'PI-${sc}'`, ch) ?? Promise.resolve()))
+    .then(() => { INDIC_READY = true; })
+    .catch(() => {});
+}
 
 /** Sprite images, rasterised once. */
 const SPRITE_IMG = new Map();
@@ -546,6 +566,19 @@ function drawSites(proj, level, dive) {
     ctx.strokeText(s.name, bx, by);
     ctx.fillStyle = dead ? 'rgba(42,33,24,.5)' : '#2A2118';
     ctx.fillText(s.name, bx, by);
+
+    // Native form beneath, at close zoom, in the script's own subset face.
+    // Place names are half the atmosphere (08-visual §6.5), and a game about
+    // Indian knowledge that cannot set Tamil is embarrassing.
+    if (s.native && INDIC_READY && level >= 3) {
+      const f = ctx.font;
+      ctx.font = `${Math.round(10 * dpr)}px 'PI-${s.script}', serif`;
+      const nw = ctx.measureText(s.native).width;
+      const nx = x - nw / 2, ny = by + 12 * dpr;
+      ctx.strokeText(s.native, nx, ny);
+      ctx.fillText(s.native, nx, ny);
+      ctx.font = f;
+    }
   }
   ctx.restore();
 }

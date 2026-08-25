@@ -1,0 +1,114 @@
+{
+ "note": "Exact-subset Indic fonts for the gazetteer’s native names. Regenerate with tools/fetch-fonts.mjs.",
+ "total": 163364,
+ "fonts": {
+  "taml": {
+   "family": "Noto Serif Tamil",
+   "bytes": 9212,
+   "chars": 33,
+   "parts": [
+    {
+     "file": "taml-0.woff2",
+     "range": "U+20, U+b85-b86, U+b89, U+b95, U+b99-b9a, U+b9e-b9f, U+ba3-ba4, U+ba8-baa, U+bae-bb2, U+bb4-bb5, U+bb8, U+bbe-bc2, U+bc6-bc8, U+bca-bcb, U+bcd",
+     "bytes": 9212
+    }
+   ]
+  },
+  "knda": {
+   "family": "Noto Serif Kannada",
+   "bytes": 16220,
+   "chars": 35,
+   "parts": [
+    {
+     "file": "knda-0.woff2",
+     "range": "U+c82, U+c89, U+c90, U+c95, U+c97, U+c9a, U+c9c, U+c9f, U+ca1, U+ca3-ca4, U+ca6, U+ca8, U+caa, U+cac, U+cae-cb0, U+cb2-cb3, U+cb5-cb6, U+cb8-cb9, U+cbe-cc2, U+cc6-cc8, U+cca-ccb, U+ccd, U+cd5-cd6",
+     "bytes": 16220
+    }
+   ]
+  },
+  "telu": {
+   "family": "Noto Serif Telugu",
+   "bytes": 14712,
+   "chars": 27,
+   "parts": [
+    {
+     "file": "telu-0.woff2",
+     "range": "U+c02, U+c05-c06, U+c15, U+c17, U+c1a, U+c1c, U+c1f, U+c21, U+c24, U+c27-c28, U+c2a, U+c2e-c30, U+c32, U+c35, U+c37, U+c3e-c41, U+c47, U+c4a-c4b, U+c4d",
+     "bytes": 14712
+    }
+   ]
+  },
+  "mlym": {
+   "family": "Noto Serif Malayalam",
+   "bytes": 5552,
+   "chars": 20,
+   "parts": [
+    {
+     "file": "mlym-0.woff2",
+     "range": "U+d02, U+d15, U+d1a, U+d1f, U+d23, U+d2a, U+d2e-d30, U+d33-d35, U+d38, U+d3e-d3f, U+d41, U+d46-d48, U+d4a-d4b, U+d4d",
+     "bytes": 5552
+    }
+   ]
+  },
+  "beng": {
+   "family": "Noto Serif Bengali",
+   "bytes": 35284,
+   "chars": 40,
+   "parts": [
+    {
+     "file": "beng-0.woff2",
+     "range": "U+2d, U+982, U+985, U+987, U+989, U+995-998, U+99a, U+99c, U+99f, U+9a1-9a6, U+9a8, U+9aa, U+9ac, U+9ae-9b0, U+9b2, U+9b6, U+9b8-9b9, U+9bc, U+9be-9c1, U+9c7-9c8, U+9cb-9cd, U+9d7, U+9f0-9f1",
+     "bytes": 35284
+    }
+   ]
+  },
+  "orya": {
+   "family": "Noto Sans Oriya",
+   "bytes": 20996,
+   "chars": 32,
+   "parts": [
+    {
+     "file": "orya-0.woff2",
+     "range": "U+20, U+b07, U+b09, U+b13, U+b15, U+b17, U+b1c, U+b1f, U+b21, U+b23-b24, U+b27-b28, U+b2a, U+b2c-b2e, U+b30, U+b32-b33, U+b36, U+b38-b39, U+b3c, U+b3e-b41, U+b47, U+b4b, U+b4d, U+b71",
+     "bytes": 20996
+    }
+   ]
+  },
+  "deva": {
+   "family": "Noto Serif Devanagari",
+   "bytes": 32616,
+   "chars": 52,
+   "parts": [
+    {
+     "file": "deva-0.woff2",
+     "range": "U+20, U+901-902, U+905-909, U+913, U+915-918, U+91a-91c, U+91f-939, U+93c, U+93e-943, U+947-948, U+94b-94d",
+     "bytes": 32616
+    }
+   ]
+  },
+  "gujr": {
+   "family": "Noto Serif Gujarati",
+   "bytes": 17072,
+   "chars": 34,
+   "parts": [
+    {
+     "file": "gujr-0.woff2",
+     "range": "U+20, U+a82, U+a85, U+a95-a97, U+a9a-a9c, U+a9f, U+aa1, U+aa3-aa8, U+aaa, U+aac-aae, U+ab0, U+ab2-ab3, U+ab5, U+ab8, U+abe-ac2, U+ac7, U+acb, U+acd",
+     "bytes": 17072
+    }
+   ]
+  },
+  "sinh": {
+   "family": "Noto Serif Sinhala",
+   "bytes": 11700,
+   "chars": 24,
+   "parts": [
+    {
+     "file": "sinh-0.woff2",
+     "range": "U+20, U+d82, U+d85, U+d9a, U+d9c, U+db0-db1, U+db4, U+db8, U+dba-dbb, U+dbd, U+dc0-dc1, U+dc3-dc5, U+dca, U+dcf, U+dd2-dd4, U+dd9-dda, U+ddc-ddd, U+200d",
+     "bytes": 11700
+    }
+   ]
+  }
+ }
+}

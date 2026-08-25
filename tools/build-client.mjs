@@ -93,6 +93,21 @@ modules.set(ENTRY, { ...modules.get(ENTRY), src: entryCode });
 /* ── Assemble ───────────────────────────────────────────────────────────── */
 
 const css = readFileSync(join(ROOT, 'packages/ui/src/kit.css'), 'utf8');
+
+/* ── Indic fonts (phase 41): exact-subset woff2, embedded as data URIs ──── */
+let fontCSS = '';
+try {
+  const fm = JSON.parse(readFileSync(join(ROOT, 'data/fonts/manifest.json'), 'utf8'));
+  for (const [script, info] of Object.entries(fm.fonts)) {
+    for (const part of info.parts) {
+      const b64 = readFileSync(join(ROOT, 'data/fonts', part.file)).toString('base64');
+      fontCSS += `@font-face{font-family:'PI-${script}';` +
+        `src:url(data:font/woff2;base64,${b64}) format('woff2');` +
+        `unicode-range:${part.range};font-display:swap;}\n`;
+    }
+  }
+  console.log(`  fonts: ${Object.keys(fm.fonts).length} scripts, ${(fm.total / 1024).toFixed(1)} KB embedded`);
+} catch { console.warn('  ! no Indic fonts embedded (run tools/fetch-fonts.mjs)'); }
 const html = readFileSync(join(ROOT, 'apps/client/index.html'), 'utf8');
 
 const body = html
@@ -104,7 +119,7 @@ const body = html
 const inlineStyle = (html.match(/<style>([\s\S]*?)<\/style>/) ?? [, ''])[1];
 
 const out = `<title>Paramountcy</title>
-<style>${css}\n${inlineStyle}</style>
+<style>${fontCSS}${css}\n${inlineStyle}</style>
 ${body}
 <script type="module">
 const __DATA = ${JSON.stringify(inlined)};

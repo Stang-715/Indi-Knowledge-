@@ -298,3 +298,27 @@ test('chapters exist, cover their eras, and every event has one', () => {
     for (let i = 1; i < chs.length; i++) assert.equal(chs[i].from, chs[i - 1].to);
   }
 });
+
+/* ── Phase 41: the names in their own scripts ───────────────────────────── */
+
+test('the gazetteer speaks its own languages', () => {
+  const withNative = GAZ.places.filter(p => p.native);
+  assert.ok(withNative.length >= 180, `${withNative.length} native names`);
+  for (const p of withNative) {
+    assert.ok(p.script, `${p.id} has native text but no script tag`);
+    assert.ok(!/[A-Za-z]/.test(p.native), `${p.id} native form contains Latin`);
+  }
+  // Script follows region: Thanjavur in Tamil, Dholavira in Gujarati.
+  assert.equal(GAZ.places.find(p => p.id === 'thanjavur').script, 'taml');
+  assert.equal(GAZ.places.find(p => p.id === 'dholavira').script, 'gujr');
+});
+
+test('every script used has a committed font subset covering its glyphs', () => {
+  const manifest = JSON.parse(readFileSync(
+    new URL('../../../data/fonts/manifest.json', import.meta.url), 'utf8'));
+  const used = new Set(GAZ.places.filter(p => p.native).map(p => p.script));
+  for (const sc of used)
+    assert.ok(manifest.fonts[sc], `no font subset for ${sc}`);
+  assert.ok(manifest.total <= 900 * 1024,
+    `fonts total ${manifest.total} bytes, budget is 900 KB`);
+});

@@ -1,5 +1,5 @@
 {
- "note": "The gazetteer. `where` keys on timeline events resolve against these ids; the build fails on an unresolvable key, exactly as it does for an unresolvable work. Region ids double as coarse keys when nothing finer is honest.",
+ "note": "The gazetteer. `where` keys on timeline events resolve against these ids; the build fails on an unresolvable key, exactly as it does for an unresolvable work. Region ids double as coarse keys when nothing finer is honest. Places carry `native` and `script` where a native form is authored (phase 41); a place without one falls back to Latin — never tofu.",
  "places": [
   {
    "id": "RGN.TAMILAKAM",
@@ -7,7 +7,9 @@
    "lon": 78.5,
    "lat": 10.5,
    "region": "RGN.TAMILAKAM",
-   "kind": "region"
+   "kind": "region",
+   "native": "தமிழகம்",
+   "script": "taml"
   },
   {
    "id": "RGN.KARNATAKA",
@@ -15,7 +17,9 @@
    "lon": 76.2,
    "lat": 14.5,
    "region": "RGN.KARNATAKA",
-   "kind": "region"
+   "kind": "region",
+   "native": "ಕರ್ನಾಟಕ",
+   "script": "knda"
   },
   {
    "id": "RGN.ANDHRA",
@@ -23,7 +27,9 @@
    "lon": 79.5,
    "lat": 16.5,
    "region": "RGN.ANDHRA",
-   "kind": "region"
+   "kind": "region",
+   "native": "ఆంధ్ర",
+   "script": "telu"
   },
   {
    "id": "RGN.KERALA",
@@ -31,7 +37,9 @@
    "lon": 76.3,
    "lat": 10.0,
    "region": "RGN.KERALA",
-   "kind": "region"
+   "kind": "region",
+   "native": "കേരളം",
+   "script": "mlym"
   },
   {
    "id": "RGN.BENGAL",
@@ -39,7 +47,9 @@
    "lon": 88.4,
    "lat": 23.8,
    "region": "RGN.BENGAL",
-   "kind": "region"
+   "kind": "region",
+   "native": "বাংলা",
+   "script": "beng"
   },
   {
    "id": "RGN.ODISHA",
@@ -47,7 +57,9 @@
    "lon": 85.0,
    "lat": 20.3,
    "region": "RGN.ODISHA",
-   "kind": "region"
+   "kind": "region",
+   "native": "ଓଡ଼ିଶା",
+   "script": "orya"
   },
   {
    "id": "RGN.ASSAM",
@@ -55,7 +67,9 @@
    "lon": 92.9,
    "lat": 26.2,
    "region": "RGN.ASSAM",
-   "kind": "region"
+   "kind": "region",
+   "native": "অসম",
+   "script": "beng"
   },
   {
    "id": "RGN.KASHMIR",
@@ -63,7 +77,9 @@
    "lon": 74.8,
    "lat": 34.0,
    "region": "RGN.KASHMIR",
-   "kind": "region"
+   "kind": "region",
+   "native": "कश्मीर",
+   "script": "deva"
   },
   {
    "id": "RGN.GUJARAT",
@@ -71,7 +87,9 @@
    "lon": 71.5,
    "lat": 22.3,
    "region": "RGN.GUJARAT",
-   "kind": "region"
+   "kind": "region",
+   "native": "ગુજરાત",
+   "script": "gujr"
   },
   {
    "id": "RGN.MAHARASHTRA",
@@ -79,7 +97,9 @@
    "lon": 75.3,
    "lat": 19.2,
    "region": "RGN.MAHARASHTRA",
-   "kind": "region"
+   "kind": "region",
+   "native": "महाराष्ट्र",
+   "script": "deva"
   },
   {
    "id": "RGN.RAJASTHAN",
@@ -87,7 +107,9 @@
    "lon": 73.8,
    "lat": 26.5,
    "region": "RGN.RAJASTHAN",
-   "kind": "region"
+   "kind": "region",
+   "native": "राजस्थान",
+   "script": "deva"
   },
   {
    "id": "RGN.SRI_LANKA",
@@ -95,7 +117,9 @@
    "lon": 80.7,
    "lat": 7.9,
    "region": "RGN.SRI_LANKA",
-   "kind": "region"
+   "kind": "region",
+   "native": "ශ්‍රී ලංකාව",
+   "script": "sinh"
   },
   {
    "id": "mehrgarh",
@@ -103,7 +127,9 @@
    "lon": 67.62,
    "lat": 29.42,
    "region": null,
-   "kind": "site"
+   "kind": "site",
+   "native": "मेहरगढ़",
+   "script": "deva"
   },
   {
    "id": "harappa",
@@ -111,7 +137,9 @@
    "lon": 72.87,
    "lat": 30.63,
    "region": null,
-   "kind": "site"
+   "kind": "site",
+   "native": "हड़प्पा",
+   "script": "deva"
   },
   {
    "id": "mohenjo-daro",
@@ -119,7 +147,9 @@
    "lon": 68.14,
    "lat": 27.33,
    "region": null,
-   "kind": "site"
+   "kind": "site",
+   "native": "मोहनजोदड़ो",
+   "script": "deva"
   },
   {
    "id": "dholavira",
@@ -127,7 +157,9 @@
    "lon": 70.21,
    "lat": 23.89,
    "region": "RGN.GUJARAT",
-   "kind": "site"
+   "kind": "site",
+   "native": "ધોળાવીરા",
+   "script": "gujr"
   },
   {
    "id": "lothal",
@@ -135,7 +167,9 @@
    "lon": 72.25,
    "lat": 22.52,
    "region": "RGN.GUJARAT",
-   "kind": "site"
+   "kind": "site",
+   "native": "લોથલ",
+   "script": "gujr"
   },
   {
    "id": "kalibangan",
@@ -143,7 +177,9 @@
    "lon": 74.13,
    "lat": 29.47,
    "region": "RGN.RAJASTHAN",
-   "kind": "site"
+   "kind": "site",
+   "native": "कालीबंगा",
+   "script": "deva"
   },
   {
    "id": "rakhigarhi",
@@ -151,7 +187,9 @@
    "lon": 76.11,
    "lat": 29.29,
    "region": null,
-   "kind": "site"
+   "kind": "site",
+   "native": "राखीगढ़ी",
+   "script": "deva"
   },
   {
    "id": "banawali",
@@ -239,7 +277,9 @@
    "lon": 70.84,
    "lat": 23.61,
    "region": "RGN.GUJARAT",
-   "kind": "site"
+   "kind": "site",
+   "native": "સુરકોટડા",
+   "script": "gujr"
   },
   {
    "id": "rojdi",
@@ -247,7 +287,9 @@
    "lon": 70.93,
    "lat": 21.87,
    "region": "RGN.GUJARAT",
-   "kind": "site"
+   "kind": "site",
+   "native": "રોજડી",
+   "script": "gujr"
   },
   {
    "id": "rangpur",
@@ -255,7 +297,9 @@
    "lon": 71.92,
    "lat": 22.43,
    "region": "RGN.GUJARAT",
-   "kind": "site"
+   "kind": "site",
+   "native": "રંગપુર",
+   "script": "gujr"
   },
   {
    "id": "padri",
@@ -271,7 +315,9 @@
    "lon": 70.62,
    "lat": 23.05,
    "region": "RGN.GUJARAT",
-   "kind": "site"
+   "kind": "site",
+   "native": "બગાસરા",
+   "script": "gujr"
   },
   {
    "id": "nageshwar",
@@ -311,7 +357,9 @@
    "lon": 74.9,
    "lat": 34.17,
    "region": "RGN.KASHMIR",
-   "kind": "site"
+   "kind": "site",
+   "native": "बुर्ज़होम",
+   "script": "deva"
   },
   {
    "id": "gufkral",
@@ -335,7 +383,9 @@
    "lon": 74.38,
    "lat": 25.36,
    "region": "RGN.RAJASTHAN",
-   "kind": "site"
+   "kind": "site",
+   "native": "बागोर",
+   "script": "deva"
   },
   {
    "id": "balathal",
@@ -343,7 +393,9 @@
    "lon": 73.98,
    "lat": 24.72,
    "region": "RGN.RAJASTHAN",
-   "kind": "site"
+   "kind": "site",
+   "native": "बालाथल",
+   "script": "deva"
   },
   {
    "id": "gilund",
@@ -351,7 +403,9 @@
    "lon": 74.26,
    "lat": 25.05,
    "region": "RGN.RAJASTHAN",
-   "kind": "site"
+   "kind": "site",
+   "native": "गिलूंद",
+   "script": "deva"
   },
   {
    "id": "ganeshwar",
@@ -359,7 +413,9 @@
    "lon": 75.79,
    "lat": 27.68,
    "region": "RGN.RAJASTHAN",
-   "kind": "site"
+   "kind": "site",
+   "native": "गणेश्वर",
+   "script": "deva"
   },
   {
    "id": "lahuradewa",
@@ -367,7 +423,9 @@
    "lon": 82.95,
    "lat": 26.77,
    "region": null,
-   "kind": "site"
+   "kind": "site",
+   "native": "लहुरादेवा",
+   "script": "deva"
   },
   {
    "id": "chirand",
@@ -375,7 +433,9 @@
    "lon": 84.86,
    "lat": 25.76,
    "region": null,
-   "kind": "site"
+   "kind": "site",
+   "native": "चिरांद",
+   "script": "deva"
   },
   {
    "id": "koldihwa",
@@ -407,7 +467,9 @@
    "lon": 78.72,
    "lat": 19.38,
    "region": "RGN.ANDHRA",
-   "kind": "site"
+   "kind": "site",
+   "native": "ಉಟ್ನೂರು",
+   "script": "knda"
   },
   {
    "id": "kupgal",
@@ -415,7 +477,9 @@
    "lon": 76.95,
    "lat": 15.25,
    "region": "RGN.KARNATAKA",
-   "kind": "site"
+   "kind": "site",
+   "native": "ಕುಪ್ಗಲ್",
+   "script": "knda"
   },
   {
    "id": "sanganakallu",
@@ -423,7 +487,9 @@
    "lon": 76.98,
    "lat": 15.2,
    "region": "RGN.KARNATAKA",
-   "kind": "site"
+   "kind": "site",
+   "native": "ಸಂಗನಕಲ್ಲು",
+   "script": "knda"
   },
   {
    "id": "brahmagiri",
@@ -431,7 +497,9 @@
    "lon": 76.83,
    "lat": 14.81,
    "region": "RGN.KARNATAKA",
-   "kind": "site"
+   "kind": "site",
+   "native": "ಬ್ರಹ್ಮಗಿರಿ",
+   "script": "knda"
   },
   {
    "id": "hallur",
@@ -439,7 +507,9 @@
    "lon": 75.63,
    "lat": 14.34,
    "region": "RGN.KARNATAKA",
-   "kind": "site"
+   "kind": "site",
+   "native": "ಹಳ್ಳೂರು",
+   "script": "knda"
   },
   {
    "id": "maski",
@@ -447,7 +517,9 @@
    "lon": 76.65,
    "lat": 15.96,
    "region": "RGN.KARNATAKA",
-   "kind": "site"
+   "kind": "site",
+   "native": "ಮಸ್ಕಿ",
+   "script": "knda"
   },
   {
    "id": "piklihal",
@@ -463,7 +535,9 @@
    "lon": 76.68,
    "lat": 15.98,
    "region": "RGN.KARNATAKA",
-   "kind": "site"
+   "kind": "site",
+   "native": "ವಾಟ್ಗಲ್",
+   "script": "knda"
   },
   {
    "id": "inamgaon",
@@ -471,7 +545,9 @@
    "lon": 74.53,
    "lat": 18.59,
    "region": "RGN.MAHARASHTRA",
-   "kind": "site"
+   "kind": "site",
+   "native": "इनामगाव",
+   "script": "deva"
   },
   {
    "id": "daimabad",
@@ -479,7 +555,9 @@
    "lon": 74.71,
    "lat": 19.51,
    "region": "RGN.MAHARASHTRA",
-   "kind": "site"
+   "kind": "site",
+   "native": "दायमाबाद",
+   "script": "deva"
   },
   {
    "id": "navdatoli",
@@ -503,7 +581,9 @@
    "lon": 85.55,
    "lat": 20.14,
    "region": "RGN.ODISHA",
-   "kind": "site"
+   "kind": "site",
+   "native": "ଗୋଲବାଇ ଶାସନ",
+   "script": "orya"
   },
   {
    "id": "hastinapura",
@@ -511,7 +591,9 @@
    "lon": 78.01,
    "lat": 29.16,
    "region": null,
-   "kind": "site"
+   "kind": "site",
+   "native": "हस्तिनापुर",
+   "script": "deva"
   },
   {
    "id": "atranjikhera",
@@ -527,7 +609,9 @@
    "lon": 81.39,
    "lat": 25.34,
    "region": null,
-   "kind": "site"
+   "kind": "site",
+   "native": "कौशाम्बी",
+   "script": "deva"
   },
   {
    "id": "ahichchhatra",
@@ -535,7 +619,9 @@
    "lon": 79.13,
    "lat": 28.37,
    "region": null,
-   "kind": "site"
+   "kind": "site",
+   "native": "अहिच्छत्र",
+   "script": "deva"
   },
   {
    "id": "mathura",
@@ -543,7 +629,9 @@
    "lon": 77.67,
    "lat": 27.5,
    "region": null,
-   "kind": "site"
+   "kind": "site",
+   "native": "मथुरा",
+   "script": "deva"
   },
   {
    "id": "rajgir",
@@ -551,7 +639,9 @@
    "lon": 85.42,
    "lat": 25.03,
    "region": null,
-   "kind": "site"
+   "kind": "site",
+   "native": "राजगीर",
+   "script": "deva"
   },
   {
    "id": "vaishali",
@@ -559,7 +649,9 @@
    "lon": 85.13,
    "lat": 25.99,
    "region": null,
-   "kind": "site"
+   "kind": "site",
+   "native": "वैशाली",
+   "script": "deva"
   },
   {
    "id": "sravasti",
@@ -567,7 +659,9 @@
    "lon": 82.04,
    "lat": 27.51,
    "region": null,
-   "kind": "site"
+   "kind": "site",
+   "native": "श्रावस्ती",
+   "script": "deva"
   },
   {
    "id": "champa",
@@ -583,7 +677,9 @@
    "lon": 85.14,
    "lat": 25.61,
    "region": null,
-   "kind": "site"
+   "kind": "site",
+   "native": "पाटलिपुत्र",
+   "script": "deva"
   },
   {
    "id": "ujjain",
@@ -591,7 +687,9 @@
    "lon": 75.78,
    "lat": 23.18,
    "region": null,
-   "kind": "site"
+   "kind": "site",
+   "native": "उज्जैन",
+   "script": "deva"
   },
   {
    "id": "taxila",
@@ -599,7 +697,9 @@
    "lon": 72.82,
    "lat": 33.75,
    "region": null,
-   "kind": "site"
+   "kind": "site",
+   "native": "तक्षशिला",
+   "script": "deva"
   },
   {
    "id": "malhar",
@@ -615,7 +715,9 @@
    "lon": 81.72,
    "lat": 25.32,
    "region": null,
-   "kind": "site"
+   "kind": "site",
+   "native": "भीटा",
+   "script": "deva"
   },
   {
    "id": "sisupalgarh",
@@ -623,7 +725,9 @@
    "lon": 85.85,
    "lat": 20.22,
    "region": "RGN.ODISHA",
-   "kind": "site"
+   "kind": "site",
+   "native": "ଶିଶୁପାଳଗଡ଼",
+   "script": "orya"
   },
   {
    "id": "adichanallur",
@@ -631,7 +735,9 @@
    "lon": 77.87,
    "lat": 8.63,
    "region": "RGN.TAMILAKAM",
-   "kind": "site"
+   "kind": "site",
+   "native": "ஆதிச்சநல்லூர்",
+   "script": "taml"
   },
   {
    "id": "keeladi",
@@ -639,7 +745,9 @@
    "lon": 78.19,
    "lat": 9.85,
    "region": "RGN.TAMILAKAM",
-   "kind": "site"
+   "kind": "site",
+   "native": "கீழடி",
+   "script": "taml"
   },
   {
    "id": "kodumanal",
@@ -647,7 +755,9 @@
    "lon": 77.55,
    "lat": 11.11,
    "region": "RGN.TAMILAKAM",
-   "kind": "site"
+   "kind": "site",
+   "native": "கொடுமணல்",
+   "script": "taml"
   },
   {
    "id": "porunthal",
@@ -655,7 +765,9 @@
    "lon": 77.48,
    "lat": 10.35,
    "region": "RGN.TAMILAKAM",
-   "kind": "site"
+   "kind": "site",
+   "native": "பொருந்தல்",
+   "script": "taml"
   },
   {
    "id": "mayiladumparai",
@@ -663,7 +775,9 @@
    "lon": 78.2,
    "lat": 12.42,
    "region": "RGN.TAMILAKAM",
-   "kind": "site"
+   "kind": "site",
+   "native": "மயிலாடும்பாறை",
+   "script": "taml"
   },
   {
    "id": "korkai",
@@ -671,7 +785,9 @@
    "lon": 78.06,
    "lat": 8.63,
    "region": "RGN.TAMILAKAM",
-   "kind": "site"
+   "kind": "site",
+   "native": "கொற்கை",
+   "script": "taml"
   },
   {
    "id": "madurai",
@@ -679,7 +795,9 @@
    "lon": 78.12,
    "lat": 9.93,
    "region": "RGN.TAMILAKAM",
-   "kind": "site"
+   "kind": "site",
+   "native": "மதுரை",
+   "script": "taml"
   },
   {
    "id": "kaveripattinam",
@@ -687,7 +805,9 @@
    "lon": 79.85,
    "lat": 11.14,
    "region": "RGN.TAMILAKAM",
-   "kind": "site"
+   "kind": "site",
+   "native": "காவிரிப்பூம்பட்டினம்",
+   "script": "taml"
   },
   {
    "id": "arikamedu",
@@ -695,7 +815,9 @@
    "lon": 79.83,
    "lat": 11.91,
    "region": "RGN.TAMILAKAM",
-   "kind": "site"
+   "kind": "site",
+   "native": "அரிக்கமேடு",
+   "script": "taml"
   },
   {
    "id": "anuradhapura",
@@ -703,7 +825,9 @@
    "lon": 80.4,
    "lat": 8.31,
    "region": "RGN.SRI_LANKA",
-   "kind": "site"
+   "kind": "site",
+   "native": "අනුරාධපුරය",
+   "script": "sinh"
   },
   {
    "id": "wari-bateshwar",
@@ -711,7 +835,9 @@
    "lon": 90.6,
    "lat": 24.1,
    "region": "RGN.BENGAL",
-   "kind": "site"
+   "kind": "site",
+   "native": "উয়ারী-বটেশ্বর",
+   "script": "beng"
   },
   {
    "id": "chandraketugarh",
@@ -719,7 +845,9 @@
    "lon": 88.7,
    "lat": 22.69,
    "region": "RGN.BENGAL",
-   "kind": "site"
+   "kind": "site",
+   "native": "চন্দ্রকেতুগড়",
+   "script": "beng"
   },
   {
    "id": "mahasthangarh",
@@ -727,7 +855,9 @@
    "lon": 89.34,
    "lat": 24.96,
    "region": "RGN.BENGAL",
-   "kind": "site"
+   "kind": "site",
+   "native": "মহাস্থানগড়",
+   "script": "beng"
   },
   {
    "id": "tamralipta",
@@ -735,7 +865,9 @@
    "lon": 87.92,
    "lat": 22.3,
    "region": "RGN.BENGAL",
-   "kind": "site"
+   "kind": "site",
+   "native": "তাম্রলিপ্ত",
+   "script": "beng"
   },
   {
    "id": "sohgaura",
@@ -743,7 +875,9 @@
    "lon": 83.47,
    "lat": 26.55,
    "region": null,
-   "kind": "site"
+   "kind": "site",
+   "native": "सोहगौरा",
+   "script": "deva"
   },
   {
    "id": "sanchi",
@@ -751,7 +885,9 @@
    "lon": 77.74,
    "lat": 23.48,
    "region": null,
-   "kind": "site"
+   "kind": "site",
+   "native": "साँची",
+   "script": "deva"
   },
   {
    "id": "bharhut",
@@ -759,7 +895,9 @@
    "lon": 80.88,
    "lat": 24.45,
    "region": null,
-   "kind": "site"
+   "kind": "site",
+   "native": "भरहुत",
+   "script": "deva"
   },
   {
    "id": "barabar",
@@ -767,7 +905,9 @@
    "lon": 85.06,
    "lat": 25.01,
    "region": null,
-   "kind": "site"
+   "kind": "site",
+   "native": "बराबर",
+   "script": "deva"
   },
   {
    "id": "dhauli",
@@ -775,7 +915,9 @@
    "lon": 85.84,
    "lat": 20.19,
    "region": "RGN.ODISHA",
-   "kind": "site"
+   "kind": "site",
+   "native": "ଧଉଳି",
+   "script": "orya"
   },
   {
    "id": "jaugada",
@@ -783,7 +925,9 @@
    "lon": 84.83,
    "lat": 19.52,
    "region": "RGN.ODISHA",
-   "kind": "site"
+   "kind": "site",
+   "native": "ଜଉଗଡ଼",
+   "script": "orya"
   },
   {
    "id": "girnar",
@@ -791,7 +935,9 @@
    "lon": 70.5,
    "lat": 21.52,
    "region": "RGN.GUJARAT",
-   "kind": "site"
+   "kind": "site",
+   "native": "ગિરનાર",
+   "script": "gujr"
   },
   {
    "id": "sannati",
@@ -799,7 +945,9 @@
    "lon": 76.92,
    "lat": 16.83,
    "region": "RGN.KARNATAKA",
-   "kind": "site"
+   "kind": "site",
+   "native": "ಸನ್ನತಿ",
+   "script": "knda"
   },
   {
    "id": "bairat",
@@ -807,7 +955,9 @@
    "lon": 76.18,
    "lat": 27.45,
    "region": "RGN.RAJASTHAN",
-   "kind": "site"
+   "kind": "site",
+   "native": "बैराठ",
+   "script": "deva"
   },
   {
    "id": "amaravati",
@@ -815,7 +965,9 @@
    "lon": 80.36,
    "lat": 16.57,
    "region": "RGN.ANDHRA",
-   "kind": "site"
+   "kind": "site",
+   "native": "అమరావతి",
+   "script": "telu"
   },
   {
    "id": "nagarjunakonda",
@@ -823,7 +975,9 @@
    "lon": 79.24,
    "lat": 16.52,
    "region": "RGN.ANDHRA",
-   "kind": "site"
+   "kind": "site",
+   "native": "నాగార్జునకొండ",
+   "script": "telu"
   },
   {
    "id": "dhanyakataka",
@@ -831,7 +985,9 @@
    "lon": 80.36,
    "lat": 16.58,
    "region": "RGN.ANDHRA",
-   "kind": "site"
+   "kind": "site",
+   "native": "ధాన్యకటకం",
+   "script": "telu"
   },
   {
    "id": "karle",
@@ -839,7 +995,9 @@
    "lon": 73.47,
    "lat": 18.75,
    "region": "RGN.MAHARASHTRA",
-   "kind": "site"
+   "kind": "site",
+   "native": "कार्ले",
+   "script": "deva"
   },
   {
    "id": "bhaja",
@@ -847,7 +1005,9 @@
    "lon": 73.48,
    "lat": 18.73,
    "region": "RGN.MAHARASHTRA",
-   "kind": "site"
+   "kind": "site",
+   "native": "भाजे",
+   "script": "deva"
   },
   {
    "id": "kanheri",
@@ -855,7 +1015,9 @@
    "lon": 72.91,
    "lat": 19.21,
    "region": "RGN.MAHARASHTRA",
-   "kind": "site"
+   "kind": "site",
+   "native": "कान्हेरी",
+   "script": "deva"
   },
   {
    "id": "nasik",
@@ -863,7 +1025,9 @@
    "lon": 73.79,
    "lat": 19.99,
    "region": "RGN.MAHARASHTRA",
-   "kind": "site"
+   "kind": "site",
+   "native": "नाशिक",
+   "script": "deva"
   },
   {
    "id": "junnar",
@@ -871,7 +1035,9 @@
    "lon": 73.88,
    "lat": 19.21,
    "region": "RGN.MAHARASHTRA",
-   "kind": "site"
+   "kind": "site",
+   "native": "जुन्नर",
+   "script": "deva"
   },
   {
    "id": "sopara",
@@ -879,7 +1045,9 @@
    "lon": 72.8,
    "lat": 19.42,
    "region": "RGN.MAHARASHTRA",
-   "kind": "site"
+   "kind": "site",
+   "native": "सोपारा",
+   "script": "deva"
   },
   {
    "id": "ter",
@@ -887,7 +1055,9 @@
    "lon": 76.16,
    "lat": 18.32,
    "region": "RGN.MAHARASHTRA",
-   "kind": "site"
+   "kind": "site",
+   "native": "तेर",
+   "script": "deva"
   },
   {
    "id": "paithan",
@@ -895,7 +1065,9 @@
    "lon": 75.38,
    "lat": 19.48,
    "region": "RGN.MAHARASHTRA",
-   "kind": "site"
+   "kind": "site",
+   "native": "पैठण",
+   "script": "deva"
   },
   {
    "id": "naneghat",
@@ -903,7 +1075,9 @@
    "lon": 73.68,
    "lat": 19.29,
    "region": "RGN.MAHARASHTRA",
-   "kind": "site"
+   "kind": "site",
+   "native": "नाणेघाट",
+   "script": "deva"
   },
   {
    "id": "bhokardan",
@@ -919,7 +1093,9 @@
    "lon": 76.25,
    "lat": 10.18,
    "region": "RGN.KERALA",
-   "kind": "site"
+   "kind": "site",
+   "native": "മുസിരിസ്",
+   "script": "mlym"
   },
   {
    "id": "pattanam",
@@ -927,7 +1103,9 @@
    "lon": 76.21,
    "lat": 10.16,
    "region": "RGN.KERALA",
-   "kind": "site"
+   "kind": "site",
+   "native": "പട്ടണം",
+   "script": "mlym"
   },
   {
    "id": "barygaza",
@@ -935,7 +1113,9 @@
    "lon": 72.99,
    "lat": 21.71,
    "region": "RGN.GUJARAT",
-   "kind": "site"
+   "kind": "site",
+   "native": "ભરૂચ",
+   "script": "gujr"
   },
   {
    "id": "banavasi",
@@ -943,7 +1123,9 @@
    "lon": 75.02,
    "lat": 14.53,
    "region": "RGN.KARNATAKA",
-   "kind": "site"
+   "kind": "site",
+   "native": "ಬನವಾಸಿ",
+   "script": "knda"
   },
   {
    "id": "chandravalli",
@@ -951,7 +1133,9 @@
    "lon": 76.39,
    "lat": 14.23,
    "region": "RGN.KARNATAKA",
-   "kind": "site"
+   "kind": "site",
+   "native": "ಚಂದ್ರವಳ್ಳಿ",
+   "script": "knda"
   },
   {
    "id": "sanghol",
@@ -975,7 +1159,9 @@
    "lon": 73.32,
    "lat": 23.68,
    "region": "RGN.GUJARAT",
-   "kind": "site"
+   "kind": "site",
+   "native": "દેવની મોરી",
+   "script": "gujr"
   },
   {
    "id": "sarnath",
@@ -983,7 +1169,9 @@
    "lon": 83.02,
    "lat": 25.38,
    "region": null,
-   "kind": "site"
+   "kind": "site",
+   "native": "सारनाथ",
+   "script": "deva"
   },
   {
    "id": "bodh gaya",
@@ -991,7 +1179,9 @@
    "lon": 84.99,
    "lat": 24.7,
    "region": null,
-   "kind": "site"
+   "kind": "site",
+   "native": "बोधगया",
+   "script": "deva"
   },
   {
    "id": "nalanda",
@@ -999,7 +1189,9 @@
    "lon": 85.44,
    "lat": 25.14,
    "region": null,
-   "kind": "site"
+   "kind": "site",
+   "native": "नालन्दा",
+   "script": "deva"
   },
   {
    "id": "vikramashila",
@@ -1007,7 +1199,9 @@
    "lon": 87.29,
    "lat": 25.32,
    "region": null,
-   "kind": "site"
+   "kind": "site",
+   "native": "विक्रमशिला",
+   "script": "deva"
   },
   {
    "id": "odantapuri",
@@ -1015,7 +1209,9 @@
    "lon": 85.51,
    "lat": 25.2,
    "region": null,
-   "kind": "site"
+   "kind": "site",
+   "native": "ओदन्तपुरी",
+   "script": "deva"
   },
   {
    "id": "valabhi",
@@ -1023,7 +1219,9 @@
    "lon": 71.88,
    "lat": 21.89,
    "region": "RGN.GUJARAT",
-   "kind": "site"
+   "kind": "site",
+   "native": "વલભી",
+   "script": "gujr"
   },
   {
    "id": "somapura",
@@ -1031,7 +1229,9 @@
    "lon": 88.98,
    "lat": 25.03,
    "region": "RGN.BENGAL",
-   "kind": "site"
+   "kind": "site",
+   "native": "সোমপুর",
+   "script": "beng"
   },
   {
    "id": "jagaddala",
@@ -1039,7 +1239,9 @@
    "lon": 88.75,
    "lat": 25.1,
    "region": "RGN.BENGAL",
-   "kind": "site"
+   "kind": "site",
+   "native": "জগদ্দল",
+   "script": "beng"
   },
   {
    "id": "ratnagiri",
@@ -1047,7 +1249,9 @@
    "lon": 86.33,
    "lat": 20.64,
    "region": "RGN.ODISHA",
-   "kind": "site"
+   "kind": "site",
+   "native": "ରତ୍ନଗିରି",
+   "script": "orya"
   },
   {
    "id": "lalitagiri",
@@ -1055,7 +1259,9 @@
    "lon": 86.25,
    "lat": 20.59,
    "region": "RGN.ODISHA",
-   "kind": "site"
+   "kind": "site",
+   "native": "ଲଳିତଗିରି",
+   "script": "orya"
   },
   {
    "id": "sirpur",
@@ -1063,7 +1269,9 @@
    "lon": 82.18,
    "lat": 21.33,
    "region": null,
-   "kind": "site"
+   "kind": "site",
+   "native": "सिरपुर",
+   "script": "deva"
   },
   {
    "id": "bhitargaon",
@@ -1071,7 +1279,9 @@
    "lon": 80.27,
    "lat": 26.19,
    "region": null,
-   "kind": "site"
+   "kind": "site",
+   "native": "भीतरगाँव",
+   "script": "deva"
   },
   {
    "id": "deogarh",
@@ -1079,7 +1289,9 @@
    "lon": 78.24,
    "lat": 24.53,
    "region": null,
-   "kind": "site"
+   "kind": "site",
+   "native": "देवगढ़",
+   "script": "deva"
   },
   {
    "id": "mandsaur",
@@ -1087,7 +1299,9 @@
    "lon": 75.07,
    "lat": 24.07,
    "region": null,
-   "kind": "site"
+   "kind": "site",
+   "native": "मन्दसौर",
+   "script": "deva"
   },
   {
    "id": "ajanta",
@@ -1095,7 +1309,9 @@
    "lon": 75.7,
    "lat": 20.55,
    "region": "RGN.MAHARASHTRA",
-   "kind": "site"
+   "kind": "site",
+   "native": "अजिंठा",
+   "script": "deva"
   },
   {
    "id": "ellora",
@@ -1103,7 +1319,9 @@
    "lon": 75.18,
    "lat": 20.03,
    "region": "RGN.MAHARASHTRA",
-   "kind": "site"
+   "kind": "site",
+   "native": "वेरूळ",
+   "script": "deva"
   },
   {
    "id": "elephanta",
@@ -1111,7 +1329,9 @@
    "lon": 72.93,
    "lat": 18.96,
    "region": "RGN.MAHARASHTRA",
-   "kind": "site"
+   "kind": "site",
+   "native": "घारापुरी",
+   "script": "deva"
   },
   {
    "id": "bagh",
@@ -1119,7 +1339,9 @@
    "lon": 74.79,
    "lat": 22.36,
    "region": null,
-   "kind": "site"
+   "kind": "site",
+   "native": "बाघ",
+   "script": "deva"
   },
   {
    "id": "aihole",
@@ -1127,7 +1349,9 @@
    "lon": 75.88,
    "lat": 16.02,
    "region": "RGN.KARNATAKA",
-   "kind": "site"
+   "kind": "site",
+   "native": "ಐಹೊಳೆ",
+   "script": "knda"
   },
   {
    "id": "badami",
@@ -1135,7 +1359,9 @@
    "lon": 75.68,
    "lat": 15.92,
    "region": "RGN.KARNATAKA",
-   "kind": "site"
+   "kind": "site",
+   "native": "ಬಾದಾಮಿ",
+   "script": "knda"
   },
   {
    "id": "pattadakal",
@@ -1143,7 +1369,9 @@
    "lon": 75.82,
    "lat": 15.95,
    "region": "RGN.KARNATAKA",
-   "kind": "site"
+   "kind": "site",
+   "native": "ಪಟ್ಟದಕಲ್ಲು",
+   "script": "knda"
   },
   {
    "id": "halmidi",
@@ -1151,7 +1379,9 @@
    "lon": 75.92,
    "lat": 13.42,
    "region": "RGN.KARNATAKA",
-   "kind": "site"
+   "kind": "site",
+   "native": "ಹಲ್ಮಿಡಿ",
+   "script": "knda"
   },
   {
    "id": "talakad",
@@ -1159,7 +1389,9 @@
    "lon": 77.03,
    "lat": 12.18,
    "region": "RGN.KARNATAKA",
-   "kind": "site"
+   "kind": "site",
+   "native": "ತಲಕಾಡು",
+   "script": "knda"
   },
   {
    "id": "talagunda",
@@ -1167,7 +1399,9 @@
    "lon": 75.25,
    "lat": 14.42,
    "region": "RGN.KARNATAKA",
-   "kind": "site"
+   "kind": "site",
+   "native": "ತಾಳಗುಂದ",
+   "script": "knda"
   },
   {
    "id": "shravanabelagola",
@@ -1175,7 +1409,9 @@
    "lon": 76.49,
    "lat": 12.86,
    "region": "RGN.KARNATAKA",
-   "kind": "site"
+   "kind": "site",
+   "native": "ಶ್ರವಣಬೆಳಗೊಳ",
+   "script": "knda"
   },
   {
    "id": "belur",
@@ -1183,7 +1419,9 @@
    "lon": 75.87,
    "lat": 13.16,
    "region": "RGN.KARNATAKA",
-   "kind": "site"
+   "kind": "site",
+   "native": "ಬೇಲೂರು",
+   "script": "knda"
   },
   {
    "id": "halebidu",
@@ -1191,7 +1429,9 @@
    "lon": 75.99,
    "lat": 13.21,
    "region": "RGN.KARNATAKA",
-   "kind": "site"
+   "kind": "site",
+   "native": "ಹಳೇಬೀಡು",
+   "script": "knda"
   },
   {
    "id": "mahabalipuram",
@@ -1199,7 +1439,9 @@
    "lon": 80.19,
    "lat": 12.62,
    "region": "RGN.TAMILAKAM",
-   "kind": "site"
+   "kind": "site",
+   "native": "மாமல்லபுரம்",
+   "script": "taml"
   },
   {
    "id": "kanchipuram",
@@ -1207,7 +1449,9 @@
    "lon": 79.7,
    "lat": 12.84,
    "region": "RGN.TAMILAKAM",
-   "kind": "site"
+   "kind": "site",
+   "native": "காஞ்சிபுரம்",
+   "script": "taml"
   },
   {
    "id": "uttaramerur",
@@ -1215,7 +1459,9 @@
    "lon": 79.75,
    "lat": 12.61,
    "region": "RGN.TAMILAKAM",
-   "kind": "site"
+   "kind": "site",
+   "native": "உத்தரமேரூர்",
+   "script": "taml"
   },
   {
    "id": "thanjavur",
@@ -1223,7 +1469,9 @@
    "lon": 79.14,
    "lat": 10.79,
    "region": "RGN.TAMILAKAM",
-   "kind": "site"
+   "kind": "site",
+   "native": "தஞ்சாவூர்",
+   "script": "taml"
   },
   {
    "id": "gangaikonda",
@@ -1231,7 +1479,9 @@
    "lon": 79.45,
    "lat": 11.21,
    "region": "RGN.TAMILAKAM",
-   "kind": "site"
+   "kind": "site",
+   "native": "கங்கைகொண்ட சோழபுரம்",
+   "script": "taml"
   },
   {
    "id": "darasuram",
@@ -1239,7 +1489,9 @@
    "lon": 79.35,
    "lat": 10.95,
    "region": "RGN.TAMILAKAM",
-   "kind": "site"
+   "kind": "site",
+   "native": "தாராசுரம்",
+   "script": "taml"
   },
   {
    "id": "srirangam",
@@ -1247,7 +1499,9 @@
    "lon": 78.69,
    "lat": 10.86,
    "region": "RGN.TAMILAKAM",
-   "kind": "site"
+   "kind": "site",
+   "native": "ஸ்ரீரங்கம்",
+   "script": "taml"
   },
   {
    "id": "chidambaram",
@@ -1255,7 +1509,9 @@
    "lon": 79.69,
    "lat": 11.4,
    "region": "RGN.TAMILAKAM",
-   "kind": "site"
+   "kind": "site",
+   "native": "சிதம்பரம்",
+   "script": "taml"
   },
   {
    "id": "kumbakonam",
@@ -1263,7 +1519,9 @@
    "lon": 79.39,
    "lat": 10.96,
    "region": "RGN.TAMILAKAM",
-   "kind": "site"
+   "kind": "site",
+   "native": "கும்பகோணம்",
+   "script": "taml"
   },
   {
    "id": "kallanai",
@@ -1271,7 +1529,9 @@
    "lon": 78.82,
    "lat": 10.83,
    "region": "RGN.TAMILAKAM",
-   "kind": "site"
+   "kind": "site",
+   "native": "கல்லணை",
+   "script": "taml"
   },
   {
    "id": "martand",
@@ -1279,7 +1539,9 @@
    "lon": 75.22,
    "lat": 33.74,
    "region": "RGN.KASHMIR",
-   "kind": "site"
+   "kind": "site",
+   "native": "मार्तण्ड",
+   "script": "deva"
   },
   {
    "id": "parihasapura",
@@ -1295,7 +1557,9 @@
    "lon": 74.8,
    "lat": 34.08,
    "region": "RGN.KASHMIR",
-   "kind": "site"
+   "kind": "site",
+   "native": "श्रीनगर",
+   "script": "deva"
   },
   {
    "id": "harwan",
@@ -1311,7 +1575,9 @@
    "lon": 85.82,
    "lat": 19.8,
    "region": "RGN.ODISHA",
-   "kind": "site"
+   "kind": "site",
+   "native": "ପୁରୀ",
+   "script": "orya"
   },
   {
    "id": "konark",
@@ -1319,7 +1585,9 @@
    "lon": 86.09,
    "lat": 19.89,
    "region": "RGN.ODISHA",
-   "kind": "site"
+   "kind": "site",
+   "native": "କୋଣାର୍କ",
+   "script": "orya"
   },
   {
    "id": "bhubaneswar",
@@ -1327,7 +1595,9 @@
    "lon": 85.83,
    "lat": 20.27,
    "region": "RGN.ODISHA",
-   "kind": "site"
+   "kind": "site",
+   "native": "ଭୁବନେଶ୍ୱର",
+   "script": "orya"
   },
   {
    "id": "manikapatna",
@@ -1335,7 +1605,9 @@
    "lon": 85.45,
    "lat": 19.72,
    "region": "RGN.ODISHA",
-   "kind": "site"
+   "kind": "site",
+   "native": "ମାଣିକପାଟଣା",
+   "script": "orya"
   },
   {
    "id": "hirapur",
@@ -1343,7 +1615,9 @@
    "lon": 85.88,
    "lat": 20.22,
    "region": "RGN.ODISHA",
-   "kind": "site"
+   "kind": "site",
+   "native": "ହୀରାପୁର",
+   "script": "orya"
   },
   {
    "id": "kamakhya",
@@ -1351,7 +1625,9 @@
    "lon": 91.7,
    "lat": 26.17,
    "region": "RGN.ASSAM",
-   "kind": "site"
+   "kind": "site",
+   "native": "কামাখ্যা",
+   "script": "beng"
   },
   {
    "id": "sivasagar",
@@ -1359,7 +1635,9 @@
    "lon": 94.63,
    "lat": 26.98,
    "region": "RGN.ASSAM",
-   "kind": "site"
+   "kind": "site",
+   "native": "শিৱসাগৰ",
+   "script": "beng"
   },
   {
    "id": "charaideo",
@@ -1367,7 +1645,9 @@
    "lon": 94.93,
    "lat": 27.02,
    "region": "RGN.ASSAM",
-   "kind": "site"
+   "kind": "site",
+   "native": "চৰাইদেউ",
+   "script": "beng"
   },
   {
    "id": "saraighat",
@@ -1375,7 +1655,9 @@
    "lon": 91.67,
    "lat": 26.18,
    "region": "RGN.ASSAM",
-   "kind": "site"
+   "kind": "site",
+   "native": "শৰাইঘাট",
+   "script": "beng"
   },
   {
    "id": "polonnaruwa",
@@ -1383,7 +1665,9 @@
    "lon": 81.0,
    "lat": 7.94,
    "region": "RGN.SRI_LANKA",
-   "kind": "site"
+   "kind": "site",
+   "native": "පොළොන්නරුව",
+   "script": "sinh"
   },
   {
    "id": "sigiriya",
@@ -1391,7 +1675,9 @@
    "lon": 80.76,
    "lat": 7.96,
    "region": "RGN.SRI_LANKA",
-   "kind": "site"
+   "kind": "site",
+   "native": "සීගිරිය",
+   "script": "sinh"
   },
   {
    "id": "aluvihare",
@@ -1399,7 +1685,9 @@
    "lon": 80.62,
    "lat": 7.53,
    "region": "RGN.SRI_LANKA",
-   "kind": "site"
+   "kind": "site",
+   "native": "අළුවිහාරය",
+   "script": "sinh"
   },
   {
    "id": "kandy",
@@ -1407,7 +1695,9 @@
    "lon": 80.64,
    "lat": 7.29,
    "region": "RGN.SRI_LANKA",
-   "kind": "site"
+   "kind": "site",
+   "native": "මහනුවර",
+   "script": "sinh"
   },
   {
    "id": "anhilwara",
@@ -1415,7 +1705,9 @@
    "lon": 72.12,
    "lat": 23.85,
    "region": "RGN.GUJARAT",
-   "kind": "site"
+   "kind": "site",
+   "native": "પાટણ",
+   "script": "gujr"
   },
   {
    "id": "somnath",
@@ -1423,7 +1715,9 @@
    "lon": 70.4,
    "lat": 20.89,
    "region": "RGN.GUJARAT",
-   "kind": "site"
+   "kind": "site",
+   "native": "સોમનાથ",
+   "script": "gujr"
   },
   {
    "id": "mount abu",
@@ -1431,7 +1725,9 @@
    "lon": 72.72,
    "lat": 24.61,
    "region": "RGN.RAJASTHAN",
-   "kind": "site"
+   "kind": "site",
+   "native": "माउंट आबू",
+   "script": "deva"
   },
   {
    "id": "jaisalmer",
@@ -1439,7 +1735,9 @@
    "lon": 70.91,
    "lat": 26.92,
    "region": "RGN.RAJASTHAN",
-   "kind": "site"
+   "kind": "site",
+   "native": "जैसलमेर",
+   "script": "deva"
   },
   {
    "id": "chittor",
@@ -1447,7 +1745,9 @@
    "lon": 74.65,
    "lat": 24.89,
    "region": "RGN.RAJASTHAN",
-   "kind": "site"
+   "kind": "site",
+   "native": "चित्तौड़",
+   "script": "deva"
   },
   {
    "id": "zawar",
@@ -1455,7 +1755,9 @@
    "lon": 73.69,
    "lat": 24.35,
    "region": "RGN.RAJASTHAN",
-   "kind": "site"
+   "kind": "site",
+   "native": "जावर",
+   "script": "deva"
   },
   {
    "id": "abhaneri",
@@ -1463,7 +1765,9 @@
    "lon": 76.61,
    "lat": 27.01,
    "region": "RGN.RAJASTHAN",
-   "kind": "site"
+   "kind": "site",
+   "native": "आभानेरी",
+   "script": "deva"
   },
   {
    "id": "osian",
@@ -1471,7 +1775,9 @@
    "lon": 72.9,
    "lat": 26.72,
    "region": "RGN.RAJASTHAN",
-   "kind": "site"
+   "kind": "site",
+   "native": "ओसियां",
+   "script": "deva"
   },
   {
    "id": "sambhar",
@@ -1479,7 +1785,9 @@
    "lon": 75.08,
    "lat": 26.91,
    "region": "RGN.RAJASTHAN",
-   "kind": "site"
+   "kind": "site",
+   "native": "सांभर",
+   "script": "deva"
   },
   {
    "id": "delhi",
@@ -1487,7 +1795,9 @@
    "lon": 77.23,
    "lat": 28.65,
    "region": null,
-   "kind": "site"
+   "kind": "site",
+   "native": "दिल्ली",
+   "script": "deva"
   },
   {
    "id": "kannauj",
@@ -1495,7 +1805,9 @@
    "lon": 79.92,
    "lat": 27.06,
    "region": null,
-   "kind": "site"
+   "kind": "site",
+   "native": "कन्नौज",
+   "script": "deva"
   },
   {
    "id": "jaunpur",
@@ -1503,7 +1815,9 @@
    "lon": 82.68,
    "lat": 25.75,
    "region": null,
-   "kind": "site"
+   "kind": "site",
+   "native": "जौनपुर",
+   "script": "deva"
   },
   {
    "id": "daulatabad",
@@ -1511,7 +1825,9 @@
    "lon": 75.22,
    "lat": 19.94,
    "region": "RGN.MAHARASHTRA",
-   "kind": "site"
+   "kind": "site",
+   "native": "देवगिरी",
+   "script": "deva"
   },
   {
    "id": "warangal",
@@ -1519,7 +1835,9 @@
    "lon": 79.6,
    "lat": 18.0,
    "region": "RGN.ANDHRA",
-   "kind": "site"
+   "kind": "site",
+   "native": "వరంగల్",
+   "script": "telu"
   },
   {
    "id": "ramappa",
@@ -1527,7 +1845,9 @@
    "lon": 79.94,
    "lat": 18.26,
    "region": "RGN.ANDHRA",
-   "kind": "site"
+   "kind": "site",
+   "native": "రామప్ప",
+   "script": "telu"
   },
   {
    "id": "golconda",
@@ -1535,7 +1855,9 @@
    "lon": 78.4,
    "lat": 17.38,
    "region": "RGN.ANDHRA",
-   "kind": "site"
+   "kind": "site",
+   "native": "గోల్కొండ",
+   "script": "telu"
   },
   {
    "id": "masulipatnam",
@@ -1543,7 +1865,9 @@
    "lon": 81.13,
    "lat": 16.18,
    "region": "RGN.ANDHRA",
-   "kind": "site"
+   "kind": "site",
+   "native": "మచిలీపట్నం",
+   "script": "telu"
   },
   {
    "id": "lepakshi",
@@ -1551,7 +1875,9 @@
    "lon": 77.61,
    "lat": 13.81,
    "region": "RGN.ANDHRA",
-   "kind": "site"
+   "kind": "site",
+   "native": "లేపాక్షి",
+   "script": "telu"
   },
   {
    "id": "hampi",
@@ -1559,7 +1885,9 @@
    "lon": 76.47,
    "lat": 15.34,
    "region": "RGN.KARNATAKA",
-   "kind": "site"
+   "kind": "site",
+   "native": "ಹಂಪಿ",
+   "script": "knda"
   },
   {
    "id": "bijapur",
@@ -1567,7 +1895,9 @@
    "lon": 75.71,
    "lat": 16.83,
    "region": "RGN.KARNATAKA",
-   "kind": "site"
+   "kind": "site",
+   "native": "ವಿಜಯಪುರ",
+   "script": "knda"
   },
   {
    "id": "srirangapatna",
@@ -1575,7 +1905,9 @@
    "lon": 76.68,
    "lat": 12.42,
    "region": "RGN.KARNATAKA",
-   "kind": "site"
+   "kind": "site",
+   "native": "ಶ್ರೀರಂಗಪಟ್ಟಣ",
+   "script": "knda"
   },
   {
    "id": "calicut",
@@ -1583,7 +1915,9 @@
    "lon": 75.78,
    "lat": 11.25,
    "region": "RGN.KERALA",
-   "kind": "site"
+   "kind": "site",
+   "native": "കോഴിക്കോട്",
+   "script": "mlym"
   },
   {
    "id": "cochin",
@@ -1591,7 +1925,9 @@
    "lon": 76.24,
    "lat": 9.97,
    "region": "RGN.KERALA",
-   "kind": "site"
+   "kind": "site",
+   "native": "കൊച്ചി",
+   "script": "mlym"
   },
   {
    "id": "kottayam",
@@ -1599,7 +1935,9 @@
    "lon": 76.52,
    "lat": 9.59,
    "region": "RGN.KERALA",
-   "kind": "site"
+   "kind": "site",
+   "native": "കോട്ടയം",
+   "script": "mlym"
   },
   {
    "id": "vaikom",
@@ -1607,7 +1945,9 @@
    "lon": 76.39,
    "lat": 9.75,
    "region": "RGN.KERALA",
-   "kind": "site"
+   "kind": "site",
+   "native": "വൈക്കം",
+   "script": "mlym"
   },
   {
    "id": "goa",
@@ -1615,7 +1955,9 @@
    "lon": 73.83,
    "lat": 15.5,
    "region": null,
-   "kind": "site"
+   "kind": "site",
+   "native": "गोवा",
+   "script": "deva"
   },
   {
    "id": "diu",
@@ -1623,7 +1965,9 @@
    "lon": 70.98,
    "lat": 20.71,
    "region": "RGN.GUJARAT",
-   "kind": "site"
+   "kind": "site",
+   "native": "દીવ",
+   "script": "gujr"
   },
   {
    "id": "surat",
@@ -1631,7 +1975,9 @@
    "lon": 72.83,
    "lat": 21.17,
    "region": "RGN.GUJARAT",
-   "kind": "site"
+   "kind": "site",
+   "native": "સુરત",
+   "script": "gujr"
   },
   {
    "id": "ahmedabad",
@@ -1639,7 +1985,9 @@
    "lon": 72.58,
    "lat": 23.02,
    "region": "RGN.GUJARAT",
-   "kind": "site"
+   "kind": "site",
+   "native": "અમદાવાદ",
+   "script": "gujr"
   },
   {
    "id": "champaner",
@@ -1647,7 +1995,9 @@
    "lon": 73.53,
    "lat": 22.49,
    "region": "RGN.GUJARAT",
-   "kind": "site"
+   "kind": "site",
+   "native": "ચાંપાનેર",
+   "script": "gujr"
   },
   {
    "id": "cambay",
@@ -1655,7 +2005,9 @@
    "lon": 72.62,
    "lat": 22.31,
    "region": "RGN.GUJARAT",
-   "kind": "site"
+   "kind": "site",
+   "native": "ખંભાત",
+   "script": "gujr"
   },
   {
    "id": "mandu",
@@ -1663,7 +2015,9 @@
    "lon": 75.4,
    "lat": 22.33,
    "region": null,
-   "kind": "site"
+   "kind": "site",
+   "native": "माण्डू",
+   "script": "deva"
   },
   {
    "id": "gaur",
@@ -1671,7 +2025,9 @@
    "lon": 88.13,
    "lat": 24.87,
    "region": "RGN.BENGAL",
-   "kind": "site"
+   "kind": "site",
+   "native": "গৌড়",
+   "script": "beng"
   },
   {
    "id": "pandua",
@@ -1679,7 +2035,9 @@
    "lon": 88.15,
    "lat": 25.13,
    "region": "RGN.BENGAL",
-   "kind": "site"
+   "kind": "site",
+   "native": "পাণ্ডুয়া",
+   "script": "beng"
   },
   {
    "id": "murshidabad",
@@ -1687,7 +2045,9 @@
    "lon": 88.27,
    "lat": 24.18,
    "region": "RGN.BENGAL",
-   "kind": "site"
+   "kind": "site",
+   "native": "মুর্শিদাবাদ",
+   "script": "beng"
   },
   {
    "id": "calcutta",
@@ -1695,7 +2055,9 @@
    "lon": 88.36,
    "lat": 22.57,
    "region": "RGN.BENGAL",
-   "kind": "site"
+   "kind": "site",
+   "native": "কলকাতা",
+   "script": "beng"
   },
   {
    "id": "plassey",
@@ -1703,7 +2065,9 @@
    "lon": 88.25,
    "lat": 23.8,
    "region": "RGN.BENGAL",
-   "kind": "site"
+   "kind": "site",
+   "native": "পলাশী",
+   "script": "beng"
   },
   {
    "id": "buxar",
@@ -1711,7 +2075,9 @@
    "lon": 83.98,
    "lat": 25.56,
    "region": null,
-   "kind": "site"
+   "kind": "site",
+   "native": "बक्सर",
+   "script": "deva"
   },
   {
    "id": "dhaka",
@@ -1719,7 +2085,9 @@
    "lon": 90.41,
    "lat": 23.72,
    "region": "RGN.BENGAL",
-   "kind": "site"
+   "kind": "site",
+   "native": "ঢাকা",
+   "script": "beng"
   },
   {
    "id": "fatehpur sikri",
@@ -1727,7 +2095,9 @@
    "lon": 77.66,
    "lat": 27.09,
    "region": null,
-   "kind": "site"
+   "kind": "site",
+   "native": "फ़तेहपुर सीकरी",
+   "script": "deva"
   },
   {
    "id": "agra",
@@ -1735,7 +2105,9 @@
    "lon": 78.02,
    "lat": 27.18,
    "region": null,
-   "kind": "site"
+   "kind": "site",
+   "native": "आगरा",
+   "script": "deva"
   },
   {
    "id": "panipat",
@@ -1743,7 +2115,9 @@
    "lon": 76.97,
    "lat": 29.39,
    "region": null,
-   "kind": "site"
+   "kind": "site",
+   "native": "पानीपत",
+   "script": "deva"
   },
   {
    "id": "talikota",
@@ -1751,7 +2125,9 @@
    "lon": 76.31,
    "lat": 16.47,
    "region": "RGN.KARNATAKA",
-   "kind": "site"
+   "kind": "site",
+   "native": "ತಾಳಿಕೋಟೆ",
+   "script": "knda"
   },
   {
    "id": "pandharpur",
@@ -1759,7 +2135,9 @@
    "lon": 75.33,
    "lat": 17.68,
    "region": "RGN.MAHARASHTRA",
-   "kind": "site"
+   "kind": "site",
+   "native": "पंढरपूर",
+   "script": "deva"
   },
   {
    "id": "pune",
@@ -1767,7 +2145,9 @@
    "lon": 73.86,
    "lat": 18.52,
    "region": "RGN.MAHARASHTRA",
-   "kind": "site"
+   "kind": "site",
+   "native": "पुणे",
+   "script": "deva"
   },
   {
    "id": "amritsar",
@@ -1775,7 +2155,9 @@
    "lon": 74.87,
    "lat": 31.63,
    "region": null,
-   "kind": "site"
+   "kind": "site",
+   "native": "अमृतसर",
+   "script": "deva"
   },
   {
    "id": "anandpur",
@@ -1783,7 +2165,9 @@
    "lon": 76.5,
    "lat": 31.24,
    "region": null,
-   "kind": "site"
+   "kind": "site",
+   "native": "आनन्दपुर",
+   "script": "deva"
   },
   {
    "id": "bombay",
@@ -1791,7 +2175,9 @@
    "lon": 72.83,
    "lat": 18.94,
    "region": "RGN.MAHARASHTRA",
-   "kind": "site"
+   "kind": "site",
+   "native": "मुंबई",
+   "script": "deva"
   },
   {
    "id": "mahad",
@@ -1799,7 +2185,9 @@
    "lon": 73.42,
    "lat": 18.08,
    "region": "RGN.MAHARASHTRA",
-   "kind": "site"
+   "kind": "site",
+   "native": "महाड",
+   "script": "deva"
   },
   {
    "id": "nagpur",
@@ -1807,7 +2195,9 @@
    "lon": 79.09,
    "lat": 21.15,
    "region": "RGN.MAHARASHTRA",
-   "kind": "site"
+   "kind": "site",
+   "native": "नागपूर",
+   "script": "deva"
   },
   {
    "id": "madras",
@@ -1815,7 +2205,9 @@
    "lon": 80.27,
    "lat": 13.08,
    "region": "RGN.TAMILAKAM",
-   "kind": "site"
+   "kind": "site",
+   "native": "சென்னை",
+   "script": "taml"
   },
   {
    "id": "seringapatam",
@@ -1823,7 +2215,9 @@
    "lon": 76.68,
    "lat": 12.42,
    "region": "RGN.KARNATAKA",
-   "kind": "site"
+   "kind": "site",
+   "native": "ಶ್ರೀರಂಗಪಟ್ಟಣ",
+   "script": "knda"
   },
   {
    "id": "mysore",
@@ -1831,7 +2225,9 @@
    "lon": 76.65,
    "lat": 12.3,
    "region": "RGN.KARNATAKA",
-   "kind": "site"
+   "kind": "site",
+   "native": "ಮೈಸೂರು",
+   "script": "knda"
   },
   {
    "id": "baroda",
@@ -1839,7 +2235,9 @@
    "lon": 73.18,
    "lat": 22.3,
    "region": "RGN.GUJARAT",
-   "kind": "site"
+   "kind": "site",
+   "native": "વડોદરા",
+   "script": "gujr"
   },
   {
    "id": "digboi",
@@ -1847,7 +2245,9 @@
    "lon": 95.62,
    "lat": 27.38,
    "region": "RGN.ASSAM",
-   "kind": "site"
+   "kind": "site",
+   "native": "ডিগবৈ",
+   "script": "beng"
   },
   {
    "id": "nadia",
@@ -1855,7 +2255,9 @@
    "lon": 88.37,
    "lat": 23.41,
    "region": "RGN.BENGAL",
-   "kind": "site"
+   "kind": "site",
+   "native": "নদিয়া",
+   "script": "beng"
   },
   {
    "id": "kutch",
@@ -1863,7 +2265,9 @@
    "lon": 69.86,
    "lat": 23.73,
    "region": "RGN.GUJARAT",
-   "kind": "site"
+   "kind": "site",
+   "native": "કચ્છ",
+   "script": "gujr"
   },
   {
    "id": "dunhuang",
@@ -1879,7 +2283,9 @@
    "lon": 74.31,
    "lat": 35.92,
    "region": null,
-   "kind": "site"
+   "kind": "site",
+   "native": "गिलगित",
+   "script": "deva"
   },
   {
    "id": "kandahar",
