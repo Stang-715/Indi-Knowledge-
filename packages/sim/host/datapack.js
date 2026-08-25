@@ -12,5 +12,7 @@ export function loadDatapack(root) {
     works:    read('data/corpus/works.json'),
     polities: read('data/polities/polities.json'),
     people:   read('data/people/people.json'),
+    gazetteer: read('data/gazetteer/places.json'),
+    texture:  read('data/timeline/texture.json'),
   };
 }

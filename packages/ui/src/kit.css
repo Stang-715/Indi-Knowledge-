@@ -344,3 +344,7 @@ body {
   border-bottom: 1px solid rgba(42,33,24,.08); }
 .thread-beat:hover { background: rgba(201,162,39,.10); }
 .tb-year { min-width: 74px; color: var(--ink-soft); font-family: var(--mono); font-size: 12px; }
+
+/* --- Texture incidents: quieter than events, present all the same --------- */
+.notice--texture { border-left-color: var(--table-deep); color: var(--ink-soft);
+  font-style: italic; }

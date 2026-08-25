@@ -12,6 +12,7 @@ import { buildSchedule, eventsIn } from './events.js';
 import { newState, record, bumpPillar, fingerprint, shock, tickShocks, effectivePillar } from './state.js';
 import { Rng } from './rng.js';
 import { CLASS_EFFECTS, MAG_WEIGHT } from './effects.js';
+import { tickTexture } from './texture.js';
 import { initCorpus, tickCorpus, applyWorkEvent, catastrophe, preserve, copyOut, worksAtRisk } from './corpus.js';
 import { initTrade, tickTrade, applyTradeEvent, DECISIONS as TRADE_DECISIONS } from './trade.js';
 import { initPeople, tickPeople, oralCapacity, DECISIONS as PEOPLE_DECISIONS } from './people.js';
@@ -101,6 +102,10 @@ export function run(datapack, seed, decisionLog = [], opts = {}) {
     tickFrontier(state, span, rng.world);
     tickShocks(state, span);
     tickEconomy(state, span);
+    // The texture layer: the m tier, composed rather than authored. Keyed by
+    // year through drawFrom, so it replays identically and fingerprints like
+    // everything else. A datapack without texture data plays without it.
+    tickTexture(state, datapack, span, seed);
 
     if (opts.onYear) opts.onYear(state, next, span);
   }

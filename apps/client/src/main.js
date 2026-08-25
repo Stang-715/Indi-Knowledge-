@@ -47,7 +47,7 @@ const mark = (label) => { marks.push([label, performance.now() - T0]); };
 
 /* ── World ──────────────────────────────────────────────────────────────── */
 
-const [bundle, timeline, works, cityData, people, cardsDoc, gazetteer] = await Promise.all([
+const [bundle, timeline, works, cityData, people, cardsDoc, gazetteer, texture] = await Promise.all([
   fetch('../../data/skeleton/bundle.json').then(r => r.json()),
   fetch('../../data/timeline/timeline.json').then(r => r.json()),
   fetch('../../data/corpus/works.json').then(r => r.json()),
@@ -55,6 +55,7 @@ const [bundle, timeline, works, cityData, people, cardsDoc, gazetteer] = await P
   fetch('../../data/people/people.json').then(r => r.json()),
   fetch('../../data/timeline/cards.json').then(r => r.json()),
   fetch('../../data/gazetteer/places.json').then(r => r.json()),
+  fetch('../../data/timeline/texture.json').then(r => r.json()),
 ]);
 const PLACE_BY_ID = new Map(gazetteer.places.map(g => [g.id, g]));
 
@@ -115,7 +116,7 @@ async function upgradeClimate() {
   draw(3); scheduleFull();
 }
 const cityRenderer = new CityRenderer({ cities: cityData.cities });
-const DP = { timeline, works, people };
+const DP = { timeline, works, people, gazetteer, texture };
 const CARDS = indexCards(cardsDoc);
 const THREAD_IDX = indexThreads(timeline);
 const eraOf = (y) => timeline.eras.find(e => y >= e.from && y < e.to) ?? timeline.eras[15];
@@ -750,7 +751,7 @@ function paint() {
   $('goods').innerHTML = [...s.goods].map(g => `<span class="token">${g}</span>`).join('');
 
   const interesting = s.log.filter(l =>
-    ['epoch','catastrophe','loss','goods','teacher','decision','famine'].includes(l.kind));
+    ['epoch','catastrophe','loss','goods','teacher','decision','famine','texture','preserve'].includes(l.kind));
   $('log').innerHTML = interesting.slice(-40).reverse().map(l =>
     `<div data-year="${l.year}" title="Open the year page for ${formatYear(l.year)}"
         style="cursor:pointer"><span class="y">${formatYear(l.year)}</span>${l.text}</div>`).join('');
@@ -1055,7 +1056,8 @@ $('acts').addEventListener('click', (e) => {
 function notice(l) {
   const kind = l.kind === 'catastrophe' ? 'notice--loss'
              : l.kind === 'loss' ? 'notice--loss'
-             : l.kind === 'epoch' ? 'notice--epoch' : 'notice--good';
+             : l.kind === 'epoch' ? 'notice--epoch'
+             : l.kind === 'texture' ? 'notice--texture' : 'notice--good';
   const el = document.createElement('div');
   el.className = `notice ${kind}`;
   if (l.id) { el.dataset.event = l.id; el.style.cursor = 'pointer';
