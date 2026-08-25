@@ -242,8 +242,7 @@ test('a catastrophe that touches no library destroys no carriers', () => {
   // The Allah Bund earthquake reshaped Kutch and did not burn a manuscript.
   // Before the `corpus` field every W-magnitude catastrophe took a share of the
   // corpus, which made an earthquake in 1819 as bad for Sanskrit as Nalanda.
-  const physical = DP.timeline.events.filter(
-    e => e.class === 'CATASTROPHE' && e.corpus === 'none');
+  const physical = DP.timeline.events.filter(e => e.corpus === 'none');
   assert.ok(physical.length >= 10, 'the physical disasters must be marked as such');
 
   const s = run(DP, 'quake', []);
@@ -256,8 +255,9 @@ test('a catastrophe that touches no library destroys no carriers', () => {
 });
 
 test('the rescues are in the model, and they run the other way', () => {
-  const rescues = DP.timeline.events.filter(
-    e => e.class === 'CATASTROPHE' && e.corpus === 'preserve');
+  // Not filtered by class: the corpus field decides. Mahinda is TRADE, the
+  // Jain bhandaras are TRANSITION, and both save works.
+  const rescues = DP.timeline.events.filter(e => e.corpus === 'preserve');
   assert.ok(rescues.length >= 20, 'Aluvihare, Xuanzang, Atisha, Nambi, Swaminatha Iyer');
 
   const base = [];

@@ -428,6 +428,84 @@ for (const ev of supplements) {
 }
 
 /**
+ * Collapse the same event written twice.
+ *
+ * The document lists an era spine in Part 3 and a regional spine in Part 3B,
+ * and where they overlap — Utnur's ashmound, the Kalibangan ploughed field,
+ * the Daimabad bronzes — the same thing is written in both, in slightly
+ * different words. The supplements then added more. A hundred and eleven
+ * pairs, and the player would have seen every one of them happen twice.
+ *
+ * Two events are the same event if they sit within sixty years and their
+ * titles share most of their content words. The survivor is the one carrying
+ * more: an evidence line first, then more fields, then the longer title. The
+ * comparison is over a canonical sort, so the result does not depend on the
+ * order the files happened to be read in.
+ */
+const STOP = new Set(['the','a','an','of','and','in','at','on','to','is','as','its','for','with','by','from']);
+const contentWords = (t) => new Set(t.toLowerCase().replace(/[^a-z0-9 ]/g, ' ')
+  .split(/\s+/).filter(w => w && !STOP.has(w)));
+// How many titles a word appears in. A shared rare word — "diji", "utnur",
+// "ashmound" — means two lines are about the same thing; a shared common one
+// — "temple", "completed" — means nothing at all, and matching on those
+// collapsed Brihadeeswarar into Gangaikondacholapuram on the strength of
+// "temple" and "completed".
+const titleDf = new Map();
+for (const e of events)
+  for (const w of new Set(contentWords(e.title)))
+    titleDf.set(w, (titleDf.get(w) ?? 0) + 1);
+
+const richness = (e) => [
+  (e.evidence ?? '').length,
+  Object.keys(e).length,
+  e.title.length,
+].join('|');
+
+events.sort((a, b) => a.year - b.year || a.id.localeCompare(b.id));
+const collapsed = [];
+for (let i = 0; i < events.length; i++) {
+  for (let j = events.length - 1; j > i; j--) {
+    const a = events[i], b = events[j];
+    if (Math.abs(a.year - b.year) > 60) continue;
+    const A = contentWords(a.title), B = contentWords(b.title);
+    if (!A.size || !B.size) continue;
+    let shared = 0, rare = false;
+    for (const w of A) {
+      if (!B.has(w)) continue;
+      shared++;
+      if ((titleDf.get(w) ?? 0) <= 12) rare = true;
+    }
+    // A strict subset is a duplicate whatever the words are: "Kalibangan I
+    // fortified" says nothing "Kalibangan I: a fortified parallelogram,
+    // mudbrick" does not.
+    const subset = shared >= 2 && (shared === A.size || shared === B.size);
+    // Otherwise: three shared words, one of them uncommon, and most of the
+    // shorter title. Two is not enough — "temple" and "completed" are shared by
+    // Brihadeeswarar and Gangaikondacholapuram, which are forty years and a
+    // hundred and fifty kilometres apart.
+    if (!subset) {
+      if (shared < 3 || !rare) continue;
+      if (shared / Math.min(A.size, B.size) < 0.6) continue;
+    }
+    // Keep the richer one. If b wins, move it into a's slot so the outer loop
+    // keeps comparing against the survivor.
+    const loser = richness(b) > richness(a) ? (events[i] = b, a) : b;
+    // Keep the loser's payload. The two lines are the same event, but they were
+    // written by different hands and carry different fields: the document's
+    // version may be the better sentence while the supplement's is the one
+    // holding `corpus: preserve` or a `becomes`. Dropping it whole lost three
+    // of the corpus rescues and nobody would have noticed until a campaign ran
+    // without Atisha in it.
+    for (const [k, v] of Object.entries(loser)) {
+      if (events[i][k] === undefined || events[i][k] === null || events[i][k] === false)
+        if (v !== undefined && v !== null && v !== false) events[i][k] = v;
+    }
+    collapsed.push(`${loser.year} ${loser.title.slice(0, 44)} -> ${events[i].id}`);
+    events.splice(j, 1);
+  }
+}
+
+/**
  * An event's era is whichever era contains its year — not the block it was
  * written under. The document groups by narrative, and a few entries sit under
  * the wrong heading (Genghis 1221 filed with Delhi 1279+, Third Panipat 1761
@@ -477,6 +555,11 @@ doc.census = {
 console.log(`\n  Events total         ${events.length}`);
 console.log(`    from the document  ${events.length - merged}`);
 console.log(`    from supplements   ${merged}${collided ? `  (${collided} duplicate id(s) skipped)` : ''}`);
+if (collapsed.length) {
+  console.log(`    collapsed          ${collapsed.length} duplicate event(s) written twice`);
+  for (const t of collapsed.slice(0, 12)) console.log(`      = ${t}`);
+  if (collapsed.length > 12) console.log(`      = ... and ${collapsed.length - 12} more`);
+}
 if (superseded) {
   console.log(`    superseded         ${superseded} thin document line(s) replaced by a richer supplement entry`);
   for (const t of supersededTitles) console.log(`      ~ ${t}`);

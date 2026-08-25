@@ -170,3 +170,31 @@ test('no spine goes silent for more than four centuries after 600 BCE', () => {
         `${r}: nothing between ${years[i - 1]} and ${years[i]}`);
   }
 });
+
+test('no event is written twice', () => {
+  // The document lists an era spine and a regional spine, and where they
+  // overlap the same thing is written in both — a hundred and eleven pairs,
+  // and the player would have seen every one of them happen twice. The
+  // generator collapses them; this asserts the narrow, certain case, where one
+  // title says nothing the other does not. Fuzzier matching belongs in the
+  // generator, where a false positive can be inspected, not in a test, where
+  // it would fail the build over Brihadeeswarar and Gangaikondacholapuram
+  // sharing the words "temple" and "completed".
+  const STOP = new Set(['the','a','an','of','and','in','at','on','to','is','as','its','for','with','by','from']);
+  const words = (t) => new Set(t.toLowerCase().replace(/[^a-z0-9 ]/g, ' ')
+    .split(/\s+/).filter(w => w && !STOP.has(w)));
+
+  const dups = [];
+  for (let i = 0; i < TL.events.length; i++) {
+    for (let j = i + 1; j < TL.events.length; j++) {
+      const a = TL.events[i], b = TL.events[j];
+      if (b.year - a.year > 60) break;
+      const A = words(a.title), B = words(b.title);
+      let shared = 0;
+      for (const w of A) if (B.has(w)) shared++;
+      if (shared >= 2 && (shared === A.size || shared === B.size))
+        dups.push(`${a.title} || ${b.title}`);
+    }
+  }
+  assert.deepEqual(dups, []);
+});

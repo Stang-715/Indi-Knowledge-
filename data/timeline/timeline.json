@@ -1121,45 +1121,6 @@
    ]
   },
   {
-   "id": "EVT.FRT.BAGOR_SHEEP",
-   "title": "Bagor hunters take domestic sheep without taking up farming",
-   "class": "FRONTIER",
-   "magnitude": "M",
-   "year": -4500,
-   "era": "ERA.LATE_NEOLITHIC",
-   "provenance": "SOURCED",
-   "certainty": 0.7,
-   "trigger": "window",
-   "window": [
-    -4700,
-    -4300
-   ],
-   "scope": "regional",
-   "region": "RGN.RAJASTHAN",
-   "dispute": false,
-   "evidence": "Domestic sheep and goat bones in an otherwise Mesolithic assemblage at Bagor."
-  },
-  {
-   "id": "EVT.M4500.BAGOR_MESOLITHIC_HUNTERS_ADOPT_DOMESTIC_SHEE",
-   "title": "Bagor: Mesolithic hunters adopt domestic sheep without settling",
-   "provenance": "DERIVED",
-   "evidence": "Faunal remains, settlement pattern, and the silence of the settled record.",
-   "year": -4500,
-   "year_end": null,
-   "era": "ERA.LATE_NEOLITHIC",
-   "class": "FRONTIER",
-   "magnitude": "M",
-   "certainty": 0.6,
-   "trigger": "window",
-   "scope": "subcontinental",
-   "region": null,
-   "dispute": false,
-   "window": [
-    -4590,
-    -4410
-   ]
-  },
-  {
    "id": "EVT.M4500.BAGOR_MESOLITHIC_HUNTERS_ADOPT_DOMESTIC_SHEE_2",
    "title": "Bagor: Mesolithic hunters adopt domestic sheep without settling",
    "provenance": "DERIVED",
@@ -1220,26 +1181,6 @@
    ]
   },
   {
-   "id": "EVT.M4500.UTNUR_ASHMOUND_CATTLE_PENNED_AND_DUNG_BURNED",
-   "title": "Utnur ashmound: cattle penned and dung burned for centuries",
-   "provenance": "DERIVED",
-   "evidence": "Excavation: stratigraphy, pottery sequence and radiocarbon from the site itself.",
-   "year": -4500,
-   "year_end": null,
-   "era": "ERA.LATE_NEOLITHIC",
-   "class": "SITE",
-   "magnitude": "W",
-   "certainty": 0.6,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.KARNATAKA",
-   "dispute": false,
-   "window": [
-    -4590,
-    -4410
-   ]
-  },
-  {
    "id": "EVT.M4500.UTNUR_ASHMOUND_CATTLE_PENNED_DUNG_BURNED_SEA",
    "title": "Utnur ashmound: cattle penned, dung burned, seasonally, for centuries",
    "provenance": "DERIVED",
@@ -1252,7 +1193,7 @@
    "certainty": 0.6,
    "trigger": "window",
    "scope": "subcontinental",
-   "region": null,
+   "region": "RGN.KARNATAKA",
    "dispute": false,
    "window": [
     -4590,
@@ -1272,26 +1213,6 @@
    "certainty": 0.6,
    "trigger": "window",
    "scope": "subcontinental",
-   "region": null,
-   "dispute": false,
-   "window": [
-    -4488,
-    -4312
-   ]
-  },
-  {
-   "id": "EVT.M4400.KODEKAL_KUPGAL_THE_ASHMOUND_BELT",
-   "title": "Kodekal, Kupgal; the ashmound belt",
-   "provenance": "DERIVED",
-   "evidence": "Excavation: stratigraphy, pottery sequence and radiocarbon from the site itself.",
-   "year": -4400,
-   "year_end": null,
-   "era": "ERA.LATE_NEOLITHIC",
-   "class": "SITE",
-   "magnitude": "M",
-   "certainty": 0.6,
-   "trigger": "window",
-   "scope": "regional",
    "region": "RGN.KARNATAKA",
    "dispute": false,
    "window": [
@@ -1312,26 +1233,6 @@
    "certainty": 0.6,
    "trigger": "window",
    "scope": "subcontinental",
-   "region": null,
-   "dispute": false,
-   "window": [
-    -4437,
-    -4263
-   ]
-  },
-  {
-   "id": "EVT.M4350.KUPGAL_S_ROCK_GONGS_STRUCK_BOULDERS_AN_ACOUS_2",
-   "title": "Kupgal's rock gongs — struck boulders, an acoustic site",
-   "provenance": "DERIVED",
-   "evidence": "The text, and the works that quote or answer it.",
-   "year": -4350,
-   "year_end": null,
-   "era": "ERA.LATE_NEOLITHIC",
-   "class": "WORK",
-   "magnitude": "M",
-   "certainty": 0.6,
-   "trigger": "window",
-   "scope": "regional",
    "region": "RGN.KARNATAKA",
    "dispute": false,
    "window": [
@@ -1392,46 +1293,6 @@
    "certainty": 0.6,
    "trigger": "window",
    "scope": "subcontinental",
-   "region": null,
-   "dispute": false,
-   "window": [
-    -4284,
-    -4116
-   ]
-  },
-  {
-   "id": "EVT.M4200.BALATHAL_AND_GILUND_THE_AHAR_BANAS_CULTURE",
-   "title": "Balathal and Gilund; the Ahar-Banas culture",
-   "provenance": "DERIVED",
-   "evidence": "Excavation: stratigraphy, pottery sequence and radiocarbon from the site itself.",
-   "year": -4200,
-   "year_end": null,
-   "era": "ERA.LATE_NEOLITHIC",
-   "class": "SITE",
-   "magnitude": "W",
-   "certainty": 0.6,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.RAJASTHAN",
-   "dispute": false,
-   "window": [
-    -4284,
-    -4116
-   ]
-  },
-  {
-   "id": "EVT.M4200.COPPER_SMELTING_AT_SCALE_FROM_KHETRI_ORE",
-   "title": "Copper smelting at scale from Khetri ore",
-   "provenance": "DERIVED",
-   "evidence": "Material remains — the object, its composition, and an absolute date where one exists.",
-   "year": -4200,
-   "year_end": null,
-   "era": "ERA.LATE_NEOLITHIC",
-   "class": "TRANSITION",
-   "magnitude": "W",
-   "certainty": 0.6,
-   "trigger": "window",
-   "scope": "regional",
    "region": "RGN.RAJASTHAN",
    "dispute": false,
    "window": [
@@ -1452,7 +1313,7 @@
    "certainty": 0.6,
    "trigger": "window",
    "scope": "subcontinental",
-   "region": null,
+   "region": "RGN.RAJASTHAN",
    "dispute": false,
    "window": [
     -4284,
@@ -1817,26 +1678,6 @@
    ]
   },
   {
-   "id": "EVT.M3500.THE_KALIBANGAN_PLOUGHED_FIELD",
-   "title": "The Kalibangan ploughed field",
-   "provenance": "DERIVED",
-   "evidence": "Material remains — the object, its composition, and an absolute date where one exists.",
-   "year": -3500,
-   "year_end": null,
-   "era": "ERA.LATE_NEOLITHIC",
-   "class": "TRANSITION",
-   "magnitude": "W",
-   "certainty": 0.6,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.RAJASTHAN",
-   "dispute": false,
-   "window": [
-    -3570,
-    -3430
-   ]
-  },
-  {
    "id": "EVT.M3500.THE_KALIBANGAN_PLOUGHED_FIELD_THE_EARLIEST_K",
    "title": "The Kalibangan ploughed field — the earliest known anywhere",
    "provenance": "DERIVED",
@@ -1849,7 +1690,7 @@
    "certainty": 0.6,
    "trigger": "window",
    "scope": "subcontinental",
-   "region": null,
+   "region": "RGN.RAJASTHAN",
    "dispute": false,
    "window": [
     -3570,
@@ -1889,26 +1730,6 @@
    "certainty": 0.6,
    "trigger": "window",
    "scope": "subcontinental",
-   "region": null,
-   "dispute": false,
-   "window": [
-    -3468,
-    -3332
-   ]
-  },
-  {
-   "id": "EVT.M3400.SANGANAKALLU_THE_KARNATAKA_NEOLITHIC_MATURES_2",
-   "title": "Sanganakallu; the Karnataka Neolithic matures",
-   "provenance": "DERIVED",
-   "evidence": "Excavation: stratigraphy, pottery sequence and radiocarbon from the site itself.",
-   "year": -3400,
-   "year_end": null,
-   "era": "ERA.LATE_NEOLITHIC",
-   "class": "SITE",
-   "magnitude": "M",
-   "certainty": 0.6,
-   "trigger": "window",
-   "scope": "regional",
    "region": "RGN.KARNATAKA",
    "dispute": false,
    "window": [
@@ -1937,26 +1758,6 @@
    ]
   },
   {
-   "id": "EVT.M3350.BRAHMAGIRI_AND_PIKLIHAL",
-   "title": "Brahmagiri and Piklihal",
-   "provenance": "DERIVED",
-   "evidence": "Excavation: stratigraphy, pottery sequence and radiocarbon from the site itself.",
-   "year": -3350,
-   "year_end": null,
-   "era": "ERA.LATE_NEOLITHIC",
-   "class": "SITE",
-   "magnitude": "M",
-   "certainty": 0.6,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.KARNATAKA",
-   "dispute": false,
-   "window": [
-    -3417,
-    -3283
-   ]
-  },
-  {
    "id": "EVT.M3350.BRAHMAGIRI_AND_PIKLIHAL_THE_SOUTHERN_NEOLITH",
    "title": "Brahmagiri and Piklihal; the southern Neolithic web",
    "provenance": "DERIVED",
@@ -1969,26 +1770,6 @@
    "certainty": 0.6,
    "trigger": "window",
    "scope": "subcontinental",
-   "region": null,
-   "dispute": false,
-   "window": [
-    -3417,
-    -3283
-   ]
-  },
-  {
-   "id": "EVT.M3350.BROWNTOP_AND_BRISTLEY_FOXTAIL_MILLET_DOMESTI",
-   "title": "Browntop and bristley foxtail millet domesticated",
-   "provenance": "DERIVED",
-   "evidence": "Archaeobotany: seeds, phytoliths and field systems.",
-   "year": -3350,
-   "year_end": null,
-   "era": "ERA.LATE_NEOLITHIC",
-   "class": "AGRICULTURE",
-   "magnitude": "W",
-   "certainty": 0.6,
-   "trigger": "window",
-   "scope": "regional",
    "region": "RGN.KARNATAKA",
    "dispute": false,
    "window": [
@@ -2009,7 +1790,7 @@
    "certainty": 0.6,
    "trigger": "window",
    "scope": "subcontinental",
-   "region": null,
+   "region": "RGN.KARNATAKA",
    "dispute": false,
    "window": [
     -3417,
@@ -2427,26 +2208,6 @@
    "certainty": 0.6,
    "trigger": "window",
    "scope": "subcontinental",
-   "region": null,
-   "dispute": false,
-   "window": [
-    -3162,
-    -3038
-   ]
-  },
-  {
-   "id": "EVT.M3100.KALIBANGAN_I_FORTIFIED",
-   "title": "Kalibangan I fortified",
-   "provenance": "DERIVED",
-   "evidence": "Excavation: stratigraphy, pottery sequence and radiocarbon from the site itself.",
-   "year": -3100,
-   "year_end": null,
-   "era": "ERA.EARLY_HARAPPAN",
-   "class": "SITE",
-   "magnitude": "M",
-   "certainty": 0.6,
-   "trigger": "window",
-   "scope": "regional",
    "region": "RGN.RAJASTHAN",
    "dispute": false,
    "window": [
@@ -3048,28 +2809,6 @@
    ]
   },
   {
-   "id": "EVT.CAT.KOT_DIJI_BURN",
-   "title": "Kot Diji burns",
-   "class": "CATASTROPHE",
-   "magnitude": "M",
-   "year": -2600,
-   "era": "ERA.INDUS",
-   "provenance": "SOURCED",
-   "certainty": 0.6,
-   "trigger": "window",
-   "scope": "subcontinental",
-   "region": null,
-   "dispute": true,
-   "evidence": "A burnt layer between the Early and Mature Harappan levels.",
-   "window": [
-    -2662,
-    -2538
-   ],
-   "dispute_scope": "causation",
-   "dispute_text": "Whether the fire marks conflict, an accident, or a deliberate ritual closing of a settlement phase is argued, and the same layer appears at other sites.",
-   "corpus": "none"
-  },
-  {
    "id": "EVT.CLI.YAMUNA_CAPTURE",
    "title": "The Yamuna turns east into the Ganga system",
    "class": "CLIMATE",
@@ -3125,7 +2864,13 @@
    "scope": "subcontinental",
    "region": null,
    "dispute": true,
-   "dispute_scope": "date"
+   "dispute_scope": "date",
+   "window": [
+    -2662,
+    -2538
+   ],
+   "dispute_text": "Whether the fire marks conflict, an accident, or a deliberate ritual closing of a settlement phase is argued, and the same layer appears at other sites.",
+   "corpus": "none"
   },
   {
    "id": "EVT.M2600.NAUSHARO_TRANSITIONS_TO_HARAPPAN_FORMS_WITHO",
@@ -3405,6 +3150,25 @@
    ]
   },
   {
+   "id": "EVT.IND.PLOUGH_SPREAD",
+   "title": "The ard plough and the bullock cart spread across the whole Indus zone",
+   "class": "AGRICULTURE",
+   "magnitude": "W",
+   "year": -2500,
+   "era": "ERA.INDUS",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Terracotta cart and plough models from a dozen sites, and the Kalibangan furrows themselves.",
+   "window": [
+    -2540,
+    -2460
+   ]
+  },
+  {
    "id": "EVT.M2500.CUBICAL_CHERT_WEIGHTS_ON_A_0_856_G_UNIT_BINA",
    "title": "Cubical chert weights on a 0.856 g unit; binary then decimal",
    "provenance": "DERIVED",
@@ -3605,24 +3369,44 @@
    ]
   },
   {
-   "id": "EVT.M2450.LOTHAL_S_BASIN_AND_BEAD_FACTORY",
-   "title": "Lothal's basin and bead factory",
-   "provenance": "DERIVED",
-   "evidence": "Excavation: stratigraphy, pottery sequence and radiocarbon from the site itself.",
-   "year": -2450,
-   "year_end": null,
-   "era": "ERA.INDUS",
-   "class": "SITE",
+   "id": "EVT.IND.NO_WEAPONS",
+   "title": "The material record holds almost no weapons and no siege works",
+   "class": "TRANSITION",
    "magnitude": "W",
+   "year": -2450,
+   "era": "ERA.INDUS",
+   "provenance": "SOURCED",
    "certainty": 0.7,
    "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.GUJARAT",
+   "scope": "subcontinental",
+   "region": null,
    "dispute": false,
+   "evidence": "The excavated assemblages across every major site: tools, ornaments and containers, and very little that is only for killing.",
    "window": [
-    -2499,
-    -2401
-   ]
+    -2490,
+    -2410
+   ],
+   "note": "Five hundred years of cities and no army in the ground. The game has to be honest about how strange that is."
+  },
+  {
+   "id": "EVT.IND.SHELL_INDUSTRY",
+   "title": "Shell working becomes an industry with regional specialisms",
+   "class": "TRANSITION",
+   "magnitude": "W",
+   "year": -2450,
+   "era": "ERA.INDUS",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The workshop debris at Nageshwar, Balakot and Chanhudaro, each producing different objects from the same species.",
+   "window": [
+    -2490,
+    -2410
+   ],
+   "note": "Different towns made different things from the same shell. That is a supply chain, not a craft."
   },
   {
    "id": "EVT.M2450.LOTHAL_S_BASIN_DOCKYARD_OR_RESERVOIR_STILL_A",
@@ -3654,7 +3438,7 @@
    "certainty": 0.7,
    "trigger": "window",
    "scope": "subcontinental",
-   "region": null,
+   "region": "RGN.GUJARAT",
    "dispute": false,
    "window": [
     -2499,
@@ -3739,6 +3523,47 @@
    "window": [
     -2458,
     -2362
+   ]
+  },
+  {
+   "id": "EVT.IND.FAIENCE",
+   "title": "Faience and stoneware bangles are made by a process nobody has fully reconstructed",
+   "class": "TRANSITION",
+   "magnitude": "W",
+   "year": -2400,
+   "era": "ERA.INDUS",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The stoneware bangles, fired in sealed saggars with inscribed seals, and the failed modern attempts to reproduce them.",
+   "window": [
+    -2440,
+    -2360
+   ]
+  },
+  {
+   "id": "EVT.IND.INLAND_NETWORK",
+   "title": "An inland network moves stone, metal and shell hundreds of kilometres",
+   "class": "TRADE",
+   "magnitude": "W",
+   "year": -2400,
+   "era": "ERA.INDUS",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Sourcing studies on the carnelian, steatite, copper and shell found at each site, matched to their geological origins.",
+   "window": [
+    -2440,
+    -2360
+   ],
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
    ]
   },
   {
@@ -3841,6 +3666,26 @@
    ]
   },
   {
+   "id": "EVT.IND.DHOLAVIRA_WATER",
+   "title": "Dholavira's stone reservoirs hold a year of water in a desert",
+   "class": "STRUCTURE",
+   "magnitude": "W",
+   "year": -2300,
+   "era": "ERA.INDUS",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The sixteen excavated reservoirs, the rock-cut wells and the check dams on two seasonal streams.",
+   "window": [
+    -2340,
+    -2260
+   ],
+   "note": "An island in a salt desert with no perennial water, occupied for fifteen hundred years. They engineered it."
+  },
+  {
    "id": "EVT.M2300.SHORTUGAI_FOUNDED_ON_THE_OXUS_AN_INDUS_OUTPO",
    "title": "Shortugai founded on the Oxus — an Indus outpost for lapis",
    "provenance": "DERIVED",
@@ -3898,45 +3743,6 @@
    ]
   },
   {
-   "id": "EVT.CAT.KALIBANGAN_QUAKE",
-   "title": "Kalibangan shows what is read as earthquake damage",
-   "class": "CATASTROPHE",
-   "magnitude": "M",
-   "year": -2260,
-   "era": "ERA.INDUS",
-   "provenance": "SOURCED",
-   "certainty": 0.45,
-   "trigger": "window",
-   "scope": "subcontinental",
-   "region": null,
-   "dispute": true,
-   "evidence": "Displaced walls and a fault trace beneath the site.",
-   "window": [
-    -2315,
-    -2205
-   ],
-   "dispute_scope": "interpretation",
-   "dispute_text": "The seismic interpretation is one reading of the structural damage; subsidence and abandonment have both been proposed instead.",
-   "corpus": "none"
-  },
-  {
-   "id": "EVT.M2260.KALIBANGAN_EVIDENCE_READ_AS_EARTHQUAKE_DAMAG",
-   "title": "Kalibangan: evidence read as earthquake damage",
-   "provenance": "DERIVED",
-   "evidence": "Destruction layers, and accounts written afterwards by people with a position.",
-   "year": -2260,
-   "year_end": null,
-   "era": "ERA.INDUS",
-   "class": "CATASTROPHE",
-   "magnitude": "M",
-   "certainty": 0.45,
-   "trigger": "latent",
-   "scope": "subcontinental",
-   "region": null,
-   "dispute": true,
-   "dispute_scope": "date"
-  },
-  {
    "id": "EVT.M2260.KALIBANGAN_EVIDENCE_READ_AS_EARTHQUAKE_DAMAG_2",
    "title": "Kalibangan: evidence read as earthquake damage",
    "provenance": "DERIVED",
@@ -3951,7 +3757,13 @@
    "scope": "regional",
    "region": "RGN.RAJASTHAN",
    "dispute": true,
-   "dispute_scope": "date"
+   "dispute_scope": "date",
+   "window": [
+    -2315,
+    -2205
+   ],
+   "dispute_text": "The seismic interpretation is one reading of the structural damage; subsidence and abandonment have both been proposed instead.",
+   "corpus": "none"
   },
   {
    "id": "EVT.M2250.SUTKAGEN_DOR_THE_WESTERN_FRONTIER_ON_THE_MAK",
@@ -4046,7 +3858,7 @@
    "certainty": 0.7,
    "trigger": "window",
    "scope": "subcontinental",
-   "region": null,
+   "region": "RGN.ASSAM",
    "dispute": false,
    "window": [
     -2244,
@@ -4073,42 +3885,6 @@
    ]
   },
   {
-   "id": "EVT.CLI.MAWMLUH_42",
-   "title": "Mawmluh Cave becomes the global reference for the 4.2 kiloyear event",
-   "class": "CLIMATE",
-   "magnitude": "W",
-   "year": -2190,
-   "era": "ERA.INDUS",
-   "provenance": "SOURCED",
-   "certainty": 0.85,
-   "trigger": "window",
-   "window": [
-    -2250,
-    -2100
-   ],
-   "scope": "regional",
-   "region": "RGN.ASSAM",
-   "dispute": false,
-   "evidence": "The Mawmluh Cave speleothem in Meghalaya, which is the global reference section defining the base of the Meghalayan age."
-  },
-  {
-   "id": "EVT.M2172.IRON_AT_MAYILADUMPARAI_OLDEST_AMS_DATED_IN_I",
-   "title": "Iron at Mayiladumparai — oldest AMS-dated in India",
-   "provenance": "DERIVED",
-   "evidence": "Material remains — the object, its composition, and an absolute date where one exists.",
-   "year": -2172,
-   "year_end": null,
-   "era": "ERA.INDUS",
-   "class": "TRANSITION",
-   "magnitude": "W",
-   "certainty": 0.45,
-   "trigger": "latent",
-   "scope": "regional",
-   "region": "RGN.TAMILAKAM",
-   "dispute": true,
-   "dispute_scope": "date"
-  },
-  {
    "id": "EVT.M2172.IRON_AT_MAYILADUMPARAI_TAMIL_NADU_THE_OLDEST",
    "title": "Iron at Mayiladumparai, Tamil Nadu — the oldest AMS-dated iron in India",
    "provenance": "DERIVED",
@@ -4121,7 +3897,7 @@
    "certainty": 0.45,
    "trigger": "latent",
    "scope": "subcontinental",
-   "region": null,
+   "region": "RGN.TAMILAKAM",
    "dispute": true,
    "dispute_scope": "date"
   },
@@ -5074,26 +4850,6 @@
    ]
   },
   {
-   "id": "EVT.M1600.THE_DAIMABAD_BRONZES",
-   "title": "The Daimabad bronzes",
-   "provenance": "DERIVED",
-   "evidence": "The text, and the works that quote or answer it.",
-   "year": -1600,
-   "year_end": null,
-   "era": "ERA.LATE_HARAPPAN",
-   "class": "WORK",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.MAHARASHTRA",
-   "dispute": false,
-   "window": [
-    -1632,
-    -1568
-   ]
-  },
-  {
    "id": "EVT.M1600.THE_DAIMABAD_BRONZES_CHARIOT_ELEPHANT_RHINOC",
    "title": "The Daimabad bronzes — chariot, elephant, rhinoceros, buffalo",
    "provenance": "DERIVED",
@@ -5106,7 +4862,7 @@
    "certainty": 0.7,
    "trigger": "window",
    "scope": "subcontinental",
-   "region": null,
+   "region": "RGN.MAHARASHTRA",
    "dispute": false,
    "window": [
     -1632,
@@ -5173,23 +4929,6 @@
    ]
   },
   {
-   "id": "EVT.M1510.IRON_AT_MANGADU_SALEM",
-   "title": "Iron at Mangadu, Salem",
-   "provenance": "DERIVED",
-   "evidence": "Material remains — the object, its composition, and an absolute date where one exists.",
-   "year": -1510,
-   "year_end": null,
-   "era": "ERA.LATE_HARAPPAN",
-   "class": "TRANSITION",
-   "magnitude": "M",
-   "certainty": 0.45,
-   "trigger": "latent",
-   "scope": "regional",
-   "region": "RGN.TAMILAKAM",
-   "dispute": true,
-   "dispute_scope": "date"
-  },
-  {
    "id": "EVT.M1510.IRON_AT_MANGADU_SALEM_SOUTHERN_METALLURGY_CO",
    "title": "Iron at Mangadu, Salem — southern metallurgy consolidates",
    "provenance": "DERIVED",
@@ -5202,7 +4941,7 @@
    "certainty": 0.45,
    "trigger": "latent",
    "scope": "subcontinental",
-   "region": null,
+   "region": "RGN.TAMILAKAM",
    "dispute": true,
    "dispute_scope": "date"
   },
@@ -5280,26 +5019,6 @@
    "certainty": 0.7,
    "trigger": "window",
    "scope": "subcontinental",
-   "region": null,
-   "dispute": false,
-   "window": [
-    -1530,
-    -1470
-   ]
-  },
-  {
-   "id": "EVT.M1500.INAMGAON_IRRIGATION_CHANNEL_CHIEF_S_HOUSE_GR",
-   "title": "Inamgaon: irrigation channel, chief's house, granary",
-   "provenance": "DERIVED",
-   "evidence": "Excavation: stratigraphy, pottery sequence and radiocarbon from the site itself.",
-   "year": -1500,
-   "year_end": null,
-   "era": "ERA.LATE_HARAPPAN",
-   "class": "SITE",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
    "region": "RGN.MAHARASHTRA",
    "dispute": false,
    "window": [
@@ -5515,26 +5234,6 @@
    "certainty": 0.7,
    "trigger": "window",
    "scope": "subcontinental",
-   "region": null,
-   "dispute": false,
-   "window": [
-    -1428,
-    -1372
-   ]
-  },
-  {
-   "id": "EVT.M1400.HALLUR_IRON_IN_KARNATAKA_2",
-   "title": "Hallur: iron in Karnataka",
-   "provenance": "DERIVED",
-   "evidence": "Material remains — the object, its composition, and an absolute date where one exists.",
-   "year": -1400,
-   "year_end": null,
-   "era": "ERA.LATE_HARAPPAN",
-   "class": "TRANSITION",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
    "region": "RGN.KARNATAKA",
    "dispute": false,
    "window": [
@@ -5594,26 +5293,6 @@
    "certainty": 0.7,
    "trigger": "window",
    "scope": "subcontinental",
-   "region": null,
-   "dispute": false,
-   "window": [
-    -1408,
-    -1352
-   ]
-  },
-  {
-   "id": "EVT.M1380.ADICHANALLUR_URN_BURIALS_BEGIN",
-   "title": "Adichanallur urn burials begin",
-   "provenance": "DERIVED",
-   "evidence": "Excavation: stratigraphy, pottery sequence and radiocarbon from the site itself.",
-   "year": -1380,
-   "year_end": null,
-   "era": "ERA.LATE_HARAPPAN",
-   "class": "SITE",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
    "region": "RGN.TAMILAKAM",
    "dispute": false,
    "window": [
@@ -6258,25 +5937,6 @@
    ]
   },
   {
-   "id": "EVT.FRT.KHASI_MONOLITHS",
-   "title": "The Khasi hills raise monoliths for the dead",
-   "class": "FRONTIER",
-   "magnitude": "M",
-   "year": -1000,
-   "era": "ERA.EARLY_VEDIC",
-   "provenance": "SOURCED",
-   "certainty": 0.55,
-   "trigger": "window",
-   "window": [
-    -1400,
-    -600
-   ],
-   "scope": "regional",
-   "region": "RGN.ASSAM",
-   "dispute": false,
-   "evidence": "The standing stone groups themselves, which are still raised within living memory, making the tradition one of the longest continuously practised anywhere."
-  },
-  {
    "id": "EVT.M1000.AHICHCHHATRA_AND_JAKHERA",
    "title": "Ahichchhatra and Jakhera",
    "provenance": "DERIVED",
@@ -6665,26 +6325,6 @@
    "certainty": 0.7,
    "trigger": "window",
    "scope": "subcontinental",
-   "region": null,
-   "dispute": false,
-   "window": [
-    -933,
-    -897
-   ]
-  },
-  {
-   "id": "EVT.M915.MASKI_THE_MEGALITHIC_TO_HISTORIC_SEQUENCE",
-   "title": "Maski; the megalithic-to-historic sequence",
-   "provenance": "DERIVED",
-   "evidence": "Excavation: stratigraphy, pottery sequence and radiocarbon from the site itself.",
-   "year": -915,
-   "year_end": null,
-   "era": "ERA.EARLY_VEDIC",
-   "class": "SITE",
-   "magnitude": "M",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
    "region": "RGN.KARNATAKA",
    "dispute": false,
    "window": [
@@ -7291,26 +6931,6 @@
    "work": "WRK.CHANDOGYA"
   },
   {
-   "id": "EVT.M745.UDDALAKA_ARUNI_TAT_TVAM_ASI_IN_THE_CHANDOGYA",
-   "title": "Uddalaka Aruni; tat tvam asi in the Chandogya",
-   "provenance": "DERIVED",
-   "evidence": "The text, and the works that quote or answer it.",
-   "year": -745,
-   "year_end": null,
-   "era": "ERA.LATE_VEDIC",
-   "class": "WORK",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "subcontinental",
-   "region": null,
-   "dispute": false,
-   "window": [
-    -760,
-    -730
-   ]
-  },
-  {
    "id": "EVT.M740.RENUNCIATION_APPEARS_AS_A_RECOGNISED_LIFE_ST",
    "title": "Renunciation appears as a recognised life stage",
    "provenance": "DERIVED",
@@ -7876,23 +7496,6 @@
    "certainty": 0.45,
    "trigger": "latent",
    "scope": "subcontinental",
-   "region": null,
-   "dispute": true,
-   "dispute_scope": "date"
-  },
-  {
-   "id": "EVT.M585.KEELADI_URBAN_SETTLEMENT_ON_THE_VAIGAI_LIVE_",
-   "title": "Keeladi: urban settlement on the Vaigai — live dispute",
-   "provenance": "DERIVED",
-   "evidence": "Excavation: stratigraphy, pottery sequence and radiocarbon from the site itself.",
-   "year": -585,
-   "year_end": null,
-   "era": "ERA.SECOND_URBAN",
-   "class": "SITE",
-   "magnitude": "W",
-   "certainty": 0.45,
-   "trigger": "latent",
-   "scope": "regional",
    "region": "RGN.TAMILAKAM",
    "dispute": true,
    "dispute_scope": "date"
@@ -8273,7 +7876,8 @@
    "region": "RGN.ASSAM",
    "dispute": false,
    "evidence": "The terraces themselves, which are difficult to date directly, and the agricultural vocabulary.",
-   "note": "Terracing steep ground for irrigated rice is a harder engineering problem than anything on the plains, and the plains record does not mention it."
+   "note": "Terracing steep ground for irrigated rice is a harder engineering problem than anything on the plains, and the plains record does not mention it.",
+   "year_end": 1900
   },
   {
    "id": "EVT.M500.DHULIKATTA_AND_KOTALINGALA_EARLY_URBAN_CENTR",
@@ -8353,26 +7957,6 @@
    "dispute_scope": "date"
   },
   {
-   "id": "EVT.M500.TERRACED_WET_RICE_CULTIVATION_BEGINS_IN_THE_",
-   "title": "Terraced wet-rice cultivation begins in the Naga hills",
-   "provenance": "DERIVED",
-   "evidence": "Archaeobotany: seeds, phytoliths and field systems.",
-   "year": -500,
-   "year_end": null,
-   "era": "ERA.SECOND_URBAN",
-   "class": "AGRICULTURE",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.ASSAM",
-   "dispute": false,
-   "window": [
-    -510,
-    -490
-   ]
-  },
-  {
    "id": "EVT.REF.AJIVIKA_DOCTRINE",
    "title": "Makkhali Gosala teaches niyati — everything is already settled",
    "class": "REFORM",
@@ -8394,27 +7978,6 @@
     "THR.THE_RENOUNCERS"
    ],
    "note": "A whole school known only through the writings of people who thought it was wrong."
-  },
-  {
-   "id": "EVT.RGN.ASM_TERRACE",
-   "title": "Terraced wet rice in the Angami and Chakhesang hills",
-   "class": "AGRICULTURE",
-   "magnitude": "R",
-   "year": -500,
-   "era": "ERA.SECOND_URBAN",
-   "provenance": "SOURCED",
-   "certainty": 0.6,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.ASSAM",
-   "dispute": false,
-   "evidence": "The terrace systems themselves and the comparative ethnographic and agronomic record.",
-   "window": [
-    -520,
-    -480
-   ],
-   "year_end": 1900,
-   "note": "Some of the most elaborate terracing in Asia, built without a state and maintained by village agreement."
   },
   {
    "id": "EVT.RGN.KER_RICE_KUTTANAD",
@@ -8534,26 +8097,6 @@
    "window": [
     -500,
     -480
-   ]
-  },
-  {
-   "id": "EVT.INV.MAGADHA_VAJJI",
-   "title": "Ajatashatru breaks the Vajji confederacy with siege engines and diplomacy",
-   "class": "INVASION",
-   "magnitude": "M",
-   "year": -484,
-   "era": "ERA.SECOND_URBAN",
-   "provenance": "SOURCED",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "subcontinental",
-   "region": null,
-   "dispute": false,
-   "evidence": "The Pali accounts of the mahashilakantaka and the rathamusala, and of the minister sent to divide the assembly first.",
-   "becomes": "The republican form loses its strongest example. Magadha's method — split the assembly, then besiege — becomes the template for absorbing a gana-sangha.",
-   "window": [
-    -514,
-    -454
    ]
   },
   {
@@ -9492,7 +9035,7 @@
    "provenance": "DERIVED",
    "evidence": "Goods found far from where they were made, and the documents of the people who moved them.",
    "year": -300,
-   "year_end": null,
+   "year_end": 1900,
    "era": "ERA.MAURYAN",
    "class": "TRADE",
    "magnitude": "W",
@@ -9728,26 +9271,6 @@
     -320,
     -280
    ]
-  },
-  {
-   "id": "EVT.RGN.RAJ_SALT_SAMBHAR",
-   "title": "Sambhar salt enters long-distance trade",
-   "class": "TRADE",
-   "magnitude": "R",
-   "year": -300,
-   "era": "ERA.MAURYAN",
-   "provenance": "SOURCED",
-   "certainty": 0.6,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.RAJASTHAN",
-   "dispute": false,
-   "evidence": "The lake's exploitation record, the Arthashastra's salt monopoly provisions, and the later state salt accounts.",
-   "window": [
-    -320,
-    -280
-   ],
-   "year_end": 1900
   },
   {
    "id": "EVT.SIT.KODUMANAL_STEEL",
@@ -10178,27 +9701,6 @@
    ]
   },
   {
-   "id": "EVT.CAT.MAHINDA_CARRIES",
-   "title": "Mahinda carries the canon to Sri Lanka",
-   "class": "CATASTROPHE",
-   "magnitude": "W",
-   "year": -250,
-   "era": "ERA.MAURYAN",
-   "provenance": "SOURCED",
-   "certainty": 0.6,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.SRI_LANKA",
-   "dispute": false,
-   "evidence": "The Sri Lankan chronicles and the Mahavihara tradition.",
-   "window": [
-    -265,
-    -235
-   ],
-   "corpus": "preserve",
-   "preserve_to": "lanka"
-  },
-  {
    "id": "EVT.M250.ASHOKA_FOUNDS_SRINAGARI_PER_KALHANA",
    "title": "Ashoka founds Srinagari (per Kalhana)",
    "provenance": "DERIVED",
@@ -10289,26 +9791,6 @@
    "trigger": "window",
    "scope": "subcontinental",
    "region": null,
-   "dispute": false,
-   "window": [
-    -255,
-    -245
-   ]
-  },
-  {
-   "id": "EVT.M250.PUNDRAVARDHANA_UNDER_MAURYAN_ADMINISTRATION",
-   "title": "Pundravardhana under Mauryan administration",
-   "provenance": "DERIVED",
-   "evidence": "Inscriptions dated in regnal years, coinage, and the dynastic lists that later chronicles compile from both.",
-   "year": -250,
-   "year_end": null,
-   "era": "ERA.MAURYAN",
-   "class": "—",
-   "magnitude": "M",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.BENGAL",
    "dispute": false,
    "window": [
     -255,
@@ -10477,25 +9959,6 @@
    "window": [
     -270,
     -230
-   ]
-  },
-  {
-   "id": "EVT.SIT.BAIRAT",
-   "title": "Bairat: a circular Buddhist shrine and two Ashokan edicts",
-   "class": "SITE",
-   "magnitude": "M",
-   "year": -250,
-   "era": "ERA.MAURYAN",
-   "provenance": "SOURCED",
-   "certainty": 0.8,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.RAJASTHAN",
-   "dispute": false,
-   "evidence": "The circular brick chaitya foundation with a stupa at its centre, and the Bhabru and Bairat inscriptions.",
-   "window": [
-    -254,
-    -246
    ]
   },
   {
@@ -10670,12 +10133,14 @@
    "certainty": 0.7,
    "trigger": "window",
    "scope": "subcontinental",
-   "region": null,
+   "region": "RGN.SRI_LANKA",
    "dispute": false,
    "window": [
     -245,
     -235
-   ]
+   ],
+   "corpus": "preserve",
+   "preserve_to": "lanka"
   },
   {
    "id": "EVT.M240.THE_MAHAVIHARA_FOUNDED",
@@ -10747,46 +10212,6 @@
    "trigger": "window",
    "scope": "regional",
    "region": "RGN.KARNATAKA",
-   "dispute": false,
-   "window": [
-    -235,
-    -225
-   ]
-  },
-  {
-   "id": "EVT.M230.SATAVAHANA_INDEPENDENCE",
-   "title": "Satavahana independence",
-   "provenance": "DERIVED",
-   "evidence": "Inscriptions, copper plates and land grants.",
-   "year": -230,
-   "year_end": null,
-   "era": "ERA.MAURYAN",
-   "class": "FOUNDATION",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.ANDHRA",
-   "dispute": false,
-   "window": [
-    -235,
-    -225
-   ]
-  },
-  {
-   "id": "EVT.M230.SATAVAHANA_INDEPENDENCE_IN_THE_DECCAN",
-   "title": "Satavahana independence in the Deccan",
-   "provenance": "DERIVED",
-   "evidence": "Inscriptions, copper plates and land grants.",
-   "year": -230,
-   "year_end": null,
-   "era": "ERA.MAURYAN",
-   "class": "FOUNDATION",
-   "magnitude": "M",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "subcontinental",
-   "region": null,
    "dispute": false,
    "window": [
     -235,
@@ -11174,46 +10599,6 @@
    ]
   },
   {
-   "id": "EVT.M150.KARLE_BHAJA_BEDSE_ROCK_CUT_HALLS_FUNDED_BY_M",
-   "title": "Karle, Bhaja, Bedse — rock-cut halls funded by merchants",
-   "provenance": "DERIVED",
-   "evidence": "Inscriptions, copper plates and land grants.",
-   "year": -150,
-   "year_end": null,
-   "era": "ERA.CLASSICAL",
-   "class": "FOUNDATION",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.MAHARASHTRA",
-   "dispute": false,
-   "window": [
-    -155,
-    -145
-   ]
-  },
-  {
-   "id": "EVT.M150.KHARAVELA_AND_THE_HATHIGUMPHA_INSCRIPTION",
-   "title": "Kharavela and the Hathigumpha inscription",
-   "provenance": "DERIVED",
-   "evidence": "The text, and the works that quote or answer it.",
-   "year": -150,
-   "year_end": null,
-   "era": "ERA.CLASSICAL",
-   "class": "WORK",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.ODISHA",
-   "dispute": false,
-   "window": [
-    -155,
-    -145
-   ]
-  },
-  {
    "id": "EVT.M150.MUZIRIS_AND_KORKAI_ON_THE_ROMAN_CIRCUIT",
    "title": "Muziris and Korkai on the Roman circuit",
    "provenance": "DERIVED",
@@ -11346,7 +10731,7 @@
    "certainty": 0.7,
    "trigger": "window",
    "scope": "subcontinental",
-   "region": null,
+   "region": "RGN.MAHARASHTRA",
    "dispute": false,
    "window": [
     -135,
@@ -11366,7 +10751,7 @@
    "certainty": 0.7,
    "trigger": "window",
    "scope": "subcontinental",
-   "region": null,
+   "region": "RGN.ODISHA",
    "dispute": false,
    "window": [
     -125,
@@ -12067,26 +11452,6 @@
    "certainty": 0.7,
    "trigger": "window",
    "scope": "subcontinental",
-   "region": null,
-   "dispute": false,
-   "window": [
-    45,
-    55
-   ]
-  },
-  {
-   "id": "EVT.50.MUZIRIS_ROMAN_GOLD_IN_PEPPER_OUT",
-   "title": "Muziris: Roman gold in, pepper out",
-   "provenance": "DERIVED",
-   "evidence": "Goods found far from where they were made, and the documents of the people who moved them.",
-   "year": 50,
-   "year_end": null,
-   "era": "ERA.CLASSICAL",
-   "class": "TRADE",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
    "region": "RGN.KERALA",
    "dispute": false,
    "window": [
@@ -12107,7 +11472,7 @@
    "certainty": 0.7,
    "trigger": "window",
    "scope": "subcontinental",
-   "region": null,
+   "region": "RGN.KERALA",
    "dispute": false,
    "window": [
     45,
@@ -12240,26 +11605,6 @@
    "work": "WRK.CHARAKA"
   },
   {
-   "id": "EVT.52.THOMAS_TRADITION_THE_MALABAR_CHRISTIAN_COMMU",
-   "title": "Thomas tradition; the Malabar Christian community",
-   "provenance": "DERIVED",
-   "evidence": "Texts, and the institutions that outlived the argument.",
-   "year": 52,
-   "year_end": null,
-   "era": "ERA.CLASSICAL",
-   "class": "REFORM",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.KERALA",
-   "dispute": false,
-   "window": [
-    47,
-    57
-   ]
-  },
-  {
    "id": "EVT.60.THE_WESTERN_SATRAPS_DATED_COINAGE_BEGINS_UNU",
    "title": "The Western Satraps; dated coinage begins — unusual precision",
    "provenance": "DERIVED",
@@ -12293,23 +11638,6 @@
    "trigger": "latent",
    "scope": "subcontinental",
    "region": null,
-   "dispute": true,
-   "dispute_scope": "date"
-  },
-  {
-   "id": "EVT.78.THE_FOURTH_BUDDHIST_COUNCIL_UNDER_KANISHKA",
-   "title": "The Fourth Buddhist Council under Kanishka",
-   "provenance": "DERIVED",
-   "evidence": "Texts, and the institutions that outlived the argument.",
-   "year": 78,
-   "year_end": null,
-   "era": "ERA.CLASSICAL",
-   "class": "REFORM",
-   "magnitude": "W",
-   "certainty": 0.45,
-   "trigger": "latent",
-   "scope": "regional",
-   "region": "RGN.KASHMIR",
    "dispute": true,
    "dispute_scope": "date"
   },
@@ -12512,7 +11840,11 @@
    "window": [
     95,
     105
-   ]
+   ],
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ],
+   "note": "One ship, one contract, and a value equal to a large Egyptian estate. The pepper trade was not a trickle."
   },
   {
    "id": "EVT.FRT.SATAVAHANA_HILLS",
@@ -12990,29 +12322,6 @@
    "evidence": "Rudradaman's Junagadh inscription, which describes the storm, the breach and the repair in unusual technical detail."
   },
   {
-   "id": "EVT.RGN.KER_MUZIRIS_PAPYRUS",
-   "title": "The Muziris papyrus prices a single shipload",
-   "class": "TRADE",
-   "magnitude": "W",
-   "year": 150,
-   "era": "ERA.CLASSICAL",
-   "provenance": "SOURCED",
-   "certainty": 0.85,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.KERALA",
-   "dispute": false,
-   "evidence": "The Vienna papyrus, a Greek contract that itemises a cargo of pepper, ivory and nard with its Alexandria customs value.",
-   "window": [
-    130,
-    170
-   ],
-   "threads": [
-    "THR.THE_LONG_NETWORKS"
-   ],
-   "note": "One ship, one contract, and a value equal to a large Egyptian estate. The pepper trade was not a trickle."
-  },
-  {
    "id": "EVT.SIT.BANAVASI_CHUTU",
    "title": "Banavasi under the Chutus: a brick stupa on the Varada",
    "class": "SITE",
@@ -13251,26 +12560,6 @@
    ]
   },
   {
-   "id": "EVT.200.TOLKAPPIYAM_GRAMMAR_AND_POETICS_CODIFIED",
-   "title": "Tolkappiyam; grammar and poetics codified",
-   "provenance": "DERIVED",
-   "evidence": "The text, and the works that quote or answer it.",
-   "year": 200,
-   "year_end": null,
-   "era": "ERA.CLASSICAL",
-   "class": "WORK",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.TAMILAKAM",
-   "dispute": false,
-   "window": [
-    195,
-    205
-   ]
-  },
-  {
    "id": "EVT.200.TOLKAPPIYAM_TAMIL_GRAMMAR_AND_POETICS_CODIFI",
    "title": "Tolkappiyam; Tamil grammar and poetics codified",
    "provenance": "DERIVED",
@@ -13283,7 +12572,7 @@
    "certainty": 0.7,
    "trigger": "window",
    "scope": "subcontinental",
-   "region": null,
+   "region": "RGN.TAMILAKAM",
    "dispute": false,
    "window": [
     195,
@@ -13865,26 +13154,6 @@
    ]
   },
   {
-   "id": "EVT.350.WESTERN_GANGA_AT_TALAKAD_JAIN_PATRONAGE",
-   "title": "Western Ganga at Talakad; Jain patronage",
-   "provenance": "DERIVED",
-   "evidence": "Inscriptions, copper plates and land grants.",
-   "year": 350,
-   "year_end": null,
-   "era": "ERA.GUPTA",
-   "class": "FOUNDATION",
-   "magnitude": "M",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.KARNATAKA",
-   "dispute": false,
-   "window": [
-    343,
-    357
-   ]
-  },
-  {
    "id": "EVT.INV.KALABHRA",
    "title": "The Kalabhras take the Tamil country, and the record goes quiet",
    "class": "INVASION",
@@ -14416,26 +13685,6 @@
    ]
   },
   {
-   "id": "EVT.450.AJANTA_SECOND_PHASE_UNDER_VAKATAKA_PATRONAGE",
-   "title": "Ajanta, second phase, under Vakataka patronage",
-   "provenance": "DERIVED",
-   "evidence": "Inscriptions, copper plates and land grants.",
-   "year": 450,
-   "year_end": null,
-   "era": "ERA.GUPTA",
-   "class": "FOUNDATION",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "subcontinental",
-   "region": null,
-   "dispute": false,
-   "window": [
-    441,
-    459
-   ]
-  },
-  {
    "id": "EVT.450.COPPER_PLATE_LAND_GRANTS_PROLIFERATE",
    "title": "Copper-plate land grants proliferate",
    "provenance": "DERIVED",
@@ -14668,26 +13917,7 @@
     466
    ],
    "corpus": "preserve",
-   "preserve_to": "home"
-  },
-  {
-   "id": "EVT.REF.VALABHI_COUNCIL_REF",
-   "title": "The Valabhi council fixes the Svetambara canon in writing",
-   "class": "REFORM",
-   "magnitude": "W",
-   "year": 454,
-   "era": "ERA.GUPTA",
-   "provenance": "SOURCED",
-   "certainty": 0.8,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.GUJARAT",
-   "dispute": false,
-   "evidence": "The Svetambara tradition's own account, and the recension that follows it.",
-   "window": [
-    414,
-    494
-   ],
+   "preserve_to": "home",
    "threads": [
     "THR.THE_RENOUNCERS"
    ]
@@ -15156,22 +14386,6 @@
    "certainty": 0.95,
    "trigger": "dated",
    "scope": "subcontinental",
-   "region": null,
-   "dispute": false
-  },
-  {
-   "id": "EVT.543.CHALUKYA_FOUNDATION_AT_BADAMI_2",
-   "title": "Chalukya foundation at Badami",
-   "provenance": "SOURCED",
-   "evidence": "Inscriptions, copper plates and land grants.",
-   "year": 543,
-   "year_end": null,
-   "era": "ERA.GUPTA",
-   "class": "FOUNDATION",
-   "magnitude": "W",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "scope": "regional",
    "region": "RGN.KARNATAKA",
    "dispute": false
   },
@@ -15349,7 +14563,8 @@
    "window": [
     588,
     612
-   ]
+   ],
+   "note": "Somebody was experimenting, and left the drafts standing."
   },
   {
    "id": "EVT.600.BHASKARAVARMAN_XUANZANG_VISITS_HIS_COURT",
@@ -16118,26 +15333,6 @@
    "year_end": 1100
   },
   {
-   "id": "EVT.SIT.AIHOLE_LAB",
-   "title": "Aihole: a hundred and twenty-five temples as an architectural laboratory",
-   "class": "SITE",
-   "magnitude": "M",
-   "year": 650,
-   "era": "ERA.REGIONAL_KINGDOMS",
-   "provenance": "SOURCED",
-   "certainty": 0.8,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.KARNATAKA",
-   "dispute": false,
-   "evidence": "The temples themselves, which try the apsidal, the flat-roofed, the northern and the southern plan within a few hundred metres.",
-   "window": [
-    644,
-    656
-   ],
-   "note": "Somebody was experimenting, and left the drafts standing."
-  },
-  {
    "id": "EVT.SIT.MAHABALIPURAM_RATHAS",
    "title": "Mahabalipuram's rathas are cut, and left unfinished",
    "class": "SITE",
@@ -16270,46 +15465,6 @@
    "certainty": 0.7,
    "trigger": "window",
    "scope": "subcontinental",
-   "region": null,
-   "dispute": false,
-   "window": [
-    686,
-    714
-   ]
-  },
-  {
-   "id": "EVT.700.PATTADAKAL_NORTHERN_AND_SOUTHERN_STYLES_BUIL",
-   "title": "Pattadakal; northern and southern styles built side by side",
-   "provenance": "DERIVED",
-   "evidence": "Inscriptions, copper plates and land grants.",
-   "year": 700,
-   "year_end": null,
-   "era": "ERA.REGIONAL_KINGDOMS",
-   "class": "FOUNDATION",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.KARNATAKA",
-   "dispute": false,
-   "window": [
-    686,
-    714
-   ]
-  },
-  {
-   "id": "EVT.700.THE_NAYANARS_AND_ALVARS_BHAKTI_ON_THE_PILGRI",
-   "title": "The Nayanars and Alvars; bhakti on the pilgrimage roads",
-   "provenance": "DERIVED",
-   "evidence": "The text, and the works that quote or answer it.",
-   "year": 700,
-   "year_end": null,
-   "era": "ERA.REGIONAL_KINGDOMS",
-   "class": "WORK",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
    "region": "RGN.TAMILAKAM",
    "dispute": false,
    "window": [
@@ -16576,46 +15731,6 @@
    ]
   },
   {
-   "id": "EVT.715.ANDAL_THE_ONE_WOMAN_AMONG_THE_TWELVE_ALVARS",
-   "title": "Andal, the one woman among the twelve Alvars",
-   "provenance": "DERIVED",
-   "evidence": "The text, and the works that quote or answer it.",
-   "year": 715,
-   "year_end": null,
-   "era": "ERA.REGIONAL_KINGDOMS",
-   "class": "WORK",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "subcontinental",
-   "region": null,
-   "dispute": false,
-   "window": [
-    701,
-    729
-   ]
-  },
-  {
-   "id": "EVT.715.ANDAL_THE_ONE_WOMAN_AMONG_THE_TWELVE_ALVARS_2",
-   "title": "Andal — the one woman among the twelve Alvars",
-   "provenance": "DERIVED",
-   "evidence": "The text, and the works that quote or answer it.",
-   "year": 715,
-   "year_end": null,
-   "era": "ERA.REGIONAL_KINGDOMS",
-   "class": "WORK",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.TAMILAKAM",
-   "dispute": false,
-   "window": [
-    701,
-    729
-   ]
-  },
-  {
    "id": "EVT.RGN.KAS_CANDRAPIDA",
    "title": "Kashmiri monks translate for the Tang court",
    "class": "WORK",
@@ -16768,26 +15883,6 @@
    "dispute": false
   },
   {
-   "id": "EVT.740.KAILASANATHA_AT_KANCHI",
-   "title": "Kailasanatha at Kanchi",
-   "provenance": "DERIVED",
-   "evidence": "Inscriptions, copper plates and land grants.",
-   "year": 740,
-   "year_end": null,
-   "era": "ERA.REGIONAL_KINGDOMS",
-   "class": "FOUNDATION",
-   "magnitude": "M",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.TAMILAKAM",
-   "dispute": false,
-   "window": [
-    725,
-    755
-   ]
-  },
-  {
    "id": "EVT.740.KAILASANATHA_AT_KANCHI_THE_PALLAVA_HIGH_STYL",
    "title": "Kailasanatha at Kanchi; the Pallava high style",
    "provenance": "DERIVED",
@@ -16800,7 +15895,7 @@
    "certainty": 0.7,
    "trigger": "window",
    "scope": "subcontinental",
-   "region": null,
+   "region": "RGN.TAMILAKAM",
    "dispute": false,
    "window": [
     725,
@@ -16903,25 +15998,6 @@
    "window": [
     735,
     765
-   ]
-  },
-  {
-   "id": "EVT.SIT.LALITAGIRI",
-   "title": "Lalitagiri, Ratnagiri and Udayagiri form the Odishan diamond triangle",
-   "class": "SITE",
-   "magnitude": "M",
-   "year": 750,
-   "era": "ERA.REGIONAL_KINGDOMS",
-   "provenance": "SOURCED",
-   "certainty": 0.75,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.ODISHA",
-   "dispute": false,
-   "evidence": "The three excavated complexes, with Ratnagiri's monastery doorway and a relic casket from Lalitagiri.",
-   "window": [
-    741,
-    759
    ]
   },
   {
@@ -17149,22 +16225,6 @@
    ]
   },
   {
-   "id": "EVT.788.ADI_SHANKARA_ADVAITA_AND_THE_FOUR_MATHAS",
-   "title": "Adi Shankara; Advaita and the four mathas",
-   "provenance": "SOURCED",
-   "evidence": "Texts, and the institutions that outlived the argument.",
-   "year": 788,
-   "year_end": 820,
-   "era": "ERA.REGIONAL_KINGDOMS",
-   "class": "REFORM",
-   "magnitude": "W",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "scope": "subcontinental",
-   "region": null,
-   "dispute": false
-  },
-  {
    "id": "EVT.790.THE_MATHA_AS_AN_INSTITUTION_DESIGNED_TO_OUTL",
    "title": "The matha as an institution designed to outlive its founder",
    "provenance": "DERIVED",
@@ -17217,26 +16277,6 @@
    "trigger": "window",
    "scope": "regional",
    "region": "RGN.KARNATAKA",
-   "dispute": false,
-   "window": [
-    784,
-    816
-   ]
-  },
-  {
-   "id": "EVT.800.ELLORA_KAILASA_COMPLETED_2",
-   "title": "Ellora Kailasa completed",
-   "provenance": "DERIVED",
-   "evidence": "Inscriptions, copper plates and land grants.",
-   "year": 800,
-   "year_end": null,
-   "era": "ERA.REGIONAL_KINGDOMS",
-   "class": "FOUNDATION",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.MAHARASHTRA",
    "dispute": false,
    "window": [
     784,
@@ -17316,26 +16356,6 @@
    "certainty": 0.7,
    "trigger": "window",
    "scope": "subcontinental",
-   "region": null,
-   "dispute": false,
-   "window": [
-    784,
-    816
-   ]
-  },
-  {
-   "id": "EVT.800.THE_CHERA_PERUMALS_OF_MAKOTAI_2",
-   "title": "The Chera Perumals of Makotai",
-   "provenance": "DERIVED",
-   "evidence": "Inscriptions, copper plates and land grants.",
-   "year": 800,
-   "year_end": null,
-   "era": "ERA.REGIONAL_KINGDOMS",
-   "class": "FOUNDATION",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
    "region": "RGN.KERALA",
    "dispute": false,
    "window": [
@@ -17564,7 +16584,8 @@
     840
    ],
    "dispute_scope": "occurrence",
-   "note": "An institution designed to outlive its founder. Twelve hundred years later it has."
+   "note": "An institution designed to outlive its founder. Twelve hundred years later it has.",
+   "year_end": 820
   },
   {
    "id": "EVT.RGN.KER_NAMBUDIRI",
@@ -17877,22 +16898,6 @@
    "trigger": "dated",
    "scope": "regional",
    "region": "RGN.TAMILAKAM",
-   "dispute": false
-  },
-  {
-   "id": "EVT.850.VIJAYALAYA_TAKES_THANJAVUR_THE_CHOLA_REVIVAL",
-   "title": "Vijayalaya takes Thanjavur. The Chola revival",
-   "provenance": "SOURCED",
-   "evidence": "A convention. Eras are drawn by historians, not lived by anyone.",
-   "year": 850,
-   "year_end": null,
-   "era": "ERA.CHOLA",
-   "class": "EPOCH",
-   "magnitude": "W",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "scope": "subcontinental",
-   "region": null,
    "dispute": false
   },
   {
@@ -18902,7 +17907,10 @@
    "window": [
     980,
     1020
-   ]
+   ],
+   "note": "Fifty years before Vikramashila was ash, and what he carried was not.",
+   "corpus": "preserve",
+   "preserve_to": "tibet"
   },
   {
    "id": "EVT.1000.NANNAYA_S_ANDHRA_MAHABHARATAMU_TELUGU_LITERA",
@@ -19671,27 +18679,6 @@
    ]
   },
   {
-   "id": "EVT.1040.THE_CHOLA_CHALUKYA_WARS_OVER_VENGI_AND_THE_T",
-   "title": "The Chola–Chalukya wars over Vengi and the Tungabhadra",
-   "provenance": "DERIVED",
-   "evidence": "Inscriptions, coinage, and chronicles — usually the victor's.",
-   "year": 1040,
-   "year_end": null,
-   "era": "ERA.CHOLA",
-   "class": "INVASION",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "subcontinental",
-   "region": null,
-   "dispute": false,
-   "window": [
-    1019,
-    1061
-   ],
-   "becomes": "nothing"
-  },
-  {
    "id": "EVT.INV.CHALUKYA_CHOLA",
    "title": "The Chola-Chalukya wars grind over Vengi for a century",
    "class": "INVASION",
@@ -19711,28 +18698,6 @@
     1070
    ],
    "year_end": 1070
-  },
-  {
-   "id": "EVT.CAT.ATISHA_TIBET",
-   "title": "Atisha leaves Vikramashila for Tibet",
-   "class": "CATASTROPHE",
-   "magnitude": "W",
-   "year": 1042,
-   "era": "ERA.CHOLA",
-   "provenance": "SOURCED",
-   "certainty": 0.75,
-   "trigger": "window",
-   "scope": "subcontinental",
-   "region": null,
-   "dispute": false,
-   "evidence": "Tibetan and Bengali records of his journey and teaching.",
-   "window": [
-    1012,
-    1072
-   ],
-   "note": "Fifty years before Vikramashila was ash, and what he carried was not.",
-   "corpus": "preserve",
-   "preserve_to": "tibet"
   },
   {
    "id": "EVT.WRK.SAMARANGANA",
@@ -19911,26 +18876,6 @@
    "window": [
     1032,
     1094
-   ]
-  },
-  {
-   "id": "EVT.1070.KULOTTUNGA_I_THE_CHOLA_CHALUKYA_UNION",
-   "title": "Kulottunga I; the Chola–Chalukya union",
-   "provenance": "DERIVED",
-   "evidence": "Inscriptions dated in regnal years, coinage, and the dynastic lists that later chronicles compile from both.",
-   "year": 1070,
-   "year_end": null,
-   "era": "ERA.CHOLA",
-   "class": "—",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "subcontinental",
-   "region": null,
-   "dispute": false,
-   "window": [
-    1049,
-    1091
    ]
   },
   {
@@ -20124,26 +19069,6 @@
     "THR.THE_FAMINE_CENTURY"
    ],
    "corpus": "none"
-  },
-  {
-   "id": "EVT.1100.HEMACHANDRA_JAIN_SCHOLARSHIP_AND_THE_SIDDHA_",
-   "title": "Hemachandra; Jain scholarship and the Siddha-Hema",
-   "provenance": "DERIVED",
-   "evidence": "The text, and the works that quote or answer it.",
-   "year": 1100,
-   "year_end": null,
-   "era": "ERA.CHOLA",
-   "class": "WORK",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.GUJARAT",
-   "dispute": false,
-   "window": [
-    1078,
-    1122
-   ]
   },
   {
    "id": "EVT.1100.KAMARUPA_FRAGMENTS_THE_CHUTIYA_AND_KACHARI_R",
@@ -20378,6 +19303,9 @@
    "window": [
     1107,
     1153
+   ],
+   "threads": [
+    "THR.THE_CASTE_QUESTION"
    ]
   },
   {
@@ -20574,7 +19502,10 @@
    "window": [
     1127,
     1173
-   ]
+   ],
+   "note": "Much of what survives from western India survives because merchants paid to keep it dry.",
+   "corpus": "preserve",
+   "preserve_to": "home"
   },
   {
    "id": "EVT.1150.JAIN_MERCHANT_CAPITAL_FUNDS_LIBRARIES_THE_BH",
@@ -20597,26 +19528,6 @@
    ]
   },
   {
-   "id": "EVT.1150.KAMBA_RAMAYANAM_A_RIVAL_NOT_A_TRANSLATION",
-   "title": "Kamba Ramayanam — a rival, not a translation",
-   "provenance": "DERIVED",
-   "evidence": "The text, and the works that quote or answer it.",
-   "year": 1150,
-   "year_end": null,
-   "era": "ERA.CHOLA",
-   "class": "WORK",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.TAMILAKAM",
-   "dispute": false,
-   "window": [
-    1127,
-    1173
-   ]
-  },
-  {
    "id": "EVT.1150.KAMBA_RAMAYANAM_NOT_A_TRANSLATION_BUT_A_RIVA",
    "title": "Kamba Ramayanam — not a translation but a rival",
    "provenance": "DERIVED",
@@ -20629,34 +19540,12 @@
    "certainty": 0.7,
    "trigger": "window",
    "scope": "subcontinental",
-   "region": null,
+   "region": "RGN.TAMILAKAM",
    "dispute": false,
    "window": [
     1127,
     1173
    ]
-  },
-  {
-   "id": "EVT.CAT.JAIN_BHANDARA",
-   "title": "Jain merchant capital funds the bhandara libraries",
-   "class": "CATASTROPHE",
-   "magnitude": "W",
-   "year": 1150,
-   "era": "ERA.CHOLA",
-   "provenance": "SOURCED",
-   "certainty": 0.75,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.GUJARAT",
-   "dispute": false,
-   "evidence": "The bhandaras at Jaisalmer, Patan and Cambay, and their catalogues.",
-   "window": [
-    1117,
-    1183
-   ],
-   "note": "Much of what survives from western India survives because merchants paid to keep it dry.",
-   "corpus": "preserve",
-   "preserve_to": "home"
   },
   {
    "id": "EVT.CLI.TANK_SILTING",
@@ -20780,28 +19669,6 @@
    "evidence": "The tanks themselves, and the Culavamsa account of Parakramabahu's works."
   },
   {
-   "id": "EVT.REF.BASAVA_COMMENSALITY",
-   "title": "Basava's Anubhava Mantapa seats artisans and brahmins together",
-   "class": "REFORM",
-   "magnitude": "W",
-   "year": 1160,
-   "era": "ERA.CHOLA",
-   "provenance": "SOURCED",
-   "certainty": 0.8,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.KARNATAKA",
-   "dispute": false,
-   "evidence": "The vachanas themselves, and the violence that followed the inter-caste marriage the movement sanctioned.",
-   "window": [
-    1120,
-    1200
-   ],
-   "threads": [
-    "THR.THE_CASTE_QUESTION"
-   ]
-  },
-  {
    "id": "EVT.1161.THE_JAGANNATH_TEMPLE_AT_PURI_COMPLETED",
    "title": "The Jagannath temple at Puri completed",
    "provenance": "SOURCED",
@@ -20857,26 +19724,6 @@
    ]
   },
   {
-   "id": "EVT.1170.TANK_IRRIGATION_TRANSFORMS_THE_TELANGANA_UPL",
-   "title": "Tank irrigation transforms the Telangana uplands",
-   "provenance": "DERIVED",
-   "evidence": "The building, and the inscription on it.",
-   "year": 1170,
-   "year_end": null,
-   "era": "ERA.CHOLA",
-   "class": "STRUCTURE",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.ANDHRA",
-   "dispute": false,
-   "window": [
-    1147,
-    1193
-   ]
-  },
-  {
    "id": "EVT.1170.THE_KAKATIYAS_AND_TANK_IRRIGATION_ACROSS_THE",
    "title": "The Kakatiyas and tank irrigation across the Telangana uplands",
    "provenance": "DERIVED",
@@ -20889,31 +19736,12 @@
    "certainty": 0.7,
    "trigger": "window",
    "scope": "subcontinental",
-   "region": null,
+   "region": "RGN.ANDHRA",
    "dispute": false,
    "window": [
     1147,
     1193
    ]
-  },
-  {
-   "id": "EVT.FRT.KAKATIYA_UPLANDS",
-   "title": "Tank building pushes settlement into the Telangana uplands",
-   "class": "FRONTIER",
-   "magnitude": "M",
-   "year": 1170,
-   "era": "ERA.CHOLA",
-   "provenance": "SOURCED",
-   "certainty": 0.65,
-   "trigger": "window",
-   "window": [
-    1100,
-    1250
-   ],
-   "scope": "regional",
-   "region": "RGN.ANDHRA",
-   "dispute": false,
-   "evidence": "The tank inscriptions and the distribution of the tanks themselves, on ground that had not been farmed before."
   },
   {
    "id": "EVT.INV.GHURID_ANHILWARA",
@@ -21610,46 +20438,6 @@
    ]
   },
   {
-   "id": "EVT.1250.THE_KONARK_SUN_TEMPLE",
-   "title": "The Konark Sun Temple",
-   "provenance": "DERIVED",
-   "evidence": "Inscriptions, copper plates and land grants.",
-   "year": 1250,
-   "year_end": null,
-   "era": "ERA.CHOLA",
-   "class": "FOUNDATION",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "subcontinental",
-   "region": null,
-   "dispute": false,
-   "window": [
-    1225,
-    1275
-   ]
-  },
-  {
-   "id": "EVT.1250.THE_MAHANUBHAVA_SECT_PROSE_IN_MARATHI",
-   "title": "The Mahanubhava sect; prose in Marathi",
-   "provenance": "DERIVED",
-   "evidence": "The text, and the works that quote or answer it.",
-   "year": 1250,
-   "year_end": null,
-   "era": "ERA.CHOLA",
-   "class": "WORK",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.MAHARASHTRA",
-   "dispute": false,
-   "window": [
-    1225,
-    1275
-   ]
-  },
-  {
    "id": "EVT.1250.THE_PAIK_SYSTEM_LABOUR_SERVICE_AS_THE_BASIS_",
    "title": "The paik system: labour service as the basis of the state",
    "provenance": "DERIVED",
@@ -21667,26 +20455,8 @@
    "window": [
     1225,
     1275
-   ]
-  },
-  {
-   "id": "EVT.FRT.AHOM_PAIK",
-   "title": "The paik system makes labour service the basis of a state",
-   "class": "FRONTIER",
-   "magnitude": "W",
-   "year": 1250,
-   "era": "ERA.CHOLA",
-   "provenance": "SOURCED",
-   "certainty": 0.6,
-   "trigger": "window",
-   "window": [
-    1230,
-    1350
    ],
-   "scope": "regional",
-   "region": "RGN.ASSAM",
-   "dispute": false,
-   "evidence": "The buranji chronicles, which the Ahom state kept as deliberate practice."
+   "note": "An army, a road corps and a public works department, all paid in land instead of money."
   },
   {
    "id": "EVT.REF.MADHVA",
@@ -21706,26 +20476,6 @@
     1210,
     1290
    ]
-  },
-  {
-   "id": "EVT.RGN.ASM_PAIK_SYSTEM",
-   "title": "The paik system: every household owes labour, and the state has no cash payroll",
-   "class": "TRANSITION",
-   "magnitude": "M",
-   "year": 1250,
-   "era": "ERA.CHOLA",
-   "provenance": "SOURCED",
-   "certainty": 0.75,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.ASSAM",
-   "dispute": false,
-   "evidence": "The buranji descriptions of the got and the khel, and the paik census records.",
-   "window": [
-    1213,
-    1287
-   ],
-   "note": "An army, a road corps and a public works department, all paid in land instead of money."
   },
   {
    "id": "EVT.1262.RANI_RUDRAMA_DEVI_RULES_IN_HER_OWN_NAME",
@@ -21861,6 +20611,26 @@
     1264,
     1316
    ]
+  },
+  {
+   "id": "EVT.DVJ.IQTA",
+   "title": "The iqta assignment ties military service to revenue and not to land",
+   "class": "TRANSITION",
+   "magnitude": "M",
+   "year": 1290,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Sultanate's own administrative literature and the transfer records of assignments between officers.",
+   "window": [
+    1250,
+    1330
+   ],
+   "note": "Pay an officer with the tax of a district, and move him before he puts down roots. It is a solution to the same problem the mandala answers differently."
   },
   {
    "id": "EVT.REF.JNANESHWAR_REF",
@@ -22094,25 +20864,6 @@
    ]
   },
   {
-   "id": "EVT.REF.VARKARI",
-   "title": "The Varkari pilgrimage to Pandharpur becomes an annual institution",
-   "class": "REFORM",
-   "magnitude": "W",
-   "year": 1300,
-   "era": "ERA.DELHI_VIJAYANAGARA",
-   "provenance": "SOURCED",
-   "certainty": 0.75,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.MAHARASHTRA",
-   "dispute": false,
-   "evidence": "The abhanga corpus, and the palkhi routes still walked.",
-   "window": [
-    1260,
-    1340
-   ]
-  },
-  {
    "id": "EVT.RGN.GUJ_CAMBAY",
    "title": "Cambay is the western ocean's greatest port until its creek silts",
    "class": "TRADE",
@@ -22279,24 +21030,8 @@
    "dispute": false
   },
   {
-   "id": "EVT.1323.KAKATIYA_FALLS_TO_THE_TUGHLAQS",
-   "title": "Kakatiya falls to the Tughlaqs",
-   "provenance": "SOURCED",
-   "evidence": "Destruction layers, and accounts written afterwards by people with a position.",
-   "year": 1323,
-   "year_end": null,
-   "era": "ERA.DELHI_VIJAYANAGARA",
-   "class": "CATASTROPHE",
-   "magnitude": "W",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "scope": "regional",
-   "region": "RGN.ANDHRA",
-   "dispute": false
-  },
-  {
    "id": "EVT.INV.KAKATIYA_FALL",
-   "title": "Warangal falls to the Tughlaqs",
+   "title": "Kakatiya falls: Warangal is taken by the Tughlaqs",
    "class": "INVASION",
    "magnitude": "W",
    "year": 1323,
@@ -22379,7 +21114,11 @@
    "evidence": "Material remains — the object, its composition, and an absolute date where one exists.",
    "scope": "subcontinental",
    "region": null,
-   "dispute": false
+   "dispute": false,
+   "threads": [
+    "THR.THE_MONETARY_LADDER"
+   ],
+   "note": "A fiat currency in 1330. The idea was right; the anti-counterfeiting was not."
   },
   {
    "id": "EVT.REF.CHOKHAMELA",
@@ -22404,29 +21143,10 @@
    ]
   },
   {
-   "id": "EVT.TRN.TOKEN_1330",
-   "title": "Muhammad bin Tughlaq issues token currency, and it fails in four years",
-   "class": "TRANSITION",
-   "magnitude": "M",
-   "year": 1330,
-   "era": "ERA.DELHI_VIJAYANAGARA",
-   "provenance": "SOURCED",
-   "certainty": 0.9,
-   "trigger": "dated",
-   "scope": "subcontinental",
-   "region": null,
-   "dispute": false,
-   "evidence": "The brass and copper tokens themselves, and Barani's account of forgery on a scale the state could not police.",
-   "threads": [
-    "THR.THE_MONETARY_LADDER"
-   ],
-   "note": "A fiat currency in 1330. The idea was right; the anti-counterfeiting was not."
-  },
-  {
    "id": "EVT.1333.IBN_BATTUTA",
    "title": "Ibn Battuta",
    "year": 1333,
-   "year_end": null,
+   "year_end": 1341,
    "era": "ERA.DELHI_VIJAYANAGARA",
    "class": "REFORM",
    "magnitude": "M",
@@ -22436,23 +21156,7 @@
    "evidence": "Texts, and the institutions that outlived the argument.",
    "scope": "subcontinental",
    "region": null,
-   "dispute": false
-  },
-  {
-   "id": "EVT.TRD.IBN_BATTUTA",
-   "title": "Ibn Battuta travels India for eight years and writes it down",
-   "class": "TRADE",
-   "magnitude": "M",
-   "year": 1333,
-   "era": "ERA.DELHI_VIJAYANAGARA",
-   "provenance": "SOURCED",
-   "certainty": 0.9,
-   "trigger": "dated",
-   "scope": "subcontinental",
-   "region": null,
    "dispute": false,
-   "evidence": "The Rihla, dictated in Morocco twenty years later, and corroborated in detail by the Sultanate records.",
-   "year_end": 1341,
    "threads": [
     "THR.THE_TRANSLATORS",
     "THR.THE_LONG_NETWORKS"
@@ -22514,22 +21218,7 @@
    "evidence": "Inscriptions, copper plates and land grants.",
    "scope": "subcontinental",
    "region": null,
-   "dispute": false
-  },
-  {
-   "id": "EVT.FND.VIJAYANAGARA_1336",
-   "title": "Vijayanagara is founded, by men who had served in Delhi",
-   "class": "FOUNDATION",
-   "magnitude": "W",
-   "year": 1336,
-   "era": "ERA.DELHI_VIJAYANAGARA",
-   "provenance": "SOURCED",
-   "certainty": 0.85,
-   "trigger": "window",
-   "scope": "subcontinental",
-   "region": null,
    "dispute": true,
-   "evidence": "The Sangama grant series and the Vijayanagara court chronicles, with the disputed account of the founders' conversion and return.",
    "window": [
     1311,
     1361
@@ -22610,22 +21299,6 @@
     1330,
     1350
    ]
-  },
-  {
-   "id": "EVT.1347.BAHMANI_SECESSION",
-   "title": "Bahmani secession",
-   "year": 1347,
-   "year_end": null,
-   "era": "ERA.DELHI_VIJAYANAGARA",
-   "class": "REFORM",
-   "magnitude": "M",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "provenance": "SOURCED",
-   "evidence": "Texts, and the institutions that outlived the argument.",
-   "scope": "subcontinental",
-   "region": null,
-   "dispute": false
   },
   {
    "id": "EVT.INV.BAHMANI_SPLIT",
@@ -22824,6 +21497,41 @@
    "dispute": false
   },
   {
+   "id": "EVT.DVJ.IRRIGATION_CANALS",
+   "title": "Firuz Shah's canals water the Delhi hinterland",
+   "class": "TRANSITION",
+   "magnitude": "M",
+   "year": 1355,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Yamuna and Sutlej canal alignments, the Tarikh-i-Firuz Shahi's account, and the later Mughal reuse of the same cuts.",
+   "window": [
+    1315,
+    1395
+   ]
+  },
+  {
+   "id": "EVT.DVJ.PILLAR_MOVED",
+   "title": "Firuz Shah moves two Ashokan pillars to Delhi and asks what they say",
+   "class": "REFORM",
+   "magnitude": "M",
+   "year": 1356,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The pillars, still standing at Firuz Shah Kotla and the Ridge, and the chronicle's account of the engineering.",
+   "note": "Sixteen hundred years old already, and nobody could read them. It took another five centuries."
+  },
+  {
    "id": "EVT.WRK.MADHAVA_SAYANA",
    "title": "Sayana's commentary on the whole Rigveda, at the Vijayanagara court",
    "class": "WORK",
@@ -22842,6 +21550,29 @@
     1410
    ],
    "note": "A state paying for a complete commentary on a three-thousand-year-old text. That is the knowledge economy at full stretch."
+  },
+  {
+   "id": "EVT.DVJ.HINDAVI_LITERATURE",
+   "title": "Hindavi, Awadhi and Dakhni become written literary languages",
+   "class": "WORK",
+   "magnitude": "W",
+   "year": 1380,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Chandayan of Maulana Daud, the Sufi premakhyan romances, and the Dakhni corpus of the Deccan courts.",
+   "window": [
+    1340,
+    1420
+   ],
+   "year_end": 1520,
+   "threads": [
+    "THR.THE_WRITING_LADDER"
+   ]
   },
   {
    "id": "EVT.WRK.MALLINATHA",
@@ -23002,6 +21733,28 @@
    "region": null,
    "dispute": false,
    "evidence": "Speleothem and tree-ring records; the correlation with the medieval famine sequence is strong."
+  },
+  {
+   "id": "EVT.DVJ.INDIAN_OCEAN_1400",
+   "title": "The Indian Ocean carries the largest trading system in the world",
+   "class": "TRADE",
+   "magnitude": "W",
+   "year": 1400,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Chinese, Arab and Gujarati accounts, the Kerala and Coromandel port records, and the ceramic distributions.",
+   "window": [
+    1360,
+    1440
+   ],
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ]
   },
   {
    "id": "EVT.FRT.BHIL_MEWAR",
@@ -23522,6 +22275,25 @@
    ]
   },
   {
+   "id": "EVT.DVJ.VIJAYANAGARA_HYDRO",
+   "title": "Vijayanagara's aqueducts and tanks supply a city of a quarter million",
+   "class": "STRUCTURE",
+   "magnitude": "W",
+   "year": 1450,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The surviving aqueduct channels, the Kamalapuram tank, and Abdur Razzaq's and Paes's descriptions of the city.",
+   "window": [
+    1410,
+    1490
+   ]
+  },
+  {
    "id": "EVT.REF.ANNAMACHARYA",
    "title": "Annamacharya's keertanas are engraved on copper and sealed in a wall",
    "class": "REFORM",
@@ -23770,22 +22542,6 @@
    "trigger": "dated",
    "scope": "regional",
    "region": "RGN.KERALA",
-   "dispute": false
-  },
-  {
-   "id": "EVT.1498.VASCO_DA_GAMA_AT_CALICUT_2",
-   "title": "Vasco da Gama at Calicut",
-   "year": 1498,
-   "year_end": null,
-   "era": "ERA.DELHI_VIJAYANAGARA",
-   "class": "REFORM",
-   "magnitude": "W",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "provenance": "SOURCED",
-   "evidence": "Texts, and the institutions that outlived the argument.",
-   "scope": "subcontinental",
-   "region": null,
    "dispute": false
   },
   {
@@ -24258,22 +23014,6 @@
    "note": "Calculus results with proofs, in a regional language, a century before Newton."
   },
   {
-   "id": "EVT.1540.SHER_SHAH_THE_RUPIYA_THE_GRAND_TRUNK_ROAD_RE",
-   "title": "Sher Shah: the rupiya, the Grand Trunk Road, revenue survey",
-   "year": 1540,
-   "year_end": 1555,
-   "era": "ERA.EARLY_MODERN",
-   "class": "TRANSITION",
-   "magnitude": "M",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "provenance": "SOURCED",
-   "evidence": "Material remains — the object, its composition, and an absolute date where one exists.",
-   "scope": "subcontinental",
-   "region": null,
-   "dispute": false
-  },
-  {
    "id": "EVT.RGN.ASM_KOCH",
    "title": "The Koch kingdom and Naranarayana's patronage of Assamese",
    "class": "FOUNDATION",
@@ -24672,39 +23412,8 @@
    "evidence": "The text, and the works that quote or answer it.",
    "scope": "subcontinental",
    "region": null,
-   "dispute": false
-  },
-  {
-   "id": "EVT.WRK.AIN",
-   "title": "The Ain-i-Akbari records an empire in numbers",
-   "class": "WORK",
-   "magnitude": "W",
-   "year": 1595,
-   "era": "ERA.EARLY_MODERN",
-   "provenance": "SOURCED",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "scope": "subcontinental",
-   "region": null,
    "dispute": false,
-   "evidence": "The text itself: revenue, prices, wages, army musters, provincial statistics, and the court's own procedures.",
    "note": "The most detailed statistical account of any pre-modern state anywhere. It is also propaganda. Both are true."
-  },
-  {
-   "id": "EVT.1600.THE_EAST_INDIA_COMPANY_CHARTERED",
-   "title": "the East India Company chartered",
-   "year": 1600,
-   "year_end": null,
-   "era": "ERA.EARLY_MODERN",
-   "class": "COLONIAL",
-   "magnitude": "M",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "provenance": "SOURCED",
-   "evidence": "Company and government records, which are voluminous and interested.",
-   "scope": "subcontinental",
-   "region": null,
-   "dispute": false
   },
   {
    "id": "EVT.FRT.KHOND_HILLS",
@@ -24906,22 +23615,6 @@
    "threads": [
     "THR.THE_LONG_NETWORKS"
    ]
-  },
-  {
-   "id": "EVT.1604.THE_ADI_GRANTH",
-   "title": "the Adi Granth",
-   "year": 1604,
-   "year_end": null,
-   "era": "ERA.EARLY_MODERN",
-   "class": "WORK",
-   "magnitude": "M",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "provenance": "SOURCED",
-   "evidence": "The text, and the works that quote or answer it.",
-   "scope": "subcontinental",
-   "region": null,
-   "dispute": false
   },
   {
    "id": "EVT.WRK.GURU_GRANTH_COMPILE",
@@ -25355,23 +24048,8 @@
    "provenance": "SOURCED",
    "evidence": "Inscriptions, copper plates and land grants.",
    "scope": "subcontinental",
-   "region": null,
-   "dispute": false
-  },
-  {
-   "id": "EVT.FND.MARATHA_STATE",
-   "title": "Shivaji is crowned and a state is built on chauth",
-   "class": "FOUNDATION",
-   "magnitude": "W",
-   "year": 1674,
-   "era": "ERA.EARLY_MODERN",
-   "provenance": "SOURCED",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "scope": "regional",
    "region": "RGN.MAHARASHTRA",
-   "dispute": false,
-   "evidence": "The coronation record, the ashta pradhan council, and the revenue documents of the chauth and sardeshmukhi claims."
+   "dispute": false
   },
   {
    "id": "EVT.RGN.TAM_TANJORE_MARATHA",
@@ -25442,21 +24120,6 @@
    "region": null,
    "dispute": false,
    "evidence": "The Sikh chronicles and the surviving hukamnamas."
-  },
-  {
-   "id": "EVT.REF.KHALSA_1699",
-   "title": "The Khalsa is instituted at Anandpur",
-   "class": "REFORM",
-   "magnitude": "W",
-   "year": 1699,
-   "era": "ERA.EARLY_MODERN",
-   "provenance": "SOURCED",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "scope": "subcontinental",
-   "region": null,
-   "dispute": false,
-   "evidence": "The Sikh chronicles, the hukamnamas, and the immediate change in the community's military organisation."
   },
   {
    "id": "EVT.CAT.SARASVATI_MAHAL",
@@ -25882,23 +24545,8 @@
    "provenance": "SOURCED",
    "evidence": "Destruction layers, and accounts written afterwards by people with a position.",
    "scope": "subcontinental",
-   "region": null,
-   "dispute": false
-  },
-  {
-   "id": "EVT.COL.FAMINE_1770",
-   "title": "The Great Bengal Famine of 1770",
-   "class": "COLONIAL",
-   "magnitude": "W",
-   "year": 1770,
-   "era": "ERA.COLONIAL",
-   "provenance": "SOURCED",
-   "certainty": 0.9,
-   "trigger": "dated",
-   "scope": "regional",
    "region": "RGN.BENGAL",
    "dispute": false,
-   "evidence": "The Company's own revenue records, which show collection maintained through the mortality, and the contemporary accounts.",
    "threads": [
     "THR.THE_FAMINE_CENTURY"
    ],
@@ -26014,22 +24662,6 @@
    "evidence": "Company records; and it is one of the earliest famines that can be tied to a documented El Nino event."
   },
   {
-   "id": "EVT.1793.THE_PERMANENT_SETTLEMENT",
-   "title": "the Permanent Settlement",
-   "year": 1793,
-   "year_end": null,
-   "era": "ERA.COLONIAL",
-   "class": "COLONIAL",
-   "magnitude": "M",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "provenance": "SOURCED",
-   "evidence": "Company and government records, which are voluminous and interested.",
-   "scope": "subcontinental",
-   "region": null,
-   "dispute": false
-  },
-  {
    "id": "EVT.COL.PERMANENT_SETTLEMENT",
    "title": "The Permanent Settlement fixes Bengal's revenue for ever",
    "class": "COLONIAL",
@@ -26042,26 +24674,11 @@
    "scope": "regional",
    "region": "RGN.BENGAL",
    "dispute": false,
-   "evidence": "The regulations, and the sale records of estates auctioned for arrears in the decades after."
-  },
-  {
-   "id": "EVT.FRT.PERMANENT_SETTLEMENT_FOREST",
-   "title": "The Permanent Settlement has no category for common forest",
-   "class": "FRONTIER",
-   "magnitude": "W",
-   "year": 1793,
-   "era": "ERA.COLONIAL",
-   "provenance": "SOURCED",
-   "certainty": 0.8,
-   "trigger": "window",
+   "evidence": "The regulations, and the sale records of estates auctioned for arrears in the decades after.",
    "window": [
     1793,
     1810
    ],
-   "scope": "regional",
-   "region": "RGN.BENGAL",
-   "dispute": false,
-   "evidence": "The settlement regulations themselves, which recognise proprietors and tenants and nothing held in common.",
    "note": "Land that nobody owned individually became land somebody owned. The people using it became trespassers by paperwork."
   },
   {
@@ -26530,22 +25147,6 @@
    "year_end": 1917
   },
   {
-   "id": "EVT.1835.MACAULAY_S_MINUTE",
-   "title": "Macaulay's Minute",
-   "year": 1835,
-   "year_end": null,
-   "era": "ERA.COLONIAL",
-   "class": "COLONIAL",
-   "magnitude": "M",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "provenance": "SOURCED",
-   "evidence": "Company and government records, which are voluminous and interested.",
-   "scope": "subcontinental",
-   "region": null,
-   "dispute": false
-  },
-  {
    "id": "EVT.COL.MACAULAY",
    "title": "Macaulay's Minute settles what language education happens in",
    "class": "COLONIAL",
@@ -26735,22 +25336,7 @@
    "evidence": "Material remains — the object, its composition, and an absolute date where one exists.",
    "scope": "subcontinental",
    "region": null,
-   "dispute": false
-  },
-  {
-   "id": "EVT.COL.RAILWAY",
-   "title": "Railway and telegraph arrive in the same decade",
-   "class": "COLONIAL",
-   "magnitude": "W",
-   "year": 1853,
-   "era": "ERA.COLONIAL",
-   "provenance": "SOURCED",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "scope": "subcontinental",
-   "region": null,
    "dispute": false,
-   "evidence": "The Bombay-Thane line, the Calcutta-Agra telegraph, and the Company's own case for both as military infrastructure.",
    "threads": [
     "THR.THE_LONG_NETWORKS"
    ]
@@ -27686,22 +26272,6 @@
    "work": "WRK.GITANJALI"
   },
   {
-   "id": "EVT.RGN.AND_ANDHRA_MOVEMENT",
-   "title": "The movement for a Telugu-speaking province begins",
-   "class": "COLONIAL",
-   "magnitude": "M",
-   "year": 1913,
-   "era": "ERA.COLONIAL",
-   "provenance": "SOURCED",
-   "certainty": 0.9,
-   "trigger": "dated",
-   "scope": "regional",
-   "region": "RGN.ANDHRA",
-   "dispute": false,
-   "evidence": "The Andhra Mahasabha proceedings from Bapatla onward.",
-   "year_end": 1947
-  },
-  {
    "id": "EVT.CAT.GAEKWAD_SERIES",
    "title": "The Gaekwad Oriental Series begins publishing unpublished manuscripts",
    "class": "CATASTROPHE",
@@ -27754,22 +26324,6 @@
    "region": "RGN.GUJARAT",
    "dispute": false,
    "evidence": "The revenue department records and the satyagraha's own accounts."
-  },
-  {
-   "id": "EVT.1919.JALLIANWALA_BAGH",
-   "title": "Jallianwala Bagh",
-   "year": 1919,
-   "year_end": null,
-   "era": "ERA.COLONIAL",
-   "class": "CATASTROPHE",
-   "magnitude": "M",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "provenance": "SOURCED",
-   "evidence": "Destruction layers, and accounts written afterwards by people with a position.",
-   "scope": "subcontinental",
-   "region": null,
-   "dispute": false
   },
   {
    "id": "EVT.CAT.BHANDARKAR_INSTITUTE",
@@ -27882,22 +26436,6 @@
    ]
   },
   {
-   "id": "EVT.1930.THE_SALT_MARCH",
-   "title": "the Salt March",
-   "year": 1930,
-   "year_end": null,
-   "era": "ERA.COLONIAL",
-   "class": "REFORM",
-   "magnitude": "M",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "provenance": "SOURCED",
-   "evidence": "Texts, and the institutions that outlived the argument.",
-   "scope": "subcontinental",
-   "region": null,
-   "dispute": false
-  },
-  {
    "id": "EVT.COL.SALT_MARCH",
    "title": "The Salt March",
    "class": "COLONIAL",
@@ -27947,22 +26485,7 @@
    "evidence": "Texts, and the institutions that outlived the argument.",
    "scope": "subcontinental",
    "region": null,
-   "dispute": false
-  },
-  {
-   "id": "EVT.REF.POONA_PACT",
-   "title": "The Poona Pact: separate electorates traded for reserved seats",
-   "class": "REFORM",
-   "magnitude": "W",
-   "year": 1932,
-   "era": "ERA.COLONIAL",
-   "provenance": "SOURCED",
-   "certainty": 1,
-   "trigger": "dated",
-   "scope": "subcontinental",
-   "region": null,
    "dispute": true,
-   "evidence": "The agreement itself, signed under the pressure of a fast unto death, and the Assembly debates that followed.",
    "threads": [
     "THR.THE_CASTE_QUESTION"
    ],
@@ -28034,23 +26557,6 @@
    "note": "Written to be spoken, refused a platform, and printed at the author's own expense. It outlasted the platform."
   },
   {
-   "id": "EVT.CLI.BENGAL_1943",
-   "title": "The Bengal famine",
-   "class": "CLIMATE",
-   "magnitude": "W",
-   "year": 1943,
-   "era": "ERA.COLONIAL",
-   "provenance": "SOURCED",
-   "certainty": 0.9,
-   "trigger": "dated",
-   "scope": "regional",
-   "region": "RGN.BENGAL",
-   "dispute": true,
-   "evidence": "Provincial and imperial records, the Famine Inquiry Commission of 1945, and price series.",
-   "dispute_text": "That the famine happened and that it killed on the order of millions is not in question. Its causation is: crop shortfall, wartime procurement, the denial policy, provincial trade barriers and refusals of imports have all been argued as primary. The game presents the positions.",
-   "dispute_scope": "causation"
-  },
-  {
    "id": "EVT.COL.BENGAL_1943",
    "title": "The Bengal famine of 1943",
    "class": "COLONIAL",
@@ -28067,7 +26573,8 @@
    "threads": [
     "THR.THE_FAMINE_CENTURY"
    ],
-   "dispute_scope": "causation"
+   "dispute_scope": "causation",
+   "dispute_text": "That the famine happened and that it killed on the order of millions is not in question. Its causation is: crop shortfall, wartime procurement, the denial policy, provincial trade barriers and refusals of imports have all been argued as primary. The game presents the positions."
   },
   {
    "id": "EVT.WRK.DISCOVERY",
@@ -28123,22 +26630,6 @@
    "year_end": 1950,
    "work": "WRK.CONSTITUTION",
    "note": "Three years of argument, recorded verbatim. The last entry in the corpus, and the only one the reader is inside."
-  },
-  {
-   "id": "EVT.1947.INDEPENDENCE_AND_PARTITION",
-   "title": "Independence and Partition ---",
-   "year": 1947,
-   "year_end": null,
-   "era": "ERA.COLONIAL",
-   "class": "REFORM",
-   "magnitude": "W",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "provenance": "SOURCED",
-   "evidence": "Texts, and the institutions that outlived the argument.",
-   "scope": "subcontinental",
-   "region": null,
-   "dispute": false
   },
   {
    "id": "EVT.CAT.PARTITION_LIBRARIES",
@@ -28218,38 +26709,38 @@
   }
  ],
  "census": {
-  "total": 1441,
-  "subcontinental": 774,
-  "regional": 667,
-  "pre_1300": 1103,
+  "total": 1358,
+  "subcontinental": 754,
+  "regional": 604,
+  "pre_1300": 1039,
   "by_magnitude": {
-   "W": 644,
-   "M": 664,
-   "R": 129,
+   "W": 594,
+   "M": 633,
+   "R": 127,
    "m": 4
   },
   "by_class": {
-   "CLIMATE": 50,
-   "FRONTIER": 68,
-   "TRANSITION": 140,
-   "EPOCH": 19,
-   "STRUCTURE": 37,
-   "SITE": 212,
-   "WORK": 245,
-   "AGRICULTURE": 33,
-   "TRADE": 89,
-   "REFORM": 152,
-   "CATASTROPHE": 81,
-   "INVASION": 78,
-   "FOUNDATION": 153,
-   "—": 24,
-   "COLONIAL": 60
+   "CLIMATE": 48,
+   "FRONTIER": 62,
+   "TRANSITION": 137,
+   "EPOCH": 18,
+   "STRUCTURE": 38,
+   "SITE": 198,
+   "WORK": 233,
+   "AGRICULTURE": 31,
+   "TRADE": 87,
+   "REFORM": 141,
+   "CATASTROPHE": 73,
+   "INVASION": 76,
+   "FOUNDATION": 140,
+   "—": 22,
+   "COLONIAL": 54
   },
   "by_trigger": {
-   "window": 1146,
-   "latent": 36,
-   "dated": 259
+   "window": 1091,
+   "latent": 31,
+   "dated": 236
   },
-  "disputed": 69
+  "disputed": 61
  }
 }

@@ -1,0 +1,246 @@
+{
+ "phase": 32,
+ "name": "Density top-up after deduplication",
+ "note": "Collapsing eighty-eight duplicate events took the Indus and the Delhi-Vijayanagara eras back over the twenty-minute rule. Twelve events to bring them under it, chosen for the things those two eras are actually about.",
+ "events": [
+  {
+   "id": "EVT.IND.SHELL_INDUSTRY",
+   "title": "Shell working becomes an industry with regional specialisms",
+   "class": "TRANSITION",
+   "magnitude": "W",
+   "year": -2450,
+   "era": "ERA.INDUS",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The workshop debris at Nageshwar, Balakot and Chanhudaro, each producing different objects from the same species.",
+   "window": [
+    -2490,
+    -2410
+   ],
+   "note": "Different towns made different things from the same shell. That is a supply chain, not a craft."
+  },
+  {
+   "id": "EVT.IND.FAIENCE",
+   "title": "Faience and stoneware bangles are made by a process nobody has fully reconstructed",
+   "class": "TRANSITION",
+   "magnitude": "W",
+   "year": -2400,
+   "era": "ERA.INDUS",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The stoneware bangles, fired in sealed saggars with inscribed seals, and the failed modern attempts to reproduce them.",
+   "window": [
+    -2440,
+    -2360
+   ]
+  },
+  {
+   "id": "EVT.IND.DHOLAVIRA_WATER",
+   "title": "Dholavira's stone reservoirs hold a year of water in a desert",
+   "class": "STRUCTURE",
+   "magnitude": "W",
+   "year": -2300,
+   "era": "ERA.INDUS",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The sixteen excavated reservoirs, the rock-cut wells and the check dams on two seasonal streams.",
+   "window": [
+    -2340,
+    -2260
+   ],
+   "note": "An island in a salt desert with no perennial water, occupied for fifteen hundred years. They engineered it."
+  },
+  {
+   "id": "EVT.IND.PLOUGH_SPREAD",
+   "title": "The ard plough and the bullock cart spread across the whole Indus zone",
+   "class": "AGRICULTURE",
+   "magnitude": "W",
+   "year": -2500,
+   "era": "ERA.INDUS",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Terracotta cart and plough models from a dozen sites, and the Kalibangan furrows themselves.",
+   "window": [
+    -2540,
+    -2460
+   ]
+  },
+  {
+   "id": "EVT.IND.INLAND_NETWORK",
+   "title": "An inland network moves stone, metal and shell hundreds of kilometres",
+   "class": "TRADE",
+   "magnitude": "W",
+   "year": -2400,
+   "era": "ERA.INDUS",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Sourcing studies on the carnelian, steatite, copper and shell found at each site, matched to their geological origins.",
+   "window": [
+    -2440,
+    -2360
+   ],
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ]
+  },
+  {
+   "id": "EVT.IND.NO_WEAPONS",
+   "title": "The material record holds almost no weapons and no siege works",
+   "class": "TRANSITION",
+   "magnitude": "W",
+   "year": -2450,
+   "era": "ERA.INDUS",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The excavated assemblages across every major site: tools, ornaments and containers, and very little that is only for killing.",
+   "window": [
+    -2490,
+    -2410
+   ],
+   "note": "Five hundred years of cities and no army in the ground. The game has to be honest about how strange that is."
+  },
+  {
+   "id": "EVT.DVJ.IRRIGATION_CANALS",
+   "title": "Firuz Shah's canals water the Delhi hinterland",
+   "class": "TRANSITION",
+   "magnitude": "M",
+   "year": 1355,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Yamuna and Sutlej canal alignments, the Tarikh-i-Firuz Shahi's account, and the later Mughal reuse of the same cuts.",
+   "window": [
+    1315,
+    1395
+   ]
+  },
+  {
+   "id": "EVT.DVJ.PILLAR_MOVED",
+   "title": "Firuz Shah moves two Ashokan pillars to Delhi and asks what they say",
+   "class": "REFORM",
+   "magnitude": "M",
+   "year": 1356,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The pillars, still standing at Firuz Shah Kotla and the Ridge, and the chronicle's account of the engineering.",
+   "note": "Sixteen hundred years old already, and nobody could read them. It took another five centuries."
+  },
+  {
+   "id": "EVT.DVJ.HINDAVI_LITERATURE",
+   "title": "Hindavi, Awadhi and Dakhni become written literary languages",
+   "class": "WORK",
+   "magnitude": "W",
+   "year": 1380,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Chandayan of Maulana Daud, the Sufi premakhyan romances, and the Dakhni corpus of the Deccan courts.",
+   "window": [
+    1340,
+    1420
+   ],
+   "year_end": 1520,
+   "threads": [
+    "THR.THE_WRITING_LADDER"
+   ]
+  },
+  {
+   "id": "EVT.DVJ.IQTA",
+   "title": "The iqta assignment ties military service to revenue and not to land",
+   "class": "TRANSITION",
+   "magnitude": "M",
+   "year": 1290,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Sultanate's own administrative literature and the transfer records of assignments between officers.",
+   "window": [
+    1250,
+    1330
+   ],
+   "note": "Pay an officer with the tax of a district, and move him before he puts down roots. It is a solution to the same problem the mandala answers differently."
+  },
+  {
+   "id": "EVT.DVJ.INDIAN_OCEAN_1400",
+   "title": "The Indian Ocean carries the largest trading system in the world",
+   "class": "TRADE",
+   "magnitude": "W",
+   "year": 1400,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Chinese, Arab and Gujarati accounts, the Kerala and Coromandel port records, and the ceramic distributions.",
+   "window": [
+    1360,
+    1440
+   ],
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ]
+  },
+  {
+   "id": "EVT.DVJ.VIJAYANAGARA_HYDRO",
+   "title": "Vijayanagara's aqueducts and tanks supply a city of a quarter million",
+   "class": "STRUCTURE",
+   "magnitude": "W",
+   "year": 1450,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The surviving aqueduct channels, the Kamalapuram tank, and Abdur Razzaq's and Paes's descriptions of the city.",
+   "window": [
+    1410,
+    1490
+   ]
+  }
+ ]
+}

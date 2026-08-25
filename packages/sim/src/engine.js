@@ -161,11 +161,13 @@ function fireEvent(state, ev, datapack, rng) {
   // which of the three an event is. A document event without one keeps the old
   // default, so the eleven catastrophes written before this field existed
   // behave exactly as they did.
-  if (ev.class === 'CATASTROPHE') {
-    if (ev.corpus === 'preserve') preserve(state, ev, rng.corpus);
-    else if (ev.corpus === 'destroy' || (!ev.corpus && ev.magnitude === 'W'))
-      catastrophe(state, ev, rng.corpus);
-  }
+  // The `corpus` field decides, not the class. Mahinda carrying the canon to
+  // Sri Lanka is filed under TRADE and the Jain bhandaras under TRANSITION;
+  // both are corpus rescues and both were inert while this keyed off the class.
+  if (ev.corpus === 'preserve') preserve(state, ev, rng.corpus);
+  else if (ev.corpus === 'destroy' ||
+           (!ev.corpus && ev.class === 'CATASTROPHE' && ev.magnitude === 'W'))
+    catastrophe(state, ev, rng.corpus);
 
   // Coinage: the moment the settlement problem stops being physical.
   if (!state.coinageKnown && ev.year >= -600 &&
