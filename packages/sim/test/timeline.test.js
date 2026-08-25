@@ -108,3 +108,21 @@ test('prologue events exist and never claim to be fireable', () => {
   assert.ok(pro.length > 0);
   for (const e of pro) assert.ok(e.year < -6000);
 });
+
+test('no era goes more than twenty minutes of play without an authored event', () => {
+  // Rule 7 of the generator's validations, which had been a warning since it
+  // was written. Every era passes it as of phase 30, so it can be an assertion.
+  const bad = [];
+  for (const era of TL.eras) {
+    const n = TL.events.filter(e => e.era === era.id && e.scope === 'subcontinental').length;
+    const gap = n === 0 ? Infinity : (era.hours * 60) / n;
+    if (gap > 20) bad.push(`${era.name}: one per ${gap.toFixed(1)} min`);
+  }
+  assert.deepEqual(bad, []);
+});
+
+test('the weighting has not drifted back toward the centuries people already know', () => {
+  const pre = TL.events.filter(e => e.year < 1300).length;
+  assert.ok(pre / TL.events.length >= 0.80,
+    `pre-1300 share is ${(100 * pre / TL.events.length).toFixed(1)}%`);
+});

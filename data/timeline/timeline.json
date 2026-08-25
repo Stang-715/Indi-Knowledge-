@@ -19489,6 +19489,28 @@
    ]
   },
   {
+   "id": "EVT.TRN.TANKA",
+   "title": "The silver tanka and the copper jital set a currency for the north",
+   "class": "TRANSITION",
+   "magnitude": "M",
+   "year": 1290,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Sultanate mint series, and Barani's account of the market regulations priced in them.",
+   "window": [
+    1265,
+    1315
+   ],
+   "threads": [
+    "THR.THE_MONETARY_LADDER"
+   ]
+  },
+  {
    "id": "EVT.WRK.KHUSRAU_DIVANS",
    "title": "Amir Khusrau writes in Persian and in Hindavi",
    "class": "WORK",
@@ -19678,6 +19700,69 @@
    ]
   },
   {
+   "id": "EVT.TRD.HORSE_TRADE",
+   "title": "The Gulf horse trade becomes the Deccan's largest import",
+   "class": "TRADE",
+   "magnitude": "M",
+   "year": 1300,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Vijayanagara and Bahmani accounts of purchase contracts, and Marco Polo and Abdur Razzaq on the numbers.",
+   "window": [
+    1275,
+    1325
+   ],
+   "year_end": 1500,
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ],
+   "note": "Horses do not breed well in the Deccan. Every cavalry army in the south was an import bill."
+  },
+  {
+   "id": "EVT.TRN.MARKET_CONTROL",
+   "title": "Alauddin fixes grain prices and builds the granaries to hold them",
+   "class": "TRANSITION",
+   "magnitude": "M",
+   "year": 1300,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Barani's detailed account of the schedule, the state granaries, and the officers who enforced it.",
+   "window": [
+    1275,
+    1325
+   ]
+  },
+  {
+   "id": "EVT.TRN.SPINNING_WHEEL",
+   "title": "The spinning wheel spreads and cotton output multiplies",
+   "class": "TRANSITION",
+   "magnitude": "M",
+   "year": 1300,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The earliest Indian depictions and references, and the growth in cotton textile exports that follows.",
+   "window": [
+    1275,
+    1325
+   ],
+   "note": "A device that multiplies one person's output several times over. It arrives quietly and changes the export economy."
+  },
+  {
    "id": "EVT.1317.THE_YADAVAS_END",
    "title": "The Yadavas end",
    "provenance": "SOURCED",
@@ -19799,6 +19884,25 @@
    ]
   },
   {
+   "id": "EVT.TRN.TOKEN_1330",
+   "title": "Muhammad bin Tughlaq issues token currency, and it fails in four years",
+   "class": "TRANSITION",
+   "magnitude": "M",
+   "year": 1330,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The brass and copper tokens themselves, and Barani's account of forgery on a scale the state could not police.",
+   "threads": [
+    "THR.THE_MONETARY_LADDER"
+   ],
+   "note": "A fiat currency in 1330. The idea was right; the anti-counterfeiting was not."
+  },
+  {
    "id": "EVT.1333.IBN_BATTUTA",
    "title": "Ibn Battuta",
    "year": 1333,
@@ -19813,6 +19917,47 @@
    "scope": "subcontinental",
    "region": null,
    "dispute": false
+  },
+  {
+   "id": "EVT.TRD.IBN_BATTUTA",
+   "title": "Ibn Battuta travels India for eight years and writes it down",
+   "class": "TRADE",
+   "magnitude": "M",
+   "year": 1333,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Rihla, dictated in Morocco twenty years later, and corroborated in detail by the Sultanate records.",
+   "year_end": 1341,
+   "threads": [
+    "THR.THE_TRANSLATORS",
+    "THR.THE_LONG_NETWORKS"
+   ]
+  },
+  {
+   "id": "EVT.CAT.FAMINE_1335",
+   "title": "The Deccan famine of the 1330s empties a new capital",
+   "class": "CATASTROPHE",
+   "magnitude": "M",
+   "year": 1335,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Barani and Ibn Battuta, and the Sultanate's own relief measures and their failure.",
+   "window": [
+    1310,
+    1360
+   ],
+   "year_end": 1342,
+   "corpus": "none"
   },
   {
    "id": "EVT.INV.MADURAI_SULTANATE",
@@ -19850,6 +19995,26 @@
    "scope": "subcontinental",
    "region": null,
    "dispute": false
+  },
+  {
+   "id": "EVT.FND.VIJAYANAGARA_1336",
+   "title": "Vijayanagara is founded, by men who had served in Delhi",
+   "class": "FOUNDATION",
+   "magnitude": "W",
+   "year": 1336,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": true,
+   "evidence": "The Sangama grant series and the Vijayanagara court chronicles, with the disputed account of the founders' conversion and return.",
+   "window": [
+    1311,
+    1361
+   ],
+   "dispute_scope": "causation"
   },
   {
    "id": "EVT.1339.THE_KASHMIR_SULTANATE",
@@ -20020,6 +20185,29 @@
    ]
   },
   {
+   "id": "EVT.TRN.PAPER_1350",
+   "title": "Paper displaces palm leaf, and the cost of a copy collapses",
+   "class": "TRANSITION",
+   "magnitude": "W",
+   "year": 1350,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The shift in surviving manuscript supports, the paper mills recorded at Daulatabad and Kashmir, and the sudden growth in manuscript numbers after this date.",
+   "window": [
+    1325,
+    1375
+   ],
+   "threads": [
+    "THR.THE_WRITING_LADDER"
+   ],
+   "note": "The single biggest change to the knowledge economy between writing and printing, and nobody fought a battle over it."
+  },
+  {
    "id": "EVT.1352.THE_BENGAL_SULTANATE_A_DISTINCT_LITERARY_PAT",
    "title": "The Bengal Sultanate; a distinct literary patron",
    "provenance": "SOURCED",
@@ -20072,6 +20260,25 @@
    "window": [
     1340,
     1420
+   ]
+  },
+  {
+   "id": "EVT.FND.JAUNPUR",
+   "title": "Jaunpur becomes a court that patronises in its own right",
+   "class": "FOUNDATION",
+   "magnitude": "M",
+   "year": 1394,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Sharqi mosque architecture and the sultanate's manuscript patronage record.",
+   "window": [
+    1369,
+    1419
    ]
   },
   {
@@ -20254,6 +20461,29 @@
    ]
   },
   {
+   "id": "EVT.REF.SANT_TRADITION",
+   "title": "The Sant poets write in the spoken languages and refuse both orthodoxies",
+   "class": "REFORM",
+   "magnitude": "W",
+   "year": 1400,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The verse of Kabir, Ravidas, Namdev, Dadu and Sena, transmitted in three separate written traditions.",
+   "window": [
+    1375,
+    1425
+   ],
+   "year_end": 1550,
+   "threads": [
+    "THR.THE_CASTE_QUESTION"
+   ]
+  },
+  {
    "id": "EVT.SIT.HAMPI_WATER",
    "title": "Vijayanagara's water system supplies a city in a dry granite basin",
    "class": "SITE",
@@ -20289,6 +20519,103 @@
    "window": [
     1382,
     1418
+   ]
+  },
+  {
+   "id": "EVT.WRK.SHRIKRISHNA_KIRTAN",
+   "title": "Bengali literature acquires a court under the Sultanate",
+   "class": "WORK",
+   "magnitude": "M",
+   "year": 1400,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.BENGAL",
+   "dispute": false,
+   "evidence": "The Srikrishnakirtan manuscript, and the Sultanate's patronage of Bengali translations of the Sanskrit epics.",
+   "window": [
+    1375,
+    1425
+   ],
+   "note": "A Muslim court paid for the first Bengali Mahabharata. The obvious story is the wrong one."
+  },
+  {
+   "id": "EVT.WRK.VIDYAPATI",
+   "title": "Vidyapati writes in Maithili and is read across the east",
+   "class": "WORK",
+   "magnitude": "M",
+   "year": 1400,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The padavali corpus, and its adoption into the Bengali and Assamese Vaishnava traditions.",
+   "window": [
+    1375,
+    1425
+   ]
+  },
+  {
+   "id": "EVT.FND.MALWA_SULT",
+   "title": "Malwa's sultanate builds at Mandu and cooks a book about it",
+   "class": "FOUNDATION",
+   "magnitude": "M",
+   "year": 1401,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Ni'matnama, a cookery manuscript illustrated for the Malwa court, and the Mandu building sequence.",
+   "window": [
+    1376,
+    1426
+   ],
+   "note": "An illustrated recipe book is state records too. It records what a court ate, and who cooked."
+  },
+  {
+   "id": "EVT.TRD.ZHENG_HE",
+   "title": "Zheng He's fleets call at Calicut, Cochin and Bengal",
+   "class": "TRADE",
+   "magnitude": "M",
+   "year": 1405,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Chinese voyage records, the Ma Huan account, and the trilingual Galle stele.",
+   "year_end": 1433,
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ]
+  },
+  {
+   "id": "EVT.FND.GUJARAT_SULT",
+   "title": "The Gujarat Sultanate and the rise of Ahmedabad",
+   "class": "FOUNDATION",
+   "magnitude": "M",
+   "year": 1411,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The city's foundation inscription, and the Gujarati and Persian building record.",
+   "window": [
+    1386,
+    1436
    ]
   },
   {
@@ -20544,6 +20871,25 @@
    "dispute": false
   },
   {
+   "id": "EVT.SIT.GOL_GUMBAZ_ERA",
+   "title": "Bijapur, Golconda and Ahmadnagar build a Deccan court idiom",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": 1490,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The building sequences of the three sultanates, and the Dakhni literary record they patronised.",
+   "window": [
+    1465,
+    1515
+   ]
+  },
+  {
    "id": "EVT.1498.VASCO_DA_GAMA_AT_CALICUT",
    "title": "Vasco da Gama at Calicut",
    "provenance": "SOURCED",
@@ -20666,6 +21012,25 @@
    "dispute": false,
    "evidence": "The text, dated by its own chronogram to 1501, with the series expansions of the Kerala school.",
    "work": "WRK.TANTRASANGRAHA"
+  },
+  {
+   "id": "EVT.COL.CARTAZ",
+   "title": "The cartaz: the Indian Ocean becomes a licensed sea",
+   "class": "COLONIAL",
+   "magnitude": "W",
+   "year": 1502,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Portuguese pass registers, and the Mughal and Gujarati correspondence about ships stopped for want of one.",
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ],
+   "note": "For a thousand years the ocean was open. From here you sail with someone's permission."
   },
   {
    "id": "EVT.CAT.QUAKE_1505",
@@ -20881,6 +21246,82 @@
    "dispute": false
   },
   {
+   "id": "EVT.TRN.SHER_SHAH",
+   "title": "Sher Shah's rupiya, road and revenue survey",
+   "class": "TRANSITION",
+   "magnitude": "W",
+   "year": 1540,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The rupiya itself, still the unit; the Grand Trunk Road's sarais; and the zabt measurement records.",
+   "year_end": 1545,
+   "threads": [
+    "THR.THE_MONETARY_LADDER"
+   ],
+   "note": "Five years in power. The currency, the road and the survey all outlast the empire that replaced him."
+  },
+  {
+   "id": "EVT.FRT.BANJARA",
+   "title": "The Banjara carriers move the grain that feeds every army",
+   "class": "FRONTIER",
+   "magnitude": "M",
+   "year": 1550,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Mughal and Maratha campaign records of contracted bullock trains, and the European accounts of caravans in the tens of thousands.",
+   "window": [
+    1525,
+    1575
+   ],
+   "year_end": 1850,
+   "note": "Nobody's subjects, everybody's logistics. An army moved at the speed the Banjaras agreed to."
+  },
+  {
+   "id": "EVT.TRN.MUGHAL_ARTILLERY",
+   "title": "Cast artillery and matchlocks change what a fort is for",
+   "class": "TRANSITION",
+   "magnitude": "M",
+   "year": 1550,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The surviving guns, the siege accounts, and the change in fortification profile after this date.",
+   "window": [
+    1525,
+    1575
+   ]
+  },
+  {
+   "id": "EVT.COL.GOA_INQUISITION",
+   "title": "The Goa Inquisition opens and runs for two hundred and fifty years",
+   "class": "COLONIAL",
+   "magnitude": "M",
+   "year": 1560,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.KERALA",
+   "dispute": false,
+   "evidence": "The Inquisition's own records, and the prohibition of Konkani in public that accompanied it.",
+   "year_end": 1812
+  },
+  {
    "id": "EVT.INV.TALIKOTA",
    "title": "Talikota, and Vijayanagara is emptied",
    "class": "INVASION",
@@ -20930,6 +21371,21 @@
    "work": "WRK.RAMCHARITMANAS"
   },
   {
+   "id": "EVT.REF.DIN_I_ILAHI",
+   "title": "Akbar's debating hall puts Jesuits, Jains, Zoroastrians and ulema in one room",
+   "class": "REFORM",
+   "magnitude": "W",
+   "year": 1575,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Ibadat Khana accounts in the Akbarnama and the Jesuit letters from the mission, which agree about the arguments and not the outcomes."
+  },
+  {
    "id": "EVT.FRT.MUGHAL_HUNT",
    "title": "The imperial hunt claims the forest as a royal preserve",
    "class": "FRONTIER",
@@ -20949,6 +21405,59 @@
    "evidence": "The Ain-i-Akbari and Mughal painting, in which the qamargah hunt is an assertion of sovereignty over ground and over the people who live on it."
   },
   {
+   "id": "EVT.TRD.HAJJ_SHIPPING",
+   "title": "Surat's pilgrim shipping runs on Mughal and Gujarati capital",
+   "class": "TRADE",
+   "magnitude": "M",
+   "year": 1580,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.GUJARAT",
+   "dispute": false,
+   "evidence": "The port records, the imperial ships Rahimi and Ganj-i-Sawai, and the cartaz passes they had to carry.",
+   "window": [
+    1555,
+    1605
+   ],
+   "year_end": 1700,
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ]
+  },
+  {
+   "id": "EVT.TRN.ZABT",
+   "title": "The zabt settlement measures land and prices it by a ten-year average",
+   "class": "TRANSITION",
+   "magnitude": "W",
+   "year": 1580,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Ain-i-Akbari's revenue tables, district by district and crop by crop."
+  },
+  {
+   "id": "EVT.WRK.MUGHAL_ATELIER",
+   "title": "The imperial atelier makes painting a documented profession",
+   "class": "WORK",
+   "magnitude": "M",
+   "year": 1580,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The signed and attributed folios, and the Ain-i-Akbari's list of the leading painters by name."
+  },
+  {
    "id": "EVT.1595.THE_AIN_I_AKBARI",
    "title": "the Ain-i-Akbari",
    "year": 1595,
@@ -20963,6 +21472,22 @@
    "scope": "subcontinental",
    "region": null,
    "dispute": false
+  },
+  {
+   "id": "EVT.WRK.AIN",
+   "title": "The Ain-i-Akbari records an empire in numbers",
+   "class": "WORK",
+   "magnitude": "W",
+   "year": 1595,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The text itself: revenue, prices, wages, army musters, provincial statistics, and the court's own procedures.",
+   "note": "The most detailed statistical account of any pre-modern state anywhere. It is also propaganda. Both are true."
   },
   {
    "id": "EVT.1600.THE_EAST_INDIA_COMPANY_CHARTERED",
@@ -21098,6 +21623,49 @@
    ]
   },
   {
+   "id": "EVT.TRD.BULLION_IN",
+   "title": "Silver from the Americas flows into India and stays there",
+   "class": "TRADE",
+   "magnitude": "W",
+   "year": 1600,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Mughal mint output series, and the European accounts complaining about a trade balance that only went one way.",
+   "window": [
+    1575,
+    1625
+   ],
+   "year_end": 1750,
+   "threads": [
+    "THR.THE_MONETARY_LADDER",
+    "THR.THE_LONG_NETWORKS"
+   ]
+  },
+  {
+   "id": "EVT.TRD.EIC_CHARTER",
+   "title": "The East India Company is chartered, and the Dutch and French follow",
+   "class": "TRADE",
+   "magnitude": "W",
+   "year": 1600,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The charters themselves, and the factory records that begin immediately after.",
+   "year_end": 1664,
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ]
+  },
+  {
    "id": "EVT.1604.THE_ADI_GRANTH",
    "title": "the Adi Granth",
    "year": 1604,
@@ -21153,6 +21721,31 @@
    "year_end": 1682
   },
   {
+   "id": "EVT.CAT.DECCAN_FAMINE_1630",
+   "title": "The Deccan famine of 1630 kills across three provinces",
+   "class": "CATASTROPHE",
+   "magnitude": "W",
+   "year": 1630,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Peter Mundy's eyewitness account on the road to Surat, the Mughal relief records, and the Dutch factory correspondence.",
+   "window": [
+    1605,
+    1655
+   ],
+   "year_end": 1632,
+   "threads": [
+    "THR.THE_FAMINE_CENTURY"
+   ],
+   "corpus": "destroy",
+   "severity": 0.04
+  },
+  {
    "id": "EVT.CLI.GUJARAT_FAMINE_1630",
    "title": "The Deccan and Gujarat famine",
    "class": "CLIMATE",
@@ -21194,6 +21787,39 @@
    "work": "WRK.TUKARAM"
   },
   {
+   "id": "EVT.SIT.TAJ",
+   "title": "The Taj Mahal is built, and the accounts survive",
+   "class": "SITE",
+   "magnitude": "W",
+   "year": 1632,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The building accounts, the craftsmen's wage records, and the completion inscription.",
+   "year_end": 1653,
+   "note": "Late. For ninety-five per cent of this campaign it does not exist, which is why it is not on the map."
+  },
+  {
+   "id": "EVT.FND.MADRAS_BOMBAY",
+   "title": "Madras, Bombay and Calcutta are founded as company towns",
+   "class": "FOUNDATION",
+   "magnitude": "M",
+   "year": 1639,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Company's grants and fort records for Fort St George, the Bombay marriage transfer, and the Sutanuti purchase.",
+   "year_end": 1690
+  },
+  {
    "id": "EVT.WRK.PADSHAHNAMA",
    "title": "The Padshahnama is compiled and illustrated",
    "class": "WORK",
@@ -21209,6 +21835,26 @@
    "evidence": "The manuscript and its paintings, and the succession of court historians named in it.",
    "year_end": 1657,
    "work": "WRK.PADSHAHNAMA"
+  },
+  {
+   "id": "EVT.CLI.MAUNDER",
+   "title": "The Maunder minimum and a run of failed monsoons",
+   "class": "CLIMATE",
+   "magnitude": "M",
+   "year": 1645,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.6,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Solar and speleothem records, and the clustering of famine in the Mughal and Deccan archives.",
+   "window": [
+    1620,
+    1670
+   ],
+   "year_end": 1715
   },
   {
    "id": "EVT.SIT.SHAHJAHANABAD",
@@ -21245,6 +21891,29 @@
    ]
   },
   {
+   "id": "EVT.TRD.TEXTILE_BOOM",
+   "title": "Indian cotton textiles become the world's largest manufactured export",
+   "class": "TRADE",
+   "magnitude": "W",
+   "year": 1650,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Company shipping records, the Dutch VOC accounts, and the English legislation passed to keep the cloth out.",
+   "window": [
+    1625,
+    1675
+   ],
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ],
+   "note": "England banned it. That is how big it was."
+  },
+  {
    "id": "EVT.1657.DARA_SHIKOH_S_SIRR_I_AKBAR",
    "title": "Dara Shikoh's Sirr-i-Akbar",
    "year": 1657,
@@ -21259,6 +21928,25 @@
    "scope": "subcontinental",
    "region": null,
    "dispute": false
+  },
+  {
+   "id": "EVT.WRK.SIRR_I_AKBAR",
+   "title": "Dara Shikoh has fifty Upanishads translated into Persian",
+   "class": "WORK",
+   "magnitude": "W",
+   "year": 1657,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Sirr-i-Akbar manuscript, and the Latin version made from it that reached Schopenhauer.",
+   "threads": [
+    "THR.THE_TRANSLATORS"
+   ],
+   "note": "A Mughal prince's Persian Upanishads become Europe's first Upanishads, via Latin, in 1801."
   },
   {
    "id": "EVT.FRT.MARATHA_HILLS",
@@ -21312,6 +22000,28 @@
    "becomes": "The Mughal frontier stops at the Manas. Assam stays outside the empire until the Company arrives a century and a half later."
   },
   {
+   "id": "EVT.REF.SATNAMI",
+   "title": "The Satnami rising: peasants and leatherworkers against the empire",
+   "class": "REFORM",
+   "magnitude": "R",
+   "year": 1672,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Mughal court accounts of the revolt near Narnaul and its suppression.",
+   "window": [
+    1647,
+    1697
+   ],
+   "threads": [
+    "THR.THE_CASTE_QUESTION"
+   ]
+  },
+  {
    "id": "EVT.1674.SHIVAJI_CROWNED",
    "title": "Shivaji crowned",
    "year": 1674,
@@ -21326,6 +22036,21 @@
    "scope": "subcontinental",
    "region": null,
    "dispute": false
+  },
+  {
+   "id": "EVT.FND.MARATHA_STATE",
+   "title": "Shivaji is crowned and a state is built on chauth",
+   "class": "FOUNDATION",
+   "magnitude": "W",
+   "year": 1674,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false,
+   "evidence": "The coronation record, the ashta pradhan council, and the revenue documents of the chauth and sardeshmukhi claims."
   },
   {
    "id": "EVT.INV.MUGHAL_DECCAN",
@@ -21376,6 +22101,21 @@
    "evidence": "The Sikh chronicles and the surviving hukamnamas."
   },
   {
+   "id": "EVT.REF.KHALSA_1699",
+   "title": "The Khalsa is instituted at Anandpur",
+   "class": "REFORM",
+   "magnitude": "W",
+   "year": 1699,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Sikh chronicles, the hukamnamas, and the immediate change in the community's military organisation."
+  },
+  {
    "id": "EVT.CAT.SARASVATI_MAHAL",
    "title": "The Thanjavur collection is catalogued and kept",
    "class": "CATASTROPHE",
@@ -21411,6 +22151,26 @@
    "scope": "subcontinental",
    "region": null,
    "dispute": false
+  },
+  {
+   "id": "EVT.FND.SIKH_MISLS",
+   "title": "The Sikh misls hold the Punjab between empires",
+   "class": "FOUNDATION",
+   "magnitude": "M",
+   "year": 1710,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The misl records and the coin legends struck in the Gurus' name.",
+   "window": [
+    1685,
+    1735
+   ],
+   "year_end": 1799
   },
   {
    "id": "EVT.CAT.QUAKE_1737_BENGAL",
@@ -21546,6 +22306,22 @@
    ]
   },
   {
+   "id": "EVT.COL.DIWANI",
+   "title": "The Company takes the diwani of Bengal, Bihar and Orissa",
+   "class": "COLONIAL",
+   "magnitude": "W",
+   "year": 1765,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.BENGAL",
+   "dispute": false,
+   "evidence": "The Treaty of Allahabad, and the Company's revenue accounts from the following year.",
+   "note": "The point at which a trading company stops paying for Indian goods with silver and starts paying with Indian taxes."
+  },
+  {
    "id": "EVT.INV.MYSORE_WARS",
    "title": "The Mysore wars: four of them, and the last one ends the state",
    "class": "INVASION",
@@ -21577,6 +22353,25 @@
    "scope": "subcontinental",
    "region": null,
    "dispute": false
+  },
+  {
+   "id": "EVT.COL.FAMINE_1770",
+   "title": "The Great Bengal Famine of 1770",
+   "class": "COLONIAL",
+   "magnitude": "W",
+   "year": 1770,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.BENGAL",
+   "dispute": false,
+   "evidence": "The Company's own revenue records, which show collection maintained through the mortality, and the contemporary accounts.",
+   "threads": [
+    "THR.THE_FAMINE_CENTURY"
+   ],
+   "note": "Revenue collection was held steady while a third of the province died. The records are the Company's own."
   },
   {
    "id": "EVT.INV.MARATHA_WARS",
@@ -21634,6 +22429,24 @@
    "preserve_to": "london"
   },
   {
+   "id": "EVT.COL.ASIATIC_SOCIETY",
+   "title": "The Asiatic Society, and the discovery that the languages are related",
+   "class": "COLONIAL",
+   "magnitude": "W",
+   "year": 1784,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Society's Asiatick Researches, and Jones's 1786 address on Sanskrit, Greek and Latin.",
+   "threads": [
+    "THR.THE_TRANSLATORS"
+   ]
+  },
+  {
    "id": "EVT.CLI.DOJI_BARA",
    "title": "The Doji bara, the skull famine",
    "class": "CLIMATE",
@@ -21668,6 +22481,21 @@
    "scope": "subcontinental",
    "region": null,
    "dispute": false
+  },
+  {
+   "id": "EVT.COL.PERMANENT_SETTLEMENT",
+   "title": "The Permanent Settlement fixes Bengal's revenue for ever",
+   "class": "COLONIAL",
+   "magnitude": "W",
+   "year": 1793,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.BENGAL",
+   "dispute": false,
+   "evidence": "The regulations, and the sale records of estates auctioned for arrears in the decades after."
   },
   {
    "id": "EVT.FRT.PERMANENT_SETTLEMENT_FOREST",
@@ -21787,6 +22615,42 @@
    "preserve_to": "home"
   },
   {
+   "id": "EVT.COL.PRINTING_VERNACULAR",
+   "title": "Printing in the Indian scripts becomes cheap and general",
+   "class": "COLONIAL",
+   "magnitude": "W",
+   "year": 1800,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Serampore press output, the Fort William College texts, and the vernacular newspaper record that follows.",
+   "threads": [
+    "THR.THE_WRITING_LADDER"
+   ],
+   "note": "From here a work can stop being lost. It is the first time that has ever been true."
+  },
+  {
+   "id": "EVT.COL.SURVEY_GREAT_ARC",
+   "title": "The Great Trigonometrical Survey measures the subcontinent",
+   "class": "COLONIAL",
+   "magnitude": "W",
+   "year": 1802,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The survey's own records, the Everest and Lambton triangulation data, and the Indian computers — Radhanath Sikdar among them — who did the arithmetic.",
+   "year_end": 1871,
+   "note": "The most accurate survey on earth at the time. It was also how you tax and how you move an army."
+  },
+  {
    "id": "EVT.CAT.MACKENZIE_COLLECTION",
    "title": "The Mackenzie collection removes thousands of manuscripts",
    "class": "CATASTROPHE",
@@ -21847,6 +22711,43 @@
    "corpus": "none"
   },
   {
+   "id": "EVT.COL.DEINDUSTRIAL",
+   "title": "Indian textile manufacturing collapses against Lancashire",
+   "class": "COLONIAL",
+   "magnitude": "W",
+   "year": 1820,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": true,
+   "evidence": "The trade series: cloth exports falling and yarn imports rising, and the census occupational data on weavers.",
+   "window": [
+    1795,
+    1845
+   ],
+   "year_end": 1880,
+   "dispute_scope": "causation"
+  },
+  {
+   "id": "EVT.COL.RYOTWARI",
+   "title": "Ryotwari and mahalwari: two other ways to make land pay",
+   "class": "COLONIAL",
+   "magnitude": "M",
+   "year": 1820,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Madras and North-Western Provinces settlement reports, and Munro's and Wingate's own accounts of the survey method.",
+   "year_end": 1850
+  },
+  {
    "id": "EVT.INV.BURMESE_WARS",
    "title": "The Burmese wars and the annexation of Assam and Arakan",
    "class": "INVASION",
@@ -21898,6 +22799,22 @@
    "dispute_scope": "interpretation"
   },
   {
+   "id": "EVT.COL.INDENTURE",
+   "title": "Indenture carries a million and a half people overseas",
+   "class": "COLONIAL",
+   "magnitude": "W",
+   "year": 1834,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The emigration passes, the depot records, and the colonial commissions of inquiry.",
+   "year_end": 1917
+  },
+  {
    "id": "EVT.1835.MACAULAY_S_MINUTE",
    "title": "Macaulay's Minute",
    "year": 1835,
@@ -21912,6 +22829,22 @@
    "scope": "subcontinental",
    "region": null,
    "dispute": false
+  },
+  {
+   "id": "EVT.COL.MACAULAY",
+   "title": "Macaulay's Minute settles what language education happens in",
+   "class": "COLONIAL",
+   "magnitude": "W",
+   "year": 1835,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Minute itself, and the English Education Act that followed within months.",
+   "note": "He had read none of the literature he dismissed and said so. The policy stood for a century."
   },
   {
    "id": "EVT.CAT.SURAT_FIRE_1837",
@@ -22039,6 +22972,24 @@
    "dispute": false
   },
   {
+   "id": "EVT.COL.RAILWAY",
+   "title": "Railway and telegraph arrive in the same decade",
+   "class": "COLONIAL",
+   "magnitude": "W",
+   "year": 1853,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Bombay-Thane line, the Calcutta-Agra telegraph, and the Company's own case for both as military infrastructure.",
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ]
+  },
+  {
    "id": "EVT.CAT.TANJORE_LIBRARY",
    "title": "The Thanjavur palace library passes into state hands",
    "class": "CATASTROPHE",
@@ -22115,6 +23066,54 @@
    "year_end": 1858
   },
   {
+   "id": "EVT.COL.CROWN_RULE",
+   "title": "Crown rule replaces the Company",
+   "class": "COLONIAL",
+   "magnitude": "W",
+   "year": 1858,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 1,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Government of India Act 1858, and the Queen's Proclamation."
+  },
+  {
+   "id": "EVT.COL.PRINCELY_STATES",
+   "title": "Paramountcy: five hundred and sixty-five states that are not sovereign and not provinces",
+   "class": "COLONIAL",
+   "magnitude": "W",
+   "year": 1858,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The treaties themselves, the Residency correspondence, and the Chamber of Princes constitution of 1921.",
+   "year_end": 1947,
+   "note": "The game's own title. A sovereignty that exists at somebody else's discretion."
+  },
+  {
+   "id": "EVT.COL.INDIGO",
+   "title": "The indigo system, and the Bengal cultivators who refuse it",
+   "class": "COLONIAL",
+   "magnitude": "M",
+   "year": 1859,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.BENGAL",
+   "dispute": false,
+   "evidence": "The Indigo Commission's evidence, taken from cultivators directly, and Nil Darpan.",
+   "year_end": 1860
+  },
+  {
    "id": "EVT.FRT.RAILWAY_SLEEPERS",
    "title": "The railway consumes the hardwood forests",
    "class": "FRONTIER",
@@ -22133,6 +23132,22 @@
    "region": null,
    "dispute": false,
    "evidence": "Railway procurement figures and forest department returns. Sleeper demand is the reason the Forest Department exists."
+  },
+  {
+   "id": "EVT.COL.ASI_FOUNDED",
+   "title": "The Archaeological Survey is founded, and the deep past becomes legible",
+   "class": "COLONIAL",
+   "magnitude": "W",
+   "year": 1861,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Cunningham's reports, and the excavation record that runs from them to Harappa and Mohenjo-daro in 1921.",
+   "note": "The reason most of this timeline's evidence lines exist. The instrument was colonial; the record is not undone by that."
   },
   {
    "id": "EVT.FRT.FOREST_ACT_1865",
@@ -22208,6 +23223,25 @@
    "dispute_text": "The colonial forest service treated shifting cultivation as destructive and said so at length. Later agronomy finds long-fallow rotation sustainable at the population densities it was practised at. The reports are evidence of the argument, not of the fact."
   },
   {
+   "id": "EVT.COL.CENSUS_1871",
+   "title": "The decennial census begins to sort the population into categories",
+   "class": "COLONIAL",
+   "magnitude": "W",
+   "year": 1871,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The census reports themselves, and the caste enumeration schedules and their revisions.",
+   "threads": [
+    "THR.THE_CASTE_QUESTION"
+   ],
+   "note": "Categories written down for administrative convenience hardened into identities. That is a mechanic, not a metaphor."
+  },
+  {
    "id": "EVT.REF.ARYA_SAMAJ",
    "title": "The Arya Samaj argues for reform by returning to the Vedas",
    "class": "REFORM",
@@ -22237,6 +23271,25 @@
    "region": null,
    "dispute": false,
    "evidence": "Famine Commission reports and grain export figures for the same years."
+  },
+  {
+   "id": "EVT.COL.FAMINE_CODE",
+   "title": "Famine kills millions, and then a Famine Code is written",
+   "class": "COLONIAL",
+   "magnitude": "W",
+   "year": 1876,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Famine Commission reports, the mortality estimates, and the export figures for the same years.",
+   "year_end": 1902,
+   "threads": [
+    "THR.THE_FAMINE_CENTURY"
+   ]
   },
   {
    "id": "EVT.FRT.FOREST_ACT_1878",
@@ -22306,6 +23359,21 @@
    "scope": "subcontinental",
    "region": null,
    "dispute": false
+  },
+  {
+   "id": "EVT.COL.CONGRESS",
+   "title": "The Indian National Congress meets for the first time",
+   "class": "COLONIAL",
+   "magnitude": "M",
+   "year": 1885,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 1,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The proceedings of the Bombay session and its seventy-two delegates."
   },
   {
    "id": "EVT.REF.NARAYANA_GURU",
@@ -22429,6 +23497,21 @@
    "scope": "subcontinental",
    "region": null,
    "dispute": false
+  },
+  {
+   "id": "EVT.COL.BENGAL_PARTITION",
+   "title": "Bengal is partitioned, and the swadeshi movement answers",
+   "class": "COLONIAL",
+   "magnitude": "W",
+   "year": 1905,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 1,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.BENGAL",
+   "dispute": false,
+   "evidence": "The partition order, the boycott records, and the annulment in 1911."
   },
   {
    "id": "EVT.CAT.DUNHUANG",
@@ -22555,6 +23638,21 @@
    "preserve_to": "home"
   },
   {
+   "id": "EVT.COL.JALLIANWALA",
+   "title": "Jallianwala Bagh",
+   "class": "COLONIAL",
+   "magnitude": "W",
+   "year": 1919,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 1,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Hunter Committee evidence, including Dyer's own testimony about what he intended."
+  },
+  {
    "id": "EVT.FRT.RAMPA",
    "title": "The Rampa rebellion",
    "class": "FRONTIER",
@@ -22645,6 +23743,21 @@
    "dispute": false
   },
   {
+   "id": "EVT.COL.SALT_MARCH",
+   "title": "The Salt March",
+   "class": "COLONIAL",
+   "magnitude": "W",
+   "year": 1930,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 1,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The march's daily record, the arrest figures, and the salt law it broke."
+  },
+  {
    "id": "EVT.CAT.GILGIT_MANUSCRIPTS",
    "title": "The Gilgit manuscripts are found in a stupa",
    "class": "CATASTROPHE",
@@ -22718,6 +23831,21 @@
    "corpus": "none"
   },
   {
+   "id": "EVT.COL.GOI_1935",
+   "title": "The Government of India Act 1935 becomes most of the future constitution",
+   "class": "COLONIAL",
+   "magnitude": "M",
+   "year": 1935,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 1,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Act, and the Constituent Assembly's later adoption of large parts of its structure."
+  },
+  {
    "id": "EVT.FRT.EXCLUDED_AREAS",
    "title": "The hill tracts are made Excluded Areas",
    "class": "FRONTIER",
@@ -22765,6 +23893,25 @@
    "dispute": true,
    "evidence": "Provincial and imperial records, the Famine Inquiry Commission of 1945, and price series.",
    "dispute_text": "That the famine happened and that it killed on the order of millions is not in question. Its causation is: crop shortfall, wartime procurement, the denial policy, provincial trade barriers and refusals of imports have all been argued as primary. The game presents the positions.",
+   "dispute_scope": "causation"
+  },
+  {
+   "id": "EVT.COL.BENGAL_1943",
+   "title": "The Bengal famine of 1943",
+   "class": "COLONIAL",
+   "magnitude": "W",
+   "year": 1943,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.BENGAL",
+   "dispute": true,
+   "evidence": "The Famine Inquiry Commission report, the shipping and procurement records, and the price series.",
+   "threads": [
+    "THR.THE_FAMINE_CENTURY"
+   ],
    "dispute_scope": "causation"
   },
   {
@@ -22860,6 +24007,22 @@
    "severity": 0.034
   },
   {
+   "id": "EVT.COL.PARTITION_1947",
+   "title": "Independence, and Partition",
+   "class": "COLONIAL",
+   "magnitude": "W",
+   "year": 1947,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 1,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Indian Independence Act, the Radcliffe award, and the refugee and mortality records.",
+   "note": "The campaign ends here. Not on a victory screen — on a boundary drawn in five weeks by a man who had never been to India."
+  },
+  {
    "id": "EVT.FRT.SCHEDULED_TRIBES",
    "title": "The frontier becomes a schedule in a constitution",
    "class": "FRONTIER",
@@ -22900,38 +24063,38 @@
   }
  ],
  "census": {
-  "total": 1163,
-  "subcontinental": 721,
-  "regional": 442,
-  "pre_1300": 981,
+  "total": 1226,
+  "subcontinental": 774,
+  "regional": 452,
+  "pre_1300": 982,
   "by_magnitude": {
-   "W": 600,
-   "M": 487,
-   "R": 72,
+   "W": 636,
+   "M": 513,
+   "R": 73,
    "m": 4
   },
   "by_class": {
-   "CLIMATE": 49,
-   "FRONTIER": 61,
-   "TRANSITION": 118,
+   "CLIMATE": 50,
+   "FRONTIER": 62,
+   "TRANSITION": 126,
    "EPOCH": 19,
    "STRUCTURE": 27,
-   "WORK": 201,
+   "WORK": 206,
    "AGRICULTURE": 24,
-   "TRADE": 60,
-   "REFORM": 130,
-   "SITE": 190,
-   "CATASTROPHE": 73,
+   "TRADE": 67,
+   "REFORM": 134,
+   "SITE": 192,
+   "CATASTROPHE": 75,
    "INVASION": 70,
-   "FOUNDATION": 112,
+   "FOUNDATION": 119,
    "—": 24,
-   "COLONIAL": 5
+   "COLONIAL": 31
   },
   "by_trigger": {
-   "window": 957,
+   "window": 981,
    "latent": 36,
-   "dated": 170
+   "dated": 209
   },
-  "disputed": 58
+  "disputed": 61
  }
 }
