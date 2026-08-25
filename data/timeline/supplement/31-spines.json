@@ -1,0 +1,4162 @@
+{
+ "phase": 31,
+ "name": "The twelve spines",
+ "note": "One hundred and seventy-five regional events. Every spine now runs from its region's own beginning to 1947 or close to it, with no century in which a player's own region has nothing to say. Kashmir stopped at 1400 and Sri Lanka at 1160; both now reach the twentieth century.",
+ "events": [
+  {
+   "id": "EVT.RGN.KAS_BURZ2",
+   "title": "Burzahom's second phase: houses come above ground",
+   "class": "SITE",
+   "magnitude": "R",
+   "year": -2700,
+   "era": "ERA.EARLY_HARAPPAN",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KASHMIR",
+   "dispute": false,
+   "evidence": "The stratigraphy at Burzahom, where the pit dwellings are succeeded by mud-brick structures on the old floors.",
+   "window": [
+    -2781,
+    -2619
+   ]
+  },
+  {
+   "id": "EVT.RGN.KAS_CROPS",
+   "title": "Wheat, barley and lentils are grown in the valley",
+   "class": "AGRICULTURE",
+   "magnitude": "R",
+   "year": -2400,
+   "era": "ERA.INDUS",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KASHMIR",
+   "dispute": false,
+   "evidence": "Carbonised grain from Burzahom and Gufkral, with the earliest Kashmir dates for domesticated cereals.",
+   "window": [
+    -2472,
+    -2328
+   ]
+  },
+  {
+   "id": "EVT.RGN.KAS_DOGBURIAL",
+   "title": "The dog burials at Burzahom: an animal interred with its owner",
+   "class": "REFORM",
+   "magnitude": "R",
+   "year": -2000,
+   "era": "ERA.INDUS",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KASHMIR",
+   "dispute": false,
+   "evidence": "The excavated graves, in which dogs and in one case an antler were placed with the human remains.",
+   "window": [
+    -2060,
+    -1940
+   ],
+   "note": "A practice with no parallel elsewhere in the Indian Neolithic. Kashmir was looking north."
+  },
+  {
+   "id": "EVT.RGN.KAS_HARVESTER",
+   "title": "The harvester knife arrives from the Chinese Neolithic",
+   "class": "TRANSITION",
+   "magnitude": "R",
+   "year": -1800,
+   "era": "ERA.LATE_HARAPPAN",
+   "provenance": "SOURCED",
+   "certainty": 0.65,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KASHMIR",
+   "dispute": false,
+   "evidence": "The rectangular perforated harvesting knives at Burzahom, whose closest parallels are in north China.",
+   "window": [
+    -1854,
+    -1746
+   ]
+  },
+  {
+   "id": "EVT.RGN.KAS_MEGALITH",
+   "title": "Menhirs are raised at Burzahom",
+   "class": "FRONTIER",
+   "magnitude": "R",
+   "year": -1500,
+   "era": "ERA.LATE_HARAPPAN",
+   "provenance": "SOURCED",
+   "certainty": 0.65,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KASHMIR",
+   "dispute": false,
+   "evidence": "The standing stones at the site, set up over the earlier occupation.",
+   "window": [
+    -1545,
+    -1455
+   ]
+  },
+  {
+   "id": "EVT.RGN.KAS_SEMTHAN",
+   "title": "Semthan: the valley's iron-age and early historic sequence",
+   "class": "SITE",
+   "magnitude": "R",
+   "year": -700,
+   "era": "ERA.LATE_VEDIC",
+   "provenance": "SOURCED",
+   "certainty": 0.65,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KASHMIR",
+   "dispute": false,
+   "evidence": "The excavated sequence at Semthan, which carries Kashmir from megalithic levels into the Indo-Greek period.",
+   "window": [
+    -721,
+    -679
+   ]
+  },
+  {
+   "id": "EVT.RGN.KAS_INDOGREEK",
+   "title": "Indo-Greek and Kushan coins circulate in the valley",
+   "class": "TRADE",
+   "magnitude": "R",
+   "year": -100,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KASHMIR",
+   "dispute": false,
+   "evidence": "Coin finds at Semthan, Ushkur and Harwan, and the Kushan-period terracotta tiles.",
+   "window": [
+    -120,
+    -80
+   ]
+  },
+  {
+   "id": "EVT.RGN.KAS_HARWAN",
+   "title": "Harwan's tiled monastery courtyard",
+   "class": "FOUNDATION",
+   "magnitude": "R",
+   "year": 300,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KASHMIR",
+   "dispute": false,
+   "evidence": "The moulded and numbered terracotta tiles, laid in sequence — the numbering is a builder's instruction.",
+   "window": [
+    280,
+    320
+   ]
+  },
+  {
+   "id": "EVT.RGN.KAS_NAGA",
+   "title": "Naga cults and the valley's spring shrines are absorbed into Shaivism",
+   "class": "REFORM",
+   "magnitude": "R",
+   "year": 500,
+   "era": "ERA.GUPTA",
+   "provenance": "SOURCED",
+   "certainty": 0.6,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KASHMIR",
+   "dispute": false,
+   "evidence": "The Nilamata Purana, which is a ritual gazetteer of the valley's springs, and the shrine sites themselves.",
+   "window": [
+    480,
+    520
+   ]
+  },
+  {
+   "id": "EVT.RGN.KAS_NILAMATA",
+   "title": "The Nilamata Purana describes the valley as a drained lake",
+   "class": "WORK",
+   "magnitude": "R",
+   "year": 600,
+   "era": "ERA.GUPTA",
+   "provenance": "SOURCED",
+   "certainty": 0.65,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KASHMIR",
+   "dispute": false,
+   "evidence": "The text, whose festival calendar and site list Kalhana used five centuries later as a source.",
+   "window": [
+    580,
+    620
+   ]
+  },
+  {
+   "id": "EVT.RGN.KAS_KARKOTA",
+   "title": "The Karkotas take the valley and hold the passes",
+   "class": "FOUNDATION",
+   "magnitude": "M",
+   "year": 625,
+   "era": "ERA.GUPTA",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KASHMIR",
+   "dispute": false,
+   "evidence": "Kalhana's chronology, and the Karkota coin series.",
+   "window": [
+    605,
+    645
+   ]
+  },
+  {
+   "id": "EVT.RGN.KAS_CANDRAPIDA",
+   "title": "Kashmiri monks translate for the Tang court",
+   "class": "WORK",
+   "magnitude": "R",
+   "year": 720,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KASHMIR",
+   "dispute": false,
+   "evidence": "The Chinese Buddhist catalogues, which name Kashmiri translators and their works.",
+   "window": [
+    699,
+    741
+   ],
+   "threads": [
+    "THR.THE_TRANSLATORS"
+   ]
+  },
+  {
+   "id": "EVT.RGN.KAS_SUYYA",
+   "title": "Suyya re-engineers the Jhelum and moves a town to do it",
+   "class": "STRUCTURE",
+   "magnitude": "M",
+   "year": 880,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KASHMIR",
+   "dispute": false,
+   "evidence": "Kalhana's detailed account of the dredging, the stone embankments, and the resulting fall in grain prices.",
+   "window": [
+    854,
+    906
+   ],
+   "note": "A chronicle that records what happened to the price of rice afterwards. That is an economic source."
+  },
+  {
+   "id": "EVT.RGN.KAS_ANANDAVARDHANA",
+   "title": "Anandavardhana argues that poetry means by suggestion",
+   "class": "WORK",
+   "magnitude": "M",
+   "year": 860,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KASHMIR",
+   "dispute": false,
+   "evidence": "The Dhvanyaloka, and the commentarial tradition that runs from it to Abhinavagupta.",
+   "window": [
+    835,
+    885
+   ]
+  },
+  {
+   "id": "EVT.RGN.KAS_KSHEMENDRA",
+   "title": "Kshemendra writes satires on the professions of his own city",
+   "class": "WORK",
+   "magnitude": "R",
+   "year": 1050,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KASHMIR",
+   "dispute": false,
+   "evidence": "The Narmamala and Desopadesa, which name the clerk, the physician and the bawd and describe their frauds.",
+   "window": [
+    1019,
+    1081
+   ]
+  },
+  {
+   "id": "EVT.RGN.KAS_LOHARA",
+   "title": "The Lohara dynasty, and Didda rules in her own name",
+   "class": "FOUNDATION",
+   "magnitude": "M",
+   "year": 980,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KASHMIR",
+   "dispute": false,
+   "evidence": "Kalhana's account, and the Lohara coin series.",
+   "window": [
+    951,
+    1009
+   ]
+  },
+  {
+   "id": "EVT.RGN.KAS_FAMINE_1099",
+   "title": "Famine and flood in the valley, recorded year by year",
+   "class": "CATASTROPHE",
+   "magnitude": "R",
+   "year": 1099,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KASHMIR",
+   "dispute": false,
+   "evidence": "Kalhana's chronicle, which gives the grain price and the mortality for successive years.",
+   "window": [
+    1067,
+    1131
+   ],
+   "threads": [
+    "THR.THE_FAMINE_CENTURY"
+   ],
+   "corpus": "none"
+  },
+  {
+   "id": "EVT.RGN.KAS_SULTANATE",
+   "title": "The Shah Mir sultanate takes the valley",
+   "class": "FOUNDATION",
+   "magnitude": "M",
+   "year": 1339,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KASHMIR",
+   "dispute": false,
+   "evidence": "The Persian chronicles of Kashmir and the sultanate's coinage.",
+   "window": [
+    1299,
+    1379
+   ],
+   "becomes": "A Persianate court in the valley, the Kashmiri shawl industry organised under state patronage, and the papier-mache and carpet trades that came with craftsmen brought from Samarkand."
+  },
+  {
+   "id": "EVT.RGN.KAS_RISHI",
+   "title": "The Rishi order: Nund Rishi and a Kashmiri Sufism with local roots",
+   "class": "REFORM",
+   "magnitude": "M",
+   "year": 1400,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KASHMIR",
+   "dispute": false,
+   "evidence": "The shruks of Nund Rishi, and the shrine network of the order.",
+   "window": [
+    1358,
+    1442
+   ],
+   "note": "It grew out of Lal Ded's verse as much as out of Persian Sufism. The valley made its own."
+  },
+  {
+   "id": "EVT.RGN.KAS_SIKANDAR",
+   "title": "Temple destruction under Sikandar, and the argument about its scale",
+   "class": "CATASTROPHE",
+   "magnitude": "M",
+   "year": 1400,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.6,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KASHMIR",
+   "dispute": true,
+   "evidence": "The Persian chronicles, which claim it; the surviving temples, which complicate it; and Jonaraja's continuation of the Rajatarangini.",
+   "window": [
+    1358,
+    1442
+   ],
+   "corpus": "destroy",
+   "severity": 0.05,
+   "dispute_scope": "interpretation"
+  },
+  {
+   "id": "EVT.RGN.KAS_ZAIN",
+   "title": "Zain-ul-Abidin reverses the policy and has the Sanskrit texts recopied",
+   "class": "REFORM",
+   "magnitude": "M",
+   "year": 1420,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KASHMIR",
+   "dispute": false,
+   "evidence": "Jonaraja and Srivara's chronicles, and the translation projects into Persian he commissioned.",
+   "window": [
+    1378,
+    1462
+   ],
+   "corpus": "preserve",
+   "preserve_to": "home",
+   "note": "Called Budshah, the great king, four hundred years later and still. He rebuilt what his father's reign had burned."
+  },
+  {
+   "id": "EVT.RGN.KAS_SHAWL",
+   "title": "The Kashmir shawl becomes a global luxury export",
+   "class": "TRADE",
+   "magnitude": "M",
+   "year": 1500,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KASHMIR",
+   "dispute": false,
+   "evidence": "The workshop records, the European inventories, and the French and Scottish imitations that followed.",
+   "window": [
+    1455,
+    1545
+   ],
+   "year_end": 1850,
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ]
+  },
+  {
+   "id": "EVT.RGN.KAS_MUGHAL",
+   "title": "The Mughals annex the valley and build gardens in it",
+   "class": "FOUNDATION",
+   "magnitude": "M",
+   "year": 1586,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.KASHMIR",
+   "dispute": false,
+   "evidence": "The Akbarnama, and the Shalimar and Nishat garden records."
+  },
+  {
+   "id": "EVT.RGN.KAS_DOGRA",
+   "title": "The Treaty of Amritsar sells the valley to the Dogras",
+   "class": "FOUNDATION",
+   "magnitude": "M",
+   "year": 1846,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.KASHMIR",
+   "dispute": false,
+   "evidence": "The treaty itself, which names the sum, and the Company's correspondence about it.",
+   "note": "A territory transferred by sale between two other parties. The game should let the player feel what that means."
+  },
+  {
+   "id": "EVT.RGN.KAS_1885_QUAKE",
+   "title": "The 1885 Kashmir earthquake",
+   "class": "CATASTROPHE",
+   "magnitude": "R",
+   "year": 1885,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.KASHMIR",
+   "dispute": false,
+   "evidence": "The contemporary survey reports and the damage assessments from Srinagar and Baramulla.",
+   "corpus": "none"
+  },
+  {
+   "id": "EVT.RGN.KAS_STEIN",
+   "title": "Stein edits the Rajatarangini and walks the valley to check it",
+   "class": "WORK",
+   "magnitude": "R",
+   "year": 1900,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.KASHMIR",
+   "dispute": false,
+   "evidence": "His edition and translation, and the topographical memoir in which he identified Kalhana's place names on the ground.",
+   "note": "He checked a twelfth-century chronicle by walking to every place it named. Most of them were there."
+  },
+  {
+   "id": "EVT.RGN.LNK_BALANGODA",
+   "title": "Balangoda: forty thousand years of occupation before any of this",
+   "class": "SITE",
+   "magnitude": "R",
+   "year": -6000,
+   "era": "ERA.EARLY_NEOLITHIC",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.SRI_LANKA",
+   "dispute": false,
+   "evidence": "The Fa Hien and Batadombalena cave sequences, with the earliest anatomically modern human remains in South Asia.",
+   "window": [
+    -6150,
+    -5850
+   ],
+   "note": "The island's record is older than the campaign. The game opens partway through somebody's story."
+  },
+  {
+   "id": "EVT.RGN.LNK_HORTON",
+   "title": "Cereal pollen and burning at Horton Plains",
+   "class": "AGRICULTURE",
+   "magnitude": "R",
+   "year": -4000,
+   "era": "ERA.LATE_NEOLITHIC",
+   "provenance": "SOURCED",
+   "certainty": 0.65,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.SRI_LANKA",
+   "dispute": false,
+   "evidence": "The Horton Plains pollen core, which shows forest clearance and cereal-type pollen far earlier than expected.",
+   "window": [
+    -4120,
+    -3880
+   ]
+  },
+  {
+   "id": "EVT.RGN.LNK_IRON_ANU",
+   "title": "Iron and Brahmi at Anuradhapura, on potsherds",
+   "class": "TRANSITION",
+   "magnitude": "M",
+   "year": -450,
+   "era": "ERA.SECOND_URBAN",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.SRI_LANKA",
+   "dispute": false,
+   "evidence": "The Anuradhapura citadel excavation, with radiocarbon-dated Brahmi-inscribed sherds from the earliest levels.",
+   "window": [
+    -470,
+    -430
+   ]
+  },
+  {
+   "id": "EVT.RGN.LNK_DRIPLEDGE",
+   "title": "Cave drip-ledge inscriptions: the island's oldest writing, and it names donors",
+   "class": "WORK",
+   "magnitude": "M",
+   "year": -250,
+   "era": "ERA.MAURYAN",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.SRI_LANKA",
+   "dispute": false,
+   "evidence": "Some twelve hundred inscribed drip-ledges, recording gifts of caves to the sangha by named householders.",
+   "window": [
+    -270,
+    -230
+   ]
+  },
+  {
+   "id": "EVT.RGN.LNK_MINNERIYA",
+   "title": "The great tanks and the bisokotuwa sluice",
+   "class": "STRUCTURE",
+   "magnitude": "M",
+   "year": -100,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.SRI_LANKA",
+   "dispute": false,
+   "evidence": "The surviving sluice structures, whose valve-pit design regulates outflow pressure — the earliest known solution to the problem.",
+   "window": [
+    -120,
+    -80
+   ],
+   "note": "A valve tower that lets water out at a controlled pressure. Nobody else built one for a thousand years."
+  },
+  {
+   "id": "EVT.RGN.LNK_DIPAVAMSA",
+   "title": "The Dipavamsa: the island writes its own history",
+   "class": "WORK",
+   "magnitude": "M",
+   "year": 350,
+   "era": "ERA.GUPTA",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.SRI_LANKA",
+   "dispute": false,
+   "evidence": "The text, the earliest surviving Sri Lankan chronicle, and its relationship to the Mahavamsa that follows.",
+   "window": [
+    330,
+    370
+   ]
+  },
+  {
+   "id": "EVT.RGN.LNK_MAHAVAMSA",
+   "title": "The Mahavamsa, and a chronicle tradition kept continuously for sixteen centuries",
+   "class": "WORK",
+   "magnitude": "W",
+   "year": 500,
+   "era": "ERA.GUPTA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.SRI_LANKA",
+   "dispute": false,
+   "evidence": "The text and its continuations, maintained without a break into the modern period.",
+   "window": [
+    480,
+    520
+   ],
+   "note": "The longest unbroken historical record in South Asia, and it is kept by monks, not by a state."
+  },
+  {
+   "id": "EVT.RGN.LNK_SIGIRIYA_END",
+   "title": "Sigiriya is abandoned and returned to the sangha",
+   "class": "FOUNDATION",
+   "magnitude": "R",
+   "year": 500,
+   "era": "ERA.GUPTA",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.SRI_LANKA",
+   "dispute": false,
+   "evidence": "The site's occupation sequence, the graffiti on the mirror wall, and the Culavamsa's account.",
+   "window": [
+    480,
+    520
+   ]
+  },
+  {
+   "id": "EVT.RGN.LNK_GRAFFITI",
+   "title": "The Sigiriya mirror wall graffiti: seven centuries of visitors' verse",
+   "class": "WORK",
+   "magnitude": "M",
+   "year": 700,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.SRI_LANKA",
+   "dispute": false,
+   "evidence": "Some seven hundred legible verses scratched by visitors between the sixth and thirteenth centuries, many by women.",
+   "window": [
+    679,
+    721
+   ],
+   "note": "Tourists writing poetry on a wall, dated by their own handwriting. An accidental corpus."
+  },
+  {
+   "id": "EVT.RGN.LNK_UNIFICATION",
+   "title": "The three nikayas are unified under the Mahavihara",
+   "class": "REFORM",
+   "magnitude": "M",
+   "year": 1165,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.SRI_LANKA",
+   "dispute": false,
+   "evidence": "Parakramabahu's Galvihara inscription, which sets out the terms of the reform.",
+   "window": [
+    1131,
+    1199
+   ]
+  },
+  {
+   "id": "EVT.RGN.LNK_MAGHA",
+   "title": "Magha of Kalinga takes Polonnaruwa and the dry zone is abandoned",
+   "class": "CATASTROPHE",
+   "magnitude": "W",
+   "year": 1215,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.SRI_LANKA",
+   "dispute": false,
+   "evidence": "The Culavamsa's account, and the archaeological evidence for the abandonment of the tank civilisation.",
+   "window": [
+    1179,
+    1251
+   ],
+   "corpus": "destroy",
+   "severity": 0.06,
+   "note": "The tanks silt up and the population moves southwest. A thousand years of hydraulic engineering ends in a generation."
+  },
+  {
+   "id": "EVT.RGN.LNK_DAMBADENIYA",
+   "title": "The capital moves southwest, and keeps moving",
+   "class": "FOUNDATION",
+   "magnitude": "M",
+   "year": 1220,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.SRI_LANKA",
+   "dispute": false,
+   "evidence": "The Dambadeniya, Yapahuwa, Kurunegala and Gampola sequence in the Culavamsa and the building record.",
+   "window": [
+    1184,
+    1256
+   ],
+   "year_end": 1400
+  },
+  {
+   "id": "EVT.RGN.LNK_CINNAMON",
+   "title": "Cinnamon becomes the island's export and then its problem",
+   "class": "TRADE",
+   "magnitude": "M",
+   "year": 1400,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.SRI_LANKA",
+   "dispute": false,
+   "evidence": "The Arab and Chinese trade records, and the Portuguese monopoly that followed.",
+   "window": [
+    1358,
+    1442
+   ],
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ]
+  },
+  {
+   "id": "EVT.RGN.LNK_KOTTE",
+   "title": "Kotte, Jaffna and Kandy: three kingdoms on one island",
+   "class": "FOUNDATION",
+   "magnitude": "M",
+   "year": 1400,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.SRI_LANKA",
+   "dispute": false,
+   "evidence": "The Sinhala and Tamil chronicle traditions and the Portuguese accounts of all three.",
+   "window": [
+    1358,
+    1442
+   ]
+  },
+  {
+   "id": "EVT.RGN.LNK_PORTUGUESE",
+   "title": "The Portuguese take the coast and cannot take the highlands",
+   "class": "INVASION",
+   "magnitude": "M",
+   "year": 1505,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.SRI_LANKA",
+   "dispute": false,
+   "evidence": "The Portuguese records, and the Kandyan accounts of the campaigns that failed.",
+   "becomes": "A Catholic coastal population, a Portuguese-derived creole, and a Kandyan kingdom that survives by being unreachable — for another three hundred years."
+  },
+  {
+   "id": "EVT.RGN.LNK_DUTCH",
+   "title": "The Dutch replace the Portuguese and codify the law",
+   "class": "INVASION",
+   "magnitude": "M",
+   "year": 1658,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.SRI_LANKA",
+   "dispute": false,
+   "evidence": "The VOC records, and the Roman-Dutch law still in force in parts of the island.",
+   "becomes": "Roman-Dutch law, the Thesawalamai and Muslim personal law codified alongside it, and a canal system in the southwest that is still in use."
+  },
+  {
+   "id": "EVT.RGN.LNK_UPASAMPADA",
+   "title": "The ordination lineage is re-imported from Siam",
+   "class": "REFORM",
+   "magnitude": "M",
+   "year": 1753,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.SRI_LANKA",
+   "dispute": false,
+   "evidence": "The Siyam Nikaya's own records, and the Siamese mission's account.",
+   "corpus": "preserve",
+   "preserve_to": "home",
+   "note": "The island had given Buddhism to Southeast Asia. It got its ordination line back from Thailand twelve centuries later."
+  },
+  {
+   "id": "EVT.RGN.LNK_KANDY_FALLS",
+   "title": "Kandy falls and the whole island is under one authority",
+   "class": "INVASION",
+   "magnitude": "M",
+   "year": 1815,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.SRI_LANKA",
+   "dispute": false,
+   "evidence": "The Kandyan Convention, signed by the chiefs, and the 1818 rebellion that followed it.",
+   "becomes": "Plantation agriculture — coffee, then tea — and the Indian Tamil labour brought in to work it, whose citizenship was still being argued about in the twentieth century."
+  },
+  {
+   "id": "EVT.RGN.LNK_TEA",
+   "title": "Coffee blight, and then tea",
+   "class": "COLONIAL",
+   "magnitude": "M",
+   "year": 1869,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.SRI_LANKA",
+   "dispute": false,
+   "evidence": "The planters' records, the Hemileia vastatrix outbreak, and the conversion of the estates.",
+   "year_end": 1900
+  },
+  {
+   "id": "EVT.RGN.LNK_DHARMAPALA",
+   "title": "The Buddhist revival and the Panadura debates",
+   "class": "REFORM",
+   "magnitude": "M",
+   "year": 1873,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.SRI_LANKA",
+   "dispute": false,
+   "evidence": "The published transcripts of the debates, and Anagarika Dharmapala's Maha Bodhi Society records."
+  },
+  {
+   "id": "EVT.RGN.KAR_WATGAL",
+   "title": "Watgal and the Raichur doab's Neolithic villages",
+   "class": "SITE",
+   "magnitude": "R",
+   "year": -2800,
+   "era": "ERA.EARLY_HARAPPAN",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "evidence": "The Watgal excavation sequence, with a ceramic and lithic record spanning the southern Neolithic.",
+   "window": [
+    -2884,
+    -2716
+   ]
+  },
+  {
+   "id": "EVT.RGN.KAR_PULSES",
+   "title": "Mungbean, horsegram and pigeonpea are domesticated in the peninsula",
+   "class": "AGRICULTURE",
+   "magnitude": "M",
+   "year": -2500,
+   "era": "ERA.INDUS",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "evidence": "Archaeobotanical assemblages from Sanganakallu, Watgal and Hallur, with directly dated seeds.",
+   "window": [
+    -2575,
+    -2425
+   ],
+   "note": "The southern crop package is not a copy of the northern one. It is an independent invention."
+  },
+  {
+   "id": "EVT.RGN.KAR_ASHMOUND_END",
+   "title": "The ashmound tradition ends and settlement moves downslope",
+   "class": "TRANSITION",
+   "magnitude": "R",
+   "year": -1700,
+   "era": "ERA.LATE_HARAPPAN",
+   "provenance": "SOURCED",
+   "certainty": 0.65,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "evidence": "The dated end of ash accumulation at the mound sites and the shift to hillslope villages.",
+   "window": [
+    -1751,
+    -1649
+   ]
+  },
+  {
+   "id": "EVT.RGN.KAR_MEGALITH_KA",
+   "title": "Megalithic burial spreads across the Kannada country",
+   "class": "REFORM",
+   "magnitude": "M",
+   "year": -1200,
+   "era": "ERA.EARLY_VEDIC",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "evidence": "The cist and dolmen fields at Brahmagiri, Maski, Hallur and T. Narsipur, with their iron grave goods.",
+   "window": [
+    -1236,
+    -1164
+   ]
+  },
+  {
+   "id": "EVT.RGN.KAR_CHANDRAVALLI",
+   "title": "Chandravalli: Satavahana and Roman contact inland",
+   "class": "SITE",
+   "magnitude": "R",
+   "year": -100,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "evidence": "The excavated coins — Satavahana, Roman and a Chinese piece — and the habitation levels.",
+   "window": [
+    -120,
+    -80
+   ]
+  },
+  {
+   "id": "EVT.RGN.KAR_KADAMBA_SCRIPT",
+   "title": "The Kadamba script diverges and becomes the ancestor of Kannada and Telugu writing",
+   "class": "FOUNDATION",
+   "magnitude": "M",
+   "year": 450,
+   "era": "ERA.GUPTA",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "evidence": "The Halmidi and Talagunda inscriptions, and the letter-form sequence from them onward.",
+   "window": [
+    430,
+    470
+   ]
+  },
+  {
+   "id": "EVT.RGN.KAR_TALAGUNDA",
+   "title": "The Talagunda pillar tells how a Kadamba founder was insulted at Kanchi",
+   "class": "WORK",
+   "magnitude": "R",
+   "year": 455,
+   "era": "ERA.GUPTA",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "evidence": "The inscription itself, which gives the dynasty's origin story in the founder's grandson's words.",
+   "window": [
+    435,
+    475
+   ]
+  },
+  {
+   "id": "EVT.RGN.KAR_GANGA_TALAKAD",
+   "title": "The Western Gangas at Talakad, and four centuries of Jain patronage",
+   "class": "FOUNDATION",
+   "magnitude": "M",
+   "year": 350,
+   "era": "ERA.GUPTA",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "evidence": "The Ganga copper-plate series and the Jain basadi record across the Mysore country.",
+   "window": [
+    330,
+    370
+   ],
+   "year_end": 1000
+  },
+  {
+   "id": "EVT.RGN.KAR_KAVIRAJAMARGA_CTX",
+   "title": "Kavirajamarga names the Kannada country by its rivers",
+   "class": "WORK",
+   "magnitude": "M",
+   "year": 850,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "evidence": "The text, which defines the Kannada land as lying between the Kaveri and the Godavari and says its people are naturally skilled in poetry.",
+   "window": [
+    825,
+    875
+   ],
+   "note": "A literary treatise that draws a linguistic map. The region defines itself in a book before any state does."
+  },
+  {
+   "id": "EVT.RGN.KAR_PAMPA",
+   "title": "Pampa writes the Adipurana and a Mahabharata with his patron as Arjuna",
+   "class": "WORK",
+   "magnitude": "M",
+   "year": 940,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "evidence": "Both texts, and the Chalukya court record of his patron Arikesari.",
+   "window": [
+    912,
+    968
+   ]
+  },
+  {
+   "id": "EVT.RGN.KAR_RANNA",
+   "title": "Ranna and Ponna complete the three gems of old Kannada",
+   "class": "WORK",
+   "magnitude": "R",
+   "year": 990,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "evidence": "The Sahasa Bhima Vijaya and the Shanti Purana, with their court colophons.",
+   "window": [
+    961,
+    1019
+   ]
+  },
+  {
+   "id": "EVT.RGN.KAR_AGRAHARA_KA",
+   "title": "The agrahara network makes the Kannada country a teaching landscape",
+   "class": "TRANSITION",
+   "magnitude": "M",
+   "year": 900,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "evidence": "The grant inscriptions specifying the number of scholars, the subjects taught and the stipends paid.",
+   "window": [
+    873,
+    927
+   ],
+   "year_end": 1200,
+   "note": "Grants that name the syllabus. The endowment mechanic is not invented; it is transcribed."
+  },
+  {
+   "id": "EVT.RGN.KAR_TANKS_KA",
+   "title": "The Hoysala and Chalukya tank cascades are cut across the Deccan plateau",
+   "class": "STRUCTURE",
+   "magnitude": "M",
+   "year": 1050,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "evidence": "The surviving tank chains and the inscriptions recording their construction and maintenance committees.",
+   "window": [
+    1019,
+    1081
+   ],
+   "year_end": 1300
+  },
+  {
+   "id": "EVT.RGN.KAR_HARIHARA",
+   "title": "Harihara and Raghavanka break the Sanskrit metres for Kannada ones",
+   "class": "WORK",
+   "magnitude": "R",
+   "year": 1200,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "evidence": "The Girijakalyana and the Harishchandra Kavya, and the shatpadi metre they established.",
+   "window": [
+    1164,
+    1236
+   ]
+  },
+  {
+   "id": "EVT.RGN.KAR_KUMARAVYASA",
+   "title": "Kumaravyasa's Kannada Mahabharata, sung rather than read",
+   "class": "WORK",
+   "magnitude": "M",
+   "year": 1430,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "evidence": "The text, and the gamaka recitation tradition that still performs it.",
+   "window": [
+    1388,
+    1472
+   ]
+  },
+  {
+   "id": "EVT.RGN.KAR_HARIDASA",
+   "title": "The Haridasa movement sets devotion to a teachable musical form",
+   "class": "REFORM",
+   "magnitude": "M",
+   "year": 1450,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "evidence": "The devaranama corpus of Purandara and Kanaka Dasa, and the Udupi matha's records.",
+   "window": [
+    1407,
+    1493
+   ],
+   "year_end": 1600
+  },
+  {
+   "id": "EVT.RGN.KAR_NAYAKAS",
+   "title": "The Keladi and Mysore Wodeyar lines inherit Vijayanagara's administration",
+   "class": "FOUNDATION",
+   "magnitude": "M",
+   "year": 1565,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "evidence": "The Keladi and Mysore records, and the continuity of the nayankara assignment system.",
+   "window": [
+    1519,
+    1611
+   ]
+  },
+  {
+   "id": "EVT.RGN.KAR_HAIDAR",
+   "title": "Haidar Ali takes Mysore and builds a modern army out of it",
+   "class": "FOUNDATION",
+   "magnitude": "M",
+   "year": 1761,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "evidence": "The Mysore state records, the French officers' accounts, and the Company's assessments."
+  },
+  {
+   "id": "EVT.RGN.KAR_ROCKETS",
+   "title": "Mysorean iron-cased rockets are used in the field",
+   "class": "TRANSITION",
+   "magnitude": "M",
+   "year": 1780,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "evidence": "The surviving examples taken to Woolwich, and the British accounts of Pollilur.",
+   "note": "Iron casings, not paper. The British took specimens home and Congreve's rockets came out of them."
+  },
+  {
+   "id": "EVT.RGN.KAR_MYSORE_RESTORE",
+   "title": "Mysore is restored to the Wodeyars as a subsidiary state",
+   "class": "COLONIAL",
+   "magnitude": "M",
+   "year": 1799,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "evidence": "The partition treaty of Seringapatam and the subsidiary alliance that followed."
+  },
+  {
+   "id": "EVT.RGN.KAR_KANNADA_PRINT",
+   "title": "Kannada printing, dictionaries and the modern prose sentence",
+   "class": "COLONIAL",
+   "magnitude": "M",
+   "year": 1817,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "evidence": "The Serampore and Basel Mission presses, Kittel's dictionary of 1894, and the newspaper record.",
+   "year_end": 1900,
+   "threads": [
+    "THR.THE_WRITING_LADDER"
+   ]
+  },
+  {
+   "id": "EVT.RGN.KAR_EKIKARANA",
+   "title": "The movement to unify the Kannada-speaking districts begins",
+   "class": "COLONIAL",
+   "magnitude": "M",
+   "year": 1890,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "evidence": "The Karnataka Vidyavardhaka Sangha's records and the district petitions.",
+   "year_end": 1947,
+   "note": "Kannada speakers were split across twenty administrative units. The map the language drew in 850 took eleven hundred years to become a state."
+  },
+  {
+   "id": "EVT.RGN.RAJ_GANESHWAR",
+   "title": "Ganeshwar: a copper-working culture supplying the Indus cities",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": -2800,
+   "era": "ERA.EARLY_HARAPPAN",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.RAJASTHAN",
+   "dispute": false,
+   "evidence": "The Ganeshwar-Jodhpura assemblage of copper arrowheads, fish-hooks and bangles, and its typological match with Harappan finds.",
+   "window": [
+    -2884,
+    -2716
+   ],
+   "note": "Somebody had to mine and smelt the copper the cities used. This is where."
+  },
+  {
+   "id": "EVT.RGN.RAJ_BALATHAL_END",
+   "title": "Balathal's fortified enclosure goes out of use",
+   "class": "SITE",
+   "magnitude": "R",
+   "year": -1800,
+   "era": "ERA.LATE_HARAPPAN",
+   "provenance": "SOURCED",
+   "certainty": 0.65,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.RAJASTHAN",
+   "dispute": false,
+   "evidence": "The end of the Chalcolithic sequence at the site, with a later reoccupation on top.",
+   "window": [
+    -1854,
+    -1746
+   ]
+  },
+  {
+   "id": "EVT.RGN.RAJ_BALATHAL_BURIAL",
+   "title": "A leprosy case at Balathal: the oldest yet identified",
+   "class": "REFORM",
+   "magnitude": "R",
+   "year": -2000,
+   "era": "ERA.INDUS",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.RAJASTHAN",
+   "dispute": false,
+   "evidence": "The skeleton itself, with lesions diagnostic of lepromatous leprosy, directly dated.",
+   "window": [
+    -2060,
+    -1940
+   ]
+  },
+  {
+   "id": "EVT.RGN.RAJ_AHAR_END",
+   "title": "The Ahar-Banas settlements disperse into the hills",
+   "class": "FRONTIER",
+   "magnitude": "R",
+   "year": -1500,
+   "era": "ERA.LATE_HARAPPAN",
+   "provenance": "SOURCED",
+   "certainty": 0.6,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.RAJASTHAN",
+   "dispute": false,
+   "evidence": "The end of the Gilund and Balathal sequences, and the continuity of Bhil occupation in the same uplands.",
+   "window": [
+    -1545,
+    -1455
+   ]
+  },
+  {
+   "id": "EVT.RGN.RAJ_IRON_AR",
+   "title": "Iron smelting in the Aravallis follows the copper",
+   "class": "TRANSITION",
+   "magnitude": "R",
+   "year": -800,
+   "era": "ERA.LATE_VEDIC",
+   "provenance": "SOURCED",
+   "certainty": 0.65,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.RAJASTHAN",
+   "dispute": false,
+   "evidence": "Slag heaps and furnace remains in the Khetri and Alwar belts, with associated dates.",
+   "window": [
+    -824,
+    -776
+   ]
+  },
+  {
+   "id": "EVT.RGN.RAJ_NOH",
+   "title": "Noh and Bairat: the Painted Grey Ware frontier reaches eastern Rajasthan",
+   "class": "SITE",
+   "magnitude": "R",
+   "year": -700,
+   "era": "ERA.LATE_VEDIC",
+   "provenance": "SOURCED",
+   "certainty": 0.65,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.RAJASTHAN",
+   "dispute": false,
+   "evidence": "The excavated sequences at Noh, Jodhpura and Bairat, with PGW below NBPW.",
+   "window": [
+    -721,
+    -679
+   ]
+  },
+  {
+   "id": "EVT.RGN.RAJ_SALT_SAMBHAR",
+   "title": "Sambhar salt enters long-distance trade",
+   "class": "TRADE",
+   "magnitude": "R",
+   "year": -300,
+   "era": "ERA.MAURYAN",
+   "provenance": "SOURCED",
+   "certainty": 0.6,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.RAJASTHAN",
+   "dispute": false,
+   "evidence": "The lake's exploitation record, the Arthashastra's salt monopoly provisions, and the later state salt accounts.",
+   "window": [
+    -320,
+    -280
+   ],
+   "year_end": 1900
+  },
+  {
+   "id": "EVT.RGN.RAJ_ZAWAR_ZINC",
+   "title": "Zinc is distilled at Zawar by downward condensation",
+   "class": "TRANSITION",
+   "magnitude": "W",
+   "year": 1200,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.RAJASTHAN",
+   "dispute": true,
+   "evidence": "The retort furnaces at Zawar, the slag heaps, and the metallurgical analysis of the residues.",
+   "window": [
+    1164,
+    1236
+   ],
+   "dispute_scope": "date",
+   "note": "Distilling zinc requires condensing a vapour below its boiling point. Europe managed it in 1738."
+  },
+  {
+   "id": "EVT.RGN.RAJ_CHAUHAN",
+   "title": "The Chauhans of Sakambhari and Ajmer",
+   "class": "FOUNDATION",
+   "magnitude": "M",
+   "year": 950,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.RAJASTHAN",
+   "dispute": false,
+   "evidence": "The Chauhan inscription series, and the Prithviraja Vijaya.",
+   "window": [
+    922,
+    978
+   ]
+  },
+  {
+   "id": "EVT.RGN.RAJ_STEPWELLS",
+   "title": "The stepwell becomes the desert's public building",
+   "class": "STRUCTURE",
+   "magnitude": "M",
+   "year": 900,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.RAJASTHAN",
+   "dispute": false,
+   "evidence": "Chand Baori at Abhaneri, Rani ki Vav in Gujarat, and hundreds of others, with their donative inscriptions.",
+   "window": [
+    873,
+    927
+   ],
+   "year_end": 1500,
+   "note": "A water tank you walk down into, built as architecture. Many were commissioned by women."
+  },
+  {
+   "id": "EVT.RGN.RAJ_GUHILA",
+   "title": "The Guhilas at Chittor, and a fort that becomes a symbol",
+   "class": "FOUNDATION",
+   "magnitude": "M",
+   "year": 1200,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.RAJASTHAN",
+   "dispute": false,
+   "evidence": "The Chittor inscriptions and the fort's building sequence.",
+   "window": [
+    1164,
+    1236
+   ]
+  },
+  {
+   "id": "EVT.RGN.RAJ_CHITTOR_1303",
+   "title": "Alauddin takes Chittor",
+   "class": "INVASION",
+   "magnitude": "M",
+   "year": 1303,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.RAJASTHAN",
+   "dispute": true,
+   "evidence": "The Sultanate chronicles, Amir Khusrau's eyewitness account, and the fort's own inscriptions.",
+   "window": [
+    1264,
+    1342
+   ],
+   "becomes": "A siege that entered Rajput memory as the founding trauma, retold for six centuries — and much of what is now remembered about it was written three hundred years later.",
+   "dispute_scope": "interpretation"
+  },
+  {
+   "id": "EVT.RGN.RAJ_DINGAL",
+   "title": "Dingal and Charan bardic poetry becomes the state's memory",
+   "class": "WORK",
+   "magnitude": "M",
+   "year": 1400,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.RAJASTHAN",
+   "dispute": false,
+   "evidence": "The Charan bardic corpus, the khyat chronicles, and the courts that maintained the poets.",
+   "window": [
+    1358,
+    1442
+   ],
+   "year_end": 1800,
+   "note": "A caste of professional rememberers on a state salary. The knowledge economy with a job description."
+  },
+  {
+   "id": "EVT.RGN.RAJ_MEWAR_RESIST",
+   "title": "Mewar refuses the Mughal marriage alliance the other houses accept",
+   "class": "FOUNDATION",
+   "magnitude": "M",
+   "year": 1568,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.RAJASTHAN",
+   "dispute": false,
+   "evidence": "The Mughal court records of who submitted and when, and the Mewar chronicles."
+  },
+  {
+   "id": "EVT.RGN.RAJ_PICHWAI",
+   "title": "The Mewar and Marwar painting workshops",
+   "class": "WORK",
+   "magnitude": "M",
+   "year": 1620,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.RAJASTHAN",
+   "dispute": false,
+   "evidence": "The dated and signed folios, and the workshop records of the Udaipur and Jodhpur courts.",
+   "window": [
+    1572,
+    1668
+   ],
+   "year_end": 1800
+  },
+  {
+   "id": "EVT.RGN.RAJ_MARWARI",
+   "title": "Marwari merchant houses build a credit network across the subcontinent",
+   "class": "TRADE",
+   "magnitude": "M",
+   "year": 1650,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.RAJASTHAN",
+   "dispute": false,
+   "evidence": "The hundi records, the firm ledgers, and the branch correspondence between Rajasthan, Bengal and the Deccan.",
+   "window": [
+    1601,
+    1699
+   ],
+   "year_end": 1900,
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ],
+   "note": "A bill of exchange honoured two thousand kilometres away, on trust and a family name. The trade system's top rung."
+  },
+  {
+   "id": "EVT.RGN.RAJ_TREATIES",
+   "title": "The Rajput states sign subsidiary treaties and stop being sovereign",
+   "class": "COLONIAL",
+   "magnitude": "M",
+   "year": 1818,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.RAJASTHAN",
+   "dispute": false,
+   "evidence": "The treaties themselves and the Rajputana Agency's records."
+  },
+  {
+   "id": "EVT.RGN.RAJ_TOD",
+   "title": "James Tod writes the Annals and fixes a version of Rajput history",
+   "class": "COLONIAL",
+   "magnitude": "M",
+   "year": 1829,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.RAJASTHAN",
+   "dispute": true,
+   "evidence": "The Annals and Antiquities of Rajasthan, and the bardic sources he used and did not always distinguish from record.",
+   "dispute_scope": "interpretation"
+  },
+  {
+   "id": "EVT.RGN.RAJ_FAMINE_1899",
+   "title": "The Chhappaniya famine",
+   "class": "CATASTROPHE",
+   "magnitude": "M",
+   "year": 1899,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.RAJASTHAN",
+   "dispute": false,
+   "evidence": "The famine relief records of the Rajputana states and the mortality returns.",
+   "year_end": 1900,
+   "threads": [
+    "THR.THE_FAMINE_CENTURY"
+   ],
+   "corpus": "none",
+   "note": "Named for the Vikram Samvat year 1956. Still the reference point for hardship in the region's speech."
+  },
+  {
+   "id": "EVT.RGN.GUJ_MILLET_SAUR",
+   "title": "African millets reach Saurashtra and change the dry-farming year",
+   "class": "AGRICULTURE",
+   "magnitude": "M",
+   "year": -2000,
+   "era": "ERA.INDUS",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.GUJARAT",
+   "dispute": false,
+   "evidence": "Directly dated sorghum and pearl millet from Rojdi and Babar Kot.",
+   "window": [
+    -2060,
+    -1940
+   ],
+   "note": "Crops from Africa, in Gujarat, before 2000 BCE. Somebody carried them across an ocean."
+  },
+  {
+   "id": "EVT.RGN.GUJ_ROJDI_END",
+   "title": "Rojdi's long sequence closes",
+   "class": "SITE",
+   "magnitude": "R",
+   "year": -1700,
+   "era": "ERA.LATE_HARAPPAN",
+   "provenance": "SOURCED",
+   "certainty": 0.65,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.GUJARAT",
+   "dispute": false,
+   "evidence": "The excavated phases at Rojdi, which run from mature Harappan forms to a millet-based village economy.",
+   "window": [
+    -1751,
+    -1649
+   ]
+  },
+  {
+   "id": "EVT.RGN.GUJ_MAHARS",
+   "title": "Pastoral groups hold the Kutch and Saurashtra grasslands",
+   "class": "FRONTIER",
+   "magnitude": "R",
+   "year": -1500,
+   "era": "ERA.LATE_HARAPPAN",
+   "provenance": "SOURCED",
+   "certainty": 0.6,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.GUJARAT",
+   "dispute": false,
+   "evidence": "The faunal record from the late Harappan sites, dominated by cattle and sheep, and the seasonal camp sites.",
+   "window": [
+    -1545,
+    -1455
+   ],
+   "year_end": 500
+  },
+  {
+   "id": "EVT.RGN.GUJ_BARYGAZA",
+   "title": "Barygaza's pilots take ships in over the bore",
+   "class": "TRADE",
+   "magnitude": "M",
+   "year": -50,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.GUJARAT",
+   "dispute": false,
+   "evidence": "The Periplus, which describes local fishermen piloting vessels through the Narmada's tidal bore.",
+   "window": [
+    -70,
+    -30
+   ],
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ],
+   "note": "The tide runs so fast at Bharuch that a ship needs a local to enter. The Periplus says so, and it is still true."
+  },
+  {
+   "id": "EVT.RGN.GUJ_KSHATRAPA",
+   "title": "The Western Satraps rule Gujarat for three centuries and date every coin",
+   "class": "FOUNDATION",
+   "magnitude": "M",
+   "year": 50,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.GUJARAT",
+   "dispute": false,
+   "evidence": "The Kshatrapa coin series, which carries a year on almost every issue — the densest dated sequence in ancient India.",
+   "window": [
+    30,
+    70
+   ]
+  },
+  {
+   "id": "EVT.RGN.GUJ_JAIN_AGAMA_WRITE",
+   "title": "Gujarat becomes the Jain manuscript country",
+   "class": "WORK",
+   "magnitude": "M",
+   "year": 600,
+   "era": "ERA.GUPTA",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.GUJARAT",
+   "dispute": false,
+   "evidence": "The bhandara collections at Patan, Cambay and Jaisalmer, and their palm-leaf holdings.",
+   "window": [
+    580,
+    620
+   ],
+   "year_end": 1400
+  },
+  {
+   "id": "EVT.RGN.GUJ_ANHILWARA",
+   "title": "Anhilwara Patan is founded and becomes the region's capital for five centuries",
+   "class": "FOUNDATION",
+   "magnitude": "M",
+   "year": 746,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.GUJARAT",
+   "dispute": false,
+   "evidence": "The Chaulukya and Chavda records, and the excavated remains of the city and Rani ki Vav.",
+   "window": [
+    724,
+    768
+   ]
+  },
+  {
+   "id": "EVT.RGN.GUJ_RANI_KI_VAV",
+   "title": "Rani ki Vav is built by a queen for her husband's memory",
+   "class": "STRUCTURE",
+   "magnitude": "M",
+   "year": 1063,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.GUJARAT",
+   "dispute": false,
+   "evidence": "The stepwell itself, and the Prabandha tradition's attribution to Udayamati.",
+   "window": [
+    1032,
+    1094
+   ]
+  },
+  {
+   "id": "EVT.RGN.GUJ_BHANDARA_ORG",
+   "title": "The Jain bhandaras are organised as lending libraries with catalogues",
+   "class": "TRANSITION",
+   "magnitude": "M",
+   "year": 1150,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.GUJARAT",
+   "dispute": false,
+   "evidence": "The surviving catalogues, borrowing records, and the manuscripts themselves with their custody notes.",
+   "window": [
+    1116,
+    1184
+   ],
+   "corpus": "preserve",
+   "preserve_to": "home",
+   "note": "A library with a catalogue and a lending register, in the twelfth century, funded by merchants."
+  },
+  {
+   "id": "EVT.RGN.GUJ_PRABANDHA",
+   "title": "The prabandha chronicles record Gujarat's own past",
+   "class": "WORK",
+   "magnitude": "R",
+   "year": 1300,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.GUJARAT",
+   "dispute": false,
+   "evidence": "The Prabandhachintamani and Prabandhakosha, written by Jain monks about kings and merchants.",
+   "window": [
+    1261,
+    1339
+   ]
+  },
+  {
+   "id": "EVT.RGN.GUJ_SULTANATE_INV",
+   "title": "Gujarat is annexed to Delhi and then goes independent",
+   "class": "INVASION",
+   "magnitude": "M",
+   "year": 1297,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.GUJARAT",
+   "dispute": false,
+   "evidence": "The Sultanate records and the Gujarat sultanate's own coinage from 1407.",
+   "window": [
+    1259,
+    1335
+   ],
+   "becomes": "An independent Gujarat sultanate, Ahmedabad, and a naval policy that fought the Portuguese at Diu with an Egyptian fleet."
+  },
+  {
+   "id": "EVT.RGN.GUJ_CAMBAY",
+   "title": "Cambay is the western ocean's greatest port until its creek silts",
+   "class": "TRADE",
+   "magnitude": "M",
+   "year": 1300,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.GUJARAT",
+   "dispute": false,
+   "evidence": "The Arab and European accounts, and the geomorphological evidence for the silting that moved the trade to Surat.",
+   "window": [
+    1261,
+    1339
+   ],
+   "year_end": 1600,
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ]
+  },
+  {
+   "id": "EVT.RGN.GUJ_DIU_1509",
+   "title": "Diu: the Portuguese defeat a combined Gujarati, Egyptian and Calicut fleet",
+   "class": "INVASION",
+   "magnitude": "M",
+   "year": 1509,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.GUJARAT",
+   "dispute": false,
+   "evidence": "The Portuguese and Egyptian accounts of the action.",
+   "becomes": "Portuguese naval supremacy in the western Indian Ocean, and the cartaz system that followed from it."
+  },
+  {
+   "id": "EVT.RGN.GUJ_SHIP_BUILDING",
+   "title": "Surat and Bharuch shipyards build for Indian, Mughal and European owners",
+   "class": "TRADE",
+   "magnitude": "M",
+   "year": 1600,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.GUJARAT",
+   "dispute": false,
+   "evidence": "The shipyard records, the teak supply contracts, and the European purchases of Indian-built hulls.",
+   "window": [
+    1552,
+    1648
+   ],
+   "year_end": 1800,
+   "note": "The Bombay Dockyard built ships for the Royal Navy. One of them is still afloat."
+  },
+  {
+   "id": "EVT.RGN.GUJ_MARATHA_GUJ",
+   "title": "The Gaekwads take Baroda and hold it into the twentieth century",
+   "class": "FOUNDATION",
+   "magnitude": "M",
+   "year": 1721,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.GUJARAT",
+   "dispute": false,
+   "evidence": "The Maratha and Company records, and the Baroda state archive."
+  },
+  {
+   "id": "EVT.RGN.GUJ_SAYAJIRAO",
+   "title": "Sayajirao III makes Baroda's schooling compulsory and its libraries public",
+   "class": "COLONIAL",
+   "magnitude": "M",
+   "year": 1893,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.GUJARAT",
+   "dispute": false,
+   "evidence": "The Baroda state education acts, the library department records, and the Oriental Series he funded.",
+   "corpus": "preserve",
+   "preserve_to": "home",
+   "note": "Free compulsory primary education in an Indian state in 1906, and a public library network to go with it."
+  },
+  {
+   "id": "EVT.RGN.GUJ_MILLS",
+   "title": "Ahmedabad's cotton mills make it the Manchester of the east",
+   "class": "COLONIAL",
+   "magnitude": "M",
+   "year": 1861,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.GUJARAT",
+   "dispute": false,
+   "evidence": "The mill company records, the labour returns, and the textile association archive.",
+   "year_end": 1930
+  },
+  {
+   "id": "EVT.RGN.GUJ_KHEDA",
+   "title": "The Kheda satyagraha: a revenue strike in a failed-harvest year",
+   "class": "COLONIAL",
+   "magnitude": "M",
+   "year": 1918,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.GUJARAT",
+   "dispute": false,
+   "evidence": "The revenue department records and the satyagraha's own accounts."
+  },
+  {
+   "id": "EVT.RGN.ASM_TERRACE",
+   "title": "Terraced wet rice in the Angami and Chakhesang hills",
+   "class": "AGRICULTURE",
+   "magnitude": "R",
+   "year": -500,
+   "era": "ERA.SECOND_URBAN",
+   "provenance": "SOURCED",
+   "certainty": 0.6,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ASSAM",
+   "dispute": false,
+   "evidence": "The terrace systems themselves and the comparative ethnographic and agronomic record.",
+   "window": [
+    -520,
+    -480
+   ],
+   "year_end": 1900,
+   "note": "Some of the most elaborate terracing in Asia, built without a state and maintained by village agreement."
+  },
+  {
+   "id": "EVT.RGN.ASM_IRON_NE",
+   "title": "Iron working in the Brahmaputra valley",
+   "class": "TRANSITION",
+   "magnitude": "R",
+   "year": -300,
+   "era": "ERA.MAURYAN",
+   "provenance": "SOURCED",
+   "certainty": 0.6,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ASSAM",
+   "dispute": false,
+   "evidence": "Iron slag and objects from the valley's early historic levels, and the Kachari smelting tradition.",
+   "window": [
+    -320,
+    -280
+   ]
+  },
+  {
+   "id": "EVT.RGN.ASM_SILK",
+   "title": "Muga and eri silk are reared in the Brahmaputra valley",
+   "class": "TRADE",
+   "magnitude": "M",
+   "year": -100,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ASSAM",
+   "dispute": false,
+   "evidence": "The Arthashastra's reference to Suvarnakudyaka silk, and the continuous rearing tradition.",
+   "window": [
+    -120,
+    -80
+   ],
+   "note": "A golden silk reared nowhere else on earth, and it has been made in the same valley for two thousand years."
+  },
+  {
+   "id": "EVT.RGN.ASM_SW_ROUTE",
+   "title": "The southwestern Silk Road runs from Sichuan through Assam to Bengal",
+   "class": "TRADE",
+   "magnitude": "M",
+   "year": -100,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.6,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ASSAM",
+   "dispute": true,
+   "evidence": "Zhang Qian's report to the Han court of Sichuan goods seen in Bactria, and the Han and later Chinese accounts of the route.",
+   "window": [
+    -120,
+    -80
+   ],
+   "year_end": 600,
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ],
+   "dispute_scope": "occurrence"
+  },
+  {
+   "id": "EVT.RGN.ASM_SALASTAMBHA",
+   "title": "The Salastambhas and Palas of Kamarupa keep the valley a kingdom",
+   "class": "FOUNDATION",
+   "magnitude": "R",
+   "year": 650,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ASSAM",
+   "dispute": false,
+   "evidence": "The copper-plate grant series of both lines.",
+   "window": [
+    630,
+    670
+   ],
+   "year_end": 1100
+  },
+  {
+   "id": "EVT.RGN.ASM_KALIKA",
+   "title": "The Kalika Purana is compiled in the valley",
+   "class": "WORK",
+   "magnitude": "R",
+   "year": 1000,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ASSAM",
+   "dispute": false,
+   "evidence": "The text, whose ritual geography is specific to Kamakhya and the Brahmaputra.",
+   "window": [
+    970,
+    1030
+   ]
+  },
+  {
+   "id": "EVT.RGN.ASM_KAMAKHYA",
+   "title": "Kamakhya becomes a centre of Tantric transmission",
+   "class": "REFORM",
+   "magnitude": "M",
+   "year": 900,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ASSAM",
+   "dispute": false,
+   "evidence": "The temple's rebuilding record, the Yogini Tantra, and the Tibetan traditions that name the site.",
+   "window": [
+    873,
+    927
+   ]
+  },
+  {
+   "id": "EVT.RGN.ASM_CHUTIYA",
+   "title": "The Chutiya, Kachari and Koch kingdoms hold the valley's other quarters",
+   "class": "FOUNDATION",
+   "magnitude": "R",
+   "year": 1200,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ASSAM",
+   "dispute": false,
+   "evidence": "The dynastic records, the Dimapur and Koch Behar remains, and the Ahom buranjis' accounts of them.",
+   "window": [
+    1164,
+    1236
+   ],
+   "year_end": 1600
+  },
+  {
+   "id": "EVT.RGN.ASM_PAIK_SYSTEM",
+   "title": "The paik system: every household owes labour, and the state has no cash payroll",
+   "class": "TRANSITION",
+   "magnitude": "M",
+   "year": 1250,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ASSAM",
+   "dispute": false,
+   "evidence": "The buranji descriptions of the got and the khel, and the paik census records.",
+   "window": [
+    1213,
+    1287
+   ],
+   "note": "An army, a road corps and a public works department, all paid in land instead of money."
+  },
+  {
+   "id": "EVT.RGN.ASM_KOCH",
+   "title": "The Koch kingdom and Naranarayana's patronage of Assamese",
+   "class": "FOUNDATION",
+   "magnitude": "M",
+   "year": 1540,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ASSAM",
+   "dispute": false,
+   "evidence": "The Koch records, and the Vaishnava manuscript production under Naranarayana.",
+   "window": [
+    1494,
+    1586
+   ]
+  },
+  {
+   "id": "EVT.RGN.ASM_MADHAVDEV",
+   "title": "Madhavdev's Namghosa and the sattra manuscript workshops",
+   "class": "WORK",
+   "magnitude": "M",
+   "year": 1590,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ASSAM",
+   "dispute": false,
+   "evidence": "The sanchipat manuscripts on aloe bark, and the sattra libraries that still hold them.",
+   "window": [
+    1543,
+    1637
+   ],
+   "corpus": "preserve",
+   "preserve_to": "home",
+   "note": "They wrote on aloe bark treated to last. Some of those manuscripts are four hundred years old and still legible."
+  },
+  {
+   "id": "EVT.RGN.ASM_MAIDAM",
+   "title": "The Ahom maidams and the Rangpur palace complex",
+   "class": "STRUCTURE",
+   "magnitude": "R",
+   "year": 1700,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ASSAM",
+   "dispute": false,
+   "evidence": "The burial mounds at Charaideo and the surviving brick structures at Sivasagar.",
+   "window": [
+    1649,
+    1751
+   ]
+  },
+  {
+   "id": "EVT.RGN.ASM_MOAMORIA",
+   "title": "The Moamoria rebellion breaks the Ahom state from inside",
+   "class": "CATASTROPHE",
+   "magnitude": "M",
+   "year": 1769,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ASSAM",
+   "dispute": false,
+   "evidence": "The buranjis' own account, and the Company correspondence about the appeal for help.",
+   "window": [
+    1716,
+    1822
+   ],
+   "year_end": 1806,
+   "corpus": "destroy",
+   "severity": 0.03,
+   "note": "Seventeen Mughal invasions failed. A peasant rebellion succeeded, and then the Burmese walked in."
+  },
+  {
+   "id": "EVT.RGN.ASM_BURMESE",
+   "title": "The Burmese occupy Assam",
+   "class": "INVASION",
+   "magnitude": "M",
+   "year": 1817,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.ASSAM",
+   "dispute": false,
+   "evidence": "The Burmese and Ahom accounts, and the Company's casus belli for the first Anglo-Burmese war.",
+   "becomes": "The Treaty of Yandabo, annexation to British India, and the tea industry that followed within a decade."
+  },
+  {
+   "id": "EVT.RGN.ASM_TEA",
+   "title": "Assam tea is planted and a labour system is built to pick it",
+   "class": "COLONIAL",
+   "magnitude": "M",
+   "year": 1837,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.ASSAM",
+   "dispute": false,
+   "evidence": "The Assam Company records, the indenture contracts, and the labour commission reports.",
+   "year_end": 1900
+  },
+  {
+   "id": "EVT.RGN.ASM_LANGUAGE",
+   "title": "Assamese is replaced by Bengali as the official language, and then restored",
+   "class": "COLONIAL",
+   "magnitude": "M",
+   "year": 1836,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.ASSAM",
+   "dispute": false,
+   "evidence": "The government orders of 1836 and 1873, and the Orunodoi newspaper campaign in between.",
+   "threads": [
+    "THR.THE_WRITING_LADDER"
+   ],
+   "note": "A language removed from its own province by administrative order, and argued back by a newspaper."
+  },
+  {
+   "id": "EVT.RGN.ASM_OIL",
+   "title": "Oil is struck at Digboi",
+   "class": "COLONIAL",
+   "magnitude": "R",
+   "year": 1889,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.ASSAM",
+   "dispute": false,
+   "evidence": "The Assam Railways and Trading Company records and the refinery's own history."
+  },
+  {
+   "id": "EVT.RGN.ASM_INNER_LINE",
+   "title": "The Inner Line seals the hills off from the plains by regulation",
+   "class": "FRONTIER",
+   "magnitude": "M",
+   "year": 1873,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.ASSAM",
+   "dispute": false,
+   "evidence": "The Bengal Eastern Frontier Regulation, and the district administration's correspondence about enforcing it.",
+   "note": "A border drawn to protect a revenue interest, which became the legal shape of the northeast."
+  },
+  {
+   "id": "EVT.RGN.ODI_GOLBAI_SEQ",
+   "title": "Golbai Sasan: Neolithic to iron age in one section",
+   "class": "SITE",
+   "magnitude": "R",
+   "year": -1600,
+   "era": "ERA.LATE_HARAPPAN",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ODISHA",
+   "dispute": false,
+   "evidence": "The excavated sequence, with bone tools, rice, and later iron in stratified levels.",
+   "window": [
+    -1648,
+    -1552
+   ]
+  },
+  {
+   "id": "EVT.RGN.ODI_RICE_MAHANADI",
+   "title": "Rice cultivation intensifies across the Mahanadi delta",
+   "class": "AGRICULTURE",
+   "magnitude": "R",
+   "year": -1000,
+   "era": "ERA.EARLY_VEDIC",
+   "provenance": "SOURCED",
+   "certainty": 0.65,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ODISHA",
+   "dispute": false,
+   "evidence": "The archaeobotanical record from Golbai and Gopalpur, and the delta's settlement pattern.",
+   "window": [
+    -1030,
+    -970
+   ]
+  },
+  {
+   "id": "EVT.RGN.ODI_ROULETTED",
+   "title": "Rouletted ware links the Kalinga coast to the whole Bay",
+   "class": "TRADE",
+   "magnitude": "M",
+   "year": -100,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ODISHA",
+   "dispute": false,
+   "evidence": "The distribution of the ware from Arikamedu to Bali, with Odishan coastal sites in the middle of it.",
+   "window": [
+    -120,
+    -80
+   ],
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ]
+  },
+  {
+   "id": "EVT.RGN.ODI_MANIKAPATNA",
+   "title": "Manikapatna: a port occupied continuously for two thousand years",
+   "class": "SITE",
+   "magnitude": "R",
+   "year": -100,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ODISHA",
+   "dispute": false,
+   "evidence": "The excavated sequence, with rouletted ware, Chinese celadon, Arab glazed ware and Dutch and Chinese coins.",
+   "window": [
+    -120,
+    -80
+   ],
+   "year_end": 1800,
+   "note": "One trench, and in it the whole history of who was trading with the Bay."
+  },
+  {
+   "id": "EVT.RGN.ODI_SHAILODBHAVA",
+   "title": "The Shailodbhavas and Bhauma-Karas hold coastal Odisha",
+   "class": "FOUNDATION",
+   "magnitude": "R",
+   "year": 600,
+   "era": "ERA.GUPTA",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ODISHA",
+   "dispute": false,
+   "evidence": "The copper-plate grant series of both lines.",
+   "window": [
+    580,
+    620
+   ],
+   "year_end": 950
+  },
+  {
+   "id": "EVT.RGN.ODI_BHAUMA_QUEENS",
+   "title": "Six Bhauma-Kara queens rule in their own names",
+   "class": "REFORM",
+   "magnitude": "M",
+   "year": 850,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ODISHA",
+   "dispute": false,
+   "evidence": "The Bhauma-Kara copper plates, issued in the queens' names with their own regnal years.",
+   "window": [
+    825,
+    875
+   ],
+   "note": "Not regents. Reigning queens, six of them in succession, issuing grants in their own name."
+  },
+  {
+   "id": "EVT.RGN.ODI_TANTRIC_ODI",
+   "title": "The sixty-four yogini temples are built, roofless and circular",
+   "class": "WORK",
+   "magnitude": "M",
+   "year": 900,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ODISHA",
+   "dispute": false,
+   "evidence": "Hirapur and Ranipur-Jharial, and the iconographic programme of both.",
+   "window": [
+    873,
+    927
+   ]
+  },
+  {
+   "id": "EVT.RGN.ODI_LINGARAJ",
+   "title": "The Lingaraj temple and the mature Kalinga building canon",
+   "class": "STRUCTURE",
+   "magnitude": "M",
+   "year": 1100,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ODISHA",
+   "dispute": false,
+   "evidence": "The temple itself, and the Bhubaneswar sequence of some five hundred shrines from the seventh century onward.",
+   "window": [
+    1067,
+    1133
+   ]
+  },
+  {
+   "id": "EVT.RGN.ODI_SARALA",
+   "title": "Sarala Das writes the Mahabharata in Odia, and is not a brahmin",
+   "class": "WORK",
+   "magnitude": "M",
+   "year": 1450,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ODISHA",
+   "dispute": false,
+   "evidence": "The text, whose author names himself a sudra and a farmer, and the manuscript tradition.",
+   "window": [
+    1407,
+    1493
+   ],
+   "threads": [
+    "THR.THE_CASTE_QUESTION"
+   ]
+  },
+  {
+   "id": "EVT.RGN.ODI_PANCHASAKHA",
+   "title": "The Panchasakha take devotion into Odia and out of Sanskrit",
+   "class": "REFORM",
+   "magnitude": "M",
+   "year": 1500,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ODISHA",
+   "dispute": false,
+   "evidence": "The five poets' works and their manuscript transmission.",
+   "window": [
+    1455,
+    1545
+   ],
+   "threads": [
+    "THR.THE_CASTE_QUESTION"
+   ]
+  },
+  {
+   "id": "EVT.RGN.ODI_MUGHAL_ODI",
+   "title": "Odisha is annexed to the Mughal empire",
+   "class": "INVASION",
+   "magnitude": "M",
+   "year": 1568,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ODISHA",
+   "dispute": false,
+   "evidence": "The Akbarnama and the Afghan and Gajapati accounts.",
+   "window": [
+    1521,
+    1615
+   ],
+   "becomes": "The Jagannath temple's administration passes through Afghan, Mughal, Maratha and finally British hands — and every one of them kept it running, because the pilgrim revenue was worth more than the point."
+  },
+  {
+   "id": "EVT.RGN.ODI_MARATHA_ODI",
+   "title": "The Marathas take coastal Odisha and tax the pilgrim road",
+   "class": "FOUNDATION",
+   "magnitude": "R",
+   "year": 1751,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.ODISHA",
+   "dispute": false,
+   "evidence": "The Nagpur Bhonsle records and the Jagannath temple's pilgrim tax accounts."
+  },
+  {
+   "id": "EVT.RGN.ODI_NA_ANKA",
+   "title": "The Na'anka famine kills a third of coastal Odisha",
+   "class": "COLONIAL",
+   "magnitude": "W",
+   "year": 1866,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.ODISHA",
+   "dispute": false,
+   "evidence": "The Famine Commission report, which found the deaths avoidable, and the export figures for the preceding year.",
+   "threads": [
+    "THR.THE_FAMINE_CENTURY"
+   ],
+   "corpus": "none",
+   "note": "Named for the ninth regnal year. A million dead in a province with a surplus the year before."
+  },
+  {
+   "id": "EVT.RGN.ODI_LANGUAGE",
+   "title": "Odia is declared not a language, and proved to be one",
+   "class": "COLONIAL",
+   "magnitude": "M",
+   "year": 1870,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.ODISHA",
+   "dispute": false,
+   "evidence": "The 1870 pamphlet claiming Odia was a Bengali dialect, and the linguistic and literary rebuttal that followed.",
+   "year_end": 1936,
+   "threads": [
+    "THR.THE_WRITING_LADDER"
+   ],
+   "note": "It ended in 1936 with the first Indian province created on a linguistic basis."
+  },
+  {
+   "id": "EVT.RGN.ODI_MADALA",
+   "title": "The Madala Panji temple chronicle is examined as a historical source",
+   "class": "COLONIAL",
+   "magnitude": "R",
+   "year": 1900,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ODISHA",
+   "dispute": false,
+   "evidence": "The palm-leaf chronicle kept by the Jagannath temple's record-keepers, and the scholarly editions of it.",
+   "window": [
+    1843,
+    1957
+   ]
+  },
+  {
+   "id": "EVT.RGN.MAH_INAMGAON_AG",
+   "title": "Inamgaon's diversion channel and embankment irrigate a Deccan village",
+   "class": "AGRICULTURE",
+   "magnitude": "M",
+   "year": -1400,
+   "era": "ERA.LATE_HARAPPAN",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false,
+   "evidence": "The excavated channel and embankment, the earliest irrigation works known in the peninsula.",
+   "window": [
+    -1442,
+    -1358
+   ]
+  },
+  {
+   "id": "EVT.RGN.MAH_JORWE_END",
+   "title": "The Jorwe settlements shrink to a few and then to none",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": -1000,
+   "era": "ERA.EARLY_VEDIC",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false,
+   "evidence": "The abandonment sequence at Inamgaon and its neighbours, with the shift to pastoralism in the faunal record.",
+   "window": [
+    -1030,
+    -970
+   ]
+  },
+  {
+   "id": "EVT.RGN.MAH_DECCAN_PASTORAL",
+   "title": "Pastoral transhumance becomes the Deccan's way of using the dry season",
+   "class": "FRONTIER",
+   "magnitude": "M",
+   "year": -800,
+   "era": "ERA.LATE_VEDIC",
+   "provenance": "SOURCED",
+   "certainty": 0.65,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false,
+   "evidence": "The faunal assemblages, the seasonal camp sites, and the Dhangar transhumance routes still walked.",
+   "window": [
+    -824,
+    -776
+   ],
+   "year_end": 1900
+  },
+  {
+   "id": "EVT.RGN.MAH_GHAT_PASSES",
+   "title": "The ghat passes are engineered and the ocean trade reaches inland",
+   "class": "TRADE",
+   "magnitude": "M",
+   "year": -100,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false,
+   "evidence": "The rock-cut steps and cisterns on the Naneghat and Thal ghat routes, and the Naneghat inscription's toll list.",
+   "window": [
+    -120,
+    -80
+   ],
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ],
+   "note": "A pass with cut steps, water cisterns and a published toll schedule, in the first century BCE."
+  },
+  {
+   "id": "EVT.RGN.MAH_NANEGHAT",
+   "title": "The Naneghat inscription of Naganika: a queen lists her sacrifices and their fees",
+   "class": "WORK",
+   "magnitude": "M",
+   "year": -50,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false,
+   "evidence": "The inscription itself, which gives the cattle, horses, villages and cash paid for each rite.",
+   "window": [
+    -70,
+    -30
+   ],
+   "note": "It is a receipt. The most detailed price list surviving from ancient India is a religious one."
+  },
+  {
+   "id": "EVT.RGN.MAH_VAKATAKA_RULE",
+   "title": "The Vakatakas rule the Deccan and marry into the Guptas",
+   "class": "FOUNDATION",
+   "magnitude": "M",
+   "year": 250,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false,
+   "evidence": "The Vakataka copper-plate series and Prabhavatigupta's grants, issued in her own name as regent.",
+   "window": [
+    230,
+    270
+   ],
+   "year_end": 500
+  },
+  {
+   "id": "EVT.RGN.MAH_PAITHAN",
+   "title": "Paithan (Pratishthana) on the Godavari, capital and market",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": -200,
+   "era": "ERA.MAURYAN",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false,
+   "evidence": "The Periplus's Paithana, the Satavahana coin finds, and the excavated habitation levels.",
+   "window": [
+    -220,
+    -180
+   ]
+  },
+  {
+   "id": "EVT.RGN.MAH_SHILAHARA",
+   "title": "The Shilaharas hold the Konkan for four centuries",
+   "class": "FOUNDATION",
+   "magnitude": "R",
+   "year": 800,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false,
+   "evidence": "The Shilahara copper-plate series from north and south Konkan.",
+   "window": [
+    776,
+    824
+   ],
+   "year_end": 1265
+  },
+  {
+   "id": "EVT.RGN.MAH_LILACHARITRA",
+   "title": "The Lilacharitra: the first biography written in Marathi prose",
+   "class": "WORK",
+   "magnitude": "M",
+   "year": 1278,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false,
+   "evidence": "The text, compiled from the recollections of Chakradhar's disciples and dated by internal evidence.",
+   "window": [
+    1240,
+    1316
+   ]
+  },
+  {
+   "id": "EVT.RGN.MAH_MODI",
+   "title": "The Modi script is adopted for Marathi administration",
+   "class": "TRANSITION",
+   "magnitude": "M",
+   "year": 1300,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false,
+   "evidence": "The Modi document series, which runs from the Yadava period through the Peshwa archive into the twentieth century.",
+   "window": [
+    1261,
+    1339
+   ],
+   "year_end": 1950,
+   "threads": [
+    "THR.THE_WRITING_LADDER"
+   ],
+   "note": "A cursive script designed to be written without lifting the pen. Millions of revenue documents are in it and most have never been read."
+  },
+  {
+   "id": "EVT.RGN.MAH_EKNATH",
+   "title": "Eknath edits the Jnaneshwari and settles its text",
+   "class": "WORK",
+   "magnitude": "M",
+   "year": 1584,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false,
+   "evidence": "His recension, which is the basis of every later edition, and his own colophon explaining why it was needed.",
+   "window": [
+    1537,
+    1631
+   ],
+   "corpus": "preserve",
+   "preserve_to": "home",
+   "note": "Three hundred years after it was written, somebody sat down and fixed the text. That is the corpus mechanic performed by hand."
+  },
+  {
+   "id": "EVT.RGN.MAH_PESHWA",
+   "title": "The Peshwas run the Maratha confederacy from Pune",
+   "class": "FOUNDATION",
+   "magnitude": "M",
+   "year": 1713,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false,
+   "evidence": "The Peshwa Daftar, some four crore documents, still the largest indigenous administrative archive in India.",
+   "note": "The archive alone is the reason the eighteenth century in India can be written from Indian sources."
+  },
+  {
+   "id": "EVT.RGN.MAH_CHAUTH_SYSTEM",
+   "title": "Chauth and sardeshmukhi become a subcontinental revenue claim",
+   "class": "TRADE",
+   "magnitude": "M",
+   "year": 1720,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false,
+   "evidence": "The Maratha revenue records and the treaties conceding the claim from Bengal to the Carnatic.",
+   "window": [
+    1669,
+    1771
+   ],
+   "year_end": 1800
+  },
+  {
+   "id": "EVT.RGN.MAH_DECCAN_RIOTS",
+   "title": "The Deccan riots: cultivators burn the moneylenders' bonds, not the moneylenders",
+   "class": "COLONIAL",
+   "magnitude": "M",
+   "year": 1875,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false,
+   "evidence": "The Deccan Riots Commission report and the Deccan Agriculturists' Relief Act that followed.",
+   "note": "They wanted the paper. The debt was the thing that owned them."
+  },
+  {
+   "id": "EVT.RGN.MAH_TILAK_PRESS",
+   "title": "The Marathi press and the public festival as political form",
+   "class": "COLONIAL",
+   "magnitude": "M",
+   "year": 1881,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false,
+   "evidence": "The Kesari and Mahratta files, and the Ganapati and Shivaji festival records from 1893."
+  },
+  {
+   "id": "EVT.RGN.AND_NEOLITHIC",
+   "title": "The southern Neolithic villages of the Krishna-Tungabhadra doab",
+   "class": "SITE",
+   "magnitude": "R",
+   "year": -2200,
+   "era": "ERA.INDUS",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ANDHRA",
+   "dispute": false,
+   "evidence": "The excavated ashmound and village sites of the doab, with their cattle-dominated faunal record.",
+   "window": [
+    -2266,
+    -2134
+   ]
+  },
+  {
+   "id": "EVT.RGN.AND_MEGALITH_AND",
+   "title": "Megalithic burials spread across Telangana and coastal Andhra",
+   "class": "REFORM",
+   "magnitude": "M",
+   "year": -1000,
+   "era": "ERA.EARLY_VEDIC",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ANDHRA",
+   "dispute": false,
+   "evidence": "The cairn, cist and urn fields, with iron grave goods and, at some sites, horse bits.",
+   "window": [
+    -1030,
+    -970
+   ]
+  },
+  {
+   "id": "EVT.RGN.AND_IRON_AND",
+   "title": "Iron working at Kadambapur and the Telangana uplands",
+   "class": "TRANSITION",
+   "magnitude": "R",
+   "year": -800,
+   "era": "ERA.LATE_VEDIC",
+   "provenance": "SOURCED",
+   "certainty": 0.65,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ANDHRA",
+   "dispute": false,
+   "evidence": "Furnace remains and slag with associated dates from the upland sites.",
+   "window": [
+    -824,
+    -776
+   ]
+  },
+  {
+   "id": "EVT.RGN.AND_DHANYAKATAKA",
+   "title": "Dhanyakataka becomes a capital and a Buddhist centre",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": -300,
+   "era": "ERA.MAURYAN",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ANDHRA",
+   "dispute": false,
+   "evidence": "The Amaravati site's earliest levels, the Satavahana coin finds, and the Ashokan-period stupa core.",
+   "window": [
+    -320,
+    -280
+   ]
+  },
+  {
+   "id": "EVT.RGN.AND_AMARAVATI_SCHOOL",
+   "title": "The Amaravati sculptors develop a narrative idiom of their own",
+   "class": "WORK",
+   "magnitude": "M",
+   "year": -100,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ANDHRA",
+   "dispute": false,
+   "evidence": "The marble slabs themselves, whose crowded, spiralling compositions are unlike Bharhut or Sanchi.",
+   "window": [
+    -120,
+    -80
+   ],
+   "year_end": 250
+  },
+  {
+   "id": "EVT.RGN.AND_NAGARJUNA_AND",
+   "title": "Nagarjunakonda's monasteries are endowed largely by women of the royal house",
+   "class": "REFORM",
+   "magnitude": "M",
+   "year": 250,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ANDHRA",
+   "dispute": false,
+   "evidence": "The site's donative inscriptions, which name the Ikshvaku queens and princesses as the principal donors.",
+   "window": [
+    230,
+    270
+   ],
+   "note": "Read the donor list. It is mostly women, and they are named."
+  },
+  {
+   "id": "EVT.RGN.AND_VISHNUKUNDIN",
+   "title": "The Vishnukundins hold the Krishna-Godavari delta",
+   "class": "FOUNDATION",
+   "magnitude": "R",
+   "year": 400,
+   "era": "ERA.GUPTA",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ANDHRA",
+   "dispute": false,
+   "evidence": "The Vishnukundin copper-plate series and the Undavalli cave temples.",
+   "window": [
+    380,
+    420
+   ],
+   "year_end": 615
+  },
+  {
+   "id": "EVT.RGN.AND_TELUGU_INSCR",
+   "title": "Telugu inscriptions multiply and the language takes a written form",
+   "class": "WORK",
+   "magnitude": "M",
+   "year": 700,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ANDHRA",
+   "dispute": false,
+   "evidence": "The Kalamalla, Erragudipadu and later inscription series, and the shift from Prakrit and Sanskrit formulae.",
+   "window": [
+    679,
+    721
+   ],
+   "year_end": 1000,
+   "threads": [
+    "THR.THE_WRITING_LADDER"
+   ]
+  },
+  {
+   "id": "EVT.RGN.AND_KAKATIYA_TANKS",
+   "title": "The Kakatiya tank cascades irrigate an upland with no river",
+   "class": "STRUCTURE",
+   "magnitude": "W",
+   "year": 1150,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ANDHRA",
+   "dispute": false,
+   "evidence": "The Pakhal, Ramappa and Laknavaram tanks, and the inscriptions recording their construction and their maintenance committees.",
+   "window": [
+    1116,
+    1184
+   ],
+   "note": "Thousands of linked tanks on a plateau with no perennial river. Most are still in use."
+  },
+  {
+   "id": "EVT.RGN.AND_KAKATIYA_SOCIAL",
+   "title": "Kakatiya inscriptions record donors from outside the old landed families",
+   "class": "REFORM",
+   "magnitude": "M",
+   "year": 1200,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ANDHRA",
+   "dispute": false,
+   "evidence": "The inscription corpus, in which nayaka and cultivator donors appear in numbers for the first time.",
+   "window": [
+    1164,
+    1236
+   ],
+   "threads": [
+    "THR.THE_CASTE_QUESTION"
+   ]
+  },
+  {
+   "id": "EVT.RGN.AND_REDDI_VELAMA",
+   "title": "The Reddi and Velama kingdoms hold the delta after the Kakatiyas",
+   "class": "FOUNDATION",
+   "magnitude": "R",
+   "year": 1325,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ANDHRA",
+   "dispute": false,
+   "evidence": "The Reddi and Velama inscription and literary records.",
+   "window": [
+    1286,
+    1364
+   ],
+   "year_end": 1448
+  },
+  {
+   "id": "EVT.RGN.AND_SRINATHA",
+   "title": "Srinatha writes for four courts and describes each of them",
+   "class": "WORK",
+   "magnitude": "M",
+   "year": 1400,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ANDHRA",
+   "dispute": false,
+   "evidence": "His works and their dedications, and the court records that corroborate the patronage.",
+   "window": [
+    1358,
+    1442
+   ]
+  },
+  {
+   "id": "EVT.RGN.AND_KRISHNADEVARAYA",
+   "title": "Krishnadevaraya writes the Amuktamalyada, and it contains advice on statecraft",
+   "class": "WORK",
+   "magnitude": "M",
+   "year": 1520,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ANDHRA",
+   "dispute": false,
+   "evidence": "The text, whose chapters on how to treat merchants and forest peoples read as policy.",
+   "window": [
+    1475,
+    1565
+   ],
+   "note": "An emperor's poem that tells you to keep the forest peoples on your side because they know the roads."
+  },
+  {
+   "id": "EVT.RGN.AND_GOLCONDA_DIAMOND",
+   "title": "The Golconda mines are the world's only diamond source",
+   "class": "TRADE",
+   "magnitude": "M",
+   "year": 1500,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ANDHRA",
+   "dispute": false,
+   "evidence": "Tavernier's account of visiting the mines, and the European trade records.",
+   "window": [
+    1455,
+    1545
+   ],
+   "year_end": 1725,
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ]
+  },
+  {
+   "id": "EVT.RGN.AND_KALAMKARI",
+   "title": "Coromandel kalamkari and painted cottons reach Europe and Southeast Asia",
+   "class": "TRADE",
+   "magnitude": "M",
+   "year": 1600,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ANDHRA",
+   "dispute": false,
+   "evidence": "The Dutch and English factory orders with their pattern specifications, and the surviving textiles.",
+   "window": [
+    1552,
+    1648
+   ],
+   "year_end": 1800
+  },
+  {
+   "id": "EVT.RGN.AND_ASAF_JAHI",
+   "title": "The Nizam's dominions become the largest princely state",
+   "class": "FOUNDATION",
+   "magnitude": "M",
+   "year": 1724,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.ANDHRA",
+   "dispute": false,
+   "evidence": "The Asaf Jahi records and the subsidiary treaty of 1798.",
+   "year_end": 1947
+  },
+  {
+   "id": "EVT.RGN.AND_TELUGU_REFORM",
+   "title": "The campaign for a modern written Telugu splits the literary establishment",
+   "class": "COLONIAL",
+   "magnitude": "M",
+   "year": 1910,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.ANDHRA",
+   "dispute": false,
+   "evidence": "The Gidugu Ramamurthy and Vavilala pamphlet war, and the eventual adoption of the spoken register.",
+   "threads": [
+    "THR.THE_WRITING_LADDER"
+   ]
+  },
+  {
+   "id": "EVT.RGN.AND_ANDHRA_MOVEMENT",
+   "title": "The movement for a Telugu-speaking province begins",
+   "class": "COLONIAL",
+   "magnitude": "M",
+   "year": 1913,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.ANDHRA",
+   "dispute": false,
+   "evidence": "The Andhra Mahasabha proceedings from Bapatla onward.",
+   "year_end": 1947
+  },
+  {
+   "id": "EVT.RGN.KER_RICE_KUTTANAD",
+   "title": "Wet rice below sea level in Kuttanad",
+   "class": "AGRICULTURE",
+   "magnitude": "R",
+   "year": -500,
+   "era": "ERA.SECOND_URBAN",
+   "provenance": "SOURCED",
+   "certainty": 0.6,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KERALA",
+   "dispute": false,
+   "evidence": "The bunded field systems and the sediment record of their reclamation.",
+   "window": [
+    -520,
+    -480
+   ],
+   "year_end": 1900,
+   "note": "Farmland below the level of the water beside it, kept dry by bunds and pumps. It predates the Dutch polders."
+  },
+  {
+   "id": "EVT.RGN.KER_MUZIRIS_PAPYRUS",
+   "title": "The Muziris papyrus prices a single shipload",
+   "class": "TRADE",
+   "magnitude": "W",
+   "year": 150,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KERALA",
+   "dispute": false,
+   "evidence": "The Vienna papyrus, a Greek contract that itemises a cargo of pepper, ivory and nard with its Alexandria customs value.",
+   "window": [
+    130,
+    170
+   ],
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ],
+   "note": "One ship, one contract, and a value equal to a large Egyptian estate. The pepper trade was not a trickle."
+  },
+  {
+   "id": "EVT.RGN.KER_PATTANAM_SEQ",
+   "title": "Pattanam's wharf, warehouses and imported goods",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": 100,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KERALA",
+   "dispute": false,
+   "evidence": "The excavated wharf and bollards, the amphora sherds, and the Mediterranean and West Asian glass.",
+   "window": [
+    80,
+    120
+   ],
+   "year_end": 500
+  },
+  {
+   "id": "EVT.RGN.KER_MUSHIKA",
+   "title": "The Mushika kingdom of north Kerala",
+   "class": "FOUNDATION",
+   "magnitude": "R",
+   "year": 900,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KERALA",
+   "dispute": false,
+   "evidence": "The Mushikavamsa and the Ezhimala inscriptions.",
+   "window": [
+    873,
+    927
+   ]
+  },
+  {
+   "id": "EVT.RGN.KER_NAMBUDIRI",
+   "title": "The Nambudiri settlements and the sixty-four gramams take institutional shape",
+   "class": "REFORM",
+   "magnitude": "M",
+   "year": 800,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KERALA",
+   "dispute": true,
+   "evidence": "The temple grant record and the Keralolpatti tradition, which is late and tendentious and still the only account.",
+   "window": [
+    776,
+    824
+   ],
+   "threads": [
+    "THR.THE_CASTE_QUESTION"
+   ],
+   "dispute_scope": "occurrence"
+  },
+  {
+   "id": "EVT.RGN.KER_MARUMAKKATHAYAM",
+   "title": "Matrilineal inheritance becomes the region's dominant property system",
+   "class": "TRANSITION",
+   "magnitude": "M",
+   "year": 1000,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KERALA",
+   "dispute": false,
+   "evidence": "The temple and household records of taravad property, and the colonial-era legal commissions that documented it.",
+   "window": [
+    970,
+    1030
+   ],
+   "year_end": 1930,
+   "note": "Property and descent through the mother's line, for most of the population, for nine centuries."
+  },
+  {
+   "id": "EVT.RGN.KER_JEWISH_PLATES",
+   "title": "The Jewish copper plates grant a merchant seventy-two privileges",
+   "class": "TRADE",
+   "magnitude": "M",
+   "year": 1000,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KERALA",
+   "dispute": false,
+   "evidence": "The plates themselves, held at Kochi, granting rights to Joseph Rabban and his descendants.",
+   "window": [
+    970,
+    1030
+   ]
+  },
+  {
+   "id": "EVT.RGN.KER_TEMPLE_STYLE",
+   "title": "The Kerala temple style: timber roofs, circular sanctums, and a monsoon to survive",
+   "class": "STRUCTURE",
+   "magnitude": "M",
+   "year": 1000,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KERALA",
+   "dispute": false,
+   "evidence": "The surviving temples and their carpentry, and the Tantrasamuchaya's building prescriptions.",
+   "window": [
+    970,
+    1030
+   ],
+   "year_end": 1500
+  },
+  {
+   "id": "EVT.RGN.KER_MADHAVA_SCHOOL",
+   "title": "The Kerala school runs for three centuries as a teaching lineage",
+   "class": "WORK",
+   "magnitude": "W",
+   "year": 1350,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KERALA",
+   "dispute": false,
+   "evidence": "The succession from Madhava through Parameshvara, Nilakantha, Jyesthadeva and Achyuta, documented in the texts themselves.",
+   "window": [
+    1310,
+    1390
+   ],
+   "year_end": 1650,
+   "note": "Not a lone genius. A named teaching lineage, teacher to student, for three hundred years."
+  },
+  {
+   "id": "EVT.RGN.KER_MANIPRAVALAM",
+   "title": "Manipravalam and the Lilatilakam's grammar for a mixed language",
+   "class": "WORK",
+   "magnitude": "M",
+   "year": 1350,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KERALA",
+   "dispute": false,
+   "evidence": "The Lilatilakam, which sets out the rules for combining Sanskrit and Malayalam and argues for the result as literature.",
+   "window": [
+    1310,
+    1390
+   ]
+  },
+  {
+   "id": "EVT.RGN.KER_ZAMORIN_TRADE",
+   "title": "Calicut's Zamorin runs an open port and lets the Arab merchants police it",
+   "class": "TRADE",
+   "magnitude": "M",
+   "year": 1400,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KERALA",
+   "dispute": false,
+   "evidence": "Ma Huan's and Abdur Razzaq's accounts, and the Portuguese descriptions of the arrangements they displaced.",
+   "window": [
+    1358,
+    1442
+   ],
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ]
+  },
+  {
+   "id": "EVT.RGN.KER_EZHUTHACHAN",
+   "title": "Ezhuthachan fixes the Malayalam script and the language's literary form",
+   "class": "WORK",
+   "magnitude": "M",
+   "year": 1550,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KERALA",
+   "dispute": false,
+   "evidence": "The Adhyatmaramayanam kilippattu and the script reform attributed to him.",
+   "window": [
+    1504,
+    1596
+   ],
+   "threads": [
+    "THR.THE_WRITING_LADDER"
+   ]
+  },
+  {
+   "id": "EVT.RGN.KER_KATHAKALI",
+   "title": "Kathakali takes form out of older temple theatre",
+   "class": "WORK",
+   "magnitude": "M",
+   "year": 1650,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KERALA",
+   "dispute": false,
+   "evidence": "The attakatha texts and the Kottarakkara and Kottayam court records.",
+   "window": [
+    1601,
+    1699
+   ]
+  },
+  {
+   "id": "EVT.RGN.KER_TRAVANCORE",
+   "title": "Marthanda Varma builds Travancore and dedicates it to a god",
+   "class": "FOUNDATION",
+   "magnitude": "M",
+   "year": 1729,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.KERALA",
+   "dispute": false,
+   "evidence": "The Travancore state records and the Trippadidanam of 1750.",
+   "year_end": 1750
+  },
+  {
+   "id": "EVT.RGN.KER_EDUCATION",
+   "title": "Travancore and Cochin fund schooling, and literacy climbs early",
+   "class": "COLONIAL",
+   "magnitude": "M",
+   "year": 1817,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.KERALA",
+   "dispute": false,
+   "evidence": "The royal rescript of 1817 on state-funded education, and the census literacy series that follows.",
+   "note": "A state deciding in 1817 that it would pay to teach everyone. The results are still visible in the numbers."
+  },
+  {
+   "id": "EVT.RGN.KER_CHANNAR",
+   "title": "The Channar revolt: the right to cover the upper body",
+   "class": "COLONIAL",
+   "magnitude": "M",
+   "year": 1813,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.KERALA",
+   "dispute": false,
+   "evidence": "The Travancore proclamations of 1829 and 1859 and the missionary and state correspondence.",
+   "year_end": 1859,
+   "threads": [
+    "THR.THE_CASTE_QUESTION"
+   ]
+  },
+  {
+   "id": "EVT.RGN.KER_MALAYALAM_PRINT",
+   "title": "Malayalam printing, dictionaries and the first newspapers",
+   "class": "COLONIAL",
+   "magnitude": "M",
+   "year": 1821,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.KERALA",
+   "dispute": false,
+   "evidence": "The CMS Press at Kottayam, Gundert's dictionary of 1872, and the Rajyasamacharam files.",
+   "threads": [
+    "THR.THE_WRITING_LADDER"
+   ]
+  },
+  {
+   "id": "EVT.RGN.TAM_ADICHA_SEQ",
+   "title": "Adichanallur's urn field is excavated and re-excavated",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": -1000,
+   "era": "ERA.EARLY_VEDIC",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "evidence": "The 1876 and 2004 excavations, the iron and bronze grave goods, and the potsherd graffiti.",
+   "window": [
+    -1030,
+    -970
+   ]
+  },
+  {
+   "id": "EVT.RGN.TAM_MEGALITH_TAM",
+   "title": "Megalithic burial across the Tamil country: cists, urns and hero stones",
+   "class": "REFORM",
+   "magnitude": "M",
+   "year": -900,
+   "era": "ERA.LATE_VEDIC",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "evidence": "The burial fields from Kongu to the Pandya country, and the earliest hero stones with them.",
+   "window": [
+    -927,
+    -873
+   ]
+  },
+  {
+   "id": "EVT.RGN.TAM_GRAFFITI",
+   "title": "Potsherd graffiti precede Tamil-Brahmi and may be related to it",
+   "class": "WORK",
+   "magnitude": "M",
+   "year": -600,
+   "era": "ERA.SECOND_URBAN",
+   "provenance": "SOURCED",
+   "certainty": 0.6,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": true,
+   "evidence": "The graffiti corpus from Sanur, Kodumanal, Porunthal and Keeladi, and the argument about its relationship to the Indus signs.",
+   "window": [
+    -620,
+    -580
+   ],
+   "threads": [
+    "THR.THE_WRITING_LADDER"
+   ],
+   "dispute_scope": "interpretation"
+  },
+  {
+   "id": "EVT.RGN.TAM_NAYAKA_MADURAI",
+   "title": "The Madurai and Tanjore Nayakas inherit Vijayanagara's south",
+   "class": "FOUNDATION",
+   "magnitude": "M",
+   "year": 1529,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "evidence": "The Nayaka records, the Mackenzie manuscript collections, and the temple building programmes.",
+   "window": [
+    1484,
+    1574
+   ],
+   "year_end": 1736
+  },
+  {
+   "id": "EVT.RGN.TAM_GOPURAM",
+   "title": "The gopuram overtakes the vimana and temple towns grow outward",
+   "class": "STRUCTURE",
+   "magnitude": "M",
+   "year": 1350,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "evidence": "The building sequence at Srirangam, Madurai and Chidambaram, where later gateways exceed the sanctum tower in height.",
+   "window": [
+    1310,
+    1390
+   ],
+   "note": "The tallest thing stops being over the god and starts being at the edge of town. The temple has become a city."
+  },
+  {
+   "id": "EVT.RGN.TAM_SITTAR",
+   "title": "The Siddhar poets write medicine, alchemy and abuse of the priesthood",
+   "class": "WORK",
+   "magnitude": "M",
+   "year": 1200,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "evidence": "The Siddhar corpus, and the Siddha medical tradition's own textual lineage.",
+   "window": [
+    1164,
+    1236
+   ],
+   "year_end": 1600,
+   "threads": [
+    "THR.THE_CASTE_QUESTION"
+   ]
+  },
+  {
+   "id": "EVT.RGN.TAM_ARUNAGIRI",
+   "title": "Arunagirinathar's Tiruppugazh sets Tamil devotion to complex rhythm",
+   "class": "WORK",
+   "magnitude": "R",
+   "year": 1400,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "evidence": "The Tiruppugazh corpus and its metrical schemes, still used as a percussion training text.",
+   "window": [
+    1358,
+    1442
+   ]
+  },
+  {
+   "id": "EVT.RGN.TAM_TANJORE_MARATHA",
+   "title": "The Tanjore Marathas keep a Sanskrit and Tamil library and catalogue it",
+   "class": "TRADE",
+   "magnitude": "M",
+   "year": 1676,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "evidence": "The Sarasvati Mahal collection and Serfoji II's catalogues.",
+   "window": [
+    1626,
+    1726
+   ],
+   "year_end": 1832,
+   "corpus": "preserve",
+   "preserve_to": "home"
+  },
+  {
+   "id": "EVT.RGN.TAM_TAMIL_PRINT",
+   "title": "Tamil printing begins earlier than any other Indian language",
+   "class": "COLONIAL",
+   "magnitude": "M",
+   "year": 1578,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "evidence": "The Thambiran Vanakkam, printed at Quilon in 1578, and the Tranquebar press that followed.",
+   "threads": [
+    "THR.THE_WRITING_LADDER"
+   ],
+   "note": "The first book printed in an Indian script came off a press in India in 1578. Not 1800."
+  },
+  {
+   "id": "EVT.RGN.TAM_DRAVIDIAN_PHIL",
+   "title": "Caldwell argues the southern languages are a family of their own",
+   "class": "COLONIAL",
+   "magnitude": "M",
+   "year": 1856,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "evidence": "The Comparative Grammar of the Dravidian Languages, and the linguistic evidence it assembled."
+  },
+  {
+   "id": "EVT.RGN.TAM_SANGAM_RECOVERY",
+   "title": "The Sangam texts are recovered from palm leaf and printed",
+   "class": "COLONIAL",
+   "magnitude": "W",
+   "year": 1883,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "evidence": "U. V. Swaminatha Iyer's own memoir of the search, and the editions themselves.",
+   "year_end": 1930,
+   "corpus": "preserve",
+   "preserve_to": "home",
+   "note": "He went house to house asking whether anyone had old palm leaf. Most of Sangam literature is in print because one man did that for fifty years."
+  },
+  {
+   "id": "EVT.RGN.TAM_JUSTICE_PARTY",
+   "title": "The Justice Party and the first reservation order",
+   "class": "COLONIAL",
+   "magnitude": "M",
+   "year": 1916,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "evidence": "The party's founding manifesto and the Communal Government Order of 1921.",
+   "threads": [
+    "THR.THE_CASTE_QUESTION"
+   ]
+  },
+  {
+   "id": "EVT.RGN.BEN_RICE_DELTA",
+   "title": "Rice and the delta: the eastward shift of the active channels",
+   "class": "AGRICULTURE",
+   "magnitude": "M",
+   "year": -1000,
+   "era": "ERA.EARLY_VEDIC",
+   "provenance": "SOURCED",
+   "certainty": 0.65,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.BENGAL",
+   "dispute": false,
+   "evidence": "The delta's sediment and channel record, and the settlement pattern that follows the live rivers east.",
+   "window": [
+    -1030,
+    -970
+   ],
+   "year_end": 1800,
+   "note": "The Ganga's main flow moves east over two millennia and takes the population with it."
+  },
+  {
+   "id": "EVT.RGN.BEN_WARI_SEQ",
+   "title": "Wari-Bateshwar's fort, roads and Indo-Pacific beads",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": -400,
+   "era": "ERA.SECOND_URBAN",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.BENGAL",
+   "dispute": true,
+   "evidence": "The excavated mud rampart, the metalled road, the silver punch-marked coins and the glass bead workshop.",
+   "window": [
+    -420,
+    -380
+   ],
+   "dispute_scope": "date"
+  },
+  {
+   "id": "EVT.RGN.BEN_GANGARIDAI",
+   "title": "Gangaridai in the Greek and Roman accounts",
+   "class": "TRADE",
+   "magnitude": "M",
+   "year": -300,
+   "era": "ERA.MAURYAN",
+   "provenance": "SOURCED",
+   "certainty": 0.65,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.BENGAL",
+   "dispute": false,
+   "evidence": "Megasthenes via Diodorus, Pliny and Ptolemy, all of whom place a powerful delta kingdom with war elephants.",
+   "window": [
+    -320,
+    -280
+   ]
+  },
+  {
+   "id": "EVT.RGN.BEN_PALA_MANUSCRIPT",
+   "title": "The Pala illuminated palm-leaf manuscripts",
+   "class": "WORK",
+   "magnitude": "M",
+   "year": 1000,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.BENGAL",
+   "dispute": false,
+   "evidence": "The dated Ashtasahasrika Prajnaparamita manuscripts, many now in Nepal and Tibet.",
+   "window": [
+    970,
+    1030
+   ],
+   "year_end": 1200,
+   "corpus": "preserve",
+   "preserve_to": "tibet"
+  },
+  {
+   "id": "EVT.RGN.BEN_MUSLIN",
+   "title": "Dhaka muslin is woven at thread counts nobody has since matched",
+   "class": "TRANSITION",
+   "magnitude": "M",
+   "year": 1500,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.BENGAL",
+   "dispute": false,
+   "evidence": "The surviving pieces, the Mughal and European purchase records, and the nineteenth-century attempts to reproduce it.",
+   "window": [
+    1455,
+    1545
+   ],
+   "year_end": 1800,
+   "note": "The cotton it needed went extinct. The technique went with it."
+  },
+  {
+   "id": "EVT.RGN.BEN_MANGALKAVYA",
+   "title": "The mangalkavya: local goddesses, merchant voyages and Bengali verse",
+   "class": "WORK",
+   "magnitude": "M",
+   "year": 1400,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.BENGAL",
+   "dispute": false,
+   "evidence": "The Chandimangal and Manasamangal corpus and its manuscript tradition.",
+   "window": [
+    1358,
+    1442
+   ],
+   "year_end": 1700
+  },
+  {
+   "id": "EVT.RGN.BEN_NAWABS",
+   "title": "The Bengal nawabs make the province the empire's richest",
+   "class": "FOUNDATION",
+   "magnitude": "M",
+   "year": 1717,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.BENGAL",
+   "dispute": false,
+   "evidence": "The Murshidabad revenue records and the Company's own estimates of Bengal's remittances to Delhi."
+  },
+  {
+   "id": "EVT.RGN.BEN_FORT_WILLIAM",
+   "title": "Fort William College commissions Bengali and Hindustani prose",
+   "class": "COLONIAL",
+   "magnitude": "M",
+   "year": 1800,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.BENGAL",
+   "dispute": false,
+   "evidence": "The College's publication list and the munshis and pandits it employed by name.",
+   "threads": [
+    "THR.THE_WRITING_LADDER"
+   ]
+  },
+  {
+   "id": "EVT.RGN.BEN_JUTE",
+   "title": "Jute becomes Bengal's cash crop and Dundee's raw material",
+   "class": "COLONIAL",
+   "magnitude": "M",
+   "year": 1855,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.BENGAL",
+   "dispute": false,
+   "evidence": "The mill records, the acreage returns, and the price series through both world wars.",
+   "year_end": 1947
+  },
+  {
+   "id": "EVT.RGN.BEN_SCIENCE",
+   "title": "Bose, Ray and Raman: laboratory science in Calcutta",
+   "class": "COLONIAL",
+   "magnitude": "M",
+   "year": 1895,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.BENGAL",
+   "dispute": false,
+   "evidence": "The published papers, the Indian Association for the Cultivation of Science records, and the 1930 Nobel citation.",
+   "year_end": 1930
+  },
+  {
+   "id": "EVT.RGN.BEN_TAMRALIPTA",
+   "title": "Tamralipta is the eastern coast's great port",
+   "class": "TRADE",
+   "magnitude": "M",
+   "year": 50,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.BENGAL",
+   "dispute": false,
+   "evidence": "The Periplus and Ptolemy, Faxian who sailed from it, and the excavated levels at Tamluk.",
+   "window": [
+    30,
+    70
+   ],
+   "year_end": 700,
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ]
+  },
+  {
+   "id": "EVT.RGN.BEN_CHANDRAKETU_PEAK",
+   "title": "Chandraketugarh at its height: terracotta of astonishing quality",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": 100,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.BENGAL",
+   "dispute": false,
+   "evidence": "The excavated levels and the terracotta plaques, whose ships, dress and ornament are documentary in themselves.",
+   "window": [
+    80,
+    120
+   ]
+  },
+  {
+   "id": "EVT.RGN.RAJ_REDH",
+   "title": "Redh: a Kushan-period town with a hoard of three thousand coins",
+   "class": "SITE",
+   "magnitude": "R",
+   "year": 100,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.65,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.RAJASTHAN",
+   "dispute": false,
+   "evidence": "The excavation at Rairh, its iron-working debris, and the punch-marked and Kushan coin hoard.",
+   "window": [
+    80,
+    120
+   ]
+  },
+  {
+   "id": "EVT.RGN.RAJ_MALAVA",
+   "title": "The Malava republic strikes its own coins and dates an era by them",
+   "class": "FRONTIER",
+   "magnitude": "M",
+   "year": -50,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.RAJASTHAN",
+   "dispute": false,
+   "evidence": "The Malava coin series, and the Krita-Malava era used in Rajasthan inscriptions from the first century onward.",
+   "window": [
+    -70,
+    -30
+   ],
+   "note": "A tribal republic whose calendar outlived it by fifteen centuries. It is still the Vikram Samvat."
+  },
+  {
+   "id": "EVT.RGN.RAJ_DESERT_ROUTE",
+   "title": "The desert caravan route links Sindh to the Gangetic plain",
+   "class": "TRADE",
+   "magnitude": "R",
+   "year": 200,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.6,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.RAJASTHAN",
+   "dispute": false,
+   "evidence": "The distribution of Kushan and Gupta coin finds along the Aravalli corridor, and the later Arab geographers' route lists.",
+   "window": [
+    180,
+    220
+   ],
+   "year_end": 900,
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ]
+  }
+ ]
+}

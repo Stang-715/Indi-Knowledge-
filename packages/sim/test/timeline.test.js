@@ -122,7 +122,51 @@ test('no era goes more than twenty minutes of play without an authored event', (
 });
 
 test('the weighting has not drifted back toward the centuries people already know', () => {
+  // The locked figure is playtime, not event count: 82% of the 210 hours before
+  // 1300 (docs/07-timeline.md). That is what the generator asserts and it is
+  // what the player experiences.
+  const hours = TL.eras.reduce((a, e) => a + e.hours, 0);
+  const deep  = TL.eras.filter(e => e.to <= 1300).reduce((a, e) => a + e.hours, 0);
+  assert.equal(hours, 210);
+  assert.ok(deep / hours >= 0.80, `pre-1300 playtime is ${(100 * deep / hours).toFixed(1)}%`);
+
+  // Event count is a weaker floor, and deliberately so. The plan wanted a
+  // 41-event skim for eras 14-16, and separately wanted no era to run more
+  // than twenty minutes without an authored event. Those two rules cannot both
+  // hold: 37 hours at one event per twenty minutes is 111 events minimum. The
+  // density rule wins, because an hour of play with nothing to read is a
+  // defect and a thin skim is only a preference. So the deep past keeps the
+  // clear majority of the events, not the share the first plan projected.
   const pre = TL.events.filter(e => e.year < 1300).length;
-  assert.ok(pre / TL.events.length >= 0.80,
-    `pre-1300 share is ${(100 * pre / TL.events.length).toFixed(1)}%`);
+  assert.ok(pre / TL.events.length >= 0.72,
+    `pre-1300 event share is ${(100 * pre / TL.events.length).toFixed(1)}%`);
+});
+
+test('every regional spine runs to the end of the campaign', () => {
+  const byRegion = new Map();
+  for (const e of TL.events) {
+    if (!e.region) continue;
+    byRegion.set(e.region, Math.max(byRegion.get(e.region) ?? -9999, e.year));
+  }
+  assert.ok(byRegion.size >= 12, 'twelve spines');
+  for (const [r, last] of byRegion)
+    assert.ok(last >= 1850, `${r} stops at ${last}; a player there has a silent century`);
+});
+
+test('no spine goes silent for more than four centuries after 600 BCE', () => {
+  // Before that the regional record genuinely is thin and the subcontinental
+  // feed carries it, which is how a campaign composes its event list
+  // (07-timeline.md, Part 3B). After it, a gap is a hole in the writing.
+  const byRegion = new Map();
+  for (const e of TL.events) {
+    if (!e.region || e.year < -600) continue;
+    if (!byRegion.has(e.region)) byRegion.set(e.region, []);
+    byRegion.get(e.region).push(e.year);
+  }
+  for (const [r, years] of byRegion) {
+    years.sort((a, b) => a - b);
+    for (let i = 1; i < years.length; i++)
+      assert.ok(years[i] - years[i - 1] <= 400,
+        `${r}: nothing between ${years[i - 1]} and ${years[i]}`);
+  }
 });

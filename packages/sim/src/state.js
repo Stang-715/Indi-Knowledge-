@@ -118,7 +118,13 @@ export function effectivePillar(state, pillar) {
 export function bumpPillar(state, pillar, delta) {
   if (!(pillar in state.pillars)) return;
   const v = state.pillars[pillar];
-  const scaled = delta > 0 ? delta * (1 - v / 100) : delta * (v / 100);
+  // Squared, not linear. With linear headroom a pillar still crept to 99.6 by
+  // the eighteenth century once the timeline passed fourteen hundred events,
+  // and 99.6 is pegged as far as the player is concerned. Squaring makes the
+  // last few points genuinely expensive, which is what a maxed-out pillar
+  // should feel like.
+  const h = delta > 0 ? (1 - v / 100) : (v / 100);
+  const scaled = delta * h * h;
   state.pillars[pillar] = Math.max(0, Math.min(100, v + scaled));
 }
 
