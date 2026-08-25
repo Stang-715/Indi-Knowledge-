@@ -231,6 +231,23 @@ function tickEconomy(state, span) {
     state.underfed = 0;
   }
 
+  // Refilling the seats left by teachers sent abroad. A generation, and only
+  // out of surplus: a house living hand to mouth does not train a replacement.
+  if ((state.vacancies ?? 0) > 0 && state.grain >= buffer) {
+    state.vacancyAge = (state.vacancyAge ?? 0) + span;
+    if (state.vacancyAge >= 25) {
+      state.vacancyAge = 0;
+      // A house backfills in parallel, not one seat at a time. Twenty-five
+      // teachers sent in a generation still costs about a century to recover.
+      const filled = Math.max(1, Math.ceil(state.vacancies / 3));
+      state.vacancies -= filled;
+      state.pops.scribes += filled;
+      record(state, state.year, 'succession',
+        `${filled} student${filled === 1 ? ' takes a seat' : 's take seats'} left empty ` +
+        'by teachers who went abroad.');
+    }
+  }
+
   if (state.grain < 0) {
     // Starvation falls first on the people who do not grow food.
     const shortfall = -state.grain;

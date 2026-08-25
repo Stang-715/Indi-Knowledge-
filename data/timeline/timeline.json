@@ -366,6 +366,28 @@
    ]
   },
   {
+   "id": "EVT.WRK.ROCK_ART",
+   "title": "The Bhimbetka painters are already at work when the game opens",
+   "class": "WORK",
+   "magnitude": "M",
+   "year": -6000,
+   "era": "ERA.EARLY_NEOLITHIC",
+   "provenance": "SOURCED",
+   "certainty": 0.6,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Some seven hundred painted shelters in the Vindhyan sandstone, in superimposed layers; the earliest are far older than this date and the tradition runs on into the historic period.",
+   "window": [
+    -6000,
+    -5800
+   ],
+   "year_end": -1000,
+   "work": "WRK.ROCK_ART",
+   "note": "The oldest thing in the corpus does not begin during the campaign. It is inherited."
+  },
+  {
    "id": "EVT.M5950.BITUMEN_LINED_BASKETS_THE_FIRST_WATERPROOF_C",
    "title": "Bitumen-lined baskets; the first waterproof containers",
    "provenance": "DERIVED",
@@ -1493,6 +1515,28 @@
    "region": null,
    "dispute": true,
    "dispute_scope": "date"
+  },
+  {
+   "id": "EVT.WRK.ORAL_FOLK",
+   "title": "The village story cycles begin to be told",
+   "class": "WORK",
+   "magnitude": "W",
+   "year": -4000,
+   "era": "ERA.LATE_NEOLITHIC",
+   "provenance": "SOURCED",
+   "certainty": 0.3,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "None, and that is the point: no text survives, only the ethnographic and comparative evidence that such cycles are always there.",
+   "window": [
+    -4500,
+    -3000
+   ],
+   "year_end": -1500,
+   "work": "WRK.ORAL_FOLK",
+   "note": "The game's first corpus entry is one that cannot be read. It is still an economy."
   },
   {
    "id": "EVT.M3950.ANARTA_TRADITION_IN_NORTHERN_GUJARAT",
@@ -6602,6 +6646,49 @@
    ]
   },
   {
+   "id": "EVT.WRK.BRIHADARANYAKA",
+   "title": "The Brihadaranyaka: Yajnavalkya argues and then walks away",
+   "class": "WORK",
+   "magnitude": "W",
+   "year": -750,
+   "era": "ERA.LATE_VEDIC",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The text itself within the Shatapatha Brahmana's recension, and the linguistic stratum of its Sanskrit.",
+   "window": [
+    -790,
+    -710
+   ],
+   "year_end": -600,
+   "work": "WRK.BRIHADARANYAKA",
+   "note": "It contains a woman, Gargi, asking the question nobody else in the room will ask."
+  },
+  {
+   "id": "EVT.WRK.CHANDOGYA",
+   "title": "The Chandogya: tat tvam asi, argued through eleven examples",
+   "class": "WORK",
+   "magnitude": "W",
+   "year": -750,
+   "era": "ERA.LATE_VEDIC",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The text as transmitted in the Samavedic shakhas, and its citation by later commentators.",
+   "window": [
+    -790,
+    -710
+   ],
+   "year_end": -600,
+   "work": "WRK.CHANDOGYA"
+  },
+  {
    "id": "EVT.M745.UDDALAKA_ARUNI_TAT_TVAM_ASI_IN_THE_CHANDOGYA",
    "title": "Uddalaka Aruni; tat tvam asi in the Chandogya",
    "provenance": "DERIVED",
@@ -7281,6 +7368,27 @@
     -542
    ],
    "note": "A republic that fortified itself is a republic that expected a siege."
+  },
+  {
+   "id": "EVT.WRK.NIRUKTA",
+   "title": "Yaska's Nirukta: the first etymological science",
+   "class": "WORK",
+   "magnitude": "W",
+   "year": -550,
+   "era": "ERA.SECOND_URBAN",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The text itself, which quotes and disputes earlier etymologists by name — so it is not the first attempt, only the first to survive.",
+   "window": [
+    -590,
+    -510
+   ],
+   "year_end": -500,
+   "work": "WRK.NIRUKTA"
   },
   {
    "id": "EVT.M545.BIMBISARA_MAGADHAN_EXPANSION_BEGINS",
@@ -7989,6 +8097,27 @@
    ]
   },
   {
+   "id": "EVT.WRK.KATHA_UP",
+   "title": "The Katha Upanishad: a boy questions Death and is answered",
+   "class": "WORK",
+   "magnitude": "M",
+   "year": -400,
+   "era": "ERA.SECOND_URBAN",
+   "provenance": "SOURCED",
+   "certainty": 0.65,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The text's language, which is later than the prose Upanishads, and its verse form.",
+   "window": [
+    -440,
+    -360
+   ],
+   "year_end": -300,
+   "work": "WRK.KATHA_UP"
+  },
+  {
    "id": "EVT.M390.VINAYA_RULES_CODIFIED_MONASTIC_PROPERTY_BECO",
    "title": "Vinaya rules codified; monastic property becomes a question",
    "provenance": "DERIVED",
@@ -8610,6 +8739,50 @@
     -304,
     -296
    ]
+  },
+  {
+   "id": "EVT.WRK.JAIN_AGAMAS",
+   "title": "The Jain Agamas are carried orally through famine and schism",
+   "class": "WORK",
+   "magnitude": "W",
+   "year": -300,
+   "era": "ERA.MAURYAN",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": true,
+   "evidence": "The Svetambara canon as fixed at Valabhi, and the Digambara position that the original canon was already lost.",
+   "window": [
+    -340,
+    -260
+   ],
+   "year_end": 500,
+   "work": "WRK.JAIN_AGAMAS",
+   "dispute_scope": "occurrence"
+  },
+  {
+   "id": "EVT.WRK.SUSHRUTA",
+   "title": "The Sushruta Samhita: surgery, and a hundred and twenty-one instruments",
+   "class": "WORK",
+   "magnitude": "W",
+   "year": -300,
+   "era": "ERA.MAURYAN",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The text with its later Nagarjuna redaction, and the Bower manuscript fragments.",
+   "window": [
+    -340,
+    -260
+   ],
+   "year_end": 500,
+   "work": "WRK.SUSHRUTA",
+   "note": "Describes rhinoplasty using a forehead flap. The technique reached Europe in 1794 via a report from Pune."
   },
   {
    "id": "EVT.M298.CHANDRAGUPTA_ABDICATES_THE_JAIN_TRADITION_AT",
@@ -9306,6 +9479,71 @@
    "year_end": 200
   },
   {
+   "id": "EVT.WRK.CHANDAHSHASTRA",
+   "title": "Pingala's Chandahshastra: metre, and binary numbers on the way",
+   "class": "WORK",
+   "magnitude": "W",
+   "year": -250,
+   "era": "ERA.MAURYAN",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The sutras themselves, whose enumeration of metrical patterns uses a positional binary scheme and the Fibonacci sequence.",
+   "window": [
+    -290,
+    -210
+   ],
+   "year_end": -200,
+   "work": "WRK.CHANDAHSHASTRA",
+   "note": "Written to classify poetic metres. Contains binary arithmetic as a side effect."
+  },
+  {
+   "id": "EVT.WRK.DHAMMAPADA",
+   "title": "The Dhammapada is fixed as a verse anthology",
+   "class": "WORK",
+   "magnitude": "W",
+   "year": -250,
+   "era": "ERA.MAURYAN",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Pali recension, the Gandhari version found in Khotan, and Chinese and Sanskrit parallels.",
+   "window": [
+    -290,
+    -210
+   ],
+   "year_end": -200,
+   "work": "WRK.DHAMMAPADA"
+  },
+  {
+   "id": "EVT.WRK.JATAKA",
+   "title": "The Jataka stories are collected around the verses",
+   "class": "WORK",
+   "magnitude": "W",
+   "year": -250,
+   "era": "ERA.MAURYAN",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Pali verses in the canon with their prose frames, and the same stories carved on the Bharhut and Sanchi railings.",
+   "window": [
+    -290,
+    -210
+   ],
+   "year_end": 200,
+   "work": "WRK.JATAKA",
+   "note": "Carved on a stupa railing before they were written down. Stone can be a manuscript."
+  },
+  {
    "id": "EVT.M240.MAHINDA_TO_SRI_LANKA_THE_PALI_CANON_LEAVES_T",
    "title": "Mahinda to Sri Lanka; the Pali canon leaves the mainland",
    "provenance": "DERIVED",
@@ -9560,6 +9798,27 @@
     -205,
     -195
    ]
+  },
+  {
+   "id": "EVT.WRK.SANGAM_ANTH",
+   "title": "The Sangam anthologies are assembled",
+   "class": "WORK",
+   "magnitude": "W",
+   "year": -200,
+   "era": "ERA.MAURYAN",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "evidence": "The eight anthologies and ten songs themselves, with their colophons naming poets and patrons.",
+   "window": [
+    -240,
+    -160
+   ],
+   "year_end": 300,
+   "work": "WRK.SANGAM"
   },
   {
    "id": "EVT.M185.PUSHYAMITRA_S_COUP_ENDS_THE_MAURYAS",
@@ -10081,6 +10340,70 @@
    ]
   },
   {
+   "id": "EVT.WRK.GITA",
+   "title": "The Bhagavad Gita is set into the Mahabharata",
+   "class": "WORK",
+   "magnitude": "W",
+   "year": -100,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Its position within the Bhishma Parva, and the linguistic and doctrinal layers that mark it as an insertion.",
+   "window": [
+    -140,
+    -60
+   ],
+   "year_end": 200,
+   "work": "WRK.GITA"
+  },
+  {
+   "id": "EVT.WRK.MANUSMRITI",
+   "title": "The Manusmriti is compiled",
+   "class": "WORK",
+   "magnitude": "W",
+   "year": -100,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The text's metrical and doctrinal layers, and its citation by later dharmashastra commentators.",
+   "window": [
+    -140,
+    -60
+   ],
+   "year_end": 200,
+   "work": "WRK.MANUSMRITI",
+   "note": "A prescriptive text, not a description of how anyone lived. The game should never confuse the two."
+  },
+  {
+   "id": "EVT.WRK.NATYASHASTRA",
+   "title": "Bharata's Natyashastra: theatre, dance, music and rasa in one treatise",
+   "class": "WORK",
+   "magnitude": "W",
+   "year": -100,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The surviving recensions and Abhinavagupta's tenth-century commentary, which preserves readings now lost.",
+   "window": [
+    -140,
+    -60
+   ],
+   "year_end": 200,
+   "work": "WRK.NATYASHASTRA"
+  },
+  {
    "id": "EVT.M90.SAKA_INDO_SCYTHIAN_INCURSIONS",
    "title": "Saka (Indo-Scythian) incursions",
    "provenance": "DERIVED",
@@ -10417,6 +10740,27 @@
     46,
     54
    ]
+  },
+  {
+   "id": "EVT.WRK.CHARAKA",
+   "title": "The Charaka Samhita takes its surviving form",
+   "class": "WORK",
+   "magnitude": "W",
+   "year": 50,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The text as redacted by Dridhabala, and the Bower manuscript's parallel passages.",
+   "window": [
+    10,
+    90
+   ],
+   "year_end": 200,
+   "work": "WRK.CHARAKA"
   },
   {
    "id": "EVT.52.THOMAS_TRADITION_THE_MALABAR_CHRISTIAN_COMMU",
@@ -11339,6 +11683,27 @@
    "note": "The only ancient Indian literature that treats the hills as a place with its own life rather than as a margin."
   },
   {
+   "id": "EVT.WRK.MULAMADHYAMAKA",
+   "title": "Nagarjuna's Mulamadhyamakakarika",
+   "class": "WORK",
+   "magnitude": "W",
+   "year": 200,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Sanskrit verses preserved in Chandrakirti's commentary, and Tibetan and Chinese translations.",
+   "window": [
+    160,
+    240
+   ],
+   "year_end": 250,
+   "work": "WRK.MULAMADHYAMAKA"
+  },
+  {
    "id": "EVT.225.IKSHVAKUS_AT_NAGARJUNAKONDA",
    "title": "Ikshvakus at Nagarjunakonda",
    "provenance": "DERIVED",
@@ -11478,6 +11843,27 @@
    ]
   },
   {
+   "id": "EVT.WRK.KAMASUTRA",
+   "title": "Vatsyayana's Kamasutra sets out the sixty-four arts",
+   "class": "WORK",
+   "magnitude": "M",
+   "year": 250,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The text and Yashodhara's thirteenth-century commentary.",
+   "window": [
+    210,
+    290
+   ],
+   "year_end": 300,
+   "work": "WRK.KAMASUTRA"
+  },
+  {
    "id": "EVT.300.BANAVASI_UNDER_THE_CHUTUS",
    "title": "Banavasi under the Chutus",
    "provenance": "DERIVED",
@@ -11614,6 +12000,28 @@
    "region": null,
    "dispute": false,
    "evidence": "Later inscriptions and chronicles refer back to established polities; the earlier centuries are not documented."
+  },
+  {
+   "id": "EVT.WRK.TATTVARTHA",
+   "title": "Umaswati's Tattvartha Sutra, accepted by both Jain sects",
+   "class": "WORK",
+   "magnitude": "W",
+   "year": 300,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The sutra text, which Digambara and Svetambara traditions both transmit with their own commentaries.",
+   "window": [
+    260,
+    340
+   ],
+   "year_end": 400,
+   "work": "WRK.TATTVARTHA",
+   "note": "One text both halves of a schism agree on. There are not many."
   },
   {
    "id": "EVT.320.GUPTA_FOUNDATION",
@@ -11785,6 +12193,27 @@
    ]
   },
   {
+   "id": "EVT.WRK.MRICHCHHAKATIKA",
+   "title": "Shudraka's Mrichchhakatika: a play about a poor merchant and a courtesan",
+   "class": "WORK",
+   "magnitude": "M",
+   "year": 350,
+   "era": "ERA.GUPTA",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The text, whose prakrits and stagecraft place it early in the surviving drama.",
+   "window": [
+    310,
+    390
+   ],
+   "year_end": 500,
+   "work": "WRK.MRICHCHHAKATIKA"
+  },
+  {
    "id": "EVT.360.THE_AGRAHARA_AND_BRAHMADEYA_KNOWLEDGE_ACQUIR",
    "title": "The agrahara and brahmadeya: knowledge acquires an endowment",
    "provenance": "DERIVED",
@@ -11838,6 +12267,28 @@
     371,
     379
    ]
+  },
+  {
+   "id": "EVT.WRK.ABHIDHARMAKOSHA",
+   "title": "Vasubandhu's Abhidharmakosha and its own commentary",
+   "class": "WORK",
+   "magnitude": "W",
+   "year": 375,
+   "era": "ERA.GUPTA",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The verses and bhasya, lost in Sanskrit for centuries and recovered from a Tibetan monastery in 1935.",
+   "window": [
+    335,
+    415
+   ],
+   "year_end": 400,
+   "work": "WRK.ABHIDHARMAKOSHA",
+   "note": "Rahul Sankrityayan photographed the palm leaf in Tibet. The Sanskrit came home on film."
   },
   {
    "id": "EVT.380.ABHIJNANASHAKUNTALAM_MEGHADUTA_RAGHUVAMSHA",
@@ -12346,6 +12797,25 @@
    "window": [
     446,
     454
+   ]
+  },
+  {
+   "id": "EVT.WRK.SHABARA",
+   "title": "Shabara's commentary on the Mimamsa Sutras",
+   "class": "WORK",
+   "magnitude": "M",
+   "year": 450,
+   "era": "ERA.GUPTA",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The bhasya, which is the base text for every later Mimamsa argument about how a sentence means anything.",
+   "window": [
+    410,
+    490
    ]
   },
   {
@@ -13296,6 +13766,25 @@
    "dispute": false
   },
   {
+   "id": "EVT.WRK.BHASKARA_COMMENT",
+   "title": "Bhaskara I writes the earliest surviving prose commentary on Aryabhata",
+   "class": "WORK",
+   "magnitude": "M",
+   "year": 629,
+   "era": "ERA.GUPTA",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The commentary, the earliest surviving Sanskrit prose on mathematics, dated by its own examples.",
+   "window": [
+    589,
+    669
+   ]
+  },
+  {
    "id": "EVT.630.MAHENDRAVARMAN_S_MATTAVILASA_PRAHASANA_A_SAT",
    "title": "Mahendravarman's Mattavilasa Prahasana — a satire by a king",
    "provenance": "DERIVED",
@@ -13334,6 +13823,27 @@
     617,
     643
    ]
+  },
+  {
+   "id": "EVT.WRK.PRAMANAVARTTIKA",
+   "title": "Dharmakirti's Pramanavarttika: logic pushed to its edge",
+   "class": "WORK",
+   "magnitude": "W",
+   "year": 630,
+   "era": "ERA.GUPTA",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Sanskrit text and its Tibetan commentarial tradition, which is still taught.",
+   "window": [
+    590,
+    670
+   ],
+   "year_end": 660,
+   "work": "WRK.PRAMANAVARTTIKA"
   },
   {
    "id": "EVT.634.THE_AIHOLE_INSCRIPTION_OF_RAVIKIRTI",
@@ -13818,6 +14328,49 @@
    "dispute": false,
    "evidence": "None contemporary. The cycles were collected in the nineteenth and twentieth centuries and are demonstrably old, and nothing in the ancient record mentions them.",
    "note": "An ABSENT event. The game marks the gap rather than filling it, because a corpus that only counts what was written down tells the same lie the record does."
+  },
+  {
+   "id": "EVT.WRK.DIVYAPRABANDHAM_COMP",
+   "title": "The Alvars compose the four thousand",
+   "class": "WORK",
+   "magnitude": "W",
+   "year": 700,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "evidence": "The hymns, and the temple inscriptions that endow their recitation.",
+   "window": [
+    660,
+    740
+   ],
+   "year_end": 900,
+   "work": "WRK.DIVYAPRABANDHAM"
+  },
+  {
+   "id": "EVT.WRK.KRISHIPARASHARA",
+   "title": "The Krishi-Parashara: rainfall measured, oxen costed, seed treated",
+   "class": "WORK",
+   "magnitude": "M",
+   "year": 700,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The text itself, which gives rain-gauge measurements by nakshatra and the cost of maintaining a plough team.",
+   "window": [
+    660,
+    740
+   ],
+   "year_end": 900,
+   "work": "WRK.KRISHIPARASHARA",
+   "note": "An agricultural manual that tells you what a pair of oxen costs to keep. The economy, written down."
   },
   {
    "id": "EVT.712.ARAB_CONQUEST_OF_SINDH_MUHAMMAD_BIN_QASIM",
@@ -14802,6 +15355,26 @@
    ]
   },
   {
+   "id": "EVT.WRK.SHANKARA_BHASYA",
+   "title": "Shankara's commentaries on the Upanishads, the Gita and the Brahma Sutras",
+   "class": "WORK",
+   "magnitude": "W",
+   "year": 800,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The bhasyas themselves, and the fact that later schools define themselves by disagreeing with them.",
+   "window": [
+    760,
+    840
+   ],
+   "note": "A commentary can be more read than what it comments on. This is how an endowment keeps paying."
+  },
+  {
    "id": "EVT.810.BHAVABHUTI_AND_THE_MATURE_SANSKRIT_STAGE",
    "title": "Bhavabhuti and the mature Sanskrit stage",
    "provenance": "DERIVED",
@@ -15011,6 +15584,44 @@
    "dispute": false
   },
   {
+   "id": "EVT.WRK.GANITASARA",
+   "title": "Mahavira's Ganita Sara Sangraha, written for the Rashtrakuta court",
+   "class": "WORK",
+   "magnitude": "W",
+   "year": 850,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "evidence": "The text, which states that a number divided by zero remains unchanged — and is wrong, and says it plainly.",
+   "work": "WRK.GANITASARA",
+   "note": "The first Indian text purely on mathematics, with no astronomy attached."
+  },
+  {
+   "id": "EVT.WRK.RASARATNAKARA",
+   "title": "The Rasaratnakara and the alchemical turn in medicine",
+   "class": "WORK",
+   "magnitude": "M",
+   "year": 850,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.65,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The surviving text, attributed to a Nagarjuna who is not the philosopher.",
+   "window": [
+    810,
+    890
+   ],
+   "year_end": 1000,
+   "work": "WRK.RASARATNAKARA"
+  },
+  {
    "id": "EVT.855.AVANTIVARMAN_SUYYA_S_ENGINEERING_DRAINS_THE_",
    "title": "Avantivarman; Suyya's engineering drains the Jhelum floods",
    "provenance": "DERIVED",
@@ -15191,6 +15802,25 @@
    ],
    "corpus": "destroy",
    "severity": 0.034
+  },
+  {
+   "id": "EVT.WRK.KESHAVA_JAIN_COMMENT",
+   "title": "Jain commentators fix the Prakrit canon with Sanskrit glosses",
+   "class": "WORK",
+   "magnitude": "R",
+   "year": 900,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The churni and tika layers on the Agamas, which record variant readings the base text had already lost.",
+   "window": [
+    860,
+    940
+   ]
   },
   {
    "id": "EVT.907.PARANTAKA_I_THE_PANDYAS_DEFEATED_AT_VELLUR",
@@ -15432,6 +16062,47 @@
    "dispute": false,
    "evidence": "Speleothem records from Dandak and Jhumar caves and from Sahiya, showing sustained high rainfall.",
    "note": "It coincides exactly with the Chola tank-building programme and the peak of the temple economy. Which caused which is not settled."
+  },
+  {
+   "id": "EVT.WRK.VACHASPATI",
+   "title": "Vachaspati Mishra writes on every school, including ones he does not hold",
+   "class": "WORK",
+   "magnitude": "M",
+   "year": 950,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Commentaries surviving on Nyaya, Samkhya, Yoga, Mimamsa and Vedanta, by one hand.",
+   "window": [
+    910,
+    990
+   ],
+   "note": "He explained his opponents' systems well enough that his opponents used his explanations."
+  },
+  {
+   "id": "EVT.WRK.VRIKSHAYURVEDA",
+   "title": "Surapala's Vrikshayurveda: the science of trees",
+   "class": "WORK",
+   "magnitude": "M",
+   "year": 950,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "A single manuscript in the Bodleian, edited only in the twentieth century.",
+   "window": [
+    910,
+    990
+   ],
+   "year_end": 1000,
+   "work": "WRK.VRIKSHAYURVEDA"
   },
   {
    "id": "EVT.960.TEMPLE_TREASURIES_BEGIN_LENDING_AT_INTEREST_",
@@ -15864,6 +16535,68 @@
    ]
   },
   {
+   "id": "EVT.WRK.ABHINAVA_COMMENTARY",
+   "title": "Abhinavagupta's Abhinavabharati preserves a Natyashastra now lost",
+   "class": "WORK",
+   "magnitude": "W",
+   "year": 1000,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KASHMIR",
+   "dispute": false,
+   "evidence": "The commentary, which quotes readings and whole earlier commentators that survive nowhere else.",
+   "window": [
+    960,
+    1040
+   ],
+   "note": "We read the Natyashastra partly through a man who was reading a better copy."
+  },
+  {
+   "id": "EVT.WRK.HITOPADESHA",
+   "title": "Narayana's Hitopadesha reworks the Panchatantra",
+   "class": "WORK",
+   "magnitude": "M",
+   "year": 1000,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The text, which names its source, and the manuscript tradition from Bengal.",
+   "window": [
+    960,
+    1040
+   ],
+   "year_end": 1200,
+   "work": "WRK.HITOPADESHA"
+  },
+  {
+   "id": "EVT.WRK.MAYAMATA",
+   "title": "The Mayamata codifies the southern building canon",
+   "class": "WORK",
+   "magnitude": "M",
+   "year": 1000,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "evidence": "The text, and its correspondence with what the Chola temples actually do.",
+   "window": [
+    960,
+    1040
+   ],
+   "year_end": 1100,
+   "work": "WRK.MAYAMATA"
+  },
+  {
    "id": "EVT.1005.THE_KERALA_AND_PANDYA_CAMPAIGNS",
    "title": "The Kerala and Pandya campaigns",
    "provenance": "DERIVED",
@@ -16146,6 +16879,23 @@
    ]
   },
   {
+   "id": "EVT.WRK.TARIKH_AL_HIND",
+   "title": "Al-Biruni finishes the Tarikh al-Hind",
+   "class": "WORK",
+   "magnitude": "W",
+   "year": 1030,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Arabic text, which states its own date and its method: learn the language, read the sources, report the disagreements.",
+   "work": "WRK.TARIKH_AL_HIND",
+   "note": "He learned Sanskrit to write it, and said outright where he thought his own sources were unreliable."
+  },
+  {
    "id": "EVT.1031.THE_DILWARA_TEMPLES_AT_MOUNT_ABU",
    "title": "The Dilwara temples at Mount Abu",
    "provenance": "SOURCED",
@@ -16225,6 +16975,27 @@
    "preserve_to": "tibet"
   },
   {
+   "id": "EVT.WRK.SAMARANGANA",
+   "title": "Bhoja's Samarangana Sutradhara: architecture, and machines",
+   "class": "WORK",
+   "magnitude": "M",
+   "year": 1045,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The text, with its chapters on town planning, temple form and yantra.",
+   "window": [
+    1005,
+    1085
+   ],
+   "year_end": 1055,
+   "work": "WRK.SAMARANGANA"
+  },
+  {
    "id": "EVT.1050.GANGAIKONDACHOLAPURAM_TEMPLE_COMPLETED",
    "title": "Gangaikondacholapuram temple completed",
    "provenance": "DERIVED",
@@ -16282,6 +17053,27 @@
    "region": "RGN.TAMILAKAM",
    "dispute": false,
    "evidence": "Inferred from repair endowments in temple inscriptions rather than from a flood record. Generated to stand for a class of event the inscriptions imply and do not date."
+  },
+  {
+   "id": "EVT.WRK.VETALA",
+   "title": "The Vetala Panchavimshati: twenty-five riddles told by a corpse",
+   "class": "WORK",
+   "magnitude": "M",
+   "year": 1050,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The versions embedded in the Kathasaritsagara and the Brihatkathamanjari.",
+   "window": [
+    1010,
+    1090
+   ],
+   "year_end": 1100,
+   "work": "WRK.VETALA"
   },
   {
    "id": "EVT.1060.THE_AYYAVOLE_GUILD_OPERATES_FROM_JAVA_TO_THE",
@@ -16670,6 +17462,25 @@
    ]
   },
   {
+   "id": "EVT.WRK.RAMANUJA_BHASYA",
+   "title": "Ramanuja's Sribhasya answers Shankara",
+   "class": "WORK",
+   "magnitude": "W",
+   "year": 1120,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "evidence": "The text, and the Srirangam temple's inscriptions recording its teaching.",
+   "window": [
+    1080,
+    1160
+   ]
+  },
+  {
    "id": "EVT.1130.BASAVA_AND_THE_SHARANAS_THE_ANUBHAVA_MANTAPA",
    "title": "Basava and the Sharanas; the Anubhava Mantapa",
    "provenance": "DERIVED",
@@ -16748,6 +17559,26 @@
     1117,
     1163
    ]
+  },
+  {
+   "id": "EVT.WRK.HEMACHANDRA_GRAMMAR",
+   "title": "Hemachandra's Siddha-Hema: a grammar for six languages at once",
+   "class": "WORK",
+   "magnitude": "W",
+   "year": 1140,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.GUJARAT",
+   "dispute": false,
+   "evidence": "The text, commissioned by Jayasimha Siddharaja and carried through Gujarat on an elephant.",
+   "window": [
+    1100,
+    1180
+   ],
+   "note": "A grammar given a public procession. Somebody thought language was worth a parade."
   },
   {
    "id": "EVT.1148.KALHANA_S_RAJATARANGINI",
@@ -16965,6 +17796,28 @@
    "region": "RGN.TAMILAKAM",
    "dispute": false,
    "evidence": "Tank sediment profiles, and the rising frequency of desilting endowments in the inscriptions."
+  },
+  {
+   "id": "EVT.WRK.VACHANAS_COMP",
+   "title": "The Sharanas compose vachanas in spoken Kannada",
+   "class": "WORK",
+   "magnitude": "W",
+   "year": 1150,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "evidence": "The vachana corpus itself, signed with each author's ankita, and the trades its authors name as their own.",
+   "window": [
+    1110,
+    1190
+   ],
+   "year_end": 1200,
+   "work": "WRK.VACHANAS",
+   "note": "Written by washerwomen, cobblers, boatmen and ferrymen. Signed. In their own language."
   },
   {
    "id": "EVT.CLI.SRI_LANKA_TANKS",
@@ -17392,6 +18245,27 @@
    ]
   },
   {
+   "id": "EVT.WRK.SUKASAPTATI",
+   "title": "The Sukasaptati: seventy tales told by a parrot to delay a wife",
+   "class": "WORK",
+   "magnitude": "R",
+   "year": 1200,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Sanskrit recensions, and the Persian Tutinama that derives from them.",
+   "window": [
+    1160,
+    1240
+   ],
+   "year_end": 1300,
+   "work": "WRK.SUKASAPTATI"
+  },
+  {
    "id": "EVT.1204.BAKHTIYAR_KHALJI_TAKES_NADIA",
    "title": "Bakhtiyar Khalji takes Nadia",
    "provenance": "SOURCED",
@@ -17494,6 +18368,24 @@
    "scope": "regional",
    "region": "RGN.ASSAM",
    "dispute": false
+  },
+  {
+   "id": "EVT.WRK.SANGITARATNAKARA",
+   "title": "Sharngadeva's Sangita Ratnakara, written at Devagiri",
+   "class": "WORK",
+   "magnitude": "W",
+   "year": 1230,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false,
+   "evidence": "The text, which both the Hindustani and Carnatic traditions treat as the last common authority.",
+   "year_end": 1247,
+   "work": "WRK.SANGITARATNAKARA",
+   "note": "Written just before the traditions parted. Both still cite it."
   },
   {
    "id": "EVT.1250.KONARK_THE_SUN_TEMPLE_AS_A_STONE_CHARIOT",
@@ -17689,6 +18581,23 @@
     1264,
     1316
    ]
+  },
+  {
+   "id": "EVT.WRK.KHUSRAU_DIVANS",
+   "title": "Amir Khusrau writes in Persian and in Hindavi",
+   "class": "WORK",
+   "magnitude": "W",
+   "year": 1290,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The five divans, the Khamsa, and the Hindavi verses attributed to him.",
+   "year_end": 1325,
+   "work": "WRK.KHUSRAU"
   },
   {
    "id": "EVT.1296.ALAUDDIN_S_MARKET_CONTROLS",
@@ -18043,6 +18952,45 @@
    "dispute": false
   },
   {
+   "id": "EVT.WRK.MADHAVA_SAYANA",
+   "title": "Sayana's commentary on the whole Rigveda, at the Vijayanagara court",
+   "class": "WORK",
+   "magnitude": "W",
+   "year": 1370,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "evidence": "The bhasya, undertaken with state support, and the colophons naming the patron.",
+   "window": [
+    1330,
+    1410
+   ],
+   "note": "A state paying for a complete commentary on a three-thousand-year-old text. That is the knowledge economy at full stretch."
+  },
+  {
+   "id": "EVT.WRK.MALLINATHA",
+   "title": "Mallinatha's commentaries fix how the kavya is read",
+   "class": "WORK",
+   "magnitude": "M",
+   "year": 1380,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The commentaries on Kalidasa, Bharavi, Magha and Sri Harsha, which every later edition follows.",
+   "window": [
+    1340,
+    1420
+   ]
+  },
+  {
    "id": "EVT.CLI.DURGA_DEVI",
    "title": "The Durga Devi famine empties the Deccan",
    "class": "CLIMATE",
@@ -18349,6 +19297,28 @@
    "dispute": false
   },
   {
+   "id": "EVT.WRK.KABIR_DOHAS",
+   "title": "Kabir's dohas circulate before anyone writes them down",
+   "class": "WORK",
+   "magnitude": "W",
+   "year": 1470,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Three separate written traditions — the Bijak, the Guru Granth Sahib and the Rajasthani manuscripts — which do not agree.",
+   "window": [
+    1430,
+    1510
+   ],
+   "year_end": 1518,
+   "work": "WRK.KABIR",
+   "note": "Three recensions that disagree is what an oral corpus looks like when it finally hits paper."
+  },
+  {
    "id": "EVT.SIT.CHAMPANER",
    "title": "Champaner is built below Pavagadh as a Gujarat capital",
    "class": "SITE",
@@ -18435,6 +19405,22 @@
    "evidence": "Teak in Indian Ocean shipbuilding and in Portuguese and Dutch procurement records."
   },
   {
+   "id": "EVT.WRK.TANTRASANGRAHA",
+   "title": "Nilakantha's Tantrasangraha",
+   "class": "WORK",
+   "magnitude": "W",
+   "year": 1501,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.KERALA",
+   "dispute": false,
+   "evidence": "The text, dated by its own chronogram to 1501, with the series expansions of the Kerala school.",
+   "work": "WRK.TANTRASANGRAHA"
+  },
+  {
    "id": "EVT.CAT.QUAKE_1505",
    "title": "An earthquake destroys towns across the Himalayan front",
    "class": "CATASTROPHE",
@@ -18492,6 +19478,24 @@
    "becomes": "nothing"
   },
   {
+   "id": "EVT.WRK.BABURNAMA",
+   "title": "Babur writes the Baburnama in Chagatai",
+   "class": "WORK",
+   "magnitude": "W",
+   "year": 1528,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Chagatai text, with its gaps, its botany and its account of the author's own failures.",
+   "year_end": 1530,
+   "work": "WRK.BABURNAMA",
+   "note": "An emperor's memoir that records losing. It also catalogues the fruit."
+  },
+  {
    "id": "EVT.SIT.LEPAKSHI",
    "title": "Lepakshi's murals are painted on a Vijayanagara ceiling",
    "class": "SITE",
@@ -18509,6 +19513,23 @@
     1515,
     1545
    ]
+  },
+  {
+   "id": "EVT.WRK.YUKTIBHASHA",
+   "title": "Jyesthadeva's Yuktibhasha: the proofs, in Malayalam",
+   "class": "WORK",
+   "magnitude": "W",
+   "year": 1530,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.KERALA",
+   "dispute": false,
+   "evidence": "The text, which gives demonstrations rather than results — and is written in the spoken language, not Sanskrit.",
+   "work": "WRK.YUKTIBHASHA",
+   "note": "Calculus results with proofs, in a regional language, a century before Newton."
   },
   {
    "id": "EVT.1540.SHER_SHAH_THE_RUPIYA_THE_GRAND_TRUNK_ROAD_RE",
@@ -18578,6 +19599,23 @@
    "dispute": false,
    "evidence": "The complete surviving city, and the Mughal chronicles that record its abandonment.",
    "note": "A capital built from nothing and empty in a generation, most likely for want of water."
+  },
+  {
+   "id": "EVT.WRK.RAMCHARITMANAS",
+   "title": "Tulsidas writes the Ramcharitmanas in Awadhi",
+   "class": "WORK",
+   "magnitude": "W",
+   "year": 1574,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The text, which dates its own beginning, and the manuscript tradition from Varanasi.",
+   "year_end": 1576,
+   "work": "WRK.RAMCHARITMANAS"
   },
   {
    "id": "EVT.FRT.MUGHAL_HUNT",
@@ -18743,6 +19781,24 @@
    "dispute": false
   },
   {
+   "id": "EVT.WRK.GURU_GRANTH_COMPILE",
+   "title": "The Adi Granth is compiled, and later sealed as the Guru",
+   "class": "WORK",
+   "magnitude": "W",
+   "year": 1604,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 1,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Kartarpur manuscript, and the 1708 declaration that the book itself succeeds the human Gurus.",
+   "year_end": 1708,
+   "work": "WRK.GURU_GRANTH",
+   "note": "It includes Hindu and Muslim voices alongside the Gurus'. The canon is deliberately not one community's."
+  },
+  {
    "id": "EVT.CLI.GUJARAT_FAMINE_1630",
    "title": "The Deccan and Gujarat famine",
    "class": "CLIMATE",
@@ -18761,6 +19817,44 @@
    "region": "RGN.GUJARAT",
    "dispute": false,
    "evidence": "Mughal court records and Dutch and English factory correspondence, which agree on its severity."
+  },
+  {
+   "id": "EVT.WRK.TUKARAM_ABHANGAS",
+   "title": "Tukaram's abhangas",
+   "class": "WORK",
+   "magnitude": "M",
+   "year": 1630,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false,
+   "evidence": "The abhanga corpus and the Dehu manuscript tradition.",
+   "window": [
+    1590,
+    1670
+   ],
+   "year_end": 1650,
+   "work": "WRK.TUKARAM"
+  },
+  {
+   "id": "EVT.WRK.PADSHAHNAMA",
+   "title": "The Padshahnama is compiled and illustrated",
+   "class": "WORK",
+   "magnitude": "M",
+   "year": 1640,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The manuscript and its paintings, and the succession of court historians named in it.",
+   "year_end": 1657,
+   "work": "WRK.PADSHAHNAMA"
   },
   {
    "id": "EVT.SIT.SHAHJAHANABAD",
@@ -19512,6 +20606,22 @@
    "evidence": "The Act, which creates reserved, protected and village forest and settles the argument in favour of the first."
   },
   {
+   "id": "EVT.WRK.ANANDAMATH",
+   "title": "Bankim's Anandamath",
+   "class": "WORK",
+   "magnitude": "M",
+   "year": 1882,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 1,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.BENGAL",
+   "dispute": false,
+   "evidence": "The Bengali novel and its serialisation in Bangadarshan.",
+   "work": "WRK.ANANDAMATH"
+  },
+  {
    "id": "EVT.CAT.UVS_RECOVERY",
    "title": "U. V. Swaminatha Iyer recovers the Sangam corpus from palm leaf",
    "class": "CATASTROPHE",
@@ -19688,6 +20798,39 @@
    "evidence": "The Act, which restricts transfer of tribal land — passed eight years after the rising it was answering."
   },
   {
+   "id": "EVT.WRK.HINDSWARAJ",
+   "title": "Gandhi writes Hind Swaraj on a ship",
+   "class": "WORK",
+   "magnitude": "W",
+   "year": 1909,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 1,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Gujarati text, written in ten days aboard the Kildonan Castle, and its immediate proscription.",
+   "work": "WRK.HINDSWARAJ"
+  },
+  {
+   "id": "EVT.WRK.GITANJALI",
+   "title": "Tagore's Gitanjali, and then his own English of it",
+   "class": "WORK",
+   "magnitude": "W",
+   "year": 1910,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 1,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.BENGAL",
+   "dispute": false,
+   "evidence": "The Bengali collection and the 1912 English Song Offerings, which is a different book.",
+   "year_end": 1912,
+   "work": "WRK.GITANJALI"
+  },
+  {
    "id": "EVT.CAT.GAEKWAD_SERIES",
    "title": "The Gaekwad Oriental Series begins publishing unpublished manuscripts",
    "class": "CATASTROPHE",
@@ -19851,6 +20994,23 @@
    "note": "Administered separately, which protected some things and removed others, and the argument about which is not over."
   },
   {
+   "id": "EVT.WRK.ANNIHILATION",
+   "title": "Ambedkar publishes Annihilation of Caste, the speech he was not allowed to give",
+   "class": "WORK",
+   "magnitude": "W",
+   "year": 1936,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 1,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The printed text, and the correspondence with the Jat-Pat Todak Mandal that cancelled the address.",
+   "work": "WRK.ANNIHILATION",
+   "note": "Written to be spoken, refused a platform, and printed at the author's own expense. It outlasted the platform."
+  },
+  {
    "id": "EVT.CLI.BENGAL_1943",
    "title": "The Bengal famine",
    "class": "CLIMATE",
@@ -19866,6 +21026,41 @@
    "evidence": "Provincial and imperial records, the Famine Inquiry Commission of 1945, and price series.",
    "dispute_text": "That the famine happened and that it killed on the order of millions is not in question. Its causation is: crop shortfall, wartime procurement, the denial policy, provincial trade barriers and refusals of imports have all been argued as primary. The game presents the positions.",
    "dispute_scope": "causation"
+  },
+  {
+   "id": "EVT.WRK.DISCOVERY",
+   "title": "Nehru writes The Discovery of India in Ahmednagar Fort",
+   "class": "WORK",
+   "magnitude": "M",
+   "year": 1944,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 1,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The manuscript, written in prison between April and September 1944.",
+   "year_end": 1946,
+   "work": "WRK.DISCOVERY"
+  },
+  {
+   "id": "EVT.WRK.CONSTITUTION",
+   "title": "The Constitution is drafted, debated and adopted",
+   "class": "WORK",
+   "magnitude": "W",
+   "year": 1946,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 1,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Constituent Assembly Debates, twelve volumes of them, and the calligraphed original.",
+   "year_end": 1950,
+   "work": "WRK.CONSTITUTION",
+   "note": "Three years of argument, recorded verbatim. The last entry in the corpus, and the only one the reader is inside."
   },
   {
    "id": "EVT.1947.INDEPENDENCE_AND_PARTITION",
@@ -19926,14 +21121,14 @@
   }
  ],
  "census": {
-  "total": 1017,
-  "subcontinental": 640,
-  "regional": 377,
-  "pre_1300": 897,
+  "total": 1077,
+  "subcontinental": 685,
+  "regional": 392,
+  "pre_1300": 941,
   "by_magnitude": {
-   "W": 516,
-   "M": 434,
-   "R": 63,
+   "W": 555,
+   "M": 453,
+   "R": 65,
    "m": 4
   },
   "by_class": {
@@ -19942,11 +21137,11 @@
    "TRANSITION": 118,
    "EPOCH": 19,
    "STRUCTURE": 27,
+   "WORK": 201,
    "AGRICULTURE": 24,
    "TRADE": 60,
    "REFORM": 71,
    "SITE": 190,
-   "WORK": 141,
    "CATASTROPHE": 74,
    "INVASION": 41,
    "FOUNDATION": 112,
@@ -19954,10 +21149,10 @@
    "COLONIAL": 5
   },
   "by_trigger": {
-   "window": 847,
+   "window": 891,
    "latent": 37,
-   "dated": 133
+   "dated": 149
   },
-  "disputed": 50
+  "disputed": 51
  }
 }

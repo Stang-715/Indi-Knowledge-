@@ -183,6 +183,13 @@ export function tickCorpus(state, span, rng, datapack) {
         // only remembered is the single biggest survival gain in the game.
         const written = c.carriers.filter(x => x.medium !== 'memory');
         if (written.length >= 3) continue;
+        // A scribe copies what is in front of them. A work whose only surviving
+        // copy is in a merchant's chest three thousand kilometres away cannot be
+        // recopied here, however many scribes are sitting idle — and that is why
+        // where a copy went matters as much as that one was made. Without this
+        // the scriptorium quietly repatriated everything and distance stopped
+        // paying.
+        if (!c.carriers.some(x => x.place === 'home')) continue;
         // Rate-limited by span so a long tick does not mass-produce.
         if (rng.chance(Math.min(0.5, 0.02 * span))) {
           c.carriers.push({
@@ -226,6 +233,18 @@ function lose(state, c, year, cause) {
 
 /** A WORK-class event brings its text into being, if we can match it. */
 export function applyWorkEvent(state, ev, datapack) {
+  // An event may name the work it composes outright. That is the exact form and
+  // the one every event written from phase 27 on uses; the title matcher below
+  // is what the document's own lines have to fall back on, and it guesses.
+  if (ev.work) {
+    const c = state.corpus.get(ev.work);
+    if (c && !c.exists && !c.lost) {
+      compose(state, c, ev.year);
+      record(state, ev.year, 'compose', `${c.title} enters the corpus.`, { work: c.id });
+    }
+    return;
+  }
+
   const t = ev.title.toLowerCase();
   for (const c of state.corpus.values()) {
     if (c.exists || c.lost) continue;
@@ -259,6 +278,12 @@ export function copyOut(state, workId, destination, year, { teacher = false } = 
   if (teacher) {
     if (state.pops.scribes >= 1) state.pops.scribes -= 1;
     else state.pops.reciters -= 1;
+    // A teacher who leaves is away, not dead. The seat they kept stands empty
+    // and can be filled again by a student — but only by a house with grain to
+    // spare, and only after a generation. Making the loss permanent meant that
+    // a player who copied out everything on the risk panel destroyed their own
+    // scriptorium doing it, which is not what happened when Atisha left.
+    state.vacancies = (state.vacancies ?? 0) + 1;
   }
 
   // Medium follows what the era knows how to do.

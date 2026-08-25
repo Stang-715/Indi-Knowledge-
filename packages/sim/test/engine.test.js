@@ -281,3 +281,17 @@ test('a rescue never reaches the works on the risk panel', () => {
       `${w.id} is on the risk panel and something already copied it out`);
   }
 });
+
+/* ── Composition and the home shelf (phase 27) ──────────────────────────── */
+
+test('every work in the corpus has an event that composes it', () => {
+  // The old matcher guessed from the title's first word, and quietly missed
+  // fifty works — which then sat in the corpus for eight thousand years never
+  // having been written.
+  const named = new Set(DP.timeline.events.filter(e => e.work).map(e => e.work));
+  const s = run(DP, 'compose-all', []);
+  const never = [...s.corpus.values()].filter(c => !c.exists && !c.lost);
+  for (const c of never)
+    assert.ok(!named.has(c.id), `${c.id} is named by an event and still never composed`);
+  assert.ok(named.size >= 45, 'phase 27 named its works outright');
+});
