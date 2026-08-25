@@ -440,3 +440,17 @@ than mobile: the web demo is how someone without a gaming PC meets the game at a
 3. **Where the vertical slice sits in time.** The colonial era has by far the best data
    and is the natural P0 target — but it is no longer the headline era. Slice there
    anyway for the data, or slice somewhere that shows off the 6,000-year hook?
+
+   > **RULED, 2026-08-25 (phase 34).** The slice is the Chola window, 985–1070:
+   > Rajaraja's accession through Kulottunga's union. Not colonial — best data,
+   > wrong message — and not Neolithic, which needs the texture engine (phase 37)
+   > before it can carry a stranger. The Chola window has the densest real data in
+   > the game, and it exercises every system at once: survey, temple economy,
+   > corpus, trade and the fleet, sovereignty, named people. A skeptical playtester
+   > can be won there in two hours. The 6,000-year hook is the campaign's argument;
+   > the slice's job is to prove the systems, and it proves them where the
+   > inscriptions are.
+
+   Items 1 and 2 remain open and are tracked on the external track of
+   [`16-gap-closure.md`](16-gap-closure.md) Part C — they are decisions and hires,
+   not repository work.

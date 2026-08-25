@@ -409,15 +409,42 @@ function drawSites(proj, level, dive) {
         ctx.textAlign = 'start';
       }
     }
-    // Caravans in transit, as marks moving along the road.
+    // Caravans in transit. The phase-34 ruling: sprites inside the viewport,
+    // flow everywhere else. The nearest few caravans on screen draw as marks
+    // with a direction nub (the sprite slot — the atlas swaps in when the real
+    // assets land); every other caravan on a route thickens that route's flow
+    // instead of drawing, so a hundred caravans read as a busy road, not as a
+    // hundred dots.
+    const onScreen = [];
+    const flowByRoute = new Map();
     for (const c of state.caravans) {
       const r = state.routes.get(c.route); if (!r) continue;
       const a = SITE_BY_ID.get(r.from), b = SITE_BY_ID.get(r.to); if (!a || !b) continue;
       const k = c.state === 'outbound' ? Math.min(1, c.progress / c.days) : 1;
       const x = proj.toX(a.lon + (b.lon - a.lon) * k);
       const y = proj.toY(a.lat + (b.lat - a.lat) * k);
+      const visible = x >= -20 && y >= -20 && x <= ctx.canvas.width + 20 && y <= ctx.canvas.height + 20;
+      if (visible && onScreen.length < 12) onScreen.push({ x, y, a, b });
+      else flowByRoute.set(c.route, (flowByRoute.get(c.route) ?? 0) + 1);
+    }
+    for (const [id, n] of flowByRoute) {
+      const r = state.routes.get(id); if (!r || !r.open) continue;
+      const a = SITE_BY_ID.get(r.from), b = SITE_BY_ID.get(r.to); if (!a || !b) continue;
+      ctx.strokeStyle = 'rgba(42,33,24,0.30)';
+      ctx.lineWidth = Math.min(4, 1 + n * 0.6) * dpr;
+      ctx.beginPath();
+      ctx.moveTo(proj.toX(a.lon), proj.toY(a.lat));
+      ctx.lineTo(proj.toX(b.lon), proj.toY(b.lat));
+      ctx.stroke();
+    }
+    for (const c of onScreen) {
       ctx.fillStyle = '#2A2118';
-      ctx.beginPath(); ctx.arc(x, y, 3 * dpr, 0, Math.PI * 2); ctx.fill();
+      ctx.beginPath(); ctx.arc(c.x, c.y, 3 * dpr, 0, Math.PI * 2); ctx.fill();
+      const dx = c.b.lon - c.a.lon, dy = c.b.lat - c.a.lat;
+      const m = Math.hypot(dx, dy) || 1;
+      ctx.beginPath();
+      ctx.arc(c.x + (dx / m) * 5 * dpr, c.y - (dy / m) * 5 * dpr, 1.4 * dpr, 0, Math.PI * 2);
+      ctx.fill();
     }
   }
 

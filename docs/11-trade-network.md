@@ -342,15 +342,28 @@ else can arrive over the following year.
 
 ## 10. Still open
 
-1. **Do caravans render as sprites at L0–L9, or as a flow on the route line?** Sprites are
-   more alive; flow scales to thousands. Probably: sprites where you are looking, flow
-   everywhere else — but that is a real rendering decision, not a preference.
-2. **Can the player raid *other people's* routes?** Historically yes, constantly. But the
-   campaign frame is defensive and within-India ([`06-pillars-and-campaign.md`](06-pillars-and-campaign.md)),
-   so predation by the player needs a deliberate ruling rather than a default.
-3. **How much does the player micromanage?** Two hundred hours of assigning escorts
-   caravan-by-caravan is a spreadsheet. Suggested: **standing orders per route**, with
-   manual control only for the caravan you are watching.
-4. **Does Share have a cap?** If standing can be bought indefinitely with surplus grain,
-   the trust ladder becomes a farming exercise. Likely needs diminishing returns per
-   partner per generation.
+All four questions below were **ruled on 2026-08-25 (phase 34 of
+[`16-gap-closure.md`](16-gap-closure.md))**. The original questions are kept because
+the reasoning that opened them is part of the reasoning that closed them.
+
+1. **Do caravans render as sprites at L0–L9, or as a flow on the route line?**
+   **RULED: sprites inside the viewport, flow lines everywhere else.** The camera
+   already knows what is on screen; this is a render flag, not an architecture.
+   Sprites are capped per frame (nearest N caravans); the rest of a route's traffic
+   reads as flow intensity on the line.
+2. **Can the player raid *other people's* routes?**
+   **RULED: no.** The campaign frame is custodial, and the verb would poison what
+   the trust ladder means — you cannot be both the reason routes are safe and a
+   reason they are not. Revisit only if a playtest (phase 43) reports the defensive
+   game lacks teeth; the revisit is a design change, not a toggle.
+3. **How much does the player micromanage?**
+   **RULED: standing orders per route** — escort level, hold priority, what to do at
+   a choke — with manual control only for the caravan currently being watched. The
+   watched caravan is the mini-game; the other hundred are policy.
+4. **Does Share have a cap?**
+   **RULED: yes — diminishing returns per partner per generation**, the same curve
+   family as the pillar fix from phase 28 (`bumpPillar`'s squared headroom): each
+   further gift of grain to the same partner in the same generation buys less
+   standing, approaching an asymptote it never reaches. Standing regains full value
+   a generation later, which is itself historical — trust is re-earned with people,
+   not banked against a house.

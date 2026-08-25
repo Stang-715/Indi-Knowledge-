@@ -109,3 +109,21 @@ test('paper collapses recopying cost and shows in the corpus', () => {
   assert.ok(s.goods.has('paper'));
   assert.ok(s.log.some(l => /paper displaces palm leaf/i.test(l.text)));
 });
+
+/* ── Phase 34 ruling: standing cannot be farmed ─────────────────────────── */
+
+test('the trust ladder has diminishing returns per partner per generation', () => {
+  // Ten gifts to the same partner in one generation must buy far less than ten
+  // gifts spread across ten generations — otherwise surplus grain converts to
+  // a guild charter by 900 BCE and the ladder means nothing.
+  const burst = [];
+  for (let i = 0; i < 10; i++) burst.push({ year: -1000 + i, action: 'share', with: 'kin-east' });
+  const spread = [];
+  for (let i = 0; i < 10; i++) spread.push({ year: -1000 + i * 30, action: 'share', with: 'kin-east' });
+
+  const a = run(DP, 'cap', burst,  { to: -700 });
+  const b = run(DP, 'cap', spread, { to: -700 });
+  const sa = a.standing.get('kin-east') ?? 0;
+  const sb = b.standing.get('kin-east') ?? 0;
+  assert.ok(sb > sa * 1.5, `spread ${sb} should far exceed burst ${sa}`);
+});

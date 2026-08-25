@@ -346,6 +346,15 @@ Stated plainly, because a plan that hides its omissions is not a plan.
    nothing has yet attempted the *play*, and it remains the design's hardest
    promise.
 4. **The remaining 180 class-target events** that a 1,150 total cannot hold.
+
+   > **RULED, 2026-08-25 (phase 34 of [`16-gap-closure.md`](16-gap-closure.md)):
+   > the per-class targets are retired.** They served their purpose — they drove
+   > ten phases of writing — but three numbers describing one corpus (per-class
+   > targets summing to ~1,330, a 1,150 total, and 1,347 actual) is an
+   > arithmetic argument, not a plan. From here the binding constraints are the
+   > density rule (one authored event per 20 minutes of play, per era, already a
+   > test) and the silence rule (phase 37 asserts it in play). `npm run gaps`
+   > keeps the per-class table as a report, labelled as such.
    Either the target rises to ~1,330 or the cut in Part B stands.
 
 ---

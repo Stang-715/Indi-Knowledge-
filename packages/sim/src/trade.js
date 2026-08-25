@@ -233,11 +233,27 @@ export const DECISIONS = {
   'share'(state, d) {
     // Share costs the good and returns standing. Not charity — it buys the trust
     // that Export later requires.
+    //
+    // The phase-34 ruling: standing has diminishing returns per partner per
+    // generation. Without this the trust ladder is a farming exercise — surplus
+    // grain converts to friendship at a flat rate, and a rich player buys a
+    // guild charter by 900 BCE. Each further gift to the same partner within a
+    // generation buys less, on the same squared-headroom curve as the pillars;
+    // a generation later (30 years) the partner's appetite resets, which is
+    // itself historical — trust is re-earned with people, not banked against a
+    // house.
     if (state.grain < 30) return;
     state.grain -= 30;
-    const cur = state.standing.get(d.with) ?? 0;
-    state.standing.set(d.with, Math.min(100, cur + 8));
-    bumpPillar(state, 'NETWORKING', 1);
-    record(state, d.year, 'decision', `A gift is sent to ${d.with}.`);
+    const key = d.with;
+    const gen = Math.floor(d.year / 30);
+    if (!state.shareGen) state.shareGen = new Map();
+    const g = state.shareGen.get(key);
+    const given = (g && g.gen === gen) ? g.count : 0;
+    state.shareGen.set(key, { gen, count: given + 1 });
+    const h = 1 / (1 + given);                    // 1, 1/2, 1/3 ...
+    const cur = state.standing.get(key) ?? 0;
+    state.standing.set(key, Math.min(100, cur + 8 * h * h));
+    bumpPillar(state, 'NETWORKING', 1 * h);
+    record(state, d.year, 'decision', `A gift is sent to ${key}.`);
   },
 };

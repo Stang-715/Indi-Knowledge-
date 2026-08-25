@@ -51,7 +51,7 @@ for (const r of TL.regions) {
 /* 4. Class coverage against the targets in docs/07-timeline.md §1.3. */
 const TARGET = { SITE:210, WORK:220, REFORM:150, FOUNDATION:140, TRANSITION:130, INVASION:95,
                  CATASTROPHE:80, TRADE:70, FRONTIER:60, CLIMATE:50, COLONIAL:30, EPOCH:16 };
-console.log('\n## Class coverage against target\n');
+console.log('\n## Class coverage (report only — targets retired, phase 34; density and silence rules bind)\n');
 let classNeed = 0;
 for (const [cls, want] of Object.entries(TARGET)) {
   const have = fired.filter(e => e.class === cls).length;
@@ -59,7 +59,7 @@ for (const [cls, want] of Object.entries(TARGET)) {
   classNeed += short;
   console.log(`  ${cls.padEnd(13)} have ${String(have).padStart(3)}   want ${String(want).padStart(3)}   short ${String(short).padStart(3)}`);
 }
-console.log(`\n  TOTAL SHORTFALL AGAINST CLASS TARGETS: ${classNeed}`);
+console.log(`\n  TOTAL DELTA VS RETIRED TARGETS (informational): ${classNeed}`);
 
 /* 5. The headline. */
 console.log(`\n## Totals\n`);
