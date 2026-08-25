@@ -532,6 +532,436 @@
    "what": "Power transfers at midnight. A boundary drawn in five weeks by a lawyer who had never been to India separates provinces, districts, villages and in some places fields. Somewhere between ten and twenty million people move, and several hundred thousand to a million and a half do not arrive.",
    "why": "The campaign ends here. Not on a victory screen.",
    "evidence": "The Indian Independence Act, the Radcliffe award and its maps, and the refugee and mortality records."
+  },
+  {
+   "match": "The 8.2 kiloyear cooling event",
+   "what": "Meltwater from a collapsing North American ice sheet floods the Atlantic and the planet cools for a century and a half. In the subcontinent the monsoon weakens. The first farming villages have just been founded, and their first test is a global one they cannot see, name or predict.",
+   "why": "The ancient game's antagonist introduces itself early, and it has no face.",
+   "evidence": "Greenland ice cores, Arabian Sea sediments, and speleothem records from Oman and northeast India."
+  },
+  {
+   "match": "Game begins. Aceramic farming",
+   "what": "At the foot of the Bolan Pass a village grows wheat and barley, herds goats and sheep, and builds in mudbrick — before pottery, which is why the period is called aceramic. They store grain in compartmented rooms and bury their dead with tools and young goats.",
+   "why": "Everything in this game descends from a village of a few hundred people doing this.",
+   "evidence": "The Mehrgarh excavation, period I, with its houses, granaries and cemetery."
+  },
+  {
+   "match": "The Sutlej abandons the Ghaggar",
+   "what": "Long before the cities, the Sutlej swings west and joins the Indus, leaving the Ghaggar to run on rain and the Siwalik streams alone. The river the Harappans will later settle along is already living on a reduced income. When the monsoon weakens millennia later, there is no glacier behind it to make up the difference.",
+   "why": "The river's fate is set four thousand years before the cities that will depend on it.",
+   "evidence": "Palaeochannel mapping and dating of the Sutlej's avulsion, published from satellite and sediment studies.",
+   "dispute": "How much water the Ghaggar carried in Harappan times, and whether it deserves the name Sarasvati, is one of the most politically loaded arguments in Indian archaeology. The game presents the hydrology and does not adjudicate the identification."
+  },
+  {
+   "match": "Mehrgarh II: pottery arrives",
+   "what": "Containers change everything downstream of them: storage, cooking, carrying, trade. The first pots at Mehrgarh are pressed over baskets and carry the basket's weave; within centuries they are wheel-finished and made in quantity.",
+   "why": "The first synthetic material in the subcontinent's record, and the archaeologist's clock ever after.",
+   "evidence": "The Mehrgarh II ceramic sequence, from basket-marked to wheel-finished."
+  },
+  {
+   "match": "Lahuradewa: rice at the eastern edge",
+   "what": "Pottery with rice husk in its fabric, and charred grains, at a lake-edge site in the middle Ganga plain — very early, and far from any western influence. It is argued as an independent domestication: rice entering cultivation here, on its own, from local wild stands.",
+   "why": "If rice was domesticated here independently, the subcontinent has two separate agricultural origins.",
+   "evidence": "The Lahuradewa dates and archaeobotany, set against the genetics of indica and japonica rice.",
+   "dispute": "Whether the early Lahuradewa rice is domesticated or gathered wild is contested, and the genetics complicate every simple story: indica rice later hybridised with japonica arriving from China. Dates and domestication status are both argued."
+  },
+  {
+   "match": "Copper smelting, as distinct",
+   "what": "Beads hammered from native copper are one thing; ore roasted and reduced to metal is another. Smelting means furnaces, charcoal, and control of temperature and air — pyrotechnology beyond anything pottery needs. Once you can smelt copper, bronze, and eventually iron, are questions of time.",
+   "why": "The metallurgical ladder's first rung, and every later rung stands on it.",
+   "evidence": "Slag and furnace evidence from the Chalcolithic sites, and the compositional analyses of early copper objects."
+  },
+  {
+   "match": "ashmound tradition opens at Utnur",
+   "what": "On the Deccan plateau, cattle herders pen their animals inside enclosures and periodically burn the accumulated dung in fires hot enough to vitrify it. They do this seasonally, at the same places, for centuries, until the mounds of burnt ash stand metres high and are visible from far off.",
+   "why": "Monuments made of burnt cow dung, by people who measured wealth in cattle. Nobody fully knows why.",
+   "evidence": "The excavated ashmounds at Utnur, Kupgal and Kodekal, with their vitrified layers and radiocarbon dates."
+  },
+  {
+   "match": "Bagor: Mesolithic hunters adopt",
+   "what": "A hunting camp in Rajasthan starts keeping domestic sheep and goats — and does not settle down, does not farm, does not build. They take the one piece of the Neolithic package that fits a mobile life and decline the rest, for a thousand years.",
+   "why": "The Neolithic is not a package deal. People chose from it, and some chose almost none of it.",
+   "evidence": "The Bagor faunal sequence: domestic caprines inside a microlithic hunter-gatherer toolkit."
+  },
+  {
+   "match": "The sea stands two metres higher",
+   "what": "In the mid-Holocene the sea stands higher than today, and the Rann of Kutch is a navigable gulf. Places that are now salt desert are coastline; Dholavira's island is an island in water, not in salt. The map the first coastal societies knew is not the map the player is shown today.",
+   "why": "The coastline is a variable, not a constant, and the game's geography has to move.",
+   "evidence": "Relative sea-level curves for the western coast, and the marine sediments under the Rann."
+  },
+  {
+   "match": "Terracotta cart models",
+   "what": "Little clay carts with solid wheels appear in the villages — toys, or models, of a real thing. A cart means a draught animal, a yoke, an axle, and a path wide enough to use it on. Overland bulk transport enters the economy, four thousand years before roads are anyone's policy.",
+   "why": "The bullock cart arrives, and it will still be moving India's grain in 1947.",
+   "evidence": "The terracotta models from Harappa's early levels and the Chalcolithic sites."
+  },
+  {
+   "match": "Rehman Dheri laid out on a grid",
+   "what": "Centuries before the mature cities, a town in the Gomal plain is built to a plan: a rectangle, walled, with streets crossing at right angles. Whoever built it had decided what a town should look like before laying the first brick.",
+   "why": "Urban planning precedes urbanism. The idea of the grid is older than the cities famous for it.",
+   "evidence": "The site plan of Rehman Dheri, visible in excavation and from the air."
+  },
+  {
+   "match": "Potters' marks proliferate",
+   "what": "Signs scratched on pots before firing multiply across the Early Harappan settlements — single marks at first, then combinations. They are not yet writing. They are ownership, contents, tally, workshop. Writing systems tend to grow out of exactly this.",
+   "why": "The script's ancestry, in graffiti on the shoulders of storage jars.",
+   "evidence": "The pre-firing graffiti corpus from Harappa, Kalibangan and Kot Diji, and its overlap with later Indus signs."
+  },
+  {
+   "match": "Cotton cultivated, not merely gathered",
+   "what": "Cotton stops being a wild plant people pick and becomes a crop people sow. It wants heat, a long season and much water, and it repays the investment in something no food crop offers: cloth. From here to the Lancashire looms is one unbroken thread.",
+   "why": "The subcontinent's defining cash crop enters cultivation. It never afterwards leaves the story.",
+   "evidence": "Archaeobotanical cotton from Mehrgarh and the early Harappan sites, and the later Indus textile impressions."
+  },
+  {
+   "match": "The first Indus signs",
+   "what": "Signs begin appearing incised on pottery that will later standardise into the seal script — the same forms, the same combinations. Whatever the system is, it is being worked out here, in the centuries before the cities, not invented in them.",
+   "why": "Writing systems are built, not born. This is the construction site.",
+   "evidence": "The Early Harappan sign-bearing sherds and their continuity with the mature seal corpus."
+  },
+  {
+   "match": "Carnelian bead etching",
+   "what": "Craftsmen learn to paint patterns on carnelian with alkali and heat them until the design burns white into the stone. The technique is distinctive, the product unmistakable, and etched carnelian beads from the Indus turn up in royal graves in Mesopotamia.",
+   "why": "A signature export: a product only one civilisation could make, found in another's tombs.",
+   "evidence": "The etched bead corpus, the workshop debris at Chanhudaro, and the finds in the Ur royal cemetery."
+  },
+  {
+   "match": "Urban transition. Mohenjo-daro",
+   "what": "Within a century or two, towns across seven hundred thousand square kilometres are rebuilt to a shared idea: a raised citadel and a lower town, cardinal streets, standard bricks, drains. The convergence is fast and it is everywhere, and no palace or king's grave explains who decided.",
+   "why": "The threshold the whole era is named for: planning replaces accretion, at continental scale.",
+   "evidence": "The near-simultaneous mature-phase rebuilding at Mohenjo-daro, Harappa, Dholavira, Kalibangan and Rakhigarhi."
+  },
+  {
+   "match": "The Indus script in use",
+   "what": "About four hundred signs, written mostly right to left, on seals, tags, tablets and one public signboard. The average inscription is five signs long. There is no bilingual, no long text, and no agreement on the language behind it — or whether there is a language behind it at all.",
+   "why": "The most famous unread script on earth, and the game must show it without pretending to read it.",
+   "evidence": "The full inscription corpus of roughly four thousand objects, and a century of failed decipherments.",
+   "dispute": "Every decipherment so far has failed to convince. A minority position holds the signs are not writing at all but emblems; most researchers think they encode language. The game shows the signs and takes no side."
+  },
+  {
+   "match": "The Dancing Girl",
+   "what": "A bronze figure ten centimetres tall: a girl, naked but for bangles, hand on hip, head tilted, entirely at ease. She is cast by the lost-wax process, which means modelling in wax, investing in clay, burning out, and pouring — a mature technology, used here for something with no obvious function except itself.",
+   "why": "The most self-possessed object in Indian archaeology, and it is a teenager standing however she likes.",
+   "evidence": "The figure itself, from Mohenjo-daro, and the lost-wax casting evidence in its structure."
+  },
+  {
+   "match": "Rakhigarhi at peak",
+   "what": "The largest Indus city by area is not Mohenjo-daro — it is Rakhigarhi, far to the east on the Ghaggar plain, still mostly unexcavated under and around a living village. The centre of gravity of the civilisation may be further east than the famous sites suggest.",
+   "why": "The biggest city is the least known one, and much of it is still under a village.",
+   "evidence": "The surface survey and limited excavation at Rakhigarhi, and its measured extent."
+  },
+  {
+   "match": "Lothal's basin",
+   "what": "A great brick basin at Lothal, beside a warehouse and a bead factory, connected by a channel toward the estuary. Read as a dockyard it is the world's oldest; read as a reservoir it is a very large water tank. The argument has run for sixty years on the same evidence.",
+   "why": "Either the oldest dock on earth or a water tank. The evidence permits both, and the game says so.",
+   "evidence": "The excavated basin, its inlet channel and spillway, and the sling stones and stone anchors found in it.",
+   "dispute": "Tidal calculations, the channel's dimensions and the salt crust are marshalled on both sides. Marine archaeology has not settled it."
+  },
+  {
+   "match": "Weight standards adopted in the Gulf",
+   "what": "Merchants in Dilmun and along the Gulf adopt the Indus weight system for their own transactions. It is one thing to export beads; it is another for foreign ports to keep your units. Standards travel further than the people who set them.",
+   "why": "The clearest sign of Indus commercial weight: other people adopted the weights.",
+   "evidence": "The Indus-standard weight sets excavated at Bahrain and the Gulf entrepôts."
+  },
+  {
+   "match": "Dilmun (Bahrain) becomes the entrepôt",
+   "what": "The direct run from the Indus to Sumer gives way to a staged trade through Dilmun, where cargoes change hands and Mesopotamian records log the traffic. Middlemen appear in the world's first long-distance maritime economy almost as soon as the economy itself.",
+   "why": "The entrepôt is as old as the trade. Somebody always sits in the middle.",
+   "evidence": "The Dilmun customs and trade records in cuneiform, and the Indus material excavated on Bahrain."
+  },
+  {
+   "match": "Dholavira's stone reservoirs",
+   "what": "A city on a salt-desert island, with no river and unreliable rain, cuts sixteen reservoirs into rock and builds check dams on two seasonal streams, storing a year's water. The reservoirs take up a tenth of the walled area. The city lasts fifteen hundred years.",
+   "why": "The driest Indus city lived longest, because it engineered its water like a state utility.",
+   "evidence": "The excavated reservoir system at Dholavira, its dams, and the occupation sequence."
+  },
+  {
+   "match": "Mawmluh Cave",
+   "what": "A stalagmite in a Meghalaya cave records the 4.2 kiloyear drought so clearly that geologists name the current age of the earth after it: the Meghalayan. The formal marker for the epoch every human alive inhabits is a drought signature in an Indian cave.",
+   "why": "The geological present is officially defined by the drought that ended the Indus cities.",
+   "evidence": "The Mawmluh speleothem record, adopted by the International Commission on Stratigraphy in 2018."
+  },
+  {
+   "match": "Meluhha disappears from Mesopotamian records",
+   "what": "The ships stop being mentioned. The word Meluhha survives in later texts but drifts — eventually it means somewhere in Africa. A trading partner of six centuries fades out of the ledgers of the only people writing ledgers.",
+   "why": "The Indus decline, observed from the outside, as an entry that stops appearing.",
+   "evidence": "The cuneiform record: dense Meluhha references in the Akkadian and Ur III periods, then silence."
+  },
+  {
+   "match": "The copper hoards",
+   "what": "Caches of massive copper objects turn up across the Ganga-Yamuna doab: harpoons, swords with antenna hilts, and flat anthropomorphic figures like spread-eagled men. They are heavy, unwieldy, mostly unused, and buried in groups. Who made them and what they were for is unresolved.",
+   "why": "Hundreds of kilograms of worked copper, buried on purpose, by people we cannot name.",
+   "evidence": "The hoards themselves, associated loosely with Ochre Coloured Pottery, from dozens of doab findspots.",
+   "dispute": "Ritual deposits, ingot wealth, weapons of a vanished people and trade stock have all been argued. The association with any one culture is loose."
+  },
+  {
+   "match": "Pirak founded",
+   "what": "One site on the Kachi plain holds horse and camel bones, rice and millet, all together in the centuries after the cities. Pirak is what the post-urban world looks like when it works: new animals, new crops, smaller settlements, wider connections.",
+   "why": "The world after the cities is not a ruin. It is a reorganisation, and Pirak is its type site.",
+   "evidence": "The Pirak excavation sequence, its faunal and botanical record, and its terracotta horse-and-rider figurines."
+  },
+  {
+   "match": "The Daimabad bronzes",
+   "what": "Four bronzes from a Deccan village hoard: a chariot with driver and team, an elephant, a rhinoceros, a buffalo, all on wheels or axles, together weighing over sixty kilograms. They are the largest bronzes of Indian prehistory, found far south of anywhere that was supposed to be casting like this.",
+   "why": "Sixty kilograms of bronze sculpture from a place the metallurgical map said could not produce it.",
+   "evidence": "The hoard itself, now in Mumbai, and the Daimabad site sequence.",
+   "dispute": "The date is argued across nearly a millennium, from late Harappan to the historic period, largely because hoards carry no stratigraphy."
+  },
+  {
+   "match": "The spoked wheel",
+   "what": "The solid cart wheel is heavy and slow. The spoked wheel is light enough to make a vehicle fast — which changes what a vehicle is for, from carrying grain to carrying warriors. The chariot follows it into the record, and into the hymns.",
+   "why": "A carpentry innovation with military consequences. Speed enters the battlefield.",
+   "evidence": "Spoked-wheel depictions and models from the second millennium, and the chariotry of the Vedic corpus."
+  },
+  {
+   "match": "The southern megalithic tradition opens",
+   "what": "Across the peninsula, communities begin marking their dead with stone: cists, dolmens, urn fields, stone circles. The burials carry iron almost from the start, and the monuments organise the landscape for a thousand years — visible claims by the dead on behalf of the living.",
+   "why": "The south's iron age announces itself in graves, and the graves are property markers as much as memorials.",
+   "evidence": "The megalithic cemeteries from the Deccan to the far south, with their iron grave goods and dating."
+  },
+  {
+   "match": "Iron working begins in the Ganga plain",
+   "what": "Iron ore is nearly everywhere, unlike copper and tin. When smiths in the Ganga plain learn to smelt and forge it, metal tools stop being an elite good and become an agricultural one. The axe and the ploughshare follow, and then the forest recedes.",
+   "why": "The democratising metal: cheap enough for farmers, and the eastern forests fall to it.",
+   "evidence": "Iron slag and artefacts from Malhar, Raja Nala ka Tila and the PGW settlements, with their radiocarbon dates.",
+   "dispute": "Dates for the earliest Gangetic iron have moved steadily earlier and are still argued, as is whether the southern iron tradition is older and separate."
+  },
+  {
+   "match": "The knowledge economy runs entirely on memory",
+   "what": "There is no script anywhere on the subcontinent. Everything known — ritual, genealogy, boundary, medicine, story — exists only in living heads and dies with them unless taught. The entire apparatus this game simulates is, at this moment, people.",
+   "why": "The purest form of the game's central problem: a civilisation's knowledge with no storage medium but its members.",
+   "evidence": "The absence of writing between the Indus script's end and Brahmi, roughly sixteen centuries."
+  },
+  {
+   "match": "The dana-stuti hymns",
+   "what": "Some hymns end with verses praising the patron who paid for the performance: so many cows, so many horses, gold, chariots, women. They are receipts in verse, and they are the earliest surviving record of the knowledge economy actually transacting.",
+   "why": "The oldest invoices in Indian literature, embedded in scripture.",
+   "evidence": "The dana-stuti passages of the Rigveda, with their itemised gifts."
+  },
+  {
+   "match": "The iron axe opens the eastern forest",
+   "what": "The middle and lower Ganga plain is under forest that stone and copper tools cannot economically clear. Iron axes can. Settlement moves east along the river for three centuries, burning and cutting, and the rice land that results will feed every empire in the game.",
+   "why": "The clearance that creates the subcontinent's centre of gravity. Magadha is downstream of the axe.",
+   "evidence": "The eastward march of PGW and then NBPW settlement, and the charcoal and pollen records of clearance."
+  },
+  {
+   "match": "The ashvamedha",
+   "what": "A consecrated horse wanders for a year, escorted by warriors; where it walks unchallenged, the king's writ runs. Then it is brought home and sacrificed in a rite that takes a year to perform. Sovereignty is being defined as the ability to protect a horse across other people's land.",
+   "why": "Kingship performed as ritual theatre, with the border decided by where anyone dares stop the horse.",
+   "evidence": "The shrauta descriptions of the rite, and the later inscriptions of kings who claim to have performed it."
+  },
+  {
+   "match": "Kuru state formation",
+   "what": "Two tribes merge, the ritual system is codified around their court, and the hymn collections are arranged. Something new appears: an entity that outlives its chief, taxes rather than raids, and sponsors the fixing of texts. The first state of the Ganga plain assembles itself around a liturgy.",
+   "why": "The state and the canon are born in the same project, each stabilising the other.",
+   "evidence": "The Kuru realm of the later Vedic texts, read against the PGW settlement record of the Doab."
+  },
+  {
+   "match": "The Rigveda is arranged",
+   "what": "The hymns are organised: family books in the middle, framed by later collections, ordered within books by deity and metre. Arrangement is a technology — a fixed sequence is checkable, teachable and hard to corrupt. The canon becomes a structure rather than a heap.",
+   "why": "An oral text acquires an architecture, and the architecture is what preserves it.",
+   "evidence": "The collection's structure itself, whose internal ordering rules are visible and consistent."
+  },
+  {
+   "match": "The Samaveda",
+   "what": "Nearly every verse of the Samaveda is taken from the Rigveda; what is new is the music. The verses are set to fixed melodies, stretched and ornamented for singing at the soma rite. It is the oldest continuously transmitted music in the world.",
+   "why": "A remix, formally — and the beginning of Indian music's documented history.",
+   "evidence": "The Samaveda's overlap with the Rigveda, and the living saman chant traditions."
+  },
+  {
+   "match": "The Atharvaveda",
+   "what": "The fourth collection is the household's: healing charms, love spells, curses, rites for building a house and calming a quarrel, herbs named with their uses. It is the closest the Vedic corpus comes to ordinary life, which is why the priestly tradition was long uneasy about it.",
+   "why": "The Veda of everyday trouble — medicine, marriage and malice — and the ancestor of Ayurveda's claim to Vedic standing.",
+   "evidence": "The Shaunaka and Paippalada recensions, the latter recovered largely from Odisha palm leaf."
+  },
+  {
+   "match": "The shakha system",
+   "what": "The corpus is now too large for any one lineage to hold, so it divides: schools of transmission, each responsible for one recension of one Veda, each with its own accent rules and ancillary texts. It is redundancy by specialisation — and every school that later dies takes its recension with it.",
+   "why": "The corpus is sharded across institutions. Most of the shards will not survive.",
+   "evidence": "The named shakhas of the tradition, the handful still recited, and the many known only as titles."
+  },
+  {
+   "match": "Rice transplantation",
+   "what": "Instead of broadcasting seed, cultivators raise seedlings in a nursery bed and transplant them into flooded fields. The labour is brutal and the yield increase is transformative. Wet rice becomes the most productive agriculture on the subcontinent, and the plain that masters it becomes its centre.",
+   "why": "The technique that makes the eastern Ganga plain the richest place in the game.",
+   "evidence": "The agronomy of the shift, and the settlement intensification of the middle Ganga in the same centuries."
+  },
+  {
+   "match": "Surplus concentrates; the grama",
+   "what": "The village becomes a unit that can be assessed: so many households, so much land, owing so much. Tribute hardens from gift toward obligation. Every state in the rest of this game stands on this change, and the texts record the resentment it caused.",
+   "why": "Taxation is invented, and it is invented on the village.",
+   "evidence": "The later Vedic terminology of bali and bhaga hardening, and the Brahmana passages on the eater and the eaten."
+  },
+  {
+   "match": "Kausambi's rampart",
+   "what": "A city on the Yamuna raises an earthen rampart faced with brick, kilometres around, with gates and towers. Nothing on this scale has been built since the Indus cities. Urban life is returning, and it returns armed.",
+   "why": "The second urbanisation's first great wall — cities are back, and they expect trouble.",
+   "evidence": "The excavated defences at Kausambi and their dating.",
+   "dispute": "The rampart's earliest date is a long-running argument, with proposals differing by several centuries."
+  },
+  {
+   "match": "Northern Black Polished Ware; luxury",
+   "what": "A luxury ceramic with a mirror-black surface appears in the middle Ganga and spreads along the trade routes until sherds of it turn up from Taxila to Sri Lanka. Where NBPW goes, urbanism and long-distance exchange have gone. It is the index fossil of the second urbanisation.",
+   "why": "A dinner service maps the return of cities.",
+   "evidence": "The NBPW distribution and its find contexts across the subcontinent."
+  },
+  {
+   "match": "The internal frontier",
+   "what": "As clearance and settlement expand, the people of the forest — hunters, shifting cultivators, herders — stop being everyone's neighbours and become a category: those beyond the boundary. The texts begin naming them as other. The frontier of this game is not a border on the west; it is the treeline everywhere.",
+   "why": "The longest-running conflict in the game begins, and it is not between kingdoms.",
+   "evidence": "The later Vedic and epic vocabulary for forest peoples, and the archaeology of settlement expansion."
+  },
+  {
+   "match": "The shreni",
+   "what": "Craft associations acquire standing: potters, weavers, metalworkers, caravan traders organised in bodies that set standards, train apprentices, adjudicate disputes and speak for the trade. Kings deal with them as entities. They will shortly begin taking deposits.",
+   "why": "Organised labour and organised capital arrive together, in the same institution.",
+   "evidence": "The shreni references across the Pali canon, the epics and the Arthashastra, and the later guild inscriptions."
+  },
+  {
+   "match": "Coined-money precursors",
+   "what": "Silver circulates in bent bars of standard weight, cut and checked. They are not quite coins — no authority stamps them — but they are money in everything but the stamp: a medium, a standard, a store. The stamp arrives within a century.",
+   "why": "Money is being assembled piece by piece, and weight comes before sovereignty.",
+   "evidence": "The bent-bar silver from Taxila-area hoards and its weight standards."
+  },
+  {
+   "match": "The jana becomes the janapada",
+   "what": "The word for a people acquires a suffix and becomes the word for a territory: jana, the tribe, becomes janapada, where the tribe has set its foot. Identity attaches to land rather than kin. Every border in the rest of the game descends from this change in grammar.",
+   "why": "The map is invented — in language, before it is drawn anywhere.",
+   "evidence": "The terminological shift traced across the later Vedic and early Buddhist texts."
+  },
+  {
+   "match": "Mahavira; the Jain order",
+   "what": "Vardhamana, called Mahavira, systematises a tradition he did not begin — Jains count him twenty-fourth of their teachers — around non-violence carried to its full consequence: toward animals, insects, and in the limit toward the self. The order he leaves is small, disciplined, and it never afterwards disappears.",
+   "why": "The most rigorous ethical position in the ancient world, and the oldest surviving renouncer order.",
+   "evidence": "The Jain Agamas and the shared testimony of the Buddhist canon, where Mahavira appears as a rival.",
+   "dispute": "His dates track the Buddha's, and both chronologies are argued within a century."
+  },
+  {
+   "match": "The gana-sangha",
+   "what": "Vajji, Malla, the Shakyas and others are governed not by kings but by assemblies of heads of families — meeting in halls, deliberating, voting. The Buddha, born in one, later names the Vajji assembly's habits as the model for his own order's procedure.",
+   "why": "The republic is an Indian political form, and the monastic sangha is partly its heir.",
+   "evidence": "The Pali canon's descriptions of gana-sangha procedure, and the Mahaparinibbana Sutta's seven conditions."
+  },
+  {
+   "match": "Taxila becomes a centre of learning",
+   "what": "Students travel to the northwest to study — medicine, archery, grammar, ritual — under named teachers, paying at the end, living in the teacher's house. There is no campus and no institution: Taxila is a city where teachers live, which is what a university is before anyone builds one.",
+   "why": "Higher education exists as a market of teachers three centuries before anyone endows a building for it.",
+   "evidence": "The Jataka references to students sent to Takkasila, and the excavated city itself."
+  },
+  {
+   "match": "uttarapatha and dakshinapatha",
+   "what": "Two great routes are named: the northern road from the Gangetic capitals to the northwest, and the southern road into the Deccan. Caravans move along them with escorts, stages and ferries. The game's trade network has a trunk from here on, and every empire will try to hold both roads.",
+   "why": "The subcontinent acquires its permanent economic axes.",
+   "evidence": "The route references across the Pali canon and the grammarians, and the alignment of early urban sites."
+  },
+  {
+   "match": "Makkhali Gosala and the Ajivikas",
+   "what": "Gosala teaches that everything is fixed: the soul migrates through a determined series of lives, and effort changes nothing. It draws followers for a thousand years, kings among their donors, and then vanishes so completely that its texts survive only as quotations in the polemics of its enemies.",
+   "why": "A major religion of ancient India, known entirely through people who despised it.",
+   "evidence": "The Samannaphala Sutta and Jain sources, both hostile, and the Barabar cave dedications."
+  },
+  {
+   "match": "The first sangha",
+   "what": "The Buddha's followers are organised as a corporate body with rules of admission, procedure and expulsion. Property is held by the order, not the man. When the founder dies, the institution does not — which is precisely what it was designed for.",
+   "why": "The corporation that outlives its founder is invented here, and every endowment in this game imitates it.",
+   "evidence": "The Vinaya's constitutional machinery, and the order's demonstrated survival of its founder by twenty-five centuries."
+  },
+  {
+   "match": "Pataliputra founded",
+   "what": "A fort at the confluence of the Ganga and the Son, placed to control river traffic, grows within two centuries into the largest city in the world. The Buddha, passing the construction site in the tradition, remarks that greatness and ruin will both come to it from flood, fire and quarrel.",
+   "why": "The capital of the next four empires is founded as a customs post.",
+   "evidence": "The Pali account of the fort's construction, and the excavated palisade and palace remains."
+  },
+  {
+   "match": "First Buddhist Council",
+   "what": "The order meets in the rains after the founder's death and recites everything: Ananda the discourses, Upali the discipline. What is confirmed by the assembly is canon. It is a memory institution acting deliberately to fix its holdings, and it works — for the next four centuries the canon is carried this way.",
+   "why": "A library commits itself to collective memory, on purpose, by vote.",
+   "evidence": "The Vinaya's own account of the Rajagriha council, and the canon's demonstrated oral coherence."
+  },
+  {
+   "match": "Shreni banking",
+   "what": "The guilds begin taking deposits and paying interest, and endowments learn to use them: donate a principal to a guild, and the interest feeds a monk or lights a lamp in perpetuity. The instrument is so stable that inscriptions record endowments running for centuries.",
+   "why": "The perpetual endowment is engineered, and knowledge acquires an income.",
+   "evidence": "The Nasik and Karle cave inscriptions recording deposits with weavers' guilds at stated rates of interest."
+  },
+  {
+   "match": "Silver karshapana",
+   "what": "The punch-marked silver standardises across the northern kingdoms into the karshapana, and Magadha's issues gradually crowd out the rest. Whoever's coin the market prefers collects a quiet tax on everyone who uses it.",
+   "why": "Monetary consolidation precedes political consolidation, and predicts it.",
+   "evidence": "The hoard evidence showing Magadhan series dominating circulation before the Mauryan unification."
+  },
+  {
+   "match": "Second Buddhist Council",
+   "what": "A century on, monks of Vaishali are accepting gold and silver, and the order splits over whether they may. The council rules against, the losers walk out with the majority, and the first schism is on the books — over ten small rules, of which money is one.",
+   "why": "Institutions do not usually split over doctrine. They split over money and discipline, and this one did.",
+   "evidence": "The Vinaya accounts of the Vaishali council from both descendant traditions."
+  },
+  {
+   "match": "Kharoshthi in the northwest",
+   "what": "Clerks adapt the Aramaic they learned under Persian administration into a script for local speech, written right to left. For seven centuries the northwest writes in it, and then it dies with the trade routes that carried it — leaving Brahmi's descendants the whole field.",
+   "why": "The subcontinent's other script: born of an empire's paperwork, dead with a trade network.",
+   "evidence": "The Kharoshthi corpus from the Ashokan edicts to the Central Asian documents."
+  },
+  {
+   "match": "Chanakya as chief minister",
+   "what": "The tradition makes Chandragupta's rise the work of his minister, and hangs on that name the Arthashastra: a manual of state that discusses revenue, espionage, law, war and administration with a candour later ages found alarming. Whoever wrote it, somebody governed like this.",
+   "why": "Statecraft as a technical subject with a textbook, stripped of piety.",
+   "evidence": "The Arthashastra text and its parallels with Megasthenes and the Ashokan administrative record.",
+   "dispute": "The text's date is argued across five centuries, and its attribution to Chandragupta's minister is traditional rather than demonstrated."
+  },
+  {
+   "match": "The fiscal apparatus",
+   "what": "The state enumerates its income: land revenue by class of soil, mines, salt, forests, herds, tolls, fines, and monopolies where monopoly pays. Officers assess, collectors collect, auditors audit the collectors. The Arthashastra's longest discussions are not about war. They are about revenue.",
+   "why": "Empire is an accounting achievement before it is a military one.",
+   "evidence": "The Arthashastra's revenue chapters, corroborated by the relief-order inscriptions at Sohgaura and Mahasthan."
+  },
+  {
+   "match": "famine-relief inscriptions",
+   "what": "Two inscriptions — a copper plaque at Sohgaura, a limestone slab at Mahasthan — order the release of grain from state storehouses against famine, and provide for restocking after. They are administrative documents, not proclamations: the machinery assumes famines recur and stores against them.",
+   "why": "The state's oldest surviving documents in India are disaster-relief orders.",
+   "evidence": "The Sohgaura and Mahasthan inscriptions, both pre-Ashokan in script."
+  },
+  {
+   "match": "the Sudarshana lake at Girnar",
+   "what": "A dam and reservoir are built at Girnar under Chandragupta's governor, and maintained: an inscription four centuries later records its repair after a storm, and another, three centuries after that, records repair again. The same waterwork is kept running by three successive polities across seven hundred years.",
+   "why": "Infrastructure maintained across dynasties — the least glamorous and most impressive fact in the record.",
+   "evidence": "The Junagadh rock: Rudradaman's inscription of 150 CE and Skandagupta's of 456, both recording repairs."
+  },
+  {
+   "match": "The thirteenth rock edict",
+   "what": "The edict counts the Kalinga dead, states the king's remorse, and then defines the only conquest worth having as conquest by dhamma — and reports, as its evidence, missions sent to five named Greek kings. It also warns the forest peoples that the king's patience, though real, has limits.",
+   "why": "The document is subtler than its reputation: remorse, propaganda and threat in one text.",
+   "evidence": "Rock Edict XIII at Girnar, Kalsi and Shahbazgarhi, with its named Hellenistic rulers fixing the chronology."
+  },
+  {
+   "match": "dhamma-mahamatta",
+   "what": "A new cadre of officers is created to supervise moral welfare: of prisoners, of the aged, of religious communities including rivals. The state takes ethics into its administrative structure, with inspectors. Nothing quite like it exists anywhere else in the ancient world.",
+   "why": "A ministry of conscience, invented by the ruler who had the most to have a conscience about.",
+   "evidence": "The edicts instituting the dhamma-mahamattas and describing their remit."
+  },
+  {
+   "match": "Third Buddhist Council at Pataliputra",
+   "what": "Under Ashoka's patronage the order purges itself of those judged to have entered for the endowments, fixes its texts, and — decisively — resolves to send missions outward: to Sri Lanka, to the northwest, to the Hellenistic west, to the Himalaya, to Suvarnabhumi.",
+   "why": "The decision to export. Everything about where Buddhism lives today follows from it.",
+   "evidence": "The Sri Lankan chronicle accounts, the schism edict, and the relic caskets at Sanchi naming Himalayan missionaries."
+  },
+  {
+   "match": "Sanchi begun",
+   "what": "A stupa is raised on a hill above Vidisha, and around it over centuries accrete railings, gateways and inscriptions — over six hundred of them, recording donations not from kings but from monks, nuns, merchants, and villagers, each named, many with their town.",
+   "why": "The great monument of early Buddhism was crowd-funded, and the donor list is carved on it.",
+   "evidence": "The Sanchi complex and its donative inscription corpus."
+  },
+  {
+   "match": "Ashoka dies; the empire begins",
+   "what": "The pillar inscriptions stop. Within fifty years the empire has contracted to its core and a general ends the dynasty at a military review. What was held together by an administration and a personality proves not to survive the second, and the first goes with it.",
+   "why": "The first pan-Indian state lasts one long lifetime past its builder. The game should make the player feel why.",
+   "evidence": "The end of the edict series, the Puranic king lists, and the numismatic record of contraction."
+  },
+  {
+   "match": "Pushyamitra's coup",
+   "what": "The last Maurya is killed by his own commander-in-chief while inspecting the army — the Indian textbook case of the guardian problem the Arthashastra itself had warned about. The successor state is regional, brahmanical in patronage, and the subcontinent returns to a system of competing kingdoms.",
+   "why": "Empires end administratively before they end militarily. The coup is a formality.",
+   "evidence": "The Puranic accounts and Bana's later retelling, with the Shunga patronage record at Bharhut and Sanchi."
   }
  ]
 }

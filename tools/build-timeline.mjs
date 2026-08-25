@@ -481,7 +481,8 @@ for (let i = 0; i < events.length; i++) {
     // A strict subset is a duplicate whatever the words are: "Kalibangan I
     // fortified" says nothing "Kalibangan I: a fortified parallelogram,
     // mudbrick" does not.
-    const subset = shared >= 2 && (shared === A.size || shared === B.size);
+    const identical = a.title.toLowerCase() === b.title.toLowerCase();
+    const subset = identical || (shared >= 2 && (shared === A.size || shared === B.size));
     // Otherwise: three shared words, one of them uncommon, and most of the
     // shorter title. Two is not enough — "temple" and "completed" are shared by
     // Brihadeeswarar and Gangaikondacholapuram, which are forty years and a

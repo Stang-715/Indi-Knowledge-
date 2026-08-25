@@ -371,7 +371,7 @@ pays for 648,802 settlements.
 | ~2550 | Wells in most houses; Mohenjo-daro alone has some 700 | STRUCTURE | W |
 | ~2540 | **No temples. No palaces. No royal burials.** A structural fact | REFORM | W |
 | ~2530 | Fired brick used at scale — enormous fuel demand | TRANSITION | M |
-| **~2500** | **The Indus script in use — c. 400 signs, average inscription 5 signs** | TRANSITION | **W** |
+| **~2500** | **The Indus script in use — c. 400 signs, average inscription 5 signs** ‡ | TRANSITION | **W** |
 | ~2500 | The unicorn seal: the commonest motif, and unexplained | WORK | M |
 | ~2500 | Cubical chert weights on a 0.856 g unit; binary then decimal | TRANSITION | W |
 | ~2500 | The Priest-King steatite figure | WORK | M |
@@ -440,7 +440,7 @@ pays for 648,802 settlements.
 | ~1700 | Craft skill survives; the scale of organisation does not | TRANSITION | M |
 | ~1680 | Pirak founded: horse, camel, rice and millet in one place | SITE | W |
 | ~1650 | Malwa culture; Navdatoli on the Narmada | SITE | M |
-| **~1600** | **The Daimabad bronzes — chariot, elephant, rhinoceros, buffalo** | WORK | **W** |
+| **~1600** | **The Daimabad bronzes — chariot, elephant, rhinoceros, buffalo** ‡ | WORK | **W** |
 | ~1600 | The Jorwe culture across the Deccan | SITE | M |
 | ~1560 | Chandoli and Nevasa; the Deccan Chalcolithic at its widest | SITE | M |
 | **~1510** | **Iron at Mangadu, Salem — southern metallurgy consolidates** ‡ | TRANSITION | W |
@@ -526,7 +526,7 @@ pays for 648,802 settlements.
 | ~750 | **Gargi Vachaknavi argues in open assembly** | WORK | W |
 | ~745 | Uddalaka Aruni; *tat tvam asi* in the Chandogya | WORK | W |
 | ~740 | Renunciation appears as a recognised life stage | REFORM | W |
-| ~730 | Kausambi's rampart — the earliest great fortification of the Ganga | STRUCTURE | W |
+| ~730 | Kausambi's rampart — the earliest great fortification of the Ganga ‡ | STRUCTURE | W |
 | ~720 | Ujjain fortified; the Malwa route secured | SITE | M |
 | **~700** | **Second urbanisation begins in the middle Ganga** | TRANSITION | **W** |
 | ~700 | Northern Black Polished Ware; luxury exchange resumes | TRANSITION | W |
@@ -595,7 +595,7 @@ pays for 648,802 settlements.
 | Year | Event | Class | Mag |
 |---|---|---|---|
 | 322 | Mauryan foundation; the first subcontinental state | EPOCH | W |
-| 321 | Chanakya as chief minister; the Arthashastra tradition begins | WORK | W |
+| ~321 | Chanakya as chief minister; the Arthashastra tradition begins ‡ | WORK | W |
 | ~318 | The *janapada* survey: land measured and classified | TRANSITION | W |
 | ~315 | The fiscal apparatus: assessment, mines, salt, forests, monopolies | TRANSITION | W |
 | ~312 | The *sita* lands — state farms worked by dependent labour | AGRICULTURE | M |

@@ -3258,15 +3258,12 @@
    "era": "ERA.INDUS",
    "class": "TRANSITION",
    "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
+   "certainty": 0.45,
+   "trigger": "latent",
    "scope": "subcontinental",
    "region": null,
-   "dispute": false,
-   "window": [
-    -2550,
-    -2450
-   ]
+   "dispute": true,
+   "dispute_scope": "date"
   },
   {
    "id": "EVT.M2500.THE_PRIEST_KING_STEATITE_FIGURE",
@@ -4878,11 +4875,12 @@
    "era": "ERA.LATE_HARAPPAN",
    "class": "WORK",
    "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
+   "certainty": 0.45,
+   "trigger": "latent",
    "scope": "subcontinental",
    "region": "RGN.MAHARASHTRA",
-   "dispute": false,
+   "dispute": true,
+   "dispute_scope": "date",
    "window": [
     -1632,
     -1568
@@ -6959,15 +6957,12 @@
    "era": "ERA.LATE_VEDIC",
    "class": "STRUCTURE",
    "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
+   "certainty": 0.45,
+   "trigger": "latent",
    "scope": "subcontinental",
    "region": null,
-   "dispute": false,
-   "window": [
-    -745,
-    -715
-   ]
+   "dispute": true,
+   "dispute_scope": "date"
   },
   {
    "id": "EVT.M720.UJJAIN_FORTIFIED_THE_MALWA_ROUTE_SECURED",
@@ -8816,18 +8811,19 @@
   {
    "id": "EVT.M321.CHANAKYA_AS_CHIEF_MINISTER_THE_ARTHASHASTRA_",
    "title": "Chanakya as chief minister; the Arthashastra tradition begins",
-   "provenance": "SOURCED",
+   "provenance": "DERIVED",
    "evidence": "The text, and the works that quote or answer it.",
    "year": -321,
    "year_end": null,
    "era": "ERA.MAURYAN",
    "class": "WORK",
    "magnitude": "W",
-   "certainty": 0.95,
-   "trigger": "dated",
+   "certainty": 0.45,
+   "trigger": "latent",
    "scope": "subcontinental",
    "region": null,
-   "dispute": false
+   "dispute": true,
+   "dispute_scope": "date"
   },
   {
    "id": "EVT.M318.THE_JANAPADA_SURVEY_LAND_MEASURED_AND_CLASSI",
@@ -12898,26 +12894,6 @@
    "certainty": 0.7,
    "trigger": "window",
    "scope": "subcontinental",
-   "region": null,
-   "dispute": false,
-   "window": [
-    294,
-    306
-   ]
-  },
-  {
-   "id": "EVT.300.TIRUKKURAL_2",
-   "title": "Tirukkural",
-   "provenance": "DERIVED",
-   "evidence": "The text, and the works that quote or answer it.",
-   "year": 300,
-   "year_end": null,
-   "era": "ERA.CLASSICAL",
-   "class": "WORK",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
    "region": "RGN.TAMILAKAM",
    "dispute": false,
    "window": [
@@ -26591,12 +26567,12 @@
   }
  ],
  "census": {
-  "total": 1352,
+  "total": 1351,
   "subcontinental": 752,
-  "regional": 600,
-  "pre_1300": 1034,
+  "regional": 599,
+  "pre_1300": 1033,
   "by_magnitude": {
-   "W": 590,
+   "W": 589,
    "M": 631,
    "R": 127,
    "m": 4
@@ -26608,7 +26584,7 @@
    "EPOCH": 18,
    "STRUCTURE": 38,
    "SITE": 197,
-   "WORK": 232,
+   "WORK": 231,
    "AGRICULTURE": 31,
    "TRADE": 87,
    "REFORM": 141,
@@ -26619,10 +26595,10 @@
    "COLONIAL": 54
   },
   "by_trigger": {
-   "window": 1086,
-   "latent": 30,
-   "dated": 236
+   "window": 1082,
+   "latent": 34,
+   "dated": 235
   },
-  "disputed": 61
+  "disputed": 65
  }
 }
