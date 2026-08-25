@@ -39,6 +39,7 @@ is generated from 138 KB of control data rather than shipped as an image.
 | `docs/08-visual-design.md` | **The design MD.** The Cartographer's Table — palette, lighting rig, 18 UI components, sprite manifest, generation pipeline |
 | `docs/09-procedural-map.md` | The base map: skeleton-plus-field approach, terrain types, the water model |
 | `docs/10-buildplan.md` | **Start here for dev.** Codebase explained plainly, the fundamental rule, and the eleven phases to a playable slice |
+| `docs/14-event-completion.md` | **Phases 23-33.** The gap register — which 363 events remain, where, and in what order |
 | `docs/13-datapacks.md` | **The contribution contract.** Datapack format, the two absolute rules, and how to validate a pack |
 | `docs/12-buildplan-2.md` | **Phases 12-22.** From the playable slice to a hundred-hour game: event cards, the survey, named people, the sovereignty stack |
 | `docs/11-trade-network.md` | **The trade system.** The offer, the trust ladder, routes as four numbers, transit and settlement time, escorts, the five chokes, the missionary vector |
