@@ -36,6 +36,7 @@ import { save as mkSave, load as loadSave, reconcile, toURLFragment, fromURLFrag
          replayStops, saveSize } from '../../../packages/sim/src/save.js';
 import { Sound } from '../../../packages/ui/src/sound.js';
 import { renderCardPlate } from '../../../packages/ui/src/cardplate.js';
+import { makeTelemetry } from '../../../packages/ui/src/telemetry.js';
 import { CHOLA, CHAPTERS, chapterAt, reckoning, openingState }
   from '../../../packages/sim/src/campaign.js';
 
@@ -120,6 +121,7 @@ async function upgradeClimate() {
 const cityRenderer = new CityRenderer({ cities: cityData.cities });
 const DP = { timeline, works, people, gazetteer, texture, occupations };
 const CARDS = indexCards(cardsDoc);
+const TELEMETRY = makeTelemetry();
 const THREAD_IDX = indexThreads(timeline);
 const CHAPTER_BY_ID = new Map((timeline.chapters ?? []).map(c => [c.id, c]));
 const withChapter = (ev) =>
@@ -133,6 +135,7 @@ function openCard(ev) {
                             threads: threadsFor(THREAD_IDX, ev) });
   $('drawer-inner').innerHTML = renderCard(m);
   $('drawer').classList.add('on');
+  TELEMETRY.cardOpened();
 }
 
 /** "Keep this card": render the 1200x1600 plate and present it to save.
@@ -157,6 +160,7 @@ document.addEventListener('click', async (e) => {
   </div>`;
   overlay.addEventListener('click', () => overlay.remove());
   document.body.append(overlay);
+  TELEMETRY.cardKept();
 });
 
 /** Open the year page — composed, never authored. */
@@ -170,6 +174,7 @@ document.addEventListener('click', (e) => {
 
 /** Read a whole thread end to end — the loom view. */
 function openThread(tid) {
+  TELEMETRY.threadOpened();
   const t = THREAD_IDX.get(tid);
   if (!t) return;
   const beats = t.beats.map(b =>
@@ -197,6 +202,7 @@ function openYear(year) {
   const log = state.log.filter(l => l.year === year);
   $('drawer-inner').innerHTML = renderYearPage(year, { events: models, log, era: eraOf(year) });
   $('drawer').classList.add('on');
+  TELEMETRY.yearOpened();
 }
 
 /* ── Camera ─────────────────────────────────────────────────────────────── */
@@ -759,6 +765,7 @@ function showReckoning() {
 }
 
 function decide(action, extra = {}) {
+  TELEMETRY.decision();
   decisions.push({ year: state.year, action, ...extra });
   recompute();
   syncScrub();
@@ -1173,6 +1180,13 @@ function notice(l) {
 
 /* ── The loop ───────────────────────────────────────────────────────────── */
 
+$('telemetry').addEventListener('click', async () => {
+  const blob = TELEMETRY.export();
+  try { await navigator.clipboard.writeText(blob); notice({ year: state?.year ?? 0, kind: 'decision',
+    text: 'Session metrics copied — paste them into the findings template.' }); }
+  catch { prompt('Session metrics (copy):', blob); }
+});
+
 $('play').addEventListener('click', () => {
   playing = !playing;
   $('play').textContent = playing ? '❚❚ pause' : '▶ play';
@@ -1278,6 +1292,7 @@ function tick(t) {
   requestAnimationFrame(tick);
   const dt = lastT ? Math.min(100, t - lastT) : 16;
   lastT = t;
+  if (state) TELEMETRY.tick(eraOf(state.year)?.id, playing);
   if (!playing || !state) return;
   acc += dt;
   const step = 45;                       // ms per advance

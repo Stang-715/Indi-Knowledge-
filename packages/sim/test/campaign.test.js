@@ -127,3 +127,31 @@ test('every objective is reachable in principle', () => {
   const late = playChola();
   assert.ok(OBJECTIVES.find(o => o.id === 'OBJ.TEMPLE').test(late));
 });
+
+/* ── Phase 43: the Chola slice baseline holds (docs/18) ─────────────────── */
+
+test('the slice ruling holds on the numbers: a decision every ~3 minutes', () => {
+  const DP2 = { ...DP,
+    gazetteer: JSON.parse(readFileSync(new URL('../../../data/gazetteer/places.json', import.meta.url), 'utf8')),
+    texture:   JSON.parse(readFileSync(new URL('../../../data/timeline/texture.json', import.meta.url), 'utf8')),
+  };
+  const d = [];
+  for (let y = -3000; y < 985; y += 100) d.push({ year: y, action: 'patronise' });
+  for (let y = -400; y < 985; y += 60) d.push({ year: y, action: 'train-scribe' });
+  for (let y = 985; y <= 1070; y += 5) d.push({ year: y, action: 'patronise' });
+  d.push({ year: 990, action: 'open-route', id: 'LANKA', from: 'thanjavur', to: 'anuradha', days: 20 });
+  for (let y = 992; y <= 1070; y += 6) d.push({ year: y, action: 'send-caravan', route: 'LANKA' });
+  for (let y = 987; y <= 1070; y += 9) d.push({ year: y, action: 'share', with: 'chera-court' });
+  const s = run(DP2, 'chola-slice-test', d, { to: 1070 });
+  const log = s.log.filter(l => l.year >= 985 && l.year <= 1070);
+  const dec = log.filter(l => l.kind === 'decision').length;
+  const mpy = (18 * 60) / (1279 - 850);
+  const perDecision = ((1070 - 985) * mpy) / Math.max(1, dec);
+  assert.ok(perDecision <= 6, `a decision only every ${perDecision.toFixed(1)} minutes in the slice`);
+  // and the slice is never silent for long
+  const years = [...new Set(log.map(l => l.year))].sort((a, b) => a - b);
+  let worst = 0;
+  for (let i = 1; i < years.length; i++)
+    worst = Math.max(worst, (years[i] - years[i - 1]) * mpy);
+  assert.ok(worst <= 20, `${worst.toFixed(1)} silent minutes inside the slice`);
+});
