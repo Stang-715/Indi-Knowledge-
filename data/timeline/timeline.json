@@ -7039,6 +7039,44 @@
    ]
   },
   {
+   "id": "EVT.SIT.PRAKASH_TAPI",
+   "title": "Prakash and Bahal: the Tapi valley enters the iron age town network",
+   "class": "SITE",
+   "magnitude": "R",
+   "year": -600,
+   "era": "ERA.SECOND_URBAN",
+   "provenance": "SOURCED",
+   "certainty": 0.6,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false,
+   "evidence": "Deccan College excavations showing Jorwe levels overlain by iron-using occupation.",
+   "window": [
+    -612,
+    -588
+   ]
+  },
+  {
+   "id": "EVT.SIT.UJJAIN_RAMPART",
+   "title": "Ujjain's mud rampart and moat enclose the Malwa route",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": -600,
+   "era": "ERA.SECOND_URBAN",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Garh Kalika mound's rampart section, radiocarbon dated, with NBPW above.",
+   "window": [
+    -608,
+    -592
+   ]
+  },
+  {
    "id": "EVT.M599.MAHAVIRA_THE_JAIN_ORDER",
    "title": "Mahavira; the Jain order",
    "provenance": "DERIVED",
@@ -7130,6 +7168,25 @@
    ]
   },
   {
+   "id": "EVT.SIT.CHAMPA",
+   "title": "Champa on the Ganga: Anga's capital and the eastern river gate",
+   "class": "SITE",
+   "magnitude": "R",
+   "year": -580,
+   "era": "ERA.SECOND_URBAN",
+   "provenance": "SOURCED",
+   "certainty": 0.65,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Excavation at Champanagar showing a rampart and moat, and the Anguttara Nikaya's list of the six great cities.",
+   "window": [
+    -590,
+    -570
+   ]
+  },
+  {
    "id": "EVT.M570.LONG_DISTANCE_CARAVAN_ROUTES_THE_UTTARAPATHA",
    "title": "Long-distance caravan routes: the uttarapatha and dakshinapatha",
    "provenance": "DERIVED",
@@ -7185,6 +7242,45 @@
     -561,
     -539
    ]
+  },
+  {
+   "id": "EVT.SIT.ATRANJIKHERA_NBP",
+   "title": "Atranjikhera crosses into Northern Black Polished Ware",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": -550,
+   "era": "ERA.SECOND_URBAN",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "A four-period sequence from Ochre Coloured Pottery through Painted Grey Ware to NBPW, with iron slag from the PGW level up.",
+   "window": [
+    -558,
+    -542
+   ]
+  },
+  {
+   "id": "EVT.SIT.VAISHALI",
+   "title": "Vaishali: the Licchavi capital, and a republic with a wall",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": -550,
+   "era": "ERA.SECOND_URBAN",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Raja Vishal ka Garh mound, the Licchavi stupa, and the Pali canon's descriptions of the assembly hall.",
+   "window": [
+    -558,
+    -542
+   ],
+   "note": "A republic that fortified itself is a republic that expected a siege."
   },
   {
    "id": "EVT.M545.BIMBISARA_MAGADHAN_EXPANSION_BEGINS",
@@ -7499,6 +7595,64 @@
    ]
   },
   {
+   "id": "EVT.SIT.BHITA",
+   "title": "Bhita on the Yamuna: a town excavated street by street",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": -500,
+   "era": "ERA.SECOND_URBAN",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Marshall's 1911-12 excavation, which exposed a complete street frontage with shops, houses and a guild hall.",
+   "window": [
+    -508,
+    -492
+   ],
+   "note": "One of the few Indian sites dug as a town plan rather than a mound section."
+  },
+  {
+   "id": "EVT.SIT.MATHURA_EARLY",
+   "title": "Mathura on the Yamuna becomes a city",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": -500,
+   "era": "ERA.SECOND_URBAN",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "NBPW levels beneath the Kushan city, and the Jain and Buddhist textual record of a Surasena capital.",
+   "window": [
+    -508,
+    -492
+   ]
+  },
+  {
+   "id": "EVT.SIT.SRAVASTI_RAMPART",
+   "title": "Sravasti's rampart is raised, enclosing four hundred hectares",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": -500,
+   "era": "ERA.SECOND_URBAN",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The surviving earthwork circuit, and the Jetavana monastery within it.",
+   "window": [
+    -508,
+    -492
+   ]
+  },
+  {
    "id": "EVT.M495.AJATASHATRU_THE_WAR_WITH_VAJJI_SIEGE_ENGINES",
    "title": "Ajatashatru; the war with Vajji; siege engines",
    "provenance": "DERIVED",
@@ -7657,6 +7811,25 @@
    "dispute_scope": "date"
   },
   {
+   "id": "EVT.SIT.KAUSAMBI_EAST",
+   "title": "Kausambi's eastern gate and the Ghositarama monastery",
+   "class": "SITE",
+   "magnitude": "R",
+   "year": -450,
+   "era": "ERA.SECOND_URBAN",
+   "provenance": "SOURCED",
+   "certainty": 0.65,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "G. R. Sharma's excavation of the defences and the monastery complex named in the Pali canon.",
+   "window": [
+    -458,
+    -442
+   ]
+  },
+  {
    "id": "EVT.M440.THE_NIGAMA_MARKET_TOWN_CORPORATIONS",
    "title": "The nigama — market-town corporations",
    "provenance": "DERIVED",
@@ -7794,6 +7967,25 @@
    "window": [
     -408,
     -392
+   ]
+  },
+  {
+   "id": "EVT.SIT.SISUPALGARH_GRID",
+   "title": "Sisupalgarh's grid is laid out with eight gateways",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": -400,
+   "era": "ERA.SECOND_URBAN",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ODISHA",
+   "dispute": false,
+   "evidence": "The surviving rampart square with its paired gateways, and the laterite pillar array at the centre.",
+   "window": [
+    -405,
+    -395
    ]
   },
   {
@@ -8362,6 +8554,64 @@
    ]
   },
   {
+   "id": "EVT.SIT.KODUMANAL_STEEL",
+   "title": "Kodumanal's crucible steel furnaces",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": -300,
+   "era": "ERA.MAURYAN",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "evidence": "Slag, crucible fragments and high-carbon steel from the industrial quarter, with Tamil-Brahmi graffiti on the pottery.",
+   "window": [
+    -304,
+    -296
+   ]
+  },
+  {
+   "id": "EVT.SIT.PATALIPUTRA_PALISADE",
+   "title": "Pataliputra's timber palisade, as Megasthenes described it",
+   "class": "SITE",
+   "magnitude": "W",
+   "year": -300,
+   "era": "ERA.MAURYAN",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Waterlogged sal-wood palisade timbers excavated at Bulandi Bagh, matching the Greek account of a wooden wall with 570 towers.",
+   "window": [
+    -304,
+    -296
+   ],
+   "note": "A Greek ambassador described it, and the wood is still there."
+  },
+  {
+   "id": "EVT.SIT.TAXILA_BHIR",
+   "title": "Taxila's Bhir Mound: an unplanned city under Mauryan rule",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": -300,
+   "era": "ERA.MAURYAN",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Marshall's stratigraphy at Bhir Mound, with Mauryan punch-marked coin hoards.",
+   "window": [
+    -304,
+    -296
+   ]
+  },
+  {
    "id": "EVT.M298.CHANDRAGUPTA_ABDICATES_THE_JAIN_TRADITION_AT",
    "title": "Chandragupta abdicates; the Jain tradition at Shravanabelagola",
    "provenance": "DERIVED",
@@ -8418,6 +8668,25 @@
    ]
   },
   {
+   "id": "EVT.SIT.SOHGAURA",
+   "title": "Sohgaura's copper plate is fixed at a storehouse",
+   "class": "SITE",
+   "magnitude": "R",
+   "year": -290,
+   "era": "ERA.MAURYAN",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The copper plaque itself, showing three storehouses in relief above the order.",
+   "window": [
+    -294,
+    -286
+   ]
+  },
+  {
    "id": "EVT.M285.IRRIGATION_AS_STATE_WORK_THE_SUDARSHANA_LAKE",
    "title": "Irrigation as state work; the Sudarshana lake at Girnar",
    "provenance": "DERIVED",
@@ -8435,6 +8704,25 @@
    "window": [
     -291,
     -279
+   ]
+  },
+  {
+   "id": "EVT.SIT.KUMRAHAR",
+   "title": "Kumrahar's eighty-pillared hall",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": -280,
+   "era": "ERA.MAURYAN",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The polished sandstone pillar bases in situ, and the wooden platform beneath them.",
+   "window": [
+    -284,
+    -276
    ]
   },
   {
@@ -8585,6 +8873,25 @@
    "window": [
     -262,
     -252
+   ]
+  },
+  {
+   "id": "EVT.SIT.DHAULI_JAUGADA",
+   "title": "Dhauli and Jaugada: edict rocks placed where Kalinga could read them",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": -257,
+   "era": "ERA.MAURYAN",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ODISHA",
+   "dispute": false,
+   "evidence": "The two separate Kalinga edicts, cut at the sites of the conquered province's administration.",
+   "window": [
+    -261,
+    -253
    ]
   },
   {
@@ -8884,6 +9191,119 @@
     -255,
     -245
    ]
+  },
+  {
+   "id": "EVT.SIT.BAIRAT",
+   "title": "Bairat: a circular Buddhist shrine and two Ashokan edicts",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": -250,
+   "era": "ERA.MAURYAN",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.RAJASTHAN",
+   "dispute": false,
+   "evidence": "The circular brick chaitya foundation with a stupa at its centre, and the Bhabru and Bairat inscriptions.",
+   "window": [
+    -254,
+    -246
+   ]
+  },
+  {
+   "id": "EVT.SIT.BARABAR_POLISH",
+   "title": "The Barabar caves are cut and polished to a mirror",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": -250,
+   "era": "ERA.MAURYAN",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Lomas Rishi and Sudama caves themselves, with dedicatory inscriptions to the Ajivikas.",
+   "note": "Granite polished so fine it still returns an echo. Nobody has fully explained how."
+  },
+  {
+   "id": "EVT.SIT.MAHASTHAN_GARH",
+   "title": "Mahasthangarh's rampart and its famine-relief order",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": -250,
+   "era": "ERA.MAURYAN",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.BENGAL",
+   "dispute": false,
+   "evidence": "The Brahmi limestone plaque ordering grain from the state store, and the rampart it was found beside.",
+   "window": [
+    -254,
+    -246
+   ]
+  },
+  {
+   "id": "EVT.SIT.SANNATI",
+   "title": "Sannati on the Bhima: a Mauryan edict found reused as a temple floor slab",
+   "class": "SITE",
+   "magnitude": "R",
+   "year": -250,
+   "era": "ERA.MAURYAN",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "evidence": "The Ashokan separate edicts recovered from the Chandralamba temple, published in 1989.",
+   "window": [
+    -254,
+    -246
+   ],
+   "note": "Found in 1986 under a goddess. Edicts are still turning up."
+  },
+  {
+   "id": "EVT.SIT.SISUPALGARH_MAURYA",
+   "title": "Sisupalgarh at its height under Mauryan administration",
+   "class": "SITE",
+   "magnitude": "R",
+   "year": -250,
+   "era": "ERA.MAURYAN",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ODISHA",
+   "dispute": false,
+   "evidence": "Rouletted ware, NBPW and a coin sequence from the rampart trenches.",
+   "window": [
+    -254,
+    -246
+   ]
+  },
+  {
+   "id": "EVT.SIT.SOPARA",
+   "title": "Sopara: the western port that received an Ashokan edict and Roman cargo",
+   "class": "SITE",
+   "magnitude": "R",
+   "year": -250,
+   "era": "ERA.MAURYAN",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false,
+   "evidence": "The stupa at Nala Sopara, the eighth and ninth rock edict fragments, and the Periplus's Souppara.",
+   "window": [
+    -254,
+    -246
+   ],
+   "year_end": 200
   },
   {
    "id": "EVT.M240.MAHINDA_TO_SRI_LANKA_THE_PALI_CANON_LEAVES_T",
@@ -9761,6 +10181,25 @@
    ]
   },
   {
+   "id": "EVT.SIT.ARIKAMEDU_PHASES",
+   "title": "Arikamedu: a fishing village becomes a Roman trading station",
+   "class": "SITE",
+   "magnitude": "W",
+   "year": -50,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "evidence": "Wheeler's 1945 trench through the warehouse, with Arretine ware, amphora sherds and Roman lamps stratified above local rouletted ware.",
+   "window": [
+    -54,
+    -46
+   ]
+  },
+  {
    "id": "EVT.M40.ARIKAMEDU_ROMAN_AMPHORAE_AND_ARRETINE_WARE_O",
    "title": "Arikamedu: Roman amphorae and Arretine ware on the Coromandel",
    "provenance": "DERIVED",
@@ -9938,6 +10377,45 @@
    "window": [
     45,
     55
+   ]
+  },
+  {
+   "id": "EVT.SIT.BERENIKE_LINK",
+   "title": "Indian goods reach Berenike and Myos Hormos on the Red Sea",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": 50,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Black pepper, Indian teak ship timbers and Tamil-Brahmi graffiti on storage jars excavated at Berenike.",
+   "window": [
+    46,
+    54
+   ],
+   "note": "A Tamil name scratched on a jar in Egypt is the trade route in one object."
+  },
+  {
+   "id": "EVT.SIT.BHOKARDAN",
+   "title": "Bhokardan (Bhogavardhana) supplies the ghat trade with ivory",
+   "class": "SITE",
+   "magnitude": "R",
+   "year": 50,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false,
+   "evidence": "Ivory workshop debris and a plaque comparable to the Pompeii ivory figure.",
+   "window": [
+    46,
+    54
    ]
   },
   {
@@ -10214,6 +10692,121 @@
    "evidence": "The passes carried the ocean trade inland and someone controlled them; the cave inscriptions record merchants and monks, not the hill communities they passed through."
   },
   {
+   "id": "EVT.SIT.KAVERIPATTINAM_WHARF",
+   "title": "Kaveripattinam's brick wharf and warehouse",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": 100,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.65,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "evidence": "The wharf structure excavated at Puhar, and the Pattinappalai's description of customs officers stamping bales.",
+   "window": [
+    96,
+    104
+   ]
+  },
+  {
+   "id": "EVT.SIT.PATTANAM",
+   "title": "Pattanam on the Periyar, argued to be Muziris",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": 100,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.6,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KERALA",
+   "dispute": true,
+   "evidence": "Amphorae, Roman glass, a wharf and a dugout canoe; the identification with Muziris rests on the Peutinger Table and the Periplus.",
+   "window": [
+    96,
+    104
+   ],
+   "dispute_scope": "interpretation"
+  },
+  {
+   "id": "EVT.SIT.SANGHOL",
+   "title": "Sanghol in the Punjab: a Kushan stupa with 117 railing pillars buried in a pit",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": 100,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The 1985 discovery of the dismantled railing, carved in Mathura sandstone and buried intact.",
+   "window": [
+    96,
+    104
+   ]
+  },
+  {
+   "id": "EVT.SIT.SONKH",
+   "title": "Sonkh near Mathura: a naga shrine in an unbroken sequence",
+   "class": "SITE",
+   "magnitude": "R",
+   "year": 100,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Härtel's excavation, which produced an apsidal naga temple and a stratigraphy running from PGW to the medieval period.",
+   "window": [
+    96,
+    104
+   ]
+  },
+  {
+   "id": "EVT.SIT.TER",
+   "title": "Ter (Tagara) on the Deccan trade road",
+   "class": "SITE",
+   "magnitude": "R",
+   "year": 100,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false,
+   "evidence": "Roman glass, ivory, and a brick apsidal shrine; the Periplus names Tagara as an inland market.",
+   "window": [
+    96,
+    104
+   ]
+  },
+  {
+   "id": "EVT.SIT.VADGAON_MADHAVPUR",
+   "title": "Vadgaon-Madhavpur yields a Roman coin hoard and a bath",
+   "class": "SITE",
+   "magnitude": "R",
+   "year": 100,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.65,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "evidence": "Excavation near Belgaum producing Roman denarii, a brick tank and Satavahana levels.",
+   "window": [
+    96,
+    104
+   ]
+  },
+  {
    "id": "EVT.110.BUDDHISM_MOVES_ALONG_THE_SILK_ROAD_INTO_CENT",
    "title": "Buddhism moves along the Silk Road into Central Asia and China",
    "provenance": "DERIVED",
@@ -10427,6 +11020,44 @@
    "region": "RGN.GUJARAT",
    "dispute": false,
    "evidence": "Rudradaman's Junagadh inscription, which describes the storm, the breach and the repair in unusual technical detail."
+  },
+  {
+   "id": "EVT.SIT.BANAVASI_CHUTU",
+   "title": "Banavasi under the Chutus: a brick stupa on the Varada",
+   "class": "SITE",
+   "magnitude": "R",
+   "year": 150,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "evidence": "The Chutu Prakrit inscriptions and the brick stupa base beneath the later Madhukeshwara temple.",
+   "window": [
+    146,
+    154
+   ]
+  },
+  {
+   "id": "EVT.SIT.KANHERI",
+   "title": "Kanheri's hundred and nine caves are cut above the Konkan ports",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": 150,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false,
+   "evidence": "The cave complex itself, with donative inscriptions naming merchants from Kalyan and Sopara.",
+   "window": [
+    146,
+    154
+   ]
   },
   {
    "id": "EVT.160.CHARAKA_S_MEDICAL_COMPENDIUM_TAKES_FORM",
@@ -10828,6 +11459,25 @@
    ]
   },
   {
+   "id": "EVT.SIT.NAGARJUNAKONDA_CITY",
+   "title": "Nagarjunakonda: a planned Ikshvaku capital in the Krishna valley",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": 250,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ANDHRA",
+   "dispute": false,
+   "evidence": "The excavation before the dam flooded the valley, which recorded a citadel, thirty monasteries, a stadium and an amphitheatre.",
+   "window": [
+    246,
+    254
+   ]
+  },
+  {
    "id": "EVT.300.BANAVASI_UNDER_THE_CHUTUS",
    "title": "Banavasi under the Chutus",
    "provenance": "DERIVED",
@@ -11116,6 +11766,25 @@
    ]
   },
   {
+   "id": "EVT.SIT.SISUPALGARH_END",
+   "title": "Sisupalgarh is abandoned",
+   "class": "SITE",
+   "magnitude": "R",
+   "year": 350,
+   "era": "ERA.GUPTA",
+   "provenance": "SOURCED",
+   "certainty": 0.6,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ODISHA",
+   "dispute": false,
+   "evidence": "The end of the occupation sequence in the rampart trenches, with no destruction layer.",
+   "window": [
+    343,
+    357
+   ]
+  },
+  {
    "id": "EVT.360.THE_AGRAHARA_AND_BRAHMADEYA_KNOWLEDGE_ACQUIR",
    "title": "The agrahara and brahmadeya: knowledge acquires an endowment",
    "provenance": "DERIVED",
@@ -11150,6 +11819,25 @@
    "scope": "subcontinental",
    "region": null,
    "dispute": false
+  },
+  {
+   "id": "EVT.SIT.DEVNIMORI",
+   "title": "Devnimori's stupa yields a dated relic casket",
+   "class": "SITE",
+   "magnitude": "R",
+   "year": 375,
+   "era": "ERA.GUPTA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.GUJARAT",
+   "dispute": false,
+   "evidence": "The casket inscription giving a regnal year, excavated before the Meshwo dam flooded the site.",
+   "window": [
+    371,
+    379
+   ]
   },
   {
    "id": "EVT.380.ABHIJNANASHAKUNTALAM_MEGHADUTA_RAGHUVAMSHA",
@@ -11585,6 +12273,82 @@
    "note": "The clearance stops being something farmers do and becomes something a charter authorises."
   },
   {
+   "id": "EVT.SIT.BAGH_CAVES",
+   "title": "The Bagh caves are cut and painted on the Narmada",
+   "class": "SITE",
+   "magnitude": "R",
+   "year": 450,
+   "era": "ERA.GUPTA",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false,
+   "evidence": "The rock-cut viharas and the surviving mural fragments, now removed to Gwalior.",
+   "window": [
+    443,
+    457
+   ]
+  },
+  {
+   "id": "EVT.SIT.BHITARGAON",
+   "title": "Bhitargaon: the earliest surviving brick temple with a corbelled tower",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": 450,
+   "era": "ERA.GUPTA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The temple itself, with terracotta panels and a true arch in the doorway.",
+   "window": [
+    446,
+    454
+   ]
+  },
+  {
+   "id": "EVT.SIT.NALANDA_PLAN",
+   "title": "Nalanda's plan sets: viharas facing temples across a central walk",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": 450,
+   "era": "ERA.GUPTA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The excavated ground plan — eleven monasteries and six temples on a north-south axis — and the seals naming the mahavihara.",
+   "window": [
+    446,
+    454
+   ]
+  },
+  {
+   "id": "EVT.SIT.SARNATH_GUPTA",
+   "title": "Sarnath's workshops produce the seated preaching Buddha",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": 450,
+   "era": "ERA.GUPTA",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Dhamek stupa's surroundings and the image workshop debris, with dated pedestal inscriptions.",
+   "window": [
+    446,
+    454
+   ]
+  },
+  {
    "id": "EVT.CAT.VALABHI_COUNCIL",
    "title": "The Jain canon is fixed in writing at Valabhi",
    "class": "CATASTROPHE",
@@ -11682,6 +12446,22 @@
    "becomes": "nothing"
   },
   {
+   "id": "EVT.SIT.MANDSAUR",
+   "title": "Mandsaur: a silk weavers' guild builds and rebuilds a sun temple",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": 473,
+   "era": "ERA.GUPTA",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Mandsaur inscription of 473, which records the guild's migration from Lata and its repair of the temple it had built.",
+   "note": "A guild of weavers moved across the country, built a temple, and paid to fix it eighty years later."
+  },
+  {
    "id": "EVT.475.THE_MAITRAKAS_VALABHI_BECOMES_A_UNIVERSITY",
    "title": "The Maitrakas; Valabhi becomes a university",
    "provenance": "SOURCED",
@@ -11696,6 +12476,25 @@
    "scope": "regional",
    "region": "RGN.GUJARAT",
    "dispute": false
+  },
+  {
+   "id": "EVT.SIT.VALABHI_CITY",
+   "title": "Valabhi: a port capital whose university drew students from the north",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": 475,
+   "era": "ERA.GUPTA",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.GUJARAT",
+   "dispute": false,
+   "evidence": "The Maitraka copper-plate grant series, and Yijing's report that Valabhi and Nalanda were the two great schools.",
+   "window": [
+    469,
+    481
+   ]
   },
   {
    "id": "EVT.484.SKANDAGUPTA_DIES_HUNA_PRESSURE_INTENSIFIES",
@@ -11828,6 +12627,63 @@
    "region": "RGN.ANDHRA",
    "dispute": false,
    "evidence": "Delta-front sediment sequences and the abandonment of older coastal anchorages."
+  },
+  {
+   "id": "EVT.SIT.DEOGARH",
+   "title": "The Dashavatara temple at Deogarh sets the northern plan",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": 500,
+   "era": "ERA.GUPTA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The temple's surviving sanctum, panels and plinth, with its four subsidiary shrines.",
+   "window": [
+    495,
+    505
+   ]
+  },
+  {
+   "id": "EVT.SIT.KAUSHAMBI_END",
+   "title": "Kausambi's occupation thins and the rampart is not maintained",
+   "class": "SITE",
+   "magnitude": "R",
+   "year": 500,
+   "era": "ERA.GUPTA",
+   "provenance": "SOURCED",
+   "certainty": 0.6,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The upper levels of Sharma's trenches, with no rebuilding above the Gupta floor.",
+   "window": [
+    490,
+    510
+   ]
+  },
+  {
+   "id": "EVT.SIT.MAHASTHAN_GUPTA",
+   "title": "Mahasthangarh continues as Pundravardhana's administrative seat",
+   "class": "SITE",
+   "magnitude": "R",
+   "year": 500,
+   "era": "ERA.GUPTA",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.BENGAL",
+   "dispute": false,
+   "evidence": "The Gupta-period levels within the rampart and the copper-plate grants issued from the city.",
+   "window": [
+    492,
+    508
+   ]
   },
   {
    "id": "EVT.505.VARAHAMIHIRA_S_PANCHASIDDHANTIKA",
@@ -11972,6 +12828,26 @@
     539,
     561
    ]
+  },
+  {
+   "id": "EVT.SIT.ELEPHANTA_CUT",
+   "title": "Elephanta's cave and the Trimurti are cut",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": 550,
+   "era": "ERA.GUPTA",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": true,
+   "evidence": "The cave itself; the dating rests on style and on a disputed Kalachuri attribution.",
+   "window": [
+    542,
+    558
+   ],
+   "dispute_scope": "date"
   },
   {
    "id": "EVT.575.EASTERN_CHALUKYA_AT_VENGI",
@@ -12316,6 +13192,25 @@
    "evidence": "Inferred from later attestation and from the settled record's account of a frontier it did not cross. The date is a guess with a wide window and is labelled as one."
   },
   {
+   "id": "EVT.SIT.SIRPUR",
+   "title": "Sirpur on the Mahanadi: a Buddhist and Shaiva city in Dakshina Kosala",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": 600,
+   "era": "ERA.GUPTA",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Lakshmana brick temple, the Anandaprabhu vihara, and a market street excavated in the 2000s.",
+   "window": [
+    592,
+    608
+   ]
+  },
+  {
    "id": "EVT.606.HARSHA_THE_LAST_GREAT_NORTHERN_POWER_BEFORE_",
    "title": "Harsha; the last great northern power before fragmentation",
    "provenance": "SOURCED",
@@ -12639,6 +13534,46 @@
    "dispute_text": "The impalement of eight thousand Jains at Madurai appears first in hagiography centuries later and is not corroborated. That Jain institutions lost patronage is well supported; the massacre is not.",
    "corpus": "destroy",
    "severity": 0.028
+  },
+  {
+   "id": "EVT.SIT.AIHOLE_LAB",
+   "title": "Aihole: a hundred and twenty-five temples as an architectural laboratory",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": 650,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "evidence": "The temples themselves, which try the apsidal, the flat-roofed, the northern and the southern plan within a few hundred metres.",
+   "window": [
+    644,
+    656
+   ],
+   "note": "Somebody was experimenting, and left the drafts standing."
+  },
+  {
+   "id": "EVT.SIT.MAHABALIPURAM_RATHAS",
+   "title": "Mahabalipuram's rathas are cut, and left unfinished",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": 650,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "evidence": "The five monoliths, each abandoned at a different stage, which together show the whole method.",
+   "window": [
+    644,
+    656
+   ],
+   "note": "Unfinished work teaches more than finished work."
   },
   {
    "id": "EVT.660.VAGBHATA_S_ASHTANGA_HRIDAYAM",
@@ -12978,6 +13913,25 @@
    ]
   },
   {
+   "id": "EVT.SIT.KANCHI_WORKSHOPS",
+   "title": "Kanchipuram's temple workshops become a school",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": 725,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "evidence": "The Kailasanatha's foundation inscriptions and the sequence of Pallava temples around the city.",
+   "window": [
+    716,
+    734
+   ]
+  },
+  {
    "id": "EVT.730.GURJARA_PRATIHARA_THE_STRUGGLE_FOR_KANNAUJ_O",
    "title": "Gurjara-Pratihara; the struggle for Kannauj opens",
    "provenance": "DERIVED",
@@ -13015,6 +13969,25 @@
    "window": [
     715,
     745
+   ]
+  },
+  {
+   "id": "EVT.SIT.MARTAND",
+   "title": "Martand is built on the Kashmir plateau, facing the valley",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": 730,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KASHMIR",
+   "dispute": false,
+   "evidence": "The colonnaded courtyard and trefoil arches, and Kalhana's attribution to Lalitaditya.",
+   "window": [
+    723,
+    737
    ]
   },
   {
@@ -13071,6 +14044,25 @@
    "window": [
     725,
     755
+   ]
+  },
+  {
+   "id": "EVT.SIT.PATTADAKAL_PAIR",
+   "title": "Pattadakal builds northern and southern towers side by side",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": 740,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "evidence": "The Virupaksha and Papanatha temples, and the mason's signature inscriptions naming the guilds.",
+   "window": [
+    734,
+    746
    ]
   },
   {
@@ -13131,6 +14123,44 @@
    "window": [
     735,
     765
+   ]
+  },
+  {
+   "id": "EVT.SIT.LALITAGIRI",
+   "title": "Lalitagiri, Ratnagiri and Udayagiri form the Odishan diamond triangle",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": 750,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ODISHA",
+   "dispute": false,
+   "evidence": "The three excavated complexes, with Ratnagiri's monastery doorway and a relic casket from Lalitagiri.",
+   "window": [
+    741,
+    759
+   ]
+  },
+  {
+   "id": "EVT.SIT.PARIHASAPURA",
+   "title": "Parihasapura: Lalitaditya's new capital, built and then quarried",
+   "class": "SITE",
+   "magnitude": "R",
+   "year": 750,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KASHMIR",
+   "dispute": false,
+   "evidence": "The stupa base and the vast unmortared blocks, many later carried off for other buildings.",
+   "window": [
+    739,
+    761
    ]
   },
   {
@@ -13200,6 +14230,26 @@
     745,
     775
    ]
+  },
+  {
+   "id": "EVT.SIT.ELLORA_KAILASA_CUT",
+   "title": "Ellora's Kailasa is cut downward out of the cliff",
+   "class": "SITE",
+   "magnitude": "W",
+   "year": 760,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false,
+   "evidence": "The monolith itself and the two hundred thousand tonnes of removed basalt, with Rashtrakuta grants naming the patron.",
+   "window": [
+    752,
+    768
+   ],
+   "note": "Not built. Removed. They started at the top and took the mountain away."
   },
   {
    "id": "EVT.770.DHARMAPALA_VIKRAMASHILA_AND_SOMAPURA_FOUNDED",
@@ -13352,6 +14402,25 @@
    "window": [
     774,
     806
+   ]
+  },
+  {
+   "id": "EVT.SIT.SOMAPURA_BUILT",
+   "title": "Somapura Mahavihara is built at Paharpur on a cruciform plan",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": 790,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.BENGAL",
+   "dispute": false,
+   "evidence": "The excavated central shrine and its 177 monastic cells, and Dharmapala's seals.",
+   "window": [
+    784,
+    796
    ]
   },
   {
@@ -13674,6 +14743,63 @@
    "region": "RGN.TAMILAKAM",
    "dispute": false,
    "evidence": "Ethnographically documented and undatable. A ritual dairy system found nowhere else, and the plains record does not know it exists."
+  },
+  {
+   "id": "EVT.SIT.MANDU_EARLY",
+   "title": "Dhar and the Malwa uplands under the Paramaras",
+   "class": "SITE",
+   "magnitude": "R",
+   "year": 800,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "provenance": "SOURCED",
+   "certainty": 0.6,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Bhojshala inscriptions and the Paramara grant series.",
+   "window": [
+    784,
+    816
+   ]
+  },
+  {
+   "id": "EVT.SIT.OSIAN",
+   "title": "Osian's temple cluster sets the Maru-Gurjara idiom",
+   "class": "SITE",
+   "magnitude": "R",
+   "year": 800,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.RAJASTHAN",
+   "dispute": false,
+   "evidence": "Sixteen surviving temples with dated Pratihara-period sculpture.",
+   "window": [
+    788,
+    812
+   ]
+  },
+  {
+   "id": "EVT.SIT.SRIRANGAM_EARLY",
+   "title": "Srirangam's island temple begins its expansion outward",
+   "class": "SITE",
+   "magnitude": "R",
+   "year": 800,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "provenance": "SOURCED",
+   "certainty": 0.6,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "evidence": "The earliest inscriptions on the inner prakaram walls, and the Alvar hymns that address the site.",
+   "window": [
+    784,
+    816
+   ]
   },
   {
    "id": "EVT.810.BHAVABHUTI_AND_THE_MATURE_SANSKRIT_STAGE",
@@ -14719,6 +15845,25 @@
    "note": "The forest enters the ledger. The people are still not named."
   },
   {
+   "id": "EVT.SIT.KUMBAKONAM_CLUSTER",
+   "title": "Kumbakonam's temple cluster becomes a delta town of shrines",
+   "class": "SITE",
+   "magnitude": "R",
+   "year": 1000,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.65,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "evidence": "The Nageswaran and Sarangapani temples and their inscription series.",
+   "window": [
+    982,
+    1018
+   ]
+  },
+  {
    "id": "EVT.1005.THE_KERALA_AND_PANDYA_CAMPAIGNS",
    "title": "The Kerala and Pandya campaigns",
    "provenance": "DERIVED",
@@ -14910,6 +16055,25 @@
    "dispute": false
   },
   {
+   "id": "EVT.SIT.GANGAIKONDA_CITY",
+   "title": "Gangaikonda Cholapuram is laid out as a capital, not just a temple",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": 1025,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "evidence": "The temple, the six-kilometre Chola Gangam tank, and the palace mound at Maligaimedu.",
+   "window": [
+    1015,
+    1035
+   ]
+  },
+  {
    "id": "EVT.1026.HOYSALA_FOUNDATION",
    "title": "Hoysala foundation",
    "provenance": "SOURCED",
@@ -14960,6 +16124,25 @@
    "window": [
     1009,
     1051
+   ]
+  },
+  {
+   "id": "EVT.SIT.PERIYA_KULAM",
+   "title": "The Chola Gangam and the great delta tanks are cut",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": 1030,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "evidence": "The surviving bund, and the inscriptions recording tank committees and desilting duties.",
+   "window": [
+    1017,
+    1043
    ]
   },
   {
@@ -16190,6 +17373,25 @@
    "note": "Two agricultures on either side of a line, neither replacing the other for a thousand years."
   },
   {
+   "id": "EVT.SIT.WARANGAL_FORT",
+   "title": "Warangal's concentric fort and its four gateways",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": 1200,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ANDHRA",
+   "dispute": false,
+   "evidence": "The granite and earth ramparts and the four freestanding torana gateways still in place.",
+   "window": [
+    1188,
+    1212
+   ]
+  },
+  {
    "id": "EVT.1204.BAKHTIYAR_KHALJI_TAKES_NADIA",
    "title": "Bakhtiyar Khalji takes Nadia",
    "provenance": "SOURCED",
@@ -16648,6 +17850,25 @@
    "dispute": false
   },
   {
+   "id": "EVT.SIT.DAULATABAD_FORT",
+   "title": "Daulatabad is cut into a rock cone and made a capital",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": 1327,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false,
+   "evidence": "The scarped rock face, the spiral tunnel, and the Delhi population that was marched there and back.",
+   "window": [
+    1317,
+    1337
+   ]
+  },
+  {
    "id": "EVT.1330.TOKEN_CURRENCY_FAILS",
    "title": "token currency fails",
    "year": 1330,
@@ -16732,6 +17953,25 @@
    ]
   },
   {
+   "id": "EVT.SIT.HAMPI_LAYOUT",
+   "title": "Vijayanagara is laid out across seven ranges of hills",
+   "class": "SITE",
+   "magnitude": "W",
+   "year": 1340,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "evidence": "The surviving urban core: the royal centre, the sacred centre, the aqueducts and the bazaar streets.",
+   "window": [
+    1330,
+    1350
+   ]
+  },
+  {
    "id": "EVT.1347.BAHMANI_SECESSION",
    "title": "Bahmani secession",
    "year": 1347,
@@ -16765,6 +18005,25 @@
    "window": [
     1340,
     1360
+   ]
+  },
+  {
+   "id": "EVT.SIT.GAUR",
+   "title": "Gaur and Pandua build a Bengal idiom in brick",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": 1350,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.BENGAL",
+   "dispute": false,
+   "evidence": "The Adina mosque at Pandua and the brick and terracotta mosques of Gaur.",
+   "window": [
+    1337,
+    1363
    ]
   },
   {
@@ -16942,6 +18201,44 @@
    "evidence": "The nayaka system's absorption of local power-holders, some of whom held hill and forest tracts."
   },
   {
+   "id": "EVT.SIT.HAMPI_WATER",
+   "title": "Vijayanagara's water system supplies a city in a dry granite basin",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": 1400,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "evidence": "The Kamalapuram tank, the aqueduct channels and the stepped tank of dressed schist brought from elsewhere.",
+   "window": [
+    1386,
+    1414
+   ]
+  },
+  {
+   "id": "EVT.SIT.MANDU_CITY",
+   "title": "Mandu's plateau city and its water architecture",
+   "class": "SITE",
+   "magnitude": "R",
+   "year": 1400,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Jahaz Mahal between two tanks, the Hindola Mahal and the twelve-kilometre wall circuit.",
+   "window": [
+    1382,
+    1418
+   ]
+  },
+  {
    "id": "EVT.1434.THE_GAJAPATIS",
    "title": "The Gajapatis",
    "provenance": "SOURCED",
@@ -16998,6 +18295,25 @@
    ]
   },
   {
+   "id": "EVT.SIT.SRIRANGAPATNA",
+   "title": "Srirangapatna is fortified on its river island",
+   "class": "SITE",
+   "magnitude": "R",
+   "year": 1450,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "evidence": "The island fort's earliest bastions, later rebuilt under Tipu Sultan.",
+   "window": [
+    1428,
+    1472
+   ]
+  },
+  {
    "id": "EVT.CLI.DAMAJIPANT",
    "title": "The Damajipant famine",
    "class": "CLIMATE",
@@ -17031,6 +18347,25 @@
    "scope": "subcontinental",
    "region": null,
    "dispute": false
+  },
+  {
+   "id": "EVT.SIT.CHAMPANER",
+   "title": "Champaner is built below Pavagadh as a Gujarat capital",
+   "class": "SITE",
+   "magnitude": "R",
+   "year": 1484,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.GUJARAT",
+   "dispute": false,
+   "evidence": "The Jama Masjid, the helical stepwells and the surviving town walls.",
+   "window": [
+    1469,
+    1499
+   ]
   },
   {
    "id": "EVT.1486.CHAITANYA",
@@ -17157,6 +18492,25 @@
    "becomes": "nothing"
   },
   {
+   "id": "EVT.SIT.LEPAKSHI",
+   "title": "Lepakshi's murals are painted on a Vijayanagara ceiling",
+   "class": "SITE",
+   "magnitude": "R",
+   "year": 1530,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ANDHRA",
+   "dispute": false,
+   "evidence": "The Virabhadra temple's painted ceiling, the largest surviving pre-modern mural cycle in south India.",
+   "window": [
+    1515,
+    1545
+   ]
+  },
+  {
    "id": "EVT.1540.SHER_SHAH_THE_RUPIYA_THE_GRAND_TRUNK_ROAD_RE",
    "title": "Sher Shah: the rupiya, the Grand Trunk Road, revenue survey",
    "year": 1540,
@@ -17208,6 +18562,22 @@
    ],
    "corpus": "destroy",
    "severity": 0.14
+  },
+  {
+   "id": "EVT.SIT.FATEHPUR",
+   "title": "Fatehpur Sikri is built, occupied, and left within fifteen years",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": 1571,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The complete surviving city, and the Mughal chronicles that record its abandonment.",
+   "note": "A capital built from nothing and empty in a generation, most likely for want of water."
   },
   {
    "id": "EVT.FRT.MUGHAL_HUNT",
@@ -17299,6 +18669,64 @@
    "evidence": "Mughal revenue records assigning forested parganas to zamindars."
   },
   {
+   "id": "EVT.SIT.DHOLAVIRA_REOCC",
+   "title": "Dholavira is reoccupied briefly, and left again",
+   "class": "SITE",
+   "magnitude": "R",
+   "year": 1600,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.6,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.GUJARAT",
+   "dispute": false,
+   "evidence": "Stage VII at the site: crude round houses built over the ruins of the planned town.",
+   "window": [
+    1568,
+    1632
+   ],
+   "note": "Somebody came back, lived in the ruins, and left. Nobody knows who."
+  },
+  {
+   "id": "EVT.SIT.MASULIPATNAM",
+   "title": "Masulipatnam becomes the Coromandel's chintz port",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": 1600,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ANDHRA",
+   "dispute": false,
+   "evidence": "Dutch and English factory records, and the kalamkari workshops of the hinterland.",
+   "window": [
+    1584,
+    1616
+   ]
+  },
+  {
+   "id": "EVT.SIT.SURAT_PORT",
+   "title": "Surat becomes the Mughal empire's sea gate",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": 1600,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.GUJARAT",
+   "dispute": false,
+   "evidence": "The customs house records, the English and Dutch factories, and the pilgrim traffic to the Red Sea.",
+   "window": [
+    1588,
+    1612
+   ]
+  },
+  {
    "id": "EVT.1604.THE_ADI_GRANTH",
    "title": "the Adi Granth",
    "year": 1604,
@@ -17333,6 +18761,40 @@
    "region": "RGN.GUJARAT",
    "dispute": false,
    "evidence": "Mughal court records and Dutch and English factory correspondence, which agree on its severity."
+  },
+  {
+   "id": "EVT.SIT.SHAHJAHANABAD",
+   "title": "Shahjahanabad is laid out with its bazaar on a canal",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": 1648,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The walled city, the Chandni Chowk canal alignment, and the imperial building accounts."
+  },
+  {
+   "id": "EVT.SIT.HUGLI",
+   "title": "Hugli, Chinsurah and the Bengal river factories",
+   "class": "SITE",
+   "magnitude": "R",
+   "year": 1650,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.BENGAL",
+   "dispute": false,
+   "evidence": "Portuguese, Dutch, French and Danish factory sites along a forty-kilometre stretch of one river.",
+   "window": [
+    1634,
+    1666
+   ]
   },
   {
    "id": "EVT.1657.DARA_SHIKOH_S_SIRR_I_AKBAR",
@@ -17684,6 +19146,21 @@
    "region": "RGN.BENGAL",
    "dispute": false,
    "evidence": "Company military and revenue correspondence, which is the only side of it that survives in writing."
+  },
+  {
+   "id": "EVT.SIT.SERINGAPATAM_END",
+   "title": "Srirangapatna falls and the Mysore capital moves",
+   "class": "SITE",
+   "magnitude": "R",
+   "year": 1799,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "evidence": "The breach in the north wall, and the East India Company's own account of the storming."
   },
   {
    "id": "EVT.CAT.ASIATIC_PRINTING",
@@ -18449,14 +19926,14 @@
   }
  ],
  "census": {
-  "total": 939,
-  "subcontinental": 613,
-  "regional": 326,
-  "pre_1300": 834,
+  "total": 1017,
+  "subcontinental": 640,
+  "regional": 377,
+  "pre_1300": 897,
   "by_magnitude": {
-   "W": 512,
-   "M": 389,
-   "R": 34,
+   "W": 516,
+   "M": 434,
+   "R": 63,
    "m": 4
   },
   "by_class": {
@@ -18468,7 +19945,7 @@
    "AGRICULTURE": 24,
    "TRADE": 60,
    "REFORM": 71,
-   "SITE": 112,
+   "SITE": 190,
    "WORK": 141,
    "CATASTROPHE": 74,
    "INVASION": 41,
@@ -18477,10 +19954,10 @@
    "COLONIAL": 5
   },
   "by_trigger": {
-   "window": 774,
+   "window": 847,
    "latent": 37,
-   "dated": 128
+   "dated": 133
   },
-  "disputed": 48
+  "disputed": 50
  }
 }
