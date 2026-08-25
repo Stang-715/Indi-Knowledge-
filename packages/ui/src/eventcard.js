@@ -217,7 +217,47 @@ export function renderCard(m) {
     ${m.dispute ? `<div class="dispute"><b>Disputed</b><p>${m.dispute}</p></div>` : ''}
     ${m.people.length ? `<div class="card-people"><b>Named</b> ${
       m.people.map(p => p.name).join(' · ')}</div>` : ''}
+    ${m.threads.length ? `<footer class="card-threads">${m.threads.map(t =>
+      `<span class="thr" data-thread="${t.id}">${t.name}${
+        t.prev ? ` <a class="thr-nav" data-goto="${t.prev.id}" title="${t.prev.title}">&larr; ${fmtYear(t.prev.year)}</a>` : ''}${
+        t.next ? ` <a class="thr-nav" data-goto="${t.next.id}" title="${t.next.title}">${fmtYear(t.next.year)} &rarr;</a>` : ''}</span>`
+      ).join('')}</footer>` : ''}
   </article>`;
+}
+
+/**
+ * The loom (phase 36). Threads are an entity now: build one index of
+ * beat-lists from the timeline, then resolve an event's tags into
+ * { id, name, prev, next } for the card footer — the prior and next beat on
+ * each arc the event belongs to.
+ */
+export function indexThreads(timeline) {
+  const byId = new Map();
+  for (const t of timeline.threads ?? []) byId.set(t.id, { ...t, beats: [] });
+  for (const ev of timeline.events) {
+    for (const tid of ev.threads ?? []) {
+      const t = byId.get(tid);
+      if (t) t.beats.push(ev);
+    }
+  }
+  for (const t of byId.values()) t.beats.sort((a, b) => a.year - b.year);
+  return byId;
+}
+
+export function threadsFor(idx, ev) {
+  const out = [];
+  for (const tid of ev.threads ?? []) {
+    const t = idx.get(tid);
+    if (!t) continue;
+    const i = t.beats.findIndex(b => b.id === ev.id);
+    const pick = (b) => b ? { id: b.id, title: b.title, year: b.year } : null;
+    out.push({
+      id: t.id, name: t.name,
+      prev: i > 0 ? pick(t.beats[i - 1]) : null,
+      next: i >= 0 && i < t.beats.length - 1 ? pick(t.beats[i + 1]) : null,
+    });
+  }
+  return out;
 }
 
 /**

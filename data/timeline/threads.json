@@ -1,0 +1,358 @@
+{
+ "note": "The fifteen threads (07-timeline.md Part 4) as a real entity. `auto` rules tag events declaratively at build time — classes, keywords against title+evidence, an optional year range — and hand tags on events always survive. Beats are the tagged events in year order.",
+ "threads": [
+  {
+   "id": "THR.THE_RIVERS",
+   "name": "The Rivers",
+   "span": [
+    -6000,
+    1900
+   ],
+   "arc": "The antagonist with no face. The Sutlej's desertion, the Ghaggar's slow death, the monsoon's swings, the Jhelum dredged, the Kaveri dammed — the campaign's deep-past drama is hydrology, and nobody ever declares war.",
+   "auto": {
+    "classes": [
+     "CLIMATE"
+    ],
+    "keywords": [
+     "ghaggar",
+     "sutlej",
+     "monsoon",
+     "river",
+     "flood",
+     "jhelum",
+     "kaveri",
+     "indus",
+     "avulsion",
+     "brahmaputra",
+     "rann",
+     "glacier",
+     "kallanai",
+     "tank system"
+    ]
+   }
+  },
+  {
+   "id": "THR.THE_DOMESTICATIONS",
+   "name": "The Domestications",
+   "span": [
+    -6000,
+    -1000
+   ],
+   "arc": "Wheat and barley arrive; zebu, buffalo, rice, cotton, the millets and sesame are made at home. Every economy in the game stands on what was tamed in these five millennia.",
+   "auto": {
+    "classes": [
+     "AGRICULTURE"
+    ],
+    "keywords": [
+     "domestic",
+     "zebu",
+     "buffalo",
+     "rice",
+     "wheat",
+     "barley",
+     "millet",
+     "cotton",
+     "sheep",
+     "crop",
+     "cultivat",
+     "sesame",
+     "horsegram",
+     "mungbean"
+    ],
+    "years": [
+     -6000,
+     -500
+    ]
+   }
+  },
+  {
+   "id": "THR.THE_LONG_NETWORKS",
+   "name": "The Long Networks",
+   "span": [
+    -4850,
+    1900
+   ],
+   "arc": "Lapis walking 1,500 km before cities exist, Meluhha at Sargon's quay, Rome's pepper deficit, the Ayyavole from Java to the Gulf, the Portuguese licence, the Marwari hundi. Exchange at distance is the oldest continuity in the record.",
+   "auto": {
+    "keywords": [
+     "lapis",
+     "meluhha",
+     "dilmun",
+     "roman",
+     "rome",
+     "muziris",
+     "periplus",
+     "silk road",
+     "srivijaya",
+     "song court",
+     "hundi",
+     "entrepot",
+     "cartaz",
+     "pepper",
+     "spice",
+     "caravan",
+     "monsoon route",
+     "barygaza",
+     "zheng he",
+     "diamond",
+     "kalamkari",
+     "shawl",
+     "cinnamon"
+    ]
+   }
+  },
+  {
+   "id": "THR.THE_WRITING_LADDER",
+   "name": "The Writing Ladder",
+   "span": [
+    -3300,
+    1947
+   ],
+   "arc": "Potters' marks, the Indus script, sixteen centuries of silence, Aramaic clerks, Brahmi, palm leaf, paper, print. Each rung changes what can be kept — and each loss shows what a rung was carrying.",
+   "auto": {
+    "keywords": [
+     "indus script",
+     "brahmi",
+     "kharoshthi",
+     "aramaic",
+     "potters' marks",
+     "palm leaf",
+     "paper",
+     "printing",
+     "press",
+     "literacy",
+     "alphabet",
+     "typeface",
+     "dictionar",
+     "grammar for six",
+     "modi script",
+     "written down",
+     "written literary",
+     "writes it down",
+     "script emerges",
+     "script diverges"
+    ]
+   }
+  },
+  {
+   "id": "THR.THE_CORPUS_AT_RISK",
+   "name": "The Corpus at Risk",
+   "span": [
+    -1300,
+    1947
+   ],
+   "arc": "Every catastrophe and every rescue. Works die of fire, damp, neglect and dispersal; they are saved by writing, distance, translation and one man on a veranda asking about old palm leaf."
+  },
+  {
+   "id": "THR.THE_ASSEMBLIES",
+   "name": "The Assemblies",
+   "span": [
+    -1030,
+    1947
+   ],
+   "arc": "The sleeper. Sabha and samiti, the gana-sanghas, the shreni, Uttaramerur's pot of palm-leaf tickets, Gopala's election, the village committees — a 2,300-year argument about self-government that most players do not know exists, ending in a Constituent Assembly.",
+   "auto": {
+    "keywords": [
+     "sabha",
+     "samiti",
+     "assembly",
+     "gana-sangha",
+     "elected",
+     "election",
+     "committee",
+     "uttaramerur",
+     "variyam",
+     "shreni",
+     "republic",
+     "constituent",
+     "congress",
+     "mahasabha"
+    ]
+   }
+  },
+  {
+   "id": "THR.THE_INTERNAL_FRONTIER",
+   "name": "The Internal Frontier",
+   "span": [
+    -4500,
+    1947
+   ],
+   "arc": "The treeline as border. Foragers who outlast farmers, the ashmound herders, the clearance line, the forest state, the Inner Line, the schedule in the constitution. The longest conflict in the game is not between kingdoms.",
+   "auto": {
+    "classes": [
+     "FRONTIER"
+    ]
+   }
+  },
+  {
+   "id": "THR.THE_MONETARY_LADDER",
+   "name": "The Monetary Ladder",
+   "span": [
+    -660,
+    1947
+   ],
+   "arc": "Bent-bar silver, the punch-marked karshapana, the tanka, a failed fiat experiment in 1330, the rupiya. Money is the settlement problem solved rung by rung — and every rung changes who can owe whom.",
+   "auto": {
+    "keywords": [
+     "coin",
+     "karshapana",
+     "bent-bar",
+     "punch-marked",
+     "tanka",
+     "rupiya",
+     "token currency",
+     "mint",
+     "currency",
+     "money",
+     "bullion",
+     "silver from the americas"
+    ]
+   }
+  },
+  {
+   "id": "THR.THE_RENOUNCERS",
+   "name": "The Renouncers",
+   "span": [
+    -740,
+    1947
+   ],
+   "arc": "The ones who walk out: Upanishadic forest-goers, Buddha, Mahavira, Gosala, the bhakti saints, the Sants, the Khalsa, and at the end Nagpur, where the oldest renouncer tradition answers the oldest question.",
+   "auto": {
+    "classes": [
+     "REFORM"
+    ],
+    "keywords": [
+     "renunciation",
+     "sangha",
+     "monk",
+     "buddha",
+     "mahavira",
+     "jain",
+     "ajivika",
+     "council",
+     "bhakti",
+     "sant ",
+     "khalsa",
+     "matha",
+     "sufi",
+     "khanqah",
+     "conversion"
+    ]
+   }
+  },
+  {
+   "id": "THR.THE_NORTHWEST_GATE",
+   "name": "The Northwest Gate",
+   "span": [
+    -518,
+    1849
+   ],
+   "arc": "Fourteen invasions, one corridor, 2,300 years — and what each became. The gate brings Aramaic, Greek drapery, Al-Biruni, paper, and finally the survey that mapped the wall from the inside."
+  },
+  {
+   "id": "THR.THE_MANDALA",
+   "name": "The Mandala",
+   "span": [
+    -1120,
+    1858
+   ],
+   "arc": "Graded sovereignty from the ashvamedha to paramountcy: the horse's year of walking, the Arthashastra's circles, Samudragupta releasing kings, chauth, subsidiary alliance, five hundred and sixty-five states that were neither sovereign nor provinces.",
+   "auto": {
+    "keywords": [
+     "mandala",
+     "ashvamedha",
+     "tributary",
+     "samudragupta",
+     "paramountcy",
+     "subsidiary",
+     "chauth",
+     "suzerain",
+     "restored",
+     "vassal"
+    ]
+   }
+  },
+  {
+   "id": "THR.THE_TEMPLE_ECONOMY",
+   "name": "The Temple Economy",
+   "span": [
+    340,
+    1855
+   ],
+   "arc": "Land grants become endowments, endowments become banks, banks become archives. The temple as employer, landlord, lender and record office — the most durable economic institution in the game.",
+   "auto": {
+    "keywords": [
+     "temple treasur",
+     "agrahara",
+     "brahmadeya",
+     "endow",
+     "land grant",
+     "land-grant",
+     "devadana",
+     "landholding",
+     "temple as employer",
+     "temple as a landholding",
+     "lending",
+     "temple wall",
+     "inscribed at scale",
+     "temple-centred"
+    ]
+   }
+  },
+  {
+   "id": "THR.THE_TRANSLATORS",
+   "name": "The Translators",
+   "span": [
+    -250,
+    1947
+   ],
+   "arc": "Mahinda, Faxian, Xuanzang, Baghdad, Atisha, Al-Biruni, Dara Shikoh, Jones. Every time the corpus crosses a language it buys a life insurance policy — and half of what survives, survives in the target language.",
+   "auto": {
+    "keywords": [
+     "mahinda",
+     "xuanzang",
+     "faxian",
+     "atisha",
+     "baghdad",
+     "al-fazari",
+     "al-biruni",
+     "dara shikoh",
+     "sirr-i-akbar",
+     "translat",
+     "tibetan",
+     "chinese canon",
+     "buddhaghosa",
+     "asiatic society",
+     "yijing"
+    ]
+   }
+  },
+  {
+   "id": "THR.THE_CASTE_QUESTION",
+   "name": "The Caste Question",
+   "span": [
+    -960,
+    1947
+   ],
+   "arc": "One late hymn to Article 17: varna and jati coming apart, the renouncers' refusals, bhakti's open door argued and half-won, Phule's school, Vaikom, Mahad, the Poona Pact both sides called a defeat, and an argument still in progress when the campaign ends."
+  },
+  {
+   "id": "THR.THE_FAMINE_CENTURY",
+   "name": "The Famine Century",
+   "span": [
+    1630,
+    1943
+   ],
+   "arc": "From the Deccan of 1630 to Bengal of 1943: the famines the records let us count, and the policies that counted alongside them. Compressed into the skim, and the heaviest thing in it.",
+   "auto": {
+    "keywords": [
+     "famine"
+    ],
+    "years": [
+     1600,
+     1947
+    ]
+   }
+  }
+ ]
+}

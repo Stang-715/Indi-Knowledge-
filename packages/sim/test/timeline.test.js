@@ -243,3 +243,30 @@ test('every card-bearing event teaches something', () => {
   for (const e of TL.events) if (e.teaches) n++;
   assert.ok(n >= 450, `only ${n} events carry a takeaway`);
 });
+
+/* ── Phase 36: the loom ─────────────────────────────────────────────────── */
+
+test('threads are an entity, and none is thin', () => {
+  assert.equal(TL.threads.length, 15);
+  const counts = new Map(TL.threads.map(t => [t.id, 0]));
+  for (const e of TL.events) for (const t of e.threads ?? [])
+    if (counts.has(t)) counts.set(t, counts.get(t) + 1);
+  for (const [id, n] of counts)
+    assert.ok(n >= 8, `${id} has only ${n} beats`);
+  const tagged = TL.events.filter(e => (e.threads ?? []).length).length;
+  assert.ok(tagged >= 400, `only ${tagged} events are on a thread`);
+});
+
+test('every thread tag resolves and beats are orderable', () => {
+  const ids = new Set(TL.threads.map(t => t.id));
+  for (const e of TL.events)
+    for (const t of e.threads ?? [])
+      assert.ok(ids.has(t), `${e.id} carries unknown thread ${t}`);
+});
+
+test('the assemblies run from the sabha to the Constituent Assembly', () => {
+  const beats = TL.events.filter(e => (e.threads ?? []).includes('THR.THE_ASSEMBLIES'))
+    .sort((a, b) => a.year - b.year);
+  assert.ok(beats[0].year <= -900, `first beat is ${beats[0].year}`);
+  assert.ok(beats.at(-1).year >= 1900, `last beat is ${beats.at(-1).year}`);
+});

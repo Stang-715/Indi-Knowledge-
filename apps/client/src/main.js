@@ -24,7 +24,8 @@ import { CityRenderer }      from '../../../packages/render-city/src/renderer.js
 import { WorldgenClient }    from '../../../packages/render-realm/src/workerclient.js';
 import { endowable, endowmentLedger, living, lineageOf }
   from '../../../packages/sim/src/people.js';
-import { cardModel, renderCard, renderYearPage, indexCards, authoredFor }
+import { cardModel, renderCard, renderYearPage, indexCards, authoredFor,
+         indexThreads, threadsFor }
   from '../../../packages/ui/src/eventcard.js';
 import { surveyable, surveySummary, TIER, SURVEY_COST }
   from '../../../packages/sim/src/survey.js';
@@ -116,19 +117,52 @@ async function upgradeClimate() {
 const cityRenderer = new CityRenderer({ cities: cityData.cities });
 const DP = { timeline, works, people };
 const CARDS = indexCards(cardsDoc);
+const THREAD_IDX = indexThreads(timeline);
 const eraOf = (y) => timeline.eras.find(e => y >= e.from && y < e.to) ?? timeline.eras[15];
 
 /** Open a full event card. This is where `evidence` and `dispute` get read. */
 function openCard(ev) {
-  const m = cardModel(ev, { era: eraOf(ev.year), authored: authoredFor(CARDS, ev) });
+  const m = cardModel(ev, { era: eraOf(ev.year), authored: authoredFor(CARDS, ev),
+                            threads: threadsFor(THREAD_IDX, ev) });
   $('drawer-inner').innerHTML = renderCard(m);
   $('drawer').classList.add('on');
 }
 
 /** Open the year page — composed, never authored. */
+/** Thread navigation: a click on a prev/next beat opens that beat's card. */
+document.addEventListener('click', (e) => {
+  const a = e.target.closest?.('[data-goto]');
+  if (!a) return;
+  const ev = timeline.events.find(x => x.id === a.dataset.goto);
+  if (ev) openCard(ev);
+});
+
+/** Read a whole thread end to end — the loom view. */
+function openThread(tid) {
+  const t = THREAD_IDX.get(tid);
+  if (!t) return;
+  const beats = t.beats.map(b =>
+    `<div class="thread-beat" data-goto="${b.id}">
+       <span class="tb-year">${b.year < 0 ? (-b.year) + ' BCE' : b.year + ' CE'}</span>
+       <span class="tb-title">${b.title}</span>
+     </div>`).join('');
+  $('drawer-inner').innerHTML =
+    `<div class="thread-view">
+       <h3>${t.name}</h3>
+       <p class="thread-arc">${t.arc}</p>
+       ${beats}
+     </div>`;
+  $('drawer').classList.add('on');
+}
+document.addEventListener('click', (e) => {
+  const el = e.target.closest?.('[data-thread]');
+  if (el && !e.target.closest('[data-goto]')) openThread(el.dataset.thread);
+});
+
 function openYear(year) {
   const evs = timeline.events.filter(e => e.year === year && e.scope !== 'prologue');
-  const models = evs.map(e => cardModel(e, { era: eraOf(year), authored: authoredFor(CARDS, e) }));
+  const models = evs.map(e => cardModel(e, { era: eraOf(year), authored: authoredFor(CARDS, e),
+                                             threads: threadsFor(THREAD_IDX, e) }));
   const log = state.log.filter(l => l.year === year);
   $('drawer-inner').innerHTML = renderYearPage(year, { events: models, log, era: eraOf(year) });
   $('drawer').classList.add('on');

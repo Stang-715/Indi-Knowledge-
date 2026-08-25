@@ -151,3 +151,16 @@ test('word budgets are respected', () => {
     if (m.dispute) assert.ok(words(m.dispute) <= 95, `${ev.id}: dispute is ${words(m.dispute)} words`);
   }
 });
+
+test('the card footer navigates the thread: Uttaramerur knows its neighbours', async () => {
+  const { indexThreads, threadsFor } = await import('../src/eventcard.js');
+  const idx = indexThreads(TL);
+  const ev = find('Uttaramerur');
+  const ths = threadsFor(idx, ev);
+  const asm = ths.find(t => t.id === 'THR.THE_ASSEMBLIES');
+  assert.ok(asm, 'Uttaramerur is on the assemblies thread');
+  assert.ok(asm.prev && asm.prev.year < ev.year, 'it has a prior beat');
+  assert.ok(asm.next && asm.next.year > ev.year, 'and a next one');
+  const html = renderCard(cardModel(ev, { era: eraOf(ev), authored: authoredFor(IDX, ev), threads: ths }));
+  assert.ok(html.includes('data-goto'), 'the footer renders navigation');
+});

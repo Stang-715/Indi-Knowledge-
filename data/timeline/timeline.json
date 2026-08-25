@@ -154,6 +154,361 @@
    "number": 16
   }
  ],
+ "threads": [
+  {
+   "id": "THR.THE_RIVERS",
+   "name": "The Rivers",
+   "span": [
+    -6000,
+    1900
+   ],
+   "arc": "The antagonist with no face. The Sutlej's desertion, the Ghaggar's slow death, the monsoon's swings, the Jhelum dredged, the Kaveri dammed — the campaign's deep-past drama is hydrology, and nobody ever declares war.",
+   "auto": {
+    "classes": [
+     "CLIMATE"
+    ],
+    "keywords": [
+     "ghaggar",
+     "sutlej",
+     "monsoon",
+     "river",
+     "flood",
+     "jhelum",
+     "kaveri",
+     "indus",
+     "avulsion",
+     "brahmaputra",
+     "rann",
+     "glacier",
+     "kallanai",
+     "tank system"
+    ]
+   }
+  },
+  {
+   "id": "THR.THE_DOMESTICATIONS",
+   "name": "The Domestications",
+   "span": [
+    -6000,
+    -1000
+   ],
+   "arc": "Wheat and barley arrive; zebu, buffalo, rice, cotton, the millets and sesame are made at home. Every economy in the game stands on what was tamed in these five millennia.",
+   "auto": {
+    "classes": [
+     "AGRICULTURE"
+    ],
+    "keywords": [
+     "domestic",
+     "zebu",
+     "buffalo",
+     "rice",
+     "wheat",
+     "barley",
+     "millet",
+     "cotton",
+     "sheep",
+     "crop",
+     "cultivat",
+     "sesame",
+     "horsegram",
+     "mungbean"
+    ],
+    "years": [
+     -6000,
+     -500
+    ]
+   }
+  },
+  {
+   "id": "THR.THE_LONG_NETWORKS",
+   "name": "The Long Networks",
+   "span": [
+    -4850,
+    1900
+   ],
+   "arc": "Lapis walking 1,500 km before cities exist, Meluhha at Sargon's quay, Rome's pepper deficit, the Ayyavole from Java to the Gulf, the Portuguese licence, the Marwari hundi. Exchange at distance is the oldest continuity in the record.",
+   "auto": {
+    "keywords": [
+     "lapis",
+     "meluhha",
+     "dilmun",
+     "roman",
+     "rome",
+     "muziris",
+     "periplus",
+     "silk road",
+     "srivijaya",
+     "song court",
+     "hundi",
+     "entrepot",
+     "cartaz",
+     "pepper",
+     "spice",
+     "caravan",
+     "monsoon route",
+     "barygaza",
+     "zheng he",
+     "diamond",
+     "kalamkari",
+     "shawl",
+     "cinnamon"
+    ]
+   }
+  },
+  {
+   "id": "THR.THE_WRITING_LADDER",
+   "name": "The Writing Ladder",
+   "span": [
+    -3300,
+    1947
+   ],
+   "arc": "Potters' marks, the Indus script, sixteen centuries of silence, Aramaic clerks, Brahmi, palm leaf, paper, print. Each rung changes what can be kept — and each loss shows what a rung was carrying.",
+   "auto": {
+    "keywords": [
+     "indus script",
+     "brahmi",
+     "kharoshthi",
+     "aramaic",
+     "potters' marks",
+     "palm leaf",
+     "paper",
+     "printing",
+     "press",
+     "literacy",
+     "alphabet",
+     "typeface",
+     "dictionar",
+     "grammar for six",
+     "modi script",
+     "written down",
+     "written literary",
+     "writes it down",
+     "script emerges",
+     "script diverges"
+    ]
+   }
+  },
+  {
+   "id": "THR.THE_CORPUS_AT_RISK",
+   "name": "The Corpus at Risk",
+   "span": [
+    -1300,
+    1947
+   ],
+   "arc": "Every catastrophe and every rescue. Works die of fire, damp, neglect and dispersal; they are saved by writing, distance, translation and one man on a veranda asking about old palm leaf."
+  },
+  {
+   "id": "THR.THE_ASSEMBLIES",
+   "name": "The Assemblies",
+   "span": [
+    -1030,
+    1947
+   ],
+   "arc": "The sleeper. Sabha and samiti, the gana-sanghas, the shreni, Uttaramerur's pot of palm-leaf tickets, Gopala's election, the village committees — a 2,300-year argument about self-government that most players do not know exists, ending in a Constituent Assembly.",
+   "auto": {
+    "keywords": [
+     "sabha",
+     "samiti",
+     "assembly",
+     "gana-sangha",
+     "elected",
+     "election",
+     "committee",
+     "uttaramerur",
+     "variyam",
+     "shreni",
+     "republic",
+     "constituent",
+     "congress",
+     "mahasabha"
+    ]
+   }
+  },
+  {
+   "id": "THR.THE_INTERNAL_FRONTIER",
+   "name": "The Internal Frontier",
+   "span": [
+    -4500,
+    1947
+   ],
+   "arc": "The treeline as border. Foragers who outlast farmers, the ashmound herders, the clearance line, the forest state, the Inner Line, the schedule in the constitution. The longest conflict in the game is not between kingdoms.",
+   "auto": {
+    "classes": [
+     "FRONTIER"
+    ]
+   }
+  },
+  {
+   "id": "THR.THE_MONETARY_LADDER",
+   "name": "The Monetary Ladder",
+   "span": [
+    -660,
+    1947
+   ],
+   "arc": "Bent-bar silver, the punch-marked karshapana, the tanka, a failed fiat experiment in 1330, the rupiya. Money is the settlement problem solved rung by rung — and every rung changes who can owe whom.",
+   "auto": {
+    "keywords": [
+     "coin",
+     "karshapana",
+     "bent-bar",
+     "punch-marked",
+     "tanka",
+     "rupiya",
+     "token currency",
+     "mint",
+     "currency",
+     "money",
+     "bullion",
+     "silver from the americas"
+    ]
+   }
+  },
+  {
+   "id": "THR.THE_RENOUNCERS",
+   "name": "The Renouncers",
+   "span": [
+    -740,
+    1947
+   ],
+   "arc": "The ones who walk out: Upanishadic forest-goers, Buddha, Mahavira, Gosala, the bhakti saints, the Sants, the Khalsa, and at the end Nagpur, where the oldest renouncer tradition answers the oldest question.",
+   "auto": {
+    "classes": [
+     "REFORM"
+    ],
+    "keywords": [
+     "renunciation",
+     "sangha",
+     "monk",
+     "buddha",
+     "mahavira",
+     "jain",
+     "ajivika",
+     "council",
+     "bhakti",
+     "sant ",
+     "khalsa",
+     "matha",
+     "sufi",
+     "khanqah",
+     "conversion"
+    ]
+   }
+  },
+  {
+   "id": "THR.THE_NORTHWEST_GATE",
+   "name": "The Northwest Gate",
+   "span": [
+    -518,
+    1849
+   ],
+   "arc": "Fourteen invasions, one corridor, 2,300 years — and what each became. The gate brings Aramaic, Greek drapery, Al-Biruni, paper, and finally the survey that mapped the wall from the inside."
+  },
+  {
+   "id": "THR.THE_MANDALA",
+   "name": "The Mandala",
+   "span": [
+    -1120,
+    1858
+   ],
+   "arc": "Graded sovereignty from the ashvamedha to paramountcy: the horse's year of walking, the Arthashastra's circles, Samudragupta releasing kings, chauth, subsidiary alliance, five hundred and sixty-five states that were neither sovereign nor provinces.",
+   "auto": {
+    "keywords": [
+     "mandala",
+     "ashvamedha",
+     "tributary",
+     "samudragupta",
+     "paramountcy",
+     "subsidiary",
+     "chauth",
+     "suzerain",
+     "restored",
+     "vassal"
+    ]
+   }
+  },
+  {
+   "id": "THR.THE_TEMPLE_ECONOMY",
+   "name": "The Temple Economy",
+   "span": [
+    340,
+    1855
+   ],
+   "arc": "Land grants become endowments, endowments become banks, banks become archives. The temple as employer, landlord, lender and record office — the most durable economic institution in the game.",
+   "auto": {
+    "keywords": [
+     "temple treasur",
+     "agrahara",
+     "brahmadeya",
+     "endow",
+     "land grant",
+     "land-grant",
+     "devadana",
+     "landholding",
+     "temple as employer",
+     "temple as a landholding",
+     "lending",
+     "temple wall",
+     "inscribed at scale",
+     "temple-centred"
+    ]
+   }
+  },
+  {
+   "id": "THR.THE_TRANSLATORS",
+   "name": "The Translators",
+   "span": [
+    -250,
+    1947
+   ],
+   "arc": "Mahinda, Faxian, Xuanzang, Baghdad, Atisha, Al-Biruni, Dara Shikoh, Jones. Every time the corpus crosses a language it buys a life insurance policy — and half of what survives, survives in the target language.",
+   "auto": {
+    "keywords": [
+     "mahinda",
+     "xuanzang",
+     "faxian",
+     "atisha",
+     "baghdad",
+     "al-fazari",
+     "al-biruni",
+     "dara shikoh",
+     "sirr-i-akbar",
+     "translat",
+     "tibetan",
+     "chinese canon",
+     "buddhaghosa",
+     "asiatic society",
+     "yijing"
+    ]
+   }
+  },
+  {
+   "id": "THR.THE_CASTE_QUESTION",
+   "name": "The Caste Question",
+   "span": [
+    -960,
+    1947
+   ],
+   "arc": "One late hymn to Article 17: varna and jati coming apart, the renouncers' refusals, bhakti's open door argued and half-won, Phule's school, Vaikom, Mahad, the Poona Pact both sides called a defeat, and an argument still in progress when the campaign ends."
+  },
+  {
+   "id": "THR.THE_FAMINE_CENTURY",
+   "name": "The Famine Century",
+   "span": [
+    1630,
+    1943
+   ],
+   "arc": "From the Deccan of 1630 to Bengal of 1943: the famines the records let us count, and the policies that counted alongside them. Compressed into the skim, and the heaviest thing in it.",
+   "auto": {
+    "keywords": [
+     "famine"
+    ],
+    "years": [
+     1600,
+     1947
+    ]
+   }
+  }
+ ],
  "regions": [
   {
    "id": "RGN.TAMILAKAM",
@@ -305,7 +660,10 @@
    ],
    "affects": {
     "NETWORKING": -0.76
-   }
+   },
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.CLI.SUTLEJ_AVULSION",
@@ -333,7 +691,10 @@
    "affects": {
     "AGRICULTURE": -1
    },
-   "teaches": "The river's fate is set four thousand years before the cities that will depend on it."
+   "teaches": "The river's fate is set four thousand years before the cities that will depend on it.",
+   "threads": [
+    "THR.THE_RIVERS"
+   ]
   },
   {
    "id": "EVT.M6000.DENTAL_DRILLING_AT_MEHRGARH_THE_EARLIEST_KNO",
@@ -519,7 +880,10 @@
    "where": [],
    "affects": {
     "AGRICULTURE": 2.46
-   }
+   },
+   "threads": [
+    "THR.THE_DOMESTICATIONS"
+   ]
   },
   {
    "id": "EVT.M5900.WATER_BUFFALO_TAKEN_INTO_THE_HERD",
@@ -625,7 +989,10 @@
    "affects": {
     "AGRICULTURE": -3.04,
     "TRADE": -1.74
-   }
+   },
+   "threads": [
+    "THR.THE_RIVERS"
+   ]
   },
   {
    "id": "EVT.M5800.GRANARY_BLOCKS_AT_MEHRGARH_STORAGE_MEANS_SUR",
@@ -764,7 +1131,10 @@
    "affects": {
     "NETWORKING": -1.6
    },
-   "teaches": "Persistence is not failure to develop. It is a different answer to the same question."
+   "teaches": "Persistence is not failure to develop. It is a different answer to the same question.",
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.M5500.COTTON_THREAD_PRESERVED_IN_A_COPPER_BEAD_EAR",
@@ -925,7 +1295,10 @@
    "affects": {
     "AGRICULTURE": -3.88,
     "TRADE": -2.22
-   }
+   },
+   "threads": [
+    "THR.THE_RIVERS"
+   ]
   },
   {
    "id": "EVT.M5200.BHIRRANA_PERIOD_IA_HAKRA_WARE_ON_THE_GHAGGAR",
@@ -1002,7 +1375,10 @@
    "affects": {
     "AGRICULTURE": -1.03,
     "TRADE": -0.49
-   }
+   },
+   "threads": [
+    "THR.THE_RIVERS"
+   ]
   },
   {
    "id": "EVT.M5000.JHUSI_AND_THE_MIDDLE_GANGA_NEOLITHIC",
@@ -1107,7 +1483,10 @@
    ],
    "affects": {
     "AGRICULTURE": 2.52
-   }
+   },
+   "threads": [
+    "THR.THE_DOMESTICATIONS"
+   ]
   },
   {
    "id": "EVT.M4900.SESAME_CULTIVATION_BEGINS",
@@ -1131,7 +1510,10 @@
    "where": [],
    "affects": {
     "AGRICULTURE": 0.77
-   }
+   },
+   "threads": [
+    "THR.THE_DOMESTICATIONS"
+   ]
   },
   {
    "id": "EVT.M4850.LAPIS_LAZULI_FROM_BADAKHSHAN_REACHES_MEHRGAR",
@@ -1159,7 +1541,10 @@
     "TRADE": 4.92,
     "NETWORKING": 1.78
    },
-   "teaches": "Long-distance exchange is older than urbanism, older than the state, and older than writing."
+   "teaches": "Long-distance exchange is older than urbanism, older than the state, and older than writing.",
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ]
   },
   {
    "id": "EVT.M4800.THE_MONSOON_PEAKS_THE_GHAGGAR_RUNS_STRONG",
@@ -1184,7 +1569,10 @@
    "affects": {
     "AGRICULTURE": -2.32,
     "TRADE": -0.88
-   }
+   },
+   "threads": [
+    "THR.THE_RIVERS"
+   ]
   },
   {
    "id": "EVT.M4800.TURQUOISE_FROM_THE_IRANIAN_PLATEAU_THE_WESTE",
@@ -1486,7 +1874,10 @@
    "affects": {
     "NETWORKING": -1.82
    },
-   "teaches": "Monuments made of burnt cow dung, by people who measured wealth in cattle. Nobody fully knows why."
+   "teaches": "Monuments made of burnt cow dung, by people who measured wealth in cattle. Nobody fully knows why.",
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.M4500.MEHRGARH_S_CEMETERY_CLOSES_THE_SETTLEMENT_SH",
@@ -1915,7 +2306,10 @@
    "affects": {
     "DESIGN": 0.48,
     "IT": 0.5
-   }
+   },
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ]
   },
   {
    "id": "EVT.M3850.PADRI_SALT_PRODUCTION_ON_THE_SAURASHTRA_COAS",
@@ -2159,7 +2553,10 @@
    "affects": {
     "AGRICULTURE": -1.58,
     "TRADE": -1.18
-   }
+   },
+   "threads": [
+    "THR.THE_RIVERS"
+   ]
   },
   {
    "id": "EVT.M3500.CROSS_PLOUGHING_IMPLIES_TWO_CROPS_IN_ONE_FIE",
@@ -2183,7 +2580,10 @@
    "where": [],
    "affects": {
     "AGRICULTURE": 3
-   }
+   },
+   "threads": [
+    "THR.THE_DOMESTICATIONS"
+   ]
   },
   {
    "id": "EVT.M3500.THE_KALIBANGAN_PLOUGHED_FIELD_THE_EARLIEST_K",
@@ -2346,7 +2746,10 @@
    ],
    "affects": {
     "AGRICULTURE": 3.64
-   }
+   },
+   "threads": [
+    "THR.THE_DOMESTICATIONS"
+   ]
   },
   {
    "id": "EVT.M3350.SIVAGALAI_A_CLAIMED_3345_BCE_IRON_DATE_HEAVI",
@@ -2535,7 +2938,10 @@
    "affects": {
     "AGRICULTURE": -4.92,
     "TRADE": -1.44
-   }
+   },
+   "threads": [
+    "THR.THE_RIVERS"
+   ]
   },
   {
    "id": "EVT.M3300.DAMB_SADAAT_IN_THE_QUETTA_VALLEY",
@@ -2665,7 +3071,10 @@
     "DESIGN": 2.38,
     "IT": 2.16
    },
-   "teaches": "The script's ancestry, in graffiti on the shoulders of storage jars."
+   "teaches": "The script's ancestry, in graffiti on the shoulders of storage jars.",
+   "threads": [
+    "THR.THE_WRITING_LADDER"
+   ]
   },
   {
    "id": "EVT.M3300.REGIONAL_CULTURES_BEGIN_CONVERGING_ON_SHARED",
@@ -2763,7 +3172,10 @@
    "where": [],
    "affects": {
     "AGRICULTURE": 1.19
-   }
+   },
+   "threads": [
+    "THR.THE_DOMESTICATIONS"
+   ]
   },
   {
    "id": "EVT.M3250.HARAPPA_PERIOD_2_THE_SETTLEMENT_DOUBLES",
@@ -2973,7 +3385,10 @@
    ],
    "affects": {
     "NETWORKING": -0.74
-   }
+   },
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.M3000.BURZAHOM_PIT_DWELLINGS_AND_A_CARVED_HUNTING_",
@@ -3027,7 +3442,10 @@
    "affects": {
     "AGRICULTURE": 3.4
    },
-   "teaches": "The subcontinent's defining cash crop enters cultivation. It never afterwards leaves the story."
+   "teaches": "The subcontinent's defining cash crop enters cultivation. It never afterwards leaves the story.",
+   "threads": [
+    "THR.THE_DOMESTICATIONS"
+   ]
   },
   {
    "id": "EVT.M3000.DHOLAVIRA_S_EARLIEST_PHASE_ON_KHADIR_ISLAND",
@@ -3790,7 +4208,10 @@
    "affects": {
     "IT": -1.54,
     "CLASSICISM": -0.99
-   }
+   },
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.M2600.NAUSHARO_TRANSITIONS_TO_HARAPPAN_FORMS_WITHO",
@@ -4304,7 +4725,10 @@
     "DESIGN": 2.48,
     "IT": 2.56
    },
-   "teaches": "The most famous unread script on earth, and the game must show it without pretending to read it."
+   "teaches": "The most famous unread script on earth, and the game must show it without pretending to read it.",
+   "threads": [
+    "THR.THE_WRITING_LADDER"
+   ]
   },
   {
    "id": "EVT.M2500.THE_PRIEST_KING_STEATITE_FIGURE",
@@ -4383,7 +4807,10 @@
    "affects": {
     "AGRICULTURE": 1.82
    },
-   "teaches": "The southern crop package is not a copy of the northern one. It is an independent invention."
+   "teaches": "The southern crop package is not a copy of the northern one. It is an independent invention.",
+   "threads": [
+    "THR.THE_DOMESTICATIONS"
+   ]
   },
   {
    "id": "EVT.M2490.DOCKYARDS_WAREHOUSES_AND_STANDARDISED_SEALIN",
@@ -4653,7 +5080,10 @@
     "TRADE": 4.72,
     "NETWORKING": 1.84
    },
-   "teaches": "The entrepôt is as old as the trade. Somebody always sits in the middle."
+   "teaches": "The entrepôt is as old as the trade. Somebody always sits in the middle.",
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ]
   },
   {
    "id": "EVT.IND.FAIENCE",
@@ -4757,7 +5187,10 @@
    ],
    "affects": {
     "AGRICULTURE": 1.11
-   }
+   },
+   "threads": [
+    "THR.THE_DOMESTICATIONS"
+   ]
   },
   {
    "id": "EVT.M2350.AKKADIAN_RECORDS_NAME_MELUHHA_SHIPS_AT_SARGO",
@@ -4783,7 +5216,10 @@
     "TRADE": 4,
     "NETWORKING": 2
    },
-   "teaches": "The first time the subcontinent appears in a document anyone can read."
+   "teaches": "The first time the subcontinent appears in a document anyone can read.",
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ]
   },
   {
    "id": "EVT.M2340.SHU_ILISHU_S_SEAL_INTERPRETER_OF_THE_MELUHHA",
@@ -4811,7 +5247,10 @@
     "TRADE": 3,
     "NETWORKING": 1.88
    },
-   "teaches": "A job title is the closest we have ever come to hearing the Indus speak."
+   "teaches": "A job title is the closest we have ever come to hearing the Indus speak.",
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ]
   },
   {
    "id": "EVT.M2330.A_MELUHHAN_VILLAGE_ATTESTED_IN_MESOPOTAMIA",
@@ -4836,7 +5275,10 @@
    "affects": {
     "TRADE": 2.06,
     "NETWORKING": 1.08
-   }
+   },
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ]
   },
   {
    "id": "EVT.IND.DHOLAVIRA_WATER",
@@ -4892,7 +5334,10 @@
    "affects": {
     "STRUCTURE": 2.32
    },
-   "teaches": "A trading outpost planted at a source. The Indus network was not passive."
+   "teaches": "A trading outpost planted at a source. The Indus network was not passive.",
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ]
   },
   {
    "id": "EVT.M2300.SURKOTADA_S_HORSE_BONES_DISPUTED_IDENTIFICAT",
@@ -4917,7 +5362,10 @@
    "affects": {
     "NETWORKING": -0.26
    },
-   "teaches": "The horse is load-bearing for several competing accounts of the second millennium BCE, which is why the bones are argued about."
+   "teaches": "The horse is load-bearing for several competing accounts of the second millennium BCE, which is why the bones are argued about.",
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.M2280.BANAWALI_AND_BHIRRANA_AT_THEIR_FULLEST_EXTEN",
@@ -4976,7 +5424,10 @@
    "affects": {
     "IT": -2.1,
     "CLASSICISM": -0.85
-   }
+   },
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.M2250.SUTKAGEN_DOR_THE_WESTERN_FRONTIER_ON_THE_MAK",
@@ -5055,7 +5506,10 @@
    "affects": {
     "AGRICULTURE": -4.52,
     "TRADE": -1.52
-   }
+   },
+   "threads": [
+    "THR.THE_RIVERS"
+   ]
   },
   {
    "id": "EVT.M2200.DHOLAVIRA_S_SIXTEEN_RESERVOIRS_AT_MAXIMUM_EX",
@@ -5210,7 +5664,10 @@
    "affects": {
     "TRADE": -4
    },
-   "teaches": "The Indus decline, observed from the outside, as an entry that stops appearing."
+   "teaches": "The Indus decline, observed from the outside, as an entry that stops appearing.",
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ]
   },
   {
    "id": "EVT.CLI.KOTLA_DAHAR",
@@ -5262,7 +5719,10 @@
     "AGRICULTURE": -3,
     "TRADE": -1
    },
-   "teaches": "The map of settlement is a hydrograph. The player watches a river die by watching towns move."
+   "teaches": "The map of settlement is a hydrograph. The player watches a river die by watching towns move.",
+   "threads": [
+    "THR.THE_RIVERS"
+   ]
   },
   {
    "id": "EVT.M2100.MOHENJO_DARO_S_UPPER_LEVELS_CROWDING_SUBDIVI",
@@ -5315,7 +5775,10 @@
    ],
    "affects": {
     "AGRICULTURE": -3
-   }
+   },
+   "threads": [
+    "THR.THE_RIVERS"
+   ]
   },
   {
    "id": "EVT.M2080.REBUILDING_STOPS_KEEPING_PACE_WITH_DECAY",
@@ -5418,7 +5881,10 @@
    "affects": {
     "AGRICULTURE": -4.4,
     "TRADE": -2.06
-   }
+   },
+   "threads": [
+    "THR.THE_RIVERS"
+   ]
   },
   {
    "id": "EVT.FRT.BHIL_ARAVALLI",
@@ -5443,7 +5909,10 @@
    ],
    "affects": {
     "NETWORKING": -0.8
-   }
+   },
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.M2000.KHARIF_AND_RABI_DOUBLE_CROPPING_BEGINS",
@@ -5468,7 +5937,10 @@
    "affects": {
     "AGRICULTURE": 4
    },
-   "teaches": "The agricultural year that still structures rural India begins here."
+   "teaches": "The agricultural year that still structures rural India begins here.",
+   "threads": [
+    "THR.THE_DOMESTICATIONS"
+   ]
   },
   {
    "id": "EVT.M2000.RICE_ADOPTED_IN_THE_EASTERN_AND_GUJARAT_SETT",
@@ -5494,7 +5966,10 @@
    ],
    "affects": {
     "AGRICULTURE": 5.2
-   }
+   },
+   "threads": [
+    "THR.THE_DOMESTICATIONS"
+   ]
   },
   {
    "id": "EVT.M2000.RICE_CULTIVATION_ALONG_THE_BRAHMAPUTRA",
@@ -5520,7 +5995,10 @@
    ],
    "affects": {
     "AGRICULTURE": 3.08
-   }
+   },
+   "threads": [
+    "THR.THE_DOMESTICATIONS"
+   ]
   },
   {
    "id": "EVT.M2000.SORGHUM_AND_PEARL_MILLET_ARRIVE_FROM_AFRICA",
@@ -5545,7 +6023,10 @@
    "affects": {
     "AGRICULTURE": 3
    },
-   "teaches": "Somebody carried seed across an ocean, and it reorganised where India could grow food."
+   "teaches": "Somebody carried seed across an ocean, and it reorganised where India could grow food.",
+   "threads": [
+    "THR.THE_DOMESTICATIONS"
+   ]
   },
   {
    "id": "EVT.M2000.THE_SOUTHERN_NEOLITHIC_REACHES_THE_KRISHNA_T",
@@ -5598,7 +6079,10 @@
    "affects": {
     "AGRICULTURE": 1.58
    },
-   "teaches": "Crops from Africa, in Gujarat, before 2000 BCE. Somebody carried them across an ocean."
+   "teaches": "Crops from Africa, in Gujarat, before 2000 BCE. Somebody carried them across an ocean.",
+   "threads": [
+    "THR.THE_DOMESTICATIONS"
+   ]
   },
   {
    "id": "EVT.RGN.KAS_DOGBURIAL",
@@ -5895,7 +6379,11 @@
    "affects": {
     "IT": -5
    },
-   "teaches": "Literacy is not a ratchet. It can be lost, and here it was, completely."
+   "teaches": "Literacy is not a ratchet. It can be lost, and here it was, completely.",
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK",
+    "THR.THE_WRITING_LADDER"
+   ]
   },
   {
    "id": "EVT.CLI.INDUS_AVULSION_1900",
@@ -5921,7 +6409,10 @@
    "affects": {
     "AGRICULTURE": -2.2,
     "TRADE": -0.7
-   }
+   },
+   "threads": [
+    "THR.THE_RIVERS"
+   ]
   },
   {
    "id": "EVT.M1900.CEMETERY_H_IN_THE_PUNJAB_JHUKAR_IN_SINDH",
@@ -6263,7 +6754,10 @@
    "where": [],
    "affects": {
     "AGRICULTURE": 4.12
-   }
+   },
+   "threads": [
+    "THR.THE_DOMESTICATIONS"
+   ]
   },
   {
    "id": "EVT.M1750.OCHRE_COLOURED_POTTERY_IN_THE_DOAB",
@@ -6608,7 +7102,10 @@
    "affects": {
     "IT": -1.54,
     "CLASSICISM": -1
-   }
+   },
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.CLI.THAR_ADVANCE",
@@ -6713,7 +7210,10 @@
    "affects": {
     "NETWORKING": -2.14
    },
-   "teaches": "Almost everything about the Vedic period depends on what you think happened here."
+   "teaches": "Almost everything about the Vedic period depends on what you think happened here.",
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.M1500.JHUM_SHIFTING_CULTIVATION_ESTABLISHED_IN_THE",
@@ -6739,7 +7239,10 @@
    ],
    "affects": {
     "AGRICULTURE": 4.84
-   }
+   },
+   "threads": [
+    "THR.THE_DOMESTICATIONS"
+   ]
   },
   {
    "id": "EVT.M1500.MILLET_AGRICULTURE_RESHAPES_SAURASHTRA",
@@ -6765,7 +7268,10 @@
    ],
    "affects": {
     "AGRICULTURE": 2.4
-   }
+   },
+   "threads": [
+    "THR.THE_DOMESTICATIONS"
+   ]
   },
   {
    "id": "EVT.M1500.PANDU_RAJAR_DHIBI_THE_BENGAL_CHALCOLITHIC",
@@ -6818,7 +7324,10 @@
    ],
    "affects": {
     "NETWORKING": -0.45
-   }
+   },
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.RGN.KAS_MEGALITH",
@@ -6843,7 +7352,10 @@
    ],
    "affects": {
     "NETWORKING": -0.43
-   }
+   },
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.RGN.RAJ_AHAR_END",
@@ -6869,7 +7381,10 @@
    ],
    "affects": {
     "NETWORKING": -0.54
-   }
+   },
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.M1480.GANDHARA_GRAVE_CULTURE_IN_THE_SWAT_VALLEY",
@@ -6921,7 +7436,10 @@
    ],
    "affects": {
     "NETWORKING": -0.94
-   }
+   },
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.M1450.THE_SPOKED_WHEEL_APPEARS",
@@ -7185,7 +7703,10 @@
    "where": [],
    "affects": {
     "AGRICULTURE": 1.06
-   }
+   },
+   "threads": [
+    "THR.THE_DOMESTICATIONS"
+   ]
   },
   {
    "id": "EVT.M1300.CHALCOLITHIC_MALWA_GIVES_WAY_TO_IRON_USING_C",
@@ -7318,7 +7839,10 @@
    ],
    "affects": {
     "NETWORKING": -1.19
-   }
+   },
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.M1300.RICE_PADDY_CULTIVATION_INTENSIFIES_IN_THE_MI",
@@ -7342,7 +7866,10 @@
    "where": [],
    "affects": {
     "AGRICULTURE": 3.88
-   }
+   },
+   "threads": [
+    "THR.THE_DOMESTICATIONS"
+   ]
   },
   {
    "id": "EVT.M1300.RIGVEDA_COMPOSITION_BEGINS_ORAL_AND_STAYS_OR",
@@ -7502,7 +8029,10 @@
    ],
    "affects": {
     "NETWORKING": -0.9
-   }
+   },
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.M1250.THE_DASARAJNA_THE_BATTLE_OF_THE_TEN_KINGS_ON",
@@ -7583,7 +8113,10 @@
     "AGRICULTURE": 3,
     "STRUCTURE": 1
    },
-   "teaches": "The clearance that creates the subcontinent's centre of gravity. Magadha is downstream of the axe."
+   "teaches": "The clearance that creates the subcontinent's centre of gravity. Magadha is downstream of the axe.",
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.M1200.GOLBAI_SASAN_THE_ODISHAN_CHALCOLITHIC",
@@ -7766,7 +8299,10 @@
     "CULTIVATION": 1.86,
     "NETWORKING": 2.32
    },
-   "teaches": "Kingship performed as ritual theatre, with the border decided by where anyone dares stop the horse."
+   "teaches": "Kingship performed as ritual theatre, with the border decided by where anyone dares stop the horse.",
+   "threads": [
+    "THR.THE_MANDALA"
+   ]
   },
   {
    "id": "EVT.M1100.KURU_STATE_FORMATION_RITUAL_CODIFICATION_BEG",
@@ -7845,7 +8381,10 @@
     "IT": 1.56,
     "CLASSICISM": 1.6
    },
-   "teaches": "An oral text acquires an architecture, and the architecture is what preserves it."
+   "teaches": "An oral text acquires an architecture, and the architecture is what preserves it.",
+   "threads": [
+    "THR.THE_MANDALA"
+   ]
   },
   {
    "id": "EVT.M1050.THE_MNEMONIC_SCHEMES_FIXED_PADAPATHA_THEN_KR",
@@ -7898,7 +8437,10 @@
     "CULTIVATION": 2.42,
     "NETWORKING": 1.56
    },
-   "teaches": "Self-government is not something that arrives from outside. It is here in the earliest text."
+   "teaches": "Self-government is not something that arrives from outside. It is here in the earliest text.",
+   "threads": [
+    "THR.THE_ASSEMBLIES"
+   ]
   },
   {
    "id": "EVT.M1000.AHICHCHHATRA_AND_JAKHERA",
@@ -8087,7 +8629,10 @@
    "affects": {
     "AGRICULTURE": 1.84
    },
-   "teaches": "The Ganga's main flow moves east over two millennia and takes the population with it."
+   "teaches": "The Ganga's main flow moves east over two millennia and takes the population with it.",
+   "threads": [
+    "THR.THE_DOMESTICATIONS"
+   ]
   },
   {
    "id": "EVT.RGN.MAH_JORWE_END",
@@ -8137,7 +8682,10 @@
    ],
    "affects": {
     "AGRICULTURE": 0.78
-   }
+   },
+   "threads": [
+    "THR.THE_DOMESTICATIONS"
+   ]
   },
   {
    "id": "EVT.RGN.TAM_ADICHA_SEQ",
@@ -8188,7 +8736,10 @@
    ],
    "affects": {
     "AGRICULTURE": 1.46
-   }
+   },
+   "threads": [
+    "THR.THE_DOMESTICATIONS"
+   ]
   },
   {
    "id": "EVT.M970.TRIBUTE_BALI_BHAGA_AS_VOLUNTARY_OFFERING_NOT",
@@ -8506,7 +9057,10 @@
    "where": [],
    "affects": {
     "NETWORKING": -1.3
-   }
+   },
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.M900.ANURADHAPURA_S_EARLY_SETTLEMENT",
@@ -8769,7 +9323,10 @@
    "affects": {
     "NETWORKING": -1.8
    },
-   "teaches": "A migration remembered as a miracle, and the miracle is a land-clearance technique."
+   "teaches": "A migration remembered as a miracle, and the miracle is a land-clearance technique.",
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.M840.RICE_TRANSPLANTATION_RAISES_YIELDS_SHARPLY",
@@ -8794,7 +9351,10 @@
    "affects": {
     "AGRICULTURE": 3
    },
-   "teaches": "The technique that makes the eastern Ganga plain the richest place in the game."
+   "teaches": "The technique that makes the eastern Ganga plain the richest place in the game.",
+   "threads": [
+    "THR.THE_DOMESTICATIONS"
+   ]
   },
   {
    "id": "EVT.M830.IRON_PLOUGHSHARES_IN_THE_MIDDLE_GANGA",
@@ -8978,7 +9538,10 @@
    ],
    "affects": {
     "NETWORKING": -1.06
-   }
+   },
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.RGN.RAJ_IRON_AR",
@@ -9110,7 +9673,10 @@
     "IT": 1.66,
     "CLASSICISM": 1.84
    },
-   "teaches": "A woman arguing philosophy in public, recorded by the tradition she was arguing with."
+   "teaches": "A woman arguing philosophy in public, recorded by the tradition she was arguing with.",
+   "threads": [
+    "THR.THE_ASSEMBLIES"
+   ]
   },
   {
    "id": "EVT.M750.THE_UPANISHADIC_TURN_YAJNAVALKYA_THE_BRIHADA",
@@ -9218,7 +9784,10 @@
     "CULTIVATION": 1.94,
     "NETWORKING": 2.28
    },
-   "teaches": "The escape hatch is institutionalised, and through it walk the founders of three religions."
+   "teaches": "The escape hatch is institutionalised, and through it walk the founders of three religions.",
+   "threads": [
+    "THR.THE_RENOUNCERS"
+   ]
   },
   {
    "id": "EVT.M730.KAUSAMBI_S_RAMPART_THE_EARLIEST_GREAT_FORTIF",
@@ -9405,7 +9974,10 @@
    "affects": {
     "NETWORKING": -1.82
    },
-   "teaches": "The longest-running conflict in the game begins, and it is not between kingdoms."
+   "teaches": "The longest-running conflict in the game begins, and it is not between kingdoms.",
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.M700.THE_TINAI_LANDSCAPE_SCHEME_FIVE_ECOLOGIES_FI",
@@ -9566,7 +10138,10 @@
     "DESIGN": 2.6,
     "IT": 2.08
    },
-   "teaches": "Organised labour and organised capital arrive together, in the same institution."
+   "teaches": "Organised labour and organised capital arrive together, in the same institution.",
+   "threads": [
+    "THR.THE_ASSEMBLIES"
+   ]
   },
   {
    "id": "EVT.M660.COINED_MONEY_PRECURSORS_WEIGHED_SILVER_BENT_",
@@ -9593,7 +10168,10 @@
    "affects": {
     "TRADE": 2
    },
-   "teaches": "Money is being assembled piece by piece, and weight comes before sovereignty."
+   "teaches": "Money is being assembled piece by piece, and weight comes before sovereignty.",
+   "threads": [
+    "THR.THE_MONETARY_LADDER"
+   ]
   },
   {
    "id": "EVT.M650.THE_JANA_BECOMES_THE_JANAPADA_PEOPLE_BECOME_",
@@ -9727,7 +10305,10 @@
    "affects": {
     "DESIGN": 0.98,
     "IT": 0.92
-   }
+   },
+   "threads": [
+    "THR.THE_WRITING_LADDER"
+   ]
   },
   {
    "id": "EVT.M600.KORKAI_PEARL_FISHERY_AND_PORT",
@@ -9776,7 +10357,10 @@
     -588
    ],
    "where": [],
-   "teaches": "For two centuries it is genuinely open whether the Indian state will be monarchical."
+   "teaches": "For two centuries it is genuinely open whether the Indian state will be monarchical.",
+   "threads": [
+    "THR.THE_ASSEMBLIES"
+   ]
   },
   {
    "id": "EVT.M600.SIXTEEN_MAHAJANAPADAS_THE_MAP_HAS_STATES_ON_",
@@ -9902,7 +10486,10 @@
     "CULTIVATION": 2.06,
     "NETWORKING": 2.3
    },
-   "teaches": "The most rigorous ethical position in the ancient world, and the oldest surviving renouncer order."
+   "teaches": "The most rigorous ethical position in the ancient world, and the oldest surviving renouncer order.",
+   "threads": [
+    "THR.THE_RENOUNCERS"
+   ]
   },
   {
    "id": "EVT.M590.THE_GANA_SANGHA_VAJJI_MALLA_SHAKYA_GOVERN_BY",
@@ -9928,7 +10515,11 @@
     "CULTIVATION": 2.12,
     "NETWORKING": 1.52
    },
-   "teaches": "The republic is an Indian political form, and the monastic sangha is partly its heir."
+   "teaches": "The republic is an Indian political form, and the monastic sangha is partly its heir.",
+   "threads": [
+    "THR.THE_ASSEMBLIES",
+    "THR.THE_RENOUNCERS"
+   ]
   },
   {
    "id": "EVT.M585.KEELADI_URBAN_SETTLEMENT_ON_THE_VAIGAI_DISPU",
@@ -10033,7 +10624,10 @@
     "TRADE": 5.2,
     "NETWORKING": 1.84
    },
-   "teaches": "The subcontinent acquires its permanent economic axes."
+   "teaches": "The subcontinent acquires its permanent economic axes.",
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ]
   },
   {
    "id": "EVT.M563.THE_BUDDHA_LONG_AND_SHORT_CHRONOLOGIES_BOTH_",
@@ -10056,7 +10650,10 @@
     "CULTIVATION": 1.98,
     "NETWORKING": 1.58
    },
-   "teaches": "A movement that spread across half the world and left India almost entirely."
+   "teaches": "A movement that spread across half the world and left India almost entirely.",
+   "threads": [
+    "THR.THE_RENOUNCERS"
+   ]
   },
   {
    "id": "EVT.M550.PUNCH_MARKED_COINAGE_MONEY_ENTERS_THE_GAME",
@@ -10084,7 +10681,10 @@
     "TRADE": 4,
     "NETWORKING": 2
    },
-   "teaches": "Money enters the game, and with it every later problem about who is allowed to issue it."
+   "teaches": "Money enters the game, and with it every later problem about who is allowed to issue it.",
+   "threads": [
+    "THR.THE_MONETARY_LADDER"
+   ]
   },
   {
    "id": "EVT.SIT.ATRANJIKHERA_NBP",
@@ -10137,7 +10737,10 @@
    "affects": {
     "STRUCTURE": 0.89
    },
-   "teaches": "A republic that fortified itself is a republic that expected a siege."
+   "teaches": "A republic that fortified itself is a republic that expected a siege.",
+   "threads": [
+    "THR.THE_ASSEMBLIES"
+   ]
   },
   {
    "id": "EVT.WRK.NIRUKTA",
@@ -10214,7 +10817,10 @@
     "CULTIVATION": 1.96,
     "NETWORKING": 2.54
    },
-   "teaches": "A major religion of ancient India, known entirely through people who despised it."
+   "teaches": "A major religion of ancient India, known entirely through people who despised it.",
+   "threads": [
+    "THR.THE_RENOUNCERS"
+   ]
   },
   {
    "id": "EVT.M535.AJITA_KESAKAMBALI_AND_THE_MATERIALISTS",
@@ -10295,7 +10901,10 @@
     "CULTIVATION": 2.02,
     "NETWORKING": 1.52
    },
-   "teaches": "The corporation that outlives its founder is invented here, and every endowment in this game imitates it."
+   "teaches": "The corporation that outlives its founder is invented here, and every endowment in this game imitates it.",
+   "threads": [
+    "THR.THE_RENOUNCERS"
+   ]
   },
   {
    "id": "EVT.INV.ACHAEMENID",
@@ -10352,7 +10961,10 @@
    "affects": {
     "DESIGN": 2.54,
     "IT": 2.56
-   }
+   },
+   "threads": [
+    "THR.THE_WRITING_LADDER"
+   ]
   },
   {
    "id": "EVT.M510.SKYLAX_SAILS_THE_INDUS_FOR_DARIUS",
@@ -10403,7 +11015,10 @@
    "affects": {
     "AGRICULTURE": -2.12,
     "TRADE": -1.01
-   }
+   },
+   "threads": [
+    "THR.THE_RIVERS"
+   ]
   },
   {
    "id": "EVT.FRT.MATRILINEAL",
@@ -10428,7 +11043,10 @@
    ],
    "affects": {
     "NETWORKING": -0.97
-   }
+   },
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.FRT.NAGA_TERRACES",
@@ -10456,7 +11074,10 @@
    "affects": {
     "NETWORKING": -1.42
    },
-   "teaches": "Terracing steep ground for irrigated rice is a harder engineering problem than anything on the plains, and the plains record does not mention it."
+   "teaches": "Terracing steep ground for irrigated rice is a harder engineering problem than anything on the plains, and the plains record does not mention it.",
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.M500.DHULIKATTA_AND_KOTALINGALA_EARLY_URBAN_CENTR",
@@ -10510,7 +11131,10 @@
    "affects": {
     "DESIGN": 1.04,
     "IT": 1.28
-   }
+   },
+   "threads": [
+    "THR.THE_WRITING_LADDER"
+   ]
   },
   {
    "id": "EVT.M500.PANINI_S_ASHTADHYAYI_3_959_GENERATIVE_RULES",
@@ -10562,7 +11186,10 @@
     "IT": 1.8,
     "CLASSICISM": 1.58
    },
-   "teaches": "The south's literacy is not an import from the Mauryan north arriving late. The sherds argue otherwise."
+   "teaches": "The south's literacy is not an import from the Mauryan north arriving late. The sherds argue otherwise.",
+   "threads": [
+    "THR.THE_WRITING_LADDER"
+   ]
   },
   {
    "id": "EVT.REF.AJIVIKA_DOCTRINE",
@@ -10619,7 +11246,10 @@
    "affects": {
     "AGRICULTURE": 0.74
    },
-   "teaches": "Farmland below the level of the water beside it, kept dry by bunds and pumps. It predates the Dutch polders."
+   "teaches": "Farmland below the level of the water beside it, kept dry by bunds and pumps. It predates the Dutch polders.",
+   "threads": [
+    "THR.THE_DOMESTICATIONS"
+   ]
   },
   {
    "id": "EVT.SIT.BHITA",
@@ -10826,7 +11456,8 @@
    ],
    "threads": [
     "THR.THE_CASTE_QUESTION",
-    "THR.THE_RENOUNCERS"
+    "THR.THE_RENOUNCERS",
+    "THR.THE_WRITING_LADDER"
    ],
    "where": [
     "ter"
@@ -10890,7 +11521,10 @@
     "TRADE": 3,
     "NETWORKING": 2
    },
-   "teaches": "The perpetual endowment is engineered, and knowledge acquires an income."
+   "teaches": "The perpetual endowment is engineered, and knowledge acquires an income.",
+   "threads": [
+    "THR.THE_ASSEMBLIES"
+   ]
   },
   {
    "id": "EVT.REF.SANGHA_WOMEN",
@@ -10999,7 +11633,10 @@
    "affects": {
     "DESIGN": 1.29,
     "IT": 0.78
-   }
+   },
+   "threads": [
+    "THR.THE_WRITING_LADDER"
+   ]
   },
   {
    "id": "EVT.SIT.KAUSAMBI_EAST",
@@ -11079,7 +11716,10 @@
    "affects": {
     "TRADE": 2
    },
-   "teaches": "Monetary consolidation precedes political consolidation, and predicts it."
+   "teaches": "Monetary consolidation precedes political consolidation, and predicts it.",
+   "threads": [
+    "THR.THE_MONETARY_LADDER"
+   ]
   },
   {
    "id": "EVT.M413.SHISHUNAGA_AVANTI_ABSORBED",
@@ -11369,7 +12009,10 @@
     "CULTIVATION": 1.62,
     "NETWORKING": 1.98
    },
-   "teaches": "Institutions do not usually split over doctrine. They split over money and discipline, and this one did."
+   "teaches": "Institutions do not usually split over doctrine. They split over money and discipline, and this one did.",
+   "threads": [
+    "THR.THE_RENOUNCERS"
+   ]
   },
   {
    "id": "EVT.REF.SECOND_COUNCIL",
@@ -11423,7 +12066,10 @@
     "DESIGN": 1.5,
     "IT": 1.6
    },
-   "teaches": "Every script in South and Southeast Asia descends from this one, and nobody knows its parent."
+   "teaches": "Every script in South and Southeast Asia descends from this one, and nobody knows its parent.",
+   "threads": [
+    "THR.THE_WRITING_LADDER"
+   ]
   },
   {
    "id": "EVT.M360.KHAROSHTHI_IN_THE_NORTHWEST_DERIVED_FROM_ARA",
@@ -11451,7 +12097,10 @@
     "DESIGN": 2.18,
     "IT": 2.14
    },
-   "teaches": "The subcontinent's other script: born of an empire's paperwork, dead with a trade network."
+   "teaches": "The subcontinent's other script: born of an empire's paperwork, dead with a trade network.",
+   "threads": [
+    "THR.THE_WRITING_LADDER"
+   ]
   },
   {
    "id": "EVT.M350.IRON_PRODUCTION_AT_UJJAIN_AND_RAJGIR_SCALES_",
@@ -11895,7 +12544,10 @@
    "affects": {
     "IT": -5.2,
     "CLASSICISM": -1.48
-   }
+   },
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.FRT.ATAVIKA",
@@ -11920,7 +12572,10 @@
    ],
    "affects": {
     "NETWORKING": -2.34
-   }
+   },
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.FRT.MAURYAN_ELEPHANT",
@@ -11945,7 +12600,10 @@
    "affects": {
     "NETWORKING": -1.06
    },
-   "teaches": "The first conservation law in the record exists to keep war elephants, and it puts the people living in those forests under a new authority."
+   "teaches": "The first conservation law in the record exists to keep war elephants, and it puts the people living in those forests under a new authority.",
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.M300.BLACK_PEPPER_ENTERS_LONG_DISTANCE_TRADE",
@@ -11972,7 +12630,10 @@
    "affects": {
     "TRADE": 4.92,
     "NETWORKING": 1.5
-   }
+   },
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ]
   },
   {
    "id": "EVT.M300.JUNAGADH_UNDER_MAURYAN_GOVERNORS",
@@ -12049,7 +12710,10 @@
    "affects": {
     "IT": 1.7,
     "CLASSICISM": 1.46
-   }
+   },
+   "threads": [
+    "THR.THE_WRITING_LADDER"
+   ]
   },
   {
    "id": "EVT.M300.THE_ROYAL_ROAD_TO_TAXILA_THE_GRAND_TRUNK_S_A",
@@ -12181,8 +12845,8 @@
     -260
    ],
    "threads": [
-    "THR.THE_RENOUNCERS",
-    "THR.THE_CASTE_QUESTION"
+    "THR.THE_CASTE_QUESTION",
+    "THR.THE_RENOUNCERS"
    ],
    "where": [],
    "affects": {
@@ -12266,7 +12930,10 @@
    "affects": {
     "TRADE": 2.58,
     "NETWORKING": 1.03
-   }
+   },
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ]
   },
   {
    "id": "EVT.SIT.KODUMANAL_STEEL",
@@ -12431,7 +13098,10 @@
    "affects": {
     "CULTIVATION": 0.98,
     "NETWORKING": 0.7
-   }
+   },
+   "threads": [
+    "THR.THE_RENOUNCERS"
+   ]
   },
   {
    "id": "EVT.M297.BINDUSARA_SOUTHWARD_EXPANSION_TO_THE_DECCAN",
@@ -12707,7 +13377,10 @@
    "affects": {
     "NETWORKING": -1.42
    },
-   "teaches": "The same edict that publishes remorse over Kalinga also tells the forest dwellers what will happen if they do not comply."
+   "teaches": "The same edict that publishes remorse over Kalinga also tells the forest dwellers what will happen if they do not comply.",
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.M257.THE_DHAMMA_MAHAMATTA_OFFICERS_OF_MORAL_ADMIN",
@@ -12787,7 +13460,10 @@
     "IT": 1.8,
     "CLASSICISM": 2.6
    },
-   "teaches": "The oldest translated state communication in Indian history, and it is competent."
+   "teaches": "The oldest translated state communication in Indian history, and it is competent.",
+   "threads": [
+    "THR.THE_WRITING_LADDER"
+   ]
   },
   {
    "id": "EVT.M255.WELLS_REST_HOUSES_AND_SHADE_TREES_ALONG_THE_",
@@ -12941,7 +13617,10 @@
    "affects": {
     "CULTIVATION": 2.14,
     "NETWORKING": 1.98
-   }
+   },
+   "threads": [
+    "THR.THE_TRANSLATORS"
+   ]
   },
   {
    "id": "EVT.M250.MISSIONS_TO_SRI_LANKA_BACTRIA_EGYPT_MACEDON_",
@@ -13077,7 +13756,10 @@
     "CULTIVATION": 1.86,
     "NETWORKING": 2.06
    },
-   "teaches": "The decision to export. Everything about where Buddhism lives today follows from it."
+   "teaches": "The decision to export. Everything about where Buddhism lives today follows from it.",
+   "threads": [
+    "THR.THE_RENOUNCERS"
+   ]
   },
   {
    "id": "EVT.REF.SCHISM_EDICT",
@@ -13315,7 +13997,10 @@
    ],
    "affects": {
     "STRUCTURE": 0.61
-   }
+   },
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ]
   },
   {
    "id": "EVT.WRK.CHANDAHSHASTRA",
@@ -13432,7 +14117,11 @@
     "NETWORKING": 3,
     "CULTIVATION": 2
    },
-   "teaches": "The single most consequential export in the game, and it was a person carrying words."
+   "teaches": "The single most consequential export in the game, and it was a person carrying words.",
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK",
+    "THR.THE_TRANSLATORS"
+   ]
   },
   {
    "id": "EVT.M240.THE_MAHAVIHARA_FOUNDED",
@@ -13586,7 +14275,11 @@
     "IT": -3.72,
     "CLASSICISM": -1.98
    },
-   "teaches": "The material itself imposes the recopying treadmill the whole knowledge economy runs on."
+   "teaches": "The material itself imposes the recopying treadmill the whole knowledge economy runs on.",
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK",
+    "THR.THE_WRITING_LADDER"
+   ]
   },
   {
    "id": "EVT.FRT.NAGA_REPUBLICS",
@@ -13611,7 +14304,11 @@
    ],
    "affects": {
     "NETWORKING": -0.94
-   }
+   },
+   "threads": [
+    "THR.THE_ASSEMBLIES",
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.M200.THE_CHERA_LINE_VANCHI_AND_THE_PERIYAR",
@@ -13956,7 +14653,10 @@
    "affects": {
     "IT": -1.56,
     "CLASSICISM": -1.25
-   }
+   },
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.INV.KHARAVELA",
@@ -14037,7 +14737,10 @@
    "affects": {
     "TRADE": 2.5,
     "NETWORKING": 0.76
-   }
+   },
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ]
   },
   {
    "id": "EVT.M150.MUZIRIS_AND_KORKAI_ON_THE_ROMAN_CIRCUIT",
@@ -14065,7 +14768,10 @@
    "affects": {
     "TRADE": 3.6,
     "NETWORKING": 1.52
-   }
+   },
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ]
   },
   {
    "id": "EVT.M150.PATANJALI_S_MAHABHASHYA",
@@ -14118,7 +14824,10 @@
    "affects": {
     "IT": 1.76,
     "CLASSICISM": 2.5
-   }
+   },
+   "threads": [
+    "THR.THE_WRITING_LADDER"
+   ]
   },
   {
    "id": "EVT.M150.THE_HELIODORUS_PILLAR_AT_BESNAGAR_A_GREEK_EN",
@@ -14199,7 +14908,10 @@
     "DESIGN": 2,
     "IT": 1.96
    },
-   "teaches": "The perpetual endowment, with its interest rate published on a cliff."
+   "teaches": "The perpetual endowment, with its interest rate published on a cliff.",
+   "threads": [
+    "THR.THE_TEMPLE_ECONOMY"
+   ]
   },
   {
    "id": "EVT.M130.JUNNAR_KARLE_AND_BHAJA_ROCK_CUT_HALLS_FUNDED",
@@ -14310,7 +15022,10 @@
    "affects": {
     "IT": -2.54,
     "CLASSICISM": -0.75
-   }
+   },
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.CLI.ROMAN_WARM",
@@ -14527,7 +15242,10 @@
    ],
    "affects": {
     "STRUCTURE": 0.51
-   }
+   },
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ]
   },
   {
    "id": "EVT.RGN.KAS_INDOGREEK",
@@ -14555,7 +15273,10 @@
    "affects": {
     "TRADE": 0.74,
     "NETWORKING": 0.49
-   }
+   },
+   "threads": [
+    "THR.THE_MONETARY_LADDER"
+   ]
   },
   {
    "id": "EVT.RGN.LNK_MINNERIYA",
@@ -14859,7 +15580,10 @@
    "affects": {
     "TRADE": 4
    },
-   "teaches": "A wind pattern, correctly understood, does more for trade than any treaty."
+   "teaches": "A wind pattern, correctly understood, does more for trade than any treaty.",
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ]
   },
   {
    "id": "EVT.M50.PERIPLUS_OF_THE_ERYTHRAEAN_SEA_THE_ROMAN_TRA",
@@ -14885,7 +15609,10 @@
     "TRADE": 3,
     "NETWORKING": 1
    },
-   "teaches": "The best single source on ancient Indian Ocean trade is a working sailor's notes."
+   "teaches": "The best single source on ancient Indian Ocean trade is a working sailor's notes.",
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ]
   },
   {
    "id": "EVT.RGN.GUJ_BARYGAZA",
@@ -14971,7 +15698,12 @@
    "affects": {
     "NETWORKING": -0.73
    },
-   "teaches": "A tribal republic whose calendar outlived it by fifteen centuries. It is still the Vikram Samvat."
+   "teaches": "A tribal republic whose calendar outlived it by fifteen centuries. It is still the Vikram Samvat.",
+   "threads": [
+    "THR.THE_ASSEMBLIES",
+    "THR.THE_INTERNAL_FRONTIER",
+    "THR.THE_MONETARY_LADDER"
+   ]
   },
   {
    "id": "EVT.SIT.ARIKAMEDU_PHASES",
@@ -14997,7 +15729,10 @@
    "affects": {
     "STRUCTURE": 2.22
    },
-   "teaches": "The Roman trade touches ground level: a village turned entrepot, visible sherd by sherd."
+   "teaches": "The Roman trade touches ground level: a village turned entrepot, visible sherd by sherd.",
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ]
   },
   {
    "id": "EVT.M40.ARIKAMEDU_ROMAN_AMPHORAE_AND_ARRETINE_WARE_O",
@@ -15024,7 +15759,10 @@
    ],
    "affects": {
     "STRUCTURE": 2.34
-   }
+   },
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ]
   },
   {
    "id": "EVT.CAT.ALUVIHARE_WRITTEN",
@@ -15054,7 +15792,10 @@
     "IT": -4.48,
     "CLASSICISM": -2.44
    },
-   "teaches": "The clearest historical instance of the mechanic this whole game is built on, and it worked."
+   "teaches": "The clearest historical instance of the mechanic this whole game is built on, and it worked.",
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.INV.KUSHAN",
@@ -15189,7 +15930,10 @@
     "TRADE": 4.68,
     "NETWORKING": 1.82
    },
-   "teaches": "A trade imbalance argued about in the Roman senate and buried in Kerala hoards."
+   "teaches": "A trade imbalance argued about in the Roman senate and buried in Kerala hoards.",
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ]
   },
   {
    "id": "EVT.50.THOMAS_TRADITION_CHRISTIANITY_ON_THE_MALABAR",
@@ -15304,7 +16048,10 @@
    "affects": {
     "STRUCTURE": 0.76,
     "NETWORKING": 0.95
-   }
+   },
+   "threads": [
+    "THR.THE_MONETARY_LADDER"
+   ]
   },
   {
    "id": "EVT.SIT.BERENIKE_LINK",
@@ -15408,7 +16155,10 @@
     "DESIGN": 2.26,
     "IT": 1.6
    },
-   "teaches": "The most precisely dated coin series in ancient India, and the era on it is still official."
+   "teaches": "The most precisely dated coin series in ancient India, and the era on it is still official.",
+   "threads": [
+    "THR.THE_MONETARY_LADDER"
+   ]
   },
   {
    "id": "EVT.78.SHAKA_ERA_KANISHKA_DATE_CONTESTED_WINDOW",
@@ -15481,7 +16231,10 @@
     "CULTIVATION": 1.44,
     "NETWORKING": 1.92
    },
-   "teaches": "Buddhism's second great turn happens under an invader's patronage, on the frontier."
+   "teaches": "Buddhism's second great turn happens under an invader's patronage, on the frontier.",
+   "threads": [
+    "THR.THE_RENOUNCERS"
+   ]
   },
   {
    "id": "EVT.100.BALI_JATRA_THE_SAILING_SEASON_TO_JAVA_AND_BA",
@@ -15565,7 +16318,10 @@
     "DESIGN": 2.58,
     "IT": 2.06
    },
-   "teaches": "Religious pluralism as minting policy, eighteen centuries before anyone called it that."
+   "teaches": "Religious pluralism as minting policy, eighteen centuries before anyone called it that.",
+   "threads": [
+    "THR.THE_MONETARY_LADDER"
+   ]
   },
   {
    "id": "EVT.100.NASIK_AND_JUNNAR_THE_GHAT_PASSES_CARRY_THE_O",
@@ -15733,7 +16489,10 @@
    ],
    "affects": {
     "NETWORKING": -0.97
-   }
+   },
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.REF.DIGAMBARA_SPLIT",
@@ -15899,7 +16658,10 @@
    ],
    "affects": {
     "STRUCTURE": 0.38
-   }
+   },
+   "threads": [
+    "THR.THE_MONETARY_LADDER"
+   ]
   },
   {
    "id": "EVT.SIT.KAVERIPATTINAM_WHARF",
@@ -15951,7 +16713,10 @@
    ],
    "affects": {
     "STRUCTURE": 1.28
-   }
+   },
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ]
   },
   {
    "id": "EVT.SIT.SANGHOL",
@@ -16053,7 +16818,11 @@
    ],
    "affects": {
     "STRUCTURE": 0.63
-   }
+   },
+   "threads": [
+    "THR.THE_LONG_NETWORKS",
+    "THR.THE_MONETARY_LADDER"
+   ]
   },
   {
    "id": "EVT.110.BUDDHISM_MOVES_ALONG_THE_SILK_ROAD_INTO_CENT",
@@ -16079,7 +16848,10 @@
     "NETWORKING": 3,
     "CULTIVATION": 2
    },
-   "teaches": "The corpus starts existing outside the country that made it. That redundancy is what saves it."
+   "teaches": "The corpus starts existing outside the country that made it. That redundancy is what saves it.",
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ]
   },
   {
    "id": "EVT.120.ASHVAGHOSHA_S_BUDDHACHARITA_SANSKRIT_KAVYA_S",
@@ -16134,7 +16906,10 @@
    "affects": {
     "DESIGN": 2.24,
     "IT": 1.72
-   }
+   },
+   "threads": [
+    "THR.THE_TEMPLE_ECONOMY"
+   ]
   },
   {
    "id": "EVT.150.AMARAVATI_THE_ANDHRA_STUPA_TRADITION",
@@ -16450,7 +17225,10 @@
    "affects": {
     "TRADE": 2.4,
     "NETWORKING": 1.07
-   }
+   },
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ]
   },
   {
    "id": "EVT.200.AJANTA_FIRST_PHASE",
@@ -16504,7 +17282,10 @@
    "affects": {
     "TRADE": 3.28,
     "NETWORKING": 2.22
-   }
+   },
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ]
   },
   {
    "id": "EVT.200.CHILAPPATIKARAM_S_CHERA_CHAPTERS",
@@ -16715,7 +17496,10 @@
    ],
    "affects": {
     "NETWORKING": -0.63
-   }
+   },
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.FRT.SANGAM_KURINJI",
@@ -16742,7 +17526,10 @@
    "affects": {
     "NETWORKING": -0.94
    },
-   "teaches": "The only ancient Indian literature that treats the hills as a place with its own life rather than as a margin."
+   "teaches": "The only ancient Indian literature that treats the hills as a place with its own life rather than as a margin.",
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.RGN.RAJ_DESERT_ROUTE",
@@ -16928,7 +17715,10 @@
    "affects": {
     "TRADE": 4.56,
     "NETWORKING": 2.1
-   }
+   },
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ]
   },
   {
    "id": "EVT.250.THE_VAKATAKAS",
@@ -16984,7 +17774,10 @@
     "CULTIVATION": 0.89,
     "NETWORKING": 1.09
    },
-   "teaches": "Read the donor list. It is mostly women, and they are named."
+   "teaches": "Read the donor list. It is mostly women, and they are named.",
+   "threads": [
+    "THR.THE_TEMPLE_ECONOMY"
+   ]
   },
   {
    "id": "EVT.RGN.MAH_VAKATAKA_RULE",
@@ -17170,7 +17963,10 @@
    "affects": {
     "AGRICULTURE": -1.62,
     "TRADE": -0.77
-   }
+   },
+   "threads": [
+    "THR.THE_RIVERS"
+   ]
   },
   {
    "id": "EVT.FRT.GOND_EMERGE",
@@ -17195,7 +17991,10 @@
    ],
    "affects": {
     "NETWORKING": -1.22
-   }
+   },
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.RGN.KAS_HARWAN",
@@ -17296,7 +18095,10 @@
     "CULTIVATION": 3,
     "STRUCTURE": -1
    },
-   "teaches": "The fiscal decision that produces the temple economy, the agrahara, and the endowment the player will spend the rest of the game managing."
+   "teaches": "The fiscal decision that produces the temple economy, the agrahara, and the endowment the player will spend the rest of the game managing.",
+   "threads": [
+    "THR.THE_TEMPLE_ECONOMY"
+   ]
   },
   {
    "id": "EVT.345.KADAMBA_FOUNDED_AT_BANAVASI_THE_FIRST_KANNAD",
@@ -17400,7 +18202,10 @@
     "IT": 2.58,
     "CLASSICISM": 1.8
    },
-   "teaches": "Graded sovereignty in the king's own record — the game's sovereignty model, written in 350."
+   "teaches": "Graded sovereignty in the king's own record — the game's sovereignty model, written in 350.",
+   "threads": [
+    "THR.THE_MANDALA"
+   ]
   },
   {
    "id": "EVT.INV.KALABHRA",
@@ -17455,7 +18260,10 @@
    "affects": {
     "TRADE": -1.58,
     "STRUCTURE": -0.84
-   }
+   },
+   "threads": [
+    "THR.THE_MANDALA"
+   ]
   },
   {
    "id": "EVT.RGN.KAR_GANGA_TALAKAD",
@@ -17590,7 +18398,10 @@
     "DESIGN": 1.8,
     "IT": 1.6
    },
-   "teaches": "Knowledge acquires a landed income, and the countryside acquires its universities."
+   "teaches": "Knowledge acquires a landed income, and the countryside acquires its universities.",
+   "threads": [
+    "THR.THE_TEMPLE_ECONOMY"
+   ]
   },
   {
    "id": "EVT.375.CHANDRAGUPTA_II_KALIDASA_AT_COURT",
@@ -17714,7 +18525,11 @@
     "TRADE": 5,
     "NETWORKING": 1.5
    },
-   "teaches": "An outsider's audit of Gupta India, unsentimental in both directions."
+   "teaches": "An outsider's audit of Gupta India, unsentimental in both directions.",
+   "threads": [
+    "THR.THE_TRANSLATORS",
+    "THR.THE_WRITING_LADDER"
+   ]
   },
   {
    "id": "EVT.400.FAXIAN_SPENDS_TWO_YEARS_COPYING_TEXTS",
@@ -17742,7 +18557,10 @@
     "TRADE": 3.48,
     "NETWORKING": 1.44
    },
-   "teaches": "The pilgrim as acquisitions department: the point of the journey was the texts."
+   "teaches": "The pilgrim as acquisitions department: the point of the journey was the texts.",
+   "threads": [
+    "THR.THE_TRANSLATORS"
+   ]
   },
   {
    "id": "EVT.400.KASHMIRI_MONKS_CARRY_TEXTS_TO_CENTRAL_ASIA_A",
@@ -17852,7 +18670,10 @@
    "affects": {
     "IT": -1.58,
     "CLASSICISM": -0.85
-   }
+   },
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.CLI.KAVERI_DELTA_BUILD",
@@ -17879,7 +18700,10 @@
    "affects": {
     "AGRICULTURE": -2.3,
     "TRADE": -0.95
-   }
+   },
+   "threads": [
+    "THR.THE_RIVERS"
+   ]
   },
   {
    "id": "EVT.FRT.SHABARA",
@@ -17906,7 +18730,10 @@
    "affects": {
     "NETWORKING": -0.96
    },
-   "teaches": "A vocabulary is not neutral. These words carry a settled society's judgement of people it was displacing, and the game should show that rather than adopt it."
+   "teaches": "A vocabulary is not neutral. These words carry a settled society's judgement of people it was displacing, and the game should show that rather than adopt it.",
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.RGN.AND_VISHNUKUNDIN",
@@ -18060,7 +18887,10 @@
     "IT": 1.88,
     "CLASSICISM": 1.64
    },
-   "teaches": "The editor as historical force: one man's redaction becomes a whole tradition's lens."
+   "teaches": "The editor as historical force: one man's redaction becomes a whole tradition's lens.",
+   "threads": [
+    "THR.THE_TRANSLATORS"
+   ]
   },
   {
    "id": "EVT.430.BUDDHAGHOSA_THE_VISUDDHIMAGGA_AND_THE_COMMEN",
@@ -18087,7 +18917,10 @@
    "affects": {
     "IT": 1.96,
     "CLASSICISM": 1.52
-   }
+   },
+   "threads": [
+    "THR.THE_TRANSLATORS"
+   ]
   },
   {
    "id": "EVT.450.AJANTA_S_SECOND_PHASE_UNDER_VAKATAKA_PATRONA",
@@ -18143,7 +18976,10 @@
     "DESIGN": 2.38,
     "IT": 2
    },
-   "teaches": "Medieval India's most important documents are deeds, and they were built to last."
+   "teaches": "Medieval India's most important documents are deeds, and they were built to last.",
+   "threads": [
+    "THR.THE_TEMPLE_ECONOMY"
+   ]
   },
   {
    "id": "EVT.450.JAIN_AND_BUDDHIST_INSTITUTIONS_FLOURISH_UNDE",
@@ -18170,7 +19006,10 @@
    "affects": {
     "CULTIVATION": 0.73,
     "NETWORKING": 0.8
-   }
+   },
+   "threads": [
+    "THR.THE_RENOUNCERS"
+   ]
   },
   {
    "id": "EVT.450.THE_HALMIDI_INSCRIPTION_THE_EARLIEST_KANNADA",
@@ -18248,7 +19087,11 @@
    "affects": {
     "NETWORKING": -1.64
    },
-   "teaches": "The clearance stops being something farmers do and becomes something a charter authorises."
+   "teaches": "The clearance stops being something farmers do and becomes something a charter authorises.",
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER",
+    "THR.THE_TEMPLE_ECONOMY"
+   ]
   },
   {
    "id": "EVT.RGN.KAR_KADAMBA_SCRIPT",
@@ -18276,7 +19119,10 @@
    "affects": {
     "STRUCTURE": 1.12,
     "NETWORKING": 0.95
-   }
+   },
+   "threads": [
+    "THR.THE_WRITING_LADDER"
+   ]
   },
   {
    "id": "EVT.SIT.BAGH_CAVES",
@@ -18428,6 +19274,7 @@
    "corpus": "preserve",
    "preserve_to": "home",
    "threads": [
+    "THR.THE_CORPUS_AT_RISK",
     "THR.THE_RENOUNCERS"
    ],
    "where": [
@@ -18659,7 +19506,10 @@
    "affects": {
     "TRADE": -2.22,
     "STRUCTURE": -0.92
-   }
+   },
+   "threads": [
+    "THR.THE_WRITING_LADDER"
+   ]
   },
   {
    "id": "EVT.499.ARYABHATIYA_PLACE_VALUE_SINE_TABLES_A_ROTATI",
@@ -18765,7 +19615,10 @@
     "IT": -4.24,
     "CLASSICISM": -1.96
    },
-   "teaches": "A lost text with living descendants: influence without survival."
+   "teaches": "A lost text with living descendants: influence without survival.",
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.CAT.TAXILA_END",
@@ -18796,7 +19649,10 @@
     "IT": -4.36,
     "CLASSICISM": -1.98
    },
-   "teaches": "The northwest's scholarly centre ends and the corpus loses a whole transmission route."
+   "teaches": "The northwest's scholarly centre ends and the corpus loses a whole transmission route.",
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.CLI.GODAVARI_DELTA",
@@ -19275,7 +20131,10 @@
     "STRUCTURE": 2,
     "TRADE": 1
    },
-   "teaches": "The most durable economic institution in Indian history takes legal form."
+   "teaches": "The most durable economic institution in Indian history takes legal form.",
+   "threads": [
+    "THR.THE_TEMPLE_ECONOMY"
+   ]
   },
   {
    "id": "EVT.600.AIHOLE_125_TEMPLES_AN_ARCHITECTURAL_LABORATO",
@@ -19327,6 +20186,9 @@
    ],
    "where": [
     "ter"
+   ],
+   "threads": [
+    "THR.THE_TRANSLATORS"
    ]
   },
   {
@@ -19514,7 +20376,10 @@
    "affects": {
     "IT": -2.88,
     "CLASSICISM": -1.88
-   }
+   },
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.CAT.PRAKRIT_ECLIPSE",
@@ -19542,7 +20407,10 @@
    "affects": {
     "IT": -2.2,
     "CLASSICISM": -0.87
-   }
+   },
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.CAT.SHAKHA_LOSS_1000",
@@ -19568,7 +20436,10 @@
    "affects": {
     "IT": -1.98,
     "CLASSICISM": -1.07
-   }
+   },
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.FRT.BRAHMADEYA_FRONTIER",
@@ -19593,7 +20464,11 @@
    ],
    "affects": {
     "NETWORKING": -1.27
-   }
+   },
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER",
+    "THR.THE_TEMPLE_ECONOMY"
+   ]
   },
   {
    "id": "EVT.FRT.SANTHAL_UPLANDS",
@@ -19618,7 +20493,10 @@
    ],
    "affects": {
     "NETWORKING": -0.77
-   }
+   },
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.RGN.GUJ_JAIN_AGAMA_WRITE",
@@ -19871,7 +20749,10 @@
     "NETWORKING": 3,
     "CULTIVATION": 2
    },
-   "teaches": "A third of what survives of Indian Buddhist thought survives because one man carried it out."
+   "teaches": "A third of what survives of Indian Buddhist thought survives because one man carried it out.",
+   "threads": [
+    "THR.THE_TRANSLATORS"
+   ]
   },
   {
    "id": "EVT.WRK.BHASKARA_COMMENT",
@@ -20112,7 +20993,10 @@
     "TRADE": 4.12,
     "NETWORKING": 2.5
    },
-   "teaches": "The pilgrim's headcounts are the closest thing the seventh century has to statistics."
+   "teaches": "The pilgrim's headcounts are the closest thing the seventh century has to statistics.",
+   "threads": [
+    "THR.THE_TRANSLATORS"
+   ]
   },
   {
    "id": "EVT.INV.PALLAVA_VATAPI",
@@ -20194,7 +21078,11 @@
     "NETWORKING": 2,
     "IT": 1
    },
-   "teaches": "The largest single transfer of Indian knowledge abroad until printing — one caravan."
+   "teaches": "The largest single transfer of Indian knowledge abroad until printing — one caravan.",
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK",
+    "THR.THE_TRANSLATORS"
+   ]
   },
   {
    "id": "EVT.650.APPAR_AND_THE_SHAIVA_TURN_JAINISM_LOSES_ROYA",
@@ -20219,7 +21107,10 @@
     "CULTIVATION": 1.62,
     "NETWORKING": 1.5
    },
-   "teaches": "A religious transformation whose weapon was the better song."
+   "teaches": "A religious transformation whose weapon was the better song.",
+   "threads": [
+    "THR.THE_RENOUNCERS"
+   ]
   },
   {
    "id": "EVT.650.FRAGMENTATION_THE_REGIONAL_KINGDOM_BECOMES_T",
@@ -20266,7 +21157,10 @@
    "affects": {
     "IT": -1.46,
     "CLASSICISM": -0.99
-   }
+   },
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.REF.NAYANARS",
@@ -20502,7 +21396,10 @@
     "CULTIVATION": 2.24,
     "NETWORKING": 2.26
    },
-   "teaches": "Knowledge distributed by pilgrimage: the network is the medium."
+   "teaches": "Knowledge distributed by pilgrimage: the network is the medium.",
+   "threads": [
+    "THR.THE_RENOUNCERS"
+   ]
   },
   {
    "id": "EVT.CAT.AJIVIKA_LOST",
@@ -20530,7 +21427,10 @@
     "IT": -3.04,
     "CLASSICISM": -2.6
    },
-   "teaches": "A whole philosophical tradition known only through the people who disagreed with it."
+   "teaches": "A whole philosophical tradition known only through the people who disagreed with it.",
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.CAT.MATHEMATICS_LOST",
@@ -20558,7 +21458,10 @@
    "affects": {
     "IT": -2.28,
     "CLASSICISM": -1.16
-   }
+   },
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.CAT.PAISHACHI_LOST",
@@ -20584,7 +21487,10 @@
    "affects": {
     "IT": -1.8,
     "CLASSICISM": -1.19
-   }
+   },
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.FRT.ORAL_EPICS",
@@ -20609,7 +21515,10 @@
    "affects": {
     "NETWORKING": -2.12
    },
-   "teaches": "An ABSENT event. The game marks the gap rather than filling it, because a corpus that only counts what was written down tells the same lie the record does."
+   "teaches": "An ABSENT event. The game marks the gap rather than filling it, because a corpus that only counts what was written down tells the same lie the record does.",
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.REF.ALVARS",
@@ -20657,7 +21566,8 @@
    ],
    "year_end": 900,
    "threads": [
-    "THR.THE_CASTE_QUESTION"
+    "THR.THE_CASTE_QUESTION",
+    "THR.THE_RENOUNCERS"
    ],
    "where": [],
    "affects": {
@@ -21128,7 +22038,10 @@
     "STRUCTURE": 1.98,
     "NETWORKING": 2.3
    },
-   "teaches": "A major dynasty that dates itself from an election, remembered as the end of the big fish."
+   "teaches": "A major dynasty that dates itself from an election, remembered as the end of the big fish.",
+   "threads": [
+    "THR.THE_ASSEMBLIES"
+   ]
   },
   {
    "id": "EVT.750.PALA_FOUNDATION_BUDDHIST_PATRONAGE_IN_BENGAL",
@@ -21181,7 +22094,10 @@
    "affects": {
     "STRUCTURE": 1.48,
     "NETWORKING": 2.42
-   }
+   },
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ]
   },
   {
    "id": "EVT.SIT.PARIHASAPURA",
@@ -21382,7 +22298,10 @@
     "NETWORKING": 4,
     "TRADE": 2
    },
-   "teaches": "The most widely used piece of Indian intellectual property in the world, and it travelled as a diplomatic gift."
+   "teaches": "The most widely used piece of Indian intellectual property in the world, and it travelled as a diplomatic gift.",
+   "threads": [
+    "THR.THE_TRANSLATORS"
+   ]
   },
   {
    "id": "EVT.775.AL_FAZARI_S_SANSKRIT_TO_ARABIC_ASTRONOMY",
@@ -21408,7 +22327,10 @@
     "IT": 2.38,
     "CLASSICISM": 1.62
    },
-   "teaches": "Baghdad learns to calculate the Indian way first — and teaches Europe later."
+   "teaches": "Baghdad learns to calculate the Indian way first — and teaches Europe later.",
+   "threads": [
+    "THR.THE_TRANSLATORS"
+   ]
   },
   {
    "id": "EVT.780.NANDIVARMAN_III_THE_PALLAVA_HIGH_STYLE_CLOSE",
@@ -21461,7 +22383,10 @@
     "IT": -3.52,
     "CLASSICISM": -2.14
    },
-   "teaches": "An institution can vanish so completely that its destruction has to be inferred from paperwork stopping."
+   "teaches": "An institution can vanish so completely that its destruction has to be inferred from paperwork stopping.",
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.783.VIKRAMASHILA_FOUNDED_NALANDA_AT_ITS_HEIGHT",
@@ -21515,7 +22440,10 @@
     "CULTIVATION": 2.6,
     "NETWORKING": 1.9
    },
-   "teaches": "The technology for making a school of thought immortal."
+   "teaches": "The technology for making a school of thought immortal.",
+   "threads": [
+    "THR.THE_RENOUNCERS"
+   ]
   },
   {
    "id": "EVT.SIT.SOMAPURA_BUILT",
@@ -21812,7 +22740,10 @@
    "affects": {
     "IT": -3.32,
     "CLASSICISM": -1.52
-   }
+   },
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.CAT.SANGAM_ATTRITION",
@@ -21840,7 +22771,10 @@
    "affects": {
     "IT": -5.12,
     "CLASSICISM": -1.46
-   }
+   },
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.CAT.TIBETAN_TRANSLATION",
@@ -21866,7 +22800,11 @@
    "affects": {
     "IT": -5,
     "CLASSICISM": -1.54
-   }
+   },
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK",
+    "THR.THE_TRANSLATORS"
+   ]
   },
   {
    "id": "EVT.FRT.IRULA_VENOM",
@@ -21891,7 +22829,10 @@
    ],
    "affects": {
     "NETWORKING": -0.5
-   }
+   },
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.FRT.TODA_DAIRY",
@@ -21916,7 +22857,10 @@
    ],
    "affects": {
     "NETWORKING": -0.64
-   }
+   },
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.INV.RASHTRAKUTA_NORTH",
@@ -21972,7 +22916,10 @@
     "CULTIVATION": 2.12,
     "NETWORKING": 1.44
    },
-   "teaches": "The institutional innovation matters as much as the philosophy: he built something designed to keep running."
+   "teaches": "The institutional innovation matters as much as the philosophy: he built something designed to keep running.",
+   "threads": [
+    "THR.THE_RENOUNCERS"
+   ]
   },
   {
    "id": "EVT.RGN.KER_NAMBUDIRI",
@@ -22551,7 +23498,10 @@
     "DESIGN": 2.16,
     "IT": 1.9
    },
-   "teaches": "Local government as the Cholas actually ran it — plural, chartered, and documented."
+   "teaches": "Local government as the Cholas actually ran it — plural, chartered, and documented.",
+   "threads": [
+    "THR.THE_TEMPLE_ECONOMY"
+   ]
   },
   {
    "id": "EVT.RGN.KAS_ANANDAVARDHANA",
@@ -22626,7 +23576,10 @@
     "IT": 2.48,
     "CLASSICISM": 1.68
    },
-   "teaches": "Pre-modern India's densest economic record exists because walls were the safest database."
+   "teaches": "Pre-modern India's densest economic record exists because walls were the safest database.",
+   "threads": [
+    "THR.THE_TEMPLE_ECONOMY"
+   ]
   },
   {
    "id": "EVT.RGN.KAS_SUYYA",
@@ -22681,7 +23634,10 @@
     "CULTIVATION": 2.12,
     "NETWORKING": 2.02
    },
-   "teaches": "Institutional patronage as a woman's career, documented in her own inscriptions for fifty years."
+   "teaches": "Institutional patronage as a woman's career, documented in her own inscriptions for fifty years.",
+   "threads": [
+    "THR.THE_TEMPLE_ECONOMY"
+   ]
   },
   {
    "id": "EVT.900.ANANDAVARDHANA_S_DHVANYALOKA_POETICS_AS_PHIL",
@@ -22763,7 +23719,10 @@
    "affects": {
     "IT": -2.24,
     "CLASSICISM": -1.01
-   }
+   },
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.CAT.DAMP_BENGAL",
@@ -22791,7 +23750,10 @@
    "affects": {
     "IT": -1.96,
     "CLASSICISM": -0.85
-   }
+   },
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.REF.BUDDHIST_DECLINE_CAUSE",
@@ -22904,7 +23866,10 @@
     "DESIGN": 0.81,
     "IT": 0.8
    },
-   "teaches": "Grants that name the syllabus. The endowment mechanic is not invented; it is transcribed."
+   "teaches": "Grants that name the syllabus. The endowment mechanic is not invented; it is transcribed.",
+   "threads": [
+    "THR.THE_TEMPLE_ECONOMY"
+   ]
   },
   {
    "id": "EVT.RGN.KER_MUSHIKA",
@@ -23088,7 +24053,10 @@
     "NETWORKING": 3,
     "CULTIVATION": 2
    },
-   "teaches": "Election by lot, with eligibility rules and term limits, cut in stone because it was ordinary."
+   "teaches": "Election by lot, with eligibility rules and term limits, cut in stone because it was ordinary.",
+   "threads": [
+    "THR.THE_ASSEMBLIES"
+   ]
   },
   {
    "id": "EVT.930.THE_VARIYAM_SYSTEM_COMMITTEES_FOR_TANKS_GARD",
@@ -23114,7 +24082,10 @@
     "CULTIVATION": 2.48,
     "NETWORKING": 1.7
    },
-   "teaches": "Administration by rotating committee, with conflict-of-interest rules, in the tenth century."
+   "teaches": "Administration by rotating committee, with conflict-of-interest rules, in the tenth century.",
+   "threads": [
+    "THR.THE_ASSEMBLIES"
+   ]
   },
   {
    "id": "EVT.940.PAMPA_S_VIKRAMARJUNA_VIJAYA_THE_THREE_GEMS_O",
@@ -23166,7 +24137,10 @@
    "affects": {
     "CULTIVATION": 1.46,
     "NETWORKING": 1.44
-   }
+   },
+   "threads": [
+    "THR.THE_ASSEMBLIES"
+   ]
   },
   {
    "id": "EVT.RGN.KAR_PAMPA",
@@ -23323,7 +24297,10 @@
    "affects": {
     "IT": -1.42,
     "CLASSICISM": -0.72
-   }
+   },
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.CLI.MEDIEVAL_ANOMALY",
@@ -23350,7 +24327,10 @@
     "AGRICULTURE": -3,
     "TRADE": -2.16
    },
-   "teaches": "It coincides exactly with the Chola tank-building programme and the peak of the temple economy. Which caused which is not settled."
+   "teaches": "It coincides exactly with the Chola tank-building programme and the peak of the temple economy. Which caused which is not settled.",
+   "threads": [
+    "THR.THE_RIVERS"
+   ]
   },
   {
    "id": "EVT.RGN.RAJ_CHAUHAN",
@@ -23456,7 +24436,10 @@
     "DESIGN": 1.46,
     "IT": 2.4
    },
-   "teaches": "The endowment becomes a credit system, and the sacred and fiscal economies merge."
+   "teaches": "The endowment becomes a credit system, and the sacred and fiscal economies merge.",
+   "threads": [
+    "THR.THE_TEMPLE_ECONOMY"
+   ]
   },
   {
    "id": "EVT.973.WESTERN_CHALUKYA_AT_KALYANI",
@@ -23742,7 +24725,11 @@
     "TRADE": 3.8,
     "NETWORKING": 1.64
    },
-   "teaches": "Fifty years before Vikramashila was ash, and what he carried was not."
+   "teaches": "Fifty years before Vikramashila was ash, and what he carried was not.",
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK",
+    "THR.THE_TRANSLATORS"
+   ]
   },
   {
    "id": "EVT.1000.NANNAYA_S_ANDHRA_MAHABHARATAMU_TELUGU_LITERA",
@@ -23930,7 +24917,10 @@
    "affects": {
     "IT": -1.84,
     "CLASSICISM": -0.77
-   }
+   },
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.CAT.INSCRIPTION_ERASURE",
@@ -23958,7 +24948,10 @@
     "IT": -2.16,
     "CLASSICISM": -0.96
    },
-   "teaches": "The record's own record of being edited."
+   "teaches": "The record's own record of being edited.",
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.CAT.INSECTS",
@@ -23984,7 +24977,10 @@
    "affects": {
     "IT": -2.16,
     "CLASSICISM": -0.97
-   }
+   },
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.CAT.NAMBI_RECOVERS",
@@ -24012,7 +25008,10 @@
    "affects": {
     "IT": -4.08,
     "CLASSICISM": -1.84
-   }
+   },
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.FRT.CHOLA_FOREST_TAX",
@@ -24039,7 +25038,10 @@
    "affects": {
     "NETWORKING": -0.89
    },
-   "teaches": "The forest enters the ledger. The people are still not named."
+   "teaches": "The forest enters the ledger. The people are still not named.",
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.RGN.ASM_KALIKA",
@@ -24094,7 +25096,10 @@
    "affects": {
     "IT": 1.06,
     "CLASSICISM": 1.02
-   }
+   },
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.RGN.KER_JEWISH_PLATES",
@@ -24386,7 +25391,10 @@
    "affects": {
     "DESIGN": 1.44,
     "IT": 1.4
-   }
+   },
+   "threads": [
+    "THR.THE_TEMPLE_ECONOMY"
+   ]
   },
   {
    "id": "EVT.1014.RAJENDRA_I_ACCEDES",
@@ -24538,7 +25546,10 @@
     "NETWORKING": 2,
     "STRUCTURE": -1
    },
-   "teaches": "The only transoceanic invasion ever launched from India, and it was a trade dispute."
+   "teaches": "The only transoceanic invasion ever launched from India, and it was a trade dispute.",
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ]
   },
   {
    "id": "EVT.INV.CHOLA_SRIVIJAYA",
@@ -24567,7 +25578,10 @@
     "TRADE": -2.88,
     "STRUCTURE": -2.16
    },
-   "teaches": "The only recorded transoceanic invasion launched from India. It was a trade dispute."
+   "teaches": "The only recorded transoceanic invasion launched from India. It was a trade dispute.",
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ]
   },
   {
    "id": "EVT.SIT.GANGAIKONDA_CITY",
@@ -24717,7 +25731,10 @@
     "IT": 2.54,
     "CLASSICISM": 2.22
    },
-   "teaches": "He learned Sanskrit to write it, and said outright where he thought his own sources were unreliable."
+   "teaches": "He learned Sanskrit to write it, and said outright where he thought his own sources were unreliable.",
+   "threads": [
+    "THR.THE_TRANSLATORS"
+   ]
   },
   {
    "id": "EVT.1031.THE_DILWARA_TEMPLES_AT_MOUNT_ABU",
@@ -24901,7 +25918,10 @@
    "affects": {
     "AGRICULTURE": -1.22,
     "TRADE": -0.59
-   }
+   },
+   "threads": [
+    "THR.THE_RIVERS"
+   ]
   },
   {
    "id": "EVT.RGN.KAR_TANKS_KA",
@@ -25129,7 +26149,10 @@
     "TRADE": 3.24,
     "NETWORKING": 1.54
    },
-   "teaches": "Foreign policy conducted by a chamber of commerce, receipted by the other side."
+   "teaches": "Foreign policy conducted by a chamber of commerce, receipted by the other side.",
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ]
   },
   {
    "id": "EVT.1078.THE_EASTERN_GANGAS",
@@ -25276,6 +26299,7 @@
     1131
    ],
    "threads": [
+    "THR.THE_CORPUS_AT_RISK",
     "THR.THE_FAMINE_CENTURY"
    ],
    "corpus": "none",
@@ -25424,7 +26448,10 @@
    "affects": {
     "IT": -2.48,
     "CLASSICISM": -1.17
-   }
+   },
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.REF.NATH_SIDDHAS",
@@ -25710,7 +26737,10 @@
     "IT": 1.8,
     "CLASSICISM": 2.4
    },
-   "teaches": "A grammar celebrated like a conquest, because the king understood exactly what it was."
+   "teaches": "A grammar celebrated like a conquest, because the king understood exactly what it was.",
+   "threads": [
+    "THR.THE_WRITING_LADDER"
+   ]
   },
   {
    "id": "EVT.1148.KALHANA_S_RAJATARANGINI",
@@ -25813,7 +26843,10 @@
     "IT": 2.2,
     "CLASSICISM": 1.58
    },
-   "teaches": "The high point of classical Indian mathematics, written to be teachable."
+   "teaches": "The high point of classical Indian mathematics, written to be teachable.",
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ]
   },
   {
    "id": "EVT.1150.HOYSALESWARA_THE_HOYSALA_STYLE",
@@ -25871,7 +26904,10 @@
     "DESIGN": 1.82,
     "IT": 1.68
    },
-   "teaches": "A library with a catalogue and a lending register, in the twelfth century, funded by merchants."
+   "teaches": "A library with a catalogue and a lending register, in the twelfth century, funded by merchants.",
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.1150.KAMBA_RAMAYANAM_NOT_A_TRANSLATION_BUT_A_RIVA",
@@ -25898,7 +26934,10 @@
    "affects": {
     "IT": 2.36,
     "CLASSICISM": 1.6
-   }
+   },
+   "threads": [
+    "THR.THE_TRANSLATORS"
+   ]
   },
   {
    "id": "EVT.CLI.TANK_SILTING",
@@ -26033,7 +27072,10 @@
    "affects": {
     "AGRICULTURE": -1.96,
     "TRADE": -1.2
-   }
+   },
+   "threads": [
+    "THR.THE_RIVERS"
+   ]
   },
   {
    "id": "EVT.1161.THE_JAGANNATH_TEMPLE_AT_PURI_COMPLETED",
@@ -26322,7 +27364,10 @@
     "CULTIVATION": -4,
     "CLASSICISM": -2
    },
-   "teaches": "What is not copied out beforehand is not recoverable afterwards."
+   "teaches": "What is not copied out beforehand is not recoverable afterwards.",
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.CAT.ODANTAPURI",
@@ -26351,7 +27396,10 @@
    "affects": {
     "IT": -1.66,
     "CLASSICISM": -0.91
-   }
+   },
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.1200.CALICUT_RISES_THE_ZAMORIN_AND_THE_PEPPER_TRA",
@@ -26378,7 +27426,10 @@
    "affects": {
     "STRUCTURE": 2.36,
     "NETWORKING": 1.8
-   }
+   },
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ]
   },
   {
    "id": "EVT.1200.KASHMIRI_SANSKRIT_SCHOLARSHIP_AT_ITS_WIDEST_",
@@ -26459,7 +27510,10 @@
    "affects": {
     "CULTIVATION": 1.52,
     "NETWORKING": 2.36
-   }
+   },
+   "threads": [
+    "THR.THE_RENOUNCERS"
+   ]
   },
   {
    "id": "EVT.CAT.KERALA_RECOPY",
@@ -26487,7 +27541,10 @@
    "affects": {
     "IT": -2.6,
     "CLASSICISM": -0.71
-   }
+   },
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.CAT.SOMAPURA_DECLINE",
@@ -26515,7 +27572,10 @@
    "affects": {
     "IT": -1.72,
     "CLASSICISM": -0.77
-   }
+   },
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.CAT.VIKRAMASHILA",
@@ -26543,7 +27603,10 @@
    "affects": {
     "IT": -4.88,
     "CLASSICISM": -2.02
-   }
+   },
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.FRT.JHUM_CYCLE",
@@ -26570,7 +27633,10 @@
    "affects": {
     "NETWORKING": -1.08
    },
-   "teaches": "Two agricultures on either side of a line, neither replacing the other for a thousand years."
+   "teaches": "Two agricultures on either side of a line, neither replacing the other for a thousand years.",
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.REF.SUFI_CHISHTI",
@@ -26597,7 +27663,10 @@
    "affects": {
     "CULTIVATION": 1.74,
     "NETWORKING": 1.56
-   }
+   },
+   "threads": [
+    "THR.THE_RENOUNCERS"
+   ]
   },
   {
    "id": "EVT.RGN.AND_KAKATIYA_SOCIAL",
@@ -26920,7 +27989,10 @@
    "affects": {
     "IT": -2.34,
     "CLASSICISM": -0.88
-   }
+   },
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.RGN.LNK_MAGHA",
@@ -26950,7 +28022,10 @@
     "IT": -3,
     "CLASSICISM": -1.94
    },
-   "teaches": "The end of the ancient island: not the invasion itself, but the maintenance that never resumed."
+   "teaches": "The end of the ancient island: not the invasion itself, but the maintenance that never resumed.",
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.RGN.LNK_DAMBADENIYA",
@@ -27595,7 +28670,11 @@
    "affects": {
     "IT": -1.64,
     "CLASSICISM": -1.17
-   }
+   },
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK",
+    "THR.THE_LONG_NETWORKS"
+   ]
   },
   {
    "id": "EVT.FRT.GOND_KINGDOMS",
@@ -27620,7 +28699,10 @@
    "affects": {
     "NETWORKING": -1.86
    },
-   "teaches": "The frontier is not a permanent condition. A people the settled record filed as forest-dwellers built states, minted money and were treated as powers."
+   "teaches": "The frontier is not a permanent condition. A people the settled record filed as forest-dwellers built states, minted money and were treated as powers.",
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.REF.NAMDEV",
@@ -28038,8 +29120,8 @@
    "region": null,
    "dispute": false,
    "threads": [
-    "THR.THE_TRANSLATORS",
-    "THR.THE_LONG_NETWORKS"
+    "THR.THE_LONG_NETWORKS",
+    "THR.THE_TRANSLATORS"
    ],
    "where": [],
    "affects": {
@@ -28071,7 +29153,10 @@
    "affects": {
     "IT": -1.96,
     "CLASSICISM": -1
-   }
+   },
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.INV.MADURAI_SULTANATE",
@@ -28776,7 +29861,10 @@
    "affects": {
     "IT": -1.88,
     "CLASSICISM": -1.15
-   }
+   },
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.CLI.LIA_ONSET",
@@ -28801,7 +29889,10 @@
    "affects": {
     "AGRICULTURE": -2.84,
     "TRADE": -1.54
-   }
+   },
+   "threads": [
+    "THR.THE_RIVERS"
+   ]
   },
   {
    "id": "EVT.DVJ.INDIAN_OCEAN_1400",
@@ -28853,7 +29944,10 @@
    ],
    "affects": {
     "NETWORKING": -1.06
-   }
+   },
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.FRT.VIJAYANAGARA_FOREST",
@@ -28878,7 +29972,10 @@
    ],
    "affects": {
     "NETWORKING": -1.26
-   }
+   },
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.REF.LINGAYAT_INSTITUTION",
@@ -28904,7 +30001,11 @@
    "affects": {
     "CULTIVATION": 0.45,
     "NETWORKING": 0.58
-   }
+   },
+   "threads": [
+    "THR.THE_RENOUNCERS",
+    "THR.THE_TEMPLE_ECONOMY"
+   ]
   },
   {
    "id": "EVT.REF.SANT_TRADITION",
@@ -28926,7 +30027,8 @@
    ],
    "year_end": 1550,
    "threads": [
-    "THR.THE_CASTE_QUESTION"
+    "THR.THE_CASTE_QUESTION",
+    "THR.THE_RENOUNCERS"
    ],
    "where": [],
    "affects": {
@@ -29013,7 +30115,10 @@
     "CULTIVATION": 0.72,
     "NETWORKING": 1.2
    },
-   "teaches": "It grew out of Lal Ded's verse as much as out of Persian Sufism. The valley made its own."
+   "teaches": "It grew out of Lal Ded's verse as much as out of Persian Sufism. The valley made its own.",
+   "threads": [
+    "THR.THE_RENOUNCERS"
+   ]
   },
   {
    "id": "EVT.RGN.KAS_SIKANDAR",
@@ -29042,7 +30147,10 @@
    "affects": {
     "IT": -2.06,
     "CLASSICISM": -0.99
-   }
+   },
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.RGN.KER_ZAMORIN_TRADE",
@@ -29422,7 +30530,10 @@
     "CULTIVATION": 0.75,
     "NETWORKING": 1.08
    },
-   "teaches": "Called Budshah, the great king, four hundred years later and still. He rebuilt what his father's reign had burned."
+   "teaches": "Called Budshah, the great king, four hundred years later and still. He rebuilt what his father's reign had burned.",
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.RGN.KAR_KUMARAVYASA",
@@ -29624,7 +30735,8 @@
     1493
    ],
    "threads": [
-    "THR.THE_CASTE_QUESTION"
+    "THR.THE_CASTE_QUESTION",
+    "THR.THE_WRITING_LADDER"
    ],
    "where": [
     "RGN.ODISHA"
@@ -29912,7 +31024,10 @@
    "where": [],
    "affects": {
     "NETWORKING": -1.19
-   }
+   },
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.INV.CALICUT_BOMBARD",
@@ -30182,7 +31297,10 @@
    "affects": {
     "IT": -1.5,
     "CLASSICISM": -1.1
-   }
+   },
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.RGN.LNK_PORTUGUESE",
@@ -30605,7 +31723,10 @@
    "affects": {
     "NETWORKING": -1.26
    },
-   "teaches": "Nobody's subjects, everybody's logistics. An army moved at the speed the Banjaras agreed to."
+   "teaches": "Nobody's subjects, everybody's logistics. An army moved at the speed the Banjaras agreed to.",
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.RGN.KER_EZHUTHACHAN",
@@ -30849,7 +31970,10 @@
     "CULTIVATION": 2.22,
     "NETWORKING": 2.54
    },
-   "teaches": "A state running comparative religion as court procedure."
+   "teaches": "A state running comparative religion as court procedure.",
+   "threads": [
+    "THR.THE_RENOUNCERS"
+   ]
   },
   {
    "id": "EVT.RGN.TAM_TAMIL_PRINT",
@@ -30898,7 +32022,10 @@
    "where": [],
    "affects": {
     "NETWORKING": -1.16
-   }
+   },
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.TRD.HAJJ_SHIPPING",
@@ -31001,7 +32128,10 @@
     "IT": 1.29,
     "CLASSICISM": 0.72
    },
-   "teaches": "Three hundred years after it was written, somebody sat down and fixed the text. That is the corpus mechanic performed by hand."
+   "teaches": "Three hundred years after it was written, somebody sat down and fixed the text. That is the corpus mechanic performed by hand.",
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.RGN.KAS_MUGHAL",
@@ -31053,7 +32183,10 @@
     "IT": 1.22,
     "CLASSICISM": 0.75
    },
-   "teaches": "They wrote on aloe bark treated to last. Some of those manuscripts are four hundred years old and still legible."
+   "teaches": "They wrote on aloe bark treated to last. Some of those manuscripts are four hundred years old and still legible.",
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.1595.THE_AIN_I_AKBARI",
@@ -31101,7 +32234,10 @@
    ],
    "affects": {
     "NETWORKING": -0.51
-   }
+   },
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.FRT.ZAMINDARI_FOREST",
@@ -31124,7 +32260,10 @@
    "where": [],
    "affects": {
     "NETWORKING": -0.71
-   }
+   },
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.INV.BENGAL_ARAKAN",
@@ -31179,7 +32318,10 @@
    "affects": {
     "TRADE": 2.28,
     "NETWORKING": 0.81
-   }
+   },
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ]
   },
   {
    "id": "EVT.RGN.GUJ_SHIP_BUILDING",
@@ -31261,7 +32403,10 @@
    ],
    "affects": {
     "STRUCTURE": 1.05
-   }
+   },
+   "threads": [
+    "THR.THE_LONG_NETWORKS"
+   ]
   },
   {
    "id": "EVT.SIT.SURAT_PORT",
@@ -31308,8 +32453,8 @@
    ],
    "year_end": 1750,
    "threads": [
-    "THR.THE_MONETARY_LADDER",
-    "THR.THE_LONG_NETWORKS"
+    "THR.THE_LONG_NETWORKS",
+    "THR.THE_MONETARY_LADDER"
    ],
    "where": [],
    "affects": {
@@ -31445,6 +32590,7 @@
    ],
    "year_end": 1632,
    "threads": [
+    "THR.THE_CORPUS_AT_RISK",
     "THR.THE_FAMINE_CENTURY"
    ],
    "corpus": "destroy",
@@ -31484,7 +32630,10 @@
    "affects": {
     "AGRICULTURE": -3.84,
     "TRADE": -1.9
-   }
+   },
+   "threads": [
+    "THR.THE_FAMINE_CENTURY"
+   ]
   },
   {
    "id": "EVT.WRK.TUKARAM_ABHANGAS",
@@ -31608,7 +32757,10 @@
    "affects": {
     "AGRICULTURE": -2.42,
     "TRADE": -0.81
-   }
+   },
+   "threads": [
+    "THR.THE_RIVERS"
+   ]
   },
   {
    "id": "EVT.SIT.SHAHJAHANABAD",
@@ -31760,7 +32912,10 @@
     "IT": 1.16,
     "CLASSICISM": 1.12
    },
-   "teaches": "The Upanishads reach Europe by way of a Mughal prince and a Latin translator, not by way of Sanskrit."
+   "teaches": "The Upanishads reach Europe by way of a Mughal prince and a Latin translator, not by way of Sanskrit.",
+   "threads": [
+    "THR.THE_TRANSLATORS"
+   ]
   },
   {
    "id": "EVT.WRK.SIRR_I_AKBAR",
@@ -31833,7 +32988,10 @@
    ],
    "affects": {
     "NETWORKING": -1.04
-   }
+   },
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.INV.SHIVAJI_SURAT",
@@ -31959,7 +33117,10 @@
    "affects": {
     "TRADE": 2.04,
     "NETWORKING": 0.72
-   }
+   },
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.INV.MUGHAL_DECCAN",
@@ -32027,7 +33188,10 @@
    "affects": {
     "CULTIVATION": 1.56,
     "NETWORKING": 2.5
-   }
+   },
+   "threads": [
+    "THR.THE_RENOUNCERS"
+   ]
   },
   {
    "id": "EVT.CAT.SARASVATI_MAHAL",
@@ -32055,7 +33219,10 @@
    "affects": {
     "IT": -2.26,
     "CLASSICISM": -1
-   }
+   },
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.RGN.ASM_MAIDAM",
@@ -32202,7 +33369,10 @@
    "affects": {
     "TRADE": 2.56,
     "NETWORKING": 0.81
-   }
+   },
+   "threads": [
+    "THR.THE_MANDALA"
+   ]
   },
   {
    "id": "EVT.RGN.GUJ_MARATHA_GUJ",
@@ -32299,7 +33469,10 @@
    "affects": {
     "IT": -2.1,
     "CLASSICISM": -0.99
-   }
+   },
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.CLI.BENGAL_CYCLONE_1737",
@@ -32426,7 +33599,10 @@
     "CULTIVATION": 0.86,
     "NETWORKING": 1.19
    },
-   "teaches": "The island had given Buddhism to Southeast Asia. It got its ordination line back from Thailand twelve centuries later."
+   "teaches": "The island had given Buddhism to Southeast Asia. It got its ordination line back from Thailand twelve centuries later.",
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.INV.PLASSEY",
@@ -32607,7 +33783,10 @@
     "IT": -1.8,
     "CLASSICISM": -0.96
    },
-   "teaches": "Seventeen Mughal invasions failed. A peasant rebellion succeeded, and then the Burmese walked in."
+   "teaches": "Seventeen Mughal invasions failed. A peasant rebellion succeeded, and then the Burmese walked in.",
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.1770.THE_GREAT_BENGAL_FAMINE",
@@ -32735,7 +33914,10 @@
     "IT": -3.4,
     "CLASSICISM": -1.66
    },
-   "teaches": "The corpus's colonial rescue is also its displacement, and the game refuses to pick one word."
+   "teaches": "The corpus's colonial rescue is also its displacement, and the game refuses to pick one word.",
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.COL.ASIATIC_SOCIETY",
@@ -32783,7 +33965,10 @@
    "affects": {
     "AGRICULTURE": -4.64,
     "TRADE": -2.56
-   }
+   },
+   "threads": [
+    "THR.THE_FAMINE_CENTURY"
+   ]
   },
   {
    "id": "EVT.COL.PERMANENT_SETTLEMENT",
@@ -32837,7 +34022,10 @@
    "affects": {
     "IT": -2.5,
     "CLASSICISM": -0.85
-   }
+   },
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.CAT.AMARAVATI_QUARRIED",
@@ -32866,7 +34054,10 @@
     "IT": -3.8,
     "CLASSICISM": -2.16
    },
-   "teaches": "Not destruction by an invader. A local zamindar wanted lime and an antiquarian wanted marbles."
+   "teaches": "Not destruction by an invader. A local zamindar wanted lime and an antiquarian wanted marbles.",
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.FRT.CHUAR",
@@ -32891,7 +34082,10 @@
    ],
    "affects": {
     "NETWORKING": -1.05
-   }
+   },
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.RGN.KAR_MYSORE_RESTORE",
@@ -32913,7 +34107,10 @@
    ],
    "affects": {
     "TRADE": -2.3
-   }
+   },
+   "threads": [
+    "THR.THE_MANDALA"
+   ]
   },
   {
    "id": "EVT.SIT.SERINGAPATAM_END",
@@ -32963,7 +34160,11 @@
     "IT": -4.72,
     "CLASSICISM": -2.06
    },
-   "teaches": "The first technology in seven thousand years that breaks the link between a work and its carriers."
+   "teaches": "The first technology in seven thousand years that breaks the link between a work and its carriers.",
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK",
+    "THR.THE_WRITING_LADDER"
+   ]
   },
   {
    "id": "EVT.COL.PRINTING_VERNACULAR",
@@ -33089,7 +34290,10 @@
     "IT": -5,
     "CLASSICISM": -2.52
    },
-   "teaches": "The largest early survey of Indian knowledge, done mostly by Indians whose names are in the footnotes."
+   "teaches": "The largest early survey of Indian knowledge, done mostly by Indians whose names are in the footnotes.",
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.RGN.LNK_KANDY_FALLS",
@@ -33184,7 +34388,10 @@
    "affects": {
     "TRADE": -2.18
    },
-   "teaches": "A state deciding in 1817 that it would pay to teach everyone. The results are still visible in the numbers."
+   "teaches": "A state deciding in 1817 that it would pay to teach everyone. The results are still visible in the numbers.",
+   "threads": [
+    "THR.THE_WRITING_LADDER"
+   ]
   },
   {
    "id": "EVT.FRT.BHIL_RISINGS",
@@ -33209,7 +34416,10 @@
    ],
    "affects": {
     "NETWORKING": -1.09
-   }
+   },
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.RGN.RAJ_TREATIES",
@@ -33230,7 +34440,10 @@
    ],
    "affects": {
     "TRADE": -1.96
-   }
+   },
+   "threads": [
+    "THR.THE_MANDALA"
+   ]
   },
   {
    "id": "EVT.CAT.QUAKE_1819_KUTCH",
@@ -33257,7 +34470,10 @@
    "affects": {
     "IT": -2.14,
     "CLASSICISM": -0.93
-   }
+   },
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.COL.DEINDUSTRIAL",
@@ -33486,6 +34702,7 @@
    "dispute": false,
    "evidence": "The government orders of 1836 and 1873, and the Orunodoi newspaper campaign in between.",
    "threads": [
+    "THR.THE_MANDALA",
     "THR.THE_WRITING_LADDER"
    ],
    "note": "A language removed from its own province by administrative order, and argued back by a newspaper.",
@@ -33522,7 +34739,10 @@
    "affects": {
     "IT": -2.16,
     "CLASSICISM": -1.27
-   }
+   },
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.CLI.AGRA_FAMINE_1837",
@@ -33545,7 +34765,10 @@
    "affects": {
     "AGRICULTURE": -2.46,
     "TRADE": -0.87
-   }
+   },
+   "threads": [
+    "THR.THE_FAMINE_CENTURY"
+   ]
   },
   {
    "id": "EVT.FRT.KHOND_RISING",
@@ -33570,7 +34793,10 @@
    ],
    "affects": {
     "NETWORKING": -0.84
-   }
+   },
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.RGN.ASM_TEA",
@@ -33746,7 +34972,10 @@
    "affects": {
     "IT": -2.38,
     "CLASSICISM": -0.95
-   }
+   },
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.FRT.SANTHAL_HUL",
@@ -33773,7 +35002,10 @@
    "affects": {
     "NETWORKING": -2.32
    },
-   "teaches": "A rebellion that failed and legislated anyway: the state conceded the grievance after killing the rebels."
+   "teaches": "A rebellion that failed and legislated anyway: the state conceded the grievance after killing the rebels.",
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.RGN.BEN_JUTE",
@@ -33905,7 +35137,10 @@
    "affects": {
     "TRADE": -3.52
    },
-   "teaches": "The game's own title. A sovereignty that exists at somebody else's discretion."
+   "teaches": "The game's own title. A sovereignty that exists at somebody else's discretion.",
+   "threads": [
+    "THR.THE_MANDALA"
+   ]
   },
   {
    "id": "EVT.COL.INDIGO",
@@ -33952,7 +35187,10 @@
    "affects": {
     "NETWORKING": -2.58
    },
-   "teaches": "The railway's shadow ledger: the forests paid for the network."
+   "teaches": "The railway's shadow ledger: the forests paid for the network.",
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.COL.ASI_FOUNDED",
@@ -34020,7 +35258,10 @@
    "affects": {
     "NETWORKING": -1.44
    },
-   "teaches": "The internal frontier's enclosure: the treeline becomes a boundary with a penal code."
+   "teaches": "The internal frontier's enclosure: the treeline becomes a boundary with a penal code.",
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.CLI.ORISSA_FAMINE_1866",
@@ -34042,7 +35283,10 @@
    "affects": {
     "AGRICULTURE": -5.12,
     "TRADE": -2.24
-   }
+   },
+   "threads": [
+    "THR.THE_FAMINE_CENTURY"
+   ]
   },
   {
    "id": "EVT.RGN.ODI_NA_ANKA",
@@ -34059,6 +35303,7 @@
    "dispute": false,
    "evidence": "The Famine Commission report, which found the deaths avoidable, and the export figures for the preceding year.",
    "threads": [
+    "THR.THE_CORPUS_AT_RISK",
     "THR.THE_FAMINE_CENTURY"
    ],
    "corpus": "none",
@@ -34095,7 +35340,10 @@
    "affects": {
     "IT": -1.68,
     "CLASSICISM": -1.25
-   }
+   },
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.RGN.LNK_TEA",
@@ -34142,7 +35390,10 @@
    "where": [],
    "affects": {
     "NETWORKING": -1.14
-   }
+   },
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.RGN.ODI_LANGUAGE",
@@ -34217,7 +35468,10 @@
    "affects": {
     "NETWORKING": -0.78
    },
-   "teaches": "A border drawn to protect a revenue interest, which became the legal shape of the northeast."
+   "teaches": "A border drawn to protect a revenue interest, which became the legal shape of the northeast.",
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.RGN.LNK_DHARMAPALA",
@@ -34282,7 +35536,10 @@
    "affects": {
     "TRADE": -1.54
    },
-   "teaches": "They wanted the paper. The debt was the thing that owned them."
+   "teaches": "They wanted the paper. The debt was the thing that owned them.",
+   "threads": [
+    "THR.THE_MONETARY_LADDER"
+   ]
   },
   {
    "id": "EVT.CLI.GREAT_FAMINE_1876",
@@ -34304,7 +35561,10 @@
     "AGRICULTURE": -4.76,
     "TRADE": -1.84
    },
-   "teaches": "Policy famine, documented by the state that presided over it, in numbers and then in photographs."
+   "teaches": "Policy famine, documented by the state that presided over it, in numbers and then in photographs.",
+   "threads": [
+    "THR.THE_FAMINE_CENTURY"
+   ]
   },
   {
    "id": "EVT.COL.FAMINE_CODE",
@@ -34348,7 +35608,10 @@
    "where": [],
    "affects": {
     "NETWORKING": -2.3
-   }
+   },
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.RGN.MAH_TILAK_PRESS",
@@ -34369,7 +35632,10 @@
    ],
    "affects": {
     "TRADE": -2.56
-   }
+   },
+   "threads": [
+    "THR.THE_WRITING_LADDER"
+   ]
   },
   {
    "id": "EVT.WRK.ANANDAMATH",
@@ -34422,7 +35688,11 @@
     "IT": -4.92,
     "CLASSICISM": -2.16
    },
-   "teaches": "Most of classical Tamil literature was three decades from being unreadable."
+   "teaches": "Most of classical Tamil literature was three decades from being unreadable.",
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK",
+    "THR.THE_WRITING_LADDER"
+   ]
   },
   {
    "id": "EVT.RGN.TAM_SANGAM_RECOVERY",
@@ -34448,7 +35718,11 @@
    "affects": {
     "TRADE": -4.12
    },
-   "teaches": "He went house to house asking whether anyone had old palm leaf. Most of Sangam literature is in print because one man did that for fifty years."
+   "teaches": "He went house to house asking whether anyone had old palm leaf. Most of Sangam literature is in print because one man did that for fifty years.",
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK",
+    "THR.THE_WRITING_LADDER"
+   ]
   },
   {
    "id": "EVT.1885.CONGRESS",
@@ -34469,7 +35743,10 @@
    "affects": {
     "STRUCTURE": 0.87,
     "NETWORKING": 1.02
-   }
+   },
+   "threads": [
+    "THR.THE_ASSEMBLIES"
+   ]
   },
   {
    "id": "EVT.COL.CONGRESS",
@@ -34490,7 +35767,10 @@
    ],
    "affects": {
     "TRADE": -1.46
-   }
+   },
+   "threads": [
+    "THR.THE_ASSEMBLIES"
+   ]
   },
   {
    "id": "EVT.RGN.KAS_1885_QUAKE",
@@ -34513,7 +35793,10 @@
    "affects": {
     "IT": -1.07,
     "CLASSICISM": -0.58
-   }
+   },
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.REF.NARAYANA_GURU",
@@ -34585,7 +35868,10 @@
    "affects": {
     "IT": -1.56,
     "CLASSICISM": -1.13
-   }
+   },
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.RGN.KAR_EKIKARANA",
@@ -34634,7 +35920,10 @@
    "affects": {
     "TRADE": -2.06
    },
-   "teaches": "Free compulsory primary education in an Indian state in 1906, and a public library network to go with it."
+   "teaches": "Free compulsory primary education in an Indian state in 1906, and a public library network to go with it.",
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.RGN.BEN_SCIENCE",
@@ -34679,7 +35968,10 @@
    "affects": {
     "IT": -2.34,
     "CLASSICISM": -0.79
-   }
+   },
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.CLI.FAMINE_1899",
@@ -34700,7 +35992,10 @@
    "affects": {
     "AGRICULTURE": -4.08,
     "TRADE": -1.64
-   }
+   },
+   "threads": [
+    "THR.THE_FAMINE_CENTURY"
+   ]
   },
   {
    "id": "EVT.FRT.BIRSA_MUNDA",
@@ -34724,7 +36019,10 @@
    "affects": {
     "NETWORKING": -1.68
    },
-   "teaches": "The frontier thread's modern voice: defeated in the field, vindicated in the statute, remembered as a founder."
+   "teaches": "The frontier thread's modern voice: defeated in the field, vindicated in the statute, remembered as a founder.",
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.RGN.RAJ_FAMINE_1899",
@@ -34742,6 +36040,7 @@
    "evidence": "The famine relief records of the Rajputana states and the mortality returns.",
    "year_end": 1900,
    "threads": [
+    "THR.THE_CORPUS_AT_RISK",
     "THR.THE_FAMINE_CENTURY"
    ],
    "corpus": "none",
@@ -34826,7 +36125,10 @@
    "affects": {
     "AGRICULTURE": -2.32,
     "TRADE": -0.92
-   }
+   },
+   "threads": [
+    "THR.THE_RIVERS"
+   ]
   },
   {
    "id": "EVT.1905.PARTITION_OF_BENGAL",
@@ -34896,7 +36198,10 @@
     "IT": -4.04,
     "CLASSICISM": -1.54
    },
-   "teaches": "The clearest proof the game's central mechanic is right: what left survived."
+   "teaches": "The clearest proof the game's central mechanic is right: what left survived.",
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.FRT.CNT_ACT",
@@ -34918,7 +36223,10 @@
    ],
    "affects": {
     "NETWORKING": -0.96
-   }
+   },
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.WRK.HINDSWARAJ",
@@ -35015,7 +36323,10 @@
    "affects": {
     "IT": -2,
     "CLASSICISM": -0.81
-   }
+   },
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.RGN.TAM_JUSTICE_PARTY",
@@ -35086,7 +36397,10 @@
    "affects": {
     "IT": -1.4,
     "CLASSICISM": -1.26
-   }
+   },
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.COL.JALLIANWALA",
@@ -35134,7 +36448,10 @@
    ],
    "affects": {
     "NETWORKING": -1.06
-   }
+   },
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.REF.VAIKOM",
@@ -35259,7 +36576,10 @@
    "affects": {
     "IT": -2.58,
     "CLASSICISM": -1.08
-   }
+   },
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.1932.THE_POONA_PACT",
@@ -35307,7 +36627,10 @@
    "affects": {
     "IT": -1.62,
     "CLASSICISM": -0.83
-   }
+   },
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.COL.GOI_1935",
@@ -35349,7 +36672,10 @@
    "affects": {
     "NETWORKING": -0.85
    },
-   "teaches": "Administered separately, which protected some things and removed others, and the argument about which is not over."
+   "teaches": "Administered separately, which protected some things and removed others, and the argument about which is not over.",
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.WRK.ANNIHILATION",
@@ -35501,7 +36827,10 @@
     "IT": -3.6,
     "CLASSICISM": -1.52
    },
-   "teaches": "Even the archive is partitioned. Loss, at the end, arrives as a filing decision."
+   "teaches": "Even the archive is partitioned. Loss, at the end, arrives as a filing decision.",
+   "threads": [
+    "THR.THE_CORPUS_AT_RISK"
+   ]
   },
   {
    "id": "EVT.COL.PARTITION_1947",
@@ -35547,7 +36876,10 @@
    "affects": {
     "NETWORKING": -2.32
    },
-   "teaches": "Seven thousand years of treeline end as an administrative category, and the campaign ends here without resolving it."
+   "teaches": "Seven thousand years of treeline end as an administrative category, and the campaign ends here without resolving it.",
+   "threads": [
+    "THR.THE_INTERNAL_FRONTIER"
+   ]
   },
   {
    "id": "EVT.REF.ARTICLE_17",
@@ -35564,6 +36896,7 @@
    "dispute": false,
    "evidence": "The Fundamental Rights Sub-Committee report of April 1947 and the Assembly's clause-by-clause debate, including the argument over whether the word should be defined or left to the courts.",
    "threads": [
+    "THR.THE_ASSEMBLIES",
     "THR.THE_CASTE_QUESTION"
    ],
    "note": "It becomes Article 17 in 1949, two years after the campaign ends. The last thing the game shows you is an argument still in progress.",

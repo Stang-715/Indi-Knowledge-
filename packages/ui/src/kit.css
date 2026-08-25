@@ -330,3 +330,17 @@ body {
 .reck li span { color: var(--ink-soft); }
 .reck li.met    { background: var(--sheet-shade); box-shadow: inset 3px 0 0 var(--land-fertile); }
 .reck li.missed { background: var(--sheet); box-shadow: inset 3px 0 0 var(--rule); opacity: .62; }
+
+/* --- Threads: the loom (phase 36) ---------------------------------------- */
+.card-threads { margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--rule);
+  display: flex; flex-wrap: wrap; gap: 6px; font-size: 12px; }
+.card-threads .thr { background: var(--paper); border: 1px solid var(--rule);
+  padding: 2px 8px; cursor: pointer; }
+.thr-nav { color: var(--ink-soft); text-decoration: none; margin-left: 4px; cursor: pointer; }
+.thr-nav:hover { color: var(--ink); text-decoration: underline; }
+.thread-view h3 { margin: 4px 0 6px; }
+.thread-arc { color: var(--ink-soft); font-style: italic; margin: 0 0 12px; }
+.thread-beat { display: flex; gap: 10px; padding: 5px 0; cursor: pointer;
+  border-bottom: 1px solid rgba(42,33,24,.08); }
+.thread-beat:hover { background: rgba(201,162,39,.10); }
+.tb-year { min-width: 74px; color: var(--ink-soft); font-family: var(--mono); font-size: 12px; }

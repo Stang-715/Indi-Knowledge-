@@ -627,6 +627,57 @@ if (whereErrors.length) {
 }
 console.log(`  Payload    where: ${precise} precise, affects: ${affected}, teaches: ${taught}`);
 
+/* ── Phase 36: the loom — threads become an entity ───────────────────────
+ *
+ * Seven of the fifteen threads had zero events; tags lived only where a
+ * supplement writer remembered them. Tagging is now declarative: each thread
+ * in data/timeline/threads.json may carry `auto` rules (classes, keywords
+ * against title+evidence, an optional year range), applied here. Hand tags on
+ * events always survive; the corpus thread additionally claims every event
+ * with a `corpus` field, and the northwest gate keeps its hand-tagged set.
+ * Beats are the tagged events in year order, and the census asserts no thread
+ * is thin.
+ */
+const THREADS = JSON.parse(readFileSync(join(ROOT, 'data/timeline/threads.json'), 'utf8'));
+for (const ev of events) {
+  const tags = new Set(ev.threads ?? []);
+  // Titles only: evidence lines mention coins, scripts and temples as dating
+  // apparatus at half the sites in India, which is how the writing ladder
+  // briefly acquired 344 beats.
+  const hay = ev.title.toLowerCase();
+  for (const th of THREADS.threads) {
+    if (tags.has(th.id)) continue;
+    const a = th.auto;
+    if (th.id === 'THR.THE_CORPUS_AT_RISK') {
+      if (ev.corpus) tags.add(th.id);
+      continue;
+    }
+    if (!a) continue;
+    if (a.years && (ev.year < a.years[0] || ev.year > a.years[1])) continue;
+    const classHit = a.classes?.includes(ev.class) ?? false;
+    const kwHit = a.keywords?.some(k => hay.includes(k)) ?? false;
+    // A class rule alone is enough only when the thread is defined by the
+    // class (frontier); otherwise a keyword must corroborate.
+    if ((a.classes && !a.keywords && classHit) ||
+        (a.keywords && kwHit && (!a.classes || classHit || !a.classes.length)) ||
+        (a.classes && a.keywords && classHit && kwHit)) tags.add(th.id);
+  }
+  if (tags.size) ev.threads = [...tags].sort();
+}
+{
+  const perThread = new Map(THREADS.threads.map(t => [t.id, 0]));
+  for (const ev of events) for (const t of ev.threads ?? [])
+    if (perThread.has(t)) perThread.set(t, perThread.get(t) + 1);
+  const thin = [...perThread].filter(([, n]) => n < 8);
+  if (thin.length) {
+    console.error('  ✗ thin threads: ' + thin.map(([t, n]) => `${t}=${n}`).join(', '));
+    process.exit(1);
+  }
+  const tagged = events.filter(e => (e.threads ?? []).length).length;
+  console.log(`  Threads    ${tagged} events tagged across ${perThread.size} threads` +
+    ` (smallest: ${Math.min(...perThread.values())})`);
+}
+
 const doc = {
   $schema: '../../packages/schema/timeline.schema.json',
   note: 'Generated from docs/07-timeline.md. The document is the source of truth; edit it, not this file. NOT yet historian-reviewed.',
@@ -634,6 +685,7 @@ const doc = {
   span: { from: -6000, to: 1947, years: 7947 },
   campaign_hours: 210,
   eras: ERAS.map(({ n, ...e }) => ({ ...e, number: n })),
+  threads: THREADS.threads.map(t => ({ ...t })),
   regions: Object.entries(REGIONS).map(([name, id]) => ({ id, name })),
   events,
 };
