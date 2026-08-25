@@ -182,7 +182,7 @@ test('no event is written twice', () => {
   // sharing the words "temple" and "completed".
   const STOP = new Set(['the','a','an','of','and','in','at','on','to','is','as','its','for','with','by','from']);
   const words = (t) => new Set(t.toLowerCase().replace(/[^a-z0-9 ]/g, ' ')
-    .split(/\s+/).filter(w => w && !STOP.has(w)));
+    .split(/\s+/).filter(w => w.length > 1 && !STOP.has(w)));
 
   const dups = [];
   for (let i = 0; i < TL.events.length; i++) {

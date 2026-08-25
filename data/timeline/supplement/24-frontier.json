@@ -215,7 +215,8 @@
    "scope": "subcontinental",
    "region": null,
    "dispute": false,
-   "evidence": "The Shatapatha Brahmana account, which is myth and is also the settled tradition's own memory of burning its way east."
+   "evidence": "The Shatapatha Brahmana account, which is myth and is also the settled tradition's own memory of burning its way east.",
+   "replaces": "Videgha Mathava's fire"
   },
   {
    "id": "EVT.FRT.ATAVIKA",

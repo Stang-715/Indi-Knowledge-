@@ -3858,7 +3858,7 @@
    "certainty": 0.7,
    "trigger": "window",
    "scope": "subcontinental",
-   "region": "RGN.ASSAM",
+   "region": null,
    "dispute": false,
    "window": [
     -2244,
@@ -3883,6 +3883,25 @@
     -2266,
     -2134
    ]
+  },
+  {
+   "id": "EVT.CLI.MAWMLUH_42",
+   "title": "Mawmluh Cave becomes the global reference for the 4.2 kiloyear event",
+   "class": "CLIMATE",
+   "magnitude": "W",
+   "year": -2190,
+   "era": "ERA.INDUS",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "window": [
+    -2250,
+    -2100
+   ],
+   "scope": "regional",
+   "region": "RGN.ASSAM",
+   "dispute": false,
+   "evidence": "The Mawmluh Cave speleothem in Meghalaya, which is the global reference section defining the base of the Meghalayan age."
   },
   {
    "id": "EVT.M2172.IRON_AT_MAYILADUMPARAI_TAMIL_NADU_THE_OLDEST",
@@ -6590,26 +6609,6 @@
    "evidence": "The Shatapatha Brahmana account, which is myth and is also the settled tradition's own memory of burning its way east."
   },
   {
-   "id": "EVT.M850.VIDEGHA_MATHAVA_S_FIRE_THE_EASTWARD_EXPANSIO",
-   "title": "Videgha Mathava's fire — the eastward expansion, told as myth",
-   "provenance": "DERIVED",
-   "evidence": "Faunal remains, settlement pattern, and the silence of the settled record.",
-   "year": -850,
-   "year_end": null,
-   "era": "ERA.LATE_VEDIC",
-   "class": "FRONTIER",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "subcontinental",
-   "region": null,
-   "dispute": false,
-   "window": [
-    -867,
-    -833
-   ]
-  },
-  {
    "id": "EVT.M840.RICE_TRANSPLANTATION_RAISES_YIELDS_SHARPLY",
    "title": "Rice transplantation raises yields sharply",
    "provenance": "DERIVED",
@@ -7893,11 +7892,12 @@
    "trigger": "window",
    "scope": "regional",
    "region": "RGN.ANDHRA",
-   "dispute": false,
+   "dispute": true,
    "window": [
     -510,
     -490
-   ]
+   ],
+   "dispute_scope": "date"
   },
   {
    "id": "EVT.M500.IRON_AND_BRAHMI_INSCRIPTIONS_ON_DRIP_LEDGES",
@@ -8270,23 +8270,6 @@
     -459,
     -441
    ]
-  },
-  {
-   "id": "EVT.M450.WARI_BATESHWAR_AN_EARLY_URBAN_CENTRE",
-   "title": "Wari-Bateshwar: an early urban centre",
-   "provenance": "DERIVED",
-   "evidence": "Excavation: stratigraphy, pottery sequence and radiocarbon from the site itself.",
-   "year": -450,
-   "year_end": null,
-   "era": "ERA.SECOND_URBAN",
-   "class": "SITE",
-   "magnitude": "W",
-   "certainty": 0.45,
-   "trigger": "latent",
-   "scope": "regional",
-   "region": "RGN.BENGAL",
-   "dispute": true,
-   "dispute_scope": "date"
   },
   {
    "id": "EVT.RGN.LNK_IRON_ANU",
@@ -9818,26 +9801,6 @@
    ]
   },
   {
-   "id": "EVT.M250.THE_BAIRAT_EDICTS_A_MAURYAN_CIRCULAR_TEMPLE",
-   "title": "The Bairat edicts; a Mauryan circular temple",
-   "provenance": "DERIVED",
-   "evidence": "The text, and the works that quote or answer it.",
-   "year": -250,
-   "year_end": null,
-   "era": "ERA.MAURYAN",
-   "class": "WORK",
-   "magnitude": "M",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.RAJASTHAN",
-   "dispute": false,
-   "window": [
-    -255,
-    -245
-   ]
-  },
-  {
    "id": "EVT.M250.THE_BARABAR_CAVES_GRANTED_TO_THE_AJIVIKAS_PO",
    "title": "The Barabar caves granted to the Ajivikas — polished granite",
    "provenance": "DERIVED",
@@ -9959,6 +9922,25 @@
    "window": [
     -270,
     -230
+   ]
+  },
+  {
+   "id": "EVT.SIT.BAIRAT",
+   "title": "Bairat: a circular Buddhist shrine and two Ashokan edicts",
+   "class": "SITE",
+   "magnitude": "M",
+   "year": -250,
+   "era": "ERA.MAURYAN",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.RAJASTHAN",
+   "dispute": false,
+   "evidence": "The circular brick chaitya foundation with a stupa at its centre, and the Bhabru and Bairat inscriptions.",
+   "window": [
+    -254,
+    -246
    ]
   },
   {
@@ -12821,25 +12803,6 @@
     270
    ],
    "year_end": 500
-  },
-  {
-   "id": "EVT.SIT.NAGARJUNAKONDA_CITY",
-   "title": "Nagarjunakonda: a planned Ikshvaku capital in the Krishna valley",
-   "class": "SITE",
-   "magnitude": "M",
-   "year": 250,
-   "era": "ERA.CLASSICAL",
-   "provenance": "SOURCED",
-   "certainty": 0.8,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.ANDHRA",
-   "dispute": false,
-   "evidence": "The excavation before the dam flooded the valley, which recorded a citadel, thirty monasteries, a stadium and an amphitheatre.",
-   "window": [
-    246,
-    254
-   ]
   },
   {
    "id": "EVT.WRK.KAMASUTRA",
@@ -15820,26 +15783,6 @@
    "certainty": 0.7,
    "trigger": "window",
    "scope": "subcontinental",
-   "region": null,
-   "dispute": false,
-   "window": [
-    715,
-    745
-   ]
-  },
-  {
-   "id": "EVT.730.THE_GURJARA_PRATIHARAS",
-   "title": "The Gurjara-Pratiharas",
-   "provenance": "DERIVED",
-   "evidence": "Inscriptions, copper plates and land grants.",
-   "year": 730,
-   "year_end": null,
-   "era": "ERA.REGIONAL_KINGDOMS",
-   "class": "FOUNDATION",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
    "region": "RGN.RAJASTHAN",
    "dispute": false,
    "window": [
@@ -19503,29 +19446,9 @@
     1127,
     1173
    ],
-   "note": "Much of what survives from western India survives because merchants paid to keep it dry.",
    "corpus": "preserve",
-   "preserve_to": "home"
-  },
-  {
-   "id": "EVT.1150.JAIN_MERCHANT_CAPITAL_FUNDS_LIBRARIES_THE_BH",
-   "title": "Jain merchant capital funds libraries — the bhandaras",
-   "provenance": "DERIVED",
-   "evidence": "Material remains — the object, its composition, and an absolute date where one exists.",
-   "year": 1150,
-   "year_end": null,
-   "era": "ERA.CHOLA",
-   "class": "TRANSITION",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.GUJARAT",
-   "dispute": false,
-   "window": [
-    1127,
-    1173
-   ]
+   "preserve_to": "home",
+   "note": "A library with a catalogue and a lending register, in the twelfth century, funded by merchants."
   },
   {
    "id": "EVT.1150.KAMBA_RAMAYANAM_NOT_A_TRANSLATION_BUT_A_RIVA",
@@ -19604,28 +19527,6 @@
     1184
    ],
    "note": "Thousands of linked tanks on a plateau with no perennial river. Most are still in use."
-  },
-  {
-   "id": "EVT.RGN.GUJ_BHANDARA_ORG",
-   "title": "The Jain bhandaras are organised as lending libraries with catalogues",
-   "class": "TRANSITION",
-   "magnitude": "M",
-   "year": 1150,
-   "era": "ERA.CHOLA",
-   "provenance": "SOURCED",
-   "certainty": 0.8,
-   "trigger": "window",
-   "scope": "regional",
-   "region": "RGN.GUJARAT",
-   "dispute": false,
-   "evidence": "The surviving catalogues, borrowing records, and the manuscripts themselves with their custody notes.",
-   "window": [
-    1116,
-    1184
-   ],
-   "corpus": "preserve",
-   "preserve_to": "home",
-   "note": "A library with a catalogue and a lending register, in the twelfth century, funded by merchants."
   },
   {
    "id": "EVT.WRK.VACHANAS_COMP",
@@ -21338,7 +21239,11 @@
    "window": [
     1340,
     1360
-   ]
+   ],
+   "threads": [
+    "THR.THE_WRITING_LADDER"
+   ],
+   "note": "The single biggest change to the knowledge economy between writing and printing, and nobody fought a battle over it."
   },
   {
    "id": "EVT.REF.LALLESHWARI",
@@ -21456,29 +21361,6 @@
     1337,
     1363
    ]
-  },
-  {
-   "id": "EVT.TRN.PAPER_1350",
-   "title": "Paper displaces palm leaf, and the cost of a copy collapses",
-   "class": "TRANSITION",
-   "magnitude": "W",
-   "year": 1350,
-   "era": "ERA.DELHI_VIJAYANAGARA",
-   "provenance": "SOURCED",
-   "certainty": 0.75,
-   "trigger": "window",
-   "scope": "subcontinental",
-   "region": null,
-   "dispute": false,
-   "evidence": "The shift in surviving manuscript supports, the paper mills recorded at Daulatabad and Kashmir, and the sudden growth in manuscript numbers after this date.",
-   "window": [
-    1325,
-    1375
-   ],
-   "threads": [
-    "THR.THE_WRITING_LADDER"
-   ],
-   "note": "The single biggest change to the knowledge economy between writing and printing, and nobody fought a battle over it."
   },
   {
    "id": "EVT.1352.THE_BENGAL_SULTANATE_A_DISTINCT_LITERARY_PAT",
@@ -26709,36 +26591,36 @@
   }
  ],
  "census": {
-  "total": 1358,
-  "subcontinental": 754,
-  "regional": 604,
-  "pre_1300": 1039,
+  "total": 1352,
+  "subcontinental": 752,
+  "regional": 600,
+  "pre_1300": 1034,
   "by_magnitude": {
-   "W": 594,
-   "M": 633,
+   "W": 590,
+   "M": 631,
    "R": 127,
    "m": 4
   },
   "by_class": {
-   "CLIMATE": 48,
-   "FRONTIER": 62,
-   "TRANSITION": 137,
+   "CLIMATE": 49,
+   "FRONTIER": 61,
+   "TRANSITION": 134,
    "EPOCH": 18,
    "STRUCTURE": 38,
-   "SITE": 198,
-   "WORK": 233,
+   "SITE": 197,
+   "WORK": 232,
    "AGRICULTURE": 31,
    "TRADE": 87,
    "REFORM": 141,
    "CATASTROPHE": 73,
    "INVASION": 76,
-   "FOUNDATION": 140,
+   "FOUNDATION": 139,
    "—": 22,
    "COLONIAL": 54
   },
   "by_trigger": {
-   "window": 1091,
-   "latent": 31,
+   "window": 1086,
+   "latent": 30,
    "dated": 236
   },
   "disputed": 61

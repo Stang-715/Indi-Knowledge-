@@ -444,7 +444,10 @@ for (const ev of supplements) {
  */
 const STOP = new Set(['the','a','an','of','and','in','at','on','to','is','as','its','for','with','by','from']);
 const contentWords = (t) => new Set(t.toLowerCase().replace(/[^a-z0-9 ]/g, ' ')
-  .split(/\s+/).filter(w => w && !STOP.has(w)));
+  .split(/\s+/).filter(w => w.length > 1 && !STOP.has(w))
+  // Crude singularisation, enough that "costs collapse" and "cost collapses"
+  // count as the same words.
+  .map(w => w.length > 3 && w.endsWith('s') ? w.slice(0, -1) : w));
 // How many titles a word appears in. A shared rare word — "diji", "utnur",
 // "ashmound" — means two lines are about the same thing; a shared common one
 // — "temple", "completed" — means nothing at all, and matching on those

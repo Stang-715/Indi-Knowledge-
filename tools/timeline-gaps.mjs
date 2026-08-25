@@ -68,7 +68,8 @@ console.log(`  target             1150`);
 console.log(`  remaining          ${1150 - fired.length}`);
 console.log(`  pre-1300 share     ${(fired.filter(e=>e.year<1300).length / fired.length * 100).toFixed(1)}%`);
 console.log(`  disputed           ${fired.filter(e=>e.dispute).length}`);
-console.log(`  authored cards     22`);
+const CARDS = JSON.parse(readFileSync(new URL('../data/timeline/cards.json', import.meta.url), 'utf8'));
+console.log(`  authored cards     ${CARDS.cards.length}`);
 console.log('');
 
 export { eraNeed };

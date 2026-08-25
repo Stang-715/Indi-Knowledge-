@@ -2,19 +2,6 @@
  "note": "Authored copy for Tier 1 cards. Overrides the generated text in packages/ui/src/eventcard.js. Keys are matched against an event title fragment, because event ids are derived from titles and may shift as the timeline doc is edited. NOT historian-reviewed.",
  "cards": [
   {
-   "match": "Nalanda sacked",
-   "what": "A raiding force under Bakhtiyar Khalji takes the monastic city. Vikramashila and Odantapuri follow. These were not only monasteries but the largest libraries in the eastern world, holding texts that existed nowhere else because nobody had needed them to.",
-   "why": "What is not copied out beforehand is not recoverable afterwards.",
-   "evidence": "Persian chronicles written for the victors; a destruction layer at the site; and the negative evidence of texts that survive only in Tibetan and Chinese translation.",
-   "becomes": "Tibetan monasteries inherit the curriculum, and the Pala scholarly tradition continues abroad for centuries."
-  },
-  {
-   "match": "Uttaramerur",
-   "what": "A village near Kanchipuram cuts its own constitution into its temple wall. It sets out who may stand for the committees that run the tanks, the gardens, the gold and the courts, and how they are chosen: names on palm leaf, drawn from a pot by a child. It disqualifies anyone who has not submitted audited accounts, and it caps terms.",
-   "why": "Election by lot, with eligibility rules and term limits, a thousand years ago, cut in stone because it was ordinary.",
-   "evidence": "The inscriptions themselves, still on the temple wall at Uttaramerur."
-  },
-  {
    "match": "Keeladi",
    "what": "Excavation on the Vaigai reveals a substantial urban settlement — brick structures, drainage, industrial residues, and graffiti-bearing sherds — on a scale that pushes urbanism in the far south considerably earlier than the standard account allows.",
    "why": "If the dates hold, the second urbanisation was not a northern event that spread south.",
@@ -36,37 +23,6 @@
    "dispute_text": "Positions range from substantial migration to none at all, and the debate is entangled with contemporary politics in India. Because the evidence genuinely does not settle it, this event is latent: it does not occur in every campaign, and when it does the game presents it as argued rather than established."
   },
   {
-   "match": "4.2 kiloyear aridification event",
-   "what": "Across the northern hemisphere the climate dries, sharply and for centuries. In the subcontinent the monsoon weakens and the Ghaggar-Hakra — which had carried water past dozens of Indus towns — begins to fail. Nobody attacks. The cities simply become harder to feed, and one by one their people move east toward rivers that still run.",
-   "why": "A civilisation can end without a conqueror.",
-   "evidence": "Speleothem records from Indian and Omani caves, lake cores, and the abandonment sequence of the Ghaggar sites themselves.",
-   "dispute_text": "How much of the Indus decline this explains is argued. Some read it as the principal cause; others as one pressure among several, including river avulsion and the collapse of Mesopotamian demand."
-  },
-  {
-   "match": "Deurbanisation",
-   "what": "The Indus cities empty. There is no destruction layer, no mass grave, no conquest horizon. Settlement counts actually rise as size falls: people disperse eastward into hundreds of smaller villages, taking their crafts with them at a scale the household can support.",
-   "why": "The end of a civilisation looked, from the inside, like a series of reasonable decisions.",
-   "evidence": "Settlement survey across the Ghaggar and Indus systems; the absence of the destruction evidence that would be there if this had been a conquest."
-  },
-  {
-   "match": "Last use of the Indus script",
-   "what": "The sign system falls out of use. Literacy does not return to the subcontinent for roughly sixteen hundred years, until Ashoka has edicts carved in Brahmi. In between, everything that is known is held in living memory and taught mouth to ear.",
-   "why": "For most of this game, forgetting is the only way to lose knowledge — and the only defence against it is people.",
-   "evidence": "The seals and inscribed objects themselves, and their absence from later levels. The script remains undeciphered."
-  },
-  {
-   "match": "Aluvihare",
-   "what": "Facing famine and war, the Sri Lankan sangha decides the canon can no longer be trusted to the reciters who carry it, and commits it to palm leaf. It is a deliberate act of redundancy against a specific, foreseen risk.",
-   "why": "The clearest case in the record of somebody making exactly the decision this game asks you to make — and it worked.",
-   "evidence": "The Sri Lankan chronicles, and the fact that the Pali canon exists."
-  },
-  {
-   "match": "Xuanzang studies at Nalanda",
-   "what": "A Chinese monk spends sixteen years travelling and studying, much of it at Nalanda, and leaves with six hundred and fifty-seven texts. He then spends the rest of his life translating them.",
-   "why": "Five and a half centuries before Nalanda burned, one man moved a substantial part of its library out of reach.",
-   "evidence": "His own travel account, his translations, and the Chinese Buddhist canon."
-  },
-  {
    "match": "Brahmasphutasiddhanta",
    "what": "Brahmagupta sets out rules for zero as a number in its own right — what happens when you add it, subtract it, multiply by it — and rules for negative quantities, which he describes as debts.",
    "why": "Reached Baghdad in 771 and never stopped travelling.",
@@ -74,58 +30,15 @@
   },
   {
    "match": "Aryabhatiya",
-   "what": "Aryabhata gives a place-value system, a sine table, an approximation of pi accurate to four decimal places, and an explanation of day and night as the earth's rotation. He states that he was twenty-three years old.",
-   "why": "One of the few ancient Indian dates that is firm, because the author supplied it.",
-   "evidence": "The text dates itself against an era whose epoch is independently known."
-  },
-  {
-   "match": "The Great Bath",
-   "what": "A watertight tank of fitted brick sealed with bitumen, at the highest point of Mohenjo-daro, with steps at both ends and rooms around it. It is the most carefully built structure in the city.",
-   "why": "The Indus built its finest public architecture around water, and nothing that reads as a throne room.",
-   "evidence": "The structure itself, and its position in the city plan.",
-   "dispute_text": "It is universally called a ritual bath and there is no direct evidence of what it was for. The label is an inference from its form and prominence, and it has stuck."
-  },
-  {
-   "match": "No temples. No palaces",
-   "what": "Across a civilisation of a thousand settlements and several large cities, excavation finds no structure that reads unambiguously as a temple, no palace, and no royal burial. Grave goods are modest and evenly distributed by the standards of any contemporary society.",
-   "why": "Every model of how a complex society must be organised has to explain this, and none of them does comfortably.",
-   "evidence": "Negative evidence across a century of excavation, which is weaker than positive evidence and is nonetheless very striking."
+   "what": "A twenty-three-year-old writes a hundred and twenty-one verses covering arithmetic, time-reckoning, the sphere and planetary motion. He uses a place-value system, gives a sine table, computes pi to four places and calls the value approximate, and states that the apparent motion of the stars is caused by the earth turning.",
+   "why": "Not one result but a method: state it, compute it, and say when the answer is only close.",
+   "evidence": "The Aryabhatiya, with Bhaskara I's commentary of 629 that fixes its date and its readings."
   },
   {
    "match": "Meluhha ships",
    "what": "Akkadian records name ships from Meluhha moored at Sargon's quay, alongside vessels from Magan and Dilmun. A Mesopotamian seal identifies its owner as an interpreter of the Meluhhan tongue, and a Meluhhan village is attested inland.",
    "why": "Somebody in Mesopotamia had a full-time job translating an Indus language, which means there was enough traffic to need one.",
    "evidence": "Cuneiform records; the Shu-ilishu cylinder seal; Indus-style objects and weights in Mesopotamian contexts."
-  },
-  {
-   "match": "The Kalinga war",
-   "what": "Ashoka takes Kalinga at a cost he later gives as a hundred thousand killed, many times that dead of its consequences, and a hundred and fifty thousand deported. He then has an account of his own remorse carved on rock, in public, across his empire.",
-   "why": "No other ancient ruler published their regret. It is the single most unusual document in ancient Indian history.",
-   "evidence": "The thirteenth Major Rock Edict, in Ashoka's own voice — and its conspicuous absence from the edicts placed in Kalinga itself, which received two different ones."
-  },
-  {
-   "match": "Major Rock Edicts",
-   "what": "Writing returns to the subcontinent after roughly sixteen centuries, in the form of a ruler addressing his subjects directly in the local vernacular, in a script most of them could not read, on rocks beside roads.",
-   "why": "The technology of the corpus changes here, and everything downstream depends on it.",
-   "evidence": "The edicts themselves, at more than thirty sites, in Brahmi, Kharoshthi, Greek and Aramaic."
-  },
-  {
-   "match": "Brihadeeswarar",
-   "what": "The temple is completed at Thanjavur, its vimana rising sixty-six metres — the tallest structure in India. Its walls are then covered in inscriptions recording every endowment: land, gold, lamps, and four hundred temple women settled on named streets, listed individually.",
-   "why": "It is a building that doubles as an archive, and it is why the Chola era can be played at village resolution.",
-   "evidence": "The inscriptions, in situ, running to hundreds of records on the temple itself."
-  },
-  {
-   "match": "Sungam Tavirtta",
-   "what": "Kulottunga I abolishes tolls, and takes the abolition as a title — 'he who abolished tolls'. It is remembered as such in inscriptions for generations after him.",
-   "why": "A ruler who decided that the throughput of a road was worth more than the revenue from choking it.",
-   "evidence": "Inscriptions using the epithet, and the surrounding record of Chola commerce."
-  },
-  {
-   "match": "naval expedition to Srivijaya",
-   "what": "A Chola fleet crosses the Bay of Bengal and raids the ports of the Srivijayan thalassocracy, from the Malay peninsula to Sumatra. It does not attempt occupation.",
-   "why": "The one large-scale overseas naval expedition mounted from India before the modern period.",
-   "evidence": "The Tanjore inscription of Rajendra I listing the ports taken; Southeast Asian and Chinese sources."
   },
   {
    "match": "Surkotada's horse",
@@ -135,10 +48,490 @@
    "dispute_text": "Distinguishing horse from onager and khur from post-cranial bones and teeth is genuinely difficult, and the specialists who have examined this material do not agree. The identification is neither established nor refuted, and this game therefore treats the event as latent."
   },
   {
+   "match": "Dental drilling",
+   "what": "Eleven teeth from nine adults at Mehrgarh have holes bored into the crowns. The drilling is neat, concentric, and confined to the back teeth where it would not show. Some of the holes have wear on their inner walls, which means the people went on chewing with them afterwards, for years.",
+   "why": "The oldest known dentistry anywhere, done with a flint bit on a bow drill.",
+   "evidence": "The teeth themselves, from the Mehrgarh cemetery, examined under scanning electron microscopy."
+  },
+  {
+   "match": "Zebu cattle domesticated locally",
+   "what": "The humped cattle of the subcontinent are not descended from Near Eastern herds. They come from local wild aurochs, taken into the herd here, and their genetics separate from the western line long before either was domesticated. Water buffalo follow. The animal at the centre of Indian agriculture is native to it.",
+   "why": "The economy the whole game runs on begins with an animal nobody imported.",
+   "evidence": "Mitochondrial and Y-chromosome studies separating Bos indicus from Bos taurus, and the Mehrgarh faunal sequence."
+  },
+  {
+   "match": "Granary blocks at Mehrgarh",
+   "what": "Rows of small compartmented rooms are built at Mehrgarh, too narrow to live in and sealed rather than doored. They hold grain. Once a village can keep a surplus through a bad year it can also decide who gets it, and the compartments are not all the same size.",
+   "why": "Storage means surplus, surplus means somebody decides, and deciding is the beginning of rank.",
+   "evidence": "The compartmented structures at Mehrgarh, and the differential grave goods in the cemetery beside them."
+  },
+  {
+   "match": "Cotton thread preserved in a copper bead",
+   "what": "A copper bead from a Mehrgarh burial has corroded around a fibre and mineralised it. The fibre is cotton. It is spun and plied, which means the plant was being processed, not just gathered — the oldest cotton anywhere by two thousand years, and it is in a grave.",
+   "why": "The subcontinent's greatest export begins as a thread inside a bead.",
+   "evidence": "The mineralised fibre from Mehrgarh, identified by electron microscopy and published in 2002."
+  },
+  {
+   "match": "Lapis lazuli from Badakhshan",
+   "what": "Blue stone from a single valley in the Hindu Kush turns up at Mehrgarh, fifteen hundred kilometres away. Nobody walked that in one journey. It moved hand to hand along a chain of settlements, each of which took a cut, and the chain existed before any city did.",
+   "why": "Long-distance exchange is older than urbanism, older than the state, and older than writing.",
+   "evidence": "Sourcing of the lapis to the Sar-i-Sang deposits, and the find contexts at Mehrgarh and Shahr-i-Sokhta."
+  },
+  {
+   "match": "The potter's workshop",
+   "what": "Wheel-thrown pots at Mehrgarh start appearing in thousands, standardised, from a small number of production sites. Somebody is making pots full time and eating grain they did not grow. It is the first job in the game that is not farming, and every later specialist — scribe, reciter, soldier — is the same bargain.",
+   "why": "The first person paid to do one thing. The knowledge economy's whole structure is already visible.",
+   "evidence": "The mass-produced Mehrgarh III ceramics and the kiln concentrations that produced them."
+  },
+  {
+   "match": "The Kalibangan ploughed field",
+   "what": "Under a later Harappan layer at Kalibangan lies a field, and the furrows are still there: two sets crossing at right angles, wide spacing one way and close the other. It is the pattern still used in the region for growing two crops in one field, mustard between rows of gram.",
+   "why": "The oldest ploughed field on earth, and it is being farmed the way a farmer would today.",
+   "evidence": "The excavated furrow pattern beneath the Kalibangan Harappan levels."
+  },
+  {
+   "match": "Storytellers first paid in grain",
+   "what": "Somewhere in the growing settlements a person stops farming and starts remembering. Genealogy, ritual, the account of a boundary dispute, the story of where the people came from. They are fed out of somebody else's harvest, which means the community has decided that memory is worth a share of the food.",
+   "why": "The knowledge economy opens here, and it never afterwards runs on anything but somebody's surplus.",
+   "evidence": "Inferred from the surplus and specialisation record; the practice itself leaves nothing behind except its results."
+  },
+  {
+   "match": "Weights and measures standardise",
+   "what": "Cubical chert weights turn up from the Makran coast to the Ganga-Yamuna doab, and they are all on the same unit — about 0.856 grams — doubling upward and then going decimal. No state is issuing them. Traders across seven hundred thousand square kilometres are simply agreeing.",
+   "why": "A standard nobody had to enforce. It is the clearest evidence for how the Indus actually held together.",
+   "evidence": "The weight sets themselves, measured across dozens of sites and found to be internally consistent to within a fraction of a gram."
+  },
+  {
+   "match": "Standardised brick ratios",
+   "what": "Fired bricks across the whole Indus zone are made to a ratio of one to two to four. That ratio is not obvious and not necessary; it is a choice, and everyone makes the same one, in towns a thousand kilometres apart with no evidence of an authority telling them to.",
+   "why": "Convention this exact, this widely, with no visible enforcement, is a puzzle no later Indian state repeats.",
+   "evidence": "Brick dimensions recorded across the excavated sites, consistent to within a few millimetres."
+  },
+  {
+   "match": "The drainage principle",
+   "what": "Houses are built so that waste water leaves them. Chutes in the wall run into covered street drains, which run into soak pits, with manholes for clearing. It is ordinary, it is everywhere, and it is done for the small house as well as the large one.",
+   "why": "The most consistently engineered thing the Indus left. It is plumbing, and it is universal.",
+   "evidence": "The excavated drainage networks at Mohenjo-daro, Harappa, Lothal and Dholavira."
+  },
+  {
+   "match": "No temples. No palaces",
+   "what": "Five hundred years of cities, and no building anyone can identify as a temple, no palace, no royal burial, no monumental sculpture of a ruler, and almost nothing in the ground that is only for killing. The largest structures are a bath, a granary and a set of walls.",
+   "why": "Every other early civilisation announces its rulers in stone. This one does not, and nobody knows why.",
+   "evidence": "The absence itself, across every excavated Indus site — a negative result reported consistently for a century."
+  },
+  {
+   "match": "The Great Bath",
+   "what": "A sunken brick tank on the citadel at Mohenjo-daro, waterproofed with bitumen, with steps down at both ends, a drain, and small rooms around it. It was maintained for centuries. What happened in it is not recorded anywhere, because nothing from this civilisation can be read.",
+   "why": "The one Indus building that looks like it was for something other than living or storing.",
+   "evidence": "The structure itself, its bitumen layer and its drain, at Mohenjo-daro."
+  },
+  {
+   "match": "Cubical chert weights",
+   "what": "The weights run 1, 2, 4, 8, 16, 32 and then shift to decimal multiples of 16 — 160, 320, 640. Binary at the small end where you are weighing beads, decimal at the large end where you are weighing grain. Somebody worked out that these are different problems.",
+   "why": "A measurement system designed around what is actually being measured, four and a half thousand years ago.",
+   "evidence": "The surviving weight sets and their mass distribution, published across the major excavation reports."
+  },
+  {
+   "match": "Akkadian records name Meluhha",
+   "what": "Sargon of Akkad boasts that ships from Meluhha, Magan and Dilmun tie up at his quay. Meluhha is the Indus. The boast is on a Mesopotamian inscription, which means the Indus enters written history in somebody else's language, before and after its own writing became unreadable.",
+   "why": "The first time the subcontinent appears in a document anyone can read.",
+   "evidence": "The Akkadian royal inscriptions, and Indus seals and etched carnelian beads found in Mesopotamian contexts."
+  },
+  {
+   "match": "Shu-ilishu's seal",
+   "what": "A cylinder seal from Mesopotamia belongs to a man described as an interpreter of the Meluhhan tongue. Somebody made a living translating between Akkadian and whatever the Indus people spoke. It is the only direct evidence that the language existed as a spoken thing, and it tells us nothing about what it was.",
+   "why": "A job title is the closest we have ever come to hearing the Indus speak.",
+   "evidence": "The seal of Shu-ilishu, in the Louvre, with its Akkadian legend."
+  },
+  {
+   "match": "Shortugai founded on the Oxus",
+   "what": "Eight hundred kilometres north of the nearest Indus city, on the Oxus, someone builds a settlement with Indus bricks, Indus pottery, Indus seals and an Indus irrigation canal. It sits beside the lapis mines. It is a colony, and it is the furthest thing from home the civilisation ever built.",
+   "why": "A trading outpost planted at a source. The Indus network was not passive.",
+   "evidence": "The excavated site at Shortugai in northern Afghanistan, with its full Harappan material assemblage."
+  },
+  {
+   "match": "4.2 kiloyear aridification event",
+   "what": "Across the northern hemisphere the climate dries, sharply and for centuries. In the subcontinent the monsoon weakens and the Ghaggar-Hakra, which had carried water past dozens of Indus towns, begins to fail. Nobody attacks. The cities become harder to feed, and their people move east toward rivers that still run.",
+   "why": "A civilisation can end without a conqueror.",
+   "evidence": "Speleothem records, lake cores, and the abandonment sequence of the Ghaggar sites themselves."
+  },
+  {
+   "match": "Deurbanisation",
+   "what": "The cities empty. There is no destruction layer, no mass grave, no burnt gate, no invader in the ground. Public buildings stop being repaired, the drains silt up, the weights drift out of standard, and the number of settlements actually rises while their average size falls. People disperse eastward.",
+   "why": "The single hardest thing in this game to render honestly, because it has no villain.",
+   "evidence": "The excavated upper levels at every major Indus site, and the regional settlement surveys that count more sites, not fewer."
+  },
+  {
+   "match": "Last use of the Indus script",
+   "what": "Around four hundred signs, on seals and tags and a single large signboard, average inscription five signs long. Then it stops. Nothing on the subcontinent is written again for sixteen hundred years, and the script has never been read — the corpus is too short and there is no bilingual.",
+   "why": "Literacy is not a ratchet. It can be lost, and here it was, completely.",
+   "evidence": "The seals and inscribed objects themselves, absent from all later levels, and undeciphered after a century of attempts."
+  },
+  {
+   "match": "Sorghum and pearl millet arrive from Africa",
+   "what": "Two African crops turn up in Gujarat and the Deccan. They are drought-tolerant, short-season, and they will grow where wheat and barley will not. They arrive as the climate is drying, and they are what makes farming the peninsula possible at all.",
+   "why": "Somebody carried seed across an ocean, and it reorganised where India could grow food.",
+   "evidence": "Directly dated sorghum and pearl millet from Rojdi, Babar Kot and Deccan Chalcolithic sites."
+  },
+  {
+   "match": "Kharif and rabi",
+   "what": "Two harvests in one year: one sown with the monsoon and reaped in autumn, one sown after it and reaped in spring. It doubles what a field yields and it halves the risk, because two failures are needed to starve instead of one.",
+   "why": "The agricultural year that still structures rural India begins here.",
+   "evidence": "The archaeobotanical assemblages showing summer and winter crops together at the same sites."
+  },
+  {
+   "match": "Rigveda composition begins",
+   "what": "Hymns start being composed in an archaic Sanskrit, by named families, for ritual use. They are not written down. They will not be written down for something like three thousand years, and when they finally are, the manuscripts turn out to agree with each other to a degree no manuscript tradition anywhere else achieves.",
+   "why": "The longest continuously transmitted text in human history, and it was carried in people's heads.",
+   "evidence": "The text itself, its internal family books, and the archaic linguistic stratum that separates it from later Sanskrit."
+  },
+  {
+   "match": "The mnemonic schemes fixed",
+   "what": "To stop the text drifting, the reciters build error-correcting codes into the recitation. The padapatha separates every word; the kramapatha recites them in overlapping pairs; jata and ghana permute them in fixed patterns. A dropped or altered syllable breaks the pattern audibly and gets corrected on the spot.",
+   "why": "The finest pre-modern information technology anywhere, and it was invented to protect a text from its own carriers.",
+   "evidence": "The recitation schemes themselves, still practised, and the near-identity of geographically separated manuscript traditions."
+  },
+  {
+   "match": "The reciters",
+   "what": "Full-time memorisers appear, fed by patrons and taught by lineage. Their capital is entirely in their heads, their training takes a decade or more, and when one of them dies without a student, a portion of the corpus dies too. Everything the player does with knowledge for the next two thousand years runs through people like this.",
+   "why": "A library made of people. It has no fire risk and no shelf life, and it starves.",
+   "evidence": "The dana-stuti hymns recording patronage, and the shakha lineages that transmitted each recension."
+  },
+  {
+   "match": "four-varna scheme first stated",
+   "what": "One hymn, late in the collection, describes society as a body: priest from the mouth, warrior from the arms, producer from the thighs, servant from the feet. It appears once, in the tenth book, in language markedly later than the rest. Nothing before it says this.",
+   "why": "Two thousand nine hundred years of argument start with a single late verse.",
+   "evidence": "Rigveda 10.90, whose language and position mark it as among the latest material in the collection.",
+   "dispute": "Read by some as a late interpolation describing an emerging order, by others as evidence of a scheme already ancient. What is not disputed is that it is late relative to the rest of the collection."
+  },
+  {
+   "match": "The sabha and samiti",
+   "what": "Two assemblies appear in the hymns, and they are not decorative: they meet, they argue, they are addressed by rulers who want something from them. A king who displeases them has a problem. It is the beginning of a two-thousand-year thread that ends at Uttaramerur with names drawn from a pot.",
+   "why": "Self-government is not something that arrives from outside. It is here in the earliest text.",
+   "evidence": "The references in the Rigveda and Atharvaveda, and the later Brahmana descriptions of assembly procedure."
+  },
+  {
+   "match": "Shatapatha Brahmana",
+   "what": "The fire altars have to be built to an exact area, in shapes — a falcon, a wheel, a trough — that must all hold the same amount of brick. Solving that requires converting a square to a circle of equal area, and back. The ritual manuals work it out, and the arithmetic outlives the ritual.",
+   "why": "Applied geometry, invented because a god was thought to be particular about measurements.",
+   "evidence": "The altar construction chapters of the Shatapatha Brahmana and the Shulba Sutras that formalise them."
+  },
+  {
+   "match": "Shulba Sutras",
+   "what": "The altar manuals state, in prose, that the square on the diagonal of a rectangle equals the sum of the squares on its two sides. They give a value for the square root of two accurate to five decimal places and explain how to get it. It is stated as a rule of construction, not as a theorem to prove.",
+   "why": "The relation is here, in a manual for bricklaying, centuries before it is named after anyone.",
+   "evidence": "The Baudhayana, Apastamba and Katyayana Shulba Sutras."
+  },
+  {
+   "match": "Gargi Vachaknavi",
+   "what": "In a public debate at Janaka's court, a woman named Gargi questions Yajnavalkya, presses him twice, and is told that if she asks again her head will fall off. She stops, and then tells the assembly that nobody else there will beat him either. The text preserves all of it, including the threat.",
+   "why": "A woman arguing philosophy in public, recorded by the tradition she was arguing with.",
+   "evidence": "The Brihadaranyaka Upanishad's account of the debate at Videha."
+  },
+  {
+   "match": "The Upanishadic turn",
+   "what": "The question shifts. The older texts ask how to perform the rite correctly; these ask what the rite is for, and then whether it is for anything. Yajnavalkya works through it in dialogue, concludes, and leaves his household to go into the forest. The ritual apparatus is not abolished — it is made secondary.",
+   "why": "The moment the tradition turns and interrogates itself, in its own texts, without a schism.",
+   "evidence": "The Brihadaranyaka and Chandogya Upanishads, the earliest of the collection."
+  },
+  {
+   "match": "Videgha Mathava",
+   "what": "A story tells how Videgha Mathava carried Agni in his mouth eastward, and the fire burned the ground dry behind him until it reached the Sadanira and stopped. It is a myth about clearing forest with fire, and it maps onto the archaeological spread of iron-using settlement across the middle Ganga.",
+   "why": "A migration remembered as a miracle, and the miracle is a land-clearance technique.",
+   "evidence": "The Shatapatha Brahmana's narrative, read against the Painted Grey Ware settlement distribution."
+  },
+  {
+   "match": "Sixteen mahajanapadas. Kingdom and republic",
+   "what": "Sixteen large polities are named, and they are not all the same kind of thing. Some are kingdoms with a hereditary ruler. Others — Vajji, Malla, the Shakyas — are governed by assemblies of heads of families, meeting in a hall, voting with counting sticks. Both forms are competing on the same map.",
+   "why": "For two centuries it is genuinely open whether the Indian state will be monarchical.",
+   "evidence": "The Pali and Jain canonical lists, the Anguttara Nikaya's enumeration, and the coin and rampart record of the named centres."
+  },
+  {
+   "match": "Punch-marked coinage",
+   "what": "Flat pieces of silver, cut to weight and struck with several small punches rather than one die. They are issued by guilds and by cities as much as by kings. Once value can be carried in a purse instead of a cart, settlement stops being a journey and becomes a transaction.",
+   "why": "Money enters the game, and with it every later problem about who is allowed to issue it.",
+   "evidence": "The punch-marked hoards from Taxila to the Deccan, and their weight standards."
+  },
+  {
+   "match": "Panini's Ashtadhyayi",
+   "what": "Three thousand nine hundred and fifty-nine rules that generate the whole of Sanskrit from a set of roots and affixes, using metarules, an ordering convention for conflicts, and a symbolic notation for sound classes. It is not a description of the language. It is a machine that produces it.",
+   "why": "A generative grammar, complete and consistent, twenty-four centuries before the term existed.",
+   "evidence": "The text itself, transmitted with its ancillary lists, and the commentarial tradition from Katyayana onward."
+  },
+  {
+   "match": "The Buddha —",
+   "what": "A man from a small assembly-governed people in the Himalayan foothills leaves his household, studies with teachers he finds insufficient, and works out a position that requires neither ritual nor sacrifice nor a creator. He teaches it for four decades in the languages people around him actually spoke.",
+   "why": "A movement that spread across half the world and left India almost entirely.",
+   "evidence": "The Pali canon, the Ashokan edicts naming the sites, and the archaeology of the earliest monastic settlements.",
+   "dispute": "Two chronologies are in use. The long one puts the death around 483 BCE, the short one closer to 400. Both are defended by serious scholars and the game presents the window rather than picking a year."
+  },
+  {
+   "match": "Achaemenid annexation",
+   "what": "Darius takes Gandhara and the Indus valley as satrapies. Herodotus says the tribute was the largest the empire assessed, paid in gold dust. Aramaic comes with the administration, and clerks in the northwest start writing again — in somebody else's script, for somebody else's revenue office.",
+   "why": "Literacy returns to the subcontinent after sixteen centuries, and it arrives as paperwork.",
+   "evidence": "The Behistun and Persepolis inscriptions listing Hindush, and the Aramaic documents from the northwest.",
+   "becomes": "The Kharoshthi script, derived from Aramaic and used for the next seven centuries; the satrapy as an administrative template; and the road system Alexander later marched along."
+  },
+  {
+   "match": "The Brahmi script emerges",
+   "what": "A script appears, fully formed, writing Indic sounds with an accuracy no borrowed alphabet manages: it is organised by place of articulation, marks vowel length, and handles conjuncts. Where it came from is one of the oldest arguments in Indology and it is not settled.",
+   "why": "Every script in South and Southeast Asia descends from this one, and nobody knows its parent.",
+   "evidence": "The Ashokan inscriptions, the earlier Tamil-Brahmi and Sri Lankan drip-ledge material, and the potsherd graffiti that may or may not be ancestral.",
+   "dispute": "Derivation from Aramaic, from a Semitic source via traders, from the Indus signs, or independent invention are all argued. The phonological organisation is clearly indigenous whatever the letter shapes owe to."
+  },
+  {
+   "match": "Alexander's campaign",
+   "what": "A Macedonian army crosses the Indus, beats Porus on the Hydaspes in the rain, and is then refused by its own soldiers at the Beas, who will not go further east. It turns south, fights down the river, and leaves. Within two years the garrisons are being killed and within ten the satrapies are gone.",
+   "why": "The invasion that changed almost nothing politically and a great deal culturally.",
+   "evidence": "Arrian, Curtius and Diodorus, working from Ptolemy and Aristobulus, and Nearchus's coastal log.",
+   "becomes": "The Indo-Greek kingdoms, bilingual coinage with portraits, the Milindapanha, and a Gandharan sculpture that would eventually put a Greek drape on a Buddha."
+  },
+  {
+   "match": "Mauryan foundation",
+   "what": "Chandragupta takes Magadha and then keeps going. Within a generation a single administration reaches from Afghanistan to Karnataka: assessed land revenue, state mines and salt, a road system with measured stages, and a bureaucracy described in detail by a text that reads like an operations manual.",
+   "why": "The first time the subcontinent is governed as one thing, and the template every later empire cites.",
+   "evidence": "The Arthashastra tradition, Megasthenes via later authors, the Ashokan edict distribution, and the Mauryan coin and pottery record."
+  },
+  {
+   "match": "The janapada survey",
+   "what": "Land is measured, classified by soil and water, and assigned a rate. Villages are counted and grouped. The Arthashastra specifies what the record should contain down to the number of taxpayers, the livestock and the people exempt. A state that knows this can borrow against next year's harvest.",
+   "why": "Measurement is the state's first and most consequential technology.",
+   "evidence": "The Arthashastra's revenue chapters, and the Mahasthan and Sohgaura relief orders that presuppose a record."
+  },
+  {
+   "match": "Megasthenes at Pataliputra",
+   "what": "A Seleucid ambassador lives at the Mauryan capital and writes it up: a city nine miles long behind a timber palisade with five hundred and seventy towers, an administration of committees, a claim that Indians do not enslave one another. His book is lost; we have it only in the quotations of people who found it interesting.",
+   "why": "The first sustained outside description of India, and it survives only in fragments of other people's books.",
+   "evidence": "Quotations of the Indica in Strabo, Arrian, Diodorus and Pliny, and the excavated palisade timbers at Bulandi Bagh."
+  },
+  {
+   "match": "The Kalinga war",
+   "what": "Ashoka takes Kalinga at a cost he later gives as a hundred thousand killed, many times that dead of the consequences, and a hundred and fifty thousand deported. He then has an account of his own remorse carved on rock, in public, across his empire, and instructs his descendants not to do it again.",
+   "why": "No other ancient ruler published their regret. It is the most unusual document in the ancient world.",
+   "evidence": "The thirteenth rock edict, in the conqueror's own words, at multiple sites.",
+   "becomes": "The dhamma policy, the officers of moral administration, the missions to Sri Lanka and the Hellenistic kings, and an empire that stopped conquering."
+  },
+  {
+   "match": "Major Rock Edicts",
+   "what": "A ruler has his instructions cut into rock faces across the subcontinent, in the local language, in Brahmi and Kharoshthi and at Kandahar in Greek and Aramaic. They are addressed to the population, not to officials. Writing returns to India as public speech, sixteen centuries after it disappeared.",
+   "why": "The first Indian texts we can read, and they are a king talking to everybody.",
+   "evidence": "The edicts themselves, at more than thirty sites, several still in situ."
+  },
+  {
+   "match": "Mahinda to Sri Lanka",
+   "what": "A mission crosses to the island and the canon goes with it, carried in memory. It takes root, it acquires an institution to maintain it, and two centuries later, when famine and war threaten the reciters, that institution writes it down. The mainland's own version of the same texts will not survive.",
+   "why": "The single most consequential export in the game, and it was a person carrying words.",
+   "evidence": "The Sri Lankan chronicles, the Ashokan missionary record, and the Mahavihara's own transmission accounts."
+  },
+  {
+   "match": "Aluvihare",
+   "what": "Famine and war have thinned the reciters who carry the Pali canon, and the community judges that the chain may break. So they write it down — the whole canon, on palm leaf, at a cave monastery in the Sri Lankan hills. It is a deliberate act of redundancy against a risk they could see coming.",
+   "why": "The clearest historical instance of the mechanic this whole game is built on, and it worked.",
+   "evidence": "The Sri Lankan chronicle accounts, and the survival of the Pali canon itself when its mainland recensions did not."
+  },
+  {
+   "match": "Hippalus and the monsoon",
+   "what": "Sailors work out that the southwest monsoon will carry a ship straight across the Arabian Sea and the northeast will bring it back. The crossing stops being a coastal crawl of months and becomes a run of weeks. The volume of Roman trade with India multiplies within a generation.",
+   "why": "A wind pattern, correctly understood, does more for trade than any treaty.",
+   "evidence": "The Periplus of the Erythraean Sea, and the sharp rise in Roman material at Indian coastal sites."
+  },
+  {
+   "match": "Periplus",
+   "what": "An anonymous Greek-speaking merchant writes a practical handbook to the Indian Ocean: which ports, which season, what they want, what they have, who to deal with, where the pirates are. It names Barygaza, Muziris, Nelkynda and the Ganges, and it is written to be used, not admired.",
+   "why": "The best single source on ancient Indian Ocean trade is a working sailor's notes.",
+   "evidence": "The Periplus text itself, corroborated by the Muziris papyrus and the excavated port assemblages."
+  },
+  {
+   "match": "Gandharan art",
+   "what": "Sculptors in the northwest begin representing the Buddha as a person. For three centuries he had been shown by absence — an empty seat, a footprint, a parasol. Now there is a face, with Hellenistic drapery, a Central Asian patron paying for it, and an Indian subject.",
+   "why": "A visual language assembled out of three traditions, funded by invaders, for a religion that had refused images.",
+   "evidence": "The Gandharan corpus, its Kushan-period dedicatory inscriptions, and the parallel and independent Mathura school."
+  },
+  {
+   "match": "Buddhism moves along the Silk Road",
+   "what": "Monks and merchants travel the same roads. Texts go north into Central Asia and then east into China, where they are translated by teams working from memory and manuscript together. Within centuries the Chinese canon holds works whose Sanskrit originals will not survive at home.",
+   "why": "The corpus starts existing outside the country that made it. That redundancy is what saves it.",
+   "evidence": "The Chinese translation catalogues with their dated entries, and the Central Asian manuscript finds."
+  },
+  {
+   "match": "The Sangam age peaks",
+   "what": "Two and a half thousand poems survive in eight anthologies and ten long songs, by four hundred and seventy-three named poets, of whom a substantial number are women. They are secular, specific and unsentimental: love in five named landscapes, war, patronage, and the poet's own opinion of the patron.",
+   "why": "The oldest literature in an Indian language other than Sanskrit, and it is nothing like it.",
+   "evidence": "The anthologies themselves with their colophons naming poets, patrons and the landscape of each poem."
+  },
+  {
+   "match": "Tirukkural",
+   "what": "Thirteen hundred and thirty couplets, seven words each, on virtue, wealth and love. It names no god, no caste, no king and no place. It has been claimed since by Hindus, Jains, Buddhists and Christians, and it is the only text in India that all of them can quote without conceding anything.",
+   "why": "A moral text that survives by refusing to say which side it is on.",
+   "evidence": "The text and its earliest commentaries, and the Sangam-adjacent language that dates it."
+  },
+  {
+   "match": "Nalanda founded",
+   "what": "A monastery is endowed near Rajgir and then endowed again, by successive rulers, until it is a walled complex of eleven monasteries and six temples with a library of several storeys. Students come from China, Korea, Tibet, Central Asia and Southeast Asia. Entry is by examination at the gate.",
+   "why": "For seven hundred years the largest concentration of texts and teachers in the eastern world.",
+   "evidence": "The excavated ground plan, the seals naming the mahavihara, and the accounts of Xuanzang and Yijing who both studied there."
+  },
+  {
+   "match": "Brahmasphuta",
+   "what": "Brahmagupta sets out rules for calculating with zero and with negative quantities: what happens when you add them, subtract them, multiply them. Debts and fortunes, in his terms. He gets division by zero wrong, and says what he thinks it is, which means the question had been asked.",
+   "why": "Zero stops being a placeholder and becomes a number you can do arithmetic with.",
+   "evidence": "The Brahmasphutasiddhanta of 628, and its transmission to Baghdad within a century and a half."
+  },
+  {
+   "match": "Xuanzang studies at Nalanda",
+   "what": "A Chinese monk crosses the Taklamakan without permission, spends more than a decade in India, studies at Nalanda under its abbot, argues in public debate, and goes home over the mountains with six hundred and fifty-seven manuscripts and a travelogue that later archaeologists use as a field guide.",
+   "why": "A third of what survives of Indian Buddhist thought survives because one man carried it out.",
+   "evidence": "His Records of the Western Regions, his biography by Huili, and the Chinese translations he then supervised."
+  },
+  {
+   "match": "The land-grant economy",
+   "what": "Rulers begin giving away not land but the revenue of land, in perpetuity, engraved on copper so it cannot be denied later. Temples and brahmin settlements become landlords. Within centuries a large share of the surplus is being collected by institutions rather than by the state that alienated it.",
+   "why": "The fiscal decision that produces the temple economy, the agrahara, and the endowment the player will spend the rest of the game managing.",
+   "evidence": "The copper-plate grant series, which run in the tens of thousands from the fourth century onward."
+  },
+  {
+   "match": "Halmidi",
+   "what": "A stone at Halmidi records a grant of land to a warrior, and it does so in Kannada. The language had been spoken for centuries and written on nobody's authority; this is where it enters the record and does not leave it again.",
+   "why": "A regional language becomes a written one, and the map of who can be addressed changes.",
+   "evidence": "The Halmidi pillar itself, and the letter forms that date it against the Kadamba inscription series."
+  },
+  {
+   "match": "Indian numerals and Brahmagupta reach Baghdad",
+   "what": "An Indian embassy brings astronomical texts to the Abbasid court. Al-Fazari translates them. The place-value system with a symbol for zero goes into Arabic mathematics, and from there, four centuries later, into Europe, where it will be called Arabic.",
+   "why": "The most widely used piece of Indian intellectual property in the world, and it travelled as a diplomatic gift.",
+   "evidence": "The Arabic accounts of the embassy, Al-Fazari's Zij al-Sindhind, and the subsequent Arabic mathematical tradition."
+  },
+  {
+   "match": "Shankara founds four mathas",
+   "what": "A teacher argues that the distinction between the self and the ground of being is not real, writes commentaries on the Upanishads, the Gita and the Brahma Sutras, debates his way across the subcontinent, and founds four monasteries at the compass points — institutions built to outlast him.",
+   "why": "The institutional innovation matters as much as the philosophy: he built something designed to keep running.",
+   "evidence": "The bhasyas themselves, and the four matha traditions with their succession lists.",
+   "dispute": "The dates are argued within a range of a century or more, and the traditional biographies are late and hagiographic. The matha foundation accounts are contested even within the tradition."
+  },
+  {
    "match": "Ayyavole 500 and Manigramam",
-   "what": "Merchant guilds operating under their own charters, with their own guards, their own courts and their own inscriptions, trading from Java to the Persian Gulf and policing roads across the territory of four kingdoms because no single kingdom could.",
-   "why": "The invention that lets strangers trade at scale — a portable, enforceable membership replacing the personal knowledge that kin and neighbour trade depends on.",
-   "evidence": "Guild inscriptions across South India and Southeast Asia, recording their own rules and grants."
+   "what": "Merchant associations acquire written charters, their own guards, their own courts, and inscriptions recording their donations from Karnataka to Sumatra. They lend, they insure, they negotiate with rulers, and they outlive several of the dynasties they dealt with.",
+   "why": "The trust ladder's top rung: a merchant body with legal standing that a king has to bargain with.",
+   "evidence": "The guild inscriptions across the peninsula and in Southeast Asia, including the Barus inscription in Sumatra."
+  },
+  {
+   "match": "Uttaramerur",
+   "what": "A village near Kanchipuram cuts its own constitution into its temple wall: who may stand for the committees that run the tanks, the gardens, the gold and the courts, and how they are chosen — names on palm leaf, drawn from a pot by a child. Anyone with unaudited accounts is disqualified, and terms are capped.",
+   "why": "Election by lot, with eligibility rules and term limits, cut in stone because it was ordinary.",
+   "evidence": "The inscriptions themselves, still on the temple wall at Uttaramerur."
+  },
+  {
+   "match": "Brihadeeswarar",
+   "what": "A temple is finished at Thanjavur with a tower sixty metres high, built without mortar, and its walls are then covered in inscriptions: land granted, revenue assigned, and the staff listed by name — four hundred dancers, singers, drummers, accountants, garland-makers, each with a house and a share of paddy.",
+   "why": "The best-documented institution in pre-modern India, and the record is on the outside of the building.",
+   "evidence": "The temple's own inscriptions, which name its employees individually and state what each was paid."
+  },
+  {
+   "match": "Sungam Tavirtta",
+   "what": "Kulottunga abolishes tolls, and is called Sungam Tavirtta — he who abolished tolls — for the rest of his reign and afterwards. The gain is not in the toll revenue forgone but in the traffic that stops paying to pass, and the inscriptions treat it as the achievement of the reign.",
+   "why": "A ruler remembered by a tax he did not collect.",
+   "evidence": "The epithet in his own inscriptions, and the Chola revenue record before and after."
+  },
+  {
+   "match": "naval expedition to Srivijaya",
+   "what": "A Chola fleet crosses the Bay of Bengal, raids the ports of the Srivijayan empire down the Malacca strait, and comes home. It is not a conquest and it is not followed by occupation. It is about who controls the passage of goods between China and the west.",
+   "why": "The only transoceanic invasion ever launched from India, and it was a trade dispute.",
+   "evidence": "The Tanjore inscription listing the ports taken, and the Chinese record of Srivijayan and Chola embassies before and after.",
+   "becomes": "A Bay of Bengal reorganised around Chola-protected routes, the Ayyavole guild operating from Java to the Gulf, and an embassy of seventy-two merchants at the Song court in 1077."
+  },
+  {
+   "match": "Basava and the Sharanas; the Anubhava Mantapa",
+   "what": "A minister founds a hall where anyone may speak, and washerwomen, cobblers, boatmen and ferrymen compose short signed prose-poems in spoken Kannada about work, god and the futility of temples. When the movement sanctions a marriage across caste, the state answers with violence and it scatters.",
+   "why": "The most radical thing in the medieval record, written by the people it was about, and signed.",
+   "evidence": "The vachana corpus with its authors' signature phrases, and the accounts of the movement's dispersal."
+  },
+  {
+   "match": "Kalhana's Rajatarangini",
+   "what": "Kalhana writes a history of Kashmir that names its sources, weighs them, dates by reign, criticises kings including recent ones, and states outright that a historian should be free of love and hatred. It is not a chronicle of a dynasty. It is an argument about what happened.",
+   "why": "The first work in Sanskrit that is recognisably history in the modern sense.",
+   "evidence": "The text itself, with its stated method, and Stein's later verification of its topography on the ground."
+  },
+  {
+   "match": "Nalanda sacked",
+   "what": "A raiding force under Bakhtiyar Khalji takes the monastic city. Vikramashila and Odantapuri follow. These were not only monasteries but the largest libraries in the eastern world, holding texts that existed nowhere else because nobody had needed them to.",
+   "why": "What is not copied out beforehand is not recoverable afterwards.",
+   "evidence": "Persian chronicles written for the victors; a destruction layer at the site; and the negative evidence of texts that survive only in Tibetan and Chinese translation.",
+   "becomes": "Tibetan monasteries inherit the curriculum, and the Pala scholarly tradition continues abroad for centuries."
+  },
+  {
+   "match": "Second Tarain",
+   "what": "Muhammad of Ghor returns a year after losing, attacks at dawn while the opposing army is still forming, and wins. Within fourteen years there is a sultanate at Delhi. The change is not that a battle was lost but that this time the victor stayed.",
+   "why": "The hinge of the medieval period, and it turns on somebody deciding not to go home.",
+   "evidence": "The Persian chronicles, and the abrupt change in the epigraphic and numismatic record across the north.",
+   "becomes": "The Delhi Sultanate; Persian as a court and literary language; Amir Khusrau writing in it and in Hindavi; the Indo-Islamic building tradition; and paper, which cut the cost of a copy by an order of magnitude."
+  },
+  {
+   "match": "Paper displaces palm leaf",
+   "what": "Paper mills appear and the price of a written page falls. Palm leaf lasts three hundred years in good conditions and has to be recopied; paper is cheaper to make, faster to write on, and can be bound. The number of surviving manuscripts from after this date is not slightly larger. It is an order of magnitude larger.",
+   "why": "The biggest change to the knowledge economy between writing and printing, and nobody fought over it.",
+   "evidence": "The shift in surviving manuscript supports, the mills recorded at Daulatabad and in Kashmir, and the manuscript survival curve."
+  },
+  {
+   "match": "token currency",
+   "what": "Muhammad bin Tughlaq issues brass and copper tokens to circulate at the value of silver. The idea is sound and would be ordinary six centuries later. The execution is not: the tokens are easy to copy, the state cannot police the forgeries, and within four years the treasury is buying them back at face value.",
+   "why": "A fiat currency in 1330, defeated not by the economics but by the anti-counterfeiting.",
+   "evidence": "The tokens themselves, and Barani's account of forgery on a scale the state could not match."
+  },
+  {
+   "match": "Vijayanagara founded",
+   "what": "A city is laid out among granite hills on the Tungabhadra, and grows into one of the largest in the world — a royal centre, a sacred centre, aqueducts, a bazaar street more than a kilometre long, and a water supply engineered for a quarter of a million people in a basin with no perennial rain.",
+   "why": "The last great pre-colonial imperial capital in the south, and it lasted two hundred and thirty years.",
+   "evidence": "The surviving urban core, the Portuguese and Persian eyewitness accounts, and the Sangama and Tuluva inscription series.",
+   "dispute": "The founders' origin, and the account of their conversion at Delhi and return, is a long-running argument that the sources do not settle."
+  },
+  {
+   "match": "Sirr-i-Akbar",
+   "what": "Dara Shikoh has fifty Upanishads translated into Persian, arguing that they are the hidden book the Quran refers to. A Latin version made from that Persian reaches Europe in 1801, where Schopenhauer reads it and says it has been the consolation of his life.",
+   "why": "The Upanishads reach Europe by way of a Mughal prince and a Latin translator, not by way of Sanskrit.",
+   "evidence": "The Sirr-i-Akbar manuscript, and Anquetil-Duperron's Latin Oupnek'hat of 1801."
+  },
+  {
+   "match": "Ain-i-Akbari",
+   "what": "An administrative account of an empire: revenue by district and by crop, prices, wages, the strength of the army, the salaries of officials, the procedures of every department, the leading painters listed by name. It is the most detailed statistical description of any pre-modern state anywhere. It is also written to impress.",
+   "why": "A state describing itself in numbers, four hundred years before that was normal.",
+   "evidence": "The text itself, and the revenue records that corroborate parts of it."
+  },
+  {
+   "match": "Plassey, and then the diwani",
+   "what": "A short engagement decided mostly by an agreement made beforehand, followed eight years later by a grant of the diwani — the right to collect the revenue of Bengal, Bihar and Orissa. A trading company stops shipping silver to buy Indian goods and starts buying them with Indian taxes.",
+   "why": "The moment the trade balance reverses, and it is an accounting fact before it is a policy.",
+   "evidence": "The Company's correspondence, the treaty with Mir Jafar, and the 1765 grant of the diwani.",
+   "becomes": "A company with an army and a revenue base, and, within a century, the government of the subcontinent."
+  },
+  {
+   "match": "the Great Bengal Famine",
+   "what": "The rains fail twice. Something like a third of the population of Bengal dies. The Company's revenue records for the same years show collection maintained, and in places increased, because the assessment had been fixed against the land and not against the harvest.",
+   "why": "The records are the Company's own, and they show what was being collected while people starved.",
+   "evidence": "The Company's revenue accounts, the contemporary correspondence, and the district mortality estimates."
+  },
+  {
+   "match": "Great Trigonometrical Survey",
+   "what": "A chain of triangles is measured from Cape Comorin to the Himalaya, correcting for the curvature of the earth and the gravitational pull of the mountains themselves. Radhanath Sikdar, computing in Calcutta, works out that one particular peak is the highest on earth.",
+   "why": "The most accurate survey on earth at the time, and also the instrument of taxation and troop movement.",
+   "evidence": "The Survey's own records and triangulation data, and the observatory and computing office registers."
+  },
+  {
+   "match": "Macaulay's Minute",
+   "what": "A member of the Governor-General's council writes that a single shelf of a good European library is worth the whole native literature of India and Arabia, and concedes in the same paragraph that he has read none of it. Education funding is redirected to English within months.",
+   "why": "A policy that shaped a century, argued from an admitted absence of knowledge.",
+   "evidence": "The Minute itself, and the English Education Act that followed it in 1835."
+  },
+  {
+   "match": "Annihilation of Caste",
+   "what": "Ambedkar is invited to address a reform conference, sends his text in advance, and the invitation is withdrawn because of what it says. He prints it himself. It argues that caste cannot be reformed out of existence while the texts that authorise it retain authority.",
+   "why": "Written to be spoken, refused a platform, printed at the author's expense, and it outlasted the platform.",
+   "evidence": "The printed text, and the correspondence with the Jat-Pat Todak Mandal that cancelled the address."
+  },
+  {
+   "match": "Independence, and Partition",
+   "what": "Power transfers at midnight. A boundary drawn in five weeks by a lawyer who had never been to India separates provinces, districts, villages and in some places fields. Somewhere between ten and twenty million people move, and several hundred thousand to a million and a half do not arrive.",
+   "why": "The campaign ends here. Not on a victory screen.",
+   "evidence": "The Indian Independence Act, the Radcliffe award and its maps, and the refugee and mortality records."
   }
  ]
 }
