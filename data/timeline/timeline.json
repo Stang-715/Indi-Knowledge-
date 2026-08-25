@@ -7514,21 +7514,28 @@
    ]
   },
   {
-   "id": "EVT.M518.ACHAEMENID_ANNEXATION_OF_GANDHARA_AND_HINDUS",
+   "id": "EVT.INV.ACHAEMENID",
    "title": "Achaemenid annexation of Gandhara and Hindush",
-   "provenance": "SOURCED",
-   "evidence": "Inscriptions, coinage, and chronicles — usually the victor's.",
-   "year": -518,
-   "year_end": null,
-   "era": "ERA.SECOND_URBAN",
    "class": "INVASION",
    "magnitude": "M",
-   "certainty": 0.95,
-   "trigger": "dated",
+   "year": -518,
+   "era": "ERA.SECOND_URBAN",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
    "scope": "subcontinental",
    "region": null,
    "dispute": false,
-   "becomes": "nothing"
+   "evidence": "The Behistun and Persepolis inscriptions listing Hindush among the satrapies, and the Aramaic documents that follow.",
+   "becomes": "Aramaic script in daily use, and the Kharoshthi derived from it; the satrapy as an administrative model; a tribute assessment in gold that Herodotus says was the empire's largest.",
+   "window": [
+    -548,
+    -488
+   ],
+   "threads": [
+    "THR.THE_NORTHWEST_GATE"
+   ],
+   "note": "Literacy returns to the subcontinent after sixteen centuries, and it arrives as somebody else's paperwork."
   },
   {
    "id": "EVT.M515.ARAMAIC_IN_USE_IN_THE_NORTHWEST_LITERACY_RET",
@@ -7848,6 +7855,26 @@
    ]
   },
   {
+   "id": "EVT.INV.MAGADHA_VAJJI",
+   "title": "Ajatashatru breaks the Vajji confederacy with siege engines and diplomacy",
+   "class": "INVASION",
+   "magnitude": "M",
+   "year": -484,
+   "era": "ERA.SECOND_URBAN",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Pali accounts of the mahashilakantaka and the rathamusala, and of the minister sent to divide the assembly first.",
+   "becomes": "The republican form loses its strongest example. Magadha's method — split the assembly, then besiege — becomes the template for absorbing a gana-sangha.",
+   "window": [
+    -514,
+    -454
+   ]
+  },
+  {
    "id": "EVT.M483.FIRST_BUDDHIST_COUNCIL_THE_CANON_FIXED_ORALL",
    "title": "First Buddhist Council — the canon fixed orally",
    "provenance": "DERIVED",
@@ -7910,26 +7937,6 @@
    "threads": [
     "THR.THE_CASTE_QUESTION",
     "THR.THE_RENOUNCERS"
-   ]
-  },
-  {
-   "id": "EVT.M475.VAJJI_FALLS_THE_REPUBLICAN_FORM_LOSES_ITS_GR",
-   "title": "Vajji falls; the republican form loses its greatest example",
-   "provenance": "DERIVED",
-   "evidence": "Texts, and the institutions that outlived the argument.",
-   "year": -475,
-   "year_end": null,
-   "era": "ERA.SECOND_URBAN",
-   "class": "REFORM",
-   "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
-   "scope": "subcontinental",
-   "region": null,
-   "dispute": false,
-   "window": [
-    -485,
-    -465
    ]
   },
   {
@@ -8458,21 +8465,24 @@
    ]
   },
   {
-   "id": "EVT.M327.ALEXANDER_S_CAMPAIGN_HYDASPES_326_MUTINY_AT_",
-   "title": "Alexander's campaign. Hydaspes 326; mutiny at the Beas",
-   "provenance": "SOURCED",
-   "evidence": "Inscriptions, coinage, and chronicles — usually the victor's.",
-   "year": -327,
-   "year_end": -325,
-   "era": "ERA.SECOND_URBAN",
+   "id": "EVT.INV.ALEXANDER",
+   "title": "Alexander's campaign, and the mutiny at the Beas",
    "class": "INVASION",
    "magnitude": "M",
-   "certainty": 0.95,
+   "year": -327,
+   "era": "ERA.SECOND_URBAN",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
    "trigger": "dated",
    "scope": "subcontinental",
    "region": null,
    "dispute": false,
-   "becomes": "nothing"
+   "evidence": "Arrian, Curtius and Diodorus, all working from Ptolemy and Aristobulus, and the Nearchus coastal log.",
+   "becomes": "The Indo-Greek kingdoms, bilingual coinage, the Milindapanha, and a Gandharan sculptural idiom that would put a Greek drape on a Buddha.",
+   "year_end": -325,
+   "threads": [
+    "THR.THE_NORTHWEST_GATE"
+   ]
   },
   {
    "id": "EVT.M326.PORUS_AND_THE_ELEPHANT_LINE_THE_LAST_GREAT_C",
@@ -8653,21 +8663,27 @@
    ]
   },
   {
-   "id": "EVT.M305.SELEUCID_WAR_KABUL_AND_ARACHOSIA_CEDED_FOR_5",
-   "title": "Seleucid war; Kabul and Arachosia ceded for 500 elephants",
-   "provenance": "SOURCED",
-   "evidence": "Inscriptions, coinage, and chronicles — usually the victor's.",
-   "year": -305,
-   "year_end": -303,
-   "era": "ERA.MAURYAN",
+   "id": "EVT.INV.SELEUCID",
+   "title": "The Seleucid war ends in a marriage treaty and five hundred elephants",
    "class": "INVASION",
    "magnitude": "M",
-   "certainty": 0.95,
-   "trigger": "dated",
+   "year": -303,
+   "era": "ERA.MAURYAN",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
    "scope": "subcontinental",
    "region": null,
    "dispute": false,
-   "becomes": "nothing"
+   "evidence": "Strabo and Appian on the treaty, and Megasthenes' embassy that followed it.",
+   "becomes": "An embassy at Pataliputra, the Indica, and the first sustained description of India by an outsider who lived there.",
+   "window": [
+    -333,
+    -273
+   ],
+   "threads": [
+    "THR.THE_NORTHWEST_GATE"
+   ]
   },
   {
    "id": "EVT.M302.MEGASTHENES_AT_PATALIPUTRA_THE_INDICA",
@@ -9168,38 +9184,21 @@
    "dispute": false
   },
   {
-   "id": "EVT.M261.THE_KALINGA_WAR",
+   "id": "EVT.INV.KALINGA",
    "title": "The Kalinga war",
-   "provenance": "SOURCED",
-   "evidence": "Inscriptions, coinage, and chronicles — usually the victor's.",
-   "year": -261,
-   "year_end": null,
-   "era": "ERA.MAURYAN",
    "class": "INVASION",
    "magnitude": "W",
-   "certainty": 0.95,
+   "year": -261,
+   "era": "ERA.MAURYAN",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
    "trigger": "dated",
    "scope": "regional",
    "region": "RGN.ODISHA",
    "dispute": false,
-   "becomes": "nothing"
-  },
-  {
-   "id": "EVT.M261.THE_KALINGA_WAR_100_000_DEAD_BY_ASHOKA_S_OWN",
-   "title": "The Kalinga war. ~100,000 dead by Ashoka's own count",
-   "provenance": "SOURCED",
-   "evidence": "Inscriptions, coinage, and chronicles — usually the victor's.",
-   "year": -261,
-   "year_end": null,
-   "era": "ERA.MAURYAN",
-   "class": "INVASION",
-   "magnitude": "W",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "scope": "subcontinental",
-   "region": null,
-   "dispute": false,
-   "becomes": "nothing"
+   "evidence": "The thirteenth rock edict, which gives the numbers — a hundred and fifty thousand deported, a hundred thousand killed — and is the conqueror's own account.",
+   "becomes": "The dhamma policy, the edicts, the missions to Sri Lanka and the Hellenistic kings, and the only surviving instance of an ancient ruler publishing his own remorse.",
+   "note": "The empire's greatest victory, and the reason its ruler stopped conquering."
   },
   {
    "id": "EVT.M260.THE_SEPARATE_KALINGA_EDICTS_ASHOKA_ADDRESSES",
@@ -10155,25 +10154,27 @@
    ]
   },
   {
-   "id": "EVT.M180.INDO_GREEK_INVASION_DEMETRIUS",
-   "title": "Indo-Greek invasion (Demetrius)",
-   "provenance": "DERIVED",
-   "evidence": "Inscriptions, coinage, and chronicles — usually the victor's.",
-   "year": -180,
-   "year_end": null,
-   "era": "ERA.CLASSICAL",
+   "id": "EVT.INV.DEMETRIUS",
+   "title": "The Indo-Greeks come down through the passes",
    "class": "INVASION",
    "magnitude": "M",
-   "certainty": 0.7,
+   "year": -180,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
    "trigger": "window",
    "scope": "subcontinental",
    "region": null,
    "dispute": false,
+   "evidence": "The bilingual coin series in Greek and Kharoshthi, and the Yuga Purana's account of a Yavana advance to Pataliputra.",
+   "becomes": "Menander's kingdom, the Milindapanha, the Heliodorus pillar at Besnagar, and a coinage tradition with a portrait on it.",
    "window": [
-    -185,
-    -175
+    -210,
+    -150
    ],
-   "becomes": "nothing"
+   "threads": [
+    "THR.THE_NORTHWEST_GATE"
+   ]
   },
   {
    "id": "EVT.M175.BHARHUT_S_STUPA_RAILING_NARRATIVE_RELIEF_BEG",
@@ -10275,6 +10276,26 @@
    ],
    "corpus": "destroy",
    "severity": 0.022
+  },
+  {
+   "id": "EVT.INV.KHARAVELA",
+   "title": "Kharavela of Kalinga campaigns north and brings back a Jain image",
+   "class": "INVASION",
+   "magnitude": "M",
+   "year": -150,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.65,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ODISHA",
+   "dispute": false,
+   "evidence": "The Hathigumpha inscription, which is his own account and dates itself by regnal year.",
+   "becomes": "Kalinga's brief reassertion, and the retrieval of an image taken by the Nandas three centuries earlier — an early instance of restitution as a war aim.",
+   "window": [
+    -180,
+    -120
+   ]
   },
   {
    "id": "EVT.M150.AMARAVATI_STUPA_BEGUN",
@@ -10702,23 +10723,26 @@
    "work": "WRK.NATYASHASTRA"
   },
   {
-   "id": "EVT.M90.SAKA_INDO_SCYTHIAN_INCURSIONS",
-   "title": "Saka (Indo-Scythian) incursions",
-   "provenance": "DERIVED",
-   "evidence": "Faunal remains, settlement pattern, and the silence of the settled record.",
-   "year": -90,
-   "year_end": null,
-   "era": "ERA.CLASSICAL",
-   "class": "FRONTIER",
+   "id": "EVT.INV.SAKA",
+   "title": "The Sakas take Sindh, Gujarat and the western Deccan",
+   "class": "INVASION",
    "magnitude": "M",
-   "certainty": 0.7,
+   "year": -90,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
    "trigger": "window",
    "scope": "subcontinental",
    "region": null,
    "dispute": false,
+   "evidence": "The Saka coin series, the Mathura lion capital, and the Western Satrap inscription record.",
+   "becomes": "The Shaka era of 78, still one of India's two calendars; the Western Satraps' dated coinage, which is the most precisely fixed sequence in ancient Indian numismatics; and the Junagadh inscription.",
    "window": [
-    -95,
-    -85
+    -120,
+    -60
+   ],
+   "threads": [
+    "THR.THE_NORTHWEST_GATE"
    ]
   },
   {
@@ -10863,25 +10887,28 @@
    "preserve_to": "home"
   },
   {
-   "id": "EVT.30.KUSHANS_ARRIVE_KUJULA_KADPHISES_BECOMES_THE_",
-   "title": "Kushans arrive (Kujula Kadphises) → becomes: the era's great patrons",
-   "provenance": "DERIVED",
-   "evidence": "Inscriptions, coinage, and chronicles — usually the victor's.",
-   "year": 30,
-   "year_end": null,
-   "era": "ERA.CLASSICAL",
+   "id": "EVT.INV.KUSHAN",
+   "title": "The Kushans arrive and stay four hundred years",
    "class": "INVASION",
-   "magnitude": "M",
-   "certainty": 0.7,
+   "magnitude": "W",
+   "year": 30,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
    "trigger": "window",
    "scope": "subcontinental",
    "region": null,
    "dispute": false,
+   "evidence": "The Rabatak inscription, the Kushan coin series, and the Gandharan and Mathuran sculptural record.",
+   "becomes": "The workshops that made the first images of the Buddha; a coinage naming Greek, Iranian and Indian gods together; the Silk Road link that carried Buddhism to China; and Kanishka's council.",
    "window": [
-    25,
-    35
+    0,
+    60
    ],
-   "becomes": "nothing"
+   "threads": [
+    "THR.THE_NORTHWEST_GATE"
+   ],
+   "note": "The single clearest case for the becomes field. Rendered as destruction, this is a false story."
   },
   {
    "id": "EVT.33.MANIPUR_THE_NINGTHOUJA_LINE_BY_TRADITIONAL_C",
@@ -11156,6 +11183,27 @@
    "region": "RGN.KASHMIR",
    "dispute": true,
    "dispute_scope": "date"
+  },
+  {
+   "id": "EVT.INV.GAUTAMIPUTRA",
+   "title": "Gautamiputra Satakarni destroys the Kshaharatas",
+   "class": "INVASION",
+   "magnitude": "M",
+   "year": 78,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false,
+   "evidence": "The Nasik inscription of his mother Gautami Balashri, and the restruck Nahapana coins found at Jogalthembi.",
+   "becomes": "Satavahana revival and the Deccan trade routes reopened; the restruck coins are the clearest physical record of a conquest in ancient India.",
+   "window": [
+    48,
+    108
+   ],
+   "note": "He melted down the enemy's coins and struck his own over them. Twelve thousand of them were found in one pot."
   },
   {
    "id": "EVT.80.FOURTH_BUDDHIST_COUNCIL_MAHAYANA_CRYSTALLISE",
@@ -12525,24 +12573,6 @@
    ]
   },
   {
-   "id": "EVT.350.THE_KALABHRA_INTERREGNUM_THE_DARK_AGE_POORLY",
-   "title": "The Kalabhra interregnum — the \"dark age\", poorly evidenced",
-   "provenance": "DERIVED",
-   "evidence": "Inscriptions, coinage, and chronicles — usually the victor's.",
-   "year": 350,
-   "year_end": null,
-   "era": "ERA.GUPTA",
-   "class": "INVASION",
-   "magnitude": "W",
-   "certainty": 0.45,
-   "trigger": "latent",
-   "scope": "regional",
-   "region": "RGN.TAMILAKAM",
-   "dispute": true,
-   "dispute_scope": "date",
-   "becomes": "nothing"
-  },
-  {
    "id": "EVT.350.WESTERN_GANGA_AT_TALAKAD_JAIN_PATRONAGE",
    "title": "Western Ganga at Talakad; Jain patronage",
    "provenance": "DERIVED",
@@ -12560,6 +12590,48 @@
    "window": [
     343,
     357
+   ]
+  },
+  {
+   "id": "EVT.INV.KALABHRA",
+   "title": "The Kalabhras take the Tamil country, and the record goes quiet",
+   "class": "INVASION",
+   "magnitude": "M",
+   "year": 350,
+   "era": "ERA.GUPTA",
+   "provenance": "SOURCED",
+   "certainty": 0.5,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": true,
+   "evidence": "Almost nothing: a few later hostile references, and a three-century gap in the inscription series.",
+   "becomes": "Jain and Buddhist institutions flourish in the gap; and the Pallava and Pandya revivals that end it define themselves against it.",
+   "window": [
+    320,
+    380
+   ],
+   "dispute_scope": "occurrence",
+   "note": "Called a dark age by people who came after and disliked them. The darkness may be ours."
+  },
+  {
+   "id": "EVT.INV.SAMUDRAGUPTA_SOUTH",
+   "title": "Samudragupta campaigns to Kanchi and restores every king he defeats",
+   "class": "INVASION",
+   "magnitude": "M",
+   "year": 350,
+   "era": "ERA.GUPTA",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Allahabad pillar inscription, which names twelve southern kings and says they were captured and released.",
+   "becomes": "The mandala made explicit: a defeated king restored is a tributary, and a tributary is worth more than a province. The doctrine outlives the dynasty by a thousand years.",
+   "window": [
+    320,
+    380
    ]
   },
   {
@@ -13306,25 +13378,27 @@
    ]
   },
   {
-   "id": "EVT.470.ALCHON_HUNA_INVASIONS_BEGIN",
-   "title": "Alchon Huna invasions begin",
-   "provenance": "DERIVED",
-   "evidence": "Inscriptions, coinage, and chronicles — usually the victor's.",
-   "year": 470,
-   "year_end": null,
-   "era": "ERA.GUPTA",
+   "id": "EVT.INV.HUNA",
+   "title": "The Alchon Hunas break through, and keep breaking through",
    "class": "INVASION",
    "magnitude": "M",
-   "certainty": 0.7,
+   "year": 470,
+   "era": "ERA.GUPTA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
    "trigger": "window",
    "scope": "subcontinental",
    "region": null,
    "dispute": false,
+   "evidence": "The Bhitari and Junagadh inscriptions, the Alchon coin series, and Mihirakula's Gwalior inscription.",
+   "becomes": "The Gupta fiscal collapse and, out of it, the regional kingdom as the normal political form for the next six centuries. Also the end of Taxila as a place of learning.",
    "window": [
-    461,
-    479
+    440,
+    500
    ],
-   "becomes": "nothing"
+   "threads": [
+    "THR.THE_NORTHWEST_GATE"
+   ]
   },
   {
    "id": "EVT.SIT.MANDSAUR",
@@ -14108,21 +14182,24 @@
    "dispute": false
   },
   {
-   "id": "EVT.618.PULAKESHIN_II_HALTS_HARSHA_AT_THE_NARMADA",
+   "id": "EVT.INV.CHALUKYA_PALLAVA",
    "title": "Pulakeshin II halts Harsha at the Narmada",
-   "provenance": "SOURCED",
-   "evidence": "Inscriptions, coinage, and chronicles — usually the victor's.",
-   "year": 618,
-   "year_end": null,
-   "era": "ERA.GUPTA",
    "class": "INVASION",
    "magnitude": "M",
-   "certainty": 0.95,
-   "trigger": "dated",
+   "year": 618,
+   "era": "ERA.GUPTA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
    "scope": "subcontinental",
    "region": null,
    "dispute": false,
-   "becomes": "nothing"
+   "evidence": "The Aihole inscription of Ravikirti, and Xuanzang's independent account of both courts.",
+   "becomes": "The Narmada stays a political boundary. The north never again forms a single state that reaches the Deccan until the Mughals.",
+   "window": [
+    588,
+    648
+   ]
   },
   {
    "id": "EVT.625.THE_KARKOTA_DYNASTY",
@@ -14354,6 +14431,26 @@
    "window": [
     627,
     653
+   ]
+  },
+  {
+   "id": "EVT.INV.PALLAVA_VATAPI",
+   "title": "The Pallavas sack Vatapi in reply",
+   "class": "INVASION",
+   "magnitude": "M",
+   "year": 642,
+   "era": "ERA.GUPTA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "evidence": "Narasimhavarman's Badami inscription, cut on the rock of the captured capital.",
+   "becomes": "A century and a half of Pallava-Chalukya exchange in which each side copies the other's architecture. Pattadakal's northern and southern towers stand side by side because of it.",
+   "window": [
+    612,
+    672
    ]
   },
   {
@@ -14868,21 +14965,27 @@
    "note": "An agricultural manual that tells you what a pair of oxen costs to keep. The economy, written down."
   },
   {
-   "id": "EVT.712.ARAB_CONQUEST_OF_SINDH_MUHAMMAD_BIN_QASIM",
-   "title": "Arab conquest of Sindh (Muhammad bin Qasim)",
-   "provenance": "SOURCED",
-   "evidence": "Inscriptions, coinage, and chronicles — usually the victor's.",
-   "year": 712,
-   "year_end": null,
-   "era": "ERA.REGIONAL_KINGDOMS",
+   "id": "EVT.INV.SINDH_712",
+   "title": "The Arab conquest of Sindh",
    "class": "INVASION",
    "magnitude": "M",
-   "certainty": 0.95,
-   "trigger": "dated",
+   "year": 712,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
    "scope": "subcontinental",
    "region": null,
    "dispute": false,
-   "becomes": "nothing"
+   "evidence": "The Chachnama, written later and from the victors' side, and the Arab geographers' descriptions of Mansura and Multan.",
+   "becomes": "A durable scholarly and commercial link to the Abbasid world: Indian astronomy and numerals at Baghdad by 771, Al-Biruni's Sanskrit two centuries after that, and the sea trade the Gulf ports ran on.",
+   "window": [
+    682,
+    742
+   ],
+   "threads": [
+    "THR.THE_NORTHWEST_GATE"
+   ]
   },
   {
    "id": "EVT.715.ANDAL_THE_ONE_WOMAN_AMONG_THE_TWELVE_ALVARS",
@@ -15791,6 +15894,27 @@
    "region": "RGN.TAMILAKAM",
    "dispute": false,
    "evidence": "Ethnographically documented and undatable. A ritual dairy system found nowhere else, and the plains record does not know it exists."
+  },
+  {
+   "id": "EVT.INV.RASHTRAKUTA_NORTH",
+   "title": "The Rashtrakutas sack Kannauj and go home",
+   "class": "INVASION",
+   "magnitude": "M",
+   "year": 800,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "evidence": "The Rashtrakuta grant record, and Al-Masudi's report that the Balhara was the greatest king of India.",
+   "becomes": "The Deccan becomes the arbiter of the north without ever trying to hold it — and spends the proceeds on Ellora.",
+   "window": [
+    770,
+    830
+   ],
+   "year_end": 915
   },
   {
    "id": "EVT.REF.SHANKARA_MATHAS",
@@ -16794,23 +16918,6 @@
    ]
   },
   {
-   "id": "EVT.993.CHOLA_CONQUEST_ANURADHAPURA_FALLS",
-   "title": "Chola conquest; Anuradhapura falls",
-   "provenance": "SOURCED",
-   "evidence": "Inscriptions, coinage, and chronicles — usually the victor's.",
-   "year": 993,
-   "year_end": null,
-   "era": "ERA.CHOLA",
-   "class": "INVASION",
-   "magnitude": "W",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "scope": "regional",
-   "region": "RGN.SRI_LANKA",
-   "dispute": false,
-   "becomes": "nothing"
-  },
-  {
    "id": "EVT.993.THE_CONQUEST_OF_SRI_LANKA_BEGINS_ANURADHAPUR",
    "title": "The conquest of Sri Lanka begins; Anuradhapura taken",
    "provenance": "DERIVED",
@@ -16830,6 +16937,26 @@
     1013
    ],
    "becomes": "nothing"
+  },
+  {
+   "id": "EVT.INV.CHOLA_LANKA",
+   "title": "Rajaraja takes Anuradhapura and moves the capital",
+   "class": "INVASION",
+   "magnitude": "W",
+   "year": 993,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.SRI_LANKA",
+   "dispute": false,
+   "evidence": "The Chola inscriptions in Sri Lanka, the Mahavamsa's account, and the Shiva temples built at Polonnaruwa.",
+   "becomes": "Polonnaruwa becomes the island's capital and stays so for three centuries after the Cholas leave; and a Tamil-speaking population is established in the north that is still there.",
+   "window": [
+    963,
+    1023
+   ]
   },
   {
    "id": "EVT.1000.ATISHA_DIPANKARA_LEAVES_FOR_TIBET",
@@ -17349,6 +17476,27 @@
    "dispute": false
   },
   {
+   "id": "EVT.INV.CHOLA_SRIVIJAYA",
+   "title": "The Chola fleet crosses the Bay and raids Srivijaya",
+   "class": "INVASION",
+   "magnitude": "W",
+   "year": 1025,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "evidence": "The Tanjore inscription listing the ports taken, and the Chinese record of the embassies before and after.",
+   "becomes": "The Bay of Bengal trade reorganises around Chola-protected routes; the Ayyavole guild operates from Java to the Gulf; and an embassy of seventy-two merchants reaches the Song court in 1077.",
+   "window": [
+    995,
+    1055
+   ],
+   "note": "The only recorded transoceanic invasion launched from India. It was a trade dispute."
+  },
+  {
    "id": "EVT.SIT.GANGAIKONDA_CITY",
    "title": "Gangaikonda Cholapuram is laid out as a capital, not just a temple",
    "class": "SITE",
@@ -17384,21 +17532,24 @@
    "dispute": false
   },
   {
-   "id": "EVT.1026.SOMNATH_RAIDED_BY_MAHMUD_OF_GHAZNI",
-   "title": "Somnath raided by Mahmud of Ghazni",
-   "provenance": "SOURCED",
-   "evidence": "Inscriptions, coinage, and chronicles — usually the victor's.",
-   "year": 1026,
-   "year_end": null,
-   "era": "ERA.CHOLA",
+   "id": "EVT.INV.MAHMUD_SOMNATH",
+   "title": "Mahmud of Ghazni reaches Somnath",
    "class": "INVASION",
    "magnitude": "W",
-   "certainty": 0.95,
+   "year": 1026,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
    "trigger": "dated",
    "scope": "regional",
    "region": "RGN.GUJARAT",
-   "dispute": false,
-   "becomes": "nothing"
+   "dispute": true,
+   "evidence": "The Ghaznavid court histories, Al-Biruni who travelled with the campaigns, and the temple's rebuilding record.",
+   "becomes": "Al-Biruni's Tarikh al-Hind, written because a scholar attached to the campaigns learned Sanskrit and read the sources; and, in the other direction, six centuries of argument about the raid that are still going on.",
+   "threads": [
+    "THR.THE_NORTHWEST_GATE"
+   ],
+   "dispute_scope": "interpretation"
   },
   {
    "id": "EVT.1030.EMBASSIES_TO_SONG_CHINA_THE_QUANZHOU_TRADE",
@@ -17512,6 +17663,27 @@
     1061
    ],
    "becomes": "nothing"
+  },
+  {
+   "id": "EVT.INV.CHALUKYA_CHOLA",
+   "title": "The Chola-Chalukya wars grind over Vengi for a century",
+   "class": "INVASION",
+   "magnitude": "M",
+   "year": 1040,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "evidence": "Both dynasties' inscription series, which claim the same victories.",
+   "becomes": "Exhaustion on both sides, and a Chalukya prince on the Chola throne in 1070 — the war ends in a succession, not a conquest.",
+   "window": [
+    1010,
+    1070
+   ],
+   "year_end": 1070
   },
   {
    "id": "EVT.CAT.ATISHA_TIBET",
@@ -18556,6 +18728,30 @@
    "evidence": "The tank inscriptions and the distribution of the tanks themselves, on ground that had not been farmed before."
   },
   {
+   "id": "EVT.INV.GHURID_ANHILWARA",
+   "title": "The Ghurids are beaten at Kasahrada before they win at Tarain",
+   "class": "INVASION",
+   "magnitude": "R",
+   "year": 1178,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.GUJARAT",
+   "dispute": false,
+   "evidence": "The Jain chronicles of Gujarat and the Persian accounts, which both record the defeat.",
+   "becomes": "Muhammad of Ghor turns north instead, and the Punjab route becomes the one that matters. Gujarat buys itself another century and a half.",
+   "window": [
+    1148,
+    1208
+   ],
+   "threads": [
+    "THR.THE_NORTHWEST_GATE"
+   ],
+   "note": "A defeat that redirected an invasion. The gate has more than one door."
+  },
+  {
    "id": "EVT.1187.THE_YADAVAS_OF_DEVAGIRI",
    "title": "The Yadavas of Devagiri",
    "provenance": "SOURCED",
@@ -18592,6 +18788,27 @@
    ]
   },
   {
+   "id": "EVT.INV.HOYSALA_YADAVA",
+   "title": "The Hoysalas and Yadavas fight over the Krishna-Tungabhadra doab",
+   "class": "INVASION",
+   "magnitude": "R",
+   "year": 1190,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "evidence": "The inscription record of both dynasties across the contested districts.",
+   "becomes": "Both are still fighting each other when Delhi arrives, and neither can answer it.",
+   "window": [
+    1160,
+    1220
+   ],
+   "year_end": 1310
+  },
+  {
    "id": "EVT.1191.FIRST_TARAIN_PRITHVIRAJ_WINS",
    "title": "First Tarain — Prithviraj wins",
    "provenance": "SOURCED",
@@ -18609,38 +18826,23 @@
    "becomes": "nothing"
   },
   {
-   "id": "EVT.1192.SECOND_TARAIN",
-   "title": "Second Tarain",
-   "provenance": "SOURCED",
-   "evidence": "Inscriptions, coinage, and chronicles — usually the victor's.",
-   "year": 1192,
-   "year_end": null,
-   "era": "ERA.CHOLA",
+   "id": "EVT.INV.TARAIN_II",
+   "title": "Second Tarain: the hinge of the medieval period",
    "class": "INVASION",
    "magnitude": "W",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "scope": "regional",
-   "region": "RGN.RAJASTHAN",
-   "dispute": false,
-   "becomes": "nothing"
-  },
-  {
-   "id": "EVT.1192.SECOND_TARAIN_THE_HINGE_OF_THE_MEDIEVAL_PERI",
-   "title": "Second Tarain. The hinge of the medieval period",
-   "provenance": "SOURCED",
-   "evidence": "Inscriptions, coinage, and chronicles — usually the victor's.",
    "year": 1192,
-   "year_end": null,
    "era": "ERA.CHOLA",
-   "class": "INVASION",
-   "magnitude": "W",
-   "certainty": 0.95,
+   "provenance": "SOURCED",
+   "certainty": 0.9,
    "trigger": "dated",
    "scope": "subcontinental",
    "region": null,
    "dispute": false,
-   "becomes": "nothing"
+   "evidence": "The Persian chronicles, and the abrupt change in the epigraphic and numismatic record across the north.",
+   "becomes": "The Delhi Sultanate; Persian as a court and literary language; Amir Khusrau, who wrote in it and in Hindavi both; the Indo-Islamic building tradition; and the arrival of paper, which cut the cost of a copy by an order of magnitude.",
+   "threads": [
+    "THR.THE_NORTHWEST_GATE"
+   ]
   },
   {
    "id": "EVT.CAT.NALANDA_1193",
@@ -18907,21 +19109,24 @@
    "work": "WRK.SUKASAPTATI"
   },
   {
-   "id": "EVT.1204.BAKHTIYAR_KHALJI_TAKES_NADIA",
-   "title": "Bakhtiyar Khalji takes Nadia",
-   "provenance": "SOURCED",
-   "evidence": "Inscriptions, coinage, and chronicles — usually the victor's.",
-   "year": 1204,
-   "year_end": null,
-   "era": "ERA.CHOLA",
+   "id": "EVT.INV.BAKHTIYAR_NADIA",
+   "title": "Bakhtiyar Khalji takes Nadia and then Bengal",
    "class": "INVASION",
-   "magnitude": "W",
-   "certainty": 0.95,
-   "trigger": "dated",
+   "magnitude": "M",
+   "year": 1204,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
    "scope": "regional",
    "region": "RGN.BENGAL",
    "dispute": false,
-   "becomes": "nothing"
+   "evidence": "The Tabaqat-i-Nasiri, and the coin and inscription record of the new Bengal administration.",
+   "becomes": "The Bengal Sultanate, which within a century was patronising Bengali rather than Persian — the first state anywhere to give the language a court.",
+   "window": [
+    1174,
+    1234
+   ]
   },
   {
    "id": "EVT.1206.BAKHTIYAR_KHALJI_S_TIBET_EXPEDITION_DESTROYE",
@@ -18978,21 +19183,23 @@
    "severity": 0.042
   },
   {
-   "id": "EVT.1221.GENGHIS_AT_THE_INDUS",
-   "title": "Genghis at the Indus",
-   "year": 1221,
-   "year_end": null,
-   "era": "ERA.CHOLA",
+   "id": "EVT.INV.MONGOL_1221",
+   "title": "Genghis Khan reaches the Indus and turns back",
    "class": "INVASION",
    "magnitude": "M",
-   "certainty": 0.95,
-   "trigger": "dated",
+   "year": 1221,
+   "era": "ERA.CHOLA",
    "provenance": "SOURCED",
-   "evidence": "Inscriptions, coinage, and chronicles — usually the victor's.",
+   "certainty": 0.9,
+   "trigger": "dated",
    "scope": "subcontinental",
    "region": null,
    "dispute": false,
-   "becomes": "nothing"
+   "evidence": "Juzjani and Juvaini, and the Sultanate's own account of Jalal ad-Din's flight across the river.",
+   "becomes": "A frontier policy: for eighty years the Sultanate's whole military effort goes into the northwest, which is why it takes so long to move south.",
+   "threads": [
+    "THR.THE_NORTHWEST_GATE"
+   ]
   },
   {
    "id": "EVT.1228.SUKAPHAA_CROSSES_THE_PATKAI_THE_AHOM_KINGDOM",
@@ -19315,21 +19522,20 @@
    "dispute": false
   },
   {
-   "id": "EVT.1296.DEVAGIRI_RAIDED_BY_ALAUDDIN_KHALJI",
-   "title": "Devagiri raided by Alauddin Khalji",
-   "provenance": "SOURCED",
-   "evidence": "Inscriptions, coinage, and chronicles — usually the victor's.",
-   "year": 1296,
-   "year_end": null,
-   "era": "ERA.DELHI_VIJAYANAGARA",
+   "id": "EVT.INV.ALAUDDIN_DEVAGIRI",
+   "title": "Alauddin Khalji raids Devagiri and finds the Deccan open",
    "class": "INVASION",
-   "magnitude": "W",
-   "certainty": 0.95,
+   "magnitude": "M",
+   "year": 1296,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
    "trigger": "dated",
    "scope": "regional",
    "region": "RGN.MAHARASHTRA",
    "dispute": false,
-   "becomes": "nothing"
+   "evidence": "Barani and Amir Khusrau, and the sudden appearance of Deccan bullion in Delhi's coinage.",
+   "becomes": "The southern campaigns that follow, the Tughlaq capital at Daulatabad, and — indirectly — Vijayanagara, founded by men who had served in Delhi."
   },
   {
    "id": "EVT.1297.MONGOL_INVASIONS_REPELLED",
@@ -19347,6 +19553,30 @@
    "region": null,
    "dispute": false,
    "becomes": "nothing"
+  },
+  {
+   "id": "EVT.INV.MONGOL_REPULSE",
+   "title": "The Sultanate turns back six Mongol invasions in twenty years",
+   "class": "INVASION",
+   "magnitude": "M",
+   "year": 1297,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Barani's account of the campaigns and of Alauddin's standing army and price controls.",
+   "becomes": "A permanent paid army, the market regulations that fed it, and a fiscal apparatus reaching into village grain prices — built to fight Mongols and then used to conquer the Deccan.",
+   "window": [
+    1267,
+    1327
+   ],
+   "year_end": 1308,
+   "threads": [
+    "THR.THE_NORTHWEST_GATE"
+   ]
   },
   {
    "id": "EVT.1300.NAMDEV_THE_VARKARI_PILGRIMAGE_TO_PANDHARPUR",
@@ -19480,6 +19710,22 @@
    "dispute": false
   },
   {
+   "id": "EVT.INV.KAKATIYA_FALL",
+   "title": "Warangal falls to the Tughlaqs",
+   "class": "INVASION",
+   "magnitude": "W",
+   "year": 1323,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.ANDHRA",
+   "dispute": false,
+   "evidence": "The Delhi court histories, and the abrupt end of the Kakatiya inscription series.",
+   "becomes": "The Kakatiya nayaka officers scatter south and become the Nayaka lineages of Madurai, Tanjore and Gingee — the administrative class survives the state by four hundred years."
+  },
+  {
    "id": "EVT.1327.DAULATABAD",
    "title": "Daulatabad",
    "year": 1327,
@@ -19569,6 +19815,27 @@
    "dispute": false
   },
   {
+   "id": "EVT.INV.MADURAI_SULTANATE",
+   "title": "The Madurai Sultanate holds the far south for forty years",
+   "class": "INVASION",
+   "magnitude": "M",
+   "year": 1335,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "evidence": "Ibn Battuta, who was there and married into the ruling family, and the sultanate's coinage.",
+   "becomes": "Vijayanagara's southern expansion is organised to remove it, and the Nayaka system of military governorship is built to hold what is taken.",
+   "window": [
+    1305,
+    1365
+   ],
+   "year_end": 1378
+  },
+  {
    "id": "EVT.1336.VIJAYANAGARA_FOUNDED",
    "title": "Vijayanagara founded",
    "year": 1336,
@@ -19654,6 +19921,26 @@
    "scope": "subcontinental",
    "region": null,
    "dispute": false
+  },
+  {
+   "id": "EVT.INV.BAHMANI_SPLIT",
+   "title": "The Bahmani secession divides the Deccan for two centuries",
+   "class": "INVASION",
+   "magnitude": "M",
+   "year": 1347,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false,
+   "evidence": "The Bahmani coinage and court chronicles, and the Tughlaq record of the revolt.",
+   "becomes": "Five successor sultanates, a Persianate court culture at Bijapur and Golconda, and Dakhni — a literary language before Urdu had a name.",
+   "window": [
+    1317,
+    1377
+   ]
   },
   {
    "id": "EVT.1350.PAPER_DISPLACES_PALM_LEAF_RECOPYING_COSTS_CO",
@@ -19808,21 +20095,23 @@
    "evidence": "Persian and Marathi chronicle accounts of a famine lasting more than a decade. The duration is probably compressed memory of several."
   },
   {
-   "id": "EVT.1398.TIMUR_SACKS_DELHI",
-   "title": "Timur sacks Delhi",
-   "year": 1398,
-   "year_end": null,
-   "era": "ERA.DELHI_VIJAYANAGARA",
+   "id": "EVT.INV.TIMUR",
+   "title": "Timur sacks Delhi and leaves within a fortnight",
    "class": "INVASION",
-   "magnitude": "M",
-   "certainty": 0.95,
-   "trigger": "dated",
+   "magnitude": "W",
+   "year": 1398,
+   "era": "ERA.DELHI_VIJAYANAGARA",
    "provenance": "SOURCED",
-   "evidence": "Inscriptions, coinage, and chronicles — usually the victor's.",
+   "certainty": 0.9,
+   "trigger": "dated",
    "scope": "subcontinental",
    "region": null,
    "dispute": false,
-   "becomes": "nothing"
+   "evidence": "The Zafarnama, and Timur's own memoir, which counts the dead as an achievement.",
+   "becomes": "The Sultanate's authority breaks and the regional sultanates — Jaunpur, Malwa, Gujarat, Bengal — become independent centres of patronage in their own languages.",
+   "threads": [
+    "THR.THE_NORTHWEST_GATE"
+   ]
   },
   {
    "id": "EVT.1400.INFINITE_SERIES_FOR_SINE_AND_COSINE_WITH_PRO",
@@ -20306,6 +20595,22 @@
    "evidence": "Teak in Indian Ocean shipbuilding and in Portuguese and Dutch procurement records."
   },
   {
+   "id": "EVT.INV.CALICUT_BOMBARD",
+   "title": "Cabral bombards Calicut and the licensed sea begins",
+   "class": "INVASION",
+   "magnitude": "M",
+   "year": 1500,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.KERALA",
+   "dispute": false,
+   "evidence": "The Portuguese accounts, and the Zamorin's alliance with the Egyptian and Gujarati fleets that followed.",
+   "becomes": "Diu in 1509, and after it three centuries in which Indian shipping sails at somebody else's permission."
+  },
+  {
    "id": "EVT.REF.KABIR_PANTH",
    "title": "Kabir refuses both temple and mosque, and both claim him after",
    "class": "REFORM",
@@ -20381,6 +20686,22 @@
     1545
    ],
    "corpus": "none"
+  },
+  {
+   "id": "EVT.INV.PORTUGUESE_GOA",
+   "title": "The Portuguese take Goa and hold it for four and a half centuries",
+   "class": "INVASION",
+   "magnitude": "M",
+   "year": 1510,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.KERALA",
+   "dispute": false,
+   "evidence": "The Portuguese chancery records, and the Goa Inquisition's own archive.",
+   "becomes": "The cartaz pass system, which made the Indian Ocean a licensed sea for the first time; the Konkani printing press; and an Inquisition that burned Konkani and Marathi manuscripts as well as people."
   },
   {
    "id": "EVT.REF.CHAITANYA",
@@ -20471,21 +20792,23 @@
    "evidence": "The janamsakhis, the Goindval pothis, and the succession from Nanak."
   },
   {
-   "id": "EVT.1526.FIRST_PANIPAT",
-   "title": "First Panipat",
-   "year": 1526,
-   "year_end": null,
-   "era": "ERA.EARLY_MODERN",
+   "id": "EVT.INV.PANIPAT_1526",
+   "title": "First Panipat: field artillery decides a battle in India",
    "class": "INVASION",
-   "magnitude": "M",
+   "magnitude": "W",
+   "year": 1526,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
    "certainty": 0.95,
    "trigger": "dated",
-   "provenance": "SOURCED",
-   "evidence": "Inscriptions, coinage, and chronicles — usually the victor's.",
    "scope": "subcontinental",
    "region": null,
    "dispute": false,
-   "becomes": "nothing"
+   "evidence": "The Baburnama, which describes the tulughma and the carts chained together, and the Lodi coinage that stops.",
+   "becomes": "The Mughal empire, the Ain-i-Akbari's revenue survey, a workshop tradition in painting, and the argument about sovereignty that Akbar's court conducted in public.",
+   "threads": [
+    "THR.THE_NORTHWEST_GATE"
+   ]
   },
   {
    "id": "EVT.WRK.BABURNAMA",
@@ -20558,41 +20881,20 @@
    "dispute": false
   },
   {
-   "id": "EVT.1565.TALIKOTA",
-   "title": "Talikota",
-   "year": 1565,
-   "year_end": null,
-   "era": "ERA.EARLY_MODERN",
-   "class": "REFORM",
-   "magnitude": "M",
-   "certainty": 0.95,
-   "trigger": "dated",
-   "provenance": "SOURCED",
-   "evidence": "Texts, and the institutions that outlived the argument.",
-   "scope": "subcontinental",
-   "region": null,
-   "dispute": false
-  },
-  {
-   "id": "EVT.CAT.VIJAYANAGARA_SACK",
-   "title": "Vijayanagara is sacked after Talikota",
-   "class": "CATASTROPHE",
+   "id": "EVT.INV.TALIKOTA",
+   "title": "Talikota, and Vijayanagara is emptied",
+   "class": "INVASION",
    "magnitude": "W",
    "year": 1565,
    "era": "ERA.EARLY_MODERN",
    "provenance": "SOURCED",
-   "certainty": 0.85,
-   "trigger": "window",
-   "scope": "subcontinental",
-   "region": null,
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
    "dispute": false,
-   "evidence": "The ruins themselves, which show systematic destruction, and contemporary Persian and Portuguese accounts.",
-   "window": [
-    1565,
-    1567
-   ],
-   "corpus": "destroy",
-   "severity": 0.14
+   "evidence": "Ferishta and the Portuguese accounts, and the burnt layer across the city's excavated core.",
+   "becomes": "The Deccan sultanates inherit the south, and the Nayaka successor states inherit Vijayanagara's temple and irrigation administration and run it for another two centuries."
   },
   {
    "id": "EVT.SIT.FATEHPUR",
@@ -20717,6 +21019,27 @@
    "evidence": "Mughal revenue records assigning forested parganas to zamindars."
   },
   {
+   "id": "EVT.INV.BENGAL_ARAKAN",
+   "title": "Arakanese and Portuguese raiders depopulate the Bengal delta",
+   "class": "INVASION",
+   "magnitude": "R",
+   "year": 1600,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.BENGAL",
+   "dispute": false,
+   "evidence": "The Mughal and Portuguese accounts of the Sandwip and Chittagong raids, and the Bengali literature that records them.",
+   "becomes": "The Mughal conquest of Chittagong in 1666, and a frontier of forest clearance and settlement that reshaped eastern Bengal.",
+   "window": [
+    1570,
+    1630
+   ],
+   "year_end": 1666
+  },
+  {
    "id": "EVT.SIT.DHOLAVIRA_REOCC",
    "title": "Dholavira is reoccupied briefly, and left again",
    "class": "SITE",
@@ -20807,6 +21130,27 @@
    "year_end": 1708,
    "work": "WRK.GURU_GRANTH",
    "note": "It includes Hindu and Muslim voices alongside the Gurus'. The canon is deliberately not one community's."
+  },
+  {
+   "id": "EVT.INV.AHOM_MUGHAL",
+   "title": "The Ahoms defeat seventeen Mughal invasions and record every one",
+   "class": "INVASION",
+   "magnitude": "W",
+   "year": 1615,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ASSAM",
+   "dispute": false,
+   "evidence": "The buranjis, which are state chronicles kept as an administrative duty, and the Mughal accounts that agree about the outcomes.",
+   "becomes": "Assam is never annexed. The paik labour system that raised the armies survives, and so does the chronicle tradition — history as state practice, which no other Indian polity institutionalised.",
+   "window": [
+    1585,
+    1645
+   ],
+   "year_end": 1682
   },
   {
    "id": "EVT.CLI.GUJARAT_FAMINE_1630",
@@ -20936,6 +21280,38 @@
    "evidence": "The Maratha hill forts and the local communities who garrisoned and supplied them, named in Marathi records as groups rather than individuals."
   },
   {
+   "id": "EVT.INV.SHIVAJI_SURAT",
+   "title": "Shivaji sacks Surat and shows the empire is porous",
+   "class": "INVASION",
+   "magnitude": "M",
+   "year": 1664,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.GUJARAT",
+   "dispute": false,
+   "evidence": "The English and Dutch factory records, which describe the raid from inside the city.",
+   "becomes": "A revenue system built on chauth and sardeshmukhi — a claim on somebody else's tax rather than a conquest of their land, which is far cheaper to enforce and much harder to remove."
+  },
+  {
+   "id": "EVT.INV.SARAIGHAT",
+   "title": "Lachit Barphukan wins Saraighat on the river",
+   "class": "INVASION",
+   "magnitude": "W",
+   "year": 1671,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.ASSAM",
+   "dispute": false,
+   "evidence": "The buranjis and the Mughal accounts of the fleet action at the Brahmaputra narrows.",
+   "becomes": "The Mughal frontier stops at the Manas. Assam stays outside the empire until the Company arrives a century and a half later."
+  },
+  {
    "id": "EVT.1674.SHIVAJI_CROWNED",
    "title": "Shivaji crowned",
    "year": 1674,
@@ -20950,6 +21326,23 @@
    "scope": "subcontinental",
    "region": null,
    "dispute": false
+  },
+  {
+   "id": "EVT.INV.MUGHAL_DECCAN",
+   "title": "Aurangzeb spends twenty-six years in the Deccan",
+   "class": "INVASION",
+   "magnitude": "W",
+   "year": 1681,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false,
+   "evidence": "The Mughal court histories, the campaign correspondence, and the collapse of the jagir assignment system it produced.",
+   "becomes": "The Deccan is annexed and the empire is bankrupted doing it. The Marathas the campaign was meant to destroy hold the initiative within a decade of its end.",
+   "year_end": 1707
   },
   {
    "id": "EVT.1699.THE_KHALSA",
@@ -21063,38 +21456,111 @@
    "dispute_scope": "interpretation"
   },
   {
-   "id": "EVT.1739.NADIR_SHAH",
-   "title": "Nadir Shah",
-   "year": 1739,
-   "year_end": null,
-   "era": "ERA.EARLY_MODERN",
+   "id": "EVT.INV.NADIR_SHAH",
+   "title": "Nadir Shah takes Delhi and the treasury with it",
    "class": "INVASION",
-   "magnitude": "M",
+   "magnitude": "W",
+   "year": 1739,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
    "certainty": 0.95,
    "trigger": "dated",
-   "provenance": "SOURCED",
-   "evidence": "Inscriptions, coinage, and chronicles — usually the victor's.",
    "scope": "subcontinental",
    "region": null,
    "dispute": false,
-   "becomes": "nothing"
+   "evidence": "The Persian and Mughal court accounts, and the disappearance of the Peacock Throne and the Koh-i-Noor from the Indian record.",
+   "becomes": "Mughal solvency ends. The provinces stop remitting, the Marathas, the Nizam and Awadh become the real powers, and the Company acquires an opening it did not have to fight for.",
+   "threads": [
+    "THR.THE_NORTHWEST_GATE"
+   ]
   },
   {
-   "id": "EVT.1761.THIRD_PANIPAT",
-   "title": "Third Panipat",
-   "year": 1761,
-   "year_end": null,
-   "era": "ERA.COLONIAL",
+   "id": "EVT.INV.CARNATIC_WARS",
+   "title": "The Carnatic wars are fought by Indian armies under European officers",
    "class": "INVASION",
    "magnitude": "M",
+   "year": 1746,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "evidence": "The Company and Compagnie records, and the subsidiary treaties with the Nizam and the Nawab of Arcot.",
+   "becomes": "The sepoy army and the subsidiary alliance: a ruler pays for troops he does not command, and loses his revenue and then his state to the arrangement.",
+   "year_end": 1763
+  },
+  {
+   "id": "EVT.INV.PLASSEY",
+   "title": "Plassey, and then the Diwani",
+   "class": "INVASION",
+   "magnitude": "W",
+   "year": 1757,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
    "certainty": 0.95,
    "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.BENGAL",
+   "dispute": false,
+   "evidence": "The Company's own correspondence, the treaty with Mir Jafar, and the 1765 grant of the diwani of Bengal.",
+   "becomes": "A trading company acquires the revenue of a province and stops having to ship bullion to buy Indian goods. The Drain opens, and it is an accounting fact before it is a policy."
+  },
+  {
+   "id": "EVT.INV.PANIPAT_1761",
+   "title": "Third Panipat",
+   "class": "INVASION",
+   "magnitude": "W",
+   "year": 1761,
+   "era": "ERA.COLONIAL",
    "provenance": "SOURCED",
-   "evidence": "Inscriptions, coinage, and chronicles — usually the victor's.",
+   "certainty": 0.95,
+   "trigger": "dated",
    "scope": "subcontinental",
    "region": null,
    "dispute": false,
-   "becomes": "nothing"
+   "evidence": "The Maratha and Afghan accounts, and the correspondence of the Peshwa's camp before and after.",
+   "becomes": "Maratha expansion north stops. Neither victor holds Delhi. The vacuum is filled four years later at Buxar, by a trading company.",
+   "threads": [
+    "THR.THE_NORTHWEST_GATE"
+   ]
+  },
+  {
+   "id": "EVT.INV.BUXAR",
+   "title": "Buxar settles what Plassey only started",
+   "class": "INVASION",
+   "magnitude": "W",
+   "year": 1764,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The battle accounts, and the Treaty of Allahabad that followed a year later.",
+   "becomes": "The Mughal emperor grants the diwani of Bengal, Bihar and Orissa to a company. Sovereignty and revenue separate, and the Company holds the half that pays.",
+   "threads": [
+    "THR.THE_NORTHWEST_GATE"
+   ]
+  },
+  {
+   "id": "EVT.INV.MYSORE_WARS",
+   "title": "The Mysore wars: four of them, and the last one ends the state",
+   "class": "INVASION",
+   "magnitude": "M",
+   "year": 1767,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "evidence": "The Company records, the Mysore court correspondence, and the rocket artillery the British took back to Woolwich.",
+   "becomes": "Congreve rockets, developed at Woolwich from Mysorean examples; and, in India, the annexation model that the Company then applied everywhere.",
+   "year_end": 1799
   },
   {
    "id": "EVT.1770.THE_GREAT_BENGAL_FAMINE",
@@ -21111,6 +21577,23 @@
    "scope": "subcontinental",
    "region": null,
    "dispute": false
+  },
+  {
+   "id": "EVT.INV.MARATHA_WARS",
+   "title": "The Anglo-Maratha wars end the last power that could have won",
+   "class": "INVASION",
+   "magnitude": "M",
+   "year": 1775,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false,
+   "evidence": "The Company and Peshwa records, and the treaties of Salbai, Bassein and Poona.",
+   "becomes": "Paramountcy: after 1818 no Indian state can make war or foreign policy, and the map stops being a map of states and becomes a map of dependencies.",
+   "year_end": 1818
   },
   {
    "id": "EVT.1784.COLONIAL_MANUSCRIPT_REMOVAL_DISPLACEMENT_NOT",
@@ -21364,6 +21847,23 @@
    "corpus": "none"
   },
   {
+   "id": "EVT.INV.BURMESE_WARS",
+   "title": "The Burmese wars and the annexation of Assam and Arakan",
+   "class": "INVASION",
+   "magnitude": "R",
+   "year": 1824,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.ASSAM",
+   "dispute": false,
+   "evidence": "The Treaty of Yandabo, and the Company's revenue settlement of Assam that followed it.",
+   "becomes": "Assam's tea plantations, the indentured labour brought in to work them, and a demographic change that is still politically live.",
+   "year_end": 1826
+  },
+  {
    "id": "EVT.REF.BRAHMO",
    "title": "The Brahmo Samaj argues for reform from inside the texts",
    "class": "REFORM",
@@ -21484,6 +21984,26 @@
    "evidence": "Company records of the destruction of the port, which was never rebuilt to its former size."
   },
   {
+   "id": "EVT.INV.SIKH_WARS",
+   "title": "The Anglo-Sikh wars take the Punjab, the last independent state",
+   "class": "INVASION",
+   "magnitude": "M",
+   "year": 1845,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The campaign records, the Treaty of Lahore, and the annexation proclamation of 1849.",
+   "becomes": "The subcontinent is under one authority for the first time since Aurangzeb. Eight years later it rebels.",
+   "year_end": 1849,
+   "threads": [
+    "THR.THE_NORTHWEST_GATE"
+   ]
+  },
+  {
    "id": "EVT.REF.PHULE",
    "title": "Jyotirao and Savitribai Phule open a school for girls and for the excluded",
    "class": "REFORM",
@@ -21576,6 +22096,23 @@
    "threads": [
     "THR.THE_CASTE_QUESTION"
    ]
+  },
+  {
+   "id": "EVT.INV.REBELLION_1857",
+   "title": "The Rebellion, and the Crown takes over from the Company",
+   "class": "INVASION",
+   "magnitude": "W",
+   "year": 1857,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The military and civil records of both sides, the trial of Bahadur Shah, and the Government of India Act 1858.",
+   "becomes": "Direct Crown rule, the end of annexation by doctrine of lapse, a permanent garrison ratio, and a colonial state that from then on governs by census, survey and category.",
+   "year_end": 1858
   },
   {
    "id": "EVT.FRT.RAILWAY_SLEEPERS",
@@ -22363,38 +22900,38 @@
   }
  ],
  "census": {
-  "total": 1138,
-  "subcontinental": 719,
-  "regional": 419,
-  "pre_1300": 973,
+  "total": 1163,
+  "subcontinental": 721,
+  "regional": 442,
+  "pre_1300": 981,
   "by_magnitude": {
-   "W": 593,
-   "M": 473,
-   "R": 68,
+   "W": 600,
+   "M": 487,
+   "R": 72,
    "m": 4
   },
   "by_class": {
    "CLIMATE": 49,
-   "FRONTIER": 62,
+   "FRONTIER": 61,
    "TRANSITION": 118,
    "EPOCH": 19,
    "STRUCTURE": 27,
    "WORK": 201,
    "AGRICULTURE": 24,
    "TRADE": 60,
-   "REFORM": 132,
+   "REFORM": 130,
    "SITE": 190,
-   "CATASTROPHE": 74,
-   "INVASION": 41,
+   "CATASTROPHE": 73,
+   "INVASION": 70,
    "FOUNDATION": 112,
    "—": 24,
    "COLONIAL": 5
   },
   "by_trigger": {
-   "window": 937,
-   "latent": 37,
-   "dated": 164
+   "window": 957,
+   "latent": 36,
+   "dated": 170
   },
-  "disputed": 57
+  "disputed": 58
  }
 }

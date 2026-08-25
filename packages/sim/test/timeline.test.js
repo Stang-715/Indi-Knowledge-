@@ -32,6 +32,16 @@ test('no event below 0.9 certainty uses a dated trigger', () => {
   assert.deepEqual(bad.map(e => e.id), []);
 });
 
+test('most invasions say what they actually became', () => {
+  // The field being present was never the point. Every one of the forty-one
+  // invasions the document carried had it set to the string "nothing", which
+  // is the generator's placeholder and reads, on a card, as a claim.
+  const inv = TL.events.filter(e => e.class === 'INVASION');
+  const real = inv.filter(e => e.becomes && e.becomes !== 'nothing' && e.becomes.length > 40);
+  assert.ok(real.length / inv.length > 0.5,
+    `only ${real.length} of ${inv.length} invasions say what followed`);
+});
+
 test('every INVASION carries a becomes field', () => {
   const bad = TL.events.filter(e => e.class === 'INVASION' && typeof e.becomes !== 'string');
   assert.deepEqual(bad.map(e => e.id), []);
