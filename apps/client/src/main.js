@@ -35,6 +35,7 @@ import { LAYERS, LAYER_INFO, yieldTo } from '../../../packages/sim/src/sovereign
 import { save as mkSave, load as loadSave, reconcile, toURLFragment, fromURLFragment,
          replayStops, saveSize } from '../../../packages/sim/src/save.js';
 import { Sound } from '../../../packages/ui/src/sound.js';
+import { renderCardPlate } from '../../../packages/ui/src/cardplate.js';
 import { CHOLA, CHAPTERS, chapterAt, reckoning, openingState }
   from '../../../packages/sim/src/campaign.js';
 
@@ -133,6 +134,30 @@ function openCard(ev) {
   $('drawer-inner').innerHTML = renderCard(m);
   $('drawer').classList.add('on');
 }
+
+/** "Keep this card": render the 1200x1600 plate and present it to save.
+ *  Script-initiated downloads are inert in the artifact sandbox, so the PNG
+ *  opens in a modal and the player saves it natively. */
+document.addEventListener('click', async (e) => {
+  const b = e.target.closest?.('[data-keep]');
+  if (!b) return;
+  const ev = timeline.events.find(x => x.id === b.dataset.keep);
+  if (!ev) return;
+  const m = cardModel(withChapter(ev), { era: eraOf(ev.year), authored: authoredFor(CARDS, ev),
+                            threads: threadsFor(THREAD_IDX, ev) });
+  const img = new Image();
+  await new Promise((res) => { img.onload = res; img.onerror = res;
+    img.src = spriteURL(m.icon, 256); });
+  const cv = renderCardPlate(m, { spriteImg: img.naturalWidth ? img : null });
+  const overlay = document.createElement('div');
+  overlay.className = 'plate-overlay';
+  overlay.innerHTML = `<div class="plate-box">
+    <img alt="${m.title}" src="${cv.toDataURL('image/png')}">
+    <p class="tiny">Right-click or long-press the card to save it.</p>
+  </div>`;
+  overlay.addEventListener('click', () => overlay.remove());
+  document.body.append(overlay);
+});
 
 /** Open the year page — composed, never authored. */
 /** Thread navigation: a click on a prev/next beat opens that beat's card. */

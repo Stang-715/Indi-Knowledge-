@@ -357,3 +357,12 @@ body {
 .indus-warn::after { background: var(--land-arid); }
 .indus-dry::after  { background: var(--warn); }
 .per.gone { opacity: .55; }
+
+/* --- Keep this card (phase 42) -------------------------------------------- */
+.keep-card { display: block; margin: 12px auto 4px; }
+.plate-overlay { position: fixed; inset: 0; z-index: 60;
+  background: rgba(42,33,24,.55); display: flex; align-items: center;
+  justify-content: center; cursor: pointer; }
+.plate-box { max-height: 92vh; max-width: 92vw; text-align: center; }
+.plate-box img { max-height: 84vh; max-width: 92vw; box-shadow: var(--shadow-lift); }
+.plate-box .tiny { color: #E8DCC2; margin-top: 8px; }
