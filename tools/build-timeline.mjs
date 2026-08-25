@@ -64,6 +64,10 @@ const EVIDENCE = {
   FRONTIER:    'Faunal remains, settlement pattern, and the silence of the settled record.',
   EPOCH:       'A convention. Eras are drawn by historians, not lived by anyone.',
   COLONIAL:    'Company and government records, which are voluminous and interested.',
+  // The document leaves regnal and dynastic events unclassed. They are not
+  // unevidenced — they are the best-evidenced events in the ancient record,
+  // because a reign is what inscriptions are dated by.
+  '\u2014':    'Inscriptions dated in regnal years, coinage, and the dynastic lists that later chronicles compile from both.',
 };
 
 const CLASSES = new Set(['SITE','WORK','REFORM','FOUNDATION','TRANSITION','INVASION',

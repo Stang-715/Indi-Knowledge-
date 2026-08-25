@@ -1,0 +1,981 @@
+{
+ "phase": 24,
+ "name": "The treeline",
+ "note": "FRONTIER events. For most of this campaign the frontier is not a border, it is the treeline. These are the hardest events in the project to write honestly: the settled record calls these peoples barbarians because the settled record was written by the people clearing their forest. Where the record is silent the entry says so rather than inventing. NOT specialist-reviewed, and phase 33 exists for this file above all.",
+ "events": [
+  {
+   "id": "EVT.FRT.VINDHYA_PERSIST",
+   "title": "Foraging bands in the Vindhyas outlast the first farmers",
+   "class": "FRONTIER",
+   "magnitude": "W",
+   "year": -5500,
+   "year_end": -1000,
+   "era": "ERA.EARLY_NEOLITHIC",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "window": [
+    -5800,
+    -5200
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Microlithic assemblages continuing in the Vindhyan rock shelters alongside Neolithic farming villages on the plains.",
+   "note": "Four thousand years of persistence is not a failure to develop. It is a different answer to the same question."
+  },
+  {
+   "id": "EVT.FRT.BAGOR_SHEEP",
+   "title": "Bagor hunters take domestic sheep without taking up farming",
+   "class": "FRONTIER",
+   "magnitude": "M",
+   "year": -4500,
+   "era": "ERA.LATE_NEOLITHIC",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "window": [
+    -4700,
+    -4300
+   ],
+   "scope": "regional",
+   "region": "RGN.RAJASTHAN",
+   "dispute": false,
+   "evidence": "Domestic sheep and goat bones in an otherwise Mesolithic assemblage at Bagor."
+  },
+  {
+   "id": "EVT.FRT.EXCHANGE_FOREST",
+   "title": "Forest produce enters the settled exchange",
+   "class": "FRONTIER",
+   "magnitude": "M",
+   "year": -3000,
+   "era": "ERA.EARLY_HARAPPAN",
+   "provenance": "DERIVED",
+   "certainty": 0.5,
+   "trigger": "window",
+   "window": [
+    -3400,
+    -2600
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Honey, lac, resin and hardwoods appear in settled contexts far from where they grow. Who carried them is not recorded."
+  },
+  {
+   "id": "EVT.FRT.BHIL_ARAVALLI",
+   "title": "The Aravalli hill communities take shape",
+   "class": "FRONTIER",
+   "magnitude": "M",
+   "year": -2000,
+   "era": "ERA.INDUS",
+   "provenance": "DERIVED",
+   "certainty": 0.4,
+   "trigger": "window",
+   "window": [
+    -2400,
+    -1600
+   ],
+   "scope": "regional",
+   "region": "RGN.RAJASTHAN",
+   "dispute": false,
+   "evidence": "Continuity of hill occupation alongside the Ahar-Banas villages. The later Bhil identity cannot be projected back this far and this entry does not."
+  },
+  {
+   "id": "EVT.FRT.KHASI_MONOLITHS",
+   "title": "The Khasi hills raise monoliths for the dead",
+   "class": "FRONTIER",
+   "magnitude": "M",
+   "year": -1000,
+   "era": "ERA.EARLY_VEDIC",
+   "provenance": "SOURCED",
+   "certainty": 0.55,
+   "trigger": "window",
+   "window": [
+    -1400,
+    -600
+   ],
+   "scope": "regional",
+   "region": "RGN.ASSAM",
+   "dispute": false,
+   "evidence": "The standing stone groups themselves, which are still raised within living memory, making the tradition one of the longest continuously practised anywhere."
+  },
+  {
+   "id": "EVT.FRT.MATRILINEAL",
+   "title": "Matrilineal inheritance is established in the Khasi hills",
+   "class": "FRONTIER",
+   "magnitude": "M",
+   "year": -500,
+   "era": "ERA.SECOND_URBAN",
+   "provenance": "DERIVED",
+   "certainty": 0.3,
+   "trigger": "window",
+   "window": [
+    -1000,
+    500
+   ],
+   "scope": "regional",
+   "region": "RGN.ASSAM",
+   "dispute": false,
+   "evidence": "Attested historically and ethnographically; its origin is not datable and the window here is deliberately wide."
+  },
+  {
+   "id": "EVT.FRT.NAGA_TERRACES",
+   "title": "Terraced wet rice is cut into the Naga hills",
+   "class": "FRONTIER",
+   "magnitude": "W",
+   "year": -500,
+   "era": "ERA.SECOND_URBAN",
+   "provenance": "DERIVED",
+   "certainty": 0.4,
+   "trigger": "window",
+   "window": [
+    -800,
+    -200
+   ],
+   "scope": "regional",
+   "region": "RGN.ASSAM",
+   "dispute": false,
+   "evidence": "The terraces themselves, which are difficult to date directly, and the agricultural vocabulary.",
+   "note": "Terracing steep ground for irrigated rice is a harder engineering problem than anything on the plains, and the plains record does not mention it."
+  },
+  {
+   "id": "EVT.FRT.NAGA_REPUBLICS",
+   "title": "The Naga village republics",
+   "class": "FRONTIER",
+   "magnitude": "M",
+   "year": -200,
+   "era": "ERA.MAURYAN",
+   "provenance": "DERIVED",
+   "certainty": 0.3,
+   "trigger": "window",
+   "window": [
+    -500,
+    500
+   ],
+   "scope": "regional",
+   "region": "RGN.ASSAM",
+   "dispute": false,
+   "evidence": "Historical and ethnographic attestation of independent village governance. Undated, and included because its absence from the record is itself the point."
+  },
+  {
+   "id": "EVT.FRT.IRON_CLEARANCE_1200",
+   "title": "The iron axe opens the eastern forest",
+   "class": "FRONTIER",
+   "magnitude": "W",
+   "year": -1200,
+   "era": "ERA.EARLY_VEDIC",
+   "provenance": "DERIVED",
+   "certainty": 0.6,
+   "trigger": "window",
+   "window": [
+    -1300,
+    -1000
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": true,
+   "dispute_scope": "causation",
+   "evidence": "Iron tools in the Gangetic sequence with pollen showing forest retreat.",
+   "dispute_text": "Whether iron enabled the clearance or merely accompanied a clearance already under way for other reasons is argued. Fire and the plough were both available without it."
+  },
+  {
+   "id": "EVT.FRT.CLEARANCE_LINE_900",
+   "title": "The clearance line reaches the middle Ganga",
+   "class": "FRONTIER",
+   "magnitude": "M",
+   "year": -900,
+   "era": "ERA.LATE_VEDIC",
+   "provenance": "DERIVED",
+   "certainty": 0.55,
+   "trigger": "window",
+   "window": [
+    -1000,
+    -800
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Pollen cores showing forest to cereal transition, and the eastward march of Painted Grey Ware settlement."
+  },
+  {
+   "id": "EVT.FRT.VIDEGHA_FIRE",
+   "title": "Videgha Mathava carries the fire east, and the story is about clearing",
+   "class": "FRONTIER",
+   "magnitude": "W",
+   "year": -850,
+   "era": "ERA.LATE_VEDIC",
+   "provenance": "SOURCED",
+   "certainty": 0.5,
+   "trigger": "window",
+   "window": [
+    -900,
+    -800
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Shatapatha Brahmana account, which is myth and is also the settled tradition's own memory of burning its way east."
+  },
+  {
+   "id": "EVT.FRT.ATAVIKA",
+   "title": "The forest peoples enter the record as a category to be managed",
+   "class": "FRONTIER",
+   "magnitude": "W",
+   "year": -300,
+   "era": "ERA.MAURYAN",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "window": [
+    -330,
+    -280
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Arthashastra's treatment of atavika, forest peoples, as a standing administrative and military problem — the first time they are written about at all, and it is by the people clearing them."
+  },
+  {
+   "id": "EVT.FRT.ASHOKA_FOREST",
+   "title": "Ashoka addresses the forest peoples directly in an edict",
+   "class": "FRONTIER",
+   "magnitude": "W",
+   "year": -257,
+   "era": "ERA.MAURYAN",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "window": [
+    -260,
+    -250
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The thirteenth Major Rock Edict, which warns the forest peoples while also expressing regret. It is the earliest surviving statement by a state about them.",
+   "note": "The same edict that publishes remorse over Kalinga also tells the forest dwellers what will happen if they do not comply."
+  },
+  {
+   "id": "EVT.FRT.MAURYAN_ELEPHANT",
+   "title": "The elephant forests are put under state protection",
+   "class": "FRONTIER",
+   "magnitude": "M",
+   "year": -300,
+   "era": "ERA.MAURYAN",
+   "provenance": "SOURCED",
+   "certainty": 0.65,
+   "trigger": "window",
+   "window": [
+    -320,
+    -270
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Arthashastra's forest superintendent and elephant-forest provisions.",
+   "note": "The first conservation law in the record exists to keep war elephants, and it puts the people living in those forests under a new authority."
+  },
+  {
+   "id": "EVT.FRT.SATAVAHANA_HILLS",
+   "title": "The Deccan hill peoples and the ghat trade routes",
+   "class": "FRONTIER",
+   "magnitude": "M",
+   "year": 100,
+   "era": "ERA.CLASSICAL",
+   "provenance": "DERIVED",
+   "certainty": 0.45,
+   "trigger": "window",
+   "window": [
+    -50,
+    250
+   ],
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false,
+   "evidence": "The passes carried the ocean trade inland and someone controlled them; the cave inscriptions record merchants and monks, not the hill communities they passed through."
+  },
+  {
+   "id": "EVT.FRT.SANGAM_KURINJI",
+   "title": "The Tamil poets give the hills their own landscape and mode",
+   "class": "FRONTIER",
+   "magnitude": "M",
+   "year": 200,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "window": [
+    100,
+    300
+   ],
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "evidence": "The tinai scheme, in which kurinji, the hill country, is one of five ecologies each with its own poetic mode.",
+   "note": "The only ancient Indian literature that treats the hills as a place with its own life rather than as a margin."
+  },
+  {
+   "id": "EVT.FRT.KOLLI_HILLS",
+   "title": "Hill chieftains appear in the Tamil praise poems",
+   "class": "FRONTIER",
+   "magnitude": "R",
+   "year": 200,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.55,
+   "trigger": "window",
+   "window": [
+    100,
+    300
+   ],
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "evidence": "The velir chieftains of the Sangam corpus, praised as patrons in their own right rather than as subjects."
+  },
+  {
+   "id": "EVT.FRT.GOND_EMERGE",
+   "title": "The Gond of the central highlands",
+   "class": "FRONTIER",
+   "magnitude": "M",
+   "year": 300,
+   "era": "ERA.CLASSICAL",
+   "provenance": "DERIVED",
+   "certainty": 0.35,
+   "trigger": "window",
+   "window": [
+    0,
+    600
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Later inscriptions and chronicles refer back to established polities; the earlier centuries are not documented."
+  },
+  {
+   "id": "EVT.FRT.SHABARA",
+   "title": "Sanskrit literature settles on a vocabulary for forest peoples",
+   "class": "FRONTIER",
+   "magnitude": "M",
+   "year": 400,
+   "era": "ERA.GUPTA",
+   "provenance": "SOURCED",
+   "certainty": 0.6,
+   "trigger": "window",
+   "window": [
+    200,
+    600
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Shabara, pulinda, nishada and kirata recur across the epics, the Puranas and the plays.",
+   "note": "A vocabulary is not neutral. These words carry a settled society's judgement of people it was displacing, and the game should show that rather than adopt it."
+  },
+  {
+   "id": "EVT.FRT.LAND_GRANT_FOREST",
+   "title": "Land grants begin to alienate forest along with field",
+   "class": "FRONTIER",
+   "magnitude": "W",
+   "year": 450,
+   "era": "ERA.GUPTA",
+   "provenance": "SOURCED",
+   "certainty": 0.65,
+   "trigger": "window",
+   "window": [
+    350,
+    600
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Copper-plate grants that convey waste and forest as well as cultivated land, sometimes with the people on it.",
+   "note": "The clearance stops being something farmers do and becomes something a charter authorises."
+  },
+  {
+   "id": "EVT.FRT.BRAHMADEYA_FRONTIER",
+   "title": "Brahmadeya settlements are planted at the forest edge",
+   "class": "FRONTIER",
+   "magnitude": "M",
+   "year": 600,
+   "era": "ERA.GUPTA",
+   "provenance": "SOURCED",
+   "certainty": 0.6,
+   "trigger": "window",
+   "window": [
+    500,
+    800
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The geography of the grants themselves, which cluster on the margin rather than in the settled core."
+  },
+  {
+   "id": "EVT.FRT.SANTHAL_UPLANDS",
+   "title": "The eastern uplands communities",
+   "class": "FRONTIER",
+   "magnitude": "M",
+   "year": 600,
+   "era": "ERA.GUPTA",
+   "provenance": "DERIVED",
+   "certainty": 0.3,
+   "trigger": "window",
+   "window": [
+    200,
+    1000
+   ],
+   "scope": "regional",
+   "region": "RGN.BENGAL",
+   "dispute": false,
+   "evidence": "Inferred from later attestation and from the settled record's account of a frontier it did not cross. The date is a guess with a wide window and is labelled as one."
+  },
+  {
+   "id": "EVT.FRT.ORAL_EPICS",
+   "title": "Forest peoples carry epic cycles the corpus never records",
+   "class": "FRONTIER",
+   "magnitude": "W",
+   "year": 700,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "provenance": "ABSENT",
+   "certainty": 0.2,
+   "trigger": "latent",
+   "window": [
+    -2000,
+    1800
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "None contemporary. The cycles were collected in the nineteenth and twentieth centuries and are demonstrably old, and nothing in the ancient record mentions them.",
+   "note": "An ABSENT event. The game marks the gap rather than filling it, because a corpus that only counts what was written down tells the same lie the record does."
+  },
+  {
+   "id": "EVT.FRT.TODA_DAIRY",
+   "title": "The Nilgiri plateau dairy practice",
+   "class": "FRONTIER",
+   "magnitude": "R",
+   "year": 800,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "provenance": "DERIVED",
+   "certainty": 0.25,
+   "trigger": "window",
+   "window": [
+    0,
+    1500
+   ],
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "evidence": "Ethnographically documented and undatable. A ritual dairy system found nowhere else, and the plains record does not know it exists."
+  },
+  {
+   "id": "EVT.FRT.IRULA_VENOM",
+   "title": "Snake and venom knowledge in the Nilgiris",
+   "class": "FRONTIER",
+   "magnitude": "R",
+   "year": 800,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "provenance": "DERIVED",
+   "certainty": 0.25,
+   "trigger": "window",
+   "window": [
+    0,
+    1500
+   ],
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "evidence": "Ethnographic; the expertise is real and current and its history is unrecorded."
+  },
+  {
+   "id": "EVT.FRT.CHOLA_FOREST_TAX",
+   "title": "Chola inscriptions record dues from forest produce",
+   "class": "FRONTIER",
+   "magnitude": "M",
+   "year": 1000,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.65,
+   "trigger": "window",
+   "window": [
+    950,
+    1100
+   ],
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "evidence": "Revenue categories in temple and village inscriptions covering honey, wax, timber and elephants.",
+   "note": "The forest enters the ledger. The people are still not named."
+  },
+  {
+   "id": "EVT.FRT.KAKATIYA_UPLANDS",
+   "title": "Tank building pushes settlement into the Telangana uplands",
+   "class": "FRONTIER",
+   "magnitude": "M",
+   "year": 1170,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.65,
+   "trigger": "window",
+   "window": [
+    1100,
+    1250
+   ],
+   "scope": "regional",
+   "region": "RGN.ANDHRA",
+   "dispute": false,
+   "evidence": "The tank inscriptions and the distribution of the tanks themselves, on ground that had not been farmed before."
+  },
+  {
+   "id": "EVT.FRT.GOND_KINGDOMS",
+   "title": "Gond polities become kingdoms in their own right",
+   "class": "FRONTIER",
+   "magnitude": "W",
+   "year": 1300,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.55,
+   "trigger": "window",
+   "window": [
+    1200,
+    1450
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Garha-Mandla and Chanda dynastic records, forts and coinage.",
+   "note": "The frontier is not a permanent condition. A people the settled record filed as forest-dwellers built states, minted money and were treated as powers."
+  },
+  {
+   "id": "EVT.FRT.BHIL_MEWAR",
+   "title": "Bhil support becomes decisive in Mewar's politics",
+   "class": "FRONTIER",
+   "magnitude": "M",
+   "year": 1400,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "DERIVED",
+   "certainty": 0.45,
+   "trigger": "window",
+   "window": [
+    1300,
+    1600
+   ],
+   "scope": "regional",
+   "region": "RGN.RAJASTHAN",
+   "dispute": false,
+   "evidence": "Rajput chronicle tradition, which credits Bhil archers repeatedly and is not a neutral source about them."
+  },
+  {
+   "id": "EVT.FRT.AHOM_PAIK",
+   "title": "The paik system makes labour service the basis of a state",
+   "class": "FRONTIER",
+   "magnitude": "W",
+   "year": 1250,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.6,
+   "trigger": "window",
+   "window": [
+    1230,
+    1350
+   ],
+   "scope": "regional",
+   "region": "RGN.ASSAM",
+   "dispute": false,
+   "evidence": "The buranji chronicles, which the Ahom state kept as deliberate practice."
+  },
+  {
+   "id": "EVT.FRT.JHUM_CYCLE",
+   "title": "The shifting cultivation cycle holds against the plough",
+   "class": "FRONTIER",
+   "magnitude": "M",
+   "year": 1200,
+   "era": "ERA.CHOLA",
+   "provenance": "DERIVED",
+   "certainty": 0.45,
+   "trigger": "window",
+   "window": [
+    800,
+    1600
+   ],
+   "scope": "regional",
+   "region": "RGN.ASSAM",
+   "dispute": false,
+   "evidence": "Continuity of jhum in the hills against settled wet rice on the Brahmaputra plain, both attested throughout.",
+   "note": "Two agricultures on either side of a line, neither replacing the other for a thousand years."
+  },
+  {
+   "id": "EVT.FRT.VIJAYANAGARA_FOREST",
+   "title": "Vijayanagara enlists forest chiefs as frontier garrisons",
+   "class": "FRONTIER",
+   "magnitude": "M",
+   "year": 1400,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "DERIVED",
+   "certainty": 0.45,
+   "trigger": "window",
+   "window": [
+    1350,
+    1550
+   ],
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "evidence": "The nayaka system's absorption of local power-holders, some of whom held hill and forest tracts."
+  },
+  {
+   "id": "EVT.FRT.TIMBER_DEMAND",
+   "title": "Shipbuilding and construction raise the demand for hardwood",
+   "class": "FRONTIER",
+   "magnitude": "M",
+   "year": 1500,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "DERIVED",
+   "certainty": 0.5,
+   "trigger": "window",
+   "window": [
+    1400,
+    1650
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Teak in Indian Ocean shipbuilding and in Portuguese and Dutch procurement records."
+  },
+  {
+   "id": "EVT.FRT.MUGHAL_HUNT",
+   "title": "The imperial hunt claims the forest as a royal preserve",
+   "class": "FRONTIER",
+   "magnitude": "M",
+   "year": 1580,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "window": [
+    1550,
+    1650
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Ain-i-Akbari and Mughal painting, in which the qamargah hunt is an assertion of sovereignty over ground and over the people who live on it."
+  },
+  {
+   "id": "EVT.FRT.ZAMINDARI_FOREST",
+   "title": "Forest tracts are written into revenue settlements",
+   "class": "FRONTIER",
+   "magnitude": "M",
+   "year": 1600,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.6,
+   "trigger": "window",
+   "window": [
+    1550,
+    1700
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Mughal revenue records assigning forested parganas to zamindars."
+  },
+  {
+   "id": "EVT.FRT.KHOND_HILLS",
+   "title": "The Odishan hill communities hold their own tracts",
+   "class": "FRONTIER",
+   "magnitude": "R",
+   "year": 1600,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "DERIVED",
+   "certainty": 0.35,
+   "trigger": "window",
+   "window": [
+    1400,
+    1800
+   ],
+   "scope": "regional",
+   "region": "RGN.ODISHA",
+   "dispute": false,
+   "evidence": "Later Company records describe long-established autonomy; the earlier centuries are inferred from that."
+  },
+  {
+   "id": "EVT.FRT.MARATHA_HILLS",
+   "title": "The Sahyadri hill communities and the fort system",
+   "class": "FRONTIER",
+   "magnitude": "M",
+   "year": 1660,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "DERIVED",
+   "certainty": 0.5,
+   "trigger": "window",
+   "window": [
+    1630,
+    1700
+   ],
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false,
+   "evidence": "The Maratha hill forts and the local communities who garrisoned and supplied them, named in Marathi records as groups rather than individuals."
+  },
+  {
+   "id": "EVT.FRT.PERMANENT_SETTLEMENT_FOREST",
+   "title": "The Permanent Settlement has no category for common forest",
+   "class": "FRONTIER",
+   "magnitude": "W",
+   "year": 1793,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "window": [
+    1793,
+    1810
+   ],
+   "scope": "regional",
+   "region": "RGN.BENGAL",
+   "dispute": false,
+   "evidence": "The settlement regulations themselves, which recognise proprietors and tenants and nothing held in common.",
+   "note": "Land that nobody owned individually became land somebody owned. The people using it became trespassers by paperwork."
+  },
+  {
+   "id": "EVT.FRT.CHUAR",
+   "title": "The Chuar risings in the Bengal uplands",
+   "class": "FRONTIER",
+   "magnitude": "M",
+   "year": 1798,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "window": [
+    1767,
+    1800
+   ],
+   "scope": "regional",
+   "region": "RGN.BENGAL",
+   "dispute": false,
+   "evidence": "Company military and revenue correspondence, which is the only side of it that survives in writing."
+  },
+  {
+   "id": "EVT.FRT.BHIL_RISINGS",
+   "title": "The Bhil risings against the new revenue order",
+   "class": "FRONTIER",
+   "magnitude": "M",
+   "year": 1818,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "window": [
+    1815,
+    1846
+   ],
+   "scope": "regional",
+   "region": "RGN.RAJASTHAN",
+   "dispute": false,
+   "evidence": "Company records of successive campaigns and of the Bhil Corps raised to police them."
+  },
+  {
+   "id": "EVT.FRT.KHOND_RISING",
+   "title": "The Khond risings",
+   "class": "FRONTIER",
+   "magnitude": "M",
+   "year": 1837,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "window": [
+    1836,
+    1856
+   ],
+   "scope": "regional",
+   "region": "RGN.ODISHA",
+   "dispute": false,
+   "evidence": "Company records of the Meriah agency campaigns."
+  },
+  {
+   "id": "EVT.FRT.SANTHAL_HUL",
+   "title": "The Santhal hul",
+   "class": "FRONTIER",
+   "magnitude": "W",
+   "year": 1855,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "window": [
+    1855,
+    1857
+   ],
+   "scope": "regional",
+   "region": "RGN.BENGAL",
+   "dispute": false,
+   "evidence": "Company records, the trial proceedings, and Santhal oral accounts collected later.",
+   "note": "Tens of thousands rose against moneylenders and the revenue settlement, two years before 1857, and it was put down with artillery."
+  },
+  {
+   "id": "EVT.FRT.FOREST_ACT_1865",
+   "title": "The first Indian Forest Act",
+   "class": "FRONTIER",
+   "magnitude": "W",
+   "year": 1865,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Act itself, and the Forest Department correspondence arguing for it on the strength of railway sleeper demand.",
+   "note": "The state declares forest state property. Customary use becomes a crime in a single clause, and the railways get their sleepers."
+  },
+  {
+   "id": "EVT.FRT.FOREST_ACT_1878",
+   "title": "The Forest Act of 1878 divides the forest into three",
+   "class": "FRONTIER",
+   "magnitude": "W",
+   "year": 1878,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Act, which creates reserved, protected and village forest and settles the argument in favour of the first."
+  },
+  {
+   "id": "EVT.FRT.RAILWAY_SLEEPERS",
+   "title": "The railway consumes the hardwood forests",
+   "class": "FRONTIER",
+   "magnitude": "W",
+   "year": 1860,
+   "year_end": 1900,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "window": [
+    1855,
+    1875
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Railway procurement figures and forest department returns. Sleeper demand is the reason the Forest Department exists."
+  },
+  {
+   "id": "EVT.FRT.BIRSA_MUNDA",
+   "title": "The Munda ulgulan",
+   "class": "FRONTIER",
+   "magnitude": "W",
+   "year": 1899,
+   "year_end": 1900,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.BENGAL",
+   "dispute": false,
+   "evidence": "Government records, trial documents, and a substantial later ethnographic and oral record.",
+   "note": "A rising against the loss of khuntkatti land rights, led by a man who died in jail at twenty-five."
+  },
+  {
+   "id": "EVT.FRT.CNT_ACT",
+   "title": "The Chotanagpur Tenancy Act concedes what was taken",
+   "class": "FRONTIER",
+   "magnitude": "M",
+   "year": 1908,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.BENGAL",
+   "dispute": false,
+   "evidence": "The Act, which restricts transfer of tribal land — passed eight years after the rising it was answering."
+  },
+  {
+   "id": "EVT.FRT.RAMPA",
+   "title": "The Rampa rebellion",
+   "class": "FRONTIER",
+   "magnitude": "M",
+   "year": 1922,
+   "year_end": 1924,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "window": [
+    1922,
+    1924
+   ],
+   "scope": "regional",
+   "region": "RGN.ANDHRA",
+   "dispute": false,
+   "evidence": "Government and police records of the campaign in the Godavari agency."
+  },
+  {
+   "id": "EVT.FRT.EXCLUDED_AREAS",
+   "title": "The hill tracts are made Excluded Areas",
+   "class": "FRONTIER",
+   "magnitude": "M",
+   "year": 1935,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Government of India Act 1935.",
+   "note": "Administered separately, which protected some things and removed others, and the argument about which is not over."
+  },
+  {
+   "id": "EVT.FRT.SCHEDULED_TRIBES",
+   "title": "The frontier becomes a schedule in a constitution",
+   "class": "FRONTIER",
+   "magnitude": "W",
+   "year": 1947,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "window": [
+    1946,
+    1947
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Constituent Assembly debates and the drafting of the Fifth and Sixth Schedules.",
+   "note": "Seven thousand years of treeline end as an administrative category, and the campaign ends here without resolving it."
+  },
+  {
+   "id": "EVT.FRT.SHIFTING_ARGUMENT",
+   "title": "Shifting cultivation is declared wasteful by people who do not practise it",
+   "class": "FRONTIER",
+   "magnitude": "M",
+   "year": 1870,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "window": [
+    1860,
+    1900
+   ],
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": true,
+   "dispute_scope": "interpretation",
+   "evidence": "Forest department reports arguing for suppression of jhum.",
+   "dispute_text": "The colonial forest service treated shifting cultivation as destructive and said so at length. Later agronomy finds long-fallow rotation sustainable at the population densities it was practised at. The reports are evidence of the argument, not of the fact."
+  }
+ ]
+}
