@@ -70,6 +70,26 @@ console.log(`  pre-1300 share     ${(fired.filter(e=>e.year<1300).length / fired
 console.log(`  disputed           ${fired.filter(e=>e.dispute).length}`);
 const CARDS = JSON.parse(readFileSync(new URL('../data/timeline/cards.json', import.meta.url), 'utf8'));
 console.log(`  authored cards     ${CARDS.cards.length}`);
+
+/* ── The binding constraints and the new payload coverage (phase 44) ────── */
+const GAZ = JSON.parse(readFileSync(new URL('../data/gazetteer/places.json', import.meta.url), 'utf8'));
+console.log('\n## Payload coverage (phase 35+)');
+const precise = TL.events.filter(e => (e.where ?? []).some(k => !k.startsWith('RGN.'))).length;
+const affected = TL.events.filter(e => e.affects && Object.keys(e.affects).length).length;
+const taught = TL.events.filter(e => e.teaches).length;
+const tagged = TL.events.filter(e => (e.threads ?? []).length).length;
+const sourced = TL.events.filter(e => e.dispute && (e.sources ?? []).length >= 2).length;
+const disputed = TL.events.filter(e => e.dispute).length;
+console.log(`  where (precise)    ${precise}`);
+console.log(`  affects            ${affected}`);
+console.log(`  teaches            ${taught}`);
+console.log(`  on a thread        ${tagged}  (${TL.threads.length} threads)`);
+console.log(`  chapters           ${TL.chapters.length}`);
+console.log(`  disputes cited     ${sourced}/${disputed}`);
+const native = GAZ.places.filter(p => p.native).length;
+console.log(`  native place names ${native}/${GAZ.places.length}`);
+console.log('\n  Binding rules: density (test: timeline.test.js) and silence-in-play');
+console.log('  (test: texture.test.js). Class targets retired, phase 34.');
 console.log('');
 
 export { eraNeed };

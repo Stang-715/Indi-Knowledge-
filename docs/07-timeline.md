@@ -1439,6 +1439,13 @@ land continuously as data, exactly as `polities` and `corpus` already do. The P0
 
 ---
 
+> **Superseded numbers, noted 2026-08-25 (phase 44).** The event counts, census
+> figures and per-class targets below are the plan as it stood when written. The
+> corpus now holds ~1,380 events; the class targets were retired by the phase-34
+> ruling (see 14-event-completion.md Part D.4 and 16-gap-closure.md); density and
+> silence rules bind instead. The text below is kept as the design's history —
+> corrections are dated notes, deletions are vandalism.
+
 # Part 7 — Resolved, and still open
 
 **Resolved:** 210 hours · 6000 BCE → **1947** · 82% before 1300 · sixteen eras, thirteen
