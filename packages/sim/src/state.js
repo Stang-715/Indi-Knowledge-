@@ -100,10 +100,26 @@ export function effectivePillar(state, pillar) {
   return Math.max(0, v);
 }
 
-/** Clamp a pillar to its range. */
+/**
+ * Move a pillar, with diminishing returns toward its ceiling.
+ *
+ * A flat delta was fine when the timeline held two hundred events. At eleven
+ * hundred every pillar but AGRICULTURE pegged at 100 before the year 1000, and
+ * a pegged gauge is not a gauge: nothing the player did after that could move
+ * it, so learning from a frontier people, endowing a school and sacking a city
+ * all read the same. Writing the events revealed the arithmetic; the arithmetic
+ * was always wrong.
+ *
+ * So a gain is scaled by the headroom left and a loss by how much there is to
+ * lose. The tenth irrigation work teaches less than the first, 0 and 100 become
+ * asymptotes rather than walls, and the range stays legible however many events
+ * land in it.
+ */
 export function bumpPillar(state, pillar, delta) {
   if (!(pillar in state.pillars)) return;
-  state.pillars[pillar] = Math.max(0, Math.min(100, state.pillars[pillar] + delta));
+  const v = state.pillars[pillar];
+  const scaled = delta > 0 ? delta * (1 - v / 100) : delta * (v / 100);
+  state.pillars[pillar] = Math.max(0, Math.min(100, v + scaled));
 }
 
 export function record(state, year, kind, text, extra = {}) {

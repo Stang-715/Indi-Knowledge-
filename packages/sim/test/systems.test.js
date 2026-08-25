@@ -5,6 +5,7 @@ import { run } from '../src/engine.js';
 import { LAYERS, yieldTo, holdingsOf, contested, mandalaAt } from '../src/sovereignty.js';
 import { blocked, locked, trustRung, nextRung, TRUST_RUNGS, GATES } from '../src/pillars.js';
 import { frontierPresent, frontierLedger, PEOPLES, STANCE } from '../src/frontier.js';
+import { bumpPillar } from '../src/state.js';
 
 const read = (p) => JSON.parse(readFileSync(new URL(p, import.meta.url), 'utf8'));
 const DP = {
@@ -221,4 +222,32 @@ test('standing does not rot from neglect', () => {
   const s = run(DP, 'fr', tending(), { to: 1200 });
   for (const f of s.frontier.values())
     assert.ok(f.standing > 0, `${f.name} are at zero regard and you never did anything to them`);
+});
+
+/* ── Pillars stay legible at eleven hundred events (phase 28) ────────────── */
+
+test('no pillar pegs at its ceiling with a century of play still to come', () => {
+  // A flat delta pegged seven of the eight at 100 before the year 1000, which
+  // made every decision after that read the same. The gauges have to keep
+  // meaning something to the end of the campaign.
+  const tend = [];
+  for (let y = -3000; y < 1900; y += 100) tend.push({ year: y, action: 'patronise' });
+  for (let y = -400;  y < 1900; y +=  60) tend.push({ year: y, action: 'train-scribe' });
+  const s = run(DP, 'ceiling', tend, { to: 1800 });
+  for (const [name, v] of Object.entries(s.pillars))
+    assert.ok(v < 99.5, `${name} is pegged at ${v.toFixed(1)} with 147 years left`);
+});
+
+test('a gain still moves a pillar that is already high', () => {
+  // Diminishing returns must diminish, not stop. A pillar at 99 that cannot be
+  // moved at all is a pegged pillar wearing a curve.
+  const st = { pillars: { IT: 99 } };
+  bumpPillar(st, 'IT', 4);
+  assert.ok(st.pillars.IT > 99, `99 + 4 gave ${st.pillars.IT}`);
+  assert.ok(st.pillars.IT < 100, 'and it must not reach the ceiling');
+
+  const low = { pillars: { IT: 10 } };
+  bumpPillar(low, 'IT', 4);
+  assert.ok(low.pillars.IT - 10 > st.pillars.IT - 99,
+    'the same gain must be worth more when there is further to go');
 });
