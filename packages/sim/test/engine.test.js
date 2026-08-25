@@ -235,3 +235,49 @@ test('a decision is never applied twice at the edge', () => {
   const b = run(DP, 'edge2', base, { to: 600 });
   assert.equal(a.pops.soldiers, b.pops.soldiers, 'the edge pass must not double-apply');
 });
+
+/* ── The corpus thread runs both ways (docs/14-event-completion.md, phase 25) ── */
+
+test('a catastrophe that touches no library destroys no carriers', () => {
+  // The Allah Bund earthquake reshaped Kutch and did not burn a manuscript.
+  // Before the `corpus` field every W-magnitude catastrophe took a share of the
+  // corpus, which made an earthquake in 1819 as bad for Sanskrit as Nalanda.
+  const physical = DP.timeline.events.filter(
+    e => e.class === 'CATASTROPHE' && e.corpus === 'none');
+  assert.ok(physical.length >= 10, 'the physical disasters must be marked as such');
+
+  const s = run(DP, 'quake', []);
+  // A W-magnitude event is also logged for the era ribbon, so match on the
+  // corpus payload rather than the log kind.
+  const ids = new Set(s.log.filter(l => l.kind === 'catastrophe' && l.destroyed !== undefined)
+                           .map(l => l.id));
+  for (const ev of physical)
+    assert.ok(!ids.has(ev.id), `${ev.id} should not have reached the corpus`);
+});
+
+test('the rescues are in the model, and they run the other way', () => {
+  const rescues = DP.timeline.events.filter(
+    e => e.class === 'CATASTROPHE' && e.corpus === 'preserve');
+  assert.ok(rescues.length >= 20, 'Aluvihare, Xuanzang, Atisha, Nambi, Swaminatha Iyer');
+
+  const base = [];
+  for (let y = -3000; y < 1900; y += 100) base.push({ year: y, action: 'patronise' });
+  for (let y = -400;  y < 1900; y +=  60) base.push({ year: y, action: 'train-scribe' });
+  const s = run(DP, 'rescue', base);
+  const saved = s.log.filter(l => l.kind === 'preserve').reduce((a, l) => a + (l.saved ?? 0), 0);
+  assert.ok(saved > 0, 'a tended corpus must actually be reachable by a rescue');
+});
+
+test('a rescue never reaches the works on the risk panel', () => {
+  // If Xuanzang carries out the fragile texts for free, the player has no
+  // reason ever to send a teacher, and the gate above stops being a gate.
+  const base = [];
+  for (let y = -3000; y < 1900; y += 100) base.push({ year: y, action: 'patronise' });
+  for (let y = -400;  y < 1000; y +=  60) base.push({ year: y, action: 'train-scribe' });
+  const s = run(DP, 'panel', base, { to: 1100 });
+  for (const w of worksAtRisk(s, 'home')) {
+    const c = s.corpus.get(w.id);
+    assert.ok(c.carriers.every(x => x.place === 'home'),
+      `${w.id} is on the risk panel and something already copied it out`);
+  }
+});

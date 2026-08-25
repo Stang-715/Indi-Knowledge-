@@ -37,7 +37,7 @@ export const PLACES = ['home', 'south', 'tibet', 'lanka', 'china', 'abroad'];
  * `abroad` and `south` are deliberately not on this list: a copy left with a
  * merchant is out of the fire but nobody is recopying it.
  */
-export const FOSTERING = new Set(['tibet', 'lanka', 'china']);
+export const FOSTERING = new Set(['tibet', 'lanka', 'china', 'london']);
 
 export function initCorpus(state, datapack, fromYear) {
   for (const w of datapack.works.works) {
@@ -300,7 +300,12 @@ const SEVERITY = { W: 0.62, M: 0.34, R: 0.18, m: 0.08 };
 
 export function catastrophe(state, ev, rng) {
   const reach = catastropheReach(ev);
-  const severity = SEVERITY[ev.magnitude] ?? 0.3;
+  // An event may state its own severity. Sacking Nalanda and losing the
+  // Bakhshali manuscript's outer leaves are both catastrophes and are not the
+  // same size, and magnitude alone cannot tell them apart: both are events the
+  // player should hear about.
+  const severity = typeof ev.severity === 'number' ? ev.severity
+                 : SEVERITY[ev.magnitude] ?? 0.3;
   let destroyed = 0, saved = 0;
   const casualties = [];
 
@@ -323,6 +328,81 @@ export function catastrophe(state, ev, rng) {
     (saved ? `, ${saved} saved by a copy elsewhere.` : '.'),
     { id: ev.id, destroyed, lost: casualties.length, saved, casualties });
   return { destroyed, lost: casualties, saved };
+}
+
+/**
+ * The other half of the corpus thread: an event that saves rather than destroys.
+ *
+ * Aluvihare, Mahinda, Xuanzang, Atisha, the Tibetan translation project, Nambi
+ * Andar Nambi finding the Tevaram in a locked room, U. V. Swaminatha Iyer
+ * buying palm leaf off a Kumbakonam veranda. These are the reason the corpus is
+ * not a monotonic decline. Leaving them out is what made the corpus collapse to
+ * three surviving works: sixty-six catastrophes ran against it and nothing ever
+ * ran the other way.
+ *
+ * It works down the corpus BEST-CARRIED FIRST. What survived in Tibet and China
+ * is what was being copied and taught at the time; a text held in one room by
+ * one man was not on anybody's list. So it cannot substitute for the player's
+ * own copy-out decision — it reaches the safe works first and runs out long
+ * before it reaches the bottom of the risk panel.
+ */
+const PRESERVE_SHARE = { W: 0.4, M: 0.2, R: 0.1, m: 0.05 };
+
+export function preserve(state, ev, rng) {
+  const to = ev.preserve_to ?? 'home';
+  const write = to === 'home';
+  const share = typeof ev.share === 'number' ? ev.share
+              : PRESERVE_SHARE[ev.magnitude] ?? 0.2;
+
+  // Candidates in a fixed order: best-carried first, so the draw is about how
+  // many are saved, never which — and the same seed always saves the same set.
+  const cands = [...state.corpus.values()]
+    .filter(c => c.exists && !c.lost && c.carriers.length > 0)
+    .filter(c => write || !c.carriers.some(x => x.place === to))
+    // What leaves the country is a manuscript. Nobody hands a departing monk a
+    // text that exists only in somebody's memory, and the Tibetan and Chinese
+    // translation projects worked from Sanskrit copies. So this amplifies the
+    // player's scriptorium rather than standing in for it: a corpus with no
+    // written carriers has nothing for Xuanzang to take. Writing at home is the
+    // mirror image — it is precisely the memory-only works that need it.
+    // A departing monk is handed a manuscript, not somebody's memory, and what
+    // the Tibetan and Chinese projects worked from was the mainstream canon —
+    // the texts already held in several houses and taught in several schools.
+    // Both conditions matter, and together they keep this off the player's
+    // ground: it never reaches a work thin enough to appear on the risk panel,
+    // so the decision to send a teacher with the fragile one is still theirs.
+    // Writing at home is the mirror image: it is precisely the memory-only
+    // works that need it, and nothing else does.
+    .filter(c => write ? !c.carriers.some(x => x.medium !== 'memory')
+                       : (c.carriers.length >= 4 &&
+                          c.carriers.some(x => x.medium !== 'memory')))
+    .sort((a, b) => (b.carriers.length - a.carriers.length) ||
+                    (b.prestige - a.prestige) || (a.id < b.id ? -1 : 1));
+
+  const take = Math.floor(cands.length * share);
+  let saved = 0, written = 0;
+  for (let i = 0; i < take; i++) {
+    const c = cands[i];
+    if (write) {
+      // Committing to writing at home: the memory carrier stays, and a written
+      // one joins it. That is what Aluvihare actually did.
+      const medium = state.goods.has('paper') ? 'paper' : 'palmleaf';
+      if (c.carriers.some(x => x.medium !== 'memory' && x.place === 'home')) continue;
+      c.carriers.push({ medium, place: 'home', born: ev.year, health: 1 });
+      written++;
+    } else {
+      c.carriers.push({ medium: 'palmleaf', place: to, born: ev.year, health: 1 });
+      saved++;
+    }
+  }
+
+  bumpPillar(state, 'IT', 1);
+  record(state, ev.year, 'preserve',
+    `${ev.title} — ` +
+    (write ? `${written} work${written === 1 ? '' : 's'} committed to writing.`
+           : `${saved} work${saved === 1 ? '' : 's'} now have a copy in ${to}.`),
+    { id: ev.id, saved: saved + written, to });
+  return { saved: saved + written, to };
 }
 
 function catastropheReach(ev) {

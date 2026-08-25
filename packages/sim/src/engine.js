@@ -11,7 +11,7 @@ import { Clock, START_YEAR, END_YEAR, formatYear } from './clock.js';
 import { buildSchedule, eventsIn } from './events.js';
 import { newState, record, bumpPillar, fingerprint, shock, tickShocks, effectivePillar } from './state.js';
 import { Rng } from './rng.js';
-import { initCorpus, tickCorpus, applyWorkEvent, catastrophe, copyOut, worksAtRisk } from './corpus.js';
+import { initCorpus, tickCorpus, applyWorkEvent, catastrophe, preserve, copyOut, worksAtRisk } from './corpus.js';
 import { initTrade, tickTrade, applyTradeEvent, DECISIONS as TRADE_DECISIONS } from './trade.js';
 import { initPeople, tickPeople, oralCapacity, DECISIONS as PEOPLE_DECISIONS } from './people.js';
 import { initSurvey, DECISIONS as SURVEY_DECISIONS } from './survey.js';
@@ -153,7 +153,19 @@ function fireEvent(state, ev, datapack, rng) {
 
   if (ev.class === 'WORK')       applyWorkEvent(state, ev, datapack);
   if (ev.class === 'TRADE')      applyTradeEvent(state, ev, datapack);
-  if (ev.class === 'CATASTROPHE' && ev.magnitude === 'W') catastrophe(state, ev, rng.corpus);
+  // Not every catastrophe is a corpus catastrophe, and some are the opposite.
+  // An earthquake in Kutch levels towns and touches no library; Xuanzang leaving
+  // with six hundred and fifty-seven texts is filed here because it belongs to
+  // the same thread — what happens to the corpus — and it is the reason a third
+  // of the Sanskrit Buddhist canon can still be read. The `corpus` field says
+  // which of the three an event is. A document event without one keeps the old
+  // default, so the eleven catastrophes written before this field existed
+  // behave exactly as they did.
+  if (ev.class === 'CATASTROPHE') {
+    if (ev.corpus === 'preserve') preserve(state, ev, rng.corpus);
+    else if (ev.corpus === 'destroy' || (!ev.corpus && ev.magnitude === 'W'))
+      catastrophe(state, ev, rng.corpus);
+  }
 
   // Coinage: the moment the settlement problem stops being physical.
   if (!state.coinageKnown && ev.year >= -600 &&
