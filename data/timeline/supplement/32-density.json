@@ -115,13 +115,14 @@
    "trigger": "window",
    "scope": "subcontinental",
    "region": null,
-   "dispute": false,
+   "dispute": true,
    "evidence": "The excavated assemblages across every major site: tools, ornaments and containers, and very little that is only for killing.",
    "window": [
     -2490,
     -2410
    ],
-   "note": "Five hundred years of cities and no army in the ground. The game has to be honest about how strange that is."
+   "note": "Five hundred years of cities and no army in the ground. The game has to be honest about how strange that is.",
+   "dispute_scope": "interpretation"
   },
   {
    "id": "EVT.DVJ.IRRIGATION_CANALS",

@@ -869,7 +869,7 @@ Running total: **496 + 250 = 746 ancient events**, plus 41 in the skim = **787**
 | ~575 | Kadungon; the Pandya revival | FOUNDATION | M |
 | ~600 | Pallava–Pandya wars begin | INVASION | M |
 | ~630 | Mahendravarman's *Mattavilasa Prahasana* — a satire by a king | WORK | M |
-| ~650 | Appar and the Shaiva turn; Jainism loses royal favour | REFORM | W |
+| ~650 | Appar and the Shaiva turn; Jainism loses royal favour ‡ | REFORM | W |
 | ~675 | The Shore Temple at Mahabalipuram | FOUNDATION | W |
 | ~700 | The Nayanars and Alvars; bhakti on the pilgrimage roads | WORK | W |
 | ~715 | Andal — the one woman among the twelve Alvars | WORK | W |
@@ -1051,7 +1051,7 @@ Running total: **496 + 250 = 746 ancient events**, plus 41 in the skim = **787**
 | ~200 | Kashmir becomes the Sarvastivada heartland | REFORM | W |
 | ~400 | Kashmiri monks carry texts to Central Asia and China | TRADE | W |
 | ~625 | The Karkota dynasty | FOUNDATION | M |
-| **724** | **Lalitaditya Muktapida; the Martand sun temple** | FOUNDATION | W |
+| **724** | **Lalitaditya Muktapida; the Martand sun temple** ‡ | FOUNDATION | W |
 | ~855 | Avantivarman; Suyya's engineering drains the Jhelum floods | STRUCTURE | W |
 | ~900 | Anandavardhana's *Dhvanyaloka* — poetics as philosophy | WORK | W |
 | **~975** | **Abhinavagupta; Kashmir Shaivism and the *Tantraloka*** | WORK | **W** |

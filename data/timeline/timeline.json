@@ -3377,13 +3377,14 @@
    "trigger": "window",
    "scope": "subcontinental",
    "region": null,
-   "dispute": false,
+   "dispute": true,
    "evidence": "The excavated assemblages across every major site: tools, ornaments and containers, and very little that is only for killing.",
    "window": [
     -2490,
     -2410
    ],
-   "note": "Five hundred years of cities and no army in the ground. The game has to be honest about how strange that is."
+   "note": "Five hundred years of cities and no army in the ground. The game has to be honest about how strange that is.",
+   "dispute_scope": "interpretation"
   },
   {
    "id": "EVT.IND.SHELL_INDUSTRY",
@@ -15174,15 +15175,12 @@
    "era": "ERA.REGIONAL_KINGDOMS",
    "class": "REFORM",
    "magnitude": "W",
-   "certainty": 0.7,
-   "trigger": "window",
+   "certainty": 0.45,
+   "trigger": "latent",
    "scope": "regional",
    "region": "RGN.TAMILAKAM",
-   "dispute": false,
-   "window": [
-    637,
-    663
-   ]
+   "dispute": true,
+   "dispute_scope": "date"
   },
   {
    "id": "EVT.650.FRAGMENTATION_THE_REGIONAL_KINGDOM_BECOMES_T",
@@ -15685,18 +15683,19 @@
   {
    "id": "EVT.724.LALITADITYA_MUKTAPIDA_THE_MARTAND_SUN_TEMPLE",
    "title": "Lalitaditya Muktapida; the Martand sun temple",
-   "provenance": "SOURCED",
+   "provenance": "DERIVED",
    "evidence": "Inscriptions, copper plates and land grants.",
    "year": 724,
    "year_end": null,
    "era": "ERA.REGIONAL_KINGDOMS",
    "class": "FOUNDATION",
    "magnitude": "W",
-   "certainty": 0.95,
-   "trigger": "dated",
+   "certainty": 0.45,
+   "trigger": "latent",
    "scope": "regional",
    "region": "RGN.KASHMIR",
-   "dispute": false
+   "dispute": true,
+   "dispute_scope": "date"
   },
   {
    "id": "EVT.725.ELEPHANTA",
@@ -21478,8 +21477,9 @@
    ],
    "scope": "regional",
    "region": "RGN.MAHARASHTRA",
-   "dispute": false,
-   "evidence": "Persian and Marathi chronicle accounts of a famine lasting more than a decade. The duration is probably compressed memory of several."
+   "dispute": true,
+   "evidence": "Persian and Marathi chronicle accounts of a famine lasting more than a decade. The duration is probably compressed memory of several.",
+   "dispute_scope": "date"
   },
   {
    "id": "EVT.INV.TIMUR",
@@ -26586,10 +26586,10 @@
    "COLONIAL": 54
   },
   "by_trigger": {
-   "window": 1079,
-   "latent": 37,
-   "dated": 235
+   "window": 1078,
+   "latent": 39,
+   "dated": 234
   },
-  "disputed": 68
+  "disputed": 72
  }
 }

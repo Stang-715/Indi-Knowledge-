@@ -563,8 +563,9 @@
    ],
    "scope": "regional",
    "region": "RGN.MAHARASHTRA",
-   "dispute": false,
-   "evidence": "Persian and Marathi chronicle accounts of a famine lasting more than a decade. The duration is probably compressed memory of several."
+   "dispute": true,
+   "evidence": "Persian and Marathi chronicle accounts of a famine lasting more than a decade. The duration is probably compressed memory of several.",
+   "dispute_scope": "date"
   },
   {
    "id": "EVT.CLI.DAMAJIPANT",
