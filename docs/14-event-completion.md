@@ -347,3 +347,28 @@ Stated plainly, because a plan that hides its omissions is not a plan.
    promise.
 4. **The remaining 180 class-target events** that a 1,150 total cannot hold.
    Either the target rises to ~1,330 or the cut in Part B stands.
+
+---
+
+## Part E — Execution record (phases 23–32 closed)
+
+Written after the fact, because a plan that never reports back is a wish.
+
+| Phase | Delivered | The correction it forced |
+|---|---|---|
+| 23 | 43 CLIMATE | Permanent pillar damage became healing shocks — 43 droughts had ground AGRICULTURE to zero |
+| 24 | 50 FRONTIER | — |
+| 25 | 66 CATASTROPHE, 22 of them rescues | Events gained a `corpus` field (destroy/none/preserve, with per-event severity); a timeline of losses with no Aluvihare ran the corpus to three works |
+| 26 | 78 SITE | — |
+| 27 | 60 WORK | Composition events name their work outright; the scriptorium stopped copying from carriers held abroad; a teacher sent abroad stopped being a permanent loss |
+| 28 | 61 REFORM, 23 on the caste thread | The pillar curve gained diminishing returns — seven of eight gauges had pegged at 100 by the year 1000 |
+| 29 | 51 INVASION | `becomes` finally says something: all forty-one document invasions carried the placeholder string "nothing" |
+| 30 | 63 events, 1279–1947 | Two warnings became assertions (the 20-minute rule; the 82%-of-playtime weighting). The 41-event skim and the 20-minute rule were arithmetically incompatible; density won |
+| 31 | 215 regional | The event-count share was restated honestly: playtime weighting holds at 82%, event count cannot also hit 80% while the density rule stands |
+| 32 | 343 Tier-1 cards (~28,500 words) | 107 events written twice were collapsed; the engine keyed corpus effects off `corpus`, not class |
+
+Final state: **1,347 events**, 88 collapsed duplicates, 72 disputed entries, 343
+authored cards, all 260 tests green, and every era under the 20-minute rule.
+
+Phase 33 remains open and is documented as a briefing in
+[`15-specialist-pass.md`](15-specialist-pass.md). It is a hire.
