@@ -1,0 +1,1893 @@
+{
+ "note": "The gazetteer. `where` keys on timeline events resolve against these ids; the build fails on an unresolvable key, exactly as it does for an unresolvable work. Region ids double as coarse keys when nothing finer is honest.",
+ "places": [
+  {
+   "id": "RGN.TAMILAKAM",
+   "name": "Tamilakam",
+   "lon": 78.5,
+   "lat": 10.5,
+   "region": "RGN.TAMILAKAM",
+   "kind": "region"
+  },
+  {
+   "id": "RGN.KARNATAKA",
+   "name": "Karnataka",
+   "lon": 76.2,
+   "lat": 14.5,
+   "region": "RGN.KARNATAKA",
+   "kind": "region"
+  },
+  {
+   "id": "RGN.ANDHRA",
+   "name": "Andhra & Telangana",
+   "lon": 79.5,
+   "lat": 16.5,
+   "region": "RGN.ANDHRA",
+   "kind": "region"
+  },
+  {
+   "id": "RGN.KERALA",
+   "name": "Kerala",
+   "lon": 76.3,
+   "lat": 10.0,
+   "region": "RGN.KERALA",
+   "kind": "region"
+  },
+  {
+   "id": "RGN.BENGAL",
+   "name": "Bengal & Vanga",
+   "lon": 88.4,
+   "lat": 23.8,
+   "region": "RGN.BENGAL",
+   "kind": "region"
+  },
+  {
+   "id": "RGN.ODISHA",
+   "name": "Odisha & Kalinga",
+   "lon": 85.0,
+   "lat": 20.3,
+   "region": "RGN.ODISHA",
+   "kind": "region"
+  },
+  {
+   "id": "RGN.ASSAM",
+   "name": "Assam & the Northeast",
+   "lon": 92.9,
+   "lat": 26.2,
+   "region": "RGN.ASSAM",
+   "kind": "region"
+  },
+  {
+   "id": "RGN.KASHMIR",
+   "name": "Kashmir",
+   "lon": 74.8,
+   "lat": 34.0,
+   "region": "RGN.KASHMIR",
+   "kind": "region"
+  },
+  {
+   "id": "RGN.GUJARAT",
+   "name": "Gujarat & Saurashtra",
+   "lon": 71.5,
+   "lat": 22.3,
+   "region": "RGN.GUJARAT",
+   "kind": "region"
+  },
+  {
+   "id": "RGN.MAHARASHTRA",
+   "name": "Maharashtra",
+   "lon": 75.3,
+   "lat": 19.2,
+   "region": "RGN.MAHARASHTRA",
+   "kind": "region"
+  },
+  {
+   "id": "RGN.RAJASTHAN",
+   "name": "Rajasthan",
+   "lon": 73.8,
+   "lat": 26.5,
+   "region": "RGN.RAJASTHAN",
+   "kind": "region"
+  },
+  {
+   "id": "RGN.SRI_LANKA",
+   "name": "Sri Lanka",
+   "lon": 80.7,
+   "lat": 7.9,
+   "region": "RGN.SRI_LANKA",
+   "kind": "region"
+  },
+  {
+   "id": "mehrgarh",
+   "name": "Mehrgarh",
+   "lon": 67.62,
+   "lat": 29.42,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "harappa",
+   "name": "Harappa",
+   "lon": 72.87,
+   "lat": 30.63,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "mohenjo-daro",
+   "name": "Mohenjo-daro",
+   "lon": 68.14,
+   "lat": 27.33,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "dholavira",
+   "name": "Dholavira",
+   "lon": 70.21,
+   "lat": 23.89,
+   "region": "RGN.GUJARAT",
+   "kind": "site"
+  },
+  {
+   "id": "lothal",
+   "name": "Lothal",
+   "lon": 72.25,
+   "lat": 22.52,
+   "region": "RGN.GUJARAT",
+   "kind": "site"
+  },
+  {
+   "id": "kalibangan",
+   "name": "Kalibangan",
+   "lon": 74.13,
+   "lat": 29.47,
+   "region": "RGN.RAJASTHAN",
+   "kind": "site"
+  },
+  {
+   "id": "rakhigarhi",
+   "name": "Rakhigarhi",
+   "lon": 76.11,
+   "lat": 29.29,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "banawali",
+   "name": "Banawali",
+   "lon": 75.39,
+   "lat": 29.6,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "bhirrana",
+   "name": "Bhirrana",
+   "lon": 75.55,
+   "lat": 29.55,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "kot diji",
+   "name": "Kot Diji",
+   "lon": 68.71,
+   "lat": 27.34,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "amri",
+   "name": "Amri",
+   "lon": 68.01,
+   "lat": 26.15,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "chanhudaro",
+   "name": "Chanhudaro",
+   "lon": 68.32,
+   "lat": 26.17,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "ganweriwala",
+   "name": "Ganweriwala",
+   "lon": 71.13,
+   "lat": 28.6,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "sutkagen dor",
+   "name": "Sutkagen Dor",
+   "lon": 61.51,
+   "lat": 25.51,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "shortugai",
+   "name": "Shortugai",
+   "lon": 69.52,
+   "lat": 37.27,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "nausharo",
+   "name": "Nausharo",
+   "lon": 67.62,
+   "lat": 29.35,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "rehman dheri",
+   "name": "Rehman Dheri",
+   "lon": 70.79,
+   "lat": 31.94,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "surkotada",
+   "name": "Surkotada",
+   "lon": 70.84,
+   "lat": 23.61,
+   "region": "RGN.GUJARAT",
+   "kind": "site"
+  },
+  {
+   "id": "rojdi",
+   "name": "Rojdi",
+   "lon": 70.93,
+   "lat": 21.87,
+   "region": "RGN.GUJARAT",
+   "kind": "site"
+  },
+  {
+   "id": "rangpur",
+   "name": "Rangpur",
+   "lon": 71.92,
+   "lat": 22.43,
+   "region": "RGN.GUJARAT",
+   "kind": "site"
+  },
+  {
+   "id": "padri",
+   "name": "Padri",
+   "lon": 71.75,
+   "lat": 21.35,
+   "region": "RGN.GUJARAT",
+   "kind": "site"
+  },
+  {
+   "id": "bagasra",
+   "name": "Bagasra",
+   "lon": 70.62,
+   "lat": 23.05,
+   "region": "RGN.GUJARAT",
+   "kind": "site"
+  },
+  {
+   "id": "nageshwar",
+   "name": "Nageshwar",
+   "lon": 69.08,
+   "lat": 22.35,
+   "region": "RGN.GUJARAT",
+   "kind": "site"
+  },
+  {
+   "id": "kuntasi",
+   "name": "Kuntasi",
+   "lon": 70.6,
+   "lat": 22.87,
+   "region": "RGN.GUJARAT",
+   "kind": "site"
+  },
+  {
+   "id": "pirak",
+   "name": "Pirak",
+   "lon": 67.75,
+   "lat": 29.31,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "mundigak",
+   "name": "Mundigak",
+   "lon": 65.51,
+   "lat": 31.9,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "burzahom",
+   "name": "Burzahom",
+   "lon": 74.9,
+   "lat": 34.17,
+   "region": "RGN.KASHMIR",
+   "kind": "site"
+  },
+  {
+   "id": "gufkral",
+   "name": "Gufkral",
+   "lon": 75.06,
+   "lat": 33.9,
+   "region": "RGN.KASHMIR",
+   "kind": "site"
+  },
+  {
+   "id": "semthan",
+   "name": "Semthan",
+   "lon": 75.16,
+   "lat": 33.73,
+   "region": "RGN.KASHMIR",
+   "kind": "site"
+  },
+  {
+   "id": "bagor",
+   "name": "Bagor",
+   "lon": 74.38,
+   "lat": 25.36,
+   "region": "RGN.RAJASTHAN",
+   "kind": "site"
+  },
+  {
+   "id": "balathal",
+   "name": "Balathal",
+   "lon": 73.98,
+   "lat": 24.72,
+   "region": "RGN.RAJASTHAN",
+   "kind": "site"
+  },
+  {
+   "id": "gilund",
+   "name": "Gilund",
+   "lon": 74.26,
+   "lat": 25.05,
+   "region": "RGN.RAJASTHAN",
+   "kind": "site"
+  },
+  {
+   "id": "ganeshwar",
+   "name": "Ganeshwar",
+   "lon": 75.79,
+   "lat": 27.68,
+   "region": "RGN.RAJASTHAN",
+   "kind": "site"
+  },
+  {
+   "id": "lahuradewa",
+   "name": "Lahuradewa",
+   "lon": 82.95,
+   "lat": 26.77,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "chirand",
+   "name": "Chirand",
+   "lon": 84.86,
+   "lat": 25.76,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "koldihwa",
+   "name": "Koldihwa",
+   "lon": 82.03,
+   "lat": 24.89,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "jhusi",
+   "name": "Jhusi",
+   "lon": 81.91,
+   "lat": 25.43,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "daojali hading",
+   "name": "Daojali Hading",
+   "lon": 93.02,
+   "lat": 25.35,
+   "region": "RGN.ASSAM",
+   "kind": "site"
+  },
+  {
+   "id": "utnur",
+   "name": "Utnur",
+   "lon": 78.72,
+   "lat": 19.38,
+   "region": "RGN.ANDHRA",
+   "kind": "site"
+  },
+  {
+   "id": "kupgal",
+   "name": "Kupgal",
+   "lon": 76.95,
+   "lat": 15.25,
+   "region": "RGN.KARNATAKA",
+   "kind": "site"
+  },
+  {
+   "id": "sanganakallu",
+   "name": "Sanganakallu",
+   "lon": 76.98,
+   "lat": 15.2,
+   "region": "RGN.KARNATAKA",
+   "kind": "site"
+  },
+  {
+   "id": "brahmagiri",
+   "name": "Brahmagiri",
+   "lon": 76.83,
+   "lat": 14.81,
+   "region": "RGN.KARNATAKA",
+   "kind": "site"
+  },
+  {
+   "id": "hallur",
+   "name": "Hallur",
+   "lon": 75.63,
+   "lat": 14.34,
+   "region": "RGN.KARNATAKA",
+   "kind": "site"
+  },
+  {
+   "id": "maski",
+   "name": "Maski",
+   "lon": 76.65,
+   "lat": 15.96,
+   "region": "RGN.KARNATAKA",
+   "kind": "site"
+  },
+  {
+   "id": "piklihal",
+   "name": "Piklihal",
+   "lon": 76.78,
+   "lat": 15.9,
+   "region": "RGN.KARNATAKA",
+   "kind": "site"
+  },
+  {
+   "id": "watgal",
+   "name": "Watgal",
+   "lon": 76.68,
+   "lat": 15.98,
+   "region": "RGN.KARNATAKA",
+   "kind": "site"
+  },
+  {
+   "id": "inamgaon",
+   "name": "Inamgaon",
+   "lon": 74.53,
+   "lat": 18.59,
+   "region": "RGN.MAHARASHTRA",
+   "kind": "site"
+  },
+  {
+   "id": "daimabad",
+   "name": "Daimabad",
+   "lon": 74.71,
+   "lat": 19.51,
+   "region": "RGN.MAHARASHTRA",
+   "kind": "site"
+  },
+  {
+   "id": "navdatoli",
+   "name": "Navdatoli",
+   "lon": 75.68,
+   "lat": 22.17,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "kayatha",
+   "name": "Kayatha",
+   "lon": 75.98,
+   "lat": 23.24,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "golbai sasan",
+   "name": "Golbai Sasan",
+   "lon": 85.55,
+   "lat": 20.14,
+   "region": "RGN.ODISHA",
+   "kind": "site"
+  },
+  {
+   "id": "hastinapura",
+   "name": "Hastinapura",
+   "lon": 78.01,
+   "lat": 29.16,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "atranjikhera",
+   "name": "Atranjikhera",
+   "lon": 78.71,
+   "lat": 27.75,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "kausambi",
+   "name": "Kausambi",
+   "lon": 81.39,
+   "lat": 25.34,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "ahichchhatra",
+   "name": "Ahichchhatra",
+   "lon": 79.13,
+   "lat": 28.37,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "mathura",
+   "name": "Mathura",
+   "lon": 77.67,
+   "lat": 27.5,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "rajgir",
+   "name": "Rajgir",
+   "lon": 85.42,
+   "lat": 25.03,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "vaishali",
+   "name": "Vaishali",
+   "lon": 85.13,
+   "lat": 25.99,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "sravasti",
+   "name": "Sravasti",
+   "lon": 82.04,
+   "lat": 27.51,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "champa",
+   "name": "Champa",
+   "lon": 87.1,
+   "lat": 25.24,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "pataliputra",
+   "name": "Pataliputra",
+   "lon": 85.14,
+   "lat": 25.61,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "ujjain",
+   "name": "Ujjain",
+   "lon": 75.78,
+   "lat": 23.18,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "taxila",
+   "name": "Taxila",
+   "lon": 72.82,
+   "lat": 33.75,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "malhar",
+   "name": "Malhar",
+   "lon": 82.28,
+   "lat": 24.85,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "bhita",
+   "name": "Bhita",
+   "lon": 81.72,
+   "lat": 25.32,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "sisupalgarh",
+   "name": "Sisupalgarh",
+   "lon": 85.85,
+   "lat": 20.22,
+   "region": "RGN.ODISHA",
+   "kind": "site"
+  },
+  {
+   "id": "adichanallur",
+   "name": "Adichanallur",
+   "lon": 77.87,
+   "lat": 8.63,
+   "region": "RGN.TAMILAKAM",
+   "kind": "site"
+  },
+  {
+   "id": "keeladi",
+   "name": "Keeladi",
+   "lon": 78.19,
+   "lat": 9.85,
+   "region": "RGN.TAMILAKAM",
+   "kind": "site"
+  },
+  {
+   "id": "kodumanal",
+   "name": "Kodumanal",
+   "lon": 77.55,
+   "lat": 11.11,
+   "region": "RGN.TAMILAKAM",
+   "kind": "site"
+  },
+  {
+   "id": "porunthal",
+   "name": "Porunthal",
+   "lon": 77.48,
+   "lat": 10.35,
+   "region": "RGN.TAMILAKAM",
+   "kind": "site"
+  },
+  {
+   "id": "mayiladumparai",
+   "name": "Mayiladumparai",
+   "lon": 78.2,
+   "lat": 12.42,
+   "region": "RGN.TAMILAKAM",
+   "kind": "site"
+  },
+  {
+   "id": "korkai",
+   "name": "Korkai",
+   "lon": 78.06,
+   "lat": 8.63,
+   "region": "RGN.TAMILAKAM",
+   "kind": "site"
+  },
+  {
+   "id": "madurai",
+   "name": "Madurai",
+   "lon": 78.12,
+   "lat": 9.93,
+   "region": "RGN.TAMILAKAM",
+   "kind": "site"
+  },
+  {
+   "id": "kaveripattinam",
+   "name": "Kaveripattinam",
+   "lon": 79.85,
+   "lat": 11.14,
+   "region": "RGN.TAMILAKAM",
+   "kind": "site"
+  },
+  {
+   "id": "arikamedu",
+   "name": "Arikamedu",
+   "lon": 79.83,
+   "lat": 11.91,
+   "region": "RGN.TAMILAKAM",
+   "kind": "site"
+  },
+  {
+   "id": "anuradhapura",
+   "name": "Anuradhapura",
+   "lon": 80.4,
+   "lat": 8.31,
+   "region": "RGN.SRI_LANKA",
+   "kind": "site"
+  },
+  {
+   "id": "wari-bateshwar",
+   "name": "Wari-Bateshwar",
+   "lon": 90.6,
+   "lat": 24.1,
+   "region": "RGN.BENGAL",
+   "kind": "site"
+  },
+  {
+   "id": "chandraketugarh",
+   "name": "Chandraketugarh",
+   "lon": 88.7,
+   "lat": 22.69,
+   "region": "RGN.BENGAL",
+   "kind": "site"
+  },
+  {
+   "id": "mahasthangarh",
+   "name": "Mahasthangarh",
+   "lon": 89.34,
+   "lat": 24.96,
+   "region": "RGN.BENGAL",
+   "kind": "site"
+  },
+  {
+   "id": "tamralipta",
+   "name": "Tamralipta",
+   "lon": 87.92,
+   "lat": 22.3,
+   "region": "RGN.BENGAL",
+   "kind": "site"
+  },
+  {
+   "id": "sohgaura",
+   "name": "Sohgaura",
+   "lon": 83.47,
+   "lat": 26.55,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "sanchi",
+   "name": "Sanchi",
+   "lon": 77.74,
+   "lat": 23.48,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "bharhut",
+   "name": "Bharhut",
+   "lon": 80.88,
+   "lat": 24.45,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "barabar",
+   "name": "Barabar",
+   "lon": 85.06,
+   "lat": 25.01,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "dhauli",
+   "name": "Dhauli",
+   "lon": 85.84,
+   "lat": 20.19,
+   "region": "RGN.ODISHA",
+   "kind": "site"
+  },
+  {
+   "id": "jaugada",
+   "name": "Jaugada",
+   "lon": 84.83,
+   "lat": 19.52,
+   "region": "RGN.ODISHA",
+   "kind": "site"
+  },
+  {
+   "id": "girnar",
+   "name": "Girnar (Junagadh)",
+   "lon": 70.5,
+   "lat": 21.52,
+   "region": "RGN.GUJARAT",
+   "kind": "site"
+  },
+  {
+   "id": "sannati",
+   "name": "Sannati",
+   "lon": 76.92,
+   "lat": 16.83,
+   "region": "RGN.KARNATAKA",
+   "kind": "site"
+  },
+  {
+   "id": "bairat",
+   "name": "Bairat",
+   "lon": 76.18,
+   "lat": 27.45,
+   "region": "RGN.RAJASTHAN",
+   "kind": "site"
+  },
+  {
+   "id": "amaravati",
+   "name": "Amaravati",
+   "lon": 80.36,
+   "lat": 16.57,
+   "region": "RGN.ANDHRA",
+   "kind": "site"
+  },
+  {
+   "id": "nagarjunakonda",
+   "name": "Nagarjunakonda",
+   "lon": 79.24,
+   "lat": 16.52,
+   "region": "RGN.ANDHRA",
+   "kind": "site"
+  },
+  {
+   "id": "dhanyakataka",
+   "name": "Dhanyakataka",
+   "lon": 80.36,
+   "lat": 16.58,
+   "region": "RGN.ANDHRA",
+   "kind": "site"
+  },
+  {
+   "id": "karle",
+   "name": "Karle",
+   "lon": 73.47,
+   "lat": 18.75,
+   "region": "RGN.MAHARASHTRA",
+   "kind": "site"
+  },
+  {
+   "id": "bhaja",
+   "name": "Bhaja",
+   "lon": 73.48,
+   "lat": 18.73,
+   "region": "RGN.MAHARASHTRA",
+   "kind": "site"
+  },
+  {
+   "id": "kanheri",
+   "name": "Kanheri",
+   "lon": 72.91,
+   "lat": 19.21,
+   "region": "RGN.MAHARASHTRA",
+   "kind": "site"
+  },
+  {
+   "id": "nasik",
+   "name": "Nasik",
+   "lon": 73.79,
+   "lat": 19.99,
+   "region": "RGN.MAHARASHTRA",
+   "kind": "site"
+  },
+  {
+   "id": "junnar",
+   "name": "Junnar",
+   "lon": 73.88,
+   "lat": 19.21,
+   "region": "RGN.MAHARASHTRA",
+   "kind": "site"
+  },
+  {
+   "id": "sopara",
+   "name": "Sopara",
+   "lon": 72.8,
+   "lat": 19.42,
+   "region": "RGN.MAHARASHTRA",
+   "kind": "site"
+  },
+  {
+   "id": "ter",
+   "name": "Ter",
+   "lon": 76.16,
+   "lat": 18.32,
+   "region": "RGN.MAHARASHTRA",
+   "kind": "site"
+  },
+  {
+   "id": "paithan",
+   "name": "Paithan",
+   "lon": 75.38,
+   "lat": 19.48,
+   "region": "RGN.MAHARASHTRA",
+   "kind": "site"
+  },
+  {
+   "id": "naneghat",
+   "name": "Naneghat",
+   "lon": 73.68,
+   "lat": 19.29,
+   "region": "RGN.MAHARASHTRA",
+   "kind": "site"
+  },
+  {
+   "id": "bhokardan",
+   "name": "Bhokardan",
+   "lon": 75.77,
+   "lat": 20.26,
+   "region": "RGN.MAHARASHTRA",
+   "kind": "site"
+  },
+  {
+   "id": "muziris",
+   "name": "Muziris",
+   "lon": 76.25,
+   "lat": 10.18,
+   "region": "RGN.KERALA",
+   "kind": "site"
+  },
+  {
+   "id": "pattanam",
+   "name": "Pattanam",
+   "lon": 76.21,
+   "lat": 10.16,
+   "region": "RGN.KERALA",
+   "kind": "site"
+  },
+  {
+   "id": "barygaza",
+   "name": "Barygaza (Bharuch)",
+   "lon": 72.99,
+   "lat": 21.71,
+   "region": "RGN.GUJARAT",
+   "kind": "site"
+  },
+  {
+   "id": "banavasi",
+   "name": "Banavasi",
+   "lon": 75.02,
+   "lat": 14.53,
+   "region": "RGN.KARNATAKA",
+   "kind": "site"
+  },
+  {
+   "id": "chandravalli",
+   "name": "Chandravalli",
+   "lon": 76.39,
+   "lat": 14.23,
+   "region": "RGN.KARNATAKA",
+   "kind": "site"
+  },
+  {
+   "id": "sanghol",
+   "name": "Sanghol",
+   "lon": 76.39,
+   "lat": 30.78,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "sonkh",
+   "name": "Sonkh",
+   "lon": 77.58,
+   "lat": 27.31,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "devnimori",
+   "name": "Devnimori",
+   "lon": 73.32,
+   "lat": 23.68,
+   "region": "RGN.GUJARAT",
+   "kind": "site"
+  },
+  {
+   "id": "sarnath",
+   "name": "Sarnath",
+   "lon": 83.02,
+   "lat": 25.38,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "bodh gaya",
+   "name": "Bodh Gaya",
+   "lon": 84.99,
+   "lat": 24.7,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "nalanda",
+   "name": "Nalanda",
+   "lon": 85.44,
+   "lat": 25.14,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "vikramashila",
+   "name": "Vikramashila",
+   "lon": 87.29,
+   "lat": 25.32,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "odantapuri",
+   "name": "Odantapuri",
+   "lon": 85.51,
+   "lat": 25.2,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "valabhi",
+   "name": "Valabhi",
+   "lon": 71.88,
+   "lat": 21.89,
+   "region": "RGN.GUJARAT",
+   "kind": "site"
+  },
+  {
+   "id": "somapura",
+   "name": "Somapura (Paharpur)",
+   "lon": 88.98,
+   "lat": 25.03,
+   "region": "RGN.BENGAL",
+   "kind": "site"
+  },
+  {
+   "id": "jagaddala",
+   "name": "Jagaddala",
+   "lon": 88.75,
+   "lat": 25.1,
+   "region": "RGN.BENGAL",
+   "kind": "site"
+  },
+  {
+   "id": "ratnagiri",
+   "name": "Ratnagiri (Odisha)",
+   "lon": 86.33,
+   "lat": 20.64,
+   "region": "RGN.ODISHA",
+   "kind": "site"
+  },
+  {
+   "id": "lalitagiri",
+   "name": "Lalitagiri",
+   "lon": 86.25,
+   "lat": 20.59,
+   "region": "RGN.ODISHA",
+   "kind": "site"
+  },
+  {
+   "id": "sirpur",
+   "name": "Sirpur",
+   "lon": 82.18,
+   "lat": 21.33,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "bhitargaon",
+   "name": "Bhitargaon",
+   "lon": 80.27,
+   "lat": 26.19,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "deogarh",
+   "name": "Deogarh",
+   "lon": 78.24,
+   "lat": 24.53,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "mandsaur",
+   "name": "Mandsaur",
+   "lon": 75.07,
+   "lat": 24.07,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "ajanta",
+   "name": "Ajanta",
+   "lon": 75.7,
+   "lat": 20.55,
+   "region": "RGN.MAHARASHTRA",
+   "kind": "site"
+  },
+  {
+   "id": "ellora",
+   "name": "Ellora",
+   "lon": 75.18,
+   "lat": 20.03,
+   "region": "RGN.MAHARASHTRA",
+   "kind": "site"
+  },
+  {
+   "id": "elephanta",
+   "name": "Elephanta",
+   "lon": 72.93,
+   "lat": 18.96,
+   "region": "RGN.MAHARASHTRA",
+   "kind": "site"
+  },
+  {
+   "id": "bagh",
+   "name": "Bagh caves",
+   "lon": 74.79,
+   "lat": 22.36,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "aihole",
+   "name": "Aihole",
+   "lon": 75.88,
+   "lat": 16.02,
+   "region": "RGN.KARNATAKA",
+   "kind": "site"
+  },
+  {
+   "id": "badami",
+   "name": "Badami",
+   "lon": 75.68,
+   "lat": 15.92,
+   "region": "RGN.KARNATAKA",
+   "kind": "site"
+  },
+  {
+   "id": "pattadakal",
+   "name": "Pattadakal",
+   "lon": 75.82,
+   "lat": 15.95,
+   "region": "RGN.KARNATAKA",
+   "kind": "site"
+  },
+  {
+   "id": "halmidi",
+   "name": "Halmidi",
+   "lon": 75.92,
+   "lat": 13.42,
+   "region": "RGN.KARNATAKA",
+   "kind": "site"
+  },
+  {
+   "id": "talakad",
+   "name": "Talakad",
+   "lon": 77.03,
+   "lat": 12.18,
+   "region": "RGN.KARNATAKA",
+   "kind": "site"
+  },
+  {
+   "id": "talagunda",
+   "name": "Talagunda",
+   "lon": 75.25,
+   "lat": 14.42,
+   "region": "RGN.KARNATAKA",
+   "kind": "site"
+  },
+  {
+   "id": "shravanabelagola",
+   "name": "Shravanabelagola",
+   "lon": 76.49,
+   "lat": 12.86,
+   "region": "RGN.KARNATAKA",
+   "kind": "site"
+  },
+  {
+   "id": "belur",
+   "name": "Belur",
+   "lon": 75.87,
+   "lat": 13.16,
+   "region": "RGN.KARNATAKA",
+   "kind": "site"
+  },
+  {
+   "id": "halebidu",
+   "name": "Halebidu",
+   "lon": 75.99,
+   "lat": 13.21,
+   "region": "RGN.KARNATAKA",
+   "kind": "site"
+  },
+  {
+   "id": "mahabalipuram",
+   "name": "Mahabalipuram",
+   "lon": 80.19,
+   "lat": 12.62,
+   "region": "RGN.TAMILAKAM",
+   "kind": "site"
+  },
+  {
+   "id": "kanchipuram",
+   "name": "Kanchipuram",
+   "lon": 79.7,
+   "lat": 12.84,
+   "region": "RGN.TAMILAKAM",
+   "kind": "site"
+  },
+  {
+   "id": "uttaramerur",
+   "name": "Uttaramerur",
+   "lon": 79.75,
+   "lat": 12.61,
+   "region": "RGN.TAMILAKAM",
+   "kind": "site"
+  },
+  {
+   "id": "thanjavur",
+   "name": "Thanjavur",
+   "lon": 79.14,
+   "lat": 10.79,
+   "region": "RGN.TAMILAKAM",
+   "kind": "site"
+  },
+  {
+   "id": "gangaikonda",
+   "name": "Gangaikonda Cholapuram",
+   "lon": 79.45,
+   "lat": 11.21,
+   "region": "RGN.TAMILAKAM",
+   "kind": "site"
+  },
+  {
+   "id": "darasuram",
+   "name": "Darasuram",
+   "lon": 79.35,
+   "lat": 10.95,
+   "region": "RGN.TAMILAKAM",
+   "kind": "site"
+  },
+  {
+   "id": "srirangam",
+   "name": "Srirangam",
+   "lon": 78.69,
+   "lat": 10.86,
+   "region": "RGN.TAMILAKAM",
+   "kind": "site"
+  },
+  {
+   "id": "chidambaram",
+   "name": "Chidambaram",
+   "lon": 79.69,
+   "lat": 11.4,
+   "region": "RGN.TAMILAKAM",
+   "kind": "site"
+  },
+  {
+   "id": "kumbakonam",
+   "name": "Kumbakonam",
+   "lon": 79.39,
+   "lat": 10.96,
+   "region": "RGN.TAMILAKAM",
+   "kind": "site"
+  },
+  {
+   "id": "kallanai",
+   "name": "Kallanai",
+   "lon": 78.82,
+   "lat": 10.83,
+   "region": "RGN.TAMILAKAM",
+   "kind": "site"
+  },
+  {
+   "id": "martand",
+   "name": "Martand",
+   "lon": 75.22,
+   "lat": 33.74,
+   "region": "RGN.KASHMIR",
+   "kind": "site"
+  },
+  {
+   "id": "parihasapura",
+   "name": "Parihasapura",
+   "lon": 74.69,
+   "lat": 34.16,
+   "region": "RGN.KASHMIR",
+   "kind": "site"
+  },
+  {
+   "id": "srinagar",
+   "name": "Srinagar",
+   "lon": 74.8,
+   "lat": 34.08,
+   "region": "RGN.KASHMIR",
+   "kind": "site"
+  },
+  {
+   "id": "harwan",
+   "name": "Harwan",
+   "lon": 74.9,
+   "lat": 34.15,
+   "region": "RGN.KASHMIR",
+   "kind": "site"
+  },
+  {
+   "id": "puri",
+   "name": "Puri",
+   "lon": 85.82,
+   "lat": 19.8,
+   "region": "RGN.ODISHA",
+   "kind": "site"
+  },
+  {
+   "id": "konark",
+   "name": "Konark",
+   "lon": 86.09,
+   "lat": 19.89,
+   "region": "RGN.ODISHA",
+   "kind": "site"
+  },
+  {
+   "id": "bhubaneswar",
+   "name": "Bhubaneswar",
+   "lon": 85.83,
+   "lat": 20.27,
+   "region": "RGN.ODISHA",
+   "kind": "site"
+  },
+  {
+   "id": "manikapatna",
+   "name": "Manikapatna",
+   "lon": 85.45,
+   "lat": 19.72,
+   "region": "RGN.ODISHA",
+   "kind": "site"
+  },
+  {
+   "id": "hirapur",
+   "name": "Hirapur",
+   "lon": 85.88,
+   "lat": 20.22,
+   "region": "RGN.ODISHA",
+   "kind": "site"
+  },
+  {
+   "id": "kamakhya",
+   "name": "Kamakhya (Guwahati)",
+   "lon": 91.7,
+   "lat": 26.17,
+   "region": "RGN.ASSAM",
+   "kind": "site"
+  },
+  {
+   "id": "sivasagar",
+   "name": "Sivasagar (Rangpur)",
+   "lon": 94.63,
+   "lat": 26.98,
+   "region": "RGN.ASSAM",
+   "kind": "site"
+  },
+  {
+   "id": "charaideo",
+   "name": "Charaideo",
+   "lon": 94.93,
+   "lat": 27.02,
+   "region": "RGN.ASSAM",
+   "kind": "site"
+  },
+  {
+   "id": "saraighat",
+   "name": "Saraighat",
+   "lon": 91.67,
+   "lat": 26.18,
+   "region": "RGN.ASSAM",
+   "kind": "site"
+  },
+  {
+   "id": "polonnaruwa",
+   "name": "Polonnaruwa",
+   "lon": 81.0,
+   "lat": 7.94,
+   "region": "RGN.SRI_LANKA",
+   "kind": "site"
+  },
+  {
+   "id": "sigiriya",
+   "name": "Sigiriya",
+   "lon": 80.76,
+   "lat": 7.96,
+   "region": "RGN.SRI_LANKA",
+   "kind": "site"
+  },
+  {
+   "id": "aluvihare",
+   "name": "Aluvihare",
+   "lon": 80.62,
+   "lat": 7.53,
+   "region": "RGN.SRI_LANKA",
+   "kind": "site"
+  },
+  {
+   "id": "kandy",
+   "name": "Kandy",
+   "lon": 80.64,
+   "lat": 7.29,
+   "region": "RGN.SRI_LANKA",
+   "kind": "site"
+  },
+  {
+   "id": "anhilwara",
+   "name": "Anhilwara (Patan)",
+   "lon": 72.12,
+   "lat": 23.85,
+   "region": "RGN.GUJARAT",
+   "kind": "site"
+  },
+  {
+   "id": "somnath",
+   "name": "Somnath",
+   "lon": 70.4,
+   "lat": 20.89,
+   "region": "RGN.GUJARAT",
+   "kind": "site"
+  },
+  {
+   "id": "mount abu",
+   "name": "Mount Abu (Dilwara)",
+   "lon": 72.72,
+   "lat": 24.61,
+   "region": "RGN.RAJASTHAN",
+   "kind": "site"
+  },
+  {
+   "id": "jaisalmer",
+   "name": "Jaisalmer",
+   "lon": 70.91,
+   "lat": 26.92,
+   "region": "RGN.RAJASTHAN",
+   "kind": "site"
+  },
+  {
+   "id": "chittor",
+   "name": "Chittor",
+   "lon": 74.65,
+   "lat": 24.89,
+   "region": "RGN.RAJASTHAN",
+   "kind": "site"
+  },
+  {
+   "id": "zawar",
+   "name": "Zawar",
+   "lon": 73.69,
+   "lat": 24.35,
+   "region": "RGN.RAJASTHAN",
+   "kind": "site"
+  },
+  {
+   "id": "abhaneri",
+   "name": "Abhaneri (Chand Baori)",
+   "lon": 76.61,
+   "lat": 27.01,
+   "region": "RGN.RAJASTHAN",
+   "kind": "site"
+  },
+  {
+   "id": "osian",
+   "name": "Osian",
+   "lon": 72.9,
+   "lat": 26.72,
+   "region": "RGN.RAJASTHAN",
+   "kind": "site"
+  },
+  {
+   "id": "sambhar",
+   "name": "Sambhar",
+   "lon": 75.08,
+   "lat": 26.91,
+   "region": "RGN.RAJASTHAN",
+   "kind": "site"
+  },
+  {
+   "id": "delhi",
+   "name": "Delhi",
+   "lon": 77.23,
+   "lat": 28.65,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "kannauj",
+   "name": "Kannauj",
+   "lon": 79.92,
+   "lat": 27.06,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "jaunpur",
+   "name": "Jaunpur",
+   "lon": 82.68,
+   "lat": 25.75,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "daulatabad",
+   "name": "Daulatabad (Devagiri)",
+   "lon": 75.22,
+   "lat": 19.94,
+   "region": "RGN.MAHARASHTRA",
+   "kind": "site"
+  },
+  {
+   "id": "warangal",
+   "name": "Warangal",
+   "lon": 79.6,
+   "lat": 18.0,
+   "region": "RGN.ANDHRA",
+   "kind": "site"
+  },
+  {
+   "id": "ramappa",
+   "name": "Ramappa (Palampet)",
+   "lon": 79.94,
+   "lat": 18.26,
+   "region": "RGN.ANDHRA",
+   "kind": "site"
+  },
+  {
+   "id": "golconda",
+   "name": "Golconda",
+   "lon": 78.4,
+   "lat": 17.38,
+   "region": "RGN.ANDHRA",
+   "kind": "site"
+  },
+  {
+   "id": "masulipatnam",
+   "name": "Masulipatnam",
+   "lon": 81.13,
+   "lat": 16.18,
+   "region": "RGN.ANDHRA",
+   "kind": "site"
+  },
+  {
+   "id": "lepakshi",
+   "name": "Lepakshi",
+   "lon": 77.61,
+   "lat": 13.81,
+   "region": "RGN.ANDHRA",
+   "kind": "site"
+  },
+  {
+   "id": "hampi",
+   "name": "Hampi (Vijayanagara)",
+   "lon": 76.47,
+   "lat": 15.34,
+   "region": "RGN.KARNATAKA",
+   "kind": "site"
+  },
+  {
+   "id": "bijapur",
+   "name": "Bijapur",
+   "lon": 75.71,
+   "lat": 16.83,
+   "region": "RGN.KARNATAKA",
+   "kind": "site"
+  },
+  {
+   "id": "srirangapatna",
+   "name": "Srirangapatna",
+   "lon": 76.68,
+   "lat": 12.42,
+   "region": "RGN.KARNATAKA",
+   "kind": "site"
+  },
+  {
+   "id": "calicut",
+   "name": "Calicut",
+   "lon": 75.78,
+   "lat": 11.25,
+   "region": "RGN.KERALA",
+   "kind": "site"
+  },
+  {
+   "id": "cochin",
+   "name": "Cochin",
+   "lon": 76.24,
+   "lat": 9.97,
+   "region": "RGN.KERALA",
+   "kind": "site"
+  },
+  {
+   "id": "kottayam",
+   "name": "Kottayam",
+   "lon": 76.52,
+   "lat": 9.59,
+   "region": "RGN.KERALA",
+   "kind": "site"
+  },
+  {
+   "id": "vaikom",
+   "name": "Vaikom",
+   "lon": 76.39,
+   "lat": 9.75,
+   "region": "RGN.KERALA",
+   "kind": "site"
+  },
+  {
+   "id": "goa",
+   "name": "Goa",
+   "lon": 73.83,
+   "lat": 15.5,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "diu",
+   "name": "Diu",
+   "lon": 70.98,
+   "lat": 20.71,
+   "region": "RGN.GUJARAT",
+   "kind": "site"
+  },
+  {
+   "id": "surat",
+   "name": "Surat",
+   "lon": 72.83,
+   "lat": 21.17,
+   "region": "RGN.GUJARAT",
+   "kind": "site"
+  },
+  {
+   "id": "ahmedabad",
+   "name": "Ahmedabad",
+   "lon": 72.58,
+   "lat": 23.02,
+   "region": "RGN.GUJARAT",
+   "kind": "site"
+  },
+  {
+   "id": "champaner",
+   "name": "Champaner",
+   "lon": 73.53,
+   "lat": 22.49,
+   "region": "RGN.GUJARAT",
+   "kind": "site"
+  },
+  {
+   "id": "cambay",
+   "name": "Cambay (Khambhat)",
+   "lon": 72.62,
+   "lat": 22.31,
+   "region": "RGN.GUJARAT",
+   "kind": "site"
+  },
+  {
+   "id": "mandu",
+   "name": "Mandu",
+   "lon": 75.4,
+   "lat": 22.33,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "gaur",
+   "name": "Gaur",
+   "lon": 88.13,
+   "lat": 24.87,
+   "region": "RGN.BENGAL",
+   "kind": "site"
+  },
+  {
+   "id": "pandua",
+   "name": "Pandua",
+   "lon": 88.15,
+   "lat": 25.13,
+   "region": "RGN.BENGAL",
+   "kind": "site"
+  },
+  {
+   "id": "murshidabad",
+   "name": "Murshidabad",
+   "lon": 88.27,
+   "lat": 24.18,
+   "region": "RGN.BENGAL",
+   "kind": "site"
+  },
+  {
+   "id": "calcutta",
+   "name": "Calcutta",
+   "lon": 88.36,
+   "lat": 22.57,
+   "region": "RGN.BENGAL",
+   "kind": "site"
+  },
+  {
+   "id": "plassey",
+   "name": "Plassey",
+   "lon": 88.25,
+   "lat": 23.8,
+   "region": "RGN.BENGAL",
+   "kind": "site"
+  },
+  {
+   "id": "buxar",
+   "name": "Buxar",
+   "lon": 83.98,
+   "lat": 25.56,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "dhaka",
+   "name": "Dhaka",
+   "lon": 90.41,
+   "lat": 23.72,
+   "region": "RGN.BENGAL",
+   "kind": "site"
+  },
+  {
+   "id": "fatehpur sikri",
+   "name": "Fatehpur Sikri",
+   "lon": 77.66,
+   "lat": 27.09,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "agra",
+   "name": "Agra",
+   "lon": 78.02,
+   "lat": 27.18,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "panipat",
+   "name": "Panipat",
+   "lon": 76.97,
+   "lat": 29.39,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "talikota",
+   "name": "Talikota",
+   "lon": 76.31,
+   "lat": 16.47,
+   "region": "RGN.KARNATAKA",
+   "kind": "site"
+  },
+  {
+   "id": "pandharpur",
+   "name": "Pandharpur",
+   "lon": 75.33,
+   "lat": 17.68,
+   "region": "RGN.MAHARASHTRA",
+   "kind": "site"
+  },
+  {
+   "id": "pune",
+   "name": "Pune",
+   "lon": 73.86,
+   "lat": 18.52,
+   "region": "RGN.MAHARASHTRA",
+   "kind": "site"
+  },
+  {
+   "id": "amritsar",
+   "name": "Amritsar",
+   "lon": 74.87,
+   "lat": 31.63,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "anandpur",
+   "name": "Anandpur",
+   "lon": 76.5,
+   "lat": 31.24,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "bombay",
+   "name": "Bombay",
+   "lon": 72.83,
+   "lat": 18.94,
+   "region": "RGN.MAHARASHTRA",
+   "kind": "site"
+  },
+  {
+   "id": "mahad",
+   "name": "Mahad",
+   "lon": 73.42,
+   "lat": 18.08,
+   "region": "RGN.MAHARASHTRA",
+   "kind": "site"
+  },
+  {
+   "id": "nagpur",
+   "name": "Nagpur",
+   "lon": 79.09,
+   "lat": 21.15,
+   "region": "RGN.MAHARASHTRA",
+   "kind": "site"
+  },
+  {
+   "id": "madras",
+   "name": "Madras",
+   "lon": 80.27,
+   "lat": 13.08,
+   "region": "RGN.TAMILAKAM",
+   "kind": "site"
+  },
+  {
+   "id": "seringapatam",
+   "name": "Seringapatam",
+   "lon": 76.68,
+   "lat": 12.42,
+   "region": "RGN.KARNATAKA",
+   "kind": "site"
+  },
+  {
+   "id": "mysore",
+   "name": "Mysore",
+   "lon": 76.65,
+   "lat": 12.3,
+   "region": "RGN.KARNATAKA",
+   "kind": "site"
+  },
+  {
+   "id": "baroda",
+   "name": "Baroda",
+   "lon": 73.18,
+   "lat": 22.3,
+   "region": "RGN.GUJARAT",
+   "kind": "site"
+  },
+  {
+   "id": "digboi",
+   "name": "Digboi",
+   "lon": 95.62,
+   "lat": 27.38,
+   "region": "RGN.ASSAM",
+   "kind": "site"
+  },
+  {
+   "id": "nadia",
+   "name": "Nadia (Nabadwip)",
+   "lon": 88.37,
+   "lat": 23.41,
+   "region": "RGN.BENGAL",
+   "kind": "site"
+  },
+  {
+   "id": "kutch",
+   "name": "Kutch",
+   "lon": 69.86,
+   "lat": 23.73,
+   "region": "RGN.GUJARAT",
+   "kind": "site"
+  },
+  {
+   "id": "dunhuang",
+   "name": "Dunhuang",
+   "lon": 94.66,
+   "lat": 40.14,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "gilgit",
+   "name": "Gilgit",
+   "lon": 74.31,
+   "lat": 35.92,
+   "region": null,
+   "kind": "site"
+  },
+  {
+   "id": "kandahar",
+   "name": "Kandahar",
+   "lon": 65.71,
+   "lat": 31.62,
+   "region": null,
+   "kind": "site"
+  }
+ ]
+}

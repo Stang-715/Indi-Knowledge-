@@ -431,10 +431,11 @@ export function preserve(state, ev, rng) {
 }
 
 function catastropheReach(ev) {
-  const t = ev.title.toLowerCase();
-  // Everything reaches 'home' for now. Regional reach lands with the map, when
-  // a carrier's place is a real position rather than a label.
-  if (/nalanda|vikramashila|odantapuri|bakhtiyar|valabhi|taxila/.test(t)) return ['home'];
+  // Everything reaches 'home' for now: carriers live at labels ('home',
+  // 'tibet', 'lanka'...), not at gazetteer places, so an event's `where`
+  // cannot narrow the reach yet. The dead title-regex that used to sit here
+  // pretended otherwise and was deleted in phase 35. When carriers acquire
+  // real places, this is the function that reads ev.where.
   return ['home'];
 }
 

@@ -1,0 +1,454 @@
+{
+ "note": "Hand-authored affects for the events whose cards state mechanical claims. Fragments match event titles, longest wins, exactly like cards.json. Values are final deltas (magnitude priced in). Everything not listed here gets seeded jitter on the class defaults at build time.",
+ "affects": [
+  {
+   "match": "4.2 kiloyear aridification",
+   "pillars": {
+    "AGRICULTURE": -4,
+    "TRADE": -2
+   }
+  },
+  {
+   "match": "8.2 kiloyear cooling",
+   "pillars": {
+    "AGRICULTURE": -3
+   }
+  },
+  {
+   "match": "The Sutlej abandons the Ghaggar",
+   "pillars": {
+    "AGRICULTURE": -1
+   }
+  },
+  {
+   "match": "Ghaggar-Hakra flow declines",
+   "pillars": {
+    "AGRICULTURE": -3,
+    "TRADE": -1
+   }
+  },
+  {
+   "match": "The Ghaggar fails",
+   "pillars": {
+    "AGRICULTURE": -3
+   }
+  },
+  {
+   "match": "Deurbanisation",
+   "pillars": {
+    "STRUCTURE": -3,
+    "TRADE": -2,
+    "NETWORKING": -1
+   }
+  },
+  {
+   "match": "Last use of the Indus script",
+   "pillars": {
+    "IT": -5
+   }
+  },
+  {
+   "match": "Meluhha disappears",
+   "pillars": {
+    "TRADE": -4
+   }
+  },
+  {
+   "match": "Akkadian records name Meluhha",
+   "pillars": {
+    "TRADE": 4,
+    "NETWORKING": 2
+   }
+  },
+  {
+   "match": "Weights and measures standardise",
+   "pillars": {
+    "TRADE": 3,
+    "DESIGN": 2
+   }
+  },
+  {
+   "match": "Standardised brick ratios",
+   "pillars": {
+    "STRUCTURE": 2,
+    "DESIGN": 2
+   }
+  },
+  {
+   "match": "The drainage principle",
+   "pillars": {
+    "STRUCTURE": 3
+   }
+  },
+  {
+   "match": "Kharif and rabi",
+   "pillars": {
+    "AGRICULTURE": 4
+   }
+  },
+  {
+   "match": "Sorghum and pearl millet arrive",
+   "pillars": {
+    "AGRICULTURE": 3
+   }
+  },
+  {
+   "match": "Rice transplantation",
+   "pillars": {
+    "AGRICULTURE": 3
+   }
+  },
+  {
+   "match": "The iron axe opens the eastern forest",
+   "pillars": {
+    "AGRICULTURE": 3,
+    "STRUCTURE": 1
+   }
+  },
+  {
+   "match": "Iron in the Ganga plain at scale",
+   "pillars": {
+    "AGRICULTURE": 2,
+    "DESIGN": 2
+   }
+  },
+  {
+   "match": "Rigveda composition begins",
+   "pillars": {
+    "IT": 3,
+    "CLASSICISM": 3
+   }
+  },
+  {
+   "match": "The mnemonic schemes fixed",
+   "pillars": {
+    "IT": 4
+   }
+  },
+  {
+   "match": "The reciters:",
+   "pillars": {
+    "IT": 2,
+    "CULTIVATION": 2
+   }
+  },
+  {
+   "match": "The shakha system",
+   "pillars": {
+    "IT": 2,
+    "CULTIVATION": 1
+   }
+  },
+  {
+   "match": "Punch-marked coinage",
+   "pillars": {
+    "TRADE": 4,
+    "NETWORKING": 2
+   }
+  },
+  {
+   "match": "Coined-money precursors",
+   "pillars": {
+    "TRADE": 2
+   }
+  },
+  {
+   "match": "Silver karshapana",
+   "pillars": {
+    "TRADE": 2
+   }
+  },
+  {
+   "match": "Panini's Ashtadhyayi",
+   "pillars": {
+    "IT": 3,
+    "CLASSICISM": 3
+   }
+  },
+  {
+   "match": "Shreni banking",
+   "pillars": {
+    "TRADE": 3,
+    "NETWORKING": 2
+   }
+  },
+  {
+   "match": "The Kalinga war",
+   "pillars": {
+    "STRUCTURE": -2,
+    "CULTIVATION": 2,
+    "NETWORKING": 1
+   }
+  },
+  {
+   "match": "Major Rock Edicts",
+   "pillars": {
+    "IT": 4,
+    "NETWORKING": 2
+   }
+  },
+  {
+   "match": "The janapada survey",
+   "pillars": {
+    "STRUCTURE": 2,
+    "AGRICULTURE": 1
+   }
+  },
+  {
+   "match": "The royal road to Taxila",
+   "pillars": {
+    "TRADE": 3,
+    "NETWORKING": 2
+   }
+  },
+  {
+   "match": "Mahinda to Sri Lanka",
+   "pillars": {
+    "NETWORKING": 3,
+    "CULTIVATION": 2
+   }
+  },
+  {
+   "match": "Hippalus and the monsoon",
+   "pillars": {
+    "TRADE": 4
+   }
+  },
+  {
+   "match": "Periplus",
+   "pillars": {
+    "TRADE": 3,
+    "NETWORKING": 1
+   }
+  },
+  {
+   "match": "Buddhism moves along the Silk Road",
+   "pillars": {
+    "NETWORKING": 3,
+    "CULTIVATION": 2
+   }
+  },
+  {
+   "match": "The land-grant economy",
+   "pillars": {
+    "CULTIVATION": 3,
+    "STRUCTURE": -1
+   }
+  },
+  {
+   "match": "Nalanda founded",
+   "pillars": {
+    "CULTIVATION": 4,
+    "IT": 2
+   }
+  },
+  {
+   "match": "Aryabhatiya",
+   "pillars": {
+    "IT": 4,
+    "CLASSICISM": 2
+   }
+  },
+  {
+   "match": "Brahmasphutasiddhanta",
+   "pillars": {
+    "IT": 4
+   }
+  },
+  {
+   "match": "zero becomes a number",
+   "pillars": {
+    "IT": 4
+   }
+  },
+  {
+   "match": "Xuanzang studies at Nalanda",
+   "pillars": {
+    "NETWORKING": 3,
+    "CULTIVATION": 2
+   }
+  },
+  {
+   "match": "Xuanzang leaves with six hundred",
+   "pillars": {
+    "NETWORKING": 2,
+    "IT": 1
+   }
+  },
+  {
+   "match": "Indian numerals and Brahmagupta reach Baghdad",
+   "pillars": {
+    "NETWORKING": 4,
+    "TRADE": 2
+   }
+  },
+  {
+   "match": "The temple as a landholding corporation",
+   "pillars": {
+    "CULTIVATION": 3,
+    "STRUCTURE": 2,
+    "TRADE": 1
+   }
+  },
+  {
+   "match": "Uttaramerur",
+   "pillars": {
+    "NETWORKING": 3,
+    "CULTIVATION": 2
+   }
+  },
+  {
+   "match": "Brihadeeswarar",
+   "pillars": {
+    "STRUCTURE": 4,
+    "CULTIVATION": 2,
+    "DESIGN": 2
+   }
+  },
+  {
+   "match": "Sungam Tavirtta",
+   "pillars": {
+    "TRADE": 4
+   }
+  },
+  {
+   "match": "naval expedition to Srivijaya",
+   "pillars": {
+    "TRADE": 3,
+    "NETWORKING": 2,
+    "STRUCTURE": -1
+   }
+  },
+  {
+   "match": "Ayyavole 500",
+   "pillars": {
+    "TRADE": 4,
+    "NETWORKING": 3
+   }
+  },
+  {
+   "match": "Nalanda sacked",
+   "pillars": {
+    "IT": -4,
+    "CULTIVATION": -4,
+    "CLASSICISM": -2
+   }
+  },
+  {
+   "match": "Second Tarain",
+   "pillars": {
+    "STRUCTURE": -2,
+    "NETWORKING": -1
+   }
+  },
+  {
+   "match": "Paper displaces palm leaf",
+   "pillars": {
+    "IT": 5
+   }
+  },
+  {
+   "match": "token currency",
+   "pillars": {
+    "TRADE": -2
+   }
+  },
+  {
+   "match": "Sher Shah's rupiya",
+   "pillars": {
+    "TRADE": 4,
+    "STRUCTURE": 2
+   }
+  },
+  {
+   "match": "The zabt settlement",
+   "pillars": {
+    "AGRICULTURE": 2,
+    "STRUCTURE": 2
+   }
+  },
+  {
+   "match": "Indian cotton textiles become",
+   "pillars": {
+    "TRADE": 5
+   }
+  },
+  {
+   "match": "Silver from the Americas",
+   "pillars": {
+    "TRADE": 3
+   }
+  },
+  {
+   "match": "Plassey, and then the diwani",
+   "pillars": {
+    "TRADE": -4,
+    "STRUCTURE": -1
+   }
+  },
+  {
+   "match": "The Great Bengal Famine",
+   "pillars": {
+    "AGRICULTURE": -4,
+    "CULTIVATION": -2
+   }
+  },
+  {
+   "match": "Great Trigonometrical Survey",
+   "pillars": {
+    "DESIGN": 3,
+    "STRUCTURE": 2
+   }
+  },
+  {
+   "match": "Macaulay's Minute",
+   "pillars": {
+    "CULTIVATION": -2,
+    "IT": 1
+   }
+  },
+  {
+   "match": "Railway and telegraph",
+   "pillars": {
+    "TRADE": 3,
+    "NETWORKING": 3,
+    "STRUCTURE": 2
+   }
+  },
+  {
+   "match": "Indian textile manufacturing collapses",
+   "pillars": {
+    "TRADE": -5,
+    "DESIGN": -2
+   }
+  },
+  {
+   "match": "Printing in the Indian scripts",
+   "pillars": {
+    "IT": 5,
+    "NETWORKING": 2
+   }
+  },
+  {
+   "match": "The decennial census",
+   "pillars": {
+    "STRUCTURE": 1,
+    "NETWORKING": -1
+   }
+  },
+  {
+   "match": "Famine kills millions",
+   "pillars": {
+    "AGRICULTURE": -4,
+    "CULTIVATION": -2
+   }
+  },
+  {
+   "match": "The Bengal famine of 1943",
+   "pillars": {
+    "AGRICULTURE": -4,
+    "CULTIVATION": -2
+   }
+  }
+ ]
+}

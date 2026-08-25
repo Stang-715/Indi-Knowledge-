@@ -198,3 +198,48 @@ test('no event is written twice', () => {
   }
   assert.deepEqual(dups, []);
 });
+
+/* ── Phase 35: the payload ──────────────────────────────────────────────── */
+
+const GAZ = JSON.parse(readFileSync(
+  new URL('../../../data/gazetteer/places.json', import.meta.url), 'utf8'));
+const GAZ_IDS = new Set(GAZ.places.map(p => p.id));
+
+test('every where key resolves against the gazetteer', () => {
+  for (const e of TL.events)
+    for (const k of e.where ?? [])
+      assert.ok(GAZ_IDS.has(k), `${e.id}: "${k}" is not a place`);
+});
+
+test('a substantial share of events land closer than a region', () => {
+  const precise = TL.events.filter(e =>
+    (e.where ?? []).some(k => !k.startsWith('RGN.'))).length;
+  assert.ok(precise >= 600, `only ${precise} events have a precise place`);
+});
+
+test('every W event carries its own affects, and they are not all the same', () => {
+  // EPOCH and the class-less dynastic lines ('—') legitimately carry no
+  // pillar payload: an accession moves the map, not the knowledge economy.
+  const ws = TL.events.filter(e => e.magnitude === 'W'
+    && e.class !== 'EPOCH' && e.class !== '—');
+  for (const e of ws)
+    assert.ok(e.affects && Object.keys(e.affects).length,
+      `${e.id} has no payload`);
+  // Two same-class W events must differ — the whole point of the phase.
+  const climates = ws.filter(e => e.class === 'CLIMATE').slice(0, 12);
+  const shapes = new Set(climates.map(e => JSON.stringify(e.affects)));
+  assert.ok(shapes.size >= climates.length - 1,
+    `${climates.length} CLIMATE events share only ${shapes.size} payload shapes`);
+});
+
+test('the hand-authored claims survive the bake', () => {
+  // The worked example from the plan: 4.2 kiloyear = AGRICULTURE -4, TRADE -2.
+  const e = TL.events.find(x => x.title.includes('4.2 kiloyear aridification'));
+  assert.deepEqual(e.affects, { AGRICULTURE: -4, TRADE: -2 });
+});
+
+test('every card-bearing event teaches something', () => {
+  let n = 0;
+  for (const e of TL.events) if (e.teaches) n++;
+  assert.ok(n >= 450, `only ${n} events carry a takeaway`);
+});

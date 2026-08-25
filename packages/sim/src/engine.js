@@ -11,6 +11,7 @@ import { Clock, START_YEAR, END_YEAR, formatYear } from './clock.js';
 import { buildSchedule, eventsIn } from './events.js';
 import { newState, record, bumpPillar, fingerprint, shock, tickShocks, effectivePillar } from './state.js';
 import { Rng } from './rng.js';
+import { CLASS_EFFECTS, MAG_WEIGHT } from './effects.js';
 import { initCorpus, tickCorpus, applyWorkEvent, catastrophe, preserve, copyOut, worksAtRisk } from './corpus.js';
 import { initTrade, tickTrade, applyTradeEvent, DECISIONS as TRADE_DECISIONS } from './trade.js';
 import { initPeople, tickPeople, oralCapacity, DECISIONS as PEOPLE_DECISIONS } from './people.js';
@@ -21,24 +22,8 @@ import { compareDecisions } from './save.js';
 import { initFrontier, tickFrontier, DECISIONS as FRONTIER_DECISIONS } from './frontier.js';
 
 /** Pillar deltas by event class. Coarse, deliberately — tuning comes later. */
-const CLASS_EFFECTS = {
-  WORK:        { IT: 1, CLASSICISM: 1 },
-  SITE:        { STRUCTURE: 1 },
-  STRUCTURE:   { STRUCTURE: 2 },
-  TRANSITION:  { DESIGN: 1, IT: 1 },
-  AGRICULTURE: { AGRICULTURE: 2 },
-  TRADE:       { TRADE: 2, NETWORKING: 1 },
-  REFORM:      { CULTIVATION: 1, NETWORKING: 1 },
-  FOUNDATION:  { STRUCTURE: 1, NETWORKING: 1 },
-  FRONTIER:    { NETWORKING: -1 },
-  INVASION:    { TRADE: -2, STRUCTURE: -1 },
-  CATASTROPHE: { IT: -2, CLASSICISM: -1 },
-  CLIMATE:     { AGRICULTURE: -2, TRADE: -1 },
-  COLONIAL:    { TRADE: -2 },
-  EPOCH:       {},
-};
-
-const MAG_WEIGHT = { W: 2.0, M: 1.0, R: 0.5, m: 0.25 };
+// CLASS_EFFECTS and MAG_WEIGHT moved to effects.js (phase 35) — shared with
+// the generator, which bakes per-event `affects` from them.
 
 /**
  * Run a campaign.
@@ -142,13 +127,21 @@ const SHOCK_YEARS = { CLIMATE: 60, CATASTROPHE: 90, INVASION: 40 };
 
 function fireEvent(state, ev, datapack, rng) {
   state.stats.eventsFired++;
-  const w = MAG_WEIGHT[ev.magnitude] ?? 0.5;
   const heals = SHOCK_YEARS[ev.class];
-  for (const [pillar, delta] of Object.entries(CLASS_EFFECTS[ev.class] ?? {})) {
+  // The event's own payload, baked by the generator: hand-authored where a
+  // card states a claim, seeded jitter on the class defaults elsewhere. The
+  // deltas arrive final — magnitude already priced in — so the engine no
+  // longer flattens 1,347 events into twelve class shapes. The class table
+  // survives only as the fallback for a datapack built before phase 35.
+  const w = MAG_WEIGHT[ev.magnitude] ?? 0.5;
+  const payload = ev.affects
+    ?? Object.fromEntries(Object.entries(CLASS_EFFECTS[ev.class] ?? {})
+         .map(([p, d]) => [p, d * w]));
+  for (const [pillar, delta] of Object.entries(payload)) {
     // Gains are permanent; harm from weather, fire and war is a shock that
     // heals. A society that survives a drought still knows how to farm.
-    if (heals && delta < 0) shock(state, pillar, -delta * w, heals);
-    else bumpPillar(state, pillar, delta * w);
+    if (heals && delta < 0) shock(state, pillar, -delta, heals);
+    else bumpPillar(state, pillar, delta);
   }
 
   if (ev.class === 'WORK')       applyWorkEvent(state, ev, datapack);

@@ -46,14 +46,16 @@ const mark = (label) => { marks.push([label, performance.now() - T0]); };
 
 /* ── World ──────────────────────────────────────────────────────────────── */
 
-const [bundle, timeline, works, cityData, people, cardsDoc] = await Promise.all([
+const [bundle, timeline, works, cityData, people, cardsDoc, gazetteer] = await Promise.all([
   fetch('../../data/skeleton/bundle.json').then(r => r.json()),
   fetch('../../data/timeline/timeline.json').then(r => r.json()),
   fetch('../../data/corpus/works.json').then(r => r.json()),
   fetch('../../data/cities/cities.json').then(r => r.json()),
   fetch('../../data/people/people.json').then(r => r.json()),
   fetch('../../data/timeline/cards.json').then(r => r.json()),
+  fetch('../../data/gazetteer/places.json').then(r => r.json()),
 ]);
+const PLACE_BY_ID = new Map(gazetteer.places.map(g => [g.id, g]));
 
 mark('fetch');
 const SK = loadSkeleton(bundle);
@@ -446,6 +448,27 @@ function drawSites(proj, level, dive) {
       ctx.arc(c.x + (dx / m) * 5 * dpr, c.y - (dy / m) * 5 * dpr, 1.4 * dpr, 0, Math.PI * 2);
       ctx.fill();
     }
+    // Where it happened. Events now carry gazetteer places (phase 35); the
+    // last few years' W events pulse at their location, so history lands on
+    // the map instead of only in the drawer.
+    if (state) {
+      for (const ev of timeline.events) {
+        if (ev.magnitude !== 'W') continue;
+        const age = state.year - ev.year;
+        if (age < 0 || age > 12) continue;
+        const key = (ev.where ?? [])[0];
+        const g = key && PLACE_BY_ID.get(key);
+        if (!g) continue;
+        const x = proj.toX(g.lon), y = proj.toY(g.lat);
+        const fade = 1 - age / 12;
+        ctx.strokeStyle = `rgba(201,162,39,${0.55 * fade})`;
+        ctx.lineWidth = 1.5 * dpr;
+        ctx.beginPath();
+        ctx.arc(x, y, (6 + (1 - fade) * 10) * dpr, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+    }
+
   }
 
   // Landmarks. Symbolic markers at fixed screen size, deliberately out of

@@ -10,6 +10,8 @@
 import { readFileSync, writeFileSync, mkdirSync, readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
+import { CLASS_EFFECTS, MAG_WEIGHT } from '../packages/sim/src/effects.js';
+import { indexCards, authoredFor } from '../packages/ui/src/eventcard.js';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SRC = join(ROOT, 'docs/07-timeline.md');
@@ -527,6 +529,103 @@ for (const ev of events) {
   }
 }
 events.sort((a, b) => a.year - b.year || a.id.localeCompare(b.id));
+
+/* ── Phase 35: the payload — where, affects, teaches ─────────────────────
+ *
+ * Until this pass every event of a class did the identical thing to the
+ * identical pillars, and landed no closer to the map than one of twelve
+ * regions. Three derived fields fix that, baked here so the data is explicit
+ * and the engine stays dumb:
+ *
+ *   where    gazetteer keys, derived from the title and evidence text by
+ *            longest-name-first matching. Falls back to the region id (which
+ *            is itself a gazetteer entry) — honest coarseness, never fake
+ *            precision. An explicit `where` in a supplement wins and every
+ *            key is validated; an unresolvable place fails the build exactly
+ *            as an unresolvable work does.
+ *   affects  final pillar deltas. Hand-authored where a card states a claim
+ *            (data/timeline/affects.json, longest-match like cards); seeded
+ *            jitter on the class defaults everywhere else, keyed by event id
+ *            so the same build always bakes the same world.
+ *   teaches  the one-line takeaway: the authored card's "why" where a card
+ *            exists, the event's own note otherwise.
+ */
+const GAZ = JSON.parse(readFileSync(join(ROOT, 'data/gazetteer/places.json'), 'utf8'));
+const GAZ_IDS = new Set(GAZ.places.map(g => g.id));
+const GAZ_BY_NAME = GAZ.places
+  .filter(g => g.kind !== 'region')
+  .map(g => ({ id: g.id, needle: g.name.toLowerCase().split(' (')[0] }))
+  .concat(GAZ.places.filter(g => g.kind !== 'region' && g.id.includes(' '))
+    .map(g => ({ id: g.id, needle: g.id })))
+  .sort((a, b) => b.needle.length - a.needle.length);
+
+const AFFECTS = JSON.parse(readFileSync(join(ROOT, 'data/timeline/affects.json'), 'utf8'))
+  .affects.sort((a, b) => b.match.length - a.match.length);
+
+const CARDS = JSON.parse(readFileSync(join(ROOT, 'data/timeline/cards.json'), 'utf8'));
+const CARD_IDX = indexCards(CARDS);
+
+// Deterministic 32-bit hash for the jitter. No Math.random in a build tool
+// whose output is diffed and committed.
+function h32(str) {
+  let h = 0x811c9dc5;
+  for (let i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 0x01000193); }
+  return h >>> 0;
+}
+
+const whereErrors = [];
+let precise = 0, affected = 0, taught = 0;
+for (const ev of events) {
+  // where
+  if (Array.isArray(ev.where)) {
+    for (const k of ev.where) if (!GAZ_IDS.has(k))
+      whereErrors.push(`${ev.id}: unresolvable place "${k}"`);
+  } else {
+    const hay = (ev.title + ' ' + (ev.evidence ?? '')).toLowerCase();
+    const hits = [];
+    for (const g of GAZ_BY_NAME) {
+      if (hits.length >= 3) break;
+      if (hay.includes(g.needle) && !hits.includes(g.id)) hits.push(g.id);
+    }
+    if (hits.length) { ev.where = hits; precise++; }
+    else if (ev.region) ev.where = [ev.region];
+    else ev.where = [];
+  }
+
+  // affects
+  if (!ev.affects) {
+    const t = ev.title.toLowerCase();
+    const hand = AFFECTS.find(a => t.includes(a.match.toLowerCase()));
+    if (hand) ev.affects = { ...hand.pillars };
+    else {
+      const base = CLASS_EFFECTS[ev.class] ?? {};
+      const w = MAG_WEIGHT[ev.magnitude] ?? 0.5;
+      const out = {};
+      let i = 0;
+      for (const [pillar, d] of Object.entries(base)) {
+        // 0.70–1.30, per event per pillar, stable across builds.
+        const jitter = 0.70 + ((h32(ev.id + ':' + pillar) % 61) / 100);
+        out[pillar] = Math.round(d * w * jitter * 100) / 100;
+        i++;
+      }
+      if (i) ev.affects = out;
+    }
+    if (ev.affects) affected++;
+  } else affected++;
+
+  // teaches
+  if (!ev.teaches) {
+    const card = authoredFor(CARD_IDX, ev);
+    if (card?.why) { ev.teaches = card.why; taught++; }
+    else if (ev.note) { ev.teaches = ev.note; taught++; }
+  } else taught++;
+}
+if (whereErrors.length) {
+  console.error('  \u2717 unresolvable places:');
+  for (const e of whereErrors) console.error('    ' + e);
+  process.exit(1);
+}
+console.log(`  Payload    where: ${precise} precise, affects: ${affected}, teaches: ${taught}`);
 
 const doc = {
   $schema: '../../packages/schema/timeline.schema.json',
