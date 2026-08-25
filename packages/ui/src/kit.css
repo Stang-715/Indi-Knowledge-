@@ -348,3 +348,12 @@ body {
 /* --- Texture incidents: quieter than events, present all the same --------- */
 .notice--texture { border-left-color: var(--table-deep); color: var(--ink-soft);
   font-style: italic; }
+
+/* --- The emptying: water gauges (phase 38) -------------------------------- */
+.indus-water { display: inline-block; width: 54px; height: 7px;
+  background: rgba(42,33,24,.12); position: relative; vertical-align: middle; }
+.indus-water::after { content: ''; position: absolute; inset: 0; width: var(--w);
+  background: var(--sea-mid); }
+.indus-warn::after { background: var(--land-arid); }
+.indus-dry::after  { background: var(--warn); }
+.per.gone { opacity: .55; }

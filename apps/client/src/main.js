@@ -772,8 +772,47 @@ function paint() {
   paintPeople();
   paintSurvey();
   paintFrontier();
+  paintIndus();
   paintLocks();
 }
+
+/**
+ * The emptying (phase 38). Visible only during the Indus era: each town's
+ * water as a draining gauge, and the three verbs — provision, wells,
+ * resettle. The panel never offers rescue, because the era has none.
+ */
+function paintIndus() {
+  const s = state;
+  const inEra = s && s.year >= -2600 && s.year <= -1900 && s.indus;
+  $('indus-h').style.display = inEra ? '' : 'none';
+  if (!inEra) { $('indus').innerHTML = ''; return; }
+  const towns = [...s.indus.values()];
+  const standing = towns.filter(t => t.standing).length;
+  const c = s.indusCarried;
+  $('indus-sum').textContent =
+    `${standing}/${towns.length} standing · ${Math.round(c.resettled)} resettled east`;
+  $('indus').innerHTML = towns.map(t => {
+    const w = Math.round(t.water * 100);
+    const cls = t.water > 0.5 ? 'ok' : t.water > 0.25 ? 'warn' : 'dry';
+    return `<div class="per${t.standing ? '' : ' gone'}"
+      title="${t.standing ? `Water ${w}%. Provisioning slows the drift; wells buy a generation; a planned column east carries seed, tools and the songs.` : 'Empty. Nobody sacked it.'}">
+      <span class="nm">${t.name}</span>
+      <span class="indus-water indus-${cls}" style="--w:${w}%"></span>
+      ${t.standing ? `
+        <button class="btn tiny" data-indus="provision-town" data-town="${t.id}"
+          ${s.grain < 120 ? 'disabled' : ''}>provision</button>
+        <button class="btn tiny" data-indus="dig-wells" data-town="${t.id}"
+          ${t.wells >= 3 || s.grain < 80 ? 'disabled' : ''}>wells</button>
+        <button class="btn tiny" data-indus="resettle-east" data-town="${t.id}"
+          ${t.people <= 0 || s.grain < 100 ? 'disabled' : ''}>resettle east</button>`
+      : `<span class="tiny muted">empty</span>`}
+    </div>`;
+  }).join('');
+}
+$('indus').addEventListener('click', (e) => {
+  const b = e.target.closest('button[data-indus]');
+  if (b && !b.disabled) decide(b.dataset.indus, { town: b.dataset.town });
+});
 
 /**
  * The frontier panel.

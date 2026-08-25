@@ -13,6 +13,7 @@ import { newState, record, bumpPillar, fingerprint, shock, tickShocks, effective
 import { Rng } from './rng.js';
 import { CLASS_EFFECTS, MAG_WEIGHT } from './effects.js';
 import { tickTexture } from './texture.js';
+import { initIndus, tickIndus, INDUS_DECISIONS } from './indus.js';
 import { initCorpus, tickCorpus, applyWorkEvent, catastrophe, preserve, copyOut, worksAtRisk } from './corpus.js';
 import { initTrade, tickTrade, applyTradeEvent, DECISIONS as TRADE_DECISIONS } from './trade.js';
 import { initPeople, tickPeople, oralCapacity, DECISIONS as PEOPLE_DECISIONS } from './people.js';
@@ -41,6 +42,7 @@ export function run(datapack, seed, decisionLog = [], opts = {}) {
   const state = newState(opts.initial);
   state.year = from;
   state.seed = seed;
+  initIndus(state);
 
   // Subsystems fork the seed ONCE, by name. That keeps them independent: adding
   // a trade roll cannot silently rewrite the corpus (see rng.js).
@@ -106,6 +108,7 @@ export function run(datapack, seed, decisionLog = [], opts = {}) {
     // year through drawFrom, so it replays identically and fingerprints like
     // everything else. A datapack without texture data plays without it.
     tickTexture(state, datapack, span, seed);
+    tickIndus(state, span, seed);
 
     if (opts.onYear) opts.onYear(state, next, span);
   }
@@ -271,6 +274,12 @@ export function applyDecision(state, d, datapack, rng) {
   if (gate) { state.stats.blocked = (state.stats.blocked ?? 0) + 1; return; }
 
   switch (d.action) {
+    case 'provision-town':
+    case 'dig-wells':
+    case 'resettle-east':
+      INDUS_DECISIONS[d.action]?.(state, d);
+      return;
+
     case 'patronise':                    // grain to reciters
       if (state.grain >= 50) { state.grain -= 50; state.pops.reciters += 1;
         record(state, d.year, 'decision', `A reciter is taken into keeping.`); }

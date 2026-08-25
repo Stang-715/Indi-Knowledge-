@@ -82,8 +82,15 @@ export function tickTexture(state, datapack, span, seed) {
   // silent stretch is target-plus-jitter by construction, which is what the
   // silence rule needs to be a guarantee rather than a hope.
   state.textureDebt = (state.textureDebt ?? 0) + span * mpy;
+  // Jitter keeps the rhythm human, but it may only delay, never compound: at
+  // coarse ticks (5-year Neolithic ticks are 8.6 Indus minutes each) a jitter
+  // miss next to a surface-skip already cost 26 silent minutes in a scripted
+  // session. Past one-and-a-half targets of debt, the incident fires, full
+  // stop.
   const jitter = (drawFrom(seed, 'texture-jitter', state.year) - 0.5) * 6;
-  if (state.textureDebt < TARGET_MINUTES + jitter) return;
+  const due = state.textureDebt >= TARGET_MINUTES * 1.5
+           || state.textureDebt >= TARGET_MINUTES + jitter;
+  if (!due) return;
   // The debt is cleared only when an incident actually lands. A skip — empty
   // pool, or every variant recently used — keeps the debt, so the next tick
   // fires instead of the silence compounding.
@@ -92,42 +99,55 @@ export function tickTexture(state, datapack, span, seed) {
   // Cooldowns are stated in play minutes, converted at the era's cadence: a
   // 50-minute cooldown is a century in the Neolithic and nine years in the
   // Mauryan, which is the same amount of the player's attention either way.
-  const pool = tx.templates.filter(t => {
+  let pool = tx.templates.filter(t => {
     const last = state.textureSeen.get(t.id);
     const coolYears = (t.cooldown ?? 60) / mpy;
     if (last !== undefined && state.year - last < coolYears) return false;
     return eligible(t, state, state.year);
   });
+  // Cooldown starvation: eras where the needs-gating leaves a small eligible
+  // set can cool every template at once, and the debt then compounds into
+  // real silence (a scripted Indus session hit 25 quiet minutes this way).
+  // Fall back to eligible-but-cooling templates — the 150-year surface memory
+  // below still forbids an exact repeat, which is the promise that matters.
+  if (!pool.length) pool = tx.templates.filter(t => eligible(t, state, state.year));
   if (!pool.length) return;
 
-  const total = pool.reduce((a, t) => a + (t.weight ?? 1), 0);
-  let pick = drawFrom(seed, 'texture-pick', state.year) * total;
-  let t = pool[0];
-  for (const c of pool) { pick -= (c.weight ?? 1); if (pick <= 0) { t = c; break; } }
-
-  const uText  = drawFrom(seed, 'texture-text',  state.year, t.id);
-  const uPlace = drawFrom(seed, 'texture-place', state.year, t.id);
-  const uWork  = drawFrom(seed, 'texture-work',  state.year, t.id);
-  const uGood  = drawFrom(seed, 'texture-good',  state.year, t.id);
-
-  const compose = (vi) => t.texts[vi % t.texts.length]
-    .replace('{place}', placeFor(datapack, state, state.year, uPlace))
-    .replace('{work}',  workFor(state, uWork))
-    .replace('{good}',  tx.goods[Math.floor(uGood * tx.goods.length) % tx.goods.length]);
-  let vi = Math.floor(uText * t.texts.length);
-  let text = compose(vi);
-  // Never repeat a template's exact surface string within living memory:
-  // with two variants and a small place pool, A-B-A inside a century is
-  // otherwise guaranteed. Recent surfaces are remembered per template for
-  // 150 years; a composed string still on the list tries the other variants
-  // and, failing that, the incident is skipped rather than repeated.
   if (!state.textureLast) state.textureLast = new Map();
-  const recent = (state.textureLast.get(t.id) ?? [])
-    .filter(r => state.year - r.year < 150);
-  const seen = new Set(recent.map(r => r.text));
-  let tries = t.texts.length;
-  while (seen.has(text) && tries-- > 0) text = compose(++vi);
-  if (seen.has(text)) return;
+  // Up to three template attempts: a surface-skip on the first pick tries a
+  // different template instead of costing the whole tick — a skipped tick at
+  // Neolithic granularity is 8.6 minutes of the player's evening.
+  let t = null, text = null, recent = null;
+  for (let attempt = 0; attempt < 3 && text === null; attempt++) {
+    const total = pool.reduce((a, c) => a + (c.weight ?? 1), 0);
+    let pick = drawFrom(seed, 'texture-pick', state.year, attempt) * total;
+    t = pool[0];
+    for (const c of pool) { pick -= (c.weight ?? 1); if (pick <= 0) { t = c; break; } }
+
+    const uText  = drawFrom(seed, 'texture-text',  state.year, t.id);
+    const uPlace = drawFrom(seed, 'texture-place', state.year, t.id);
+    const uWork  = drawFrom(seed, 'texture-work',  state.year, t.id);
+    const uGood  = drawFrom(seed, 'texture-good',  state.year, t.id);
+    const compose = (vi) => t.texts[vi % t.texts.length]
+      .replace('{place}', placeFor(datapack, state, state.year, uPlace))
+      .replace('{work}',  workFor(state, uWork))
+      .replace('{good}',  tx.goods[Math.floor(uGood * tx.goods.length) % tx.goods.length]);
+
+    // Never repeat a template's exact surface string within living memory:
+    // with two variants and a small place pool, A-B-A inside a century is
+    // otherwise guaranteed.
+    recent = (state.textureLast.get(t.id) ?? [])
+      .filter(r => state.year - r.year < 150);
+    const seenTexts = new Set(recent.map(r => r.text));
+    let vi = Math.floor(uText * t.texts.length);
+    let candidate = compose(vi);
+    let tries = t.texts.length;
+    while (seenTexts.has(candidate) && tries-- > 0) candidate = compose(++vi);
+    if (!seenTexts.has(candidate)) text = candidate;
+    else pool = pool.filter(c => c.id !== t.id);
+    if (!pool.length) break;
+  }
+  if (text === null) return;
   recent.push({ year: state.year, text });
   state.textureLast.set(t.id, recent);
 
