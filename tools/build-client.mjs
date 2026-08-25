@@ -109,7 +109,29 @@ const __m = {};
 ${order.map(wrap).join('\n\n')}
 </script>`;
 
+/**
+ * Escape every non-ASCII character, so the file cannot mojibake.
+ *
+ * The published artifact is wrapped in a head that declares UTF-8, so it is
+ * safe there — but a `file://` open can still fall back to windows-1252 and a
+ * host that sends no charset will too. That turns the play button into
+ * "\u00e2\u0096\u00b6 play". Escaping makes the bundle pure ASCII, which no
+ * decoder can get wrong.
+ *
+ * HTML text takes numeric entities; the script block takes \uXXXX, which is
+ * valid inside string literals and harmless inside comments. Identifiers in
+ * this codebase are all ASCII, so nothing in executable position is touched.
+ */
+function asciify(html) {
+  const cut = html.indexOf('<script type="module">');
+  const head = html.slice(0, cut), tail = html.slice(cut);
+  const esc = (s, fn) => s.replace(/[^\x00-\x7F]/g, (c) => fn(c.codePointAt(0)));
+  return esc(head, (n) => `&#${n};`) +
+         esc(tail, (n) => '\\u' + n.toString(16).padStart(4, '0'));
+}
+
+const asciiOut = asciify(out);
 mkdirSync(dirname(OUT), { recursive: true });
-writeFileSync(OUT, out);
-console.log(`  ✓ ${relative(ROOT, OUT)}  ${(out.length / 1024 / 1024).toFixed(2)} MB  ` +
+writeFileSync(OUT, asciiOut);
+console.log(`  ✓ ${relative(ROOT, OUT)}  ${(asciiOut.length / 1024 / 1024).toFixed(2)} MB  ` +
             `(${order.length} modules, ${Object.keys(inlined).length} data files)`);

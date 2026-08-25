@@ -8,7 +8,34 @@
 <style>
   html,body { height:100%; }
   #app { display:grid; grid-template-columns: 1fr 322px; height:100dvh; gap:0; }
-  @media (max-width: 900px) { #app { grid-template-columns: 1fr; grid-template-rows: 1fr auto; } }
+  /* Below 900px the panel goes under the map rather than beside it.
+     `grid-template-rows: 1fr auto` looks right and is not: `auto` is
+     content-sized, ten panels are taller than any phone, and the `1fr` map row
+     is squeezed to ZERO height. The map was 390x0 — present, painted, and
+     invisible. Give the stage an explicit share and let the panel scroll. */
+  @media (max-width: 900px) {
+    #app   { grid-template-columns: 1fr; grid-template-rows: 56dvh minmax(0, 1fr); }
+    #stage { min-height: 0; }
+    aside  { border-left: 0; border-top: 1px solid var(--rule); min-height: 0; }
+    /* The HUD carries eight controls; at 390px they must wrap, not overflow. */
+    #hud   { left: 8px; right: 8px; top: 8px; flex-wrap: wrap; gap: 5px; padding: 5px 7px; }
+    #hud .rule { display: none; }
+    #year  { font-size: 16px; min-width: 84px; }
+    #notices { right: 8px; top: auto; bottom: 8px; width: auto; left: 8px; }
+    #scrub { left: 8px; right: 8px; bottom: 46px; }
+    #scrubber { width: 100%; }
+    /* On a phone the stage is only 56dvh, so a full-height card would cover the
+       very thing the player opened the game to look at. Trim it to a title and
+       two taps; the descriptions are read on desktop and in the way here. */
+    #start { padding: 0 10px 10px; }
+    .startcard { max-width: none; padding: 12px 14px 12px; width: 100%; }
+    .startcard h1 { font-size: 20px; margin-bottom: 2px; }
+    .startcard .lede { display: none; }
+    .picks .btn { padding: 9px 12px; }
+    .picks .btn span { display: none; }
+  }
+  /* A grid child will not shrink below its content unless told to. */
+  #stage, aside { min-width: 0; }
 
   #stage { position:relative; overflow:hidden; }
   #map { display:block; width:100%; height:100%; touch-action:none; cursor:grab; }
@@ -20,8 +47,13 @@
   #year { font-size:19px; font-weight:600; font-variant-numeric:tabular-nums; min-width:104px; }
   #era  { font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); }
 
-  #start { position:absolute; inset:0; display:grid; place-items:center; z-index:30;
-           background:rgba(42,33,24,.55); }
+  /* The start card sits low and the scrim is light, because the first thing a
+     player should see is the map — not a dark sheet over it. Reported as
+     "I can't see the map", and they were right: the map was behind a 55% scrim. */
+  #start { position:absolute; inset:0; display:grid; align-items:end; justify-items:center;
+           padding:0 16px 6vh; z-index:30; pointer-events:none;
+           background:linear-gradient(to bottom, rgba(42,33,24,0) 34%, rgba(42,33,24,.34) 100%); }
+  #start .startcard { pointer-events:auto; }
   #start.off { display:none; }
   .startcard { background:var(--paper); border:1px solid var(--rule); max-width:520px;
                padding:26px 28px 24px; box-shadow:var(--shadow-lift); }
