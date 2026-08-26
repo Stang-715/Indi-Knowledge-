@@ -330,6 +330,7 @@ function draw(step) {
 
   if (mapMode === 'survey') drawSurvey(proj, level);
   if (mapMode === 'mandala') drawMandala(proj, level);
+  if (mapMode === 'corpus') drawCorpusMode(proj);
   drawSites(proj, level, dive);
   if (LENS) drawLensOverlay(proj);
 }
@@ -917,16 +918,33 @@ const MODES = [
   { id: 'terrain', label: 'terrain', hint: 'The land, before anyone owns it.' },
   { id: 'survey',  label: 'survey',  hint: 'What we know, and what we have not looked at.' },
   { id: 'mandala', label: 'mandala', hint: 'Sovereignty as it actually was: held, taxed, tributary, paramount — four claims, not one colour.' },
+  { id: 'corpus',  label: 'corpus',  hint: 'Where the works are physically held — every carrier, placed.' },
 ];
+// The globe (phase 18): modes are selectable AND lockable. A locked mode
+// survives a lens's contextual switch; an unlocked one is borrowed and
+// returned. (Roads earned no mode: routes and caravans are already drawn
+// on every mode — a dedicated one would duplicate the terrain view.)
+let modeLocked = false;
+function setMapMode(id) {
+  mapMode = id;
+  for (const t of $('modes').querySelectorAll('[data-mode]'))
+    t.setAttribute('aria-selected', t.dataset.mode === id);
+  draw(1);
+}
 $('modes').innerHTML = MODES.map(m =>
   `<button class="tab" role="tab" data-mode="${m.id}" title="${m.hint}"
-     aria-selected="${m.id === 'terrain'}">${m.label}</button>`).join('');
+     aria-selected="${m.id === 'terrain'}">${m.label}</button>`).join('')
+  + `<button class="tab" id="modelock" title="Lock the mode: a locked mode is not borrowed by lenses." aria-pressed="false">\u{1F513}</button>`;
 $('modes').addEventListener('click', (e) => {
+  if (e.target.id === 'modelock') {
+    modeLocked = !modeLocked;
+    e.target.textContent = modeLocked ? '\u{1F512}' : '\u{1F513}';
+    e.target.setAttribute('aria-pressed', modeLocked);
+    return;
+  }
   const b = e.target.closest('[data-mode]');
   if (!b) return;
-  mapMode = b.dataset.mode;
-  for (const t of $('modes').children) t.setAttribute('aria-selected', t === b);
-  draw(1);
+  setMapMode(b.dataset.mode);
 });
 
 /* ── The game ───────────────────────────────────────────────────────────── */
@@ -1940,6 +1958,72 @@ registerLens({
         : blocked(s, 'send-teacher') ? 'could'
         : s.grain < 120 || (s.pops.scribes < 1 && s.pops.reciters < 2) ? 'could' : 'can',
       execute: (t, work) => decide('send-teacher', { work, destination: t.id }) },
+  ],
+});
+
+/* ── The corpus map mode + Mandala lens (phase 18) ────────────────────────── */
+/** Where the works physically are: a ring per holding place, sized by count. */
+function drawCorpusMode(proj) {
+  if (!state) return;
+  const counts = new Map();          // place → carriers there
+  for (const c of state.corpus.values()) {
+    if (!c.exists || c.lost) continue;
+    for (const x of c.carriers) counts.set(x.place, (counts.get(x.place) ?? 0) + 1);
+  }
+  ctx.save();
+  for (const [place, n] of counts) {
+    const g = place === 'home'
+      ? (campaign ? { lon: 79.14, lat: 10.79 } : { lon: 67.6, lat: 29.4 })
+      : PLACE_BY_ID.get(place);
+    if (!g) continue;                // 'abroad' and 'tibet' are off this map
+    const x = proj.toX(g.lon), y = proj.toY(g.lat);
+    ctx.beginPath();
+    ctx.arc(x, y, (8 + Math.min(26, Math.sqrt(n) * 5)) * dpr, 0, Math.PI * 2);
+    ctx.strokeStyle = '#C9A227';
+    ctx.lineWidth = 2.2 * dpr;
+    ctx.globalAlpha = 0.9;
+    ctx.stroke();
+    ctx.font = `${11 * dpr}px ${getComputedStyle(document.body).fontFamily}`;
+    ctx.fillStyle = '#C9A227';
+    ctx.fillText(String(n), x + 6 * dpr, y - 6 * dpr);
+  }
+  ctx.restore();
+}
+
+registerLens({
+  id: 'mandala', glyph: '\u25CE',
+  title: 'Mandala \u2014 press claims, offer tribute; the map answers in four layers',
+  onArm() {
+    this._prevMode = mapMode;
+    if (!modeLocked) setMapMode('mandala');
+  },
+  onCancel() {
+    if (!modeLocked && this._prevMode) setMapMode(this._prevMode);
+  },
+  verbs: [
+    { id: 'hold', label: 'press claim',
+      tip: 'Assert the holder layer here. A claim is a statement the years then test.',
+      eligible: (s, d) => {
+        const c = s.claims.get(d.id);
+        return c?.holder === 'you' ? 'yours' : 'can';
+      },
+      execute: (d) => decide('claim', { district: d.id, layer: 'holder' }) },
+    { id: 'revenue', label: 'claim revenue',
+      tip: 'Assert the revenue layer: the right to tax, which is not the same as holding.',
+      eligible: (s, d) => {
+        const c = s.claims.get(d.id);
+        return c?.revenue === 'you' ? 'yours' : c?.holder === 'you' ? 'can'
+          : c?.holder ? 'could' : 'can';
+      },
+      execute: (d) => decide('claim', { district: d.id, layer: 'revenue' }) },
+    { id: 'tribute', label: 'offer tribute',
+      tip: 'Acknowledge a superior over this district \u2014 the mandala\u2019s oldest move. Needs a standing power over you.',
+      eligible: (s, d) => (s.occupationsActive?.size ?? 0) === 0 ? 'never'
+        : s.claims.get(d.id)?.tributary ? 'already' : 'can',
+      execute: (d) => {
+        const to = [...state.occupationsActive][0];
+        decide('tribute', { district: d.id, to });
+      } },
   ],
 });
 
