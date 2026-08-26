@@ -644,7 +644,7 @@ function drawSites(proj, level, dive) {
     // Where it happened. Events now carry gazetteer places (phase 35); the
     // last few years' W events pulse at their location, so history lands on
     // the map instead of only in the drawer.
-    if (state) {
+    if (state && !REDUCED_MOTION) {
       for (const ev of timeline.events) {
         if (ev.magnitude !== 'W') continue;
         const age = state.year - ev.year;
@@ -1463,9 +1463,36 @@ function notice(l) {
   while ($('notices').children.length > 4) $('notices').firstChild.remove();
 }
 
+/* ── Keyboard and motion (phase 51) ─────────────────────────────────────── */
+
+const REDUCED_MOTION = matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
+
+cv.addEventListener('keydown', (e) => {
+  const step = cam.span * 0.08;
+  switch (e.key) {
+    case 'ArrowLeft':  cam.cx -= step; break;
+    case 'ArrowRight': cam.cx += step; break;
+    case 'ArrowUp':    cam.cy += step * 0.7; break;
+    case 'ArrowDown':  cam.cy -= step * 0.7; break;
+    case '+': case '=': cam.zoomAt(0.85, cam.cx, cam.cy); break;
+    case '-': case '_': cam.zoomAt(1.18, cam.cx, cam.cy); break;
+    case ' ': e.preventDefault(); $('play').click(); return;
+    default: return;
+  }
+  e.preventDefault();
+  draw(3); scheduleFull();
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    $('drawer').classList.remove('on');
+    document.querySelector('.plate-overlay')?.remove();
+  }
+});
+
 /* ── Test hook (headless drives only; not a player surface) ─────────────── */
 window.__test = {
   year: () => state?.year,
+  cam: () => ({ cx: cam.cx, cy: cam.cy, span: cam.span }),
   diveTo(id) {
     const c = cityRenderer.city(id);
     if (!c) return false;

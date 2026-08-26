@@ -122,7 +122,7 @@
 <body data-era="neolithic">
 <div id="app">
   <div id="stage">
-    <canvas id="map"></canvas>
+    <canvas id="map" tabindex="0" role="application" aria-label="The map of the subcontinent. Arrow keys pan, plus and minus zoom, space plays and pauses."></canvas>
     <div id="loading">building the world…</div>
     <div id="hud">
       <div class="clockbar">
@@ -154,7 +154,7 @@
         <button class="btn tiny" data-room="treasury" title="The endowments actually paying, and what value weighs.">the treasury</button>
         <button class="btn tiny" data-room="assembly" title="This year's committee, drawn by lot the way the wall says.">the assembly</button>
       </div>
-      <div id="notices"></div>
+      <div id="notices" aria-live="polite"></div>
     <div id="start">
       <div class="startcard">
         <h1>Paramountcy</h1>
@@ -200,7 +200,7 @@
 
     <div class="panel">
       <div id="occupation-banner"></div>
-      <div id="slips"></div>
+      <div id="slips" aria-live="polite"></div>
       <div id="watched" class="watched" style="display:none"></div>
 
       <h2 id="indus-h" style="display:none" data-purpose="The Indus cities against the drying. Triage, not defence.">The Emptying <span class="tiny muted" id="indus-sum"></span></h2>

@@ -429,3 +429,15 @@ body[data-help] aside h2::after { content: attr(data-purpose); display: block;
   bottom: 14px; display: flex; gap: 8px; z-index: 8;
   background: var(--paper); border: 1px solid var(--rule); padding: 6px 10px;
   box-shadow: var(--shadow-contact); }
+
+/* --- Every pair of hands (phase 51) ---------------------------------------- */
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+#map:focus-visible { outline-offset: -3px; }
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+@media (pointer: coarse) {
+  .btn { min-height: 40px; min-width: 40px; }
+  .orders select { min-height: 40px; }
+  .thread-beat, .chron-line { padding-top: 8px; padding-bottom: 8px; }
+}
