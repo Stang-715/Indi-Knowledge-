@@ -42,12 +42,25 @@ test('a work at its last carrier is red, and named', () => {
 
 test('more than three last-carrier works collapse into a count, not a wall', () => {
   const s = bare();
-  for (let i = 0; i < 7; i++)
+  for (let i = 0; i < 5; i++)
     s.corpus.set(`W${i}`, { id: `W${i}`, title: `Work ${i}`, exists: true, lost: false,
       prestige: 1, carriers: [{ place: 'home', medium: 'memory' }] });
   const reds = deriveSituations(s).filter(x => x.kind === 'work');
   assert.equal(reds.length, 4, 'three named plus one rollup');
-  assert.match(reds[3].text, /4 more/);
+  assert.match(reds[3].text, /2 more/);
+});
+
+test('universal fragility is ONE situation, stated at its true scale', () => {
+  // Every early campaign opens with the whole shelf at a single carrier.
+  // Naming three arbitrary works there is false specificity — the flood
+  // found by the first browser smoke of the shelf.
+  const s = bare();
+  for (let i = 0; i < 58; i++)
+    s.corpus.set(`W${i}`, { id: `W${i}`, title: `Work ${i}`, exists: true, lost: false,
+      prestige: 1, carriers: [{ place: 'home', medium: 'memory' }] });
+  const reds = deriveSituations(s).filter(x => x.kind === 'work');
+  assert.equal(reds.length, 1, 'one situation, not fifty-eight');
+  assert.match(reds[0].text, /58 works/);
 });
 
 test('a choked route is amber; a dead one is red', () => {
@@ -94,4 +107,23 @@ test('the Indus era surfaces leaving thresholds and remaining wells', () => {
   assert.ok(sits.some(x => x.id === 'leaving-a' && x.tier === 'red'));
   assert.ok(sits.some(x => x.id === 'wells-b' && x.tier === 'amber'));
   assert.ok(!sits.some(x => x.target === 'c'), 'a healthy town raises nothing');
+});
+
+test('the volume budget: a campaign never floods the shelf', () => {
+  // The census's hardest-won lesson (Vic3 cut volume ~50% in 1.2, after
+  // launch): alert volume is tuned like gameplay, and here it is a bound.
+  // Sampled through the default long game: the loud list must stay readable
+  // at every moment, and the campaign-long stream must stay finite.
+  const seenLoud = new Set();
+  let worstSimultaneous = 0, worstYear = null;
+  for (let y = -2500; y <= 1900; y += 25) {
+    const world = run(DP, 'volume', [], { to: y });
+    const loud = deriveSituations(world, DP).filter(s => s.tier !== 'feed');
+    if (loud.length > worstSimultaneous) { worstSimultaneous = loud.length; worstYear = y; }
+    for (const s of loud) seenLoud.add(s.id);
+  }
+  assert.ok(worstSimultaneous <= 9,
+    `${worstSimultaneous} simultaneous loud situations at ${worstYear} — the shelf stopped being readable`);
+  assert.ok(seenLoud.size <= 160,
+    `${seenLoud.size} distinct loud situations across the campaign — volume creep`);
 });

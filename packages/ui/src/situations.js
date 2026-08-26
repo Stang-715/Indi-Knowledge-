@@ -29,12 +29,20 @@ export function deriveSituations(state, dp = null) {
 
   const risk = worksAtRisk(state, 'home');
   const last = risk.filter(w => w.carriers <= 1);
-  for (const w of last.slice(0, 3))
-    push('red', 'work', `last-${w.id}`,
-      `${w.title} is down to its last carrier.`, w.id);
-  if (last.length > 3)
-    push('red', 'work', 'last-more',
-      `…and ${last.length - 3} more works are each one death from silence.`);
+  if (last.length > 5) {
+    // When fragility is universal — every early campaign opens this way —
+    // naming three arbitrary works is false specificity. One situation,
+    // stated at its true scale.
+    push('red', 'work', 'last-all',
+      `${last.length} works each have a single carrier. The shelf is one fever from silence; copies and teachers are the answer.`);
+  } else {
+    for (const w of last.slice(0, 3))
+      push('red', 'work', `last-${w.id}`,
+        `${w.title} is down to its last carrier.`, w.id);
+    if (last.length > 3)
+      push('red', 'work', 'last-more',
+        `…and ${last.length - 3} more works are each one death from silence.`);
+  }
 
   if (state.indus && state.year >= -2600 && state.year <= -1900) {
     for (const t of state.indus.values()) {

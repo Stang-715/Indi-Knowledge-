@@ -37,6 +37,7 @@ import { save as mkSave, load as loadSave, reconcile, toURLFragment, fromURLFrag
          replayStops, saveSize } from '../../../packages/sim/src/save.js';
 import { Sound, textureFamily } from '../../../packages/ui/src/sound.js';
 import { creditsHTML } from '../../../packages/ui/src/credits.js';
+import { deriveSituations, situationBadge } from '../../../packages/ui/src/situations.js';
 import { damagedHTML } from '../../../packages/ui/src/damaged.js';
 import { renderCardPlate } from '../../../packages/ui/src/cardplate.js';
 import { makeTelemetry } from '../../../packages/ui/src/telemetry.js';
@@ -1084,6 +1085,62 @@ $('vitals').addEventListener('click', (e) => {
   document.querySelector(target)?.scrollIntoView({ block: 'center' });
 });
 
+/* ── The alert shelf (phase 5) ──────────────────────────────────────────────
+ * The engine derives; the client presents. Dismissal and routing are player
+ * preferences, so they live here — dismissal for this sitting only, routing
+ * persisted. A dismissed situation that stops being true simply vanishes;
+ * one that returns after the restore button is a real recurrence. */
+const sitDismissed = new Set();
+let sitRouting = { work: true, route: true, town: true, grain: true, trust: true, texture: true };
+try { Object.assign(sitRouting, JSON.parse(localStorage.getItem('pm-sit-routing') ?? '{}')); } catch {}
+let sitOpen = false, sitShowRouting = false;
+
+function paintSituations(s) {
+  const all = deriveSituations(s, DP);
+  const routed = all.filter(x => sitRouting[x.kind] !== false);
+  const shown = routed.filter(x => !sitDismissed.has(x.id));
+  const badge = situationBadge(shown);
+  $('sitnum').textContent = badge.count;
+  $('sitbtn').className = 'btn' + (badge.tier ? ` glow-${badge.tier}` : '');
+  if (!sitOpen) return;
+  const hidden = routed.length - shown.length;
+  $('sitlist').innerHTML =
+    `<header><span>Situations</span>
+       <span>${hidden ? `<button class="btn" data-sit-restore title="Restore ${hidden} dismissed">↺ ${hidden}</button>` : ''}
+       <button class="btn" data-sit-gear title="Choose which kinds appear">⚙</button></span></header>` +
+    (sitShowRouting ? `<div class="sit-routing">` + Object.keys(sitRouting).map(k =>
+      `<label><span>${k}</span><input type="checkbox" data-sit-kind="${k}" ${sitRouting[k] !== false ? 'checked' : ''}></label>`).join('') + `</div>` : '') +
+    (shown.length ? shown.map(x =>
+      `<div class="sit ${x.tier}" data-sit-id="${x.id}" data-sit-kind2="${x.kind}" data-sit-target="${x.target ?? ''}">
+         <i></i><span>${x.text}</span><span class="x" data-sit-x="${x.id}" title="Dismiss (it returns if it recurs)">✕</span></div>`).join('')
+     : `<div class="sit feed"><i></i><span>Nothing needs you. The record is being kept.</span></div>`);
+}
+
+$('sitbtn').addEventListener('click', () => {
+  sitOpen = !sitOpen;
+  $('sitlist').style.display = sitOpen ? '' : 'none';
+  if (sitOpen && state) paintSituations(state);
+});
+$('sitlist').addEventListener('click', (e) => {
+  const x = e.target.closest('[data-sit-x]');
+  if (x) { sitDismissed.add(x.dataset.sitX); paintSituations(state); return; }
+  if (e.target.closest('[data-sit-restore]')) { sitDismissed.clear(); paintSituations(state); return; }
+  if (e.target.closest('[data-sit-gear]')) { sitShowRouting = !sitShowRouting; paintSituations(state); return; }
+  const kindBox = e.target.closest('[data-sit-kind]');
+  if (kindBox) {
+    sitRouting[kindBox.dataset.sitKind] = kindBox.checked;
+    try { localStorage.setItem('pm-sit-routing', JSON.stringify(sitRouting)); } catch {}
+    paintSituations(state); return;
+  }
+  const row = e.target.closest('[data-sit-id]');
+  if (!row) return;
+  const goto = { work: '#chest', route: '#routes', town: '#indus', grain: '.ledger', trust: '#pillars' }[row.dataset.sitKind2];
+  if (goto) document.querySelector(goto)?.scrollIntoView({ block: 'center' });
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && sitOpen) { sitOpen = false; $('sitlist').style.display = 'none'; }
+});
+
 function paint() {
   const s = state;
   $('year').textContent = formatYear(s.year);
@@ -1101,6 +1158,7 @@ function paint() {
   $('scribes').textContent  = n(s.pops.scribes);
   $('soldiers').textContent = n(s.pops.soldiers);
   paintVitals(s);
+  paintSituations(s);
 
   $('pillars').innerHTML = PILLARS.map(p => {
     const v = Math.round(s.pillars[p]);
