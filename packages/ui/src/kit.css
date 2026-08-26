@@ -506,3 +506,20 @@ body[data-help] .railbody h2::after { content: attr(data-purpose); display: bloc
 @media (max-width: 900px) {
   #railpanel { width: min(336px, 92vw); }
 }
+
+/* --- The lens tray (HUD phase 14): verbs only ------------------------------ */
+#lenstray { position: absolute; left: 50%; transform: translateX(-50%); bottom: 12px;
+  display: flex; gap: 8px; align-items: center; background: var(--paper);
+  border: 1px solid var(--rule); padding: 7px 12px; box-shadow: var(--shadow-contact);
+  z-index: 8; }
+.lens { width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid var(--rule);
+  background: radial-gradient(circle at 34% 30%, var(--paper), var(--sheet-shade));
+  font-size: 17px; cursor: pointer; }
+.lens:hover { border-color: var(--gold); }
+.lens[aria-pressed="true"] { border-color: var(--gold); border-width: 3px; }
+#verbrow { position: absolute; left: 50%; transform: translateX(-50%); bottom: 72px;
+  display: flex; gap: 5px; align-items: center; background: var(--paper);
+  border: 1px solid var(--rule); padding: 6px 9px; box-shadow: var(--shadow-contact);
+  z-index: 8; }
+#verbrow .hint { font-size: 11px; color: var(--ink-soft); margin-left: 6px; }
+#stage.panel-open #verbrow { left: calc(50% + 168px); }

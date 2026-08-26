@@ -38,6 +38,7 @@ import { save as mkSave, load as loadSave, reconcile, toURLFragment, fromURLFrag
 import { Sound, textureFamily } from '../../../packages/ui/src/sound.js';
 import { creditsHTML } from '../../../packages/ui/src/credits.js';
 import { deriveSituations, situationBadge } from '../../../packages/ui/src/situations.js';
+import { ELIGIBILITY, validateLens, normalizeEligibility } from '../../../packages/ui/src/lenses.js';
 import { damagedHTML } from '../../../packages/ui/src/damaged.js';
 import { renderCardPlate } from '../../../packages/ui/src/cardplate.js';
 import { makeTelemetry } from '../../../packages/ui/src/telemetry.js';
@@ -330,6 +331,37 @@ function draw(step) {
   if (mapMode === 'survey') drawSurvey(proj, level);
   if (mapMode === 'mandala') drawMandala(proj, level);
   drawSites(proj, level, dive);
+  if (LENS) drawLensOverlay(proj);
+}
+
+/**
+ * The lens overlay (phase 14): with a verb armed, every district answers in
+ * one of six pigments. A ring, not a fill — the terrain stays legible under
+ * the tool, the way a glass sheet lies over the model.
+ */
+function drawLensOverlay(proj) {
+  if (!state || !LENS) return;
+  const verb = LENS.verb;
+  ctx.save();
+  ctx.font = `${11 * dpr}px ${getComputedStyle(document.body).fontFamily}`;
+  for (const d of state.districts.values()) {
+    const x = proj.toX(d.lon), y = proj.toY(d.lat);
+    if (x < -40 || y < -40 || x > cv.width + 40 || y > cv.height + 40) continue;
+    const st = normalizeEligibility(verb.eligible(state, d, LENS.payload));
+    const e = ELIGIBILITY[st];
+    ctx.beginPath();
+    ctx.arc(x, y, (st === 'can' || st === 'yours' ? 11 : 8) * dpr, 0, Math.PI * 2);
+    ctx.strokeStyle = e.color;
+    ctx.globalAlpha = st === 'never' ? 0.35 : 0.95;
+    ctx.lineWidth = (st === 'can' ? 3 : 1.6) * dpr;
+    ctx.stroke();
+    if (st === 'can') {
+      ctx.globalAlpha = 0.18;
+      ctx.fillStyle = e.color;
+      ctx.fill();
+    }
+  }
+  ctx.restore();
 }
 
 /**
@@ -752,6 +784,8 @@ cv.addEventListener('pointerup', (e) => {
   }
   // Clicking a district opens its panel in ANY informational mode (phase 10)
   // — the census's state-panel pattern. Mandala mode merely colors the answer.
+  // With a lens verb armed (phase 14), the same click EXECUTES instead: the
+  // tool stays in hand for repeat use until Escape puts it down.
   if (state?.districts) {
     const proj = cam.projection(cv.width, cv.height);
     const lon = proj.toLon(px), lat = proj.toLat(py);
@@ -760,7 +794,15 @@ cv.addEventListener('pointerup', (e) => {
       const dist = Math.hypot(d.lon - lon, d.lat - lat);
       if (dist < bd) { bd = dist; best = d; }
     }
-    if (best && bd < 2.2) openClaims(best);
+    if (!(best && bd < 2.2)) return;
+    if (LENS?.verb) {
+      const st = normalizeEligibility(LENS.verb.eligible(state, best, LENS.payload));
+      if (st === 'can') LENS.verb.execute(best, LENS.payload);
+      else notice({ kind: 'texture', year: state.year,
+        text: `${best.name}: ${ELIGIBILITY[st].hint}` });
+      return;
+    }
+    openClaims(best);
   }
 });
 
@@ -1695,6 +1737,68 @@ $('people').addEventListener('click', (e) => {
  * delivers nothing, and the player should be able to see which number is the
  * one holding them back.
  */
+/* ── The lens engine (phase 14) ─────────────────────────────────────────────
+ * Arm → the map recolors → the click executes → Escape puts the tool down.
+ * The registry fills in phases 15–18; the engine neither knows nor cares
+ * which verbs exist, only that they passed validateLens at registration. */
+const LENSES = [];
+let LENS = null;                    // { lens, verb, payload } while armed
+
+function registerLens(def) {
+  LENSES.push(validateLens(def));
+  buildLensTray();
+}
+function buildLensTray() {
+  let tray = $('lenstray');
+  if (!tray) {
+    tray = document.createElement('div');
+    tray.id = 'lenstray';
+    tray.setAttribute('role', 'toolbar');
+    tray.setAttribute('aria-label', 'Lenses');
+    $('stage').appendChild(tray);
+    const vr = document.createElement('div');
+    vr.id = 'verbrow';
+    vr.style.display = 'none';
+    $('stage').appendChild(vr);
+  }
+  tray.style.display = LENSES.length ? '' : 'none';
+  tray.innerHTML = LENSES.map(l =>
+    `<button class="lens" data-lens="${l.id}" title="${l.title}"
+       aria-pressed="${LENS?.lens.id === l.id}">${l.glyph}</button>`).join('');
+}
+function renderVerbRow() {
+  const vr = $('verbrow');
+  if (!LENS) { vr.style.display = 'none'; return; }
+  vr.style.display = '';
+  vr.innerHTML = LENS.lens.verbs.map(v =>
+    `<button class="btn" data-verb="${v.id}" title="${v.tip ?? ''}"
+       style="${LENS.verb?.id === v.id ? 'border-color:var(--gold);font-weight:700' : ''}">${v.label}</button>`).join('')
+    + `<span class="hint">${LENS.verb ? 'click the map · Esc puts the tool down' : 'pick a verb'}</span>`;
+}
+function armLens(lensId) {
+  const l = LENSES.find(x => x.id === lensId);
+  if (!l) return;
+  if (LENS?.lens.id === lensId) { cancelLens(); return; }
+  LENS = { lens: l, verb: l.verbs.length === 1 ? l.verbs[0] : null, payload: null };
+  l.onArm?.(state);
+  buildLensTray(); renderVerbRow(); draw(3); scheduleFull();
+}
+function cancelLens() {
+  if (!LENS) return;
+  LENS.lens.onCancel?.(state);
+  LENS = null;
+  buildLensTray(); renderVerbRow(); draw(3); scheduleFull();
+}
+document.addEventListener('click', (e) => {
+  const lb = e.target.closest('[data-lens]');
+  if (lb) { armLens(lb.dataset.lens); return; }
+  const vb = e.target.closest('#verbrow [data-verb]');
+  if (vb && LENS) {
+    LENS.verb = LENS.lens.verbs.find(v => v.id === vb.dataset.verb) ?? null;
+    renderVerbRow(); draw(3); scheduleFull();
+  }
+});
+
 /* ── The Court (phase 12): the stack, the occupations, the ladder ─────────── */
 function paintCourt(s) {
   const cap = trustCeiling(s, DP);
@@ -1938,6 +2042,9 @@ cv.addEventListener('keydown', (e) => {
 });
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
+    // An armed tool is the topmost thing on the table: Escape puts it down
+    // first, and only an empty hand closes what is under it.
+    if (LENS) { cancelLens(); return; }
     $('drawer').classList.remove('on');
     document.querySelector('.plate-overlay')?.remove();
     closeRail();
