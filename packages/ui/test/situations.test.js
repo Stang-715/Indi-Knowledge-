@@ -127,3 +127,17 @@ test('the volume budget: a campaign never floods the shelf', () => {
   assert.ok(seenLoud.size <= 160,
     `${seenLoud.size} distinct loud situations across the campaign — volume creep`);
 });
+
+test('a lineage down to one keeper is amber, and named', () => {
+  const s = bare();
+  s.schools = new Map([
+    ['sangam', { id: 'sangam', name: 'Sangam court', members: [{}], works: ['a', 'b'] }],
+    ['full',   { id: 'full',   name: 'Full house',   members: [{}, {}], works: ['c'] }],
+    ['idle',   { id: 'idle',   name: 'Idle line',    members: [{}], works: [] }],
+  ]);
+  const sits = deriveSituations(s);
+  const l = sits.filter(x => x.kind === 'lineage');
+  assert.equal(l.length, 1, 'only the thin line holding works alerts');
+  assert.match(l[0].text, /Sangam court/);
+  assert.equal(l[0].tier, 'amber');
+});

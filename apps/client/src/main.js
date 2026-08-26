@@ -1090,7 +1090,7 @@ $('vitals').addEventListener('click', (e) => {
  * persisted. A dismissed situation that stops being true simply vanishes;
  * one that returns after the restore button is a real recurrence. */
 const sitDismissed = new Set();
-let sitRouting = { work: true, route: true, town: true, grain: true, trust: true, texture: true };
+let sitRouting = { work: true, route: true, town: true, grain: true, trust: true, lineage: true, texture: true };
 try { Object.assign(sitRouting, JSON.parse(localStorage.getItem('pm-sit-routing') ?? '{}')); } catch {}
 let sitOpen = false, sitShowRouting = false;
 
@@ -1134,7 +1134,7 @@ $('sitlist').addEventListener('click', (e) => {
   }
   const row = e.target.closest('[data-sit-id]');
   if (!row) return;
-  const goto = { work: 'library', route: 'road', town: 'land', grain: 'ledger', trust: 'court' }[row.dataset.sitKind2];
+  const goto = { work: 'library', route: 'road', town: 'land', grain: 'ledger', trust: 'court', lineage: 'people' }[row.dataset.sitKind2];
   if (goto) openRail(goto);
 });
 document.addEventListener('keydown', (e) => {
@@ -1300,7 +1300,7 @@ document.addEventListener('click', (e) => {
 function paintRailBadges(situations) {
   const byPanel = { ledger: 0, library: 0, people: 0, land: 0, road: 0, court: 0 };
   const redByPanel = { ...byPanel };
-  const home = { work: 'library', route: 'road', town: 'land', grain: 'ledger', trust: 'court' };
+  const home = { work: 'library', route: 'road', town: 'land', grain: 'ledger', trust: 'court', lineage: 'people' };
   for (const s of situations) {
     if (s.tier === 'feed') continue;
     const p = home[s.kind];
@@ -1559,6 +1559,21 @@ function paintPeople() {
 
   $('people').innerHTML = rows ||
     `<div class="tiny muted">Nobody the record names is at work. Your schools carry it.</div>`;
+
+  // The lineages (phase 9): a school is an unbroken line of hands. One member
+  // left means the line ends with a single death — the Library's last-carrier
+  // logic, applied to people.
+  const schools = [...s.schools.values()]
+    .sort((a, b) => (a.members.length - b.members.length) || (b.works.length - a.works.length));
+  $('lineages').innerHTML = schools.length
+    ? schools.slice(0, 8).map(sc => {
+        const thin = sc.members.length <= 1;
+        return `<div class="endw ${thin ? '' : ''}" style="${thin ? 'color:var(--warn);font-weight:600' : ''}"
+          title="${sc.members.length} keeper(s), holding ${sc.works.length} work(s)${thin ? ' — the line ends with one death' : ''}.">
+          <span>${sc.name}</span>
+          <span class="num">${sc.members.length} · ${sc.works.length}w</span></div>`;
+      }).join('')
+    : `<div class="tiny muted">No school yet holds a line. Patronage builds them.</div>`;
 
   const led = endowmentLedger(s);
   $('endowments').innerHTML = led.length

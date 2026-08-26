@@ -64,9 +64,14 @@ export function deriveSituations(state, dp = null) {
         `The ${r.id} road is ${r.choke.kind === 'toll' ? 'tolled' : 'blocked'} — a ${r.choke.kind}. Your standing policy decides, or you do.`, r.id);
 
   if (state.indus && state.year >= -2600 && state.year <= -1900) {
-    for (const t of state.indus.values()) {
-      if (!t.standing || t.people <= 0 || t.water <= 0.32) continue;
-      if (t.water < 0.5 && t.wells < 3)
+    const drying = [...state.indus.values()]
+      .filter(t => t.standing && t.people > 0 && t.water > 0.32 && t.water < 0.5 && t.wells < 3);
+    if (drying.length > 2) {
+      // The drying hits the whole plain at once; a row per town is a flood.
+      push('amber', 'town', 'wells-many',
+        `${drying.length} towns are drying and can still dig wells. Triage is the era's verb.`);
+    } else {
+      for (const t of drying)
         push('amber', 'town', `wells-${t.id}`,
           `${t.name} is drying; ${3 - t.wells} well(s) can still be dug there.`, t.id);
     }
@@ -80,6 +85,17 @@ export function deriveSituations(state, dp = null) {
         push('amber', 'trust', `cap-${id}`,
           `${o.name} caps trust at ${o.trustCap}; what you build above it does not hold.`, id);
     }
+  }
+
+  const thinLines = [...(state.schools?.values() ?? [])]
+    .filter(sc => sc.members.length === 1 && sc.works.length > 0);
+  if (thinLines.length > 2) {
+    push('amber', 'lineage', 'lineage-many',
+      `${thinLines.length} school lines are each down to one keeper.`);
+  } else {
+    for (const sc of thinLines)
+      push('amber', 'lineage', `lineage-${sc.id}`,
+        `The ${sc.name} line is down to one keeper, holding ${sc.works.length} work(s).`, sc.id);
   }
 
   // ── feed: the texture, last few lines only ───────────────────────────────
