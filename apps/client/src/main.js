@@ -349,6 +349,18 @@ function lensTargets(verb) {
       return g ? { ...t, lon: g.lon, lat: g.lat } : null;
     }).filter(Boolean);
   }
+  if (verb?.targets === 'openable') {
+    return OPENABLE_ROUTES.map(r => {
+      const site = SITE_BY_ID.get(r.to);
+      return site && state.year >= site.from ? { ...r, name: site.name, lon: site.lon, lat: site.lat } : null;
+    }).filter(Boolean);
+  }
+  if (verb?.targets === 'openroutes') {
+    return [...state.routes.values()].map(r => {
+      const site = SITE_BY_ID.get(r.to);
+      return site ? { id: r.id, name: site.name, lon: site.lon, lat: site.lat } : null;
+    }).filter(Boolean);
+  }
   if (verb?.targets === 'lanka') {
     return LANKA_ANCHORS.map(id => {
       const g = PLACE_BY_ID.get(id);
@@ -1871,6 +1883,36 @@ registerLens({
   ],
 });
 
+/* ── The Trade lens (phase 17): the road's verbs, on the road ─────────────── */
+// The trust ladder: you start with your relatives and those nearby.
+const OPENABLE_ROUTES = [
+  { id:'R.KAVERI',  from:'thanjavur', to:'kaveripattinam', days:6,  capacity:8,  need:850,  mode:'land' },
+  { id:'R.MALABAR', from:'thanjavur', to:'muziris',        days:22, capacity:12, need:-300, mode:'land' },
+  { id:'R.WEST',    from:'muziris',   to:'bharuch',        days:48, capacity:16, need:-300, mode:'sea'  },
+];
+registerLens({
+  id: 'trade', glyph: '\u2696',
+  title: 'Trade \u2014 open roads, send caravans, tend the standing orders',
+  verbs: [
+    { id: 'open', label: 'open route', targets: 'openable',
+      tip: 'Opening a route costs nothing but attention. Keeping it open costs everything else.',
+      eligible: (s, t) => s.routes.has(t.id) ? 'already'
+        : s.year < t.need ? 'could' : 'can',
+      execute: (t) => decide('open-route', { id: t.id, from: t.from, to: t.to,
+        days: t.days, capacity: t.capacity, mode: t.mode }) },
+    { id: 'caravan', label: 'send caravan', targets: 'openroutes',
+      tip: 'Goods take days. Payment takes longer. Click the road\u2019s far end.',
+      eligible: (s, t) => { const r = s.routes.get(t.id);
+        return !r ? 'never' : r.choke ? 'could' : !r.open ? 'never'
+          : s.grain < 5 ? 'could' : 'can'; },
+      execute: (t) => decide('send-caravan', { route: t.id }) },
+    { id: 'orders', label: 'set orders', targets: 'openroutes',
+      tip: 'Open the road\u2019s standing orders \u2014 escort level and choke policy.',
+      eligible: (s, t) => s.routes.has(t.id) ? 'can' : 'never',
+      execute: () => openRail('road', false) },
+  ],
+});
+
 /* ── The Remember lens (phase 16): the corpus made spatial ────────────────── */
 // Only the verbs that are HONESTLY spatial in the sim: copying happens at
 // your scriptoria; the teacher's road to Lanka is on the map, and Aluvihare
@@ -1987,12 +2029,7 @@ function paintRoutes() {
   }).join('') : `<div class="tiny muted">No routes yet. Trade begins with the people you already know.</div>`;
 
   const acts = [];
-  // The trust ladder: you start with your relatives and those nearby.
-  const OPENABLE = [
-    { id:'R.KAVERI',  from:'thanjavur', to:'kaveripattinam', days:6,  capacity:8,  need:850,  mode:'land' },
-    { id:'R.MALABAR', from:'thanjavur', to:'muziris',        days:22, capacity:12, need:-300, mode:'land' },
-    { id:'R.WEST',    from:'muziris',   to:'bharuch',        days:48, capacity:16, need:-300, mode:'sea'  },
-  ];
+  const OPENABLE = OPENABLE_ROUTES;
   for (const r of OPENABLE) {
     if (s.routes.has(r.id) || s.year < r.need) continue;
     const from = SITE_BY_ID.get(r.from), to = SITE_BY_ID.get(r.to);
