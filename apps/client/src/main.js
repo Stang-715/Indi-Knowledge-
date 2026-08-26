@@ -1081,8 +1081,7 @@ function paintVitals(s) {
 $('vitals').addEventListener('click', (e) => {
   const v = e.target.closest('[data-goto]');
   if (!v) return;
-  const target = { ledger: '.ledger', chest: '#chest', pillars: '#pillars' }[v.dataset.goto];
-  document.querySelector(target)?.scrollIntoView({ block: 'center' });
+  openRail({ ledger: 'ledger', chest: 'library', pillars: 'court' }[v.dataset.goto]);
 });
 
 /* ── The alert shelf (phase 5) ──────────────────────────────────────────────
@@ -1102,6 +1101,7 @@ function paintSituations(s) {
   const badge = situationBadge(shown);
   $('sitnum').textContent = badge.count;
   $('sitbtn').className = 'btn' + (badge.tier ? ` glow-${badge.tier}` : '');
+  paintRailBadges(all);
   if (!sitOpen) return;
   const hidden = routed.length - shown.length;
   $('sitlist').innerHTML =
@@ -1134,12 +1134,91 @@ $('sitlist').addEventListener('click', (e) => {
   }
   const row = e.target.closest('[data-sit-id]');
   if (!row) return;
-  const goto = { work: '#chest', route: '#routes', town: '#indus', grain: '.ledger', trust: '#pillars' }[row.dataset.sitKind2];
-  if (goto) document.querySelector(goto)?.scrollIntoView({ block: 'center' });
+  const goto = { work: 'library', route: 'road', town: 'land', grain: 'ledger', trust: 'court' }[row.dataset.sitKind2];
+  if (goto) openRail(goto);
 });
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && sitOpen) { sitOpen = false; $('sitlist').style.display = 'none'; }
 });
+
+/* ── The major rail (phase 6) ───────────────────────────────────────────────
+ * Six seals, one drawer at a time. Panel bodies live parked in #panels and
+ * are MOVED into the rail panel on open — the nodes keep their ids and their
+ * listeners, so every painter and click handler survives relocation. */
+const RAIL = [
+  { id: 'ledger',  glyph: 'L',  key: 'q', title: 'The Ledger — where grain comes from and where it goes' },
+  { id: 'library', glyph: 'B',  key: 'w', title: 'The Library — the corpus you are keeping alive' },
+  { id: 'people',  glyph: 'P',  key: 'e', title: 'The People — reciters, scribes, patrons' },
+  { id: 'land',    glyph: 'Ld', key: 'r', title: 'The Land — settlements, survey, the Indus triage' },
+  { id: 'road',    glyph: 'R',  key: 't', title: 'The Road — routes, orders, missions, partners' },
+  { id: 'court',   glyph: 'C',  key: 'y', title: 'The Court — sovereignty, occupations, trust' },
+];
+let railOpen = null;
+$('rail').innerHTML = RAIL.map(r =>
+  `<button class="seal" data-rail="${r.id}" aria-pressed="false"
+     title="${r.title} (${r.key})"><span class="badge" style="display:none"></span>${r.glyph}</button>`).join('')
+  + '<div class="divider"></div>';
+document.body.dataset.rail = '1';
+const railPanel = document.createElement('div');
+railPanel.id = 'railpanel';
+railPanel.style.display = 'none';
+railPanel.innerHTML = `<div class="rp-head"><b id="rp-title"></b>
+  <button class="btn tiny" id="rp-close">close</button></div><div id="rp-mount"></div>`;
+$('stage').appendChild(railPanel);
+
+function closeRail() {
+  if (!railOpen) return;
+  const body = $('rp-mount').firstElementChild;
+  if (body) $('panels').appendChild(body);          // park it again
+  railPanel.style.display = 'none';
+  $('stage').classList.remove('panel-open');
+  document.querySelector(`[data-rail="${railOpen}"]`)?.setAttribute('aria-pressed', 'false');
+  railOpen = null;
+}
+function openRail(id) {
+  if (railOpen === id) { closeRail(); return; }
+  closeRail();
+  const body = document.querySelector(`[data-rail-panel="${id}"]`);
+  if (!body) return;
+  $('rp-title').textContent = body.dataset.title;
+  $('rp-mount').appendChild(body);
+  railPanel.style.display = '';
+  $('stage').classList.add('panel-open');
+  document.querySelector(`[data-rail="${id}"]`)?.setAttribute('aria-pressed', 'true');
+  railOpen = id;
+}
+$('rail').addEventListener('click', (e) => {
+  const b = e.target.closest('[data-rail]');
+  if (b) openRail(b.dataset.rail);
+});
+railPanel.addEventListener('click', (e) => { if (e.target.id === 'rp-close') closeRail(); });
+document.addEventListener('keydown', (e) => {
+  if (e.target.matches?.('input, textarea, select') || e.metaKey || e.ctrlKey || e.altKey) return;
+  const r = RAIL.find(x => x.key === e.key);
+  if (r) { e.preventDefault(); openRail(r.id); }
+});
+
+/** Rail badges ride the same derivation as the shelf: one source of truth. */
+function paintRailBadges(situations) {
+  const byPanel = { ledger: 0, library: 0, people: 0, land: 0, road: 0, court: 0 };
+  const redByPanel = { ...byPanel };
+  const home = { work: 'library', route: 'road', town: 'land', grain: 'ledger', trust: 'court' };
+  for (const s of situations) {
+    if (s.tier === 'feed') continue;
+    const p = home[s.kind];
+    if (!p) continue;
+    byPanel[p]++;
+    if (s.tier === 'red') redByPanel[p]++;
+  }
+  for (const r of RAIL) {
+    const el = document.querySelector(`[data-rail="${r.id}"] .badge`);
+    if (!el) continue;
+    const n = byPanel[r.id];
+    el.style.display = n ? '' : 'none';
+    el.textContent = n;
+    el.classList.toggle('red', redByPanel[r.id] > 0);
+  }
+}
 
 function paint() {
   const s = state;
@@ -1613,6 +1692,7 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     $('drawer').classList.remove('on');
     document.querySelector('.plate-overlay')?.remove();
+    closeRail();
   }
 });
 
