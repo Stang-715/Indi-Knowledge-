@@ -17,6 +17,8 @@ export function makeTelemetry(now = () => performance.now()) {
     lossesNoticed: 0,   // risk panel opened within 20 in-game years of a loss
     lossesTotal: 0,
     pauses: 0,
+    slipsShown: 0,
+    slipsDismissedUnread: 0,
   };
   let lastTick = now();
   let currentEra = null;
@@ -43,6 +45,8 @@ export function makeTelemetry(now = () => performance.now()) {
     cardKept() { t.cardsKept++; },
     threadOpened() { t.threadsOpened++; },
     paused() { t.pauses++; },
+    slipShown() { t.slipsShown++; },
+    slipDismissedUnread() { t.slipsDismissedUnread++; },
     loss(year) { t.lossesTotal++; lastLossYear = year; },
     riskPanelOpened(year) {
       if (lastLossYear !== null && year - lastLossYear <= 20) {

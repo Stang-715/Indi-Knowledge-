@@ -38,6 +38,7 @@ import { Sound } from '../../../packages/ui/src/sound.js';
 import { renderCardPlate } from '../../../packages/ui/src/cardplate.js';
 import { makeTelemetry } from '../../../packages/ui/src/telemetry.js';
 import { composeChronicle, chronicleHTML, chronicleText } from '../../../packages/ui/src/chronicle.js';
+import { makeSlipTracker } from '../../../packages/ui/src/slips.js';
 import { buildCodexIndex, searchCodex, codexHTML, shelfHTML, resultsHTML }
   from '../../../packages/ui/src/codex.js';
 import { CHOLA, CHAPTERS, chapterAt, reckoning, openingState }
@@ -793,6 +794,42 @@ function decide(action, extra = {}) {
   syncScrub();
 }
 
+/* ── The teaching slips (phase 48) ──────────────────────────────────────── */
+
+const SLIP_TRACKER = makeSlipTracker();
+let slipsOn = true;
+let lastEraId = null;
+let lossCountSeen = 0;
+let activeSlip = null;
+
+function checkSlips() {
+  if (!slipsOn || !state || activeSlip) return;
+  const eraId = eraOf(state.year)?.id;
+  const eraTurned = lastEraId !== null && eraId !== lastEraId;
+  lastEraId = eraId;
+  const losses = state.log.filter(l => l.kind === 'loss').length;
+  const extras = {
+    atRisk: worksAtRisk(state, 'home').length,
+    frontierHere: frontierPresent(state).length,
+    eraTurned,
+    losses: losses > lossCountSeen ? losses : 0,
+  };
+  lossCountSeen = losses;
+  const slip = SLIP_TRACKER.next(state, extras);
+  if (!slip) return;
+  activeSlip = slip.id;
+  TELEMETRY.slipShown?.();
+  const shownAt = performance.now();
+  const el = document.createElement('div');
+  el.className = 'slip-teach';
+  el.innerHTML = `<span>${slip.text}</span><button class="btn tiny" data-slip-ok>noted</button>`;
+  el.querySelector('[data-slip-ok]').addEventListener('click', () => {
+    if (performance.now() - shownAt < 2000) TELEMETRY.slipDismissedUnread?.();
+    el.remove(); activeSlip = null;
+  });
+  $('slips').append(el);
+}
+
 /* ── The watched caravan (phase 45) ─────────────────────────────────────── */
 
 let sceneShownFor = null;
@@ -920,6 +957,7 @@ function paint() {
   paintFrontier();
   paintIndus();
   paintWatched();
+  checkSlips();
   paintLocks();
 }
 
@@ -1296,6 +1334,9 @@ function openCodex() {
   $('drawer').classList.add('on');
 }
 $('codex').addEventListener('click', openCodex);
+$('helpbtn').addEventListener('click', () => {
+  document.body.toggleAttribute('data-help');
+});
 document.addEventListener('input', (e) => {
   const box = e.target.closest?.('[data-codex-search]');
   if (!box) return;

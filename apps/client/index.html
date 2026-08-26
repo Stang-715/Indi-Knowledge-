@@ -139,6 +139,7 @@
       <button class="btn" id="soundbtn" title="The audio is the corpus: fuller when more is held, darker when more is lost, and silent in 1193.">♪ off</button>
       <button class="btn" id="share" title="Copy a link that opens this exact campaign.">share</button>
       <button class="btn" id="savebtn" title="Copy the campaign to the clipboard. It is a few kilobytes — the world is recomputed from it.">save</button>
+      <button class="btn" id="helpbtn" title="Label every panel with its one-line purpose.">?</button>
       <button class="btn" id="codex" title="The reference: every era, chapter, event, thread and work — dates shown as the evidence supports them, never as this campaign will roll them.">codex</button>
       <button class="btn" id="chronicle" title="The book of this campaign: what happened, what you did, and a taste of the quiet years. Kept the way the Ahoms kept theirs.">chronicle</button>
       <button class="btn" id="telemetry" title="Playtest data: copy the local session metrics to paste into a findings report. Nothing leaves this machine on its own.">metrics</button>
@@ -156,11 +157,13 @@
           protect is a library.</p>
         <div class="picks">
           <button class="btn btn--primary" data-campaign="chola">
-            <b>The Chola Age</b><span>850 – 1279 · Thanjavur · the era the record
-            actually documents, at village resolution</span></button>
+            <b>The Chola Age</b><span>Thanjavur, 850. The record runs to village
+            resolution here — and the survey is unfinished, and the Pandyas are not.
+            First task: feed a reciter before you raise a wall.</span></button>
           <button class="btn" data-campaign="full">
-            <b>The long campaign</b><span>6000 BCE – 1947 · the whole
-            seven thousand nine hundred and forty-seven years</span></button>
+            <b>The long campaign</b><span>Mehrgarh, 6000 BCE. Seven thousand nine
+            hundred and forty-seven years, and for the first three thousand the
+            library is people. First task: grow enough to feed one memory.</span></button>
         </div>
       </div>
     </div>
@@ -170,7 +173,7 @@
 
   <aside>
     <div class="panel ledger">
-      <h2>The Ledger</h2>
+      <h2 data-purpose="What you have: grain, coin, people, and the eight gauges.">The Ledger</h2>
       <div class="ledger-row"><span>Grain</span><span class="v" id="grain">—</span></div>
       <div class="ledger-row"><span>Coin</span><span class="v" id="coin">—</span></div>
       <div class="ledger-row"><span>Farmers</span><span class="v" id="farmers">—</span></div>
@@ -185,18 +188,19 @@
     </div>
 
     <div class="panel">
-      <h2>People <span class="tiny muted" id="people-sum"></span></h2>
+      <h2 data-purpose="The named: reciters, scribes, patrons — the knowledge infrastructure.">People <span class="tiny muted" id="people-sum"></span></h2>
       <div id="people"></div>
       <div id="endowments"></div>
     </div>
 
     <div class="panel">
+      <div id="slips"></div>
       <div id="watched" class="watched" style="display:none"></div>
 
-      <h2 id="indus-h" style="display:none">The Emptying <span class="tiny muted" id="indus-sum"></span></h2>
+      <h2 id="indus-h" style="display:none" data-purpose="The Indus cities against the drying. Triage, not defence.">The Emptying <span class="tiny muted" id="indus-sum"></span></h2>
       <div id="indus"></div>
 
-      <h2>The Frontier <span class="tiny muted" id="frontier-sum"></span></h2>
+      <h2 data-purpose="The people of the treeline. Learn and Clear are both remembered.">The Frontier <span class="tiny muted" id="frontier-sum"></span></h2>
       <div id="frontier"></div>
     </div>
 
@@ -206,7 +210,7 @@
     </div>
 
     <div class="panel">
-      <h2>Routes</h2>
+      <h2 data-purpose="Roads and sea lanes. Standing orders keep them working while you look away.">Routes</h2>
       <div id="routes"></div>
       <div class="acts" id="route-acts" style="margin-top:6px"></div>
     </div>
@@ -218,7 +222,7 @@
     </div>
 
     <div class="panel">
-      <h2>The Corpus <span class="tiny muted" id="corpus-sum"></span></h2>
+      <h2 data-purpose="The library you are keeping alive. Grey means gone.">The Corpus <span class="tiny muted" id="corpus-sum"></span></h2>
       <div class="chest" id="chest"></div>
     </div>
 
