@@ -444,6 +444,8 @@ for (const s of SITES) {
 // data-URI faces load lazily and fonts.ready resolves before they do —
 // load each script we will actually draw, with a sample glyph, then repaint.
 let INDIC_READY = false;
+let frameCaravans = [];
+let watchedCaravan = null;   // the ordinal of the caravan being followed
 {
   const wanted = new Map();
   for (const s of SITES) if (s.native) wanted.set(s.script, s.native[0]);
@@ -517,7 +519,7 @@ function drawSites(proj, level, dive) {
       const x = proj.toX(a.lon + (b.lon - a.lon) * k);
       const y = proj.toY(a.lat + (b.lat - a.lat) * k);
       const visible = x >= -20 && y >= -20 && x <= ctx.canvas.width + 20 && y <= ctx.canvas.height + 20;
-      if (visible && onScreen.length < 12) onScreen.push({ x, y, a, b });
+      if (visible && onScreen.length < 12) onScreen.push({ x, y, a, b, c });
       else flowByRoute.set(c.route, (flowByRoute.get(c.route) ?? 0) + 1);
     }
     for (const [id, n] of flowByRoute) {
@@ -530,9 +532,13 @@ function drawSites(proj, level, dive) {
       ctx.lineTo(proj.toX(b.lon), proj.toY(b.lat));
       ctx.stroke();
     }
+    frameCaravans = onScreen;
     for (const c of onScreen) {
-      ctx.fillStyle = '#2A2118';
-      ctx.beginPath(); ctx.arc(c.x, c.y, 3 * dpr, 0, Math.PI * 2); ctx.fill();
+      const watched = watchedCaravan && c.c?.ordinal === watchedCaravan;
+      ctx.fillStyle = watched ? '#C9A227' : '#2A2118';
+      ctx.beginPath(); ctx.arc(c.x, c.y, (watched ? 4.5 : 3) * dpr, 0, Math.PI * 2); ctx.fill();
+      if (watched) { ctx.strokeStyle = '#C9A227'; ctx.lineWidth = 1.5 * dpr;
+        ctx.beginPath(); ctx.arc(c.x, c.y, 8 * dpr, 0, Math.PI * 2); ctx.stroke(); }
       const dx = c.b.lon - c.a.lon, dy = c.b.lat - c.a.lat;
       const m = Math.hypot(dx, dy) || 1;
       ctx.beginPath();
@@ -630,7 +636,20 @@ cv.addEventListener('pointermove', (e) => {
   draw(3); scheduleFull();
 });
 const endDrag = () => { dragging = false; cv.classList.remove('drag'); };
-cv.addEventListener('pointerup', endDrag);
+cv.addEventListener('pointerup', (e) => {
+  // A tap (no real drag) hit-tests the frame's caravans: click one to watch
+  // it — the phase-34 ruling's exception. Click empty road to stop watching.
+  const moved = last ? Math.hypot(e.clientX - last[0], e.clientY - last[1]) : 99;
+  endDrag();
+  if (moved > 5 || !frameCaravans.length) return;
+  const rect = cv.getBoundingClientRect();
+  const px = (e.clientX - rect.left) * dpr, py = (e.clientY - rect.top) * dpr;
+  const hit = frameCaravans.find(c => Math.hypot(c.x - px, c.y - py) < 14 * dpr);
+  if (hit?.c?.ordinal) {
+    watchedCaravan = watchedCaravan === hit.c.ordinal ? null : hit.c.ordinal;
+    paintWatched();
+  }
+});
 cv.addEventListener('pointercancel', endDrag);
 
 cv.addEventListener('wheel', (e) => {
@@ -771,6 +790,60 @@ function decide(action, extra = {}) {
   syncScrub();
 }
 
+/* ── The watched caravan (phase 45) ─────────────────────────────────────── */
+
+let sceneShownFor = null;
+function paintWatched() {
+  const el = $('watched');
+  if (!el) return;
+  const c = watchedCaravan && state?.caravans.find(x => x.ordinal === watchedCaravan);
+  if (!c) { el.style.display = 'none'; watchedCaravan = null; return; }
+  const r = state.routes.get(c.route);
+  el.style.display = '';
+  const phase = c.state === 'outbound'
+    ? `${Math.min(100, Math.round(c.progress / c.days * 100))}% of ${c.days} days out`
+    : 'settling — payment is a second journey';
+  el.innerHTML = `<b>Watching a caravan · ${c.route}</b>
+    <span>${phase} · cargo ${Math.round(c.value)} grain-worth · road safety ${Math.round((r?.safety ?? 0) * 100)}%</span>
+    ${r?.choke ? `<span class="warn-line">${CHOKES[r.choke.kind].label} ahead</span>` : ''}
+    <button class="btn tiny" data-unwatch>stop watching</button>`;
+
+  // The scene: the caravan you are watching meets the trouble. Time pauses,
+  // one panel, the choices the choke type allows — the resolver stays in the
+  // sim; this panel only asks the question.
+  if (r?.choke && c.state === 'outbound' && !c.met && sceneShownFor !== c.ordinal) {
+    sceneShownFor = c.ordinal;
+    if (playing) { playing = false; $('play').textContent = '▶ play'; TELEMETRY.paused(); }
+    const spec = CHOKES[r.choke.kind];
+    const opts = [...new Set(['fight', 'pay', 'reroute', 'wait'])]
+      .filter(m => m === 'wait' || spec.works.includes(m) || m === 'pay');
+    const overlay = document.createElement('div');
+    overlay.className = 'plate-overlay scene';
+    overlay.innerHTML = `<div class="scene-box">
+      <img alt="" src="${spriteURL('rampart', 96)}">
+      <h3>${spec.label}</h3>
+      <p>Your caravan on ${r.route ?? c.route} — ${Math.round(c.value)} grain-worth of cargo —
+         meets it ${Math.round(c.days - c.progress)} days from home.</p>
+      <div class="scene-acts">${opts.map(m =>
+        `<button class="btn ${m === 'fight' ? 'btn--primary' : ''}" data-scene="${m}"
+           title="${m === 'fight' ? `Soldiers decide it: ${state.pops.soldiers} available.`
+                 : m === 'pay' ? 'A cut of the cargo, and the road.'
+                 : m === 'reroute' ? 'The long way round: +40% days.'
+                 : 'Camp, and hope it moves on: days and a little cargo.'}">${m}</button>`).join('')}
+      </div></div>`;
+    overlay.addEventListener('click', (ev) => {
+      const b = ev.target.closest('[data-scene]');
+      if (!b) return;
+      decide('resolve-encounter', { route: c.route, ordinal: c.ordinal, method: b.dataset.scene });
+      overlay.remove();
+    });
+    document.body.append(overlay);
+  }
+}
+document.addEventListener('click', (e) => {
+  if (e.target.closest?.('[data-unwatch]')) { watchedCaravan = null; paintWatched(); }
+});
+
 /* ── Painting the UI ────────────────────────────────────────────────────── */
 
 const PILLARS = ['DESIGN','IT','STRUCTURE','CLASSICISM','NETWORKING','TRADE','CULTIVATION','AGRICULTURE'];
@@ -843,6 +916,7 @@ function paint() {
   paintSurvey();
   paintFrontier();
   paintIndus();
+  paintWatched();
   paintLocks();
 }
 
@@ -1090,22 +1164,40 @@ function paintRoutes() {
       Open ${to.name} route</button>`);
   }
   for (const r of s.routes.values()) {
+    const o = r.orders ?? { escort: 'none', chokePolicy: 'wait' };
+    const onMission = s.missions?.some(m => m.route === r.id);
     if (r.choke) {
       const spec = CHOKES[r.choke.kind];
-      const method = spec.works[0];
-      acts.push(`<button class="btn btn--primary" data-route="clear" data-id="${r.id}"
-        data-method="${method}" title="${spec.label} — try to ${method}">
-        ${method === 'reroute' ? 'Reroute' : method === 'pay' ? 'Pay the toll' : 'Clear'} ${r.to}</button>`);
+      if (onMission)
+        acts.push(`<span class="route-note" title="The expedition is on the road. Missions take as long as the march.">
+          ⚑ expedition out on ${r.id}</span>`);
+      else if (spec.works.includes('fight'))
+        acts.push(`<button class="btn btn--primary" data-route="mission" data-id="${r.id}"
+          title="${spec.label}. An expedition marches ${r.days * 2} days out and the same back — 60 grain.">
+          Launch expedition — ${r.to}</button>`);
+      if (spec.works.includes('pay') && !r.tolled)
+        acts.push(`<button class="btn" data-route="clear" data-id="${r.id}" data-method="pay"
+          title="${spec.label} — pay, this once.">Pay the toll</button>`);
+      if (spec.works.includes('reroute'))
+        acts.push(`<button class="btn" data-route="clear" data-id="${r.id}" data-method="reroute"
+          title="${spec.label} — the long way round.">Reroute</button>`);
     } else {
       acts.push(`<button class="btn" data-route="caravan" data-id="${r.id}"
         title="Goods take days. Payment takes longer.">Send caravan</button>`);
-      if (r.safety < 0.9 && s.pops.soldiers >= 5)
-        acts.push(`<button class="btn" data-route="escort" data-id="${r.id}"
-          title="Safety and speed trade against each other.">Escort</button>`);
-      if (r.hold < 0.9 && s.pops.soldiers >= 5)
-        acts.push(`<button class="btn" data-route="garrison" data-id="${r.id}"
-          title="Hold is how much of the road is actually yours.">Garrison</button>`);
     }
+    // Standing orders: the road's policy, obeyed for a century without a click.
+    acts.push(`<div class="orders" data-orders="${r.id}">
+      <span class="tiny muted">${r.id}</span>
+      ${['none','light','heavy'].map(l =>
+        `<button class="btn tiny ${o.escort === l ? 'btn--on' : ''}"
+           data-esc="${l}" title="${l === 'none' ? 'No standing escort.'
+             : l === 'light' ? 'Light escort: 2 grain a year, safety floor 0.45.'
+             : 'Heavy escort: 6 grain a year, safety floor 0.75.'}">${l}</button>`).join('')}
+      <select data-pol title="What the road does at trouble when nobody is watching.">
+        ${['wait','pay','reroute','fight'].map(pn =>
+          `<option value="${pn}" ${o.chokePolicy === pn ? 'selected' : ''}>${pn}</option>`).join('')}
+      </select>
+    </div>`);
   }
   $('route-acts').innerHTML = acts.join('');
 }
@@ -1119,8 +1211,21 @@ $('route-acts').addEventListener('click', (e) => {
                            days: +d.days, capacity: +d.capacity, mode: d.mode });
   else if (d.route === 'clear')    decide('clear-choke', { route: d.id, method: d.method });
   else if (d.route === 'caravan')  decide('send-caravan', { route: d.id });
-  else if (d.route === 'escort')   decide('escort',   { route: d.id });
-  else if (d.route === 'garrison') decide('garrison', { route: d.id });
+  else if (d.route === 'mission')  decide('start-mission', { route: d.id, method: 'fight' });
+});
+$('route-acts').addEventListener('click', (e) => {
+  const esc = e.target.closest('[data-esc]');
+  if (!esc) return;
+  const box = esc.closest('[data-orders]');
+  const pol = box.querySelector('[data-pol]').value;
+  decide('set-orders', { route: box.dataset.orders, escort: esc.dataset.esc, chokePolicy: pol });
+});
+$('route-acts').addEventListener('change', (e) => {
+  const pol = e.target.closest('[data-pol]');
+  if (!pol) return;
+  const box = pol.closest('[data-orders]');
+  const cur = state.routes.get(box.dataset.orders)?.orders?.escort ?? 'none';
+  decide('set-orders', { route: box.dataset.orders, escort: cur, chokePolicy: pol.value });
 });
 
 function paintActions() {

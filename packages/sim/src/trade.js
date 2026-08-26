@@ -9,6 +9,7 @@
  * Goods take days. Payment takes longer. Both are simulated.
  */
 import { record, bumpPillar } from './state.js';
+import { drawFrom } from './rng.js';
 
 /** The five kinds of choke. One resolver, five skins (docs/11 §6). */
 export const CHOKES = {
@@ -93,6 +94,56 @@ function seasonFactor(route, year) {
   return 0.75;
 }
 
+/**
+ * Standing orders (phase 45, implementing the phase-34 ruling in full):
+ * policy per route, set once, obeyed for a century without a click. Escort
+ * level is a standing cost and a safety floor; the choke policy is what the
+ * road does when trouble arrives and nobody is watching. The watched caravan
+ * is the exception that proves it — a one-off `resolve-encounter` decision
+ * overrides the standing policy for that meeting only.
+ */
+export const ESCORT_LEVELS = {
+  none:  { costPerYear: 0,   safetyFloor: 0    },
+  light: { costPerYear: 2,   safetyFloor: 0.45 },
+  heavy: { costPerYear: 6,   safetyFloor: 0.75 },
+};
+
+export function ordersOf(r) {
+  return r.orders ?? { escort: 'none', chokePolicy: 'wait' };
+}
+
+/**
+ * One resolver for every meeting between a caravan and trouble — the scene in
+ * the client is a skin over this, never a second implementation. Deterministic:
+ * the draw is keyed by route, year and caravan ordinal.
+ */
+export function resolveEncounter(state, r, c, method, year, rng) {
+  const kind = r.choke?.kind ?? 'raid';
+  const u = drawFrom(state.seed ?? 'x', 'encounter', r.id, year, c.ordinal ?? 0);
+  const out = { method, kind };
+  switch (method) {
+    case 'fight': {
+      const strength = Math.min(0.9, 0.25 + state.pops.soldiers / 40
+        + (ordersOf(r).escort === 'heavy' ? 0.2 : ordersOf(r).escort === 'light' ? 0.1 : 0));
+      if (u < strength) { out.result = 'won'; r.safety = Math.min(0.95, r.safety + 0.1); }
+      else { out.result = 'lost'; c.value *= 0.4; c.progress = Math.max(0, c.progress - c.days * 0.2); }
+      break;
+    }
+    case 'pay':
+      out.result = 'paid'; c.value *= (kind === 'toll' ? 0.85 : 0.7);
+      break;
+    case 'reroute':
+      out.result = 'rerouted'; c.days = Math.round(c.days * 1.4);
+      break;
+    default:
+      out.result = 'waited'; c.progress = Math.max(0, c.progress - c.days * 0.35); c.value *= 0.9;
+  }
+  record(state, year, 'encounter',
+    `${r.id}: a caravan meets ${CHOKES[kind].label} — ${out.result}.`,
+    { route: r.id, kind, method, result: out.result });
+  return out;
+}
+
 export function tickTrade(state, span, rng) {
   const year = state.year;
 
@@ -109,10 +160,55 @@ export function tickTrade(state, span, rng) {
   }
   for (const p of PARTNERS) if (p.from <= year) openPartner(state, p, year);
 
+  // Standing escorts cost grain whether or not a caravan is moving — a
+  // guard you only pay when attacked is not a guard.
+  for (const r of state.routes.values()) {
+    const lvl = ESCORT_LEVELS[ordersOf(r).escort] ?? ESCORT_LEVELS.none;
+    if (lvl.costPerYear) state.grain = Math.max(0, state.grain - lvl.costPerYear * span);
+  }
+
+  // Missions march. Clearing a choke takes as long as reaching it.
+  if (state.missions?.length) {
+    for (const m of state.missions) {
+      m.elapsed += span * 365;
+      if (m.elapsed < m.days || m.done) continue;
+      m.done = true;
+      const r = state.routes.get(m.route);
+      if (!r || !r.choke) {
+        record(state, year, 'mission', `${m.route}: the expedition finds the road already open.`, { route: m.route });
+        continue;
+      }
+      const spec = CHOKES[r.choke.kind];
+      const works = spec.works.includes(m.method);
+      const u = drawFrom(state.seed ?? 'x', 'mission', m.route, m.started);
+      const strength = m.method === 'fight' ? Math.min(0.9, state.pops.soldiers / 30) : 0.7;
+      if (works && (m.method !== 'fight' || u < strength)) {
+        r.choke = null; r.open = true;
+        r.safety = Math.min(0.95, r.safety + 0.3);
+        state.stats.chokesCleared++;
+        record(state, year, 'mission', `${m.route} is open again — the expedition returns.`, { route: m.route, result: 'cleared' });
+      } else {
+        record(state, year, 'mission', `The expedition on ${m.route} fails and limps home.`, { route: m.route, result: 'failed' });
+      }
+    }
+    state.missions = state.missions.filter(m => !m.done);
+  }
+
   // Caravans move. Transit takes days; settlement is a second journey.
   for (const c of state.caravans) {
     if (c.state === 'outbound') {
+      const wasBefore = c.progress;
       c.progress += span * 365;
+      // A caravan that crosses a choked road has a meeting. Resolved by the
+      // route's standing policy unless a watched-caravan decision already
+      // resolved this exact meeting (the client records it as a decision, so
+      // the replay is identical with or without the scene).
+      const r = state.caravans && state.routes.get(c.route);
+      if (r?.choke && !c.met && wasBefore > 0) {
+        c.met = true;
+        const override = state.encounterOverrides?.get(`${c.route}:${c.ordinal ?? 0}`);
+        resolveEncounter(state, r, c, override ?? ordersOf(r).chokePolicy, year, rng);
+      }
       if (c.progress >= c.days) { c.state = 'settling'; c.progress = 0; }
     } else if (c.state === 'settling') {
       c.progress += span * 365;
@@ -136,6 +232,8 @@ export function tickTrade(state, span, rng) {
     r.hold = Math.max(0.08, r.hold - 0.0012 * span);
     const cover = state.pops.soldiers > 0 ? Math.min(0.4, state.pops.soldiers / 60) : 0;
     r.safety = Math.max(0.1, Math.min(0.95, r.safety * 0.998 + cover * 0.02 * span));
+    const floor = (ESCORT_LEVELS[ordersOf(r).escort] ?? ESCORT_LEVELS.none).safetyFloor;
+    if (floor) r.safety = Math.max(r.safety, floor);
 
     // A choke appears. Rarely, and one of the five kinds.
     //
@@ -152,6 +250,22 @@ export function tickTrade(state, span, rng) {
       record(state, year, 'choke',
         `${r.id}: ${CHOKES[kind].label}.`, { route: r.id, kind });
     }
+    // A standing 'pay' policy keeps toll-type chokes from ever closing the
+    // road: the fee is simply part of the route's cost now, skimmed from
+    // deliveries below. A standing 'fight' policy launches a mission the
+    // season the choke appears, without waiting for the player to notice.
+    if (r.choke && r.orders) {
+      if (r.orders.chokePolicy === 'pay' && (r.choke.kind === 'toll' || r.choke.kind === 'pass')) {
+        r.open = true; r.tolled = true;
+      } else if (r.orders.chokePolicy === 'fight' && CHOKES[r.choke.kind].works.includes('fight')
+                 && !state.missions?.some(m => m.route === r.id)) {
+        (state.missions ??= []).push({ route: r.id, method: 'fight',
+          started: year, days: r.days * 2, elapsed: 0 });
+        record(state, year, 'mission',
+          `${r.id}: the standing order raises an expedition without being asked.`, { route: r.id });
+      }
+    } else if (!r.choke) r.tolled = false;
+
     // The rot is not cleared, it is outlived: a river finds a new channel, a
     // flood recedes. The other four kinds wait for the player.
     if (r.choke && r.choke.kind === 'rot' && year - r.choke.since > 25) {
@@ -161,7 +275,7 @@ export function tickTrade(state, span, rng) {
     }
 
     if (r.open) {
-      const t = throughput(r, year);
+      const t = throughput(r, year) * (r.tolled ? 0.75 : 1);
       r.delivered += t * span;
       state.grain += t * span * 0.4;
       bumpPillar(state, 'TRADE', 0.02 * span);
@@ -227,8 +341,34 @@ export const DECISIONS = {
     const value = Math.min(state.grain * 0.2, throughput(r, state.year) * 8);
     if (value < 1) return;
     state.grain -= value * 0.3;
-    state.caravans.push({ route: r.id, days: r.days, progress: 0, state: 'outbound', value });
-    record(state, d.year, 'decision', `A caravan leaves on ${r.id}.`);
+    const ordinal = (state.stats.caravansSent = (state.stats.caravansSent ?? 0) + 1);
+    state.caravans.push({ route: r.id, days: r.days, progress: 0, state: 'outbound', value, ordinal });
+    record(state, d.year, 'decision', `A caravan leaves on ${r.id}.`, { route: r.id, ordinal });
+  },
+  'set-orders'(state, d) {
+    const r = state.routes.get(d.route);
+    if (!r) return;
+    if (!(d.escort in ESCORT_LEVELS)) return;
+    r.orders = { escort: d.escort, chokePolicy: d.chokePolicy ?? 'wait' };
+    record(state, d.year, 'decision',
+      `${r.id}: standing orders — ${d.escort} escort, ${r.orders.chokePolicy} at trouble.`, { route: r.id });
+  },
+  'start-mission'(state, d) {
+    const r = state.routes.get(d.route);
+    if (!r || !r.choke || state.grain < 60) return;
+    if (state.missions?.some(m => m.route === r.id)) return;
+    state.grain -= 60;
+    (state.missions ??= []).push({ route: r.id, method: d.method ?? 'fight',
+      started: d.year, days: r.days * 2, elapsed: 0 });
+    record(state, d.year, 'mission',
+      `An expedition marches for ${r.id}: ${r.days * 2} days out and the same back.`, { route: r.id });
+  },
+  'resolve-encounter'(state, d) {
+    // The watched caravan's one-off choice: recorded before the meeting is
+    // ticked, so the replay resolves the same meeting the same way.
+    (state.encounterOverrides ??= new Map()).set(`${d.route}:${d.ordinal}`, d.method);
+    record(state, d.year, 'decision',
+      `${d.route}: the watched caravan is ordered to ${d.method}.`, { route: d.route });
   },
   'share'(state, d) {
     // Share costs the good and returns standing. Not charity — it buys the trust

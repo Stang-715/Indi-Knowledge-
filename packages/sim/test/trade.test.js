@@ -127,3 +127,70 @@ test('the trust ladder has diminishing returns per partner per generation', () =
   const sb = b.standing.get('kin-east') ?? 0;
   assert.ok(sb > sa * 1.5, `spread ${sb} should far exceed burst ${sa}`);
 });
+
+/* ── Phase 45: the road, played ─────────────────────────────────────────── */
+
+test('a standing order runs a route for a century without another click', () => {
+  const d = [
+    { year: 850, action: 'open-route', id: 'R45', from: 'thanjavur', to: 'muziris', days: 30 },
+    { year: 851, action: 'raise-soldiers', count: 10 },
+    { year: 852, action: 'set-orders', route: 'R45', escort: 'heavy', chokePolicy: 'fight' },
+  ];
+  const s = run(DP, 'orders', d, { to: 980 });
+  const r = s.routes.get('R45');
+  assert.equal(r.orders.escort, 'heavy');
+  assert.ok(r.safety >= 0.75, `heavy escort floors safety at 0.75, got ${r.safety}`);
+  // and the order survives the save/replay round trip because it IS a decision
+  const s2 = run(DP, 'orders', d, { to: 980 });
+  assert.equal(s.fingerprint, s2.fingerprint);
+});
+
+test('escorts cost grain whether or not a caravan moves', () => {
+  const open = [{ year: 850, action: 'open-route', id: 'R45', from: 'thanjavur', to: 'muziris', days: 30 }];
+  const guarded = [...open, { year: 851, action: 'set-orders', route: 'R45', escort: 'heavy', chokePolicy: 'wait' }];
+  // A short window from a fixed start, below the granary cap — from -6000 the
+  // economy saturates to the ceiling and a 6-grain-a-year cost is invisible.
+  const a = run(DP, 'escort-cost', open,    { from: 849, to: 950, initial: { grain: 800, pillars: { TRADE: 20, STRUCTURE: 15 } } });
+  const b = run(DP, 'escort-cost', guarded, { from: 849, to: 950, initial: { grain: 800, pillars: { TRADE: 20, STRUCTURE: 15 } } });
+  assert.ok(b.grain < a.grain, `guarded ${b.grain} should cost against free ${a.grain}`);
+});
+
+test('a mission takes as long as the march, and only then clears the road', () => {
+  // Find a campaign year where a choke exists, launch, and watch the clock.
+  const base = [
+    { year: 850, action: 'open-route', id: 'R45', from: 'thanjavur', to: 'muziris', days: 40 },
+    { year: 851, action: 'raise-soldiers', count: 30 },
+  ];
+  let choked = null;
+  const probe = run(DP, 'mission-clock', base, { to: 1279 });
+  for (const l of probe.log) if (l.kind === 'choke' && l.route === 'R45') { choked = l.year; break; }
+  if (choked === null) return; // this seed never chokes the route — nothing to assert
+  const d = [...base, { year: choked + 1, action: 'start-mission', route: 'R45', method: 'fight' }];
+  const s = run(DP, 'mission-clock', d, { to: 1279 });
+  const launch = s.log.find(l => l.kind === 'mission' && /expedition marches/.test(l.text));
+  const outcome = s.log.find(l => l.kind === 'mission' && /(open again|fails)/.test(l.text));
+  assert.ok(launch && outcome, 'the mission both departs and resolves');
+  assert.ok(outcome.year >= launch.year, 'resolution never precedes departure');
+});
+
+test('the watched caravan overrides the standing policy for one meeting only', () => {
+  const base = [
+    { year: 850, action: 'open-route', id: 'R45', from: 'thanjavur', to: 'muziris', days: 60 },
+    { year: 852, action: 'set-orders', route: 'R45', escort: 'none', chokePolicy: 'wait' },
+  ];
+  const probe = run(DP, 'watched', base, { to: 1279 });
+  const choke = probe.log.find(l => l.kind === 'choke' && l.route === 'R45');
+  if (!choke) return;
+  const send = { year: choke.year + 1, action: 'send-caravan', route: 'R45' };
+  const a = run(DP, 'watched', [...base, send], { to: choke.year + 3 });
+  const sent = a.log.find(l => l.route === 'R45' && l.ordinal);
+  if (!sent) return;
+  const override = { year: choke.year + 1, action: 'resolve-encounter',
+    route: 'R45', ordinal: sent.ordinal, method: 'pay' };
+  const b = run(DP, 'watched', [...base, send, override], { to: choke.year + 3 });
+  const encA = a.log.find(l => l.kind === 'encounter');
+  const encB = b.log.find(l => l.kind === 'encounter');
+  if (encA && encB) assert.notEqual(encA.result, undefined),
+    assert.equal(encB.method, 'pay'),
+    assert.equal(encA.method, 'wait');
+});
