@@ -7,23 +7,34 @@
 <link rel="stylesheet" href="../../packages/ui/src/kit.css">
 <style>
   html,body { height:100%; }
-  #app { display:grid; grid-template-columns: 1fr 322px; height:100dvh; gap:0; }
+  /* The frame (phase 2, docs/21-hud.md): five regions. Row one is the status
+     bar; row two splits rail | stage | side. The rail stays hidden until
+     phase 6 populates it — an empty 58px column reads as a bug, not a plan. */
+  #app { display:grid; grid-template-rows: auto 1fr; height:100dvh; gap:0; }
+  #main { display:grid; grid-template-columns: 1fr 322px; min-height:0; }
+  #rail { display:none; }
+  body[data-rail] #main { grid-template-columns: 58px 1fr 322px; }
+  body[data-rail] #rail { display:flex; background:var(--sheet);
+    border-right:1px solid var(--rule); flex-direction:column; align-items:center;
+    padding:10px 0; gap:7px; }
   /* Below 900px the panel goes under the map rather than beside it.
      `grid-template-rows: 1fr auto` looks right and is not: `auto` is
      content-sized, ten panels are taller than any phone, and the `1fr` map row
      is squeezed to ZERO height. The map was 390x0 — present, painted, and
      invisible. Give the stage an explicit share and let the panel scroll. */
   @media (max-width: 900px) {
-    #app   { grid-template-columns: 1fr; grid-template-rows: 56dvh minmax(0, 1fr); }
+    #main  { grid-template-columns: 1fr !important; grid-template-rows: 52dvh minmax(0, 1fr); }
+    body[data-rail] #rail { flex-direction:row; padding:4px 8px; overflow-x:auto;
+      border-right:0; border-bottom:1px solid var(--rule); grid-row:2; }
+    body[data-rail] #main { grid-template-rows: 52dvh auto minmax(0, 1fr); }
     #stage { min-height: 0; }
     aside  { border-left: 0; border-top: 1px solid var(--rule); min-height: 0; }
-    /* The HUD carries eight controls; at 390px they must wrap, not overflow. */
-    #hud   { left: 8px; right: 8px; top: 8px; flex-wrap: wrap; gap: 5px; padding: 5px 7px; }
+    /* The status bar carries many controls; at 390px they wrap, never overflow. */
+    #hud   { gap: 5px; padding: 5px 7px; }
     #hud .rule { display: none; }
-    #year  { font-size: 16px; min-width: 84px; }
+    #year  { font-size: 15px; min-width: 80px; }
     #notices { right: 8px; top: auto; bottom: 8px; width: auto; left: 8px; }
-    #scrub { left: 8px; right: 8px; bottom: 46px; }
-    #scrubber { width: 100%; }
+    #scrubber { width: 110px; }
     /* On a phone the stage is only 56dvh, so a full-height card would cover the
        very thing the player opened the game to look at. Trim it to a title and
        two taps; the descriptions are read on desktop and in the way here. */
@@ -41,11 +52,13 @@
   #map { display:block; width:100%; height:100%; touch-action:none; cursor:grab; }
   #map.drag { cursor:grabbing; }
 
-  #hud { position:absolute; left:14px; top:14px; display:flex; gap:8px; align-items:center;
-         background:var(--paper); border:1px solid var(--rule); padding:6px 10px;
-         box-shadow:var(--shadow-contact); }
-  #year { font-size:19px; font-weight:600; font-variant-numeric:tabular-nums; min-width:104px; }
-  #era  { font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); }
+  /* The status bar: the old floating #hud, laid flat across the table edge. */
+  #hud { display:flex; gap:8px; align-items:center; flex-wrap:wrap;
+         background:var(--paper); border-bottom:1px solid var(--rule); padding:6px 12px;
+         box-shadow:var(--shadow-contact); position:relative; z-index:20; }
+  #year { font-size:17px; font-weight:600; font-variant-numeric:tabular-nums; min-width:96px; }
+  #era  { font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); }
+  #hud .spacer { flex:1; }
 
   /* The start card sits low and the scrim is light, because the first thing a
      player should see is the map — not a dark sheet over it. Reported as
@@ -63,10 +76,8 @@
   .picks .btn { text-align:left; padding:11px 14px; display:flex; flex-direction:column; gap:3px; }
   .picks .btn b { font-size:15px; }
   .picks .btn span { font-size:12px; opacity:.8; font-weight:400; }
-  #scrub { position:absolute; left:14px; bottom:52px; display:flex; align-items:center; gap:8px;
-           background:var(--paper); border:1px solid var(--rule); padding:5px 10px;
-           box-shadow:var(--shadow-contact); }
-  #scrubber { width:280px; accent-color:var(--gold); }
+  #scrub { display:flex; align-items:center; gap:8px; }
+  #scrubber { width:190px; accent-color:var(--gold); }
   #scrub-year { font-family:var(--mono); font-size:11px; min-width:66px; }
   #modes { position:absolute; left:14px; bottom:14px; display:flex; gap:2px; }
   #notices { position:absolute; right:14px; top:14px; width:290px;
@@ -121,34 +132,38 @@
 </head>
 <body data-era="neolithic">
 <div id="app">
+  <div id="hud">
+    <div class="clockbar">
+      <div class="gnomon" id="gnomon"></div>
+      <div>
+        <div id="year">6000 BCE</div>
+        <div id="era">Early Neolithic</div>
+      </div>
+    </div>
+    <div class="rule" style="width:1px;height:30px;margin:0 4px"></div>
+    <button class="btn" id="play">▶ play</button>
+    <button class="btn" id="speed">1×</button>
+    <div id="scrub"><input type="range" id="scrubber" min="0" max="100" value="100"
+      title="Scrub the campaign. A replay is the same world evaluated at a different year."><span id="scrub-year"></span></div>
+    <div class="rule" style="width:1px;height:30px;margin:0 4px"></div>
+    <span id="vitals"></span>
+    <span class="spacer"></span>
+    <button class="btn" id="soundbtn" title="The audio is the corpus: fuller when more is held, darker when more is lost, and silent in 1193.">♪ off</button>
+    <button class="btn" id="share" title="Copy a link that opens this exact campaign.">share</button>
+    <button class="btn" id="savebtn" title="Copy the campaign to the clipboard. It is a few kilobytes — the world is recomputed from it.">save</button>
+    <button class="btn" id="helpbtn" title="Label every panel with its one-line purpose.">?</button>
+    <button class="btn" id="codex" title="The reference: every era, chapter, event, thread and work — dates shown as the evidence supports them, never as this campaign will roll them.">codex</button>
+    <button class="btn" id="chronicle" title="The book of this campaign: what happened, what you did, and a taste of the quiet years. Kept the way the Ahoms kept theirs.">chronicle</button>
+    <button class="btn" id="telemetry" title="Playtest data: copy the local session metrics to paste into a findings report. Nothing leaves this machine on its own.">metrics</button>
+    <button class="btn" id="creditsbtn" title="The type, the record, the method — licences and the colophon.">credits</button>
+    <label class="btn" for="loadfile" title="Open a saved campaign from a file.">load
+      <input type="file" id="loadfile" accept=".json" hidden></label>
+  </div>
+  <div id="main">
+  <nav id="rail" aria-label="Drawers"></nav>
   <div id="stage">
     <canvas id="map" tabindex="0" role="application" aria-label="The map of the subcontinent. Arrow keys pan, plus and minus zoom, space plays and pauses."></canvas>
     <div id="loading">building the world…</div>
-    <div id="hud">
-      <div class="clockbar">
-        <div class="gnomon" id="gnomon"></div>
-        <div>
-          <div id="year">6000 BCE</div>
-          <div id="era">Early Neolithic</div>
-        </div>
-      </div>
-      <div class="rule" style="width:1px;height:30px;margin:0 4px"></div>
-      <button class="btn" id="play">▶ play</button>
-      <button class="btn" id="speed">1×</button>
-      <div class="rule" style="width:1px;height:30px;margin:0 4px"></div>
-      <button class="btn" id="soundbtn" title="The audio is the corpus: fuller when more is held, darker when more is lost, and silent in 1193.">♪ off</button>
-      <button class="btn" id="share" title="Copy a link that opens this exact campaign.">share</button>
-      <button class="btn" id="savebtn" title="Copy the campaign to the clipboard. It is a few kilobytes — the world is recomputed from it.">save</button>
-      <button class="btn" id="helpbtn" title="Label every panel with its one-line purpose.">?</button>
-      <button class="btn" id="codex" title="The reference: every era, chapter, event, thread and work — dates shown as the evidence supports them, never as this campaign will roll them.">codex</button>
-      <button class="btn" id="chronicle" title="The book of this campaign: what happened, what you did, and a taste of the quiet years. Kept the way the Ahoms kept theirs.">chronicle</button>
-      <button class="btn" id="telemetry" title="Playtest data: copy the local session metrics to paste into a findings report. Nothing leaves this machine on its own.">metrics</button>
-      <button class="btn" id="creditsbtn" title="The type, the record, the method — licences and the colophon.">credits</button>
-      <label class="btn" for="loadfile" title="Open a saved campaign from a file.">load
-        <input type="file" id="loadfile" accept=".json" hidden></label>
-    </div>
-    <div id="scrub"><input type="range" id="scrubber" min="0" max="100" value="100"
-      title="Scrub the campaign. A replay is the same world evaluated at a different year."><span id="scrub-year"></span></div>
     <div id="modes" class="tabs"></div>
     <div id="interiors" style="display:none">
         <button class="btn tiny" data-room="scriptorium" title="What is being copied right now, thinnest first.">the scriptorium</button>
@@ -245,6 +260,7 @@
 
     <div id="colophon" class="tiny muted" title="The fingerprint a bug report needs: commit, build date, datapack hash."></div>
   </aside>
+  </div>
 </div>
 <script type="module" src="./src/main.js"></script>
 </body>
