@@ -212,11 +212,27 @@
   </div>
 
   <aside>
-    <div id="occupation-banner"></div>
+    <div class="tabs" id="outliner-tabs" style="margin-bottom:2px">
+      <button class="tab" data-otab="all" aria-selected="true">all</button>
+      <button class="tab" data-otab="pinned" aria-selected="false">pinned</button>
+    </div>
+    <div class="panel" id="o-pinned-wrap">
+      <h2 data-purpose="What you chose to keep in sight. Stars anywhere pin here.">Pinned</h2>
+      <div id="outliner-pins"></div>
+    </div>
+    <div class="panel o-all">
+      <h2 data-purpose="What is happening whether you watch or not. These cannot be dismissed while they run.">Ongoing</h2>
+      <div id="occupation-banner"></div>
+      <div id="outliner-auto"></div>
+      <div id="watched" class="watched" style="display:none"></div>
+    </div>
     <div id="slips" aria-live="polite"></div>
-    <div id="watched" class="watched" style="display:none"></div>
+    <div class="panel o-all">
+      <h2 data-purpose="Works gaining a written carrier at your desks, thinnest first.">Copying</h2>
+      <div id="copyqueue"></div>
+    </div>
 
-    <div class="panel">
+    <div class="panel o-all">
       <h2>Chronicle</h2>
       <div id="log"></div>
     </div>

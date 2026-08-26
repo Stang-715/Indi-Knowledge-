@@ -44,7 +44,7 @@ import { renderCardPlate } from '../../../packages/ui/src/cardplate.js';
 import { makeTelemetry } from '../../../packages/ui/src/telemetry.js';
 import { composeChronicle, chronicleHTML, chronicleText } from '../../../packages/ui/src/chronicle.js';
 import { makeSlipTracker } from '../../../packages/ui/src/slips.js';
-import { interiorHTML } from '../../../packages/ui/src/interiors.js';
+import { interiorHTML, scriptoriumModel } from '../../../packages/ui/src/interiors.js';
 import { drawFrom } from '../../../packages/sim/src/rng.js';
 import { buildCodexIndex, searchCodex, codexHTML, shelfHTML, resultsHTML }
   from '../../../packages/ui/src/codex.js';
@@ -1441,6 +1441,8 @@ function paintWorkDetail(s) {
   const canTeach = !c.lost && !teachGate && s.grain >= 120 && (s.pops.scribes >= 1 || s.pops.reciters >= 2);
   $('workdetail').innerHTML = `
     <div class="panel" style="border:1px solid var(--rule);padding:8px 10px;background:var(--paper)">
+      <span class="star" style="float:right;cursor:pointer;color:${isPinned('work', c.id) ? 'var(--gold)' : 'var(--ink-faint)'}"
+        data-pin-star="work:${c.id}" data-pin-label="${c.title}" title="Pin to the outliner">★</span>
       <b>${c.title}</b> <span class="tiny muted">${c.lost ? `lost ${formatYear(c.lostYear)}` : `${c.carriers.length} carrier(s)`}</span>
       <div class="tokens" style="margin:6px 0">${carriers}</div>
       ${c.lost ? `<div class="tiny muted">Reduced to zero carriers. Works are never deleted — only unheld.</div>` : `
@@ -1510,6 +1512,7 @@ function paint() {
   paintFlows(s);
   renderDistrictDetail(s);
   paintCourt(s);
+  paintOutliner(s);
 
   $('pillars').innerHTML = PILLARS.map(p => {
     const v = Math.round(s.pillars[p]);
@@ -1961,6 +1964,98 @@ registerLens({
   ],
 });
 
+/* ── The outliner (phase 19) ────────────────────────────────────────────────
+ * The player chooses what stays visible; the game insists on what cannot be
+ * looked away from. Pins are a client preference (localStorage); auto-pins
+ * derive from state and are non-removable while their condition runs. */
+let pins = [];
+try { pins = JSON.parse(localStorage.getItem('pm-pins') ?? '[]'); } catch {}
+function savePins() { try { localStorage.setItem('pm-pins', JSON.stringify(pins)); } catch {} }
+function togglePin(type, id, label) {
+  const i = pins.findIndex(p => p.type === type && p.id === id);
+  if (i >= 0) pins.splice(i, 1);
+  else pins.push({ type, id, label });
+  savePins();
+  if (state) { paintOutliner(state); paint(); }
+}
+const isPinned = (type, id) => pins.some(p => p.type === type && p.id === id);
+
+function paintOutliner(s) {
+  // Pinned: the player's own shortlist.
+  $('outliner-pins').innerHTML = pins.length ? pins.map(p => {
+    let meta = '';
+    if (p.type === 'work') {
+      const c = s.corpus.get(p.id);
+      meta = c ? (c.lost ? `lost ${formatYear(c.lostYear)}` : `${c.carriers.length} carrier(s)`) : '';
+    } else if (p.type === 'route') {
+      const r = s.routes.get(p.id);
+      meta = r ? (r.choke ? CHOKES[r.choke.kind].label : `${throughput(r, s.year).toFixed(1)}/yr`) : 'closed';
+    }
+    return `<div class="pinned" data-pin-open="${p.type}:${p.id}">
+      <div class="t"><b>${p.label}</b><span class="star" data-pin-x="${p.type}:${p.id}" title="Unpin">★</span></div>
+      ${meta ? `<div class="meta">${meta}</div>` : ''}</div>`;
+  }).join('') : `<div class="tiny muted">Nothing pinned. Stars on works and routes pin them here.</div>`;
+
+  // Ongoing: the auto-pins. Non-removable while they run — the census rule.
+  const auto = [];
+  if (campaign) {
+    const ch = chapterAt(s.year);
+    const pct = Math.round(((s.year - ch.from) / Math.max(1, ch.to - ch.from)) * 100);
+    auto.push(`<div class="pinned auto" title="${ch.asks}">
+      <div class="t"><b>Chapter: ${ch.name}</b></div>
+      <div class="bar"><i style="width:${pct}%"></i></div></div>`);
+  }
+  for (const m of s.missions ?? []) {
+    const pct = Math.min(100, Math.round((m.elapsed / m.days) * 100));
+    auto.push(`<div class="pinned auto"><div class="t"><b>Mission: ${m.route}</b></div>
+      <div class="meta">${m.method} · marching</div>
+      <div class="bar"><i style="width:${pct}%"></i></div></div>`);
+  }
+  if (s.indus && s.year >= -2600 && s.year <= -1900) {
+    const standing = [...s.indus.values()].filter(t => t.standing);
+    const avg = standing.length ? standing.reduce((a, t) => a + t.water, 0) / standing.length : 0;
+    auto.push(`<div class="pinned auto" title="The average water of the standing towns. Nothing stops this; you choose what leaves.">
+      <div class="t"><b>The drying</b></div>
+      <div class="meta">${standing.length} towns stand</div>
+      <div class="bar"><i style="width:${Math.round(avg * 100)}%"></i></div></div>`);
+  }
+  $('outliner-auto').innerHTML = auto.join('') ||
+    `<div class="tiny muted">Nothing runs against you tonight.</div>`;
+
+  // Copying: the desks, thinnest first.
+  const sm = scriptoriumModel(s);
+  $('copyqueue').innerHTML = sm.desks.length ? sm.desks.slice(0, 4).map(d =>
+    `<div class="pinned" data-pin-open="work:${d.id}" title="Open in the Library">
+      <div class="t"><b>${d.title}</b></div>
+      <div class="meta">${d.written} written of ${d.carriers} · onto ${sm.medium}</div></div>`).join('')
+    : `<div class="tiny muted">${sm.scribes ? 'The desks are clear.' : 'No scribes — nothing can be copied.'}</div>`;
+}
+document.addEventListener('click', (e) => {
+  const x = e.target.closest('[data-pin-x]');
+  if (x) { const [t, ...r] = x.dataset.pinX.split(':'); togglePin(t, r.join(':')); return; }
+  const star = e.target.closest('[data-pin-star]');
+  if (star) {
+    const [t, ...r] = star.dataset.pinStar.split(':');
+    togglePin(t, r.join(':'), star.dataset.pinLabel ?? r.join(':'));
+    return;
+  }
+  const open = e.target.closest('[data-pin-open]');
+  if (open) {
+    const [t, ...r] = open.dataset.pinOpen.split(':');
+    const id = r.join(':');
+    if (t === 'work') { libSelected = id; openRail('library', false); if (state) paintLibrary(state); }
+    else if (t === 'route') openRail('road', false);
+  }
+});
+$('outliner-tabs').addEventListener('click', (e) => {
+  const b = e.target.closest('[data-otab]');
+  if (!b) return;
+  for (const t of $('outliner-tabs').children) t.setAttribute('aria-selected', t === b);
+  const pinnedOnly = b.dataset.otab === 'pinned';
+  for (const el of document.querySelectorAll('aside .o-all'))
+    el.style.display = pinnedOnly ? 'none' : '';
+});
+
 /* ── The corpus map mode + Mandala lens (phase 18) ────────────────────────── */
 /** Where the works physically are: a ring per holding place, sized by count. */
 function drawCorpusMode(proj) {
@@ -2105,7 +2200,9 @@ function paintRoutes() {
     const bar = (v) => `<span><i><b style="width:${Math.round(v * 100)}%"></b></i></span>`;
     const t = throughput(r, s.year);
     return `<div class="route ${r.choke ? 'choked' : ''}">
-      <div class="nm"><span>${r.from} → ${r.to}</span>
+      <div class="nm"><span><span class="star" style="cursor:pointer;color:${isPinned('route', r.id) ? 'var(--gold)' : 'var(--ink-faint)'}"
+          data-pin-star="route:${r.id}" data-pin-label="${r.from} → ${r.to}" title="Pin to the outliner">★</span>
+        ${r.from} → ${r.to}</span>
         <span class="num">${r.choke ? CHOKES[r.choke.kind].label : t.toFixed(1) + '/yr'}</span></div>
       <div class="four" title="capacity · hold · safety · season">
         ${bar(Math.min(1, r.capacity / 20))}${bar(r.hold)}${bar(r.safety)}${bar(0.9)}</div>

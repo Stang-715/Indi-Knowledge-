@@ -523,3 +523,17 @@ body[data-help] .railbody h2::after { content: attr(data-purpose); display: bloc
   z-index: 8; }
 #verbrow .hint { font-size: 11px; color: var(--ink-soft); margin-left: 6px; }
 #stage.panel-open #verbrow { left: calc(50% + 168px); }
+
+/* --- The outliner (HUD phase 19) ------------------------------------------- */
+.pinned { background: var(--paper); border: 1px solid var(--rule); padding: 7px 10px;
+  font-size: 12px; box-shadow: var(--shadow-contact); margin-bottom: 6px; }
+.pinned .t { display: flex; justify-content: space-between; align-items: baseline; }
+.pinned .t b { font-size: 12.5px; }
+.pinned .star { cursor: pointer; color: var(--gold); }
+.pinned.auto { border-left: 4px solid var(--sea-mid); }
+.pinned .meta { font-size: 10.5px; color: var(--ink-soft); margin-top: 2px; }
+.pinned .bar { height: 4px; background: var(--sheet-shade); margin-top: 5px;
+  box-shadow: inset 0 1px 2px rgba(42,33,24,.3); }
+.pinned .bar i { display: block; height: 100%; background: var(--table-deep); }
+.pinned[data-pin-open] { cursor: pointer; }
+.pinned[data-pin-open]:hover { border-color: var(--gold); }
