@@ -1041,6 +1041,49 @@ const ERA_MATERIAL = (y) =>
 
 let lastLogLen = 0;
 
+/* ── The status bar vitals (phase 3) ────────────────────────────────────────
+ * The zero-click layer: grain, the corpus, trust, four pillar glyphs. Every
+ * readout is a click-through and every danger state shows without opening
+ * anything. Flow is computed against the last painted year, so scrubbing
+ * backwards never fabricates a trend. */
+let lastVital = null;
+const VITAL_PILLARS = ['AGRICULTURE', 'TRADE', 'STRUCTURE', 'NETWORKING'];
+function paintVitals(s) {
+  const risk = worksAtRisk(s, 'home');
+  const last = risk.filter(w => w.carriers <= 1).length;
+  const cs = corpusSummary(s);
+  const cap = trustCeiling(s, DP);
+  const rung = trustRung(s, cap);
+  const capped = cap != null && s.pillars.NETWORKING > cap;
+  let flow = '';
+  if (lastVital && s.year > lastVital.year) {
+    const d = (s.grain - lastVital.grain) / (s.year - lastVital.year);
+    flow = ` <small>${d >= 0 ? '+' : ''}${Math.round(d)}/yr</small>`;
+  }
+  const falling = lastVital && s.year > lastVital.year && s.grain < lastVital.grain;
+  lastVital = { year: s.year, grain: s.grain };
+  const grainCls = s.grain < 100 ? 'dire' : falling ? 'bad' : '';
+  // At a fresh start EVERYTHING is technically at risk, which makes "at risk"
+  // noise. The middle number is the count that cannot wait: works down to one
+  // carrier — one fire, one fever, and the text is gone.
+  const corpusCls = last > 0 ? 'dire' : cs.lost > 0 ? 'bad' : '';
+  $('vitals').innerHTML =
+    `<span class="vital ${grainCls}" data-goto="ledger" title="The treasury, and its flow. Click: the Ledger.">
+       <span class="k">Grain</span><span class="v">${Math.round(s.grain).toLocaleString()}${flow}</span></span>
+     <span class="vital ${corpusCls}" data-goto="chest" title="Extant · at last carrier · lost. Click: the Library.">
+       <span class="k">Corpus</span><span class="v">${cs.extant} · ${last} · ${cs.lost}</span></span>
+     <span class="vital ${capped ? 'bad' : ''}" data-goto="pillars" title="The trust ladder${capped ? ` — capped at ${cap} under occupation` : ''}. Click: the gauges.">
+       <span class="k">Trust</span><span class="v">${rung.name}</span></span>
+     <span class="pillarglyphs" data-goto="pillars" title="Agriculture · Trade · Structure · Networking. Click: the full gauges.">
+       ${VITAL_PILLARS.map(p => `<span class="pg"><i style="height:${Math.round(s.pillars[p])}%"></i></span>`).join('')}</span>`;
+}
+$('vitals').addEventListener('click', (e) => {
+  const v = e.target.closest('[data-goto]');
+  if (!v) return;
+  const target = { ledger: '.ledger', chest: '#chest', pillars: '#pillars' }[v.dataset.goto];
+  document.querySelector(target)?.scrollIntoView({ block: 'center' });
+});
+
 function paint() {
   const s = state;
   $('year').textContent = formatYear(s.year);
@@ -1057,6 +1100,7 @@ function paint() {
   $('reciters').textContent = n(s.pops.reciters);
   $('scribes').textContent  = n(s.pops.scribes);
   $('soldiers').textContent = n(s.pops.soldiers);
+  paintVitals(s);
 
   $('pillars').innerHTML = PILLARS.map(p => {
     const v = Math.round(s.pillars[p]);

@@ -59,6 +59,23 @@
   #year { font-size:17px; font-weight:600; font-variant-numeric:tabular-nums; min-width:96px; }
   #era  { font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); }
   #hud .spacer { flex:1; }
+  /* Vitals (phase 3): the zero-click layer. Every readout is a click-through
+     and every danger state must be visible without opening anything. */
+  #vitals { display:flex; gap:4px; align-items:center; }
+  .vital { display:flex; flex-direction:column; gap:1px; cursor:pointer;
+           padding:2px 8px; border:1px solid transparent; }
+  .vital:hover { border-color:var(--rule); background:var(--sheet); }
+  .vital .k { font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-soft); }
+  .vital .v { font-family:var(--mono); font-size:13.5px; font-variant-numeric:tabular-nums; }
+  .vital .v small { font-size:10px; color:var(--ink-soft); }
+  .vital.bad .v  { color:var(--warn); font-weight:700; }
+  .vital.dire .v { color:#8a3324; font-weight:700; }
+  .pillarglyphs { display:flex; gap:4px; cursor:pointer; padding:3px 8px;
+                  border:1px solid transparent; }
+  .pillarglyphs:hover { border-color:var(--rule); background:var(--sheet); }
+  .pg { width:6px; height:24px; background:var(--sheet-shade);
+        box-shadow:inset 0 1px 2px rgba(42,33,24,.3); position:relative; }
+  .pg i { position:absolute; left:0; right:0; bottom:0; background:var(--table-deep); }
 
   /* The start card sits low and the scrim is light, because the first thing a
      player should see is the map — not a dark sheet over it. Reported as
