@@ -37,6 +37,7 @@ import { save as mkSave, load as loadSave, reconcile, toURLFragment, fromURLFrag
 import { Sound } from '../../../packages/ui/src/sound.js';
 import { renderCardPlate } from '../../../packages/ui/src/cardplate.js';
 import { makeTelemetry } from '../../../packages/ui/src/telemetry.js';
+import { composeChronicle, chronicleHTML, chronicleText } from '../../../packages/ui/src/chronicle.js';
 import { CHOLA, CHAPTERS, chapterAt, reckoning, openingState }
   from '../../../packages/sim/src/campaign.js';
 
@@ -1284,6 +1285,20 @@ function notice(l) {
 }
 
 /* ── The loop ───────────────────────────────────────────────────────────── */
+
+$('chronicle').addEventListener('click', () => {
+  if (!state) return;
+  const book = composeChronicle(state, timeline);
+  $('drawer-inner').innerHTML = chronicleHTML(book);
+  $('drawer').classList.add('on');
+});
+document.addEventListener('click', async (e) => {
+  if (!e.target.closest?.('[data-chron-copy]')) return;
+  const txt = chronicleText(composeChronicle(state, timeline));
+  try { await navigator.clipboard.writeText(txt);
+    notice({ year: state.year, kind: 'decision', text: 'The chronicle is copied — the book of this campaign, as text.' }); }
+  catch { prompt('The chronicle:', txt.slice(0, 2000)); }
+});
 
 $('telemetry').addEventListener('click', async () => {
   const blob = TELEMETRY.export();

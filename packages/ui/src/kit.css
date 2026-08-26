@@ -384,3 +384,15 @@ body {
 .scene-box h3 { margin: 8px 0 6px; }
 .scene-acts { display: flex; gap: 8px; justify-content: center; margin-top: 14px;
   flex-wrap: wrap; }
+
+/* --- The chronicle (phase 46) --------------------------------------------- */
+.chronicle h3 { margin: 4px 0 2px; }
+.chron-sub { color: var(--ink-soft); font-style: italic; font-size: 12px; margin: 0 0 14px; }
+.chron-era { margin-bottom: 16px; }
+.chron-era h4 { margin: 0 0 2px; border-bottom: 1px solid var(--rule); padding-bottom: 3px; }
+.chron-line { display: flex; gap: 10px; padding: 2px 0; font-size: 13px; }
+.chron-decision { color: var(--ink); }
+.chron-loss, .chron-catastrophe { color: var(--warn); }
+.chron-preserve { color: #6a7a3f; }
+.chron-texture { color: var(--ink-soft); font-style: italic; }
+.chron-epoch span:last-child { font-weight: 600; }
