@@ -11,6 +11,7 @@
  * blocks fetch.
  */
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import { execSync } from 'node:child_process';
 import { dirname, join, resolve, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -79,6 +80,7 @@ const DATA = {
   'gazetteer': 'data/gazetteer/places.json',
   'texture':   'data/timeline/texture.json',
   'occupations': 'data/timeline/occupations.json',
+  'fonts':     'data/fonts/manifest.json',
 };
 const inlined = Object.fromEntries(
   Object.entries(DATA).map(([k, p]) => [k, JSON.parse(readFileSync(join(ROOT, p), 'utf8'))]));
@@ -86,8 +88,8 @@ const inlined = Object.fromEntries(
 let entryCode = modules.get(ENTRY).src;
 // Replace the fetch block with the inlined data.
 entryCode = entryCode.replace(
-  /const \[bundle, timeline, works, cityData, people, cardsDoc, gazetteer, texture, occupations\] = await Promise\.all\(\[[\s\S]*?\]\);/,
-  'const { skeleton: bundle, timeline, works, cities: cityData, people, cards: cardsDoc, gazetteer, texture, occupations } = __DATA;');
+  /const \[bundle, timeline, works, cityData, people, cardsDoc, gazetteer, texture, occupations, fontManifest\] = await Promise\.all\(\[[\s\S]*?\]\);/,
+  'const { skeleton: bundle, timeline, works, cities: cityData, people, cards: cardsDoc, gazetteer, texture, occupations, fonts: fontManifest } = __DATA;');
 modules.set(ENTRY, { ...modules.get(ENTRY), src: entryCode });
 
 /* ── Assemble ───────────────────────────────────────────────────────────── */
@@ -118,10 +120,23 @@ const body = html
 
 const inlineStyle = (html.match(/<style>([\s\S]*?)<\/style>/) ?? [, ''])[1];
 
+/* ── Colophon (phase 54): the fingerprint a bug report needs ────────────── */
+let commit = 'unstamped';
+try { commit = execSync('git rev-parse --short HEAD', { cwd: ROOT }).toString().trim(); } catch {}
+const dpJSON = JSON.stringify(inlined);
+let dpHash = 0x811c9dc5;                        // FNV-1a over the inlined datapack
+for (let i = 0; i < dpJSON.length; i++) {
+  dpHash ^= dpJSON.charCodeAt(i);
+  dpHash = Math.imul(dpHash, 0x01000193) >>> 0;
+}
+const BUILD = { commit, date: new Date().toISOString().slice(0, 10),
+                datapack: dpHash.toString(16).padStart(8, '0') };
+
 const out = `<title>Paramountcy</title>
 <style>${fontCSS}${css}\n${inlineStyle}</style>
 ${body}
 <script type="module">
+globalThis.__BUILD = ${JSON.stringify(BUILD)};
 const __DATA = ${JSON.stringify(inlined)};
 const __m = {};
 ${order.map(wrap).join('\n\n')}

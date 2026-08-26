@@ -441,3 +441,14 @@ body[data-help] aside h2::after { content: attr(data-purpose); display: block;
   .orders select { min-height: 40px; }
   .thread-beat, .chron-line { padding-top: 8px; padding-bottom: 8px; }
 }
+
+/* --- Ship shape (phase 54): credits, colophon, the failure surface --------- */
+.credits h3 { margin: 14px 0 4px; font-size: 13px; }
+.credits-fonts { width: 100%; border-collapse: collapse; font-size: 12px; }
+.credits-fonts td { padding: 2px 6px 2px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+#colophon { padding: 10px 2px 14px; opacity: 0.7; }
+.damaged { border-left: 4px solid var(--loss, #8a3324); padding: 4px 10px; }
+.damaged h2 { margin-top: 4px; }
+.damaged-save { width: 100%; box-sizing: border-box; font-family: var(--mono, monospace);
+  font-size: 11px; background: var(--paper); color: var(--ink);
+  border: 1px solid var(--rule); margin: 8px 0; }

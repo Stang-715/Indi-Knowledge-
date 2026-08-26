@@ -76,7 +76,9 @@ test('a v1 save migrates forward', () => {
 });
 
 test('an unknown save version is refused, not half-loaded', () => {
-  assert.throws(() => migrate({ v: 99, seed: 's', d: [] }), /not supported/);
+  // Phase 54 made the refusal legible: a future version blames the build and
+  // says what to do, instead of "not supported".
+  assert.throws(() => migrate({ v: 99, seed: 's', d: [] }), /newer build/);
 });
 
 test('rubbish is refused with a reason', () => {
@@ -134,4 +136,43 @@ test('scrubbing is a pure function of the prefix', () => {
 test('a save records where it was taken, so a replay can return to it', () => {
   const sv = save('s', campaign(), { year: 1193 });
   assert.equal(sv.at, 1193);
+});
+
+/* ── Phase 54: versioning against real history ──────────────────────────── */
+
+test('a phase-38-era save replays against today\'s engine', () => {
+  // Written exactly as the client of that build would have written it: v2,
+  // Indus-era decisions included. The engine has gained systems since
+  // (standing orders, occupations, conditional events); an old log must land
+  // on the truer world, not break.
+  const old = {
+    v: 2, seed: 'p38-campaign', datapack: 'builtin', at: -1900,
+    d: [
+      { year: -2400, action: 'provision-town', town: 'mohenjo-daro' },
+      { year: -2350, action: 'dig-wells', town: 'dholavira' },
+      { year: -2200, action: 'resettle-east', town: 'kalibangan' },
+      { year: -2100, action: 'resettle-east', town: 'kalibangan' },
+    ],
+  };
+  const sv = reconcile(load(JSON.stringify(old)), DP);
+  assert.equal(sv.dropped, 0, 'nothing in a phase-38 save should have gone stale');
+  const world = run(DP, sv.seed, sv.d, { to: sv.at });
+  assert.equal(world.year, -1900);
+  assert.ok(world.indusCarried.resettled > 0, 'the resettlement decisions took effect');
+});
+
+test('a save from the future is refused legibly', () => {
+  const future = { v: SAVE_VERSION + 1, seed: 's', d: [] };
+  assert.throws(() => load(JSON.stringify(future)), (e) => {
+    assert.match(e.message, /newer build/, 'says whose fault it is');
+    assert.match(e.message, /Update the game/, 'and what to do about it');
+    return true;
+  });
+});
+
+test('a corrupted save fails kindly, never opaquely', () => {
+  assert.throws(() => load('{"garbage":true}'), /save/i, 'a JSON blob that is not a save');
+  assert.throws(() => load(JSON.stringify({ seed: 's', d: [] })), /version/i,
+    'a versionless save is named as such');
+  assert.throws(() => load('not json at all'), SyntaxError);
 });

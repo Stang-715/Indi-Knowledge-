@@ -36,6 +36,8 @@ import { trustCeiling } from '../../../packages/sim/src/occupations.js';
 import { save as mkSave, load as loadSave, reconcile, toURLFragment, fromURLFragment,
          replayStops, saveSize } from '../../../packages/sim/src/save.js';
 import { Sound, textureFamily } from '../../../packages/ui/src/sound.js';
+import { creditsHTML } from '../../../packages/ui/src/credits.js';
+import { damagedHTML } from '../../../packages/ui/src/damaged.js';
 import { renderCardPlate } from '../../../packages/ui/src/cardplate.js';
 import { makeTelemetry } from '../../../packages/ui/src/telemetry.js';
 import { composeChronicle, chronicleHTML, chronicleText } from '../../../packages/ui/src/chronicle.js';
@@ -56,7 +58,7 @@ const mark = (label) => { marks.push([label, performance.now() - T0]); };
 
 /* ── World ──────────────────────────────────────────────────────────────── */
 
-const [bundle, timeline, works, cityData, people, cardsDoc, gazetteer, texture, occupations] = await Promise.all([
+const [bundle, timeline, works, cityData, people, cardsDoc, gazetteer, texture, occupations, fontManifest] = await Promise.all([
   fetch('../../data/skeleton/bundle.json').then(r => r.json()),
   fetch('../../data/timeline/timeline.json').then(r => r.json()),
   fetch('../../data/corpus/works.json').then(r => r.json()),
@@ -66,6 +68,7 @@ const [bundle, timeline, works, cityData, people, cardsDoc, gazetteer, texture, 
   fetch('../../data/gazetteer/places.json').then(r => r.json()),
   fetch('../../data/timeline/texture.json').then(r => r.json()),
   fetch('../../data/timeline/occupations.json').then(r => r.json()),
+  fetch('../../data/fonts/manifest.json').then(r => r.json()).catch(() => null),
 ]);
 const PLACE_BY_ID = new Map(gazetteer.places.map(g => [g.id, g]));
 
@@ -853,10 +856,29 @@ let speedIdx = 0;
 
 /** Recompute the world from (datapack, seed, decisions). The rule, literally. */
 function recompute() {
-  state = run(DP, SEED, decisions, campaign
-    ? { from: campaign.from, to: target, initial: openingState(campaign) }
-    : { to: target });
-  paint();
+  // The failure surface (phase 54): a sim fault must never be a white screen.
+  // The save is a recipe, so even an uncomputable world keeps its full record.
+  try {
+    state = run(DP, SEED, decisions, campaign
+      ? { from: campaign.from, to: target, initial: openingState(campaign) }
+      : { to: target });
+    paint();
+  } catch (e) {
+    playing = false; $('play').textContent = '▶ play';
+    showDamaged(e);
+  }
+}
+
+function showDamaged(e) {
+  console.error(e);
+  let blob = '';
+  try { blob = JSON.stringify(mkSave(SEED, decisions, { year: target })); } catch {}
+  $('drawer-inner').innerHTML = damagedHTML(e, blob, globalThis.__BUILD);
+  $('drawer').classList.add('on');
+  $('drawer-inner').querySelector('[data-copy-save]')?.addEventListener('click', (ev) => {
+    navigator.clipboard?.writeText(blob);
+    ev.target.textContent = 'copied';
+  });
 }
 
 /* ── Campaigns ──────────────────────────────────────────────────────────── */
@@ -1527,6 +1549,16 @@ $('interiors').addEventListener('click', (e) => {
   $('drawer').classList.add('on');
   TELEMETRY.cardOpened();
 });
+// Credits and colophon (phase 54). The OFL notice for the embedded fonts
+// legally has to be reachable from inside the single file it ships in.
+$('creditsbtn').addEventListener('click', () => {
+  $('drawer-inner').innerHTML = creditsHTML(fontManifest, globalThis.__BUILD);
+  $('drawer').classList.add('on');
+});
+$('colophon').textContent = globalThis.__BUILD
+  ? `build ${globalThis.__BUILD.commit} · ${globalThis.__BUILD.date} · datapack ${globalThis.__BUILD.datapack}`
+  : 'development build';
+
 $('helpbtn').addEventListener('click', () => {
   document.body.toggleAttribute('data-help');
 });

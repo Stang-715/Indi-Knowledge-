@@ -70,7 +70,14 @@ export function migrate(o) {
                           action: d.action === 'patron' ? 'endow' : d.action }));
     s.v = 2;
   }
-  if (s.v !== SAVE_VERSION) throw new Error(`save version ${s.v} is not supported`);
+  // Refuse legibly: the message must tell the player what to do, because it
+  // is the one error a person with a treasured campaign will actually read.
+  if (s.v == null)
+    throw new Error('This does not look like a Paramountcy save — it carries no version.');
+  if (s.v > SAVE_VERSION)
+    throw new Error(`This save is from a newer build (save version ${s.v}; this build reads ${SAVE_VERSION}). Update the game, not the save.`);
+  if (s.v !== SAVE_VERSION)
+    throw new Error(`Save version ${s.v} is no longer readable; this build reads ${SAVE_VERSION}.`);
   // Drop decisions whose entity no longer exists rather than failing the load:
   // a datapack that renamed something should cost you that decision, not the
   // whole campaign.
