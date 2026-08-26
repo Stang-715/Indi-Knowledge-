@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Paramountcy HUD — phase 1 mockup</title>
+<link rel="stylesheet" href="../../packages/ui/src/kit.css">
+<style>
+/* Phase 1 (docs/21-hud.md): the whole HUD as a static object, geometry only.
+   One deliberate deviation from the plan text: the game's kit is SINGLE-theme
+   by design (the Cartographer's Table commits to one lit scene), so the mockup
+   varies era materials, not light/dark. */
+html, body { height: 100%; }
+body { margin: 0; overflow: hidden; }
+#frame { display: grid; grid-template-rows: auto 1fr; height: 100dvh; }
+
+/* ── Region 1: the status bar — a paper strip laid across the table edge ── */
+#statusbar { display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  background: var(--paper); border-bottom: 1px solid var(--rule);
+  padding: 6px 12px; box-shadow: var(--shadow-contact); position: relative; z-index: 20; }
+#statusbar .sep { width: 1px; height: 30px; background: var(--rule); }
+.vital { display: flex; flex-direction: column; gap: 1px; cursor: pointer;
+  padding: 2px 8px; border: 1px solid transparent; }
+.vital:hover { border-color: var(--rule); background: var(--sheet); }
+.vital .k { font-size: 9px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-soft); }
+.vital .v { font-family: var(--mono); font-size: 14px; font-variant-numeric: tabular-nums; }
+.vital .v small { font-size: 10px; }
+.vital.bad .v { color: var(--warn); font-weight: 700; }
+.vital.dire .v { color: #8a3324; font-weight: 700; }
+.pillarglyphs { display: flex; gap: 5px; cursor: pointer; padding: 4px 8px; }
+.pg { width: 7px; height: 26px; background: var(--sheet-shade);
+  box-shadow: inset 0 1px 2px rgba(42,33,24,.3); position: relative; }
+.pg i { position: absolute; left: 0; right: 0; bottom: 0; background: var(--table-deep); }
+#situations { position: relative; }
+#situations .num { font-family: var(--mono); background: var(--table-deep); color: var(--paper);
+  padding: 1px 7px; margin-left: 5px; }
+#situations.glow-red .num { background: #8a3324; }
+#scrubline { display: flex; align-items: center; gap: 8px; }
+#scrubline input { width: 170px; accent-color: var(--gold); }
+
+/* ── Region 2+3: rail | stage | outliner ── */
+#main { display: grid; grid-template-columns: 58px 1fr 300px; min-height: 0; }
+#rail { background: var(--sheet); border-right: 1px solid var(--rule);
+  display: flex; flex-direction: column; align-items: center; padding: 10px 0; gap: 7px; }
+.seal { width: 42px; height: 42px; border-radius: 50%; border: 1.5px solid var(--rule);
+  background: radial-gradient(circle at 34% 30%, var(--paper), var(--sheet-shade));
+  font-family: var(--serif); font-size: 15px; font-weight: 700; color: var(--ink);
+  cursor: pointer; position: relative; box-shadow: 0 1px 0 rgba(42,33,24,.25); }
+.seal:hover { border-color: var(--gold); }
+.seal[aria-pressed="true"] { border-color: var(--gold); border-width: 2.5px; }
+.seal .badge { position: absolute; top: -4px; right: -4px; min-width: 15px; height: 15px;
+  border-radius: 50%; background: var(--warn); color: var(--paper);
+  font-family: var(--mono); font-size: 9px; line-height: 15px; }
+.seal .badge.red { background: #8a3324; }
+.seal--minor { width: 33px; height: 33px; font-size: 11px; font-weight: 400; }
+#rail .gap { flex: 1; }
+#rail .divider { width: 26px; height: 1px; background: var(--rule); margin: 3px 0; }
+
+#stagewrap { position: relative; min-width: 0; overflow: hidden;
+  background:
+    radial-gradient(90% 90% at 62% 40%, #7CB4C0 0%, #3E8496 55%, #24606F 100%); }
+/* Stand-in landmass so panel contrast can be judged against terrain. */
+#land { position: absolute; left: 28%; top: 12%; width: 34%; height: 70%;
+  background: linear-gradient(160deg, #A98F68 0%, #7A8F52 45%, #C29A48 80%);
+  clip-path: polygon(30% 0, 62% 6%, 82% 30%, 66% 62%, 50% 96%, 38% 66%, 12% 44%, 18% 14%); }
+
+/* ── The rail panel: one drawer at a time, sliding over the stage's left ── */
+#railpanel { position: absolute; left: 0; top: 0; bottom: 0; width: 336px;
+  background: var(--sheet); border-right: 1px solid var(--rule);
+  box-shadow: var(--shadow-lift); padding: 14px; overflow-y: auto; z-index: 10; }
+#railpanel h2 { margin: 0 0 4px; font-size: 12px; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--ink-soft); display: flex; justify-content: space-between; }
+#railpanel .pin { cursor: pointer; color: var(--ink-faint); }
+#railpanel .pin:hover { color: var(--gold); }
+
+/* ── Region 4: the lens tray — verbs only ── */
+/* When a rail panel is open the tray centres on the VISIBLE stage, not the
+   full width — otherwise armed verbs hide behind the very panel that armed
+   them. A geometry rule found on paper, which is the point of phase 1. */
+#stagewrap.panel-open #lenstray, #stagewrap.panel-open #verbrow {
+  left: calc(50% + 168px); }
+#lenstray { position: absolute; left: 50%; transform: translateX(-50%); bottom: 12px;
+  display: flex; gap: 8px; align-items: center; background: var(--paper);
+  border: 1px solid var(--rule); padding: 7px 12px; box-shadow: var(--shadow-contact); z-index: 8; }
+.lens { width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid var(--rule);
+  background: radial-gradient(circle at 34% 30%, var(--paper), var(--sheet-shade));
+  font-size: 17px; cursor: pointer; }
+.lens[aria-pressed="true"] { border-color: var(--gold); border-width: 3px; }
+.lens:hover { border-color: var(--gold); }
+#lenstray .globe { width: 36px; height: 36px; font-size: 14px; }
+#verbrow { position: absolute; left: 50%; transform: translateX(-50%); bottom: 72px;
+  display: flex; gap: 5px; background: var(--paper); border: 1px solid var(--rule);
+  padding: 6px 9px; box-shadow: var(--shadow-contact); z-index: 8; }
+#verbrow .hint { font-size: 11px; color: var(--ink-soft); align-self: center; margin-left: 6px; }
+
+/* Eligibility swatches (the six states, from docs/21 A4) */
+#eligibility { position: absolute; right: 12px; bottom: 12px; background: var(--paper);
+  border: 1px solid var(--rule); padding: 8px 11px; font-size: 11px; z-index: 8;
+  box-shadow: var(--shadow-contact); }
+#eligibility b { display: block; font-size: 9px; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--ink-soft); margin-bottom: 5px; }
+.sw { display: flex; align-items: center; gap: 7px; padding: 1px 0; }
+.sw i { width: 14px; height: 14px; border: 1px solid var(--rule); display: inline-block; }
+
+/* ── Region 5: the outliner ── */
+#outliner { background: var(--sheet); border-left: 1px solid var(--rule);
+  overflow-y: auto; padding: 12px; display: flex; flex-direction: column; gap: 10px; }
+#outliner h3 { margin: 0; font-size: 10px; letter-spacing: .13em; text-transform: uppercase;
+  color: var(--ink-soft); }
+.pinned { background: var(--paper); border: 1px solid var(--rule); padding: 7px 10px;
+  font-size: 12px; box-shadow: var(--shadow-contact); }
+.pinned .t { display: flex; justify-content: space-between; }
+.pinned .t b { font-size: 12px; }
+.pinned .star { cursor: pointer; color: var(--gold); }
+.pinned.auto { border-left: 4px solid var(--sea-mid); }
+.pinned.auto .star { color: var(--ink-faint); cursor: not-allowed; }
+.pinned .meta { font-size: 10.5px; color: var(--ink-soft); margin-top: 2px; }
+.pinned .bar { height: 4px; background: var(--sheet-shade); margin-top: 5px;
+  box-shadow: inset 0 1px 2px rgba(42,33,24,.3); }
+.pinned .bar i { display: block; height: 100%; background: var(--table-deep); }
+
+/* ── Alerts: the situations list, dropped from the status bar ── */
+#sitlist { position: absolute; right: 306px; top: 4px; width: 320px; background: var(--paper);
+  border: 1px solid var(--rule); box-shadow: var(--shadow-lift); z-index: 25; }
+#sitlist header { display: flex; justify-content: space-between; padding: 7px 11px;
+  border-bottom: 1px solid var(--rule); font-size: 10px; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--ink-soft); }
+.sit { display: flex; gap: 8px; padding: 7px 11px; font-size: 12px;
+  border-bottom: 1px solid rgba(42,33,24,.08); align-items: baseline; cursor: pointer; }
+.sit:hover { background: var(--sheet); }
+.sit i { width: 8px; height: 8px; border-radius: 50%; flex: none; position: relative; top: -1px; }
+.sit.red i { background: #8a3324; } .sit.amber i { background: var(--warn); }
+.sit.feed i { background: var(--ink-faint); }
+.sit .x { margin-left: auto; color: var(--ink-faint); }
+.era-switch { position: absolute; left: 12px; bottom: 12px; z-index: 8; display: flex; gap: 2px; }
+</style>
+</head>
+<body data-era="classical">
+<div id="frame">
+
+  <div id="statusbar">
+    <div class="clockbar"><div class="gnomon" style="--sun:55deg"></div>
+      <div><div style="font-size:17px;font-weight:600;font-variant-numeric:tabular-nums">1010 CE</div>
+      <div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)">The Chola Age</div></div></div>
+    <button class="btn">▶ play</button>
+    <button class="btn">2×</button>
+    <div id="scrubline"><input type="range" value="38"><span style="font-family:var(--mono);font-size:11px">1010 CE</span></div>
+    <div class="sep"></div>
+    <div class="vital" title="Treasury and weekly flow. Click: the Ledger.">
+      <span class="k">Grain</span><span class="v">4,180 <small>+22/yr</small></span></div>
+    <div class="vital bad" title="Extant · at risk · lost. Click: the Library.">
+      <span class="k">Corpus</span><span class="v">41 · <b>3</b> · 6</span></div>
+    <div class="vital" title="The trust ladder, and its ceiling under occupation. Click: the Court.">
+      <span class="k">Trust</span><span class="v">confidant</span></div>
+    <div class="pillarglyphs" title="Agriculture · Trade · Structure · Networking. Click: the full gauges.">
+      <span class="pg"><i style="height:62%"></i></span><span class="pg"><i style="height:48%"></i></span>
+      <span class="pg"><i style="height:37%"></i></span><span class="pg"><i style="height:55%"></i></span></div>
+    <div class="sep"></div>
+    <button class="btn glow-red" id="situations">situations<span class="num">4</span></button>
+    <span style="flex:1"></span>
+    <button class="btn">♪ on</button><button class="btn">save</button>
+    <button class="btn">share</button><button class="btn">load</button><button class="btn">?</button>
+  </div>
+
+  <div id="main">
+    <nav id="rail" aria-label="Drawers">
+      <button class="seal" aria-pressed="true" title="The Ledger — where grain comes from and where it goes">L</button>
+      <button class="seal" title="The Library — the corpus you are keeping alive"><span class="badge red">3</span>B</button>
+      <button class="seal" title="The People — reciters, scribes, patrons">P</button>
+      <button class="seal" title="The Land — settlements, survey, the Indus triage">Ld</button>
+      <button class="seal" title="The Road — routes, orders, missions, partners"><span class="badge">1</span>R</button>
+      <button class="seal" title="The Court — the four-layer sovereignty stack">C</button>
+      <div class="divider"></div>
+      <button class="seal seal--minor" title="Codex">cx</button>
+      <button class="seal seal--minor" title="Chronicle">ch</button>
+      <button class="seal seal--minor" title="Threads">th</button>
+      <div class="gap"></div>
+      <button class="seal seal--minor" title="Help">?</button>
+      <button class="seal seal--minor" title="Metrics">m</button>
+      <button class="seal seal--minor" title="Credits">©</button>
+    </nav>
+
+    <div id="stagewrap" class="panel-open">
+      <div id="land"></div>
+
+      <aside id="railpanel">
+        <h2>The Ledger <span class="pin" title="Pin to the outliner">★</span></h2>
+        <div class="ledger">
+          <div class="ledger-row"><span>Harvest</span><span class="v">+310</span></div>
+          <div class="ledger-row"><span>Tolls held open (pay policy)</span><span class="v">−18</span></div>
+          <div class="ledger-row"><span>Standing escorts, 2 routes</span><span class="v">−8</span></div>
+          <div class="ledger-row"><span>Endowment upkeep, 3 kept</span><span class="v">−24</span></div>
+          <div class="ledger-row"><span>Occupation extraction</span><span class="v">0</span></div>
+          <div class="ledger-row" style="font-weight:700"><span>Weekly balance</span><span class="v">+22</span></div>
+        </div>
+        <h2 style="margin-top:14px">Patronage</h2>
+        <div class="acts">
+          <button class="btn">none</button>
+          <button class="btn" style="border-color:var(--gold)">steady</button>
+          <button class="btn">lavish</button>
+        </div>
+        <p style="font-size:11px;color:var(--ink-soft)">Steady: 30 grain a year keeps
+        every held work fed. Lavish adds new reciters when grain allows.</p>
+        <h2 style="margin-top:14px">Goods</h2>
+        <div class="tokens"><span class="token">grain</span><span class="token">cotton</span>
+          <span class="token token--new">pepper</span><span class="token">bronze</span></div>
+      </aside>
+
+      <div id="verbrow">
+        <button class="btn">open route</button>
+        <button class="btn" style="border-color:var(--gold)">set orders</button>
+        <button class="btn">share surplus</button>
+        <span class="hint">now click a route on the map · Esc cancels</span>
+      </div>
+      <div id="lenstray" role="toolbar" aria-label="Lenses">
+        <button class="lens" title="Settle — settle, clear, abandon">⛺</button>
+        <button class="lens" title="Remember — copy, send abroad, endow">✍</button>
+        <button class="lens" aria-pressed="true" title="Trade — routes, orders, share, watch">⚖</button>
+        <button class="lens" title="Mandala — claims, tribute">◎</button>
+        <button class="lens globe" title="Map modes: terrain · survey · mandala · corpus · roads">🗺</button>
+      </div>
+
+      <div id="eligibility"><b>Eligibility, when a verb is armed</b>
+        <div class="sw"><i style="background:var(--gold)"></i>yours</div>
+        <div class="sw"><i style="background:#7A8F52"></i>can act here</div>
+        <div class="sw"><i style="background:#C29A48"></i>already so</div>
+        <div class="sw"><i style="background:#7CB4C0"></i>in progress</div>
+        <div class="sw"><i style="background:#A8642B"></i>not yet — hover says what would qualify</div>
+        <div class="sw"><i style="background:#E2E5E2"></i>never — hover says why</div>
+      </div>
+
+      <div class="era-switch tabs">
+        <button class="tab" data-era="neolithic">neolithic</button>
+        <button class="tab" aria-selected="true" data-era="classical">classical</button>
+        <button class="tab" data-era="modern">colonial</button>
+      </div>
+
+      <div id="sitlist">
+        <header><span>Situations</span><span title="Restore 2 dismissed">↺ 2</span></header>
+        <div class="sit red"><i></i>The Natyashastra is down to its last reciter, and she is 61.<span class="x">✕</span></div>
+        <div class="sit red"><i></i>Kalibangan reaches the leaving threshold this decade.<span class="x">✕</span></div>
+        <div class="sit amber"><i></i>The Palghat pass has closed; three caravans wait.<span class="x">✕</span></div>
+        <div class="sit amber"><i></i>Coinage is now possible — trade volume crossed the threshold.<span class="x">✕</span></div>
+        <div class="sit feed"><i></i>A wedding season at Uraiyur; the road is crowded and glad.<span class="x">✕</span></div>
+      </div>
+    </div>
+
+    <aside id="outliner">
+      <h3>Pinned</h3>
+      <div class="pinned"><div class="t"><b>Grand Anicut route</b><span class="star">★</span></div>
+        <div class="meta">escort light · pay chokes · +6 grain/yr</div></div>
+      <div class="pinned"><div class="t"><b>Tolkappiyam</b><span class="star">★</span></div>
+        <div class="meta">2 carriers · copy queued at Thanjavur</div></div>
+      <h3>Ongoing</h3>
+      <div class="pinned auto"><div class="t"><b>Chapter: The Great Temple</b><span class="star">★</span></div>
+        <div class="meta">Endow the hall before the vimana closes</div>
+        <div class="bar"><i style="width:64%"></i></div></div>
+      <div class="pinned auto"><div class="t"><b>Watched caravan</b><span class="star">★</span></div>
+        <div class="meta">Muziris road · day 12 · at the ghats</div></div>
+      <div class="pinned auto"><div class="t"><b>Mission: clear the pass</b><span class="star">★</span></div>
+        <div class="meta">marching · resolves in 9 days</div>
+        <div class="bar"><i style="width:40%"></i></div></div>
+      <h3>Copying</h3>
+      <div class="pinned"><div class="t"><b>Silappatikaram</b></div>
+        <div class="meta">at the scriptorium · 2 years to a new carrier</div>
+        <div class="bar"><i style="width:30%"></i></div></div>
+      <h3>Recent</h3>
+      <div class="pinned" style="font-size:11px;color:var(--ink-soft)">1008 — The
+        Brihadeeswarar inscriptions name four hundred dancers.<br>1006 — A caravan
+        returns from Srivijaya with camphor.</div>
+    </aside>
+  </div>
+</div>
+<script>
+  for (const b of document.querySelectorAll('.era-switch .tab')) {
+    b.addEventListener('click', () => {
+      document.body.dataset.era = b.dataset.era;
+      document.querySelectorAll('.era-switch .tab').forEach(t => t.setAttribute('aria-selected', t === b));
+    });
+  }
+</script>
+</body>
+</html>
