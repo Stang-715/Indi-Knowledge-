@@ -1648,9 +1648,43 @@ $('people').addEventListener('click', (e) => {
  * delivers nothing, and the player should be able to see which number is the
  * one holding them back.
  */
+/* ── The Road's second half (phase 11): missions and partners ─────────────── */
+function paintMissions(s) {
+  const ms = s.missions ?? [];
+  $('missionlist').innerHTML = ms.length ? ms.map(m => {
+    const pct = Math.min(100, Math.round((m.elapsed / m.days) * 100));
+    return `<div class="route"><div class="nm"><span>⚑ ${m.route} — ${m.method}</span>
+        <span class="num">${pct}%</span></div>
+      <div class="four"><span><i><b style="width:${pct}%"></b></i></span></div></div>`;
+  }).join('') : `<div class="tiny muted">Nobody is on the march.</div>`;
+}
+function paintPartners(s) {
+  const ps = [...(s.partners?.values() ?? [])];
+  $('partnerlist').innerHTML = ps.length ? ps.map(p => {
+    const standing = Math.round(s.standing.get(p.id) ?? p.standing ?? 0);
+    const gen = Math.floor(s.year / 30);
+    const g = s.shareGen?.get(p.id);
+    const given = (g && g.gen === gen) ? g.count : 0;
+    const next = Math.round(8 * (1 / (1 + given)) ** 2 * 10) / 10;
+    const can = s.grain >= 30;
+    return `<div class="route"><div class="nm"><span>${p.name ?? p.id}</span>
+        <span class="num">standing ${standing}</span></div>
+      <div class="acts" style="margin-top:3px">
+        <button class="btn tiny" data-share="${p.id}" ${can ? '' : 'disabled'}
+          title="30 grain. This generation has been given to ${given} time(s); the next gift buys about +${next} standing — appetite resets in ${30 - (s.year % 30)} year(s).">share surplus</button>
+      </div></div>`;
+  }).join('') : `<div class="tiny muted">Nobody within reach yet. Roads make partners.</div>`;
+}
+document.addEventListener('click', (e) => {
+  const b = e.target.closest('[data-share]');
+  if (b && state) decide('share', { with: b.dataset.share });
+});
+
 function paintRoutes() {
   const s = state;
   const rs = [...s.routes.values()];
+  paintMissions(s);
+  paintPartners(s);
   $('routes').innerHTML = rs.length ? rs.map(r => {
     const bar = (v) => `<span><i><b style="width:${Math.round(v * 100)}%"></b></i></span>`;
     const t = throughput(r, s.year);
