@@ -6,7 +6,7 @@ tree** — the previous version predated phases 12–43 and lied to newcomers.
 
 **Repo:** `Stang-715/Indi-Knowledge-` · branch `claude/amazing-hopper-q6g8s7`
 **The game, live:** https://claude.ai/code/artifact/fccc9042-9f5e-49dd-87a4-3e73e46ee8a6
-**Tests:** `npm test` (329, all green) · `npm run verify` · `npm run gaps` (coverage report)
+**Tests:** `npm test` (348, all green) · `npm run verify` · `npm run gaps` (coverage report)
 **Build:** `node tools/build-timeline.mjs` → `node tools/build-client.mjs` → `dist/paramountcy.html` (single file, ~1.9 MB, colophon-stamped)
 
 ---
@@ -65,7 +65,21 @@ no-villain era: unbeatable water, triage verbs, scored-nothing reckoning) ·
 contract. `apps/client/` is the assembled game; `tools/build-client.mjs` bundles
 everything into one ASCII-safe HTML file.
 
-## 4. Current state (third arc, docs/19-play-depth.md, phases 45–54)
+## 4. Current state (fourth arc, docs/21-hud.md, phases 1–21: the HUD)
+
+The fourth arc rebuilt the interface around the census-validated five-part
+pattern (docs/20): a **status bar** of vitals with danger states; a
+twelve-seal **rail** whose six major drawers (Ledger, Library, People, Land,
+Road, Court) host every subject, one at a time; a four-lens **tray**
+(Settle, Trade, Remember, Mandala) where verbs arm, the map recolors in six
+eligibility states, and clicks execute; an **outliner** of player pins and
+non-removable auto-pins with the copying queue; and a tiered **alert shelf**
+whose volume is a failing test. Grain flows are recorded at the till
+(`state.flows`), patronage is a standing policy, and telemetry counts rail
+opens and lens executions for the human round. Hotkeys: q–y drawers, 1–4
+lenses, Escape unwinds tool → drawer → panel.
+
+## 4b. Previous state (third arc, docs/19-play-depth.md, phases 45–54)
 
 Phases 1–52 and 54 are executed and committed, each with the correction it forced —
 the standing lesson is that **writing content is how the sim's bugs get found**.

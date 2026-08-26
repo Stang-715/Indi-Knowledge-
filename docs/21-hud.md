@@ -145,3 +145,36 @@ in code); alerts before drawers (drawers will want badges, badges need the engin
 drawers before lenses (lenses execute verbs whose subjects must have homes first);
 outliner late (it pins things that must exist); pace re-baseline second-to-last because
 every earlier phase can shift it; skin last so materials land on a finished frame.
+
+---
+
+## Execution record (the fourth arc)
+
+All 21 phases executed, one commit each. What the arc falsified or forced:
+
+- **1** — the plan's "both themes" line was a spec error (the kit is
+  single-theme by design); the lens tray must centre on the *visible* stage.
+  Both found on paper, which is the phase's whole argument.
+- **3/5** — "at risk" was the wrong vital and the wrong situation: at a fresh
+  start everything is technically at risk. The number that cannot wait is
+  last-carrier works, and universal fragility is ONE situation at its true
+  scale, not fifty-eight.
+- **6** — click-throughs wired to element positions in phase 3 broke when the
+  layout moved in phase 6. Navigation targets destinations, not positions.
+- **7** — the ledger records flows at the till, never re-derives them; a
+  listener pinned to a movable panel's home misses it when mounted elsewhere.
+- **9** — the volume budget test tripped on the lineage source (11 loud at
+  −2075) two phases after it was written. That is the argument for it.
+- **10** — the canonical same-year decision ordering silently no-ops a survey
+  clicked the same year as its scribe's training. Real, deterministic,
+  recorded for a future save-format bump — not patched, because the ordering
+  is what saves replay against.
+- **14–18** — lenses are for verbs; the registry validates loudly; modes are
+  borrowed and returned, never taken; and Baghdad is not on an India-only
+  map, so 'send abroad' stayed a button.
+- **20** — a guard that "protected" the number row from canvas focus was the
+  keyboard smoke's one catch of the arc.
+
+Suite at close: **348 tests green**, `npm run verify` clean, bundle 2.00 MB.
+Screenshots at `tools/mockups/shots/`; the phase-1 mockup at
+`tools/mockups/hud.html` remains the geometry's reference.
