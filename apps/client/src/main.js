@@ -1236,6 +1236,66 @@ document.addEventListener('click', (e) => {
   if (b && state) decide('set-patronage', { level: b.dataset.patronage });
 });
 
+/* ── The Library (phase 8): the chest rebuilt around risk ─────────────────── */
+let libFilter = 'all', libSelected = null;
+const LIB_FILTERS = {
+  all:    { label: 'all',      test: (c) => c.exists || c.lost },
+  risk:   { label: 'at risk',  test: (c, risky) => !c.lost && c.exists && risky.has(c.id) },
+  abroad: { label: 'abroad',   test: (c) => !c.lost && c.exists && c.carriers.some(x => x.place !== 'home') },
+  lost:   { label: 'lost',     test: (c) => c.lost },
+};
+function paintLibrary(s) {
+  const risky = new Set(worksAtRisk(s, 'home').map(w => w.id));
+  const all = [...s.corpus.values()];
+  $('libfilters').innerHTML = Object.entries(LIB_FILTERS).map(([k, f]) => {
+    const n = all.filter(c => f.test(c, risky)).length;
+    return `<button class="tab" data-libf="${k}" aria-selected="${k === libFilter}">${f.label} ${n}</button>`;
+  }).join('');
+  const rows = all.filter(c => LIB_FILTERS[libFilter].test(c, risky))
+    .sort((a, b) => (a.lost - b.lost) || (a.carriers.length - b.carriers.length))
+    .slice(0, 70);
+  $('chest').innerHTML = rows.map(c => {
+    const cls = c.lost ? 'work--lost' : risky.has(c.id) ? 'work--risk' : 'work--safe';
+    const meta = c.lost ? `lost ${formatYear(c.lostYear)}`
+      : `${c.carriers.length}×${c.carriers.some(x => x.place !== 'home') ? ' ✈' : ''}`;
+    return `<div class="work ${cls}" data-work="${c.id}" ${c.id === libSelected ? 'style="outline:2px solid var(--gold)"' : ''}>
+      <span class="title">${c.title}</span><span class="meta">${meta}</span></div>`;
+  }).join('');
+  paintWorkDetail(s);
+}
+function paintWorkDetail(s) {
+  const c = libSelected && s.corpus.get(libSelected);
+  if (!c || (!c.exists && !c.lost)) { $('workdetail').innerHTML = ''; return; }
+  const carriers = c.carriers.map(x =>
+    `<span class="token">${x.medium} · ${x.place}</span>`).join('') || '<span class="tiny muted">none</span>';
+  const copyGate = blocked(s, 'copy');
+  const canCopy = !c.lost && !copyGate && s.grain >= 60 && s.pops.scribes >= 1;
+  const teachGate = blocked(s, 'send-teacher');
+  const canTeach = !c.lost && !teachGate && s.grain >= 120 && (s.pops.scribes >= 1 || s.pops.reciters >= 2);
+  $('workdetail').innerHTML = `
+    <div class="panel" style="border:1px solid var(--rule);padding:8px 10px;background:var(--paper)">
+      <b>${c.title}</b> <span class="tiny muted">${c.lost ? `lost ${formatYear(c.lostYear)}` : `${c.carriers.length} carrier(s)`}</span>
+      <div class="tokens" style="margin:6px 0">${carriers}</div>
+      ${c.lost ? `<div class="tiny muted">Reduced to zero carriers. Works are never deleted — only unheld.</div>` : `
+      <div class="acts">
+        <button class="btn" data-lib-copy="${c.id}" ${canCopy ? '' : 'disabled'}
+          title="${copyGate ? copyGate.why : `60 grain, a scribe's season. Carriers ${c.carriers.length} → ${c.carriers.length + 1}, at home.`}">copy</button>
+        <button class="btn" data-lib-teach="${c.id}" ${canTeach ? '' : 'disabled'}
+          title="${teachGate ? teachGate.why : `120 grain and a keeper leaves. A copy abroad is maintained there — for ever.`}">send a teacher</button>
+      </div>`}
+    </div>`;
+}
+document.addEventListener('click', (e) => {
+  const f = e.target.closest('[data-libf]');
+  if (f) { libFilter = f.dataset.libf; if (state) paintLibrary(state); return; }
+  const w = e.target.closest('[data-work]');
+  if (w) { libSelected = w.dataset.work; if (state) paintLibrary(state); return; }
+  const cp = e.target.closest('[data-lib-copy]');
+  if (cp && state) { decide('copy', { work: cp.dataset.libCopy }); return; }
+  const th = e.target.closest('[data-lib-teach]');
+  if (th && state) { decide('send-teacher', { work: th.dataset.libTeach, destination: 'abroad' }); }
+});
+
 /** Rail badges ride the same derivation as the shelf: one source of truth. */
 function paintRailBadges(situations) {
   const byPanel = { ledger: 0, library: 0, people: 0, land: 0, road: 0, court: 0 };
@@ -1286,18 +1346,7 @@ function paint() {
 
   const cs = corpusSummary(s);
   $('corpus-sum').textContent = `${cs.extant} extant · ${cs.lost} lost · ${cs.unwritten} to come`;
-  const risky = new Set(worksAtRisk(s, 'home').slice(0, 40).map(w => w.id));
-  const rows = [...s.corpus.values()]
-    .filter(c => c.exists || c.lost)
-    .sort((a, b) => (a.lost - b.lost) || (a.carriers.length - b.carriers.length))
-    .slice(0, 70);
-  $('chest').innerHTML = rows.map(c => {
-    const cls = c.lost ? 'work--lost' : risky.has(c.id) ? 'work--risk' : 'work--safe';
-    const meta = c.lost ? `lost ${formatYear(c.lostYear)}`
-      : `${c.carriers.length}×${c.carriers.some(x => x.place !== 'home') ? ' ✈' : ''}`;
-    return `<div class="work ${cls}" data-work="${c.id}">
-      <span class="title">${c.title}</span><span class="meta">${meta}</span></div>`;
-  }).join('');
+  paintLibrary(s);
 
   $('goods').innerHTML = [...s.goods].map(g => `<span class="token">${g}</span>`).join('');
 

@@ -13,7 +13,7 @@
  *   3. Prestige flows backward along derivation edges. Patronise Panini and you
  *      are still collecting through every grammarian after Patanjali.
  */
-import { record, bumpPillar } from './state.js';
+import { record, bumpPillar, flow } from './state.js';
 import { oralCapacity } from './people.js';
 
 /** Below this fraction of integrity a carrier is unreadable, so it is gone. */
@@ -275,6 +275,7 @@ export function copyOut(state, workId, destination, year, { teacher = false } = 
   if (teacher && state.pops.scribes < 1 && state.pops.reciters < 2) return false;
 
   state.grain -= cost;
+  flow(state, teacher ? 'teachers sent' : 'copies', -cost);
   if (teacher) {
     if (state.pops.scribes >= 1) state.pops.scribes -= 1;
     else state.pops.reciters -= 1;
