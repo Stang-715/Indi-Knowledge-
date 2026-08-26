@@ -66,3 +66,28 @@ test('the coinage grant replaced the title regex, and still works', () => {
   const line = s.log.find(l => /Money\. Value stops being heavy/.test(l.text));
   assert.ok(line && line.year <= -400 && line.year >= -600);
 });
+
+/* ── Phase 49: sovereignty made visible ─────────────────────────────────── */
+
+test('the home region starts held, and gold has something to mean', () => {
+  const s = run(DP, 'mandala', [], { to: -5900 });
+  const mine = [...s.claims.values()].filter(c => c.holder === 'you');
+  assert.ok(mine.length > 0, 'the campaign begins as a small power somewhere');
+  assert.ok(mine.every(c => c.region === s.homeRegion));
+});
+
+test('an occupation projects a paramount claim over its reach, and withdraws it', () => {
+  const during = run(DP, 'mandala', [], { to: 1300 });
+  const claimed = [...during.claims.values()].filter(c => c.paramount === 'OCC.DELHI_SULTANATE');
+  assert.ok(claimed.length > 0, 'the Sultanate is paramount somewhere while it stands');
+  const after = run(DP, 'mandala', [], { to: 1460 });
+  const residue = [...after.claims.values()].filter(c => c.paramount === 'OCC.DELHI_SULTANATE');
+  assert.equal(residue.length, 0, 'a fallen occupation keeps no claim');
+});
+
+test('the 1858 paramountcy moment is legible in the claims themselves', () => {
+  const s = run(DP, 'mandala', [], { to: 1900 });
+  const crown = [...s.claims.values()].filter(c => c.paramount === 'OCC.CROWN');
+  assert.ok(crown.length >= s.claims.size * 0.8,
+    `Crown paramount over ${crown.length}/${s.claims.size} districts`);
+});

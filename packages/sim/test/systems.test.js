@@ -77,11 +77,22 @@ test('the mandala is a gradient, not a border', () => {
 
 test('holdings can be listed per layer', () => {
   const s0 = run(DP, 'sov', [], { to: 900 });
-  const ids = [...s0.districts.keys()].slice(0, 3);
+  // Pick districts outside the home region, which starts held (phase 49) —
+  // claiming what you already hold adds nothing to the count.
+  const ids = [...s0.districts.values()]
+    .filter(d => d.region !== s0.homeRegion).slice(0, 3).map(d => d.id);
   const s = run(DP, 'sov', ids.map((id, i) =>
     ({ year: 900 + i, action: 'claim', district: id, layer: 'revenue', holder: 'you' })), { to: 950 });
-  assert.equal(holdingsOf(s, 'you').revenue.length, 3);
-  assert.equal(holdingsOf(s, 'you').holder.length, 0);
+  // Since phase 49 the home region is held from the start — a campaign
+  // begins as a small power somewhere, not as a ghost — so the claims land
+  // on top of a baseline instead of on nothing.
+  const base = run(DP, 'sov', [], { to: 950 });
+  assert.equal(holdingsOf(s, 'you').revenue.length,
+               holdingsOf(base, 'you').revenue.length + 3);
+  assert.equal(holdingsOf(s, 'you').holder.length,
+               holdingsOf(base, 'you').holder.length);
+  assert.ok(holdingsOf(base, 'you').holder.length > 0,
+    'the home region starts held');
 });
 
 /* ── Pillars that bite ──────────────────────────────────────────────────── */

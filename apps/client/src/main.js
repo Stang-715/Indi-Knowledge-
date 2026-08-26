@@ -32,6 +32,7 @@ import { surveyable, surveySummary, TIER, SURVEY_COST }
 import { blocked, locked, trustRung, nextRung } from '../../../packages/sim/src/pillars.js';
 import { frontierPresent, frontierLedger, STANCE } from '../../../packages/sim/src/frontier.js';
 import { LAYERS, LAYER_INFO, yieldTo } from '../../../packages/sim/src/sovereignty.js';
+import { trustCeiling } from '../../../packages/sim/src/occupations.js';
 import { save as mkSave, load as loadSave, reconcile, toURLFragment, fromURLFragment,
          replayStops, saveSize } from '../../../packages/sim/src/save.js';
 import { Sound } from '../../../packages/ui/src/sound.js';
@@ -320,6 +321,7 @@ function draw(step) {
   }
 
   if (mapMode === 'survey') drawSurvey(proj, level);
+  if (mapMode === 'mandala') drawMandala(proj, level);
   drawSites(proj, level, dive);
 }
 
@@ -332,6 +334,55 @@ function draw(step) {
  * know. That is the distinction the whole mechanic exists to make — between
  * "there is nothing there" and "we have not looked".
  */
+/**
+ * The mandala map-mode (phase 49): the four-claim stack as a transparent
+ * sheet over the model. One hue at four lightnesses — semantic colour stays
+ * out of the terrain palette — and the gold outline means exactly what gold
+ * always means: yours.
+ */
+function drawMandala(proj) {
+  if (!state?.claims) return;
+  const w = 28 / 9, h = 29 / 9;
+  ctx.save();
+  for (const c of state.claims.values()) {
+    const d = state.districts.get(c.district);
+    if (!d || !d.land) continue;
+    const x0 = proj.toX(d.lon - w / 2), x1 = proj.toX(d.lon + w / 2);
+    const y0 = proj.toY(d.lat + h / 2), y1 = proj.toY(d.lat - h / 2);
+    if (x1 < 0 || y1 < 0 || x0 > cv.width || y0 > cv.height) continue;
+
+    // Deepest applicable layer wins the wash; strength sets the alpha.
+    const layer = c.holder ? 'holder' : c.revenue ? 'revenue'
+                : c.tributary ? 'tributary' : c.paramount ? 'paramount' : null;
+    if (layer) {
+      const who = c[layer];
+      const strength = c.strength[layer] ?? 0.4;
+      const light = { holder: 0.36, revenue: 0.26, tributary: 0.16, paramount: 0.09 }[layer];
+      ctx.fillStyle = `rgba(62,132,150,${(light * (0.5 + strength)).toFixed(3)})`;
+      ctx.fillRect(x0 + 1, y0 + 1, x1 - x0 - 2, y1 - y0 - 2);
+      if (who === 'you') {
+        ctx.strokeStyle = 'rgba(201,162,39,.8)';
+        ctx.lineWidth = 1.5 * dpr;
+        ctx.strokeRect(x0 + 2, y0 + 2, x1 - x0 - 4, y1 - y0 - 4);
+      }
+    }
+  }
+  // The legend, on the sheet itself.
+  ctx.font = `${Math.round(11 * dpr)}px Georgia, serif`;
+  ctx.fillStyle = '#2A2118';
+  let lx = 14 * dpr, ly = cv.height - 16 * dpr;
+  for (const [layer, label] of [['holder', 'held'], ['revenue', 'taxed'],
+      ['tributary', 'tributary'], ['paramount', 'paramount']]) {
+    const light = { holder: 0.36, revenue: 0.26, tributary: 0.16, paramount: 0.09 }[layer];
+    ctx.fillStyle = `rgba(62,132,150,${light + 0.1})`;
+    ctx.fillRect(lx, ly - 9 * dpr, 12 * dpr, 10 * dpr);
+    ctx.fillStyle = '#2A2118';
+    ctx.fillText(label, lx + 16 * dpr, ly);
+    lx += (ctx.measureText(label).width + 44 * dpr);
+  }
+  ctx.restore();
+}
+
 function drawSurvey(proj, level) {
   if (!state?.districts) return;
   const w = 28 / 9, h = 29 / 9;       // one grid cell, in degrees
@@ -645,15 +696,48 @@ cv.addEventListener('pointerup', (e) => {
   // it — the phase-34 ruling's exception. Click empty road to stop watching.
   const moved = last ? Math.hypot(e.clientX - last[0], e.clientY - last[1]) : 99;
   endDrag();
-  if (moved > 5 || !frameCaravans.length) return;
+  if (moved > 5) return;
   const rect = cv.getBoundingClientRect();
   const px = (e.clientX - rect.left) * dpr, py = (e.clientY - rect.top) * dpr;
   const hit = frameCaravans.find(c => Math.hypot(c.x - px, c.y - py) < 14 * dpr);
   if (hit?.c?.ordinal) {
     watchedCaravan = watchedCaravan === hit.c.ordinal ? null : hit.c.ordinal;
     paintWatched();
+    return;
+  }
+  if (mapMode === 'mandala' && state?.claims) {
+    const proj = cam.projection(cv.width, cv.height);
+    const lon = proj.toLon(px), lat = proj.toLat(py);
+    let best = null, bd = 9;
+    for (const d of state.districts.values()) {
+      const dist = Math.hypot(d.lon - lon, d.lat - lat);
+      if (dist < bd) { bd = dist; best = d; }
+    }
+    if (best && bd < 2.2) openClaims(best);
   }
 });
+
+/** The claims panel: one district's full stack, and its history here. */
+function openClaims(d) {
+  const c = state.claims.get(d.id);
+  if (!c) return;
+  const line = (layer, label) => {
+    const who = c[layer];
+    const occ = who && who.startsWith?.('OCC.')
+      ? (occupations.occupations.find(o => o.id === who)?.name ?? who) : who;
+    return `<div class="chron-line"><span class="tb-year">${label}</span>
+      <span>${who ? `${occ === 'you' ? 'you' : occ} <span class="tiny muted">(${Math.round((c.strength[layer] ?? 0) * 100)}%)</span>` : '<span class="tiny muted">nobody</span>'}</span></div>`;
+  };
+  $('drawer-inner').innerHTML = `<div class="codex">
+    <h3>${d.name}</h3>
+    <p class="chron-sub">${LAYER_INFO.holder ? 'The stack, not a colour: for most of Indian history rule was graded and overlapping.' : ''}</p>
+    ${line('holder', 'held by')}
+    ${line('revenue', 'taxed by')}
+    ${line('tributary', 'tribute to')}
+    ${line('paramount', 'paramount')}
+  </div>`;
+  $('drawer').classList.add('on');
+}
 cv.addEventListener('pointercancel', endDrag);
 
 cv.addEventListener('wheel', (e) => {
@@ -684,6 +768,7 @@ let mapMode = 'terrain';
 const MODES = [
   { id: 'terrain', label: 'terrain', hint: 'The land, before anyone owns it.' },
   { id: 'survey',  label: 'survey',  hint: 'What we know, and what we have not looked at.' },
+  { id: 'mandala', label: 'mandala', hint: 'Sovereignty as it actually was: held, taxed, tributary, paramount — four claims, not one colour.' },
 ];
 $('modes').innerHTML = MODES.map(m =>
   `<button class="tab" role="tab" data-mode="${m.id}" title="${m.hint}"
@@ -1047,8 +1132,21 @@ function paintFrontier() {
 /** What is locked, and what would unlock it. A horizon, not a wall. */
 function paintLocks() {
   const s = state;
-  const rung = trustRung(s), next = nextRung(s);
-  $('trust-rung').textContent = `trust: ${rung.name}${next ? ` → ${next.name} at ${next.need}` : ''}`;
+  const cap = trustCeiling(s, DP);
+  const rung = trustRung(s, cap), next = nextRung(s);
+  const capped = cap != null && s.pillars.NETWORKING > cap;
+  $('trust-rung').textContent = `trust: ${rung.name}` +
+    (capped ? ` — capped at ${cap} under occupation`
+            : next ? ` → ${next.name} at ${next.need}` : '');
+  // Occupation weather: the standing banner. Rule is a season, not a bang.
+  const active = (occupations.occupations ?? [])
+    .filter(o => s.occupationsActive?.has(o.id));
+  $('occupation-banner').innerHTML = active.map(o =>
+    `<div class="occ-banner" title="${o.note}">
+       <b>${o.name}</b><span class="tiny">${o.extract ? ` · takes ${o.extract} grain/yr` : ''}${
+       Object.keys(o.patronage ?? {}).length ? ` · patronises ${Object.keys(o.patronage).map(x => x.toLowerCase()).join(', ')}` : ''}${
+       o.trustCap != null ? ` · caps trust at ${o.trustCap}` : ''}</span>
+     </div>`).join('');
   const l = locked(s);
   $('locked').innerHTML = l.length
     ? l.slice(0, 4).map(x =>

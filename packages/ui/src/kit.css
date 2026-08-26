@@ -418,3 +418,8 @@ body[data-help] aside h2::after { content: attr(data-purpose); display: block;
   font-size: 11px; font-weight: 400; text-transform: none; letter-spacing: 0;
   color: var(--ink-soft); font-style: italic; margin-top: 2px; }
 #slips { display: flex; flex-direction: column; gap: 6px; margin-bottom: 8px; }
+
+/* --- Occupation weather (phase 49) ----------------------------------------- */
+.occ-banner { background: rgba(62,132,150,.12); border: 1px solid var(--rule);
+  border-left: 4px solid var(--sea-mid); padding: 6px 10px; margin-bottom: 8px;
+  font-size: 12.5px; display: flex; flex-direction: column; gap: 1px; }

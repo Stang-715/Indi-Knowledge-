@@ -13,6 +13,7 @@
  *              like a state treaty needs a state that treats you as party
  */
 import { record, bumpPillar } from './state.js';
+import { claim } from './sovereignty.js';
 
 export function initOccupations(state, datapack) {
   state.occupationsActive = new Set();
@@ -29,10 +30,19 @@ export function tickOccupations(state, datapack, span) {
       state.occupationsActive.add(o.id);
       record(state, state.year, 'occupation',
         `${o.name}. ${o.note}`, { id: o.id, phase: 'begins' });
+      // An occupation is a paramount claim over its where — or over everything
+      // it can reach, when it names no regions. This is what puts history on
+      // the mandala map-mode without a single player decision.
+      for (const c of state.claims?.values() ?? []) {
+        const inScope = !o.where?.length || o.where.includes(c.region);
+        if (inScope) claim(state, c.district, 'paramount', o.id, 0.6, state.year);
+      }
     } else if (!active && was) {
       state.occupationsActive.delete(o.id);
       record(state, state.year, 'occupation',
         `${o.name} ends.`, { id: o.id, phase: 'ends' });
+      for (const c of state.claims?.values() ?? [])
+        if (c.paramount === o.id) claim(state, c.district, 'paramount', null, 0, state.year);
     }
     if (!active) continue;
     if (o.extract) state.grain = Math.max(0, state.grain - o.extract * span);

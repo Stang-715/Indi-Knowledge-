@@ -30,11 +30,17 @@ export function initSovereignty(state, datapack, fromYear) {
   state.ruleRelations = datapack.polities?.rule ?? datapack.polities?.relations ?? [];
 
   for (const d of state.districts?.values() ?? []) {
+    const home = d.region === state.homeRegion;
     state.claims.set(d.id, {
       district: d.id,
-      holder: null, revenue: null, tributary: null, paramount: null,
+      region: d.region ?? null,
+      // The home region is held from the start: a campaign begins as a small
+      // power somewhere, not as a ghost. Everything beyond it is earned.
+      holder: home ? 'you' : null,
+      revenue: home ? 'you' : null,
+      tributary: null, paramount: null,
       // Intensity of each claim, 0..1. A paramount with 0.2 is a courtesy.
-      strength: { holder: 0, revenue: 0, tributary: 0, paramount: 0 },
+      strength: { holder: home ? 0.7 : 0, revenue: home ? 0.5 : 0, tributary: 0, paramount: 0 },
     });
   }
 }
