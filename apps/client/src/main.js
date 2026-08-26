@@ -339,12 +339,24 @@ function draw(step) {
  * one of six pigments. A ring, not a fill — the terrain stays legible under
  * the tool, the way a glass sheet lies over the model.
  */
+/** What an armed verb aims at: districts by default, Indus towns when asked. */
+function lensTargets(verb) {
+  if (verb?.targets === 'town') {
+    return [...(state.indus?.values() ?? [])].map(t => {
+      const g = PLACE_BY_ID.get(t.id);
+      return g ? { ...t, lon: g.lon, lat: g.lat } : null;
+    }).filter(Boolean);
+  }
+  return [...state.districts.values()];
+}
+
 function drawLensOverlay(proj) {
   if (!state || !LENS) return;
   const verb = LENS.verb;
+  if (!verb) return;
   ctx.save();
   ctx.font = `${11 * dpr}px ${getComputedStyle(document.body).fontFamily}`;
-  for (const d of state.districts.values()) {
+  for (const d of lensTargets(verb)) {
     const x = proj.toX(d.lon), y = proj.toY(d.lat);
     if (x < -40 || y < -40 || x > cv.width + 40 || y > cv.height + 40) continue;
     const st = normalizeEligibility(verb.eligible(state, d, LENS.payload));
@@ -794,14 +806,21 @@ cv.addEventListener('pointerup', (e) => {
       const dist = Math.hypot(d.lon - lon, d.lat - lat);
       if (dist < bd) { bd = dist; best = d; }
     }
-    if (!(best && bd < 2.2)) return;
     if (LENS?.verb) {
-      const st = normalizeEligibility(LENS.verb.eligible(state, best, LENS.payload));
-      if (st === 'can') LENS.verb.execute(best, LENS.payload);
+      // Armed verbs aim at THEIR target set, which may not be districts.
+      let tbest = null, tbd = 9;
+      for (const t of lensTargets(LENS.verb)) {
+        const dist = Math.hypot(t.lon - lon, t.lat - lat);
+        if (dist < tbd) { tbd = dist; tbest = t; }
+      }
+      if (!(tbest && tbd < 2.2)) return;
+      const st = normalizeEligibility(LENS.verb.eligible(state, tbest, LENS.payload));
+      if (st === 'can') LENS.verb.execute(tbest, LENS.payload);
       else notice({ kind: 'texture', year: state.year,
-        text: `${best.name}: ${ELIGIBILITY[st].hint}` });
+        text: `${tbest.name}: ${ELIGIBILITY[st].hint}` });
       return;
     }
+    if (!(best && bd < 2.2)) return;
     openClaims(best);
   }
 });
@@ -1797,6 +1816,35 @@ document.addEventListener('click', (e) => {
     LENS.verb = LENS.lens.verbs.find(v => v.id === vb.dataset.verb) ?? null;
     renderVerbRow(); draw(3); scheduleFull();
   }
+});
+
+/* ── The Settle lens (phase 15): the land's verbs, on the land ────────────── */
+const inIndusEra = (s) => s.indus && s.year >= -2600 && s.year <= -1900;
+registerLens({
+  id: 'settle', glyph: '⛺',
+  title: 'Settle — survey the land; triage the towns when the rivers turn',
+  verbs: [
+    { id: 'survey', label: 'survey',
+      tip: 'A scribe and 90 grain buy the truth of a district. The truth was fixed at world-creation; looking is what costs.',
+      eligible: (s, d) => d.surveyed !== null ? 'already'
+        : blocked(s, 'survey') || s.pops.scribes < 1 || s.grain < 90 ? 'could' : 'can',
+      execute: (d) => decide('survey', { district: d.id }) },
+    { id: 'provision', label: 'provision', targets: 'town',
+      tip: '120 grain slows a town’s decline for a generation. It does not stop the river.',
+      eligible: (s, t) => !inIndusEra(s) || !t.standing || t.people <= 0 ? 'never'
+        : t.provisioned > 0 ? 'progress' : s.grain < 120 ? 'could' : 'can',
+      execute: (t) => decide('provision-town', { town: t.id }) },
+    { id: 'wells', label: 'dig wells', targets: 'town',
+      tip: '80 grain. Three wells per town, each worth a generation; the third finds the same falling water table as the first.',
+      eligible: (s, t) => !inIndusEra(s) || !t.standing ? 'never'
+        : t.wells >= 3 ? 'already' : s.grain < 80 ? 'could' : 'can',
+      execute: (t) => decide('dig-wells', { town: t.id }) },
+    { id: 'resettle', label: 'resettle east', targets: 'town',
+      tip: '100 grain. A planned column moves east with seed, tools and the songs — smaller town, larger future.',
+      eligible: (s, t) => !inIndusEra(s) || t.people <= 0 ? 'never'
+        : s.grain < 100 ? 'could' : 'can',
+      execute: (t) => decide('resettle-east', { town: t.id }) },
+  ],
 });
 
 /* ── The Court (phase 12): the stack, the occupations, the ladder ─────────── */
