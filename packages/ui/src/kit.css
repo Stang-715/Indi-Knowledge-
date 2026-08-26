@@ -396,3 +396,13 @@ body {
 .chron-preserve { color: #6a7a3f; }
 .chron-texture { color: var(--ink-soft); font-style: italic; }
 .chron-epoch span:last-child { font-weight: 600; }
+
+/* --- The codex (phase 47) ------------------------------------------------- */
+.codex .cdx-search { width: 100%; font-family: var(--serif); font-size: 14px;
+  padding: 7px 10px; background: var(--paper); border: 1px solid var(--rule);
+  margin: 6px 0 10px; }
+.cdx-era { margin: 4px 0; }
+.cdx-era > summary { cursor: pointer; font-weight: 600; padding: 4px 0; }
+.cdx-chapter { margin-left: 14px; }
+.cdx-chapter > summary { cursor: pointer; padding: 3px 0; color: var(--ink-soft); }
+.cdx-lost { color: var(--loss); font-style: italic; font-size: 12px; }

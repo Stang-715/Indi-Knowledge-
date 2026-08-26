@@ -38,6 +38,8 @@ import { Sound } from '../../../packages/ui/src/sound.js';
 import { renderCardPlate } from '../../../packages/ui/src/cardplate.js';
 import { makeTelemetry } from '../../../packages/ui/src/telemetry.js';
 import { composeChronicle, chronicleHTML, chronicleText } from '../../../packages/ui/src/chronicle.js';
+import { buildCodexIndex, searchCodex, codexHTML, shelfHTML, resultsHTML }
+  from '../../../packages/ui/src/codex.js';
 import { CHOLA, CHAPTERS, chapterAt, reckoning, openingState }
   from '../../../packages/sim/src/campaign.js';
 
@@ -1285,6 +1287,22 @@ function notice(l) {
 }
 
 /* ── The loop ───────────────────────────────────────────────────────────── */
+
+const CODEX_IDX = buildCodexIndex(timeline, cardsDoc, gazetteer);
+function openCodex() {
+  $('drawer-inner').innerHTML = codexHTML(CODEX_IDX, state);
+  const shelf = $('drawer-inner').querySelector('[data-codex-shelf]');
+  if (shelf) shelf.innerHTML = shelfHTML(works, state);
+  $('drawer').classList.add('on');
+}
+$('codex').addEventListener('click', openCodex);
+document.addEventListener('input', (e) => {
+  const box = e.target.closest?.('[data-codex-search]');
+  if (!box) return;
+  const out = document.querySelector('[data-codex-results]');
+  if (out) out.innerHTML = box.value.trim().length >= 2
+    ? resultsHTML(searchCodex(CODEX_IDX, box.value)) : '';
+});
 
 $('chronicle').addEventListener('click', () => {
   if (!state) return;
