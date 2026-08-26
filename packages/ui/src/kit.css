@@ -423,3 +423,9 @@ body[data-help] aside h2::after { content: attr(data-purpose); display: block;
 .occ-banner { background: rgba(62,132,150,.12); border: 1px solid var(--rule);
   border-left: 4px solid var(--sea-mid); padding: 6px 10px; margin-bottom: 8px;
   font-size: 12.5px; display: flex; flex-direction: column; gap: 1px; }
+
+/* --- The interiors strip (phase 50) ---------------------------------------- */
+#interiors { position: absolute; left: 50%; transform: translateX(-50%);
+  bottom: 14px; display: flex; gap: 8px; z-index: 8;
+  background: var(--paper); border: 1px solid var(--rule); padding: 6px 10px;
+  box-shadow: var(--shadow-contact); }

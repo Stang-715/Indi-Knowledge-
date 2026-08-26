@@ -40,6 +40,8 @@ import { renderCardPlate } from '../../../packages/ui/src/cardplate.js';
 import { makeTelemetry } from '../../../packages/ui/src/telemetry.js';
 import { composeChronicle, chronicleHTML, chronicleText } from '../../../packages/ui/src/chronicle.js';
 import { makeSlipTracker } from '../../../packages/ui/src/slips.js';
+import { interiorHTML } from '../../../packages/ui/src/interiors.js';
+import { drawFrom } from '../../../packages/sim/src/rng.js';
 import { buildCodexIndex, searchCodex, codexHTML, shelfHTML, resultsHTML }
   from '../../../packages/ui/src/codex.js';
 import { CHOLA, CHAPTERS, chapterAt, reckoning, openingState }
@@ -318,6 +320,7 @@ function draw(step) {
   const dive = diveTarget(proj, level);
   if (dive) {
     cityRenderer.draw(ctx, proj, dive.id, state ? state.year : -6000, level, dpr, dive.alpha);
+    drawTemplePeople(proj, dive, level);
   }
 
   if (mapMode === 'survey') drawSurvey(proj, level);
@@ -441,6 +444,44 @@ function torn(ctx, x0, y0, x1, y1, key) {
  * centre has to be inside the city's own footprint — you dive into a place, not
  * into a zoom level.
  */
+/**
+ * The temple's people (phase 50). At street level, after 1010, the cohorts
+ * the inscriptions name — 400 dancers and singers, 212 musicians — appear as
+ * figures around the Brihadeeswarar: procedurally placed, seeded per decade,
+ * so the courtyard crowd is stable while you watch and different when you
+ * come back a generation later. Symbolic, like everything on the table.
+ */
+function drawTemplePeople(proj, dive, level) {
+  if (dive.id !== 'thanjavur' || level < 12 || !state || state.year < 1010) return;
+  const alive = state.cohorts?.some?.(c => c.site === 'thanjavur' || /THANJAVUR/.test(c.id));
+  if (alive === false) return;
+  const c = cityRenderer.city('thanjavur');
+  const mpd = 1 / 111320;                       // metres → degrees, roughly
+  const temple = c.anchors.find(a => a.name === 'Brihadeeswarar');
+  if (!temple) return;
+  const decade = Math.floor(state.year / 10);
+  const n = Math.min(48, 12 + Math.floor(dive.alpha * 36));
+  ctx.save();
+  ctx.globalAlpha = dive.alpha;
+  for (let i = 0; i < n; i++) {
+    const u = drawFrom('temple-people', decade, i);
+    const v = drawFrom('temple-people-v', decade, i);
+    const mx = temple.at[0] + (u - 0.5) * (temple.size[0] + 160);
+    const my = temple.at[1] + (v - 0.5) * (temple.size[1] + 160);
+    const x = proj.toX(c.lon + mx * mpd / Math.cos(c.lat * Math.PI / 180));
+    const y = proj.toY(c.lat + my * mpd);
+    ctx.fillStyle = i % 3 ? '#2A2118' : '#8a5a2b';
+    ctx.beginPath(); ctx.arc(x, y, 1.6 * dpr, 0, Math.PI * 2); ctx.fill();
+  }
+  ctx.restore();
+
+  // The enter strip: three rooms, live over the sim.
+  const strip = $('interiors');
+  if (strip) {
+    strip.style.display = dive.alpha > 0.6 ? 'flex' : 'none';
+  }
+}
+
 function diveTarget(proj, level) {
   if (level < 8.6) return null;
   const year = state ? state.year : -6000;
@@ -1422,6 +1463,23 @@ function notice(l) {
   while ($('notices').children.length > 4) $('notices').firstChild.remove();
 }
 
+/* ── Test hook (headless drives only; not a player surface) ─────────────── */
+window.__test = {
+  year: () => state?.year,
+  diveTo(id) {
+    const c = cityRenderer.city(id);
+    if (!c) return false;
+    cam.cx = c.lon; cam.cy = c.lat; cam.span = 0.02;
+    draw(1); scheduleFull();
+    return true;
+  },
+  openRoom(kind) {
+    $('drawer-inner').innerHTML = interiorHTML(kind, state);
+    $('drawer').classList.add('on');
+    return $('drawer-inner').innerHTML.length;
+  },
+};
+
 /* ── The loop ───────────────────────────────────────────────────────────── */
 
 const CODEX_IDX = buildCodexIndex(timeline, cardsDoc, gazetteer);
@@ -1432,6 +1490,13 @@ function openCodex() {
   $('drawer').classList.add('on');
 }
 $('codex').addEventListener('click', openCodex);
+$('interiors').addEventListener('click', (e) => {
+  const b = e.target.closest('[data-room]');
+  if (!b || !state) return;
+  $('drawer-inner').innerHTML = interiorHTML(b.dataset.room, state);
+  $('drawer').classList.add('on');
+  TELEMETRY.cardOpened();
+});
 $('helpbtn').addEventListener('click', () => {
   document.body.toggleAttribute('data-help');
 });
