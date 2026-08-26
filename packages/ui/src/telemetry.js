@@ -19,6 +19,8 @@ export function makeTelemetry(now = () => performance.now()) {
     pauses: 0,
     slipsShown: 0,
     slipsDismissedUnread: 0,
+    railOpens: {},      // panel id -> opens (HUD phase 20: which drawers earn their seals)
+    lensExecutes: {},   // lens id -> verb executions
   };
   let lastTick = now();
   let currentEra = null;
@@ -46,6 +48,8 @@ export function makeTelemetry(now = () => performance.now()) {
     threadOpened() { t.threadsOpened++; },
     paused() { t.pauses++; },
     slipShown() { t.slipsShown++; },
+    railOpened(id) { t.railOpens[id] = (t.railOpens[id] ?? 0) + 1; },
+    lensExecuted(id) { t.lensExecutes[id] = (t.lensExecutes[id] ?? 0) + 1; },
     slipDismissedUnread() { t.slipsDismissedUnread++; },
     loss(year) { t.lossesTotal++; lastLossYear = year; },
     riskPanelOpened(year) {

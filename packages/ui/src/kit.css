@@ -537,3 +537,10 @@ body[data-help] .railbody h2::after { content: attr(data-purpose); display: bloc
 .pinned .bar i { display: block; height: 100%; background: var(--table-deep); }
 .pinned[data-pin-open] { cursor: pointer; }
 .pinned[data-pin-open]:hover { border-color: var(--gold); }
+
+/* --- Parity (HUD phase 20): coarse pointers reach everything --------------- */
+@media (pointer: coarse) {
+  .pinned .star, [data-pin-star], .sit .x { padding: 6px; margin: -6px; }
+  .tab { min-height: 34px; }
+  #verbrow .btn, .orders select { min-height: 40px; }
+}

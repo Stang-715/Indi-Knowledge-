@@ -836,7 +836,7 @@ cv.addEventListener('pointerup', (e) => {
       }
       if (!(tbest && tbd < 2.2)) return;
       const st = normalizeEligibility(LENS.verb.eligible(state, tbest, LENS.payload));
-      if (st === 'can') LENS.verb.execute(tbest, LENS.payload);
+      if (st === 'can') { LENS.verb.execute(tbest, LENS.payload); TELEMETRY.lensExecuted(LENS.lens.id); }
       else notice({ kind: 'texture', year: state.year,
         text: `${tbest.name}: ${ELIGIBILITY[st].hint}` });
       return;
@@ -1302,6 +1302,7 @@ function openRail(id, toggle = true) {
   const body = document.querySelector(`[data-rail-panel="${id}"]`);
   if (!body) return;
   $('rp-title').textContent = body.dataset.title;
+  TELEMETRY.railOpened(id);
   $('rp-mount').appendChild(body);
   railPanel.style.display = '';
   $('stage').classList.add('panel-open');
@@ -1362,7 +1363,15 @@ railPanel.addEventListener('click', (e) => { if (e.target.id === 'rp-close') clo
 document.addEventListener('keydown', (e) => {
   if (e.target.matches?.('input, textarea, select') || e.metaKey || e.ctrlKey || e.altKey) return;
   const r = RAIL.find(x => x.key === e.key);
-  if (r) { e.preventDefault(); openRail(r.id); }
+  if (r) { e.preventDefault(); openRail(r.id); return; }
+  // Lenses on the number row (phase 20): 1–4 arm, in tray order.
+  // The map claims arrows, +/- and space — never the number row, so the
+  // lens keys work even while the canvas holds focus.
+  const n = parseInt(e.key, 10);
+  if (n >= 1 && n <= LENSES.length) {
+    e.preventDefault();
+    armLens(LENSES[n - 1].id);
+  }
 });
 
 /* ── The Ledger (phase 7): flows from the till, and the standing patronage ── */
