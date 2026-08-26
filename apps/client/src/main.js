@@ -1364,6 +1364,7 @@ function paint() {
   paintSituations(s);
   paintFlows(s);
   renderDistrictDetail(s);
+  paintCourt(s);
 
   $('pillars').innerHTML = PILLARS.map(p => {
     const v = Math.round(s.pillars[p]);
@@ -1648,6 +1649,43 @@ $('people').addEventListener('click', (e) => {
  * delivers nothing, and the player should be able to see which number is the
  * one holding them back.
  */
+/* ── The Court (phase 12): the stack, the occupations, the ladder ─────────── */
+function paintCourt(s) {
+  const cap = trustCeiling(s, DP);
+  const rung = trustRung(s, cap), next = nextRung(s);
+  const capped = cap != null && s.pillars.NETWORKING > cap;
+  const LAYERS4 = ['holder', 'revenue', 'tributary', 'paramount'];
+  const mine = [...s.claims.entries()].filter(([, c]) => LAYERS4.some(l => c[l] === 'you'));
+  const mark = (c, l) => c[l] === 'you'
+    ? `<b style="color:var(--gold)" title="${l}: yours at ${Math.round((c.strength[l] ?? 0) * 100)}%">●</b>`
+    : c[l] ? `<span title="${l}: ${c[l]}" style="color:var(--ink-soft)">●</span>`
+    : `<span class="tiny muted" title="${l}: nobody">·</span>`;
+  const occRows = [...(s.occupationsActive ?? [])].map(id => {
+    const o = (occupations.occupations ?? []).find(x => x.id === id);
+    if (!o) return '';
+    return `<div class="route"><div class="nm"><span>${o.name}</span>
+        <span class="num">${o.extract ? `takes ${o.extract}/yr` : 'takes nothing'}</span></div>
+      <div class="tiny muted">${o.trustCap != null ? `caps trust at ${o.trustCap} · ` : ''}${
+        Object.keys(o.patronage ?? {}).length ? `patronises ${Object.keys(o.patronage).map(x => x.toLowerCase()).join(', ')}` : ''}</div></div>`;
+  }).join('');
+  $('court').innerHTML = `
+    <div class="tiny muted" style="margin-bottom:4px">The ladder</div>
+    <div class="ledger-row"><span>trust</span><span class="v">${rung.name}${capped ? ` <b style="color:var(--warn)">capped ${cap}</b>` : ''}</span></div>
+    ${next ? `<div class="tiny muted">next: ${next.name} at ${next.need}</div>` : ''}
+    ${occRows ? `<div class="tiny muted" style="margin:8px 0 4px">Standing rule over you</div>${occRows}` : ''}
+    <div class="tiny muted" style="margin:8px 0 4px">Where you stand — held · taxed · tribute · paramount</div>
+    ${mine.length ? mine.slice(0, 12).map(([id, c]) => {
+      const d = s.districts.get(id);
+      return `<div class="chron-line" data-court-d="${id}" style="cursor:pointer" title="Open ${d?.name ?? id} in the Land panel">
+        <span>${d?.name ?? id}</span>
+        <span style="display:flex;gap:6px">${LAYERS4.map(l => mark(c, l)).join('')}</span></div>`;
+    }).join('') : `<div class="tiny muted">No claim yet bears your seal.</div>`}`;
+}
+document.addEventListener('click', (e) => {
+  const r = e.target.closest('[data-court-d]');
+  if (r && state) { landSelected = r.dataset.courtD; renderDistrictDetail(state); openRail('land', false); }
+});
+
 /* ── The Road's second half (phase 11): missions and partners ─────────────── */
 function paintMissions(s) {
   const ms = s.missions ?? [];
