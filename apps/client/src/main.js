@@ -35,7 +35,7 @@ import { LAYERS, LAYER_INFO, yieldTo } from '../../../packages/sim/src/sovereign
 import { trustCeiling } from '../../../packages/sim/src/occupations.js';
 import { save as mkSave, load as loadSave, reconcile, toURLFragment, fromURLFragment,
          replayStops, saveSize } from '../../../packages/sim/src/save.js';
-import { Sound } from '../../../packages/ui/src/sound.js';
+import { Sound, textureFamily } from '../../../packages/ui/src/sound.js';
 import { renderCardPlate } from '../../../packages/ui/src/cardplate.js';
 import { makeTelemetry } from '../../../packages/ui/src/telemetry.js';
 import { composeChronicle, chronicleHTML, chronicleText } from '../../../packages/ui/src/chronicle.js';
@@ -1072,6 +1072,9 @@ function paint() {
     if (l.kind === 'catastrophe' && /Nalanda sacked/.test(l.text)) sound.silence(4);
     else if (l.kind === 'catastrophe') sound.strike('loss');
     else if (l.kind === 'epoch') sound.strike('epoch');
+    // The m-tier, audible: each texture incident is one quiet strike in its
+    // family's timbre (phase 52).
+    else if (l.kind === 'texture') sound.strikeFamily(textureFamily(l.template));
   }
   lastLogLen = interesting.length;
   syncSound();
@@ -1654,15 +1657,28 @@ function syncSound(force = false) {
   const cs = corpusSummary(state);
   sound.set(state.year, { extant: cs.extant, lost: cs.lost,
                           schools: state.schools.size, total: cs.total });
+  // Phase 52: rule as an undertone, the drying as a thinning drone.
+  sound.setUndertone((state.occupationsActive?.size ?? 0) > 0);
+  if (state.indus && state.year >= -2600 && state.year <= -1900) {
+    const standing = [...state.indus.values()].filter(t => t.standing);
+    sound.setDrying(standing.length
+      ? standing.reduce((a, t) => a + t.water, 0) / standing.length : 0);
+  } else {
+    sound.setDrying(null);
+  }
 }
 
-let acc = 0, lastT = 0;
+let acc = 0, lastT = 0, lastClock = 0;
 function tick(t) {
   requestAnimationFrame(tick);
   const dt = lastT ? Math.min(100, t - lastT) : 16;
   lastT = t;
   if (state) TELEMETRY.tick(eraOf(state.year)?.id, playing);
   if (!playing || !state) return;
+  // The clock is audible in the era's own material (phase 52): a soft gnomon
+  // breath before coinage, falling water after, brass past 1600. Once a second,
+  // so speed changes pace the world, not the metronome.
+  if (sound.on && t - lastClock >= 1000) { lastClock = t; sound.tick(state.year); }
   acc += dt;
   const step = 45;                       // ms per advance
   while (acc >= step) {

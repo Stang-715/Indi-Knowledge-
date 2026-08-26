@@ -1,7 +1,8 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { voiceOf, eraVoice, Sound } from '../src/sound.js';
+import { voiceOf, eraVoice, Sound, clockVoice, textureFamily,
+         CLOCK_TICK, FAMILY_STRIKE } from '../src/sound.js';
 
 test('the era changes the voice, following the table materials', () => {
   assert.equal(eraVoice(-5000), 'neolithic');
@@ -54,6 +55,53 @@ test('sound is inert without an audio context', () => {
   assert.doesNotThrow(() => { s.silence(); });
   assert.doesNotThrow(() => { s.disable(); });
   assert.equal(s.on, false);
+});
+
+test('the clock is made of the era: shadow, water, brass', () => {
+  assert.equal(clockVoice(-3000), 'gnomon', 'before coinage the tick is a glance at a stick');
+  assert.equal(clockVoice(-100),  'water');
+  assert.equal(clockVoice(1000),  'water');
+  assert.equal(clockVoice(1700),  'brass');
+  // The gnomon is the quietest voice — a shadow makes no sound.
+  assert.ok(CLOCK_TICK.gnomon.gain < CLOCK_TICK.water.gain);
+  assert.ok(CLOCK_TICK.gnomon.gain < CLOCK_TICK.brass.gain);
+});
+
+test('every texture template lands in one of the four families', () => {
+  const doc = JSON.parse(readFileSync(new URL('../../../data/timeline/texture.json', import.meta.url), 'utf8'));
+  const counts = { weather: 0, knowledge: 0, road: 0, village: 0 };
+  for (const t of doc.templates) {
+    const fam = textureFamily(t.id);
+    assert.ok(fam in counts, `${t.id} → ${fam}`);
+    counts[fam]++;
+  }
+  for (const [fam, n] of Object.entries(counts)) {
+    assert.ok(n > 0, `family ${fam} claims no template — a timbre nobody will ever hear`);
+  }
+  // Spot checks pin the classifier against drift.
+  assert.equal(textureFamily('drought-bites'), 'weather');
+  assert.equal(textureFamily('manuscript-rot'), 'knowledge');
+  assert.equal(textureFamily('caravan-late'), 'road');
+  assert.equal(textureFamily('hero-stone'), 'village');
+});
+
+test('the mix budget holds: nothing new out-shouts what shipped', () => {
+  // Pre-52 peak: the loss strike at 0.10, the drone under 0.15. New momentary
+  // sounds stay at or under 0.05; the loudest is the weather strike.
+  for (const [k, s] of Object.entries(FAMILY_STRIKE)) {
+    assert.ok(s.gain <= 0.05, `${k} strike ${s.gain} breaks the budget`);
+  }
+  for (const [k, s] of Object.entries(CLOCK_TICK)) {
+    assert.ok(s.gain <= 0.025, `${k} tick ${s.gain} is not a background sound any more`);
+  }
+});
+
+test('the phase-52 voices are inert without an audio context', () => {
+  const s = new Sound();
+  assert.doesNotThrow(() => { s.tick(-2500); });
+  assert.doesNotThrow(() => { s.strikeFamily('weather'); });
+  assert.doesNotThrow(() => { s.setUndertone(true); s.setUndertone(false); });
+  assert.doesNotThrow(() => { s.setDrying(0.5); s.setDrying(null); });
 });
 
 test('it does not sample or name a living liturgy', () => {

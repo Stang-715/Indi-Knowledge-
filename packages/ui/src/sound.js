@@ -56,10 +56,50 @@ export function voiceOf({ extant = 0, lost = 0, schools = 0, total = 1 }) {
   };
 }
 
+/* ── Phase 52: the sound of the eras ────────────────────────────────────────
+ * Audio as state, never as wallpaper. The mix budget is fixed at the pre-52
+ * peak (drone ≤ 0.15 sustained, loss strike 0.10 momentary): sustained
+ * additions below total ≤ 0.075 and momentary ones stay ≤ 0.05, so nothing
+ * here can out-shout what already shipped.
+ */
+
+/** What the clock is made of, by era: a shadow, falling water, brass. */
+export const clockVoice = (year) =>
+  year < -550 ? 'gnomon' : year < 1600 ? 'water' : 'brass';
+
+/**
+ * Which family a texture incident belongs to, from its template id.
+ * Weather and land / the knowledge economy / the road / the village —
+ * four quiet timbres, so the m-tier is audible without being legible.
+ */
+export function textureFamily(id = '') {
+  if (/drought|harvest|river|flood|locust|tank-silts/.test(id)) return 'weather';
+  if (/manuscript|recitation|storyteller|student|lineage|copy|school|inscription|edict/.test(id)) return 'knowledge';
+  if (/caravan|market|ferry|merchant|weights|boat|pilgrim|toll/.test(id)) return 'road';
+  return 'village';
+}
+
+// One envelope shape per clock material. The gnomon barely sounds — a shadow
+// makes no noise, and before coinage the tick should feel like a glance, not
+// a mechanism.
+export const CLOCK_TICK = {
+  gnomon: { f0: 72,   f1: 72,   type: 'sine',     gain: 0.012, len: 0.30 },
+  water:  { f0: 940,  f1: 590,  type: 'sine',     gain: 0.020, len: 0.16 },
+  brass:  { f0: 1250, f1: 1250, type: 'triangle', gain: 0.018, len: 0.09 },
+};
+
+export const FAMILY_STRIKE = {
+  weather:   { f: 147, type: 'sine',     gain: 0.045, len: 2.6 },
+  knowledge: { f: 523, type: 'sine',     gain: 0.035, len: 1.8 },
+  road:      { f: 330, type: 'triangle', gain: 0.030, len: 1.2 },
+  village:   { f: 262, type: 'sine',     gain: 0.035, len: 1.5 },
+};
+
 export class Sound {
   constructor() {
     this.ctx = null; this.on = false; this.nodes = [];
     this.master = null; this.last = null;
+    this.undertone = null; this.drying = null;
   }
 
   /** Audio must start from a gesture; this is called from the toggle. */
@@ -129,6 +169,92 @@ export class Sound {
     g.gain.exponentialRampToValueAtTime(0.0001, t + (kind === 'loss' ? 3.4 : 1.6));
     osc.connect(g); g.connect(this.master);
     osc.start(t); osc.stop(t + 4);
+  }
+
+  /** One clock tick in the era's material. The caller throttles. */
+  tick(year) {
+    if (!this.ctx || !this.on) return;
+    const spec = CLOCK_TICK[clockVoice(year)];
+    const t = this.ctx.currentTime;
+    const osc = this.ctx.createOscillator();
+    const g = this.ctx.createGain();
+    osc.type = spec.type;
+    osc.frequency.setValueAtTime(spec.f0, t);
+    if (spec.f1 !== spec.f0) osc.frequency.exponentialRampToValueAtTime(spec.f1, t + spec.len);
+    g.gain.value = 0;
+    g.gain.linearRampToValueAtTime(spec.gain, t + 0.008);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + spec.len);
+    osc.connect(g); g.connect(this.master);
+    osc.start(t); osc.stop(t + spec.len + 0.05);
+  }
+
+  /** A texture incident, as one quiet strike in its family's timbre. */
+  strikeFamily(family) {
+    if (!this.ctx || !this.on) return;
+    const spec = FAMILY_STRIKE[family] ?? FAMILY_STRIKE.village;
+    const t = this.ctx.currentTime;
+    const osc = this.ctx.createOscillator();
+    const g = this.ctx.createGain();
+    osc.type = spec.type;
+    osc.frequency.value = spec.f;
+    g.gain.value = 0;
+    g.gain.linearRampToValueAtTime(spec.gain, t + 0.02);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + spec.len);
+    osc.connect(g); g.connect(this.master);
+    osc.start(t); osc.stop(t + spec.len + 0.1);
+  }
+
+  /**
+   * The occupation undertone: a sustained low fifth while foreign rule
+   * stands. It does not announce itself — it is simply there, the way the
+   * banner is, until it is not.
+   */
+  setUndertone(active) {
+    if (!this.ctx) return;
+    const t = this.ctx.currentTime;
+    if (active && !this.undertone) {
+      const g = this.ctx.createGain();
+      g.gain.value = 0; g.connect(this.master);
+      for (const [f, w] of [[55, 1], [82.5, 0.4]]) {
+        const o = this.ctx.createOscillator();
+        o.type = 'sine'; o.frequency.value = f;
+        const og = this.ctx.createGain(); og.gain.value = w;
+        o.connect(og); og.connect(g); o.start(t);
+      }
+      this.undertone = { g };
+    }
+    if (this.undertone) this.undertone.g.gain.setTargetAtTime(active ? 0.035 : 0, t, 1.2);
+  }
+
+  /**
+   * The drying (phase 38's era, given a sound). `level` is the average water
+   * of the standing Indus towns, 0..1; null when the era is not running.
+   * The drone thins rather than fades — upper partials leave first, the way
+   * the small towns empty before the great ones.
+   */
+  setDrying(level) {
+    if (!this.ctx) return;
+    const t = this.ctx.currentTime;
+    if (level == null) {
+      if (this.drying) this.drying.g.gain.setTargetAtTime(0, t, 1.5);
+      return;
+    }
+    if (!this.drying) {
+      const g = this.ctx.createGain();
+      g.gain.value = 0; g.connect(this.master);
+      const parts = [196, 294, 392].map((f) => {
+        const o = this.ctx.createOscillator();
+        o.type = 'sine'; o.frequency.value = f;
+        const og = this.ctx.createGain(); og.gain.value = 0;
+        o.connect(og); og.connect(g); o.start(t);
+        return og;
+      });
+      this.drying = { g, parts };
+    }
+    const l = Math.max(0, Math.min(1, level));
+    this.drying.parts.forEach((og, i) =>
+      og.gain.setTargetAtTime(i === 0 ? 0.4 : l > i * 0.33 ? 0.3 : 0, t, 2));
+    this.drying.g.gain.setTargetAtTime(this.on ? 0.012 + l * 0.028 : 0, t, 2);
   }
 
   /**
