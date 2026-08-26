@@ -339,12 +339,20 @@ function draw(step) {
  * one of six pigments. A ring, not a fill — the terrain stays legible under
  * the tool, the way a glass sheet lies over the model.
  */
-/** What an armed verb aims at: districts by default, Indus towns when asked. */
+/** What an armed verb aims at: districts by default, Indus towns or the
+ *  Lanka anchors when asked. */
+const LANKA_ANCHORS = ['aluvihare', 'anuradhapura', 'polonnaruwa'];
 function lensTargets(verb) {
   if (verb?.targets === 'town') {
     return [...(state.indus?.values() ?? [])].map(t => {
       const g = PLACE_BY_ID.get(t.id);
       return g ? { ...t, lon: g.lon, lat: g.lat } : null;
+    }).filter(Boolean);
+  }
+  if (verb?.targets === 'lanka') {
+    return LANKA_ANCHORS.map(id => {
+      const g = PLACE_BY_ID.get(id);
+      return g ? { id, name: g.name, lon: g.lon, lat: g.lat } : null;
     }).filter(Boolean);
   }
   return [...state.districts.values()];
@@ -1789,11 +1797,27 @@ function renderVerbRow() {
   const vr = $('verbrow');
   if (!LENS) { vr.style.display = 'none'; return; }
   vr.style.display = '';
-  vr.innerHTML = LENS.lens.verbs.map(v =>
+  // A lens may carry a payload picker (phase 16): the thing the verb acts
+  // WITH — a work to copy or send — chosen here, spent by the click.
+  let picker = '';
+  if (LENS.lens.payload) {
+    const opts = LENS.lens.payload.options(state);
+    if (!opts.some(o => o.id === LENS.payload)) LENS.payload = opts[0]?.id ?? null;
+    picker = `<select data-lens-payload title="${LENS.lens.payload.label}">
+      ${opts.map(o => `<option value="${o.id}" ${o.id === LENS.payload ? 'selected' : ''}>${o.label}</option>`).join('')}
+    </select>`;
+  }
+  vr.innerHTML = picker + LENS.lens.verbs.map(v =>
     `<button class="btn" data-verb="${v.id}" title="${v.tip ?? ''}"
        style="${LENS.verb?.id === v.id ? 'border-color:var(--gold);font-weight:700' : ''}">${v.label}</button>`).join('')
     + `<span class="hint">${LENS.verb ? 'click the map · Esc puts the tool down' : 'pick a verb'}</span>`;
 }
+document.addEventListener('change', (e) => {
+  if (e.target.matches?.('[data-lens-payload]') && LENS) {
+    LENS.payload = e.target.value;
+    draw(3); scheduleFull();
+  }
+});
 function armLens(lensId) {
   const l = LENSES.find(x => x.id === lensId);
   if (!l) return;
@@ -1844,6 +1868,36 @@ registerLens({
       eligible: (s, t) => !inIndusEra(s) || t.people <= 0 ? 'never'
         : s.grain < 100 ? 'could' : 'can',
       execute: (t) => decide('resettle-east', { town: t.id }) },
+  ],
+});
+
+/* ── The Remember lens (phase 16): the corpus made spatial ────────────────── */
+// Only the verbs that are HONESTLY spatial in the sim: copying happens at
+// your scriptoria; the teacher's road to Lanka is on the map, and Aluvihare
+// is the game's founding example of the redundancy call. Generic 'send
+// abroad' stays a Library button — pretending Baghdad is on an India-only
+// map would be a lie the census warns about (style over substance).
+registerLens({
+  id: 'remember', glyph: '✍',
+  title: 'Remember — copy at your scriptoria; send a teacher down the Lanka road',
+  payload: {
+    label: 'The work in hand — thinnest first.',
+    options: (s) => worksAtRisk(s, 'home').slice(0, 20)
+      .map(w => ({ id: w.id, label: `${w.title} (${w.carriers}×)` })),
+  },
+  verbs: [
+    { id: 'copy', label: 'copy here',
+      tip: '60 grain, a scribe’s season. One more carrier of the work in hand, kept at home.',
+      eligible: (s, d, work) => !work ? 'never'
+        : s.claims.get(d.id)?.holder !== 'you' ? 'never'
+        : blocked(s, 'copy') || s.grain < 60 || s.pops.scribes < 1 ? 'could' : 'can',
+      execute: (d, work) => decide('copy', { work }) },
+    { id: 'teach', label: 'send a teacher', targets: 'lanka',
+      tip: '120 grain and a keeper takes the road south. A copy at Aluvihare is maintained there — for ever.',
+      eligible: (s, t, work) => !work ? 'never'
+        : blocked(s, 'send-teacher') ? 'could'
+        : s.grain < 120 || (s.pops.scribes < 1 && s.pops.reciters < 2) ? 'could' : 'can',
+      execute: (t, work) => decide('send-teacher', { work, destination: t.id }) },
   ],
 });
 
