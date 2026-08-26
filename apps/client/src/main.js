@@ -750,7 +750,9 @@ cv.addEventListener('pointerup', (e) => {
     paintWatched();
     return;
   }
-  if (mapMode === 'mandala' && state?.claims) {
+  // Clicking a district opens its panel in ANY informational mode (phase 10)
+  // — the census's state-panel pattern. Mandala mode merely colors the answer.
+  if (state?.districts) {
     const proj = cam.projection(cv.width, cv.height);
     const lon = proj.toLon(px), lat = proj.toLat(py);
     let best = null, bd = 9;
@@ -763,25 +765,45 @@ cv.addEventListener('pointerup', (e) => {
 });
 
 /** The claims panel: one district's full stack, and its history here. */
-function openClaims(d) {
-  const c = state.claims.get(d.id);
-  if (!c) return;
+/**
+ * The district panel (phase 10): clicking the map opens the Land drawer with
+ * this district at the top — the state panel pattern from the census, in our
+ * grammar. Survey status, the sovereignty stack, and the one verb that makes
+ * sense here.
+ */
+let landSelected = null;
+function renderDistrictDetail(s) {
+  const dist = landSelected && s.districts.get(landSelected);
+  if (!dist) { $('districtdetail').innerHTML = ''; return; }
+  const c = s.claims.get(landSelected);
   const line = (layer, label) => {
-    const who = c[layer];
+    const who = c?.[layer];
     const occ = who && who.startsWith?.('OCC.')
       ? (occupations.occupations.find(o => o.id === who)?.name ?? who) : who;
     return `<div class="chron-line"><span class="tb-year">${label}</span>
       <span>${who ? `${occ === 'you' ? 'you' : occ} <span class="tiny muted">(${Math.round((c.strength[layer] ?? 0) * 100)}%)</span>` : '<span class="tiny muted">nobody</span>'}</span></div>`;
   };
-  $('drawer-inner').innerHTML = `<div class="codex">
-    <h3>${d.name}</h3>
-    <p class="chron-sub">${LAYER_INFO.holder ? 'The stack, not a colour: for most of Indian history rule was graded and overlapping.' : ''}</p>
-    ${line('holder', 'held by')}
-    ${line('revenue', 'taxed by')}
-    ${line('tributary', 'tribute to')}
-    ${line('paramount', 'paramount')}
-  </div>`;
-  $('drawer').classList.add('on');
+  const surveyed = dist.surveyed;
+  const gate = blocked(s, 'survey');
+  const why = gate ? gate.why
+    : s.pops.scribes < 1 ? 'A survey needs a scribe, and you have none.'
+    : s.grain < 90 ? 'Surveyors are paid in grain you do not have.'
+    : `Send surveyors. The truth was fixed at world-creation; looking is what costs.`;
+  const can = !gate && s.pops.scribes >= 1 && s.grain >= 90;
+  $('districtdetail').innerHTML = `
+    <div class="panel" style="border:1px solid var(--rule);padding:8px 10px;background:var(--paper)">
+      <b>${dist.name}</b>
+      <span class="tiny muted">${surveyed ? `surveyed ${formatYear(surveyed)} — truth ${dist.truth}` : 'never looked at'}</span>
+      ${c ? `<div style="margin:6px 0 4px" class="tiny muted">The stack, not a colour:</div>
+      ${line('holder', 'held by')}${line('revenue', 'taxed by')}${line('tributary', 'tribute to')}${line('paramount', 'paramount')}` : ''}
+      ${!surveyed ? `<div class="acts" style="margin-top:6px">
+        <button class="btn" data-survey="${landSelected}" ${can ? '' : 'disabled'} title="${why}">survey</button></div>` : ''}
+    </div>`;
+}
+function openClaims(d) {
+  landSelected = d.id;
+  renderDistrictDetail(state);
+  openRail('land', false);
 }
 cv.addEventListener('pointercancel', endDrag);
 
@@ -1175,8 +1197,8 @@ function closeRail() {
   document.querySelector(`[data-rail="${railOpen}"]`)?.setAttribute('aria-pressed', 'false');
   railOpen = null;
 }
-function openRail(id) {
-  if (railOpen === id) { closeRail(); return; }
+function openRail(id, toggle = true) {
+  if (railOpen === id) { if (toggle) closeRail(); return; }
   closeRail();
   const body = document.querySelector(`[data-rail-panel="${id}"]`);
   if (!body) return;
@@ -1293,7 +1315,11 @@ document.addEventListener('click', (e) => {
   const cp = e.target.closest('[data-lib-copy]');
   if (cp && state) { decide('copy', { work: cp.dataset.libCopy }); return; }
   const th = e.target.closest('[data-lib-teach]');
-  if (th && state) { decide('send-teacher', { work: th.dataset.libTeach, destination: 'abroad' }); }
+  if (th && state) { decide('send-teacher', { work: th.dataset.libTeach, destination: 'abroad' }); return; }
+  // The district detail's survey button (phase 10). Scoped to its container so
+  // the #survey list's own listener is not doubled.
+  const sv = e.target.closest('#districtdetail [data-survey]');
+  if (sv && state) decide('survey', { district: sv.dataset.survey });
 });
 
 /** Rail badges ride the same derivation as the shelf: one source of truth. */
@@ -1337,6 +1363,7 @@ function paint() {
   paintVitals(s);
   paintSituations(s);
   paintFlows(s);
+  renderDistrictDetail(s);
 
   $('pillars').innerHTML = PILLARS.map(p => {
     const v = Math.round(s.pillars[p]);
