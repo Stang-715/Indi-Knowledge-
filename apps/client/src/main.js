@@ -1213,6 +1213,52 @@ $('rail').addEventListener('click', (e) => {
   const b = e.target.closest('[data-rail]');
   if (b) openRail(b.dataset.rail);
 });
+
+/* ── The minor rail (phase 13): reference lives below the fold ────────────── */
+// The reference buttons MOVE from the status bar — same nodes, same
+// listeners, new clothes. The status bar keeps only what changes the moment.
+for (const [id, glyph] of [['codex', 'cx'], ['chronicle', 'ch']]) {
+  const b = $(id);
+  b.className = 'seal seal--minor';
+  b.textContent = glyph;
+  $('rail').appendChild(b);
+}
+const threadsBtn = document.createElement('button');
+threadsBtn.className = 'seal seal--minor';
+threadsBtn.id = 'threadsbtn';
+threadsBtn.textContent = 'th';
+threadsBtn.title = 'Threads — the fifteen arcs running through the whole record.';
+$('rail').appendChild(threadsBtn);
+const railGap = document.createElement('div');
+railGap.className = 'gap';
+$('rail').appendChild(railGap);
+for (const [id, glyph] of [['helpbtn', '?'], ['telemetry', 'm'], ['creditsbtn', '©']]) {
+  const b = $(id);
+  b.className = 'seal seal--minor';
+  b.textContent = glyph;
+  $('rail').appendChild(b);
+}
+
+/** The Threads panel: each arc, its progress THIS campaign, its next beat. */
+threadsBtn.addEventListener('click', () => {
+  const now = state?.year ?? -6000;
+  const rows = [...THREAD_IDX.values()].map(t => {
+    const passed = t.beats.filter(b => b.year <= now);
+    const next = t.beats.find(b => b.year > now);
+    const active = now >= t.span[0] && now <= t.span[1];
+    return `<div class="thread-beat" style="${active ? '' : 'opacity:.55'}">
+      <b>${t.name}</b> <span class="tiny muted">${formatYear(t.span[0])} → ${formatYear(t.span[1])}
+        · ${passed.length}/${t.beats.length} beats</span>
+      <div class="tiny" style="margin:3px 0">${t.arc}</div>
+      ${next ? `<button class="btn tiny" data-goto="${next.id}"
+        title="The arc's next beat, as the evidence dates it.">next: ${next.title} (${formatYear(next.year)})</button>` : `<span class="tiny muted">the arc has run its course</span>`}
+    </div>`;
+  }).join('');
+  $('drawer-inner').innerHTML = `<div class="codex"><h3>The Threads</h3>
+    <p class="chron-sub">Fifteen arcs cross the chapters and the eras. A thread is how a
+    single evening's event belongs to a three-thousand-year story.</p>${rows}</div>`;
+  $('drawer').classList.add('on');
+});
 railPanel.addEventListener('click', (e) => { if (e.target.id === 'rp-close') closeRail(); });
 document.addEventListener('keydown', (e) => {
   if (e.target.matches?.('input, textarea, select') || e.metaKey || e.ctrlKey || e.altKey) return;
