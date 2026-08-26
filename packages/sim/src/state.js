@@ -19,6 +19,8 @@ export function newState(opts = {}) {
 
     /** The pre-coinage economy. Grain is the store of value for ~3,000 years. */
     grain: opts.grain ?? 400,
+    flows: {},                 // named grain flows, cumulative (HUD phase 7)
+    patronage: 'none',         // the standing patronage level (HUD phase 7)
     underfed: 0,
 
     /**
@@ -156,7 +158,19 @@ export function fingerprint(state) {
     frontier: sortedMap(state.frontier, ([id, f]) => [id, f.present ? 1 : 0, f.taught.length, Math.round(f.displaced * 100)]),
     claims: sortedMap(state.claims, ([id, c]) => [id, c.holder ?? '', c.revenue ?? '', c.tributary ?? '', c.paramount ?? '']),
     stats: state.stats,
+    flows: Object.fromEntries(Object.entries(state.flows).map(([k, v]) => [k, Math.round(v)])),
+    patronage: state.patronage,
     logLength: state.log.length,
     logHash: state.log.reduce((h, l) => (h * 31 + l.text.length + l.year) | 0, 7),
   });
+}
+
+/**
+ * Record a named grain flow (HUD phase 7). Cumulative over the campaign, so
+ * the Ledger can show where grain has actually come from and gone — recorded
+ * at the point of mutation, never re-derived in the interface, because a
+ * ledger that recomputes drifts from the till.
+ */
+export function flow(state, key, amount) {
+  state.flows[key] = (state.flows[key] ?? 0) + amount;
 }

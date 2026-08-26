@@ -25,7 +25,7 @@
  *      does not hand us 400 usable biographies. The interface must never blur
  *      the two.
  */
-import { record, bumpPillar } from './state.js';
+import { record, bumpPillar, flow } from './state.js';
 import { generateName } from '../../worldgen/src/names.js';
 import { drawFrom } from './rng.js';
 
@@ -302,6 +302,7 @@ export function endow(state, personId, year) {
   if (state.grain < cost) return false;
 
   state.grain -= cost;
+  flow(state, 'endowments', -cost);
   p.patronised = true;
   p.patronisedAt = year;
   state.endowments.push({ person: personId, at: year, age: 0, returned: 0 });

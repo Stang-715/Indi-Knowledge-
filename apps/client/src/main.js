@@ -19,7 +19,7 @@ import { run }               from '../../../packages/sim/src/engine.js';
 import { corpusSummary, worksAtRisk } from '../../../packages/sim/src/corpus.js';
 import { formatYear }        from '../../../packages/sim/src/clock.js';
 import { spriteURL, spriteFor } from '../../../packages/ui/src/sprites.js';
-import { throughput, CHOKES } from '../../../packages/sim/src/trade.js';
+import { throughput, CHOKES, ESCORT_LEVELS, ordersOf } from '../../../packages/sim/src/trade.js';
 import { CityRenderer }      from '../../../packages/render-city/src/renderer.js';
 import { WorldgenClient }    from '../../../packages/render-realm/src/workerclient.js';
 import { endowable, endowmentLedger, living, lineageOf }
@@ -1198,6 +1198,44 @@ document.addEventListener('keydown', (e) => {
   if (r) { e.preventDefault(); openRail(r.id); }
 });
 
+/* ── The Ledger (phase 7): flows from the till, and the standing patronage ── */
+const PATRONAGE_TIPS = {
+  none:   'Nothing automatic. Every reciter is your own click.',
+  steady: 'Keeps five reciters in grain: hires at 50 whenever the bench is short and the granary holds 200.',
+  lavish: 'Grows the bench to twelve while the granary holds 600. Generosity as policy.',
+};
+function paintFlows(s) {
+  const entries = Object.entries(s.flows ?? {}).filter(([, v]) => Math.round(v) !== 0)
+    .sort((a, b) => Math.abs(b[1]) - Math.abs(a[1]));
+  const row = ([k, v]) =>
+    `<div class="ledger-row"><span>${k}</span>
+       <span class="v" style="${v < 0 ? '' : 'color:#4c6136'}">${v > 0 ? '+' : ''}${Math.round(v).toLocaleString()}</span></div>`;
+  // Standing costs, right now — the money that leaves while you look away.
+  let standingRows = '';
+  let escortYr = 0;
+  for (const r of s.routes.values()) escortYr += (ESCORT_LEVELS[ordersOf(r).escort] ?? {}).costPerYear ?? 0;
+  if (escortYr) standingRows += `<div class="ledger-row"><span>escorts, standing</span><span class="v">−${escortYr}/yr</span></div>`;
+  for (const id of s.occupationsActive ?? []) {
+    const o = (occupations.occupations ?? []).find(x => x.id === id);
+    if (o?.extract) standingRows += `<div class="ledger-row"><span>${o.name}</span><span class="v">−${o.extract}/yr</span></div>`;
+  }
+  $('flows').innerHTML =
+    (entries.length ? entries.map(row).join('')
+                    : `<div class="tiny muted">Nothing has moved yet. The ledger fills as the campaign does.</div>`)
+    + (standingRows ? `<div style="margin-top:6px" class="tiny muted">standing now</div>${standingRows}` : '')
+    + `<div style="margin-top:8px" class="tiny muted">patronage</div>
+       <div class="acts">${['none', 'steady', 'lavish'].map(l =>
+         `<button class="btn" data-patronage="${l}" title="${PATRONAGE_TIPS[l]}"
+            ${(s.patronage ?? 'none') === l ? 'style="border-color:var(--gold);font-weight:700"' : ''}>${l}</button>`).join('')}
+       </div>`;
+}
+// Delegated on document: the ledger body moves between #panels and the rail
+// panel, and a listener pinned to either home misses it in the other.
+document.addEventListener('click', (e) => {
+  const b = e.target.closest('[data-patronage]');
+  if (b && state) decide('set-patronage', { level: b.dataset.patronage });
+});
+
 /** Rail badges ride the same derivation as the shelf: one source of truth. */
 function paintRailBadges(situations) {
   const byPanel = { ledger: 0, library: 0, people: 0, land: 0, road: 0, court: 0 };
@@ -1238,6 +1276,7 @@ function paint() {
   $('soldiers').textContent = n(s.pops.soldiers);
   paintVitals(s);
   paintSituations(s);
+  paintFlows(s);
 
   $('pillars').innerHTML = PILLARS.map(p => {
     const v = Math.round(s.pillars[p]);

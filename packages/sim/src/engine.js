@@ -9,7 +9,7 @@
  */
 import { Clock, START_YEAR, END_YEAR, formatYear } from './clock.js';
 import { buildSchedule, eventsIn } from './events.js';
-import { newState, record, bumpPillar, fingerprint, shock, tickShocks, effectivePillar } from './state.js';
+import { newState, record, bumpPillar, fingerprint, shock, tickShocks, effectivePillar, flow } from './state.js';
 import { Rng } from './rng.js';
 import { CLASS_EFFECTS, MAG_WEIGHT } from './effects.js';
 import { tickTexture } from './texture.js';
@@ -109,6 +109,7 @@ export function run(datapack, seed, decisionLog = [], opts = {}) {
     tickFrontier(state, span, rng.world);
     tickShocks(state, span);
     tickEconomy(state, span);
+    tickPatronage(state);
     // The texture layer: the m tier, composed rather than authored. Keyed by
     // year through drawFrom, so it replays identically and fingerprints like
     // everything else. A datapack without texture data plays without it.
@@ -223,6 +224,23 @@ function fireEvent(state, ev, datapack, rng) {
  * irrigation work in the timeline matters. Without that, patronage is a trap:
  * every reciter you take into keeping is one the land cannot feed.
  */
+/**
+ * The standing patronage level (HUD phase 7): a policy, not a click. `steady`
+ * keeps a floor of reciters while grain allows; `lavish` grows the bench. At
+ * most one keeping per tick — a policy hires people, it does not conjure them.
+ */
+function tickPatronage(state) {
+  if (!state.patronage || state.patronage === 'none') return;
+  const wants = state.patronage === 'steady'
+    ? state.pops.reciters < 5 && state.grain >= 200
+    : state.pops.reciters < 12 && state.grain >= 600;
+  if (!wants) return;
+  state.grain -= 50;
+  state.pops.reciters += 1;
+  flow(state, 'patronage', -50);
+  record(state, state.year, 'decision', 'The standing patronage takes a reciter into keeping.');
+}
+
 function tickEconomy(state, span) {
   const { reciters, scribes, soldiers, merchants } = state.pops;
 
@@ -238,6 +256,8 @@ function tickEconomy(state, span) {
   // longer have at home.
   const consumed = (reciters * 3 + scribes * 3 + soldiers * 2.5 + merchants * 2) * span;
   state.grain += produced - consumed;
+  flow(state, 'harvest', produced);
+  flow(state, 'keepers fed', -consumed);
 
   // Logistic growth toward capacity, slowed when the granary is empty.
   const fed = state.grain > 0 ? 1 : 0.2;
@@ -308,14 +328,23 @@ export function applyDecision(state, d, datapack, rng) {
       INDUS_DECISIONS[d.action]?.(state, d);
       return;
 
+    case 'set-patronage':                // the standing level: none | steady | lavish
+      if (['none', 'steady', 'lavish'].includes(d.level) && d.level !== state.patronage) {
+        state.patronage = d.level;
+        record(state, d.year, 'decision', `Patronage set to ${d.level}.`);
+      }
+      return;
+
     case 'patronise':                    // grain to reciters
       if (state.grain >= 50) { state.grain -= 50; state.pops.reciters += 1;
+        flow(state, 'patronage', -50);
         record(state, d.year, 'decision', `A reciter is taken into keeping.`); }
       return;
 
     case 'train-scribe':
       if (state.grain >= 80 && state.pillars.IT >= 8) {
         state.grain -= 80; state.pops.scribes += 1;
+        flow(state, 'training', -80);
         record(state, d.year, 'decision', `A scribe is trained.`); }
       return;
 

@@ -8,7 +8,7 @@
  *
  * Goods take days. Payment takes longer. Both are simulated.
  */
-import { record, bumpPillar } from './state.js';
+import { record, bumpPillar, flow } from './state.js';
 import { drawFrom } from './rng.js';
 
 /** The five kinds of choke. One resolver, five skins (docs/11 §6). */
@@ -164,7 +164,11 @@ export function tickTrade(state, span, rng) {
   // guard you only pay when attacked is not a guard.
   for (const r of state.routes.values()) {
     const lvl = ESCORT_LEVELS[ordersOf(r).escort] ?? ESCORT_LEVELS.none;
-    if (lvl.costPerYear) state.grain = Math.max(0, state.grain - lvl.costPerYear * span);
+    if (lvl.costPerYear) {
+      const paid = Math.min(state.grain, lvl.costPerYear * span);
+      state.grain -= paid;
+      flow(state, 'escorts', -paid);
+    }
   }
 
   // Missions march. Clearing a choke takes as long as reaching it.
@@ -217,6 +221,7 @@ export function tickTrade(state, span, rng) {
       if (c.progress >= settleDays) {
         c.state = 'done';
         state.grain += c.value * (state.coinageKnown ? 0.4 : 1);
+        flow(state, 'caravans', c.value * (state.coinageKnown ? 0.4 : 1));
         if (state.coinageKnown) state.coin += c.value * 0.6;
         state.stats.tradesCompleted++;
       }
@@ -278,6 +283,7 @@ export function tickTrade(state, span, rng) {
       const t = throughput(r, year) * (r.tolled ? 0.75 : 1);
       r.delivered += t * span;
       state.grain += t * span * 0.4;
+      flow(state, 'route trade', t * span * 0.4);
       bumpPillar(state, 'TRADE', 0.02 * span);
     }
   }
@@ -304,6 +310,7 @@ export const DECISIONS = {
     const cost = n * 20;
     if (state.grain < cost) return;
     state.grain -= cost;
+    flow(state, 'soldiers', -cost);
     state.pops.soldiers += n;
     record(state, d.year, 'decision', `${n} raised to guard the roads.`);
   },
@@ -341,6 +348,7 @@ export const DECISIONS = {
     const value = Math.min(state.grain * 0.2, throughput(r, state.year) * 8);
     if (value < 1) return;
     state.grain -= value * 0.3;
+    flow(state, 'caravans', -value * 0.3);
     const ordinal = (state.stats.caravansSent = (state.stats.caravansSent ?? 0) + 1);
     state.caravans.push({ route: r.id, days: r.days, progress: 0, state: 'outbound', value, ordinal });
     record(state, d.year, 'decision', `A caravan leaves on ${r.id}.`, { route: r.id, ordinal });
@@ -358,6 +366,7 @@ export const DECISIONS = {
     if (!r || !r.choke || state.grain < 60) return;
     if (state.missions?.some(m => m.route === r.id)) return;
     state.grain -= 60;
+    flow(state, 'missions', -60);
     (state.missions ??= []).push({ route: r.id, method: d.method ?? 'fight',
       started: d.year, days: r.days * 2, elapsed: 0 });
     record(state, d.year, 'mission',
@@ -384,6 +393,7 @@ export const DECISIONS = {
     // house.
     if (state.grain < 30) return;
     state.grain -= 30;
+    flow(state, 'shared surplus', -30);
     const key = d.with;
     const gen = Math.floor(d.year / 30);
     if (!state.shareGen) state.shareGen = new Map();

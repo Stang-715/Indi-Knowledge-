@@ -12,7 +12,7 @@
  *   trustCap   optional ceiling on the trust ladder while active — a rung
  *              like a state treaty needs a state that treats you as party
  */
-import { record, bumpPillar } from './state.js';
+import { record, bumpPillar, flow } from './state.js';
 import { claim } from './sovereignty.js';
 
 export function initOccupations(state, datapack) {
@@ -45,7 +45,11 @@ export function tickOccupations(state, datapack, span) {
         if (c.paramount === o.id) claim(state, c.district, 'paramount', null, 0, state.year);
     }
     if (!active) continue;
-    if (o.extract) state.grain = Math.max(0, state.grain - o.extract * span);
+    if (o.extract) {
+      const taken = Math.min(state.grain, o.extract * span);
+      state.grain -= taken;
+      flow(state, 'occupation', -taken);
+    }
     for (const [pillar, perYear] of Object.entries(o.patronage ?? {}))
       bumpPillar(state, pillar, perYear * span);
   }
