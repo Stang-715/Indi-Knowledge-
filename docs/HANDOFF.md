@@ -6,8 +6,8 @@ tree** — the previous version predated phases 12–43 and lied to newcomers.
 
 **Repo:** `Stang-715/Indi-Knowledge-` · branch `claude/amazing-hopper-q6g8s7`
 **The game, live:** https://claude.ai/code/artifact/fccc9042-9f5e-49dd-87a4-3e73e46ee8a6
-**Tests:** `npm test` (295, all green) · `npm run verify` · `npm run gaps` (coverage report)
-**Build:** `node tools/build-timeline.mjs` → `node tools/build-client.mjs` → `dist/paramountcy.html` (single file, ~1.9 MB)
+**Tests:** `npm test` (329, all green) · `npm run verify` · `npm run gaps` (coverage report)
+**Build:** `node tools/build-timeline.mjs` → `node tools/build-client.mjs` → `dist/paramountcy.html` (single file, ~1.9 MB, colophon-stamped)
 
 ---
 
@@ -65,14 +65,19 @@ no-villain era: unbeatable water, triage verbs, scored-nothing reckoning) ·
 contract. `apps/client/` is the assembled game; `tools/build-client.mjs` bundles
 everything into one ASCII-safe HTML file.
 
-## 4. Current state (phase 44 of docs/16-gap-closure.md)
+## 4. Current state (third arc, docs/19-play-depth.md, phases 45–54)
 
-Phases 1–43 are executed and committed, each with the correction it forced — the
-standing lesson is that **writing content is how the sim's bugs get found**. The six
-design rulings are closed in their source docs (slice = Chola 985–1070; no player
-raiding; standing orders; capped Share; sprites-in-viewport; class targets retired).
-Binding constraints now: the **20-minute density rule** and the **silence-in-play
-rule**, both tests.
+Phases 1–52 and 54 are executed and committed, each with the correction it forced —
+the standing lesson is that **writing content is how the sim's bugs get found**.
+**Phase 53 (the second campaign) is the one open phase, gated on the docs/18 human
+playtest round** — it implements whichever Indus remedy the round chooses, and the
+gate is a pre-commitment: do not retune cadence before humans report. The third arc
+shipped: standing orders and watched caravans on the road; the chronicle; the codex;
+onboarding slips; the mandala map mode; the deeper Thanjavur dive; keyboard/touch/
+reduced-motion access; era-material audio; and ship-shape (OFL credits, legible save
+versioning, the damage panel, colophon, 400 ms perf tripwire). Binding constraints:
+the **20-minute density rule**, the **silence-in-play rule**, the **audio mix
+budget**, and the **perf tripwire** — all tests.
 
 **Headless baselines** (docs/18-playtest-protocols.md): the Chola slice runs at one
 decision per 2.8 minutes, worst silence 7.6 — the slice ruling holds. The Indus runs

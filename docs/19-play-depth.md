@@ -253,3 +253,31 @@ The standing rule of the first two arcs carries: tests extended before code is
 called done, one commit per phase that says what was learned, and the expectation
 that at least three of these phases will falsify something the current 295 tests
 believe.
+
+---
+
+## Execution record (this arc)
+
+Phases 45–52 and 54 executed and committed, one commit per phase with what it
+taught. **Phase 53 was skipped at its gate, deliberately**: it runs only after
+the docs/18 human round arbitrates the Indus remedies, and the gate is a
+pre-commitment against retuning cadence on a developer's own taste. What the
+arc falsified or forced, briefly:
+
+- **45** — pillar gates silently swallow decisions on a fresh state; short-window
+  tests must seed opening pillars, and now do.
+- **48** — slips died in the 4-notice cap; teaching UI cannot share a queue with
+  news. They got their own shelf.
+- **49** — the claims click never fired because the caravan hit-test early-returned
+  for everyone; one guard split, one lesson about compound conditionals on input
+  paths.
+- **51** — the a11y attributes were written against `#cv`; the canvas is `#map`.
+  The keyboard smoke now presses real keys, which is the only reason anyone found
+  out.
+- **52** — the mix budget lives in a failing assertion, not a comment; the gain
+  tables are exported so loudness creep trips a test.
+- **54** — the credits test enumerates the font manifest the bundler embeds, so a
+  future subset cannot ship uncredited; saves refuse with instructions, not
+  adjectives; recompute cannot white-screen.
+
+Suite at close: **329 tests green**, `npm run verify` clean, bundle 1.94 MB.
