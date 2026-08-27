@@ -40,6 +40,30 @@
   50% { box-shadow: 0 0 0 4px rgba(244, 73, 28, 0.15); }
 }
 
+/* ---- event banner ---- */
+#eventBanner {
+  position: absolute;
+  top: 48px;
+  left: 10px;
+  z-index: 6;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  max-width: min(360px, 70%);
+  font-size: 0.78rem;
+}
+#eventBanner .evt-row {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--verm);
+  border-radius: 6px;
+  padding: 5px 9px;
+  color: var(--ink);
+  box-shadow: 0 1px 4px rgba(62, 37, 64, 0.14);
+}
+#eventBanner .toast.good { border-left-color: var(--teal-deep); color: var(--teal-deep); }
+#eventBanner .toast.bad { border-left-color: var(--verm-deep); color: var(--verm-deep); }
+
 /* ---- recite progress ---- */
 #reciteBar {
   position: absolute;
@@ -238,6 +262,7 @@
 /* dock and hud hidden while game is off (elements carry [hidden] too) */
 body:not(.game-on) #gameHud,
 body:not(.game-on) #libraryDock,
+body:not(.game-on) #eventBanner,
 body:not(.game-on) #reciteBar { display: none; }
 
 #btnGame.active {

@@ -272,6 +272,21 @@
       }
       return n;
     },
+    // event damage: remove a fraction of one state's people (global floor 30)
+    cull: function (slug, frac) {
+      var mine = [];
+      npcs.forEach(function (p, i) { if (p.state === slug) mine.push(i); });
+      var n = Math.max(1, Math.floor(mine.length * frac));
+      if (!mine.length) return;
+      while (n > 0 && mine.length && npcs.length > 30) {
+        var pick = mine.splice((Math.random() * mine.length) | 0, 1)[0];
+        effects.push({ x: npcs[pick].x, y: npcs[pick].y, t: 0, kind: "death" });
+        npcs.splice(pick, 1);
+        // indices above the removed one shift down
+        for (var k = 0; k < mine.length; k++) if (mine[k] > pick) mine[k]--;
+        n--;
+      }
+    },
     setCount: function (target) {
       while (npcs.length > target) npcs.pop();
       var slugs = Object.keys(stateNodes).filter(function (s) { return stateNodes[s].length; });

@@ -119,12 +119,38 @@
       dock.hidden = true;
       modal.hidden = true;
       bar.hidden = true;
+      var banner = document.getElementById("eventBanner");
+      banner.innerHTML = "";
+      banner.hidden = true;
     },
     armedCard: function () { return armedId ? window.GameCards.byId(armedId) : null; },
     disarm: function () { armedId = null; renderDock(); },
     isStudyOpen: function () { return !modal.hidden; },
     closeStudy: closeStudy,
     refreshDock: renderDock,
+    updateEvents: function (st, dayNow) {
+      var banner = document.getElementById("eventBanner");
+      var rows = window.GameEvents.active().map(function (e) {
+        var T = window.GameEvents.TYPES[e.type];
+        var stMap = window.INDIA_MAP.states[e.slug];
+        var name = stMap ? stMap.name : e.slug;
+        var left = Math.max(0, Math.ceil(e.expiresDay - dayNow));
+        return "<div class='evt-row' style='border-left-color:" + T.color + "'>" +
+          T.icon + " <b>" + esc(T.label) + "</b> in " + esc(name) +
+          " — " + esc(T.hint) + " · " + left + " day" + (left === 1 ? "" : "s") + " left</div>";
+      });
+      window.GameEvents.takeToasts().forEach(function (t) {
+        var el2 = el("div", "evt-row toast " + t.kind, esc(t.msg));
+        banner.appendChild(el2);
+        setTimeout(function () { el2.remove(); }, 4000);
+      });
+      // keep live toasts, replace event rows
+      Array.prototype.slice.call(banner.children).forEach(function (c) {
+        if (!c.classList.contains("toast")) c.remove();
+      });
+      banner.insertAdjacentHTML("afterbegin", rows.join(""));
+      banner.hidden = banner.children.length === 0;
+    },
     updateHud: function (st, trend) {
       var unread = window.GameCards.released(st.day).filter(function (c) {
         return !st.taught[c.id] && !window.GameCards.isLocked(c, st.taught);

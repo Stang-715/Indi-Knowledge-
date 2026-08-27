@@ -108,7 +108,8 @@
     var data = JSON.stringify({
       v: 2, day: st.day, taught: st.taught, studied: st.studied,
       stateTaught: st.stateTaught, pop: window.GamePopulation.count(),
-      literacy: st.literacy, prosperity: st.prosperity
+      literacy: st.literacy, prosperity: st.prosperity,
+      events: window.GameEvents.serialize()
     });
     try { localStorage.setItem(SAVE_KEY, data); }
     catch (e) { memorySave = data; }
@@ -128,6 +129,7 @@
         st.prosperity = d.prosperity || {};
         st.pop = Math.max(30, Math.min(500, d.pop || 240));
         st.literacy = d.literacy || 22;
+        st.events = d.events || null;
         prevLiteracy = st.literacy;
       }
     } catch (e) { /* corrupt save: start fresh */ }
@@ -161,7 +163,7 @@
   function startRecite() {
     if (recite) return;
     var card = window.GameUI.armedCard();
-    if (!card || st.taught[card.id]) return;
+    if (!card) return; // taught cards may be re-recited (event combat, refresh)
     if (window.GameUI.isStudyOpen()) window.GameUI.closeStudy();
     var a = reciteAnchor();
     if (!a) return;
@@ -174,8 +176,9 @@
     if (!recite) return;
     if (completed) {
       var card = recite.card;
+      var slugs = statesInRadius(recite);
       st.taught[card.id] = true;
-      statesInRadius(recite).forEach(function (slug) {
+      slugs.forEach(function (slug) {
         st.stateTaught[slug] = st.stateTaught[slug] || {};
         st.stateTaught[slug][card.id] = true;
       });
@@ -184,6 +187,10 @@
         st.stateTaught[card.stateSlug] = st.stateTaught[card.stateSlug] || {};
         st.stateTaught[card.stateSlug][card.id] = true;
       }
+      // knowledge as a weapon: a matching recite over an afflicted state resolves it
+      window.GameEvents.onRecite(card, slugs).forEach(function (e) {
+        st.prosperity[e.slug] = Math.min(100, prosperityOf(e.slug) + 10);
+      });
       window.GameUI.disarm();
       window.GameUI.refreshDock();
       save();
@@ -247,9 +254,31 @@
       st.literacy += Math.max(-maxStep, Math.min(maxStep, target - st.literacy));
       window.GamePopulation.assignJobs(jobsTaughtByState());
       economyTick(dtDays);
+      window.GameEvents.step(st.day, {
+        cull: function (slug, frac) { window.GamePopulation.cull(slug, frac); },
+        prosperityHit: function (slug, amt) { st.prosperity[slug] = Math.max(0, prosperityOf(slug) - amt); },
+        literacyHit: function (amt) { st.literacy = Math.max(8, st.literacy - amt); },
+        pickStates: function (n, exclude) {
+          var candidates = window.IndiaMap.listStates()
+            .map(function (s) { return s.slug; })
+            .filter(function (slug) { return exclude.indexOf(slug) < 0; })
+            .sort(function (a, b) { return stateLiteracy(a) - stateLiteracy(b); })
+            .slice(0, 10); // events prey on the least literate states
+          var out = [];
+          while (out.length < n && candidates.length) {
+            out.push(candidates.splice((Math.random() * candidates.length) | 0, 1)[0]);
+          }
+          return out;
+        },
+        stateName: function (slug) {
+          var s = window.INDIA_MAP.states[slug];
+          return s ? s.name : slug;
+        }
+      });
       window.GamePopulation.vitals(dtDays, stateLiteracy, st.literacy, prosperityOf);
       if (Math.floor(st.day) !== prevDay) window.GameUI.refreshDock();
       window.GameUI.updateHud(st, st.literacy - prevLiteracy);
+      window.GameUI.updateEvents(st, st.day);
       saveAcc += slow;
       if (saveAcc >= 10) { saveAcc = 0; save(); }
     }
@@ -264,6 +293,7 @@
     document.body.classList.add("game-on");
     load();
     window.GameCards.init();
+    window.GameEvents.init(st.events);
     window.GamePopulation.init(st.pop);
     window.GameUI.show();
     window.GameUI.updateHud(st, 0);

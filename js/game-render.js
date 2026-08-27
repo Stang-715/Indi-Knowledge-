@@ -222,6 +222,29 @@
         ctx.restore();
       }
 
+      // afflicted states: pulsing disc + glyph at the centroid
+      if (window.GameEvents) {
+        window.GameEvents.active().forEach(function (e) {
+          var c = window.IndiaMap.getStateCentroid(e.slug);
+          var b = window.IndiaMap.getStateBBox(e.slug);
+          if (!c || !b) return;
+          var T2 = window.GameEvents.TYPES[e.type];
+          var r = Math.sqrt(Math.pow(b[2] - b[0], 2) + Math.pow(b[3] - b[1], 2)) / 2 * T.s;
+          var ex = c[0] * T.s + T.ox, ey = c[1] * T.s + T.oy;
+          ctx.save();
+          ctx.globalAlpha = 0.1 + 0.06 * Math.sin(now * 3);
+          ctx.fillStyle = T2.color;
+          ctx.beginPath();
+          ctx.arc(ex, ey, r, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.globalAlpha = 0.85;
+          ctx.font = Math.round(16 * dpr) + "px serif";
+          ctx.textAlign = "center";
+          ctx.fillText(T2.icon, ex, ey - r * 0.2);
+          ctx.restore();
+        });
+      }
+
       var npcs = window.GamePopulation.npcs();
       sortClock += dt;
       if (sortClock > 1) {
