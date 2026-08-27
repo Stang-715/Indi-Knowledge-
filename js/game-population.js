@@ -12,6 +12,7 @@
   var npcs = [];
   var effects = [];      // {x, y, t, kind: "death"|"birth"}
   var listen = null;     // {x, y, r}
+  var teachDone = [];    // state slugs where a scholar finished a mini-lesson
   var PALETTE = ["#f4491c", "#00a085", "#fdae1c", "#7a4e8e", "#f79fb4"];
 
   function hash(a, b) {
@@ -108,7 +109,8 @@
     if (!here.edges.length) return;
     var options = here.edges;
     // workers keep close to home (95%); others wander more (85%)
-    if (Math.random() < (npc.job ? 0.95 : 0.85)) {
+    var homeBias = npc.scholar ? 0.5 : npc.job ? 0.95 : 0.85;
+    if (Math.random() < homeBias) {
       var same = options.filter(function (j) { return nodes[j].state === npc.state; });
       if (same.length) options = same;
     }
@@ -157,16 +159,20 @@
         if (p.mode === "idle") {
           p.idle -= dt;
           if (p.idle <= 0) {
-            if (p.job && Math.random() < 0.5) {
+            if (p.scholar && Math.random() < 0.3) {
+              p.mode = "teach";
+              p.work = 5;
+            } else if (p.job && Math.random() < 0.5) {
               p.mode = "work";
               p.work = 4 + Math.random() * 4;
             } else {
               pickNextEdge(p);
             }
           }
-        } else if (p.mode === "work") {
+        } else if (p.mode === "work" || p.mode === "teach") {
           p.work -= dt;
           if (p.work <= 0) {
+            if (p.mode === "teach") teachDone.push(p.state);
             p.mode = "idle";
             p.idle = 0.5 + Math.random();
           }
@@ -272,6 +278,39 @@
       }
       return n;
     },
+    // scholars: promoted from the listeners of a completed recite
+    promoteScholars: function (chance, cap) {
+      if (!listen) return 0;
+      var made = 0;
+      var have = 0;
+      npcs.forEach(function (p) { if (p.scholar) have++; });
+      for (var i = 0; i < npcs.length && have + made < cap; i++) {
+        var p = npcs[i];
+        if (p.scholar) continue;
+        var dx = p.x - listen.x, dy = p.y - listen.y;
+        if (dx * dx + dy * dy < listen.r * listen.r && Math.random() < chance) {
+          p.scholar = true;
+          made++;
+        }
+      }
+      return made;
+    },
+    markScholars: function (n) {
+      for (var i = 0; i < npcs.length && n > 0; i++) {
+        if (!npcs[i].scholar) { npcs[i].scholar = true; n--; }
+      }
+    },
+    scholarCount: function () {
+      var n = 0;
+      npcs.forEach(function (p) { if (p.scholar) n++; });
+      return n;
+    },
+    takeTeachEvents: function () {
+      var t = teachDone;
+      teachDone = [];
+      return t;
+    },
+
     // event damage: remove a fraction of one state's people (global floor 30)
     cull: function (slug, frac) {
       var mine = [];

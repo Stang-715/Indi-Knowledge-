@@ -22,7 +22,9 @@
     taught: {},      // cardId -> true
     studied: {},     // cardId -> true
     stateTaught: {}, // slug -> {cardId: true}
+    taughtDay: {},   // cardId -> game-day of the last (re-)recite
     prosperity: {},  // slug -> 0..100 (default 20)
+    scholars: 0,
     pop: 240
   };
   var prevLiteracy = 22;
@@ -32,11 +34,19 @@
 
   /* ---------- literacy model ---------- */
 
+  // knowledge fades: full strength for 15 days after a recite, then
+  // a slow slide toward 35% until re-taught or refreshed by a quiz
+  function fresh(id) {
+    if (!st.taught[id]) return 0;
+    var age = st.day - (st.taughtDay[id] == null ? st.day : st.taughtDay[id]);
+    return age <= 15 ? 1 : Math.max(0.35, 1 - 0.026 * (age - 15));
+  }
+
   function weights(cards, taughtSet) {
     var tw = 0, rw = 0;
     cards.forEach(function (c) {
       rw += c.weight;
-      if (taughtSet[c.id]) tw += c.weight;
+      if (taughtSet[c.id]) tw += c.weight * fresh(c.id);
     });
     return { tw: tw, rw: rw };
   }
@@ -55,7 +65,7 @@
       // pressures its home state and any state it was recited over.
       if (c.kind === "gita" || c.stateSlug === slug || mine[c.id]) {
         rw += c.weight;
-        if (mine[c.id]) tw += c.weight + (c.stateSlug === slug ? 0.5 : 0);
+        if (mine[c.id]) tw += (c.weight + (c.stateSlug === slug ? 0.5 : 0)) * fresh(c.id);
       }
     });
     var comp = 22 + 76 * tw / Math.max(rw, 1);
@@ -109,6 +119,7 @@
       v: 2, day: st.day, taught: st.taught, studied: st.studied,
       stateTaught: st.stateTaught, pop: window.GamePopulation.count(),
       literacy: st.literacy, prosperity: st.prosperity,
+      taughtDay: st.taughtDay, scholars: window.GamePopulation.scholarCount(),
       events: window.GameEvents.serialize()
     });
     try { localStorage.setItem(SAVE_KEY, data); }
@@ -130,6 +141,12 @@
         st.pop = Math.max(30, Math.min(500, d.pop || 240));
         st.literacy = d.literacy || 22;
         st.events = d.events || null;
+        st.scholars = d.scholars || 0;
+        st.taughtDay = d.taughtDay || {};
+        // v1 saves carry no taughtDay: treat everything taught as fresh now
+        Object.keys(st.taught).forEach(function (id) {
+          if (st.taughtDay[id] == null) st.taughtDay[id] = st.day;
+        });
         prevLiteracy = st.literacy;
       }
     } catch (e) { /* corrupt save: start fresh */ }
@@ -178,6 +195,10 @@
       var card = recite.card;
       var slugs = statesInRadius(recite);
       st.taught[card.id] = true;
+      st.taughtDay[card.id] = st.day; // re-recites refresh fading knowledge
+      // a few listeners take up the calling and become scholars
+      var cap = Math.min(12, Math.floor(window.GamePopulation.count() / 25));
+      st.scholars += window.GamePopulation.promoteScholars(0.06, cap);
       slugs.forEach(function (slug) {
         st.stateTaught[slug] = st.stateTaught[slug] || {};
         st.stateTaught[slug][card.id] = true;
@@ -276,6 +297,17 @@
         }
       });
       window.GamePopulation.vitals(dtDays, stateLiteracy, st.literacy, prosperityOf);
+      // scholars re-teaching: each completed mini-lesson slows the decay of
+      // the oldest knowledge in the scholar's state
+      window.GamePopulation.takeTeachEvents().forEach(function (slug) {
+        var mine = st.stateTaught[slug] || {};
+        var oldest = null;
+        Object.keys(mine).forEach(function (id) {
+          if (st.taught[id] && (oldest === null || (st.taughtDay[id] || 0) < (st.taughtDay[oldest] || 0))) oldest = id;
+        });
+        if (oldest) st.taughtDay[oldest] = Math.min(st.day, (st.taughtDay[oldest] || 0) + 3);
+      });
+      if (window.Game.choroplethFill && Math.floor(st.day) !== prevDay) window.IndiaMap.recolor();
       if (Math.floor(st.day) !== prevDay) window.GameUI.refreshDock();
       window.GameUI.updateHud(st, st.literacy - prevLiteracy);
       window.GameUI.updateEvents(st, st.day);
@@ -295,6 +327,7 @@
     window.GameCards.init();
     window.GameEvents.init(st.events);
     window.GamePopulation.init(st.pop);
+    window.GamePopulation.markScholars(st.scholars);
     window.GameUI.show();
     window.GameUI.updateHud(st, 0);
     lastT = performance.now();
@@ -307,9 +340,26 @@
     endRecite(false);
     save();
     document.body.classList.remove("game-on");
+    window.Game.choroplethFill = null;
+    window.IndiaMap.recolor();
     window.GameRender.hide();
     window.GameUI.hide();
   }
+
+  // public surface for the UI, scholars and the literacy choropleth
+  window.Game = {
+    isOn: function () { return on; },
+    stateLiteracy: function (slug) { return stateLiteracy(slug); },
+    fresh: function (id) { return fresh(id); },
+    day: function () { return st.day; },
+    refreshCard: function (id) {
+      if (st.taught[id]) {
+        st.taughtDay[id] = st.day;
+        save();
+      }
+    },
+    choroplethFill: null
+  };
 
   document.addEventListener("DOMContentLoaded", function () {
     if (!window.GameCards || !window.IndiaMap) return;

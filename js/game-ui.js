@@ -25,12 +25,14 @@
 
   function cardState(card, st) {
     if (window.GameCards.isLocked(card, st.taught)) return "locked";
-    if (st.taught[card.id]) return "taught";
+    if (st.taught[card.id]) {
+      return window.Game && window.Game.fresh(card.id) < 0.75 ? "fading" : "taught";
+    }
     if (st.studied[card.id]) return "studied";
     return "fresh";
   }
 
-  var BADGE = { locked: "🔒", fresh: "✨", studied: "📖", taught: "✔" };
+  var BADGE = { locked: "🔒", fresh: "✨", studied: "📖", taught: "✔", fading: "🕯" };
 
   function avgProsperity(st) {
     var slugs = window.IndiaMap.listStates();
@@ -86,10 +88,43 @@
     }
     if (s.moral) body += "<div class='study-moral'><b>Moral:</b> " + esc(s.moral) + "</div>";
     if (s.origin) body += "<div class='study-origin'>" + esc(s.origin) + "</div>";
-    body += "<div class='study-hint'>Close this card, then <b>hold SPACE</b> over the map — the people in earshot will listen (" + card.reciteSeconds + "s).</div></div>";
+    var st = game.getState();
+    if (st.taught[card.id]) {
+      // recall quiz: match the recite line to its teaching to refresh memory
+      var released = window.GameCards.released(st.day).filter(function (c) { return c.id !== card.id; });
+      var options = [card.title];
+      while (options.length < 3 && released.length) {
+        var pick = released.splice((Math.random() * released.length) | 0, 1)[0];
+        options.push(pick.title);
+      }
+      options.sort(function () { return Math.random() - 0.5; });
+      body += "<div class='study-quiz'><div class='k'>RECALL QUIZ</div>" +
+        "<p>Which teaching is the line above from?</p>" +
+        options.map(function (t) { return "<button class='quiz-opt' data-ok='" + (t === card.title ? 1 : 0) + "'>" + esc(t) + "</button>"; }).join("") +
+        "<div class='quiz-msg'></div></div>";
+      body += "<div class='study-hint'>Answer to refresh the people's memory — or <b>hold SPACE</b> over the map to recite it again (" + card.reciteSeconds + "s).</div></div>";
+    } else {
+      body += "<div class='study-hint'>Close this card, then <b>hold SPACE</b> over the map — the people in earshot will listen (" + card.reciteSeconds + "s).</div></div>";
+    }
     modal.innerHTML = body;
     modal.hidden = false;
     modal.querySelector(".study-close").addEventListener("click", closeStudy);
+    Array.prototype.forEach.call(modal.querySelectorAll(".quiz-opt"), function (btn) {
+      btn.addEventListener("click", function () {
+        var msg = modal.querySelector(".quiz-msg");
+        if (btn.getAttribute("data-ok") === "1") {
+          window.Game.refreshCard(card.id);
+          msg.textContent = "✔ The people's memory is refreshed.";
+          msg.className = "quiz-msg good";
+          renderDock();
+        } else {
+          btn.classList.add("shake");
+          msg.textContent = "Not this one — read the line again.";
+          msg.className = "quiz-msg bad";
+          setTimeout(function () { btn.classList.remove("shake"); }, 500);
+        }
+      });
+    });
     armedId = card.id;
     game.onStudied(card.id);
     renderDock();
@@ -98,6 +133,27 @@
   function closeStudy() {
     modal.hidden = true;
     renderDock();
+  }
+
+  function literacyRamp(L) {
+    return L < 25 ? "#f3e9d2" : L < 40 ? "#cfe6da" : L < 55 ? "#9ed4c0" : L < 70 ? "#5bbba0" : "#04806c";
+  }
+
+  var toolsBuilt = false;
+  function buildTools() {
+    if (toolsBuilt) return;
+    toolsBuilt = true;
+    var tools = document.getElementById("gameTools");
+    var lit = el("button", "tool-chip", "🗺 Literacy view");
+    lit.addEventListener("click", function () {
+      var onNow = !!window.Game.choroplethFill;
+      window.Game.choroplethFill = onNow ? null : function (slug) {
+        return literacyRamp(window.Game.stateLiteracy(slug));
+      };
+      lit.classList.toggle("active", !onNow);
+      window.IndiaMap.recolor();
+    });
+    tools.appendChild(lit);
   }
 
   window.GameUI = {
@@ -112,6 +168,8 @@
     show: function () {
       hud.hidden = false;
       dock.hidden = false;
+      buildTools();
+      document.getElementById("gameTools").hidden = false;
       renderDock();
     },
     hide: function () {
@@ -122,6 +180,10 @@
       var banner = document.getElementById("eventBanner");
       banner.innerHTML = "";
       banner.hidden = true;
+      var tools = document.getElementById("gameTools");
+      tools.hidden = true;
+      var lit = tools.querySelector(".tool-chip");
+      if (lit) lit.classList.remove("active");
     },
     armedCard: function () { return armedId ? window.GameCards.byId(armedId) : null; },
     disarm: function () { armedId = null; renderDock(); },

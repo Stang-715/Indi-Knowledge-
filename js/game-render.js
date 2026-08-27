@@ -145,6 +145,25 @@
       ctx.stroke();
     }
 
+    // scholars: white turban arc + a little book; a soft ring while teaching
+    if (p.scholar) {
+      ctx.strokeStyle = "#f7f7f5";
+      ctx.lineWidth = Math.max(1, h * 0.09);
+      ctx.beginPath();
+      ctx.arc(0, hy - headR * 0.15, headR * 0.95, Math.PI * 1.15, Math.PI * 1.85);
+      ctx.stroke();
+      ctx.fillStyle = "#c63c13";
+      ctx.fillRect(bodyW * 0.55, -bodyH * 0.7, h * 0.14, h * 0.1);
+      if (p.mode === "teach") {
+        ctx.strokeStyle = "rgba(0,160,133,0.5)";
+        ctx.lineWidth = 1 * dpr;
+        var tr = h * (0.8 + 0.25 * Math.sin(now * 3 + p.phase));
+        ctx.beginPath();
+        ctx.arc(0, -bodyH * 0.4, tr, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+    }
+
     // listening glyph
     if (p.mode === "listen") {
       ctx.fillStyle = "#f4491c";

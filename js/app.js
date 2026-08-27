@@ -779,6 +779,10 @@
       svg: document.getElementById("indiaMap"),
       tooltip: document.getElementById("tooltip"),
       getFill: function (slug) {
+        if (window.Game && window.Game.choroplethFill) {
+          var gf = window.Game.choroplethFill(slug);
+          if (gf) return gf;
+        }
         if (!getPack(App.tab.key)) return patchColor(slug);
         return App.tab.fill(getEntry(App.tab.key, slug));
       },
