@@ -81,9 +81,33 @@
     return cards;
   }
 
+  function buildSkillCards() {
+    var pack = window.INDIA_DATA && window.INDIA_DATA.skills;
+    if (!pack || !pack.cards) return [];
+    return pack.cards.map(function (sk, i) {
+      return {
+        id: sk.id,
+        kind: "skill",
+        order: i + 1,
+        job: sk.job,
+        title: sk.title,
+        subtitle: sk.subtitle,
+        stateSlug: null,
+        weight: 1.5,
+        reciteSeconds: 3,
+        releaseDay: sk.releaseDay,
+        study: {
+          recite: sk.recite,
+          summary: sk.summary,
+          origin: sk.source
+        }
+      };
+    });
+  }
+
   window.GameCards = {
     init: function () {
-      deck = buildGitaCards().concat(buildFolkloreCards());
+      deck = buildGitaCards().concat(buildFolkloreCards()).concat(buildSkillCards());
       return deck;
     },
     all: function () { return deck; },

@@ -119,6 +119,7 @@
 }
 .gcard[data-kind="gita"] { background: var(--orange-pale); }
 .gcard[data-kind="folklore"] { background: #d9efe9; }
+.gcard[data-kind="skill"] { background: #f3e9d2; }
 .gcard:hover:not(:disabled) {
   transform: translateY(-3px);
   box-shadow: 0 4px 10px rgba(62, 37, 64, 0.22);

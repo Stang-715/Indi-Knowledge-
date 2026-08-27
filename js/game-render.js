@@ -102,6 +102,49 @@
     ctx.arc(headR * 0.35, hy, headR * 0.14, 0, Math.PI * 2);
     ctx.fill();
 
+    // job props
+    if (p.job === "herder") {
+      // a little cow companion, bobbing at the herder's side
+      var cb = Math.sin(now * 4 + p.phase) * h * 0.03;
+      ctx.fillStyle = "#f7f7f5";
+      ctx.strokeStyle = "#3e2540";
+      ctx.lineWidth = Math.max(0.5, h * 0.04);
+      ctx.beginPath();
+      ctx.ellipse(bodyW * 1.3, h * 0.02 + cb, h * 0.16, h * 0.11, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle = "#3e2540";
+      ctx.beginPath();
+      ctx.arc(bodyW * 1.3 + h * 0.12, h * 0.02 + cb - h * 0.05, h * 0.05, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    if (p.mode === "work" && p.job === "farmer") {
+      // hoe raised and falling, wheat-gold arc at the feet
+      var swing = Math.abs(Math.sin(now * 3 + p.phase));
+      ctx.strokeStyle = "#7a5230";
+      ctx.lineWidth = Math.max(1, h * 0.07);
+      ctx.beginPath();
+      ctx.moveTo(bodyW * 0.5, -bodyH * 0.6);
+      ctx.lineTo(bodyW * 0.5 + h * 0.28, -bodyH * 0.6 - swing * h * 0.3);
+      ctx.stroke();
+      ctx.strokeStyle = "#fdae1c";
+      ctx.lineWidth = Math.max(1, h * 0.06);
+      ctx.beginPath();
+      ctx.arc(0, h * 0.16, h * 0.3, 0.15 * Math.PI, 0.85 * Math.PI);
+      ctx.stroke();
+    }
+    if (p.mode === "work" && p.job === "artisan") {
+      // a tiny loom with a shuttling thread
+      var sh = Math.sin(now * 6 + p.phase);
+      ctx.strokeStyle = "#7a4e8e";
+      ctx.lineWidth = Math.max(0.8, h * 0.05);
+      ctx.strokeRect(-bodyW * 1.4, -h * 0.05, h * 0.32, h * 0.2);
+      ctx.beginPath();
+      ctx.moveTo(-bodyW * 1.4, h * 0.05 + sh * h * 0.06);
+      ctx.lineTo(-bodyW * 1.4 + h * 0.32, h * 0.05 - sh * h * 0.06);
+      ctx.stroke();
+    }
+
     // listening glyph
     if (p.mode === "listen") {
       ctx.fillStyle = "#f4491c";

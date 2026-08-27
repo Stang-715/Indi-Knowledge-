@@ -32,6 +32,15 @@
 
   var BADGE = { locked: "🔒", fresh: "✨", studied: "📖", taught: "✔" };
 
+  function avgProsperity(st) {
+    var slugs = window.IndiaMap.listStates();
+    var sum = 0;
+    slugs.forEach(function (s) {
+      sum += st.prosperity && st.prosperity[s.slug] != null ? st.prosperity[s.slug] : 20;
+    });
+    return slugs.length ? sum / slugs.length : 20;
+  }
+
   function renderDock() {
     var st = game.getState();
     dock.innerHTML = "";
@@ -46,7 +55,7 @@
       c.setAttribute("data-kind", card.kind);
       c.innerHTML =
         "<span class='gcard-badge'>" + BADGE[state] + "</span>" +
-        "<span class='gcard-kind'>" + (card.kind === "gita" ? "गीता" : "लोक") + "</span>" +
+        "<span class='gcard-kind'>" + (card.kind === "gita" ? "गीता" : card.kind === "skill" ? "कौशल" : "लोक") + "</span>" +
         "<span class='gcard-title'>" + esc(card.title) + "</span>" +
         "<span class='gcard-sub'>" + esc(card.subtitle) + "</span>";
       if (state === "locked") {
@@ -63,7 +72,9 @@
   function openStudy(card) {
     var s = card.study;
     var body = "<div class='study-card'><button class='study-close' aria-label='Close'>✕</button>" +
-      "<div class='study-kicker'>" + (card.kind === "gita" ? "BHAGAVAD GITA · CHAPTER " + card.order : "FOLK TALE · " + esc(card.subtitle)) + "</div>" +
+      "<div class='study-kicker'>" + (card.kind === "gita" ? "BHAGAVAD GITA · CHAPTER " + card.order
+        : card.kind === "skill" ? "SKILL · " + esc(card.subtitle)
+        : "FOLK TALE · " + esc(card.subtitle)) + "</div>" +
       "<h2>" + esc(card.title) + (card.kind === "gita" ? " — " + esc(card.subtitle) : "") + "</h2>";
     if (s.nameSa) body += "<div class='study-sa'>" + esc(s.nameSa) + " · " + esc(s.nameTranslit) + " · " + s.verses + " slokas</div>";
     body += "<div class='study-recite'><div class='k'>RECITE THIS</div><p>“" + esc(s.recite) + "”</p></div>";
@@ -122,6 +133,7 @@
         "<span class='hud-item'>📖 <b>" + st.literacy.toFixed(1) + "%</b> literacy " +
         (trend > 0.01 ? "<i class='up'>▲</i>" : trend < -0.01 ? "<i class='down'>▼</i>" : "") + "</span>" +
         "<span class='hud-item'>👥 <b>" + window.GamePopulation.count() + "</b></span>" +
+        "<span class='hud-item'>🌾 <b>" + avgProsperity(st).toFixed(0) + "%</b></span>" +
         "<span class='hud-item'>🗓 day <b>" + Math.floor(st.day) + "</b></span>" +
         (unread ? "<span class='hud-item unread'>🃏 <b>" + unread + "</b> untaught</span>" : "");
     },

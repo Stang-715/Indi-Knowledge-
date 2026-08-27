@@ -107,8 +107,8 @@
     var here = nodes[npc.at];
     if (!here.edges.length) return;
     var options = here.edges;
-    // 85% prefer staying within the home state
-    if (Math.random() < 0.85) {
+    // workers keep close to home (95%); others wander more (85%)
+    if (Math.random() < (npc.job ? 0.95 : 0.85)) {
       var same = options.filter(function (j) { return nodes[j].state === npc.state; });
       if (same.length) options = same;
     }
@@ -156,7 +156,20 @@
         }
         if (p.mode === "idle") {
           p.idle -= dt;
-          if (p.idle <= 0) pickNextEdge(p);
+          if (p.idle <= 0) {
+            if (p.job && Math.random() < 0.5) {
+              p.mode = "work";
+              p.work = 4 + Math.random() * 4;
+            } else {
+              pickNextEdge(p);
+            }
+          }
+        } else if (p.mode === "work") {
+          p.work -= dt;
+          if (p.work <= 0) {
+            p.mode = "idle";
+            p.idle = 0.5 + Math.random();
+          }
         } else if (p.mode === "walk") {
           var a = nodes[p.at], b = nodes[p.to];
           var len = Math.sqrt(dist2(a, b)) || 1;
@@ -179,12 +192,52 @@
       }
     },
 
+    // job assignment: jobsByState[slug] = ["farmer", ...] taught there.
+    // Up to 20% of a state's population works each taught job.
+    assignJobs: function (jobsByState) {
+      var byState = {};
+      npcs.forEach(function (p) {
+        (byState[p.state] = byState[p.state] || []).push(p);
+      });
+      Object.keys(byState).forEach(function (slug) {
+        var pool = byState[slug];
+        var jobs = jobsByState[slug] || [];
+        var per = Math.floor(pool.length * 0.2);
+        var counts = {};
+        pool.forEach(function (p) {
+          if (p.job) {
+            if (jobs.indexOf(p.job) < 0) p.job = null; // skill no longer taught here
+            else counts[p.job] = (counts[p.job] || 0) + 1;
+          }
+        });
+        jobs.forEach(function (job) {
+          var need = per - (counts[job] || 0);
+          for (var i = 0; i < pool.length && need > 0; i++) {
+            if (!pool[i].job) { pool[i].job = job; need--; }
+          }
+        });
+      });
+    },
+    workerStats: function () {
+      var out = {};
+      npcs.forEach(function (p) {
+        var s = out[p.state] = out[p.state] || { workers: 0, pop: 0 };
+        s.pop++;
+        if (p.job) s.workers++;
+      });
+      return out;
+    },
+
     // vitals tick: dtDays = fraction of a game-day elapsed
-    vitals: function (dtDays, literacyOfState, nationalL) {
+    vitals: function (dtDays, literacyOfState, nationalL, prosperityOf) {
       var died = 0, born = 0;
       for (var i = npcs.length - 1; i >= 0; i--) {
         var L = literacyOfState(npcs[i].state);
         var dPerDay = 0.015 + 0.10 * Math.pow(1 - L / 100, 2);
+        if (prosperityOf) {
+          var P = prosperityOf(npcs[i].state);
+          dPerDay *= 1.3 - 0.6 * P / 100; // a fed state dies less
+        }
         if (npcs.length > 30 && Math.random() < dPerDay * dtDays) {
           effects.push({ x: npcs[i].x, y: npcs[i].y, t: 0, kind: "death" });
           npcs.splice(i, 1);

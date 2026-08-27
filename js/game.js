@@ -22,6 +22,7 @@
     taught: {},      // cardId -> true
     studied: {},     // cardId -> true
     stateTaught: {}, // slug -> {cardId: true}
+    prosperity: {},  // slug -> 0..100 (default 20)
     pop: 240
   };
   var prevLiteracy = 22;
@@ -61,13 +62,53 @@
     return Math.max(5, Math.min(99, 0.65 * st.literacy + 0.35 * comp));
   }
 
+  /* ---------- economy (Phase 2) ---------- */
+
+  function prosperityOf(slug) {
+    return st.prosperity[slug] == null ? 20 : st.prosperity[slug];
+  }
+
+  function jobsTaughtByState() {
+    var deck = window.GameCards.all();
+    var out = {};
+    Object.keys(st.stateTaught).forEach(function (slug) {
+      var jobs = [];
+      deck.forEach(function (c) {
+        if (c.kind === "skill" && c.job && st.stateTaught[slug][c.id] && jobs.indexOf(c.job) < 0) jobs.push(c.job);
+      });
+      if (jobs.length) out[slug] = jobs;
+    });
+    return out;
+  }
+
+  function arithBonus(slug) {
+    var n = 0;
+    var mine = st.stateTaught[slug] || {};
+    window.GameCards.all().forEach(function (c) {
+      if (c.kind === "skill" && !c.job && mine[c.id]) n++;
+    });
+    return 1 + 0.15 * n;
+  }
+
+  function economyTick(dtDays) {
+    var stats = window.GamePopulation.workerStats();
+    window.IndiaMap.listStates().forEach(function (s) {
+      var slug = s.slug;
+      var w = stats[slug];
+      var workerFrac = w && w.pop ? w.workers / w.pop : 0;
+      var P = prosperityOf(slug);
+      P += dtDays * (10 * workerFrac * arithBonus(slug) - 3);
+      st.prosperity[slug] = Math.max(0, Math.min(100, P));
+    });
+  }
+
   /* ---------- persistence ---------- */
 
   function save() {
     var data = JSON.stringify({
-      v: 1, day: st.day, taught: st.taught, studied: st.studied,
+      v: 2, day: st.day, taught: st.taught, studied: st.studied,
       stateTaught: st.stateTaught, pop: window.GamePopulation.count(),
-      literacy: st.literacy
+      literacy: st.literacy, prosperity: st.prosperity
     });
     try { localStorage.setItem(SAVE_KEY, data); }
     catch (e) { memorySave = data; }
@@ -79,11 +120,12 @@
     if (!raw) return;
     try {
       var d = JSON.parse(raw);
-      if (d && d.v === 1) {
+      if (d && (d.v === 1 || d.v === 2)) {
         st.day = d.day || 0;
         st.taught = d.taught || {};
         st.studied = d.studied || {};
         st.stateTaught = d.stateTaught || {};
+        st.prosperity = d.prosperity || {};
         st.pop = Math.max(30, Math.min(500, d.pop || 240));
         st.literacy = d.literacy || 22;
         prevLiteracy = st.literacy;
@@ -203,7 +245,9 @@
       var maxStep = 3 * dtDays;
       prevLiteracy = st.literacy;
       st.literacy += Math.max(-maxStep, Math.min(maxStep, target - st.literacy));
-      window.GamePopulation.vitals(dtDays, stateLiteracy, st.literacy);
+      window.GamePopulation.assignJobs(jobsTaughtByState());
+      economyTick(dtDays);
+      window.GamePopulation.vitals(dtDays, stateLiteracy, st.literacy, prosperityOf);
       if (Math.floor(st.day) !== prevDay) window.GameUI.refreshDock();
       window.GameUI.updateHud(st, st.literacy - prevLiteracy);
       saveAcc += slow;
