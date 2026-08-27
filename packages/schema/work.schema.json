@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://indi-knowledge.dev/schema/work.schema.json",
+  "title": "The corpus",
+  "description": "Works, the pillars they feed, and the events that threatened them. A work is an economic entity with unusual physics -- non-rival, excludable only by forgetting, and perishable. See docs/05-knowledge-economy.md.",
+  "type": "object",
+  "required": ["pillars", "catastrophes", "works"],
+  "properties": {
+    "pillars": { "type": "array", "items": { "$ref": "#/$defs/pillar" } },
+    "catastrophes": { "type": "array", "items": { "$ref": "#/$defs/catastrophe" } },
+    "works": { "type": "array", "items": { "$ref": "#/$defs/work" } }
+  },
+  "$defs": {
+    "year": { "type": "integer", "description": "Negative is BCE. No year zero." },
+    "pillar": {
+      "type": "object",
+      "required": ["id", "name", "arc"],
+      "properties": {
+        "id": { "type": "string", "enum": ["DESIGN", "IT", "STRUCTURE", "CLASSICISM", "NETWORKING", "TRADE", "CULTIVATION", "AGRICULTURE"] },
+        "name": { "type": "string" },
+        "arc": { "type": "string", "description": "How the pillar changes form across six thousand years without ever completing." }
+      }
+    },
+    "catastrophe": {
+      "type": "object",
+      "required": ["id", "name", "kind", "confidence"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^CAT\\.[A-Z0-9_]+$" },
+        "name": { "type": "string" },
+        "from": { "type": ["integer", "null"] },
+        "to": { "type": ["integer", "null"] },
+        "kind": {
+          "type": "string",
+          "enum": ["destruction", "displacement", "disruption", "neglect"],
+          "description": "Mechanically distinct. destruction annihilates carriers; displacement moves them somewhere unreachable (the late-game repatriation loop); neglect is not an event at all but the permanent ~300-year palm-leaf recopying drain, which costs more than every raid combined."
+        },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "note": { "type": "string" }
+      }
+    },
+    "work": {
+      "type": "object",
+      "required": ["id", "title", "tradition", "subject", "language", "composed_from", "composed_to",
+                   "date_precision", "confidence", "attribution_kind", "transmission", "derives_from", "pillars", "survival"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^WRK\\.[A-Z0-9_]+$" },
+        "title": { "type": "string" },
+        "tradition": { "type": "string", "description": "vedic, buddhist, jain, epic, story, shastra, tamil, kavya, bhakti, sikh, persianate, folk, modern." },
+        "subject": { "type": "string" },
+        "language": { "type": "string" },
+        "composed_from": { "$ref": "#/$defs/year" },
+        "composed_to": { "$ref": "#/$defs/year" },
+        "date_precision": { "type": "string", "enum": ["year", "decade", "century", "millennium"] },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "attributed_to": { "type": "string" },
+        "attribution_kind": {
+          "type": "string",
+          "enum": ["authored", "attributed", "compiled", "anonymous", "school"],
+          "description": "Most of the corpus is attributed rather than authored. That distinction is content, not a data-quality problem."
+        },
+        "transmission": { "type": "string", "enum": ["oral", "manuscript", "both", "print"] },
+        "derives_from": {
+          "type": "array", "items": { "type": "string" },
+          "description": "The IP graph. Prestige flows backward along these edges, so patronising a foundational work still pays centuries later. Must be acyclic, and a source may not postdate the work deriving from it -- both enforced by tools/build-corpus.mjs."
+        },
+        "pillars": { "type": "array", "items": { "type": "string" }, "description": "Which development pillars this work feeds. How knowledge drives development rather than sitting beside it." },
+        "survival": {
+          "type": "string",
+          "enum": ["extant", "partial", "lost", "recension"],
+          "description": "recension = the original is gone but adaptations survive (Brihatkatha, Panchatantra). This is the redundancy mechanic, historically attested."
+        },
+        "note": { "type": "string" }
+      }
+    }
+  }
+}

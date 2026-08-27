@@ -1,0 +1,567 @@
+{
+ "note": "The texture layer (phase 37). Minor incidents composed at tick time from these templates: era-ranged, state-gated via `needs`, weighted, cooled down per template (cooldowns in play minutes, converted at era cadence) so a century never repeats a surface string. This layer IS the m-magnitude tier — authored data keeps W/M/R, and 173 hours of deep past cannot run on authored events alone (07-timeline §5.3).",
+ "goods": [
+  "salt",
+  "cotton",
+  "pepper",
+  "copper",
+  "shell bangles",
+  "carnelian beads",
+  "grain",
+  "iron",
+  "silk",
+  "horses",
+  "dried fish",
+  "timber",
+  "indigo",
+  "sugar"
+ ],
+ "templates": [
+  {
+   "id": "drought-bites",
+   "texts": [
+    "The rains fail at {place}. The tanks hold, barely.",
+    "A second dry year around {place}; the herds are driven further than anyone likes.",
+    "The wells at {place} are deepened by hand. The river is a memory this season."
+   ],
+   "weight": 2.0,
+   "cooldown": 27,
+   "needs": {
+    "shock": "AGRICULTURE"
+   },
+   "effects": {
+    "AGRICULTURE": -0.3
+   }
+  },
+  {
+   "id": "good-harvest",
+   "texts": [
+    "A heavy harvest around {place}. The granaries want repair before winter.",
+    "Two good rains in sequence; {place} eats well and marries off its young.",
+    "The threshing floors at {place} work past dark. A year to be remembered kindly."
+   ],
+   "weight": 2.2,
+   "cooldown": 25,
+   "needs": {
+    "noShock": "AGRICULTURE"
+   },
+   "effects": {
+    "AGRICULTURE": 0.3
+   }
+  },
+  {
+   "id": "river-shifts",
+   "texts": [
+    "The river moves a ford near {place}. The ferrymen adjust; the maps do not exist to be wrong.",
+    "A sandbank closes the old channel at {place}. Boats learn the new one within a season."
+   ],
+   "weight": 0.8,
+   "cooldown": 67,
+   "effects": {
+    "TRADE": -0.2
+   }
+  },
+  {
+   "id": "flood-year",
+   "texts": [
+    "The river takes the low fields at {place} and leaves silt as payment.",
+    "Flood at {place}; the village rebuilds a little higher, as its grandparents did."
+   ],
+   "weight": 1.0,
+   "cooldown": 36,
+   "effects": {
+    "AGRICULTURE": -0.2,
+    "STRUCTURE": -0.1
+   }
+  },
+  {
+   "id": "locusts",
+   "texts": [
+    "Locusts cross the fields near {place}. What they leave is enough. Barely.",
+    "A locust year around {place}; children are sent into the fields with drums."
+   ],
+   "weight": 0.6,
+   "cooldown": 90,
+   "effects": {
+    "AGRICULTURE": -0.4
+   }
+  },
+  {
+   "id": "herd-lost",
+   "texts": [
+    "Lions take cattle near {place}; the herders sit up nights with fire.",
+    "A sickness runs through the herds at {place}. The strongest bull is buried, not eaten."
+   ],
+   "weight": 1.2,
+   "cooldown": 67,
+   "years": [
+    -6000,
+    600
+   ],
+   "effects": {
+    "AGRICULTURE": -0.2
+   }
+  },
+  {
+   "id": "tank-silts",
+   "texts": [
+    "The tank at {place} silts and the assembly argues about whose turn it is to dig.",
+    "Desilting at {place}: a month of mud, and water for three more years."
+   ],
+   "weight": 1.2,
+   "cooldown": 31,
+   "years": [
+    -800,
+    1947
+   ],
+   "effects": {
+    "STRUCTURE": 0.1
+   }
+  },
+  {
+   "id": "forest-clearing",
+   "texts": [
+    "New fields are burned out of the forest near {place}. The ash feeds two harvests.",
+    "The clearance line moves a little past {place} this generation."
+   ],
+   "weight": 1.0,
+   "cooldown": 67,
+   "years": [
+    -1300,
+    1600
+   ],
+   "effects": {
+    "AGRICULTURE": 0.2,
+    "NETWORKING": -0.1
+   }
+  },
+  {
+   "id": "manuscript-rot",
+   "texts": [
+    "A chest opened at {place}: worm has taken the outer leaves of a {work} copy.",
+    "Damp finds a manuscript of the {work} at {place}. The scribe curses the monsoon and begins again."
+   ],
+   "weight": 1.6,
+   "cooldown": 25,
+   "years": [
+    -400,
+    1900
+   ],
+   "needs": {
+    "writtenWorks": 1
+   },
+   "effects": {
+    "IT": -0.1
+   }
+  },
+  {
+   "id": "recitation-tested",
+   "texts": [
+    "Two lineages recite against each other at {place}; a dropped syllable is caught and corrected.",
+    "A boy completes the year-long test at {place}. His teacher says nothing, which is praise."
+   ],
+   "weight": 1.6,
+   "cooldown": 25,
+   "needs": {
+    "reciters": 2
+   },
+   "effects": {
+    "IT": 0.15,
+    "CULTIVATION": 0.1
+   }
+  },
+  {
+   "id": "storyteller-arrives",
+   "texts": [
+    "A storyteller works the villages near {place}, paid in meals and barley.",
+    "At {place} the storyteller adds a local flood to an old tale. In a century it will be canon."
+   ],
+   "weight": 1.8,
+   "cooldown": 25,
+   "effects": {
+    "CULTIVATION": 0.15,
+    "NETWORKING": 0.1
+   }
+  },
+  {
+   "id": "student-surpasses",
+   "texts": [
+    "A student at {place} corrects the teacher, publicly, correctly. An awkward feast follows.",
+    "The best student at {place} is sent on — there is nothing more to teach here."
+   ],
+   "weight": 1.0,
+   "cooldown": 40,
+   "needs": {
+    "reciters": 1
+   },
+   "effects": {
+    "CULTIVATION": 0.2
+   }
+  },
+  {
+   "id": "lineage-ends",
+   "texts": [
+    "An old reciter dies at {place} with no student ready. What he alone carried goes with him.",
+    "The last of a teaching line at {place} is buried. The neighbours cannot say what was lost, which is the loss."
+   ],
+   "weight": 0.8,
+   "cooldown": 54,
+   "needs": {
+    "reciters": 1
+   },
+   "effects": {
+    "IT": -0.25
+   }
+  },
+  {
+   "id": "copy-commissioned",
+   "texts": [
+    "A merchant at {place} pays for a copy of the {work} as merit.",
+    "A widow at {place} endows the copying of the {work} in her husband's name."
+   ],
+   "weight": 1.2,
+   "cooldown": 27,
+   "years": [
+    -300,
+    1900
+   ],
+   "needs": {
+    "writtenWorks": 1
+   },
+   "effects": {
+    "IT": 0.2
+   }
+  },
+  {
+   "id": "school-quarrel",
+   "texts": [
+    "Two schools at {place} dispute a reading. It takes a decade and settles nothing.",
+    "A quarrel over precedence at {place}; the younger school walks out and prospers."
+   ],
+   "weight": 0.8,
+   "cooldown": 49,
+   "needs": {
+    "reciters": 2
+   },
+   "effects": {
+    "CLASSICISM": 0.1
+   }
+  },
+  {
+   "id": "found-inscription",
+   "texts": [
+    "Ploughing near {place} turns up an old inscribed stone. It is set upright and garlanded.",
+    "Children find worked stone in a field at {place}. The old people have three explanations."
+   ],
+   "weight": 0.8,
+   "cooldown": 67,
+   "years": [
+    -200,
+    1947
+   ]
+  },
+  {
+   "id": "caravan-late",
+   "texts": [
+    "A caravan is a month late into {place}. Prices say so before the news does.",
+    "Word at {place}: the pass held snow into spring. The {good} will be dear this year."
+   ],
+   "weight": 1.4,
+   "cooldown": 25,
+   "needs": {
+    "routeOpen": true
+   },
+   "effects": {
+    "TRADE": -0.15
+   }
+  },
+  {
+   "id": "market-day",
+   "texts": [
+    "A good market at {place}: {good} moving briskly, and a dispute over weights settled by lunch.",
+    "The {good} sellers at {place} agree standard measures. The buyers celebrate cautiously."
+   ],
+   "weight": 1.6,
+   "cooldown": 25,
+   "needs": {
+    "routeOpen": true
+   },
+   "effects": {
+    "TRADE": 0.2
+   }
+  },
+  {
+   "id": "new-ferry",
+   "texts": [
+    "A new ferry at {place}; the crossing that took a morning takes an hour.",
+    "The ford at {place} gets a rope and a toll. Complaints, and traffic, both rise."
+   ],
+   "weight": 0.9,
+   "cooldown": 45,
+   "effects": {
+    "TRADE": 0.15,
+    "NETWORKING": 0.1
+   }
+  },
+  {
+   "id": "merchant-marriage",
+   "texts": [
+    "Two trading families of {place} marry their children. The route is now a household matter.",
+    "A marriage at {place} settles a debt and opens a road. Cheaper than soldiers."
+   ],
+   "weight": 1.0,
+   "cooldown": 36,
+   "needs": {
+    "routeOpen": true
+   },
+   "effects": {
+    "NETWORKING": 0.25
+   }
+  },
+  {
+   "id": "weights-dispute",
+   "texts": [
+    "A weights dispute at {place} goes to the assembly. The offending stone is broken publicly.",
+    "A trader at {place} is caught with a hollow weight. His name is remembered longer than his goods."
+   ],
+   "weight": 0.8,
+   "cooldown": 40,
+   "needs": {
+    "routeOpen": true
+   },
+   "effects": {
+    "TRADE": 0.1
+   }
+  },
+  {
+   "id": "boat-lost",
+   "texts": [
+    "A boat goes down off {place} with the season's {good}. The sea keeps its accounts privately.",
+    "Wreckage at {place}. The insurers — three brothers and an uncle — argue apportionment for a year."
+   ],
+   "weight": 0.7,
+   "cooldown": 49,
+   "years": [
+    -2600,
+    1947
+   ],
+   "needs": {
+    "routeOpen": true
+   },
+   "effects": {
+    "TRADE": -0.2
+   }
+  },
+  {
+   "id": "boundary-feud",
+   "texts": [
+    "A boundary feud near {place}: two villages, one mango tree, forty years of grievance.",
+    "The feud at {place} is settled by oath at the shrine. The tree is declared nobody's."
+   ],
+   "weight": 1.4,
+   "cooldown": 25,
+   "effects": {
+    "NETWORKING": -0.1
+   }
+  },
+  {
+   "id": "wedding-season",
+   "texts": [
+    "A wedding at {place} empties three granaries and settles two disputes.",
+    "Wedding season at {place}; the drummers are booked a year ahead."
+   ],
+   "weight": 1.6,
+   "cooldown": 25,
+   "effects": {
+    "NETWORKING": 0.15
+   }
+  },
+  {
+   "id": "well-dug",
+   "texts": [
+    "A new well at {place}, dug by subscription. The donors' names are recited, in order, often.",
+    "The well at {place} strikes sweet water at forty hands. A feast, and then the argument about turns."
+   ],
+   "weight": 1.2,
+   "cooldown": 31,
+   "effects": {
+    "STRUCTURE": 0.15
+   }
+  },
+  {
+   "id": "epidemic-passes",
+   "texts": [
+    "A fever runs through {place} and moves on. The season's work limps.",
+    "Sickness at {place}; the shrine is busy and the fields are not."
+   ],
+   "weight": 1.0,
+   "cooldown": 40,
+   "effects": {
+    "AGRICULTURE": -0.2,
+    "CULTIVATION": -0.1
+   }
+  },
+  {
+   "id": "craft-prize",
+   "texts": [
+    "A weaver at {place} finishes a cloth people walk a day to see.",
+    "The potters of {place} fire a batch so fine the buyer pays without haggling. Once."
+   ],
+   "weight": 1.2,
+   "cooldown": 27,
+   "effects": {
+    "DESIGN": 0.2
+   }
+  },
+  {
+   "id": "shrine-repaired",
+   "texts": [
+    "The shrine at {place} gets a new roof. The carpenter signs a beam where nobody will see.",
+    "Repairs at {place}: the old image is carried out, washed, and carried back. The whole village walks with it."
+   ],
+   "weight": 1.4,
+   "cooldown": 25,
+   "years": [
+    -1500,
+    1947
+   ],
+   "effects": {
+    "CULTIVATION": 0.15,
+    "STRUCTURE": 0.1
+   }
+  },
+  {
+   "id": "hero-stone",
+   "texts": [
+    "A hero stone is raised near {place} for a man who died turning a cattle raid.",
+    "The new hero stone at {place} gets oil and flowers. The raiders' village pretends not to know."
+   ],
+   "weight": 0.9,
+   "cooldown": 45,
+   "years": [
+    -1000,
+    1600
+   ],
+   "effects": {
+    "CULTIVATION": 0.1
+   }
+  },
+  {
+   "id": "pilgrims-pass",
+   "texts": [
+    "Pilgrims pass through {place} heading for the river. The village sells them everything twice.",
+    "A pilgrim party rests at {place} and leaves behind a song nobody here knew."
+   ],
+   "weight": 1.4,
+   "cooldown": 25,
+   "years": [
+    -600,
+    1947
+   ],
+   "effects": {
+    "NETWORKING": 0.15,
+    "CULTIVATION": 0.1
+   }
+  },
+  {
+   "id": "famine-shared",
+   "texts": [
+    "Grain moves quietly between kin at {place}; nobody calls it what it is.",
+    "The headman at {place} opens his pit early. It is remembered at the next election of the committee."
+   ],
+   "weight": 1.2,
+   "cooldown": 31,
+   "needs": {
+    "shock": "AGRICULTURE"
+   },
+   "effects": {
+    "NETWORKING": 0.2
+   }
+  },
+  {
+   "id": "migration-in",
+   "texts": [
+    "Families from the failed lands settle below {place}. In a generation the accent will be local.",
+    "New households at {place}; the assembly grants waste land and watches carefully."
+   ],
+   "weight": 0.9,
+   "cooldown": 54,
+   "needs": {
+    "shock": "AGRICULTURE"
+   },
+   "effects": {
+    "AGRICULTURE": 0.15
+   }
+  },
+  {
+   "id": "assessor-visits",
+   "texts": [
+    "An assessor works the fields near {place}. The measuring rope is checked against the temple's.",
+    "Assessment at {place}: three appeals, one granted, all recorded."
+   ],
+   "weight": 1.2,
+   "cooldown": 27,
+   "years": [
+    -600,
+    1947
+   ],
+   "effects": {
+    "STRUCTURE": 0.1
+   }
+  },
+  {
+   "id": "toll-argued",
+   "texts": [
+    "The toll at {place} rises; the carters reroute for a season until it quietly falls.",
+    "A toll-farmer at {place} overreaches and is replaced. His successor overreaches more slowly."
+   ],
+   "weight": 1.0,
+   "cooldown": 33,
+   "years": [
+    -600,
+    1947
+   ],
+   "needs": {
+    "routeOpen": true
+   },
+   "effects": {
+    "TRADE": -0.1
+   }
+  },
+  {
+   "id": "soldiers-drill",
+   "texts": [
+    "Levies drill at {place} after harvest. More dust than menace, this year.",
+    "The muster at {place}: spears counted, two missing, one goat accepted in lieu."
+   ],
+   "weight": 0.9,
+   "cooldown": 36,
+   "years": [
+    -1000,
+    1947
+   ],
+   "needs": {
+    "soldiers": 1
+   },
+   "effects": {
+    "STRUCTURE": 0.1
+   }
+  },
+  {
+   "id": "edict-read",
+   "texts": [
+    "An order is read aloud at {place}. Half the crowd came for the reading, half for the market after.",
+    "A proclamation at {place}; the scribe reads it twice, the second time slower, for the summariser at the back."
+   ],
+   "weight": 0.9,
+   "cooldown": 40,
+   "years": [
+    -260,
+    1947
+   ],
+   "effects": {
+    "IT": 0.1
+   }
+  }
+ ]
+}

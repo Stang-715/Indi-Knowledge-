@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Paramountcy</title>
+<link rel="stylesheet" href="../../packages/ui/src/kit.css">
+<style>
+  html,body { height:100%; }
+  /* The frame (phase 2, docs/21-hud.md): five regions. Row one is the status
+     bar; row two splits rail | stage | side. The rail stays hidden until
+     phase 6 populates it — an empty 58px column reads as a bug, not a plan. */
+  #app { display:grid; grid-template-rows: auto 1fr; height:100dvh; gap:0; }
+  #main { display:grid; grid-template-columns: 1fr 322px; min-height:0; }
+  #rail { display:none; }
+  body[data-rail] #main { grid-template-columns: 58px 1fr 322px; }
+  body[data-rail] #rail { display:flex; background:var(--sheet);
+    border-right:1px solid var(--rule); flex-direction:column; align-items:center;
+    padding:10px 0; gap:7px; }
+  /* Below 900px the panel goes under the map rather than beside it.
+     `grid-template-rows: 1fr auto` looks right and is not: `auto` is
+     content-sized, ten panels are taller than any phone, and the `1fr` map row
+     is squeezed to ZERO height. The map was 390x0 — present, painted, and
+     invisible. Give the stage an explicit share and let the panel scroll. */
+  @media (max-width: 900px) {
+    #main  { grid-template-columns: 1fr !important; grid-template-rows: 52dvh minmax(0, 1fr); }
+    body[data-rail] #rail { flex-direction:row; padding:4px 8px; overflow-x:auto;
+      border-right:0; border-bottom:1px solid var(--rule); grid-row:2; }
+    body[data-rail] #main { grid-template-rows: 52dvh auto minmax(0, 1fr); }
+    #stage { min-height: 0; }
+    aside  { border-left: 0; border-top: 1px solid var(--rule); min-height: 0; }
+    /* The status bar carries many controls; at 390px they wrap, never overflow. */
+    #hud   { gap: 5px; padding: 5px 7px; }
+    #hud .rule { display: none; }
+    #year  { font-size: 15px; min-width: 80px; }
+    #notices { right: 8px; top: auto; bottom: 8px; width: auto; left: 8px; }
+    #scrubber { width: 110px; }
+    /* On a phone the stage is only 56dvh, so a full-height card would cover the
+       very thing the player opened the game to look at. Trim it to a title and
+       two taps; the descriptions are read on desktop and in the way here. */
+    #start { padding: 0 10px 10px; }
+    .startcard { max-width: none; padding: 12px 14px 12px; width: 100%; }
+    .startcard h1 { font-size: 20px; margin-bottom: 2px; }
+    .startcard .lede { display: none; }
+    .picks .btn { padding: 9px 12px; }
+    .picks .btn span { display: none; }
+  }
+  /* A grid child will not shrink below its content unless told to. */
+  #stage, aside { min-width: 0; }
+
+  #stage { position:relative; overflow:hidden; }
+  #map { display:block; width:100%; height:100%; touch-action:none; cursor:grab; }
+  #map.drag { cursor:grabbing; }
+
+  /* The status bar: the old floating #hud, laid flat across the table edge. */
+  #hud { display:flex; gap:8px; align-items:center; flex-wrap:wrap;
+         background:var(--paper); border-bottom:1px solid var(--rule); padding:6px 12px;
+         box-shadow:var(--shadow-contact); position:relative; z-index:20; }
+  #year { font-size:17px; font-weight:600; font-variant-numeric:tabular-nums; min-width:96px; }
+  #era  { font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); }
+  #hud .spacer { flex:1; }
+  /* Vitals (phase 3): the zero-click layer. Every readout is a click-through
+     and every danger state must be visible without opening anything. */
+  #vitals { display:flex; gap:4px; align-items:center; }
+  .vital { display:flex; flex-direction:column; gap:1px; cursor:pointer;
+           padding:2px 8px; border:1px solid transparent; }
+  .vital:hover { border-color:var(--rule); background:var(--sheet); }
+  .vital .k { font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-soft); }
+  .vital .v { font-family:var(--mono); font-size:13.5px; font-variant-numeric:tabular-nums; }
+  .vital .v small { font-size:10px; color:var(--ink-soft); }
+  .vital.bad .v  { color:var(--warn); font-weight:700; }
+  .vital.dire .v { color:#8a3324; font-weight:700; }
+  .pillarglyphs { display:flex; gap:4px; cursor:pointer; padding:3px 8px;
+                  border:1px solid transparent; }
+  .pillarglyphs:hover { border-color:var(--rule); background:var(--sheet); }
+  .pg { width:6px; height:24px; background:var(--sheet-shade);
+        box-shadow:inset 0 1px 2px rgba(42,33,24,.3); position:relative; }
+  .pg i { position:absolute; left:0; right:0; bottom:0; background:var(--table-deep); }
+
+  /* The start card sits low and the scrim is light, because the first thing a
+     player should see is the map — not a dark sheet over it. Reported as
+     "I can't see the map", and they were right: the map was behind a 55% scrim. */
+  #start { position:absolute; inset:0; display:grid; align-items:end; justify-items:center;
+           padding:0 16px 6vh; z-index:30; pointer-events:none;
+           background:linear-gradient(to bottom, rgba(42,33,24,0) 34%, rgba(42,33,24,.34) 100%); }
+  #start .startcard { pointer-events:auto; }
+  #start.off { display:none; }
+  .startcard { background:var(--paper); border:1px solid var(--rule); max-width:520px;
+               padding:26px 28px 24px; box-shadow:var(--shadow-lift); }
+  .startcard h1 { margin:0 0 4px; font-size:30px; letter-spacing:.01em; }
+  .startcard .lede { margin:0 0 18px; color:var(--ink-soft); font-size:14px; line-height:1.5; }
+  .picks { display:flex; flex-direction:column; gap:8px; }
+  .picks .btn { text-align:left; padding:11px 14px; display:flex; flex-direction:column; gap:3px; }
+  .picks .btn b { font-size:15px; }
+  .picks .btn span { font-size:12px; opacity:.8; font-weight:400; }
+  #scrub { display:flex; align-items:center; gap:8px; }
+  #scrubber { width:190px; accent-color:var(--gold); }
+  #scrub-year { font-family:var(--mono); font-size:11px; min-width:66px; }
+  #modes { position:absolute; left:14px; bottom:14px; display:flex; gap:2px; }
+  #notices { position:absolute; right:14px; top:14px; width:290px;
+             display:flex; flex-direction:column; gap:6px; pointer-events:none; }
+  #loading { position:absolute; inset:0; display:grid; place-items:center;
+             background:var(--table); font-size:14px; color:var(--ink-soft); z-index:9; }
+
+  aside { background:var(--sheet); border-left:1px solid var(--rule);
+          overflow-y:auto; padding:14px; display:flex; flex-direction:column; gap:12px; }
+  aside::-webkit-scrollbar { width:9px; }
+  aside::-webkit-scrollbar-thumb { background:var(--table-deep); }
+
+  .panel h2 { margin:0 0 8px; font-size:11px; letter-spacing:.12em;
+              text-transform:uppercase; color:var(--ink-soft); font-weight:600; }
+  .acts { display:flex; flex-wrap:wrap; gap:5px; }
+  #chest { max-height:270px; overflow-y:auto; }
+  #frontier { font-size:12px; }
+  #locked { margin-top:8px; font-size:11px; color:var(--ink-soft); }
+  #locked div { padding:2px 0; }
+  #locked b { color:var(--warn); }
+  .stances { display:flex; gap:3px; }
+  .stances button { font-size:10px; padding:1px 6px; }
+  #people { font-size:12px; }
+  .per { display:flex; align-items:baseline; gap:7px; padding:4px 0;
+         border-bottom:1px solid rgba(42,33,24,.08); }
+  .per .nm { flex:1; }
+  .per .role { font-size:10px; letter-spacing:.06em; text-transform:uppercase;
+               color:var(--ink-soft); }
+  .per button { font-size:11px; padding:2px 8px; }
+  .prov { font-size:9px; letter-spacing:.08em; padding:1px 4px; border:1px solid var(--rule);
+          color:var(--ink-soft); }
+  .prov--SOURCED { border-color:var(--land-fertile); color:#4c6136; }
+  .prov--DERIVED { border-color:var(--land-arid); }
+  .prov--SYNTHESIZED { border-style:dashed; opacity:.75; }
+  .disputed { color:var(--warn); font-weight:600; }
+  #endowments { margin-top:7px; font-size:11px; }
+  .endw { display:flex; justify-content:space-between; padding:2px 0; color:var(--ink-soft); }
+  .endw.dead { opacity:.45; text-decoration:line-through; }
+  #routes { font-size:12px; }
+  .route { padding:4px 0; border-bottom:1px solid rgba(42,33,24,.08); }
+  .route .nm { display:flex; justify-content:space-between; }
+  .route .four { display:flex; gap:6px; margin-top:3px; }
+  .route .four span { flex:1; }
+  .route .four i { display:block; height:4px; background:var(--sheet-shade);
+                   box-shadow:inset 0 1px 2px rgba(42,33,24,.3); }
+  .route .four i b { display:block; height:100%; background:var(--table-deep); }
+  .route.choked .nm { color:var(--warn); font-weight:600; }
+  #log { max-height:150px; overflow-y:auto; font-size:12px; line-height:1.5; }
+  #log div { padding:1px 0; }
+  #log .y { color:var(--ink-faint); font-family:var(--mono); font-size:10px; margin-right:6px; }
+</style>
+</head>
+<body data-era="neolithic">
+<div id="app">
+  <div id="hud">
+    <div class="clockbar">
+      <div class="gnomon" id="gnomon"></div>
+      <div>
+        <div id="year">6000 BCE</div>
+        <div id="era">Early Neolithic</div>
+      </div>
+    </div>
+    <div class="rule" style="width:1px;height:30px;margin:0 4px"></div>
+    <button class="btn" id="play">▶ play</button>
+    <button class="btn" id="speed">1×</button>
+    <div id="scrub"><input type="range" id="scrubber" min="0" max="100" value="100"
+      title="Scrub the campaign. A replay is the same world evaluated at a different year."><span id="scrub-year"></span></div>
+    <div class="rule" style="width:1px;height:30px;margin:0 4px"></div>
+    <span id="vitals"></span>
+    <button class="btn" id="sitbtn" title="Situations: what needs attention, by tier. Red is irreversible.">situations<span class="num" id="sitnum">0</span></button>
+    <span class="spacer"></span>
+    <button class="btn" id="soundbtn" title="The audio is the corpus: fuller when more is held, darker when more is lost, and silent in 1193.">♪ off</button>
+    <button class="btn" id="share" title="Copy a link that opens this exact campaign.">share</button>
+    <button class="btn" id="savebtn" title="Copy the campaign to the clipboard. It is a few kilobytes — the world is recomputed from it.">save</button>
+    <button class="btn" id="helpbtn" title="Label every panel with its one-line purpose.">?</button>
+    <button class="btn" id="codex" title="The reference: every era, chapter, event, thread and work — dates shown as the evidence supports them, never as this campaign will roll them.">codex</button>
+    <button class="btn" id="chronicle" title="The book of this campaign: what happened, what you did, and a taste of the quiet years. Kept the way the Ahoms kept theirs.">chronicle</button>
+    <button class="btn" id="telemetry" title="Playtest data: copy the local session metrics to paste into a findings report. Nothing leaves this machine on its own.">metrics</button>
+    <button class="btn" id="creditsbtn" title="The type, the record, the method — licences and the colophon.">credits</button>
+    <label class="btn" for="loadfile" title="Open a saved campaign from a file.">load
+      <input type="file" id="loadfile" accept=".json" hidden></label>
+  </div>
+  <div id="main">
+  <nav id="rail" aria-label="Drawers"></nav>
+  <div id="stage">
+    <canvas id="map" tabindex="0" role="application" aria-label="The map of the subcontinent. Arrow keys pan, plus and minus zoom, space plays and pauses."></canvas>
+    <div id="loading">building the world…</div>
+    <div id="modes" class="tabs"></div>
+    <div id="interiors" style="display:none">
+        <button class="btn tiny" data-room="scriptorium" title="What is being copied right now, thinnest first.">the scriptorium</button>
+        <button class="btn tiny" data-room="treasury" title="The endowments actually paying, and what value weighs.">the treasury</button>
+        <button class="btn tiny" data-room="assembly" title="This year's committee, drawn by lot the way the wall says.">the assembly</button>
+      </div>
+      <div id="notices" aria-live="polite"></div>
+      <div id="sitlist" style="display:none"></div>
+    <div id="start">
+      <div class="startcard">
+        <h1>Paramountcy</h1>
+        <p class="lede">An India-only grand strategy game where the economy you
+          protect is a library.</p>
+        <div class="picks">
+          <button class="btn btn--primary" data-campaign="chola">
+            <b>The Chola Age</b><span>Thanjavur, 850. The record runs to village
+            resolution here — and the survey is unfinished, and the Pandyas are not.
+            First task: feed a reciter before you raise a wall.</span></button>
+          <button class="btn" data-campaign="full">
+            <b>The long campaign</b><span>Mehrgarh, 6000 BCE. Seven thousand nine
+            hundred and forty-seven years, and for the first three thousand the
+            library is people. First task: grow enough to feed one memory.</span></button>
+        </div>
+      </div>
+    </div>
+    <div id="drawer"><div id="drawer-inner"></div>
+      <button class="btn" id="drawer-close">close</button></div>
+  </div>
+
+  <aside>
+    <div class="tabs" id="outliner-tabs" style="margin-bottom:2px">
+      <button class="tab" data-otab="all" aria-selected="true">all</button>
+      <button class="tab" data-otab="pinned" aria-selected="false">pinned</button>
+    </div>
+    <div class="panel" id="o-pinned-wrap">
+      <h2 data-purpose="What you chose to keep in sight. Stars anywhere pin here.">Pinned</h2>
+      <div id="outliner-pins"></div>
+    </div>
+    <div class="panel o-all">
+      <h2 data-purpose="What is happening whether you watch or not. These cannot be dismissed while they run.">Ongoing</h2>
+      <div id="occupation-banner"></div>
+      <div id="outliner-auto"></div>
+      <div id="watched" class="watched" style="display:none"></div>
+    </div>
+    <div id="slips" aria-live="polite"></div>
+    <div class="panel o-all">
+      <h2 data-purpose="Works gaining a written carrier at your desks, thinnest first.">Copying</h2>
+      <div id="copyqueue"></div>
+    </div>
+
+    <div class="panel o-all">
+      <h2>Chronicle</h2>
+      <div id="log"></div>
+    </div>
+
+    <div id="colophon" class="tiny muted" title="The fingerprint a bug report needs: commit, build date, datapack hash."></div>
+  </aside>
+  </div>
+</div>
+
+<!-- The six drawer bodies (HUD phase 6). Parked here unmounted; openRail()
+     mounts one at a time into the rail panel. IDs and their listeners
+     survive the move because the nodes move, not their markup. -->
+<div id="panels" hidden>
+  <div class="railbody" data-rail-panel="ledger" data-title="The Ledger">
+    <div class="panel ledger">
+      <h2 data-purpose="What you have: grain, coin, people.">Holdings</h2>
+      <div class="ledger-row"><span>Grain</span><span class="v" id="grain">—</span></div>
+      <div class="ledger-row"><span>Coin</span><span class="v" id="coin">—</span></div>
+      <div class="ledger-row"><span>Farmers</span><span class="v" id="farmers">—</span></div>
+      <div class="ledger-row"><span>Reciters</span><span class="v" id="reciters">—</span></div>
+      <div class="ledger-row"><span>Scribes</span><span class="v" id="scribes">—</span></div>
+      <div class="ledger-row"><span>Soldiers</span><span class="v" id="soldiers">—</span></div>
+    </div>
+    <div class="panel"><h2>Flows</h2><div id="flows"></div></div>
+    <div class="panel"><h2>Decisions</h2><div class="acts" id="acts"></div></div>
+    <div class="panel"><h2>Goods</h2><div class="tokens" id="goods"></div></div>
+  </div>
+
+  <div class="railbody" data-rail-panel="library" data-title="The Library">
+    <div class="panel">
+      <h2 data-purpose="The library you are keeping alive. Grey means gone.">The Corpus <span class="tiny muted" id="corpus-sum"></span></h2>
+      <div class="tabs" id="libfilters" style="margin-bottom:6px"></div>
+      <div id="workdetail"></div>
+      <div class="chest" id="chest"></div>
+    </div>
+  </div>
+
+  <div class="railbody" data-rail-panel="people" data-title="The People">
+    <div class="panel">
+      <h2 data-purpose="The named: reciters, scribes, patrons — the knowledge infrastructure.">People <span class="tiny muted" id="people-sum"></span></h2>
+      <div id="people"></div>
+      <h2 style="margin-top:10px" data-purpose="Schools: unbroken lines of hands. One member left means one death ends it.">Lineages</h2>
+      <div id="lineages"></div>
+      <div id="endowments"></div>
+    </div>
+  </div>
+
+  <div class="railbody" data-rail-panel="land" data-title="The Land">
+    <div id="districtdetail"></div>
+    <div class="panel">
+      <h2 id="indus-h" style="display:none" data-purpose="The Indus cities against the drying. Triage, not defence.">The Emptying <span class="tiny muted" id="indus-sum"></span></h2>
+      <div id="indus"></div>
+      <h2 data-purpose="The people of the treeline. Learn and Clear are both remembered.">The Frontier <span class="tiny muted" id="frontier-sum"></span></h2>
+      <div id="frontier"></div>
+      <h2>Survey <span class="tiny muted" id="survey-sum"></span></h2>
+      <div id="survey"></div>
+    </div>
+  </div>
+
+  <div class="railbody" data-rail-panel="road" data-title="The Road">
+    <div class="panel">
+      <h2 data-purpose="Roads and sea lanes. Standing orders keep them working while you look away.">Routes</h2>
+      <div id="routes"></div>
+      <div class="acts" id="route-acts" style="margin-top:6px"></div>
+    </div>
+    <div class="panel">
+      <h2 data-purpose="Expeditions on the march. They take as long as the road does.">Missions</h2>
+      <div id="missionlist"></div>
+    </div>
+    <div class="panel">
+      <h2 data-purpose="Standing is bought with shared surplus, and a generation's appetite is finite.">Partners</h2>
+      <div id="partnerlist"></div>
+    </div>
+  </div>
+
+  <div class="railbody" data-rail-panel="court" data-title="The Court">
+    <div class="panel">
+      <h2>Pillars <span class="tiny muted" id="trust-rung"></span></h2>
+      <div id="pillars"></div>
+      <div id="locked"></div>
+    </div>
+    <div class="panel"><h2>Sovereignty</h2><div id="court"></div></div>
+  </div>
+</div>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>

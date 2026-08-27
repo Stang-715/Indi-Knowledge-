@@ -1,0 +1,2104 @@
+{
+  "$schema": "../../packages/schema/work.schema.json",
+  "note": "First cut of the corpus. Works are economic entities, not tech-tree nodes — see docs/05-knowledge-economy.md. Ancient dating is conventional and confidence-tagged; NOT yet reviewed by a specialist, and several entries touch texts sacred to living communities.",
+  "generated_by": "tools/build-corpus.mjs",
+  "pillars": [
+    {
+      "id": "DESIGN",
+      "name": "Design",
+      "arc": "Craft and form. Pottery and bead-drilling → bronze → temple sculpture → textile design → industrial design."
+    },
+    {
+      "id": "IT",
+      "name": "Information",
+      "arc": "The technology of storing and moving knowledge. Mnemonic recitation → Brahmi → palm leaf → paper → print → digital. The oldest pillar and the one that never stops mattering."
+    },
+    {
+      "id": "STRUCTURE",
+      "name": "Structure",
+      "arc": "Building and engineering. Tanks and step-wells → stupas → temples → forts → canals → rail."
+    },
+    {
+      "id": "CLASSICISM",
+      "name": "Classicism",
+      "arc": "Codification: turning practice into shastra. Grammar, poetics, law, mathematics, medicine, music — the disciplines themselves."
+    },
+    {
+      "id": "NETWORKING",
+      "name": "Networking",
+      "arc": "Connective tissue. Guru-shishya lineages, monastic circuits, merchant guilds (shreni), pilgrimage routes, later post and telegraph."
+    },
+    {
+      "id": "TRADE",
+      "name": "Trade",
+      "arc": "Exchange. Barter → grain-standard → punch-marked coin → cash economy → markets."
+    },
+    {
+      "id": "CULTIVATION",
+      "name": "Cultivation",
+      "arc": "Cultivation of people: schooling, apprenticeship, ordination, discipline. Distinct from agriculture — this grows minds, not grain."
+    },
+    {
+      "id": "AGRICULTURE",
+      "name": "Agriculture",
+      "arc": "Food. Foraging → domestication → irrigation → double-cropping → the plantation and the mill."
+    }
+  ],
+  "catastrophes": [
+    {
+      "id": "CAT.PALM_LEAF_DECAY",
+      "name": "Palm-leaf decay",
+      "from": null,
+      "to": null,
+      "kind": "neglect",
+      "confidence": 1,
+      "note": "Not an event — a permanent condition. Palm leaf survives roughly 300 years in Indian humidity. Every work must be recopied within that window or it is gone. This is the corpus's standing upkeep cost and the single most important mechanic in the game."
+    },
+    {
+      "id": "CAT.HUNA",
+      "name": "Alchon Huna disruption of the north-west",
+      "from": 470,
+      "to": 530,
+      "kind": "destruction",
+      "confidence": 0.7,
+      "note": "Monastic and urban destruction in Gandhara and the Punjab; Taxila does not recover."
+    },
+    {
+      "id": "CAT.SINDH_712",
+      "name": "Arab conquest of Sindh",
+      "from": 712,
+      "to": 713,
+      "kind": "disruption",
+      "confidence": 0.8,
+      "note": "Conquest and reorganisation; scholarly exchange follows as well as loss."
+    },
+    {
+      "id": "CAT.GHAZNAVID",
+      "name": "Ghaznavid raids",
+      "from": 1000,
+      "to": 1027,
+      "kind": "destruction",
+      "confidence": 0.9,
+      "note": "Repeated raids including Somnath. Al-Biruni travels in their wake and writes the finest ethnography of India by an outsider — the same era produces both."
+    },
+    {
+      "id": "CAT.NALANDA_1193",
+      "name": "Sack of Nalanda",
+      "from": 1193,
+      "to": 1193,
+      "kind": "destruction",
+      "confidence": 0.85,
+      "note": "Bakhtiyar Khalji. The largest single loss in the corpus's history; the library reportedly burned for months. Much Indian Buddhist scholarship survives today only in Tibetan and Chinese translation — which is exactly the redundancy mechanic, working."
+    },
+    {
+      "id": "CAT.VIKRAMASHILA_1193",
+      "name": "Sack of Vikramashila",
+      "from": 1193,
+      "to": 1203,
+      "kind": "destruction",
+      "confidence": 0.8,
+      "note": "Destroyed in the same campaign."
+    },
+    {
+      "id": "CAT.ODANTAPURI_1193",
+      "name": "Sack of Odantapuri",
+      "from": 1193,
+      "to": 1193,
+      "kind": "destruction",
+      "confidence": 0.8,
+      "note": "Destroyed in the same campaign."
+    },
+    {
+      "id": "CAT.TIMUR_1398",
+      "name": "Timur's sack of Delhi",
+      "from": 1398,
+      "to": 1399,
+      "kind": "destruction",
+      "confidence": 0.9,
+      "note": "Massive urban destruction; scholars deported to Samarkand — loss to India, transmission elsewhere."
+    },
+    {
+      "id": "CAT.PORTUGUESE_GOA",
+      "name": "Portuguese suppression in Goa and the Malabar",
+      "from": 1560,
+      "to": 1774,
+      "kind": "destruction",
+      "confidence": 0.75,
+      "note": "The Goa Inquisition; destruction of Konkani and Hindu texts. Well documented, and comparatively little studied."
+    },
+    {
+      "id": "CAT.COLONIAL_REMOVAL",
+      "name": "Colonial manuscript removal",
+      "from": 1784,
+      "to": 1947,
+      "kind": "displacement",
+      "confidence": 0.95,
+      "note": "Not burning — taking. Tens of thousands of Indian manuscripts enter European collections. The books are not destroyed; they are elsewhere. This turns the late game from rescue into repatriation."
+    },
+    {
+      "id": "CAT.PARTITION_1947",
+      "name": "Partition",
+      "from": 1947,
+      "to": 1948,
+      "kind": "displacement",
+      "confidence": 0.9,
+      "note": "Libraries and personal collections split, abandoned, burned in the violence."
+    }
+  ],
+  "works": [
+    {
+      "id": "WRK.ORAL_FOLK",
+      "title": "Village story cycles",
+      "tradition": "folk",
+      "subject": "story",
+      "language": "proto-dravidian/indo-aryan",
+      "composed_from": -4000,
+      "composed_to": -1500,
+      "date_precision": "millennium",
+      "confidence": 0.3,
+      "attributed_to": "—",
+      "attribution_kind": "anonymous",
+      "transmission": "oral",
+      "derives_from": [],
+      "pillars": [
+        "IT",
+        "NETWORKING",
+        "CULTIVATION"
+      ],
+      "survival": "recension",
+      "note": "Procedurally generated per region. No text survives; the mechanic does. This is where the game begins and where the storyteller is first paid in grain."
+    },
+    {
+      "id": "WRK.ROCK_ART",
+      "title": "Bhimbetka rock painting tradition",
+      "tradition": "folk",
+      "subject": "record",
+      "language": "—",
+      "composed_from": -8000,
+      "composed_to": -1000,
+      "date_precision": "millennium",
+      "confidence": 0.6,
+      "attributed_to": "—",
+      "attribution_kind": "anonymous",
+      "transmission": "both",
+      "derives_from": [],
+      "pillars": [
+        "DESIGN",
+        "IT"
+      ],
+      "survival": "extant",
+      "note": "The oldest surviving information technology in the subcontinent."
+    },
+    {
+      "id": "WRK.RIGVEDA",
+      "title": "Rigveda",
+      "tradition": "vedic",
+      "subject": "hymn",
+      "language": "vedic sanskrit",
+      "composed_from": -1500,
+      "composed_to": -1200,
+      "date_precision": "century",
+      "confidence": 0.75,
+      "attributed_to": "Rishi families",
+      "attribution_kind": "school",
+      "transmission": "oral",
+      "derives_from": [
+        "WRK.ORAL_FOLK"
+      ],
+      "pillars": [
+        "IT",
+        "CLASSICISM",
+        "NETWORKING"
+      ],
+      "survival": "extant",
+      "note": "Transmitted orally with extraordinary fidelity for ~3,000 years before being written. The mnemonic schemes (padapatha, kramapatha, ghanapatha) are error-correcting codes — the finest pre-modern information technology anywhere."
+    },
+    {
+      "id": "WRK.SAMAVEDA",
+      "title": "Samaveda",
+      "tradition": "vedic",
+      "subject": "music",
+      "language": "vedic sanskrit",
+      "composed_from": -1200,
+      "composed_to": -1000,
+      "date_precision": "century",
+      "confidence": 0.7,
+      "attributed_to": "Rishi families",
+      "attribution_kind": "school",
+      "transmission": "oral",
+      "derives_from": [
+        "WRK.RIGVEDA"
+      ],
+      "pillars": [
+        "IT",
+        "CLASSICISM",
+        "DESIGN"
+      ],
+      "survival": "extant",
+      "note": "The root of Indian music theory."
+    },
+    {
+      "id": "WRK.YAJURVEDA",
+      "title": "Yajurveda",
+      "tradition": "vedic",
+      "subject": "ritual",
+      "language": "vedic sanskrit",
+      "composed_from": -1200,
+      "composed_to": -1000,
+      "date_precision": "century",
+      "confidence": 0.7,
+      "attributed_to": "Rishi families",
+      "attribution_kind": "school",
+      "transmission": "oral",
+      "derives_from": [
+        "WRK.RIGVEDA"
+      ],
+      "pillars": [
+        "IT",
+        "STRUCTURE"
+      ],
+      "survival": "extant",
+      "note": "Ritual procedure — and with it, altar geometry."
+    },
+    {
+      "id": "WRK.ATHARVAVEDA",
+      "title": "Atharvaveda",
+      "tradition": "vedic",
+      "subject": "medicine",
+      "language": "vedic sanskrit",
+      "composed_from": -1200,
+      "composed_to": -900,
+      "date_precision": "century",
+      "confidence": 0.7,
+      "attributed_to": "Rishi families",
+      "attribution_kind": "school",
+      "transmission": "oral",
+      "derives_from": [],
+      "pillars": [
+        "CLASSICISM",
+        "AGRICULTURE"
+      ],
+      "survival": "extant",
+      "note": "Healing, herbs, household life. The most everyday of the four."
+    },
+    {
+      "id": "WRK.SHATAPATHA",
+      "title": "Shatapatha Brahmana",
+      "tradition": "vedic",
+      "subject": "ritual",
+      "language": "vedic sanskrit",
+      "composed_from": -900,
+      "composed_to": -700,
+      "date_precision": "century",
+      "confidence": 0.7,
+      "attributed_to": "—",
+      "attribution_kind": "school",
+      "transmission": "oral",
+      "derives_from": [
+        "WRK.YAJURVEDA"
+      ],
+      "pillars": [
+        "CLASSICISM",
+        "STRUCTURE"
+      ],
+      "survival": "extant",
+      "note": "Contains altar-construction geometry — applied mathematics in a ritual manual."
+    },
+    {
+      "id": "WRK.BRIHADARANYAKA",
+      "title": "Brihadaranyaka Upanishad",
+      "tradition": "vedic",
+      "subject": "philosophy",
+      "language": "sanskrit",
+      "composed_from": -800,
+      "composed_to": -600,
+      "date_precision": "century",
+      "confidence": 0.7,
+      "attributed_to": "Yajnavalkya",
+      "attribution_kind": "attributed",
+      "transmission": "oral",
+      "derives_from": [
+        "WRK.SHATAPATHA"
+      ],
+      "pillars": [
+        "CULTIVATION",
+        "CLASSICISM"
+      ],
+      "survival": "extant",
+      "note": "Among the oldest Upanishads; philosophy as dialogue."
+    },
+    {
+      "id": "WRK.CHANDOGYA",
+      "title": "Chandogya Upanishad",
+      "tradition": "vedic",
+      "subject": "philosophy",
+      "language": "sanskrit",
+      "composed_from": -800,
+      "composed_to": -600,
+      "date_precision": "century",
+      "confidence": 0.7,
+      "attributed_to": "—",
+      "attribution_kind": "attributed",
+      "transmission": "oral",
+      "derives_from": [
+        "WRK.SAMAVEDA"
+      ],
+      "pillars": [
+        "CULTIVATION",
+        "CLASSICISM"
+      ],
+      "survival": "extant"
+    },
+    {
+      "id": "WRK.KATHA_UP",
+      "title": "Katha Upanishad",
+      "tradition": "vedic",
+      "subject": "philosophy",
+      "language": "sanskrit",
+      "composed_from": -500,
+      "composed_to": -300,
+      "date_precision": "century",
+      "confidence": 0.65,
+      "attributed_to": "—",
+      "attribution_kind": "attributed",
+      "transmission": "oral",
+      "derives_from": [],
+      "pillars": [
+        "CULTIVATION"
+      ],
+      "survival": "extant",
+      "note": "Nachiketa and Death — a story that carries a philosophy. The storytelling economy at full power."
+    },
+    {
+      "id": "WRK.SHULBA",
+      "title": "Shulba Sutras",
+      "tradition": "vedic",
+      "subject": "mathematics",
+      "language": "sanskrit",
+      "composed_from": -800,
+      "composed_to": -500,
+      "date_precision": "century",
+      "confidence": 0.7,
+      "attributed_to": "Baudhayana, Apastamba, Katyayana",
+      "attribution_kind": "authored",
+      "transmission": "oral",
+      "derives_from": [
+        "WRK.SHATAPATHA"
+      ],
+      "pillars": [
+        "STRUCTURE",
+        "CLASSICISM"
+      ],
+      "survival": "extant",
+      "note": "Geometry for building altars, including a statement of the Pythagorean relation."
+    },
+    {
+      "id": "WRK.ASHTADHYAYI",
+      "title": "Ashtadhyayi",
+      "tradition": "shastra",
+      "subject": "grammar",
+      "language": "sanskrit",
+      "composed_from": -500,
+      "composed_to": -400,
+      "date_precision": "century",
+      "confidence": 0.85,
+      "attributed_to": "Panini",
+      "attribution_kind": "authored",
+      "transmission": "oral",
+      "derives_from": [
+        "WRK.RIGVEDA"
+      ],
+      "pillars": [
+        "IT",
+        "CLASSICISM"
+      ],
+      "survival": "extant",
+      "note": "3,959 rules generating a natural language, with metarules, a formal notation and ordered rule application. Roughly 2,400 years before Backus–Naur form. The single most important artefact in this corpus."
+    },
+    {
+      "id": "WRK.NIRUKTA",
+      "title": "Nirukta",
+      "tradition": "shastra",
+      "subject": "lexicon",
+      "language": "sanskrit",
+      "composed_from": -600,
+      "composed_to": -500,
+      "date_precision": "century",
+      "confidence": 0.75,
+      "attributed_to": "Yaska",
+      "attribution_kind": "authored",
+      "transmission": "oral",
+      "derives_from": [],
+      "pillars": [
+        "IT",
+        "CLASSICISM"
+      ],
+      "survival": "extant",
+      "note": "Etymology; predates Panini."
+    },
+    {
+      "id": "WRK.CHANDAHSHASTRA",
+      "title": "Chandahshastra",
+      "tradition": "shastra",
+      "subject": "poetics",
+      "language": "sanskrit",
+      "composed_from": -300,
+      "composed_to": -200,
+      "date_precision": "century",
+      "confidence": 0.75,
+      "attributed_to": "Pingala",
+      "attribution_kind": "authored",
+      "transmission": "oral",
+      "derives_from": [],
+      "pillars": [
+        "IT",
+        "CLASSICISM",
+        "DESIGN"
+      ],
+      "survival": "extant",
+      "note": "Prosody — and in enumerating metres, binary numeration, the Fibonacci sequence and a form of Pascal's triangle."
+    },
+    {
+      "id": "WRK.MAHABHASHYA",
+      "title": "Mahabhashya",
+      "tradition": "shastra",
+      "subject": "grammar",
+      "language": "sanskrit",
+      "composed_from": -150,
+      "composed_to": -150,
+      "date_precision": "century",
+      "confidence": 0.8,
+      "attributed_to": "Patanjali",
+      "attribution_kind": "authored",
+      "transmission": "both",
+      "derives_from": [
+        "WRK.ASHTADHYAYI"
+      ],
+      "pillars": [
+        "CLASSICISM",
+        "IT"
+      ],
+      "survival": "extant",
+      "note": "The commentary that made Panini teachable. Commentary as an economic act."
+    },
+    {
+      "id": "WRK.MAHABHARATA",
+      "title": "Mahabharata",
+      "tradition": "epic",
+      "subject": "epic",
+      "language": "sanskrit",
+      "composed_from": -400,
+      "composed_to": 400,
+      "date_precision": "century",
+      "confidence": 0.75,
+      "attributed_to": "Vyasa",
+      "attribution_kind": "attributed",
+      "transmission": "oral",
+      "derives_from": [
+        "WRK.ORAL_FOLK"
+      ],
+      "pillars": [
+        "IT",
+        "NETWORKING",
+        "CULTIVATION"
+      ],
+      "survival": "extant",
+      "note": "~100,000 verses, grown over eight centuries. The largest single employer of storytellers in the game."
+    },
+    {
+      "id": "WRK.RAMAYANA",
+      "title": "Ramayana",
+      "tradition": "epic",
+      "subject": "epic",
+      "language": "sanskrit",
+      "composed_from": -500,
+      "composed_to": -100,
+      "date_precision": "century",
+      "confidence": 0.75,
+      "attributed_to": "Valmiki",
+      "attribution_kind": "attributed",
+      "transmission": "oral",
+      "derives_from": [
+        "WRK.ORAL_FOLK"
+      ],
+      "pillars": [
+        "IT",
+        "NETWORKING",
+        "CULTIVATION"
+      ],
+      "survival": "extant",
+      "note": "Retold in every language and half of Asia. The clearest case of a work whose value multiplies with derivation."
+    },
+    {
+      "id": "WRK.GITA",
+      "title": "Bhagavad Gita",
+      "tradition": "epic",
+      "subject": "philosophy",
+      "language": "sanskrit",
+      "composed_from": -200,
+      "composed_to": 200,
+      "date_precision": "century",
+      "confidence": 0.75,
+      "attributed_to": "—",
+      "attribution_kind": "attributed",
+      "transmission": "oral",
+      "derives_from": [
+        "WRK.MAHABHARATA"
+      ],
+      "pillars": [
+        "CULTIVATION"
+      ],
+      "survival": "extant",
+      "note": "A work embedded inside a work — and eventually more copied than its host."
+    },
+    {
+      "id": "WRK.PANCHATANTRA",
+      "title": "Panchatantra",
+      "tradition": "story",
+      "subject": "story",
+      "language": "sanskrit",
+      "composed_from": -300,
+      "composed_to": 300,
+      "date_precision": "century",
+      "confidence": 0.7,
+      "attributed_to": "Vishnu Sharma",
+      "attribution_kind": "attributed",
+      "transmission": "both",
+      "derives_from": [
+        "WRK.ORAL_FOLK"
+      ],
+      "pillars": [
+        "IT",
+        "NETWORKING",
+        "TRADE",
+        "CULTIVATION"
+      ],
+      "survival": "recension",
+      "note": "Travels to Pahlavi, then Arabic as Kalila wa Dimna, then Hebrew, Latin and every European language. The Sanskrit original is lost; the world kept the copies. Redundancy, proven."
+    },
+    {
+      "id": "WRK.BRIHATKATHA",
+      "title": "Brihatkatha",
+      "tradition": "story",
+      "subject": "story",
+      "language": "paishachi",
+      "composed_from": 100,
+      "composed_to": 400,
+      "date_precision": "century",
+      "confidence": 0.6,
+      "attributed_to": "Gunadhya",
+      "attribution_kind": "authored",
+      "transmission": "oral",
+      "derives_from": [],
+      "pillars": [
+        "IT",
+        "NETWORKING"
+      ],
+      "survival": "lost",
+      "note": "**Completely lost.** Survives only through three later Sanskrit adaptations. The canonical teaching case: a work can vanish while its children live."
+    },
+    {
+      "id": "WRK.KATHASARITSAGARA",
+      "title": "Kathasaritsagara",
+      "tradition": "story",
+      "subject": "story",
+      "language": "sanskrit",
+      "composed_from": 1063,
+      "composed_to": 1081,
+      "date_precision": "decade",
+      "confidence": 0.9,
+      "attributed_to": "Somadeva",
+      "attribution_kind": "authored",
+      "transmission": "manuscript",
+      "derives_from": [
+        "WRK.BRIHATKATHA"
+      ],
+      "pillars": [
+        "IT",
+        "NETWORKING"
+      ],
+      "survival": "extant",
+      "note": "21,000 verses reconstructing a lost ocean of stories for a Kashmiri queen."
+    },
+    {
+      "id": "WRK.VETALA",
+      "title": "Vetala Panchavimshati",
+      "tradition": "story",
+      "subject": "story",
+      "language": "sanskrit",
+      "composed_from": 1000,
+      "composed_to": 1100,
+      "date_precision": "century",
+      "confidence": 0.8,
+      "attributed_to": "—",
+      "attribution_kind": "attributed",
+      "transmission": "both",
+      "derives_from": [
+        "WRK.BRIHATKATHA"
+      ],
+      "pillars": [
+        "IT",
+        "NETWORKING"
+      ],
+      "survival": "extant",
+      "note": "Twenty-five riddle-tales; a corpse that will not stop telling stories until you answer."
+    },
+    {
+      "id": "WRK.HITOPADESHA",
+      "title": "Hitopadesha",
+      "tradition": "story",
+      "subject": "story",
+      "language": "sanskrit",
+      "composed_from": 800,
+      "composed_to": 1200,
+      "date_precision": "century",
+      "confidence": 0.8,
+      "attributed_to": "Narayana",
+      "attribution_kind": "authored",
+      "transmission": "manuscript",
+      "derives_from": [
+        "WRK.PANCHATANTRA"
+      ],
+      "pillars": [
+        "IT",
+        "CULTIVATION"
+      ],
+      "survival": "extant"
+    },
+    {
+      "id": "WRK.JATAKA",
+      "title": "Jataka tales",
+      "tradition": "buddhist",
+      "subject": "story",
+      "language": "pali",
+      "composed_from": -300,
+      "composed_to": 200,
+      "date_precision": "century",
+      "confidence": 0.8,
+      "attributed_to": "—",
+      "attribution_kind": "compiled",
+      "transmission": "both",
+      "derives_from": [
+        "WRK.ORAL_FOLK"
+      ],
+      "pillars": [
+        "IT",
+        "NETWORKING",
+        "CULTIVATION"
+      ],
+      "survival": "extant",
+      "note": "547 previous-life stories; carved on stupa railings, so the story becomes architecture."
+    },
+    {
+      "id": "WRK.SUKASAPTATI",
+      "title": "Sukasaptati",
+      "tradition": "story",
+      "subject": "story",
+      "language": "sanskrit",
+      "composed_from": 1100,
+      "composed_to": 1300,
+      "date_precision": "century",
+      "confidence": 0.75,
+      "attributed_to": "—",
+      "attribution_kind": "anonymous",
+      "transmission": "manuscript",
+      "derives_from": [],
+      "pillars": [
+        "IT"
+      ],
+      "survival": "extant",
+      "note": "Seventy tales of a parrot; later reworked in Persian as the Tutinama."
+    },
+    {
+      "id": "WRK.TIPITAKA",
+      "title": "Pali Canon (Tipitaka)",
+      "tradition": "buddhist",
+      "subject": "philosophy",
+      "language": "pali",
+      "composed_from": -400,
+      "composed_to": -100,
+      "date_precision": "century",
+      "confidence": 0.85,
+      "attributed_to": "—",
+      "attribution_kind": "compiled",
+      "transmission": "oral",
+      "derives_from": [],
+      "pillars": [
+        "IT",
+        "CULTIVATION",
+        "NETWORKING"
+      ],
+      "survival": "extant",
+      "note": "Oral for four centuries, first written in Sri Lanka c. 29 BCE — a deliberate act of redundancy against famine and war."
+    },
+    {
+      "id": "WRK.DHAMMAPADA",
+      "title": "Dhammapada",
+      "tradition": "buddhist",
+      "subject": "philosophy",
+      "language": "pali",
+      "composed_from": -300,
+      "composed_to": -200,
+      "date_precision": "century",
+      "confidence": 0.85,
+      "attributed_to": "—",
+      "attribution_kind": "compiled",
+      "transmission": "both",
+      "derives_from": [
+        "WRK.TIPITAKA"
+      ],
+      "pillars": [
+        "CULTIVATION"
+      ],
+      "survival": "extant"
+    },
+    {
+      "id": "WRK.MILINDAPANHA",
+      "title": "Milindapanha",
+      "tradition": "buddhist",
+      "subject": "philosophy",
+      "language": "pali",
+      "composed_from": -100,
+      "composed_to": 200,
+      "date_precision": "century",
+      "confidence": 0.8,
+      "attributed_to": "—",
+      "attribution_kind": "anonymous",
+      "transmission": "both",
+      "derives_from": [],
+      "pillars": [
+        "CULTIVATION",
+        "NETWORKING"
+      ],
+      "survival": "extant",
+      "note": "A Greek king and a Buddhist monk argue. Cross-cultural transmission as literature."
+    },
+    {
+      "id": "WRK.MULAMADHYAMAKA",
+      "title": "Mulamadhyamakakarika",
+      "tradition": "buddhist",
+      "subject": "philosophy",
+      "language": "sanskrit",
+      "composed_from": 150,
+      "composed_to": 250,
+      "date_precision": "century",
+      "confidence": 0.85,
+      "attributed_to": "Nagarjuna",
+      "attribution_kind": "authored",
+      "transmission": "manuscript",
+      "derives_from": [
+        "WRK.TIPITAKA"
+      ],
+      "pillars": [
+        "CLASSICISM",
+        "CULTIVATION"
+      ],
+      "survival": "extant"
+    },
+    {
+      "id": "WRK.ABHIDHARMAKOSHA",
+      "title": "Abhidharmakosha",
+      "tradition": "buddhist",
+      "subject": "philosophy",
+      "language": "sanskrit",
+      "composed_from": 350,
+      "composed_to": 400,
+      "date_precision": "century",
+      "confidence": 0.85,
+      "attributed_to": "Vasubandhu",
+      "attribution_kind": "authored",
+      "transmission": "manuscript",
+      "derives_from": [
+        "WRK.TIPITAKA"
+      ],
+      "pillars": [
+        "CLASSICISM"
+      ],
+      "survival": "partial",
+      "note": "Sanskrit original lost for centuries; recovered in Tibet in 1935. Redundancy across borders, recovered after 700 years."
+    },
+    {
+      "id": "WRK.VISUDDHIMAGGA",
+      "title": "Visuddhimagga",
+      "tradition": "buddhist",
+      "subject": "philosophy",
+      "language": "pali",
+      "composed_from": 430,
+      "composed_to": 430,
+      "date_precision": "decade",
+      "confidence": 0.9,
+      "attributed_to": "Buddhaghosa",
+      "attribution_kind": "authored",
+      "transmission": "manuscript",
+      "derives_from": [
+        "WRK.TIPITAKA"
+      ],
+      "pillars": [
+        "CULTIVATION"
+      ],
+      "survival": "extant"
+    },
+    {
+      "id": "WRK.PRAMANAVARTTIKA",
+      "title": "Pramanavarttika",
+      "tradition": "buddhist",
+      "subject": "philosophy",
+      "language": "sanskrit",
+      "composed_from": 600,
+      "composed_to": 660,
+      "date_precision": "decade",
+      "confidence": 0.85,
+      "attributed_to": "Dharmakirti",
+      "attribution_kind": "authored",
+      "transmission": "manuscript",
+      "derives_from": [],
+      "pillars": [
+        "CLASSICISM"
+      ],
+      "survival": "partial",
+      "note": "Logic and epistemology at Nalanda. Much survives only in Tibetan."
+    },
+    {
+      "id": "WRK.TATTVARTHA",
+      "title": "Tattvartha Sutra",
+      "tradition": "jain",
+      "subject": "philosophy",
+      "language": "sanskrit",
+      "composed_from": 200,
+      "composed_to": 400,
+      "date_precision": "century",
+      "confidence": 0.85,
+      "attributed_to": "Umaswati",
+      "attribution_kind": "authored",
+      "transmission": "manuscript",
+      "derives_from": [],
+      "pillars": [
+        "CLASSICISM",
+        "CULTIVATION"
+      ],
+      "survival": "extant",
+      "note": "Accepted by every Jain sect — a rare unifying text."
+    },
+    {
+      "id": "WRK.JAIN_AGAMAS",
+      "title": "Jain Agamas",
+      "tradition": "jain",
+      "subject": "philosophy",
+      "language": "ardhamagadhi",
+      "composed_from": -300,
+      "composed_to": 500,
+      "date_precision": "century",
+      "confidence": 0.75,
+      "attributed_to": "—",
+      "attribution_kind": "compiled",
+      "transmission": "oral",
+      "derives_from": [],
+      "pillars": [
+        "IT",
+        "CULTIVATION"
+      ],
+      "survival": "partial",
+      "note": "Svetambara canon; the Digambaras hold the original was lost — a schism about redundancy itself."
+    },
+    {
+      "id": "WRK.ARTHASHASTRA",
+      "title": "Arthashastra",
+      "tradition": "shastra",
+      "subject": "statecraft",
+      "language": "sanskrit",
+      "composed_from": -300,
+      "composed_to": 300,
+      "date_precision": "century",
+      "confidence": 0.75,
+      "attributed_to": "Kautilya",
+      "attribution_kind": "attributed",
+      "transmission": "manuscript",
+      "derives_from": [],
+      "pillars": [
+        "STRUCTURE",
+        "TRADE",
+        "AGRICULTURE",
+        "NETWORKING"
+      ],
+      "survival": "extant",
+      "note": "Lost for centuries; a palm-leaf manuscript surfaced in Mysore in 1905. Taxation, espionage, mining, irrigation — and the mandala theory of graded sovereignty this game is built on."
+    },
+    {
+      "id": "WRK.MANUSMRITI",
+      "title": "Manusmriti",
+      "tradition": "shastra",
+      "subject": "law",
+      "language": "sanskrit",
+      "composed_from": -200,
+      "composed_to": 200,
+      "date_precision": "century",
+      "confidence": 0.8,
+      "attributed_to": "—",
+      "attribution_kind": "attributed",
+      "transmission": "manuscript",
+      "derives_from": [],
+      "pillars": [
+        "CLASSICISM"
+      ],
+      "survival": "extant",
+      "note": "Enormously influential and enormously contested; Ambedkar burned a copy in 1927. The game models its influence, not its authority."
+    },
+    {
+      "id": "WRK.NATYASHASTRA",
+      "title": "Natyashastra",
+      "tradition": "shastra",
+      "subject": "drama",
+      "language": "sanskrit",
+      "composed_from": -200,
+      "composed_to": 200,
+      "date_precision": "century",
+      "confidence": 0.8,
+      "attributed_to": "Bharata",
+      "attribution_kind": "attributed",
+      "transmission": "manuscript",
+      "derives_from": [],
+      "pillars": [
+        "DESIGN",
+        "CLASSICISM"
+      ],
+      "survival": "extant",
+      "note": "Theatre, dance, music, stagecraft and rasa theory in one treatise. The design pillar's foundation document."
+    },
+    {
+      "id": "WRK.CHARAKA",
+      "title": "Charaka Samhita",
+      "tradition": "shastra",
+      "subject": "medicine",
+      "language": "sanskrit",
+      "composed_from": -100,
+      "composed_to": 200,
+      "date_precision": "century",
+      "confidence": 0.8,
+      "attributed_to": "Charaka",
+      "attribution_kind": "authored",
+      "transmission": "manuscript",
+      "derives_from": [
+        "WRK.ATHARVAVEDA"
+      ],
+      "pillars": [
+        "CLASSICISM",
+        "CULTIVATION"
+      ],
+      "survival": "extant",
+      "note": "Internal medicine; translated into Arabic and thence to Europe."
+    },
+    {
+      "id": "WRK.SUSHRUTA",
+      "title": "Sushruta Samhita",
+      "tradition": "shastra",
+      "subject": "medicine",
+      "language": "sanskrit",
+      "composed_from": -600,
+      "composed_to": 500,
+      "date_precision": "century",
+      "confidence": 0.75,
+      "attributed_to": "Sushruta",
+      "attribution_kind": "attributed",
+      "transmission": "manuscript",
+      "derives_from": [],
+      "pillars": [
+        "CLASSICISM",
+        "DESIGN"
+      ],
+      "survival": "extant",
+      "note": "Surgery: 300 procedures, 120 instruments, and rhinoplasty. Reached Britain in 1794 and changed European plastic surgery."
+    },
+    {
+      "id": "WRK.ASHTANGA",
+      "title": "Ashtanga Hridayam",
+      "tradition": "shastra",
+      "subject": "medicine",
+      "language": "sanskrit",
+      "composed_from": 600,
+      "composed_to": 650,
+      "date_precision": "decade",
+      "confidence": 0.85,
+      "attributed_to": "Vagbhata",
+      "attribution_kind": "authored",
+      "transmission": "manuscript",
+      "derives_from": [
+        "WRK.CHARAKA",
+        "WRK.SUSHRUTA"
+      ],
+      "pillars": [
+        "CLASSICISM"
+      ],
+      "survival": "extant",
+      "note": "The synthesis that made the two older systems teachable."
+    },
+    {
+      "id": "WRK.KAMASUTRA",
+      "title": "Kamasutra",
+      "tradition": "shastra",
+      "subject": "philosophy",
+      "language": "sanskrit",
+      "composed_from": 200,
+      "composed_to": 300,
+      "date_precision": "century",
+      "confidence": 0.8,
+      "attributed_to": "Vatsyayana",
+      "attribution_kind": "authored",
+      "transmission": "manuscript",
+      "derives_from": [],
+      "pillars": [
+        "DESIGN",
+        "CULTIVATION"
+      ],
+      "survival": "extant",
+      "note": "More a manual of urbane living than its reputation suggests — the sixty-four arts are a curriculum."
+    },
+    {
+      "id": "WRK.KRISHIPARASHARA",
+      "title": "Krishi-Parashara",
+      "tradition": "shastra",
+      "subject": "agronomy",
+      "language": "sanskrit",
+      "composed_from": 400,
+      "composed_to": 900,
+      "date_precision": "century",
+      "confidence": 0.7,
+      "attributed_to": "Parashara",
+      "attribution_kind": "attributed",
+      "transmission": "manuscript",
+      "derives_from": [],
+      "pillars": [
+        "AGRICULTURE"
+      ],
+      "survival": "extant",
+      "note": "Ploughing, monsoon prediction, cattle, seed. The agriculture pillar in text form."
+    },
+    {
+      "id": "WRK.VRIKSHAYURVEDA",
+      "title": "Vrikshayurveda",
+      "tradition": "shastra",
+      "subject": "agronomy",
+      "language": "sanskrit",
+      "composed_from": 900,
+      "composed_to": 1000,
+      "date_precision": "century",
+      "confidence": 0.7,
+      "attributed_to": "Surapala",
+      "attribution_kind": "authored",
+      "transmission": "manuscript",
+      "derives_from": [],
+      "pillars": [
+        "AGRICULTURE",
+        "CLASSICISM"
+      ],
+      "survival": "extant",
+      "note": "Plant science: propagation, soil, disease. A single manuscript in the Bodleian preserved it."
+    },
+    {
+      "id": "WRK.SAMARANGANA",
+      "title": "Samarangana Sutradhara",
+      "tradition": "shastra",
+      "subject": "architecture",
+      "language": "sanskrit",
+      "composed_from": 1035,
+      "composed_to": 1055,
+      "date_precision": "decade",
+      "confidence": 0.85,
+      "attributed_to": "Bhoja",
+      "attribution_kind": "authored",
+      "transmission": "manuscript",
+      "derives_from": [],
+      "pillars": [
+        "STRUCTURE",
+        "DESIGN"
+      ],
+      "survival": "extant",
+      "note": "Architecture, town planning and mechanical devices, by a king who wrote his own treatises."
+    },
+    {
+      "id": "WRK.MAYAMATA",
+      "title": "Mayamata",
+      "tradition": "shastra",
+      "subject": "architecture",
+      "language": "sanskrit",
+      "composed_from": 900,
+      "composed_to": 1100,
+      "date_precision": "century",
+      "confidence": 0.8,
+      "attributed_to": "—",
+      "attribution_kind": "attributed",
+      "transmission": "manuscript",
+      "derives_from": [],
+      "pillars": [
+        "STRUCTURE",
+        "DESIGN"
+      ],
+      "survival": "extant",
+      "note": "South Indian temple architecture and iconometry."
+    },
+    {
+      "id": "WRK.SANGITARATNAKARA",
+      "title": "Sangita Ratnakara",
+      "tradition": "shastra",
+      "subject": "music",
+      "language": "sanskrit",
+      "composed_from": 1210,
+      "composed_to": 1247,
+      "date_precision": "decade",
+      "confidence": 0.9,
+      "attributed_to": "Sharngadeva",
+      "attribution_kind": "authored",
+      "transmission": "manuscript",
+      "derives_from": [
+        "WRK.SAMAVEDA"
+      ],
+      "pillars": [
+        "DESIGN",
+        "CLASSICISM"
+      ],
+      "survival": "extant",
+      "note": "The bridge text: both Hindustani and Carnatic traditions claim it."
+    },
+    {
+      "id": "WRK.RASARATNAKARA",
+      "title": "Rasaratnakara",
+      "tradition": "shastra",
+      "subject": "metallurgy",
+      "language": "sanskrit",
+      "composed_from": 700,
+      "composed_to": 1000,
+      "date_precision": "century",
+      "confidence": 0.65,
+      "attributed_to": "Nagarjuna (alchemical)",
+      "attribution_kind": "attributed",
+      "transmission": "manuscript",
+      "derives_from": [],
+      "pillars": [
+        "DESIGN",
+        "STRUCTURE"
+      ],
+      "survival": "partial",
+      "note": "Alchemy and metallurgy; zinc distillation at Zawar predates Europe by centuries."
+    },
+    {
+      "id": "WRK.BAKHSHALI",
+      "title": "Bakhshali manuscript",
+      "tradition": "shastra",
+      "subject": "mathematics",
+      "language": "gandhari prakrit",
+      "composed_from": 224,
+      "composed_to": 383,
+      "date_precision": "century",
+      "confidence": 0.6,
+      "attributed_to": "—",
+      "attribution_kind": "anonymous",
+      "transmission": "manuscript",
+      "derives_from": [],
+      "pillars": [
+        "CLASSICISM",
+        "IT"
+      ],
+      "survival": "extant",
+      "note": "Contains a dot for zero. Radiocarbon dating is disputed — a live scholarly argument the game should present as one."
+    },
+    {
+      "id": "WRK.ARYABHATIYA",
+      "title": "Aryabhatiya",
+      "tradition": "shastra",
+      "subject": "astronomy",
+      "language": "sanskrit",
+      "composed_from": 499,
+      "composed_to": 499,
+      "date_precision": "year",
+      "confidence": 0.95,
+      "attributed_to": "Aryabhata",
+      "attribution_kind": "authored",
+      "transmission": "manuscript",
+      "derives_from": [
+        "WRK.SHULBA"
+      ],
+      "pillars": [
+        "CLASSICISM",
+        "IT",
+        "STRUCTURE"
+      ],
+      "survival": "extant",
+      "note": "121 verses: place-value, a sine table, π to four places, and the earth rotating on its axis."
+    },
+    {
+      "id": "WRK.BRAHMASPHUTA",
+      "title": "Brahmasphutasiddhanta",
+      "tradition": "shastra",
+      "subject": "mathematics",
+      "language": "sanskrit",
+      "composed_from": 628,
+      "composed_to": 628,
+      "date_precision": "year",
+      "confidence": 0.95,
+      "attributed_to": "Brahmagupta",
+      "attribution_kind": "authored",
+      "transmission": "manuscript",
+      "derives_from": [
+        "WRK.ARYABHATIYA"
+      ],
+      "pillars": [
+        "CLASSICISM",
+        "IT",
+        "TRADE"
+      ],
+      "survival": "extant",
+      "note": "**The first text anywhere to treat zero as a number and give rules for negatives.** Carried to Baghdad in 771 and thence to Europe. The highest-value single export in the corpus."
+    },
+    {
+      "id": "WRK.GANITASARA",
+      "title": "Ganita Sara Sangraha",
+      "tradition": "jain",
+      "subject": "mathematics",
+      "language": "sanskrit",
+      "composed_from": 850,
+      "composed_to": 850,
+      "date_precision": "decade",
+      "confidence": 0.9,
+      "attributed_to": "Mahavira",
+      "attribution_kind": "authored",
+      "transmission": "manuscript",
+      "derives_from": [
+        "WRK.BRAHMASPHUTA"
+      ],
+      "pillars": [
+        "CLASSICISM",
+        "TRADE"
+      ],
+      "survival": "extant",
+      "note": "The first Indian text purely on mathematics, without astronomy attached."
+    },
+    {
+      "id": "WRK.LILAVATI",
+      "title": "Lilavati",
+      "tradition": "shastra",
+      "subject": "mathematics",
+      "language": "sanskrit",
+      "composed_from": 1150,
+      "composed_to": 1150,
+      "date_precision": "decade",
+      "confidence": 0.95,
+      "attributed_to": "Bhaskara II",
+      "attribution_kind": "authored",
+      "transmission": "manuscript",
+      "derives_from": [
+        "WRK.BRAHMASPHUTA"
+      ],
+      "pillars": [
+        "CLASSICISM",
+        "CULTIVATION"
+      ],
+      "survival": "extant",
+      "note": "Arithmetic taught through puzzles addressed to a girl. Pedagogy as literature — a textbook that is also a story."
+    },
+    {
+      "id": "WRK.SIDDHANTASHIROMANI",
+      "title": "Siddhanta Shiromani",
+      "tradition": "shastra",
+      "subject": "astronomy",
+      "language": "sanskrit",
+      "composed_from": 1150,
+      "composed_to": 1150,
+      "date_precision": "decade",
+      "confidence": 0.95,
+      "attributed_to": "Bhaskara II",
+      "attribution_kind": "authored",
+      "transmission": "manuscript",
+      "derives_from": [
+        "WRK.ARYABHATIYA"
+      ],
+      "pillars": [
+        "CLASSICISM"
+      ],
+      "survival": "extant",
+      "note": "Contains an early statement of the derivative and of instantaneous motion."
+    },
+    {
+      "id": "WRK.TANTRASANGRAHA",
+      "title": "Tantrasangraha",
+      "tradition": "shastra",
+      "subject": "astronomy",
+      "language": "sanskrit",
+      "composed_from": 1501,
+      "composed_to": 1501,
+      "date_precision": "year",
+      "confidence": 0.9,
+      "attributed_to": "Nilakantha Somayaji",
+      "attribution_kind": "authored",
+      "transmission": "manuscript",
+      "derives_from": [
+        "WRK.SIDDHANTASHIROMANI"
+      ],
+      "pillars": [
+        "CLASSICISM"
+      ],
+      "survival": "extant",
+      "note": "Kerala school; a partially heliocentric planetary model."
+    },
+    {
+      "id": "WRK.YUKTIBHASHA",
+      "title": "Yuktibhasha",
+      "tradition": "shastra",
+      "subject": "mathematics",
+      "language": "malayalam",
+      "composed_from": 1530,
+      "composed_to": 1530,
+      "date_precision": "decade",
+      "confidence": 0.9,
+      "attributed_to": "Jyesthadeva",
+      "attribution_kind": "authored",
+      "transmission": "manuscript",
+      "derives_from": [
+        "WRK.TANTRASANGRAHA"
+      ],
+      "pillars": [
+        "CLASSICISM",
+        "IT"
+      ],
+      "survival": "extant",
+      "note": "**Infinite series for π, sine and cosine — with proofs — roughly 200 years before Newton and Leibniz.** Written in Malayalam, not Sanskrit, and largely unknown outside Kerala until the 1830s. The corpus's greatest failure of networking."
+    },
+    {
+      "id": "WRK.TOLKAPPIYAM",
+      "title": "Tolkappiyam",
+      "tradition": "tamil",
+      "subject": "grammar",
+      "language": "tamil",
+      "composed_from": -300,
+      "composed_to": 300,
+      "date_precision": "century",
+      "confidence": 0.75,
+      "attributed_to": "Tolkappiyar",
+      "attribution_kind": "attributed",
+      "transmission": "manuscript",
+      "derives_from": [],
+      "pillars": [
+        "IT",
+        "CLASSICISM"
+      ],
+      "survival": "extant",
+      "note": "Grammar and poetics; the oldest surviving Tamil work."
+    },
+    {
+      "id": "WRK.SANGAM",
+      "title": "Sangam anthologies",
+      "tradition": "tamil",
+      "subject": "poetry",
+      "language": "tamil",
+      "composed_from": -300,
+      "composed_to": 300,
+      "date_precision": "century",
+      "confidence": 0.8,
+      "attributed_to": "473 poets",
+      "attribution_kind": "compiled",
+      "transmission": "both",
+      "derives_from": [],
+      "pillars": [
+        "DESIGN",
+        "CULTIVATION",
+        "TRADE"
+      ],
+      "survival": "extant",
+      "note": "2,381 poems by 473 named poets, including many women. Nearly lost; recovered from palm leaf in the 1880s by U. V. Swaminatha Iyer — a one-man rescue that is itself a playable scenario."
+    },
+    {
+      "id": "WRK.TIRUKKURAL",
+      "title": "Tirukkural",
+      "tradition": "tamil",
+      "subject": "philosophy",
+      "language": "tamil",
+      "composed_from": 300,
+      "composed_to": 500,
+      "date_precision": "century",
+      "confidence": 0.8,
+      "attributed_to": "Tiruvalluvar",
+      "attribution_kind": "authored",
+      "transmission": "both",
+      "derives_from": [],
+      "pillars": [
+        "CULTIVATION",
+        "TRADE",
+        "STRUCTURE"
+      ],
+      "survival": "extant",
+      "note": "1,330 couplets on ethics, governance and love, claimed by every Tamil tradition at once."
+    },
+    {
+      "id": "WRK.SILAPPATIKARAM",
+      "title": "Silappatikaram",
+      "tradition": "tamil",
+      "subject": "epic",
+      "language": "tamil",
+      "composed_from": 200,
+      "composed_to": 500,
+      "date_precision": "century",
+      "confidence": 0.8,
+      "attributed_to": "Ilango Adigal",
+      "attribution_kind": "attributed",
+      "transmission": "manuscript",
+      "derives_from": [],
+      "pillars": [
+        "DESIGN",
+        "TRADE"
+      ],
+      "survival": "extant",
+      "note": "A merchant's wife burns a city down. The great Tamil epic and a portrait of Indian Ocean trade."
+    },
+    {
+      "id": "WRK.MANIMEKALAI",
+      "title": "Manimekalai",
+      "tradition": "tamil",
+      "subject": "epic",
+      "language": "tamil",
+      "composed_from": 200,
+      "composed_to": 600,
+      "date_precision": "century",
+      "confidence": 0.75,
+      "attributed_to": "Sattanar",
+      "attribution_kind": "attributed",
+      "transmission": "manuscript",
+      "derives_from": [
+        "WRK.SILAPPATIKARAM"
+      ],
+      "pillars": [
+        "CULTIVATION"
+      ],
+      "survival": "extant",
+      "note": "Its sequel, and Buddhist."
+    },
+    {
+      "id": "WRK.TEVARAM",
+      "title": "Tevaram",
+      "tradition": "bhakti",
+      "subject": "poetry",
+      "language": "tamil",
+      "composed_from": 600,
+      "composed_to": 800,
+      "date_precision": "century",
+      "confidence": 0.85,
+      "attributed_to": "Appar, Sambandar, Sundarar",
+      "attribution_kind": "authored",
+      "transmission": "both",
+      "derives_from": [],
+      "pillars": [
+        "NETWORKING",
+        "CULTIVATION"
+      ],
+      "survival": "extant",
+      "note": "Bhakti hymns sung on pilgrimage routes — knowledge distributed by walking."
+    },
+    {
+      "id": "WRK.DIVYAPRABANDHAM",
+      "title": "Nalayira Divya Prabandham",
+      "tradition": "bhakti",
+      "subject": "poetry",
+      "language": "tamil",
+      "composed_from": 600,
+      "composed_to": 900,
+      "date_precision": "century",
+      "confidence": 0.85,
+      "attributed_to": "Twelve Alvars",
+      "attribution_kind": "compiled",
+      "transmission": "both",
+      "derives_from": [],
+      "pillars": [
+        "NETWORKING",
+        "CULTIVATION"
+      ],
+      "survival": "extant",
+      "note": "Includes Andal, one of the great women poets of any tradition."
+    },
+    {
+      "id": "WRK.KAMBARAMAYANAM",
+      "title": "Kamba Ramayanam",
+      "tradition": "tamil",
+      "subject": "epic",
+      "language": "tamil",
+      "composed_from": 1150,
+      "composed_to": 1200,
+      "date_precision": "century",
+      "confidence": 0.85,
+      "attributed_to": "Kambar",
+      "attribution_kind": "authored",
+      "transmission": "manuscript",
+      "derives_from": [
+        "WRK.RAMAYANA"
+      ],
+      "pillars": [
+        "DESIGN",
+        "IT"
+      ],
+      "survival": "extant",
+      "note": "Not a translation — a rival. Derivation as creation."
+    },
+    {
+      "id": "WRK.SHAKUNTALA",
+      "title": "Abhijnanashakuntalam",
+      "tradition": "kavya",
+      "subject": "drama",
+      "language": "sanskrit",
+      "composed_from": 380,
+      "composed_to": 415,
+      "date_precision": "decade",
+      "confidence": 0.85,
+      "attributed_to": "Kalidasa",
+      "attribution_kind": "authored",
+      "transmission": "manuscript",
+      "derives_from": [
+        "WRK.MAHABHARATA",
+        "WRK.NATYASHASTRA"
+      ],
+      "pillars": [
+        "DESIGN"
+      ],
+      "survival": "extant",
+      "note": "Translated by William Jones in 1789; Goethe wrote a poem about it. India's first global literary export of the modern era."
+    },
+    {
+      "id": "WRK.MEGHADUTA",
+      "title": "Meghaduta",
+      "tradition": "kavya",
+      "subject": "poetry",
+      "language": "sanskrit",
+      "composed_from": 380,
+      "composed_to": 415,
+      "date_precision": "decade",
+      "confidence": 0.85,
+      "attributed_to": "Kalidasa",
+      "attribution_kind": "authored",
+      "transmission": "manuscript",
+      "derives_from": [],
+      "pillars": [
+        "DESIGN"
+      ],
+      "survival": "extant",
+      "note": "A cloud carries a message across the whole subcontinent — a geography lesson disguised as a love poem."
+    },
+    {
+      "id": "WRK.MRICHCHHAKATIKA",
+      "title": "Mrichchhakatika",
+      "tradition": "kavya",
+      "subject": "drama",
+      "language": "sanskrit",
+      "composed_from": 200,
+      "composed_to": 500,
+      "date_precision": "century",
+      "confidence": 0.75,
+      "attributed_to": "Shudraka",
+      "attribution_kind": "attributed",
+      "transmission": "manuscript",
+      "derives_from": [
+        "WRK.NATYASHASTRA"
+      ],
+      "pillars": [
+        "DESIGN"
+      ],
+      "survival": "extant",
+      "note": "A merchant, a courtesan and a coup. Unusually secular and unusually funny."
+    },
+    {
+      "id": "WRK.HARSHACHARITA",
+      "title": "Harshacharita",
+      "tradition": "kavya",
+      "subject": "history",
+      "language": "sanskrit",
+      "composed_from": 640,
+      "composed_to": 650,
+      "date_precision": "decade",
+      "confidence": 0.9,
+      "attributed_to": "Banabhatta",
+      "attribution_kind": "authored",
+      "transmission": "manuscript",
+      "derives_from": [],
+      "pillars": [
+        "IT",
+        "NETWORKING"
+      ],
+      "survival": "extant",
+      "note": "A court biography — the first sustained Indian attempt at one."
+    },
+    {
+      "id": "WRK.KADAMBARI",
+      "title": "Kadambari",
+      "tradition": "kavya",
+      "subject": "story",
+      "language": "sanskrit",
+      "composed_from": 630,
+      "composed_to": 650,
+      "date_precision": "decade",
+      "confidence": 0.9,
+      "attributed_to": "Banabhatta",
+      "attribution_kind": "authored",
+      "transmission": "manuscript",
+      "derives_from": [],
+      "pillars": [
+        "DESIGN",
+        "IT"
+      ],
+      "survival": "extant",
+      "note": "Arguably the first novel in any language; left unfinished and completed by his son."
+    },
+    {
+      "id": "WRK.KAVYADARSHA",
+      "title": "Kavyadarsha",
+      "tradition": "shastra",
+      "subject": "poetics",
+      "language": "sanskrit",
+      "composed_from": 700,
+      "composed_to": 750,
+      "date_precision": "century",
+      "confidence": 0.85,
+      "attributed_to": "Dandin",
+      "attribution_kind": "authored",
+      "transmission": "manuscript",
+      "derives_from": [
+        "WRK.NATYASHASTRA"
+      ],
+      "pillars": [
+        "CLASSICISM",
+        "DESIGN"
+      ],
+      "survival": "extant",
+      "note": "Travelled to Tibet, Sri Lanka and Java — Indian literary theory as an export good."
+    },
+    {
+      "id": "WRK.RAJATARANGINI",
+      "title": "Rajatarangini",
+      "tradition": "kavya",
+      "subject": "history",
+      "language": "sanskrit",
+      "composed_from": 1148,
+      "composed_to": 1150,
+      "date_precision": "decade",
+      "confidence": 0.9,
+      "attributed_to": "Kalhana",
+      "attribution_kind": "authored",
+      "transmission": "manuscript",
+      "derives_from": [],
+      "pillars": [
+        "IT"
+      ],
+      "survival": "extant",
+      "note": "The first Indian work that is recognisably history: sources weighed, chronology argued, kings criticised."
+    },
+    {
+      "id": "WRK.GITAGOVINDA",
+      "title": "Gita Govinda",
+      "tradition": "bhakti",
+      "subject": "poetry",
+      "language": "sanskrit",
+      "composed_from": 1180,
+      "composed_to": 1200,
+      "date_precision": "decade",
+      "confidence": 0.9,
+      "attributed_to": "Jayadeva",
+      "attribution_kind": "authored",
+      "transmission": "both",
+      "derives_from": [],
+      "pillars": [
+        "DESIGN",
+        "NETWORKING"
+      ],
+      "survival": "extant",
+      "note": "Set to music everywhere it went; the most illustrated Indian text after the epics."
+    },
+    {
+      "id": "WRK.TARIKH_AL_HIND",
+      "title": "Tarikh al-Hind",
+      "tradition": "persianate",
+      "subject": "history",
+      "language": "arabic",
+      "composed_from": 1030,
+      "composed_to": 1030,
+      "date_precision": "decade",
+      "confidence": 0.95,
+      "attributed_to": "Al-Biruni",
+      "attribution_kind": "authored",
+      "transmission": "manuscript",
+      "derives_from": [
+        "WRK.BRAHMASPHUTA",
+        "WRK.ARYABHATIYA"
+      ],
+      "pillars": [
+        "IT",
+        "CLASSICISM",
+        "NETWORKING"
+      ],
+      "survival": "extant",
+      "note": "Al-Biruni learned Sanskrit to write it, and wrote it in the same decades as the Ghaznavid raids. **The corpus records destruction and transmission happening simultaneously, because they did.**"
+    },
+    {
+      "id": "WRK.KHUSRAU",
+      "title": "Amir Khusrau's divans",
+      "tradition": "persianate",
+      "subject": "poetry",
+      "language": "persian/hindavi",
+      "composed_from": 1280,
+      "composed_to": 1325,
+      "date_precision": "decade",
+      "confidence": 0.9,
+      "attributed_to": "Amir Khusrau",
+      "attribution_kind": "authored",
+      "transmission": "manuscript",
+      "derives_from": [],
+      "pillars": [
+        "DESIGN",
+        "NETWORKING"
+      ],
+      "survival": "extant",
+      "note": "Qawwali, the sitar's ancestry, and early Hindavi verse. Synthesis as a creative act."
+    },
+    {
+      "id": "WRK.BABURNAMA",
+      "title": "Baburnama",
+      "tradition": "persianate",
+      "subject": "history",
+      "language": "chagatai turkic",
+      "composed_from": 1526,
+      "composed_to": 1530,
+      "date_precision": "decade",
+      "confidence": 0.95,
+      "attributed_to": "Babur",
+      "attribution_kind": "authored",
+      "transmission": "manuscript",
+      "derives_from": [],
+      "pillars": [
+        "IT",
+        "AGRICULTURE"
+      ],
+      "survival": "extant",
+      "note": "A conqueror's memoir that spends more pages on melons and gardens than on battles."
+    },
+    {
+      "id": "WRK.AIN_I_AKBARI",
+      "title": "Ain-i-Akbari",
+      "tradition": "persianate",
+      "subject": "statecraft",
+      "language": "persian",
+      "composed_from": 1590,
+      "composed_to": 1595,
+      "date_precision": "year",
+      "confidence": 1,
+      "attributed_to": "Abu'l-Fazl",
+      "attribution_kind": "authored",
+      "transmission": "manuscript",
+      "derives_from": [],
+      "pillars": [
+        "TRADE",
+        "AGRICULTURE",
+        "STRUCTURE",
+        "IT"
+      ],
+      "survival": "extant",
+      "note": "**The richest pre-colonial dataset that exists for the region:** subah, sarkar and pargana with assessed revenue and measured area. The anchor pour for the entire Mughal era."
+    },
+    {
+      "id": "WRK.SIRR_I_AKBAR",
+      "title": "Sirr-i-Akbar",
+      "tradition": "persianate",
+      "subject": "philosophy",
+      "language": "persian",
+      "composed_from": 1657,
+      "composed_to": 1657,
+      "date_precision": "year",
+      "confidence": 0.95,
+      "attributed_to": "Dara Shikoh",
+      "attribution_kind": "authored",
+      "transmission": "manuscript",
+      "derives_from": [
+        "WRK.BRIHADARANYAKA",
+        "WRK.CHANDOGYA"
+      ],
+      "pillars": [
+        "IT",
+        "NETWORKING",
+        "CULTIVATION"
+      ],
+      "survival": "extant",
+      "note": "Fifty Upanishads into Persian. Reaching Europe via Latin in 1801, it gave Schopenhauer the Upanishads. **Transmission through the era the game will be tempted to render only as loss.**"
+    },
+    {
+      "id": "WRK.PADSHAHNAMA",
+      "title": "Padshahnama",
+      "tradition": "persianate",
+      "subject": "history",
+      "language": "persian",
+      "composed_from": 1636,
+      "composed_to": 1657,
+      "date_precision": "decade",
+      "confidence": 0.95,
+      "attributed_to": "Lahori and others",
+      "attribution_kind": "authored",
+      "transmission": "manuscript",
+      "derives_from": [],
+      "pillars": [
+        "IT",
+        "DESIGN"
+      ],
+      "survival": "extant"
+    },
+    {
+      "id": "WRK.BHAGAVATA",
+      "title": "Bhagavata Purana",
+      "tradition": "bhakti",
+      "subject": "story",
+      "language": "sanskrit",
+      "composed_from": 800,
+      "composed_to": 1000,
+      "date_precision": "century",
+      "confidence": 0.8,
+      "attributed_to": "—",
+      "attribution_kind": "attributed",
+      "transmission": "both",
+      "derives_from": [],
+      "pillars": [
+        "NETWORKING",
+        "IT"
+      ],
+      "survival": "extant",
+      "note": "The engine of the bhakti movement and of a thousand painting cycles."
+    },
+    {
+      "id": "WRK.VACHANAS",
+      "title": "Vachanas of the Sharanas",
+      "tradition": "bhakti",
+      "subject": "poetry",
+      "language": "kannada",
+      "composed_from": 1130,
+      "composed_to": 1200,
+      "date_precision": "century",
+      "confidence": 0.85,
+      "attributed_to": "Basava, Akka Mahadevi, Allama",
+      "attribution_kind": "authored",
+      "transmission": "both",
+      "derives_from": [],
+      "pillars": [
+        "CULTIVATION",
+        "NETWORKING"
+      ],
+      "survival": "extant",
+      "note": "Free verse by weavers, potters and washerwomen alongside ministers. A deliberate assault on who is allowed to produce knowledge."
+    },
+    {
+      "id": "WRK.KABIR",
+      "title": "Kabir's dohas",
+      "tradition": "bhakti",
+      "subject": "poetry",
+      "language": "hindavi",
+      "composed_from": 1440,
+      "composed_to": 1518,
+      "date_precision": "decade",
+      "confidence": 0.85,
+      "attributed_to": "Kabir",
+      "attribution_kind": "authored",
+      "transmission": "oral",
+      "derives_from": [],
+      "pillars": [
+        "NETWORKING",
+        "CULTIVATION"
+      ],
+      "survival": "extant",
+      "note": "A weaver, transmitted orally, claimed by Hindus, Muslims and Sikhs alike."
+    },
+    {
+      "id": "WRK.RAMCHARITMANAS",
+      "title": "Ramcharitmanas",
+      "tradition": "bhakti",
+      "subject": "epic",
+      "language": "awadhi",
+      "composed_from": 1574,
+      "composed_to": 1576,
+      "date_precision": "year",
+      "confidence": 0.95,
+      "attributed_to": "Tulsidas",
+      "attribution_kind": "authored",
+      "transmission": "both",
+      "derives_from": [
+        "WRK.RAMAYANA"
+      ],
+      "pillars": [
+        "IT",
+        "NETWORKING"
+      ],
+      "survival": "extant",
+      "note": "The Ramayana in a spoken language. Recited publicly to this day — the storytelling economy still running."
+    },
+    {
+      "id": "WRK.GURU_GRANTH",
+      "title": "Guru Granth Sahib",
+      "tradition": "sikh",
+      "subject": "poetry",
+      "language": "gurmukhi/multiple",
+      "composed_from": 1604,
+      "composed_to": 1708,
+      "date_precision": "year",
+      "confidence": 1,
+      "attributed_to": "Sikh Gurus, and Hindu and Muslim saints",
+      "attribution_kind": "compiled",
+      "transmission": "manuscript",
+      "derives_from": [
+        "WRK.KABIR"
+      ],
+      "pillars": [
+        "IT",
+        "NETWORKING",
+        "CULTIVATION"
+      ],
+      "survival": "extant",
+      "note": "Compiled deliberately as a canon, including poets from outside the tradition — an act of curation as much as composition."
+    },
+    {
+      "id": "WRK.TUKARAM",
+      "title": "Abhangas of Tukaram",
+      "tradition": "bhakti",
+      "subject": "poetry",
+      "language": "marathi",
+      "composed_from": 1620,
+      "composed_to": 1650,
+      "date_precision": "decade",
+      "confidence": 0.85,
+      "attributed_to": "Tukaram",
+      "attribution_kind": "authored",
+      "transmission": "both",
+      "derives_from": [],
+      "pillars": [
+        "NETWORKING",
+        "CULTIVATION"
+      ],
+      "survival": "extant",
+      "note": "Tradition holds his manuscripts were thrown into the Indrayani river and resurfaced. A story about the survival of texts, told by the text."
+    },
+    {
+      "id": "WRK.HINDSWARAJ",
+      "title": "Hind Swaraj",
+      "tradition": "modern",
+      "subject": "statecraft",
+      "language": "gujarati",
+      "composed_from": 1909,
+      "composed_to": 1909,
+      "date_precision": "year",
+      "confidence": 1,
+      "attributed_to": "M. K. Gandhi",
+      "attribution_kind": "authored",
+      "transmission": "print",
+      "derives_from": [],
+      "pillars": [
+        "CULTIVATION",
+        "STRUCTURE"
+      ],
+      "survival": "extant",
+      "note": "Written in ten days on a ship; banned by the Raj on publication."
+    },
+    {
+      "id": "WRK.GITANJALI",
+      "title": "Gitanjali",
+      "tradition": "modern",
+      "subject": "poetry",
+      "language": "bengali",
+      "composed_from": 1910,
+      "composed_to": 1912,
+      "date_precision": "year",
+      "confidence": 1,
+      "attributed_to": "Rabindranath Tagore",
+      "attribution_kind": "authored",
+      "transmission": "print",
+      "derives_from": [],
+      "pillars": [
+        "DESIGN",
+        "NETWORKING"
+      ],
+      "survival": "extant",
+      "note": "Nobel Prize, 1913 — the first for anyone outside Europe."
+    },
+    {
+      "id": "WRK.ANANDAMATH",
+      "title": "Anandamath",
+      "tradition": "modern",
+      "subject": "epic",
+      "language": "bengali",
+      "composed_from": 1882,
+      "composed_to": 1882,
+      "date_precision": "year",
+      "confidence": 1,
+      "attributed_to": "Bankim Chandra Chattopadhyay",
+      "attribution_kind": "authored",
+      "transmission": "print",
+      "derives_from": [],
+      "pillars": [
+        "NETWORKING"
+      ],
+      "survival": "extant",
+      "note": "Contains Vande Mataram; also a contested text in modern politics, which the game should say rather than hide."
+    },
+    {
+      "id": "WRK.ANNIHILATION",
+      "title": "Annihilation of Caste",
+      "tradition": "modern",
+      "subject": "philosophy",
+      "language": "english",
+      "composed_from": 1936,
+      "composed_to": 1936,
+      "date_precision": "year",
+      "confidence": 1,
+      "attributed_to": "B. R. Ambedkar",
+      "attribution_kind": "authored",
+      "transmission": "print",
+      "derives_from": [
+        "WRK.MANUSMRITI"
+      ],
+      "pillars": [
+        "CULTIVATION"
+      ],
+      "survival": "extant",
+      "note": "An undelivered speech, self-published after the invitation was withdrawn. The most direct challenge in the corpus to the corpus itself."
+    },
+    {
+      "id": "WRK.DISCOVERY",
+      "title": "The Discovery of India",
+      "tradition": "modern",
+      "subject": "history",
+      "language": "english",
+      "composed_from": 1944,
+      "composed_to": 1946,
+      "date_precision": "year",
+      "confidence": 1,
+      "attributed_to": "Jawaharlal Nehru",
+      "attribution_kind": "authored",
+      "transmission": "print",
+      "derives_from": [],
+      "pillars": [
+        "IT",
+        "CULTIVATION"
+      ],
+      "survival": "extant",
+      "note": "Written in Ahmednagar Fort prison."
+    },
+    {
+      "id": "WRK.CONSTITUTION",
+      "title": "Constitution of India",
+      "tradition": "modern",
+      "subject": "law",
+      "language": "english/hindi",
+      "composed_from": 1946,
+      "composed_to": 1950,
+      "date_precision": "year",
+      "confidence": 1,
+      "attributed_to": "Constituent Assembly",
+      "attribution_kind": "compiled",
+      "transmission": "print",
+      "derives_from": [
+        "WRK.ANNIHILATION"
+      ],
+      "pillars": [
+        "STRUCTURE",
+        "CULTIVATION",
+        "NETWORKING"
+      ],
+      "survival": "extant",
+      "note": "The longest written constitution of any sovereign country, and the last work in the campaign. Handwritten and illuminated — a manuscript, deliberately."
+    }
+  ]
+}

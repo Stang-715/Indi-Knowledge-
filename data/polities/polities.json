@@ -1,0 +1,2982 @@
+{
+ "$schema": "../../packages/schema/polity.schema.json",
+ "note": "First-cut sovereignty spine, 4000 BCE to present. Negative years are BCE. Ancient entries are deliberately low-confidence; see docs/04-eras.md. NOT yet historian-reviewed.",
+ "generated_by": "tools/build-polities.mjs",
+ "eras": [
+  {
+   "id": "ERA.NEOLITHIC",
+   "name": "Neolithic & Chalcolithic",
+   "from": -7000,
+   "to": -3300,
+   "summary": "No states. Village agriculture, craft specialisation, no evidence of rule."
+  },
+  {
+   "id": "ERA.EARLY_HARAPPAN",
+   "name": "Early Harappan",
+   "from": -3300,
+   "to": -2600,
+   "summary": "Regional proto-urban cultures converge on shared material norms."
+  },
+  {
+   "id": "ERA.MATURE_HARAPPAN",
+   "name": "Indus Civilisation",
+   "from": -2600,
+   "to": -1900,
+   "summary": "Urban, standardised, long-distance trade — and no evidence of kings or armies."
+  },
+  {
+   "id": "ERA.LATE_HARAPPAN",
+   "name": "Late Harappan & Vedic",
+   "from": -1900,
+   "to": -600,
+   "summary": "Deurbanisation, eastward shift, oral corpus, emergence of janapadas."
+  },
+  {
+   "id": "ERA.SECOND_URBAN",
+   "name": "Second Urbanisation",
+   "from": -600,
+   "to": -322,
+   "summary": "Mahajanapadas, punch-marked coinage, Buddhism and Jainism, Magadhan ascent."
+  },
+  {
+   "id": "ERA.MAURYAN",
+   "name": "Mauryan",
+   "from": -322,
+   "to": -185,
+   "summary": "First subcontinental empire. Edicts, provincial administration, dhamma."
+  },
+  {
+   "id": "ERA.CLASSICAL",
+   "name": "Classical",
+   "from": -185,
+   "to": 320,
+   "summary": "Fragmentation and Indian Ocean trade. Satavahanas, Kushans, Sangam south."
+  },
+  {
+   "id": "ERA.GUPTA",
+   "name": "Gupta & Post-Gupta",
+   "from": 320,
+   "to": 650,
+   "summary": "Land-grant economy, temple building, Huna invasions, Harsha."
+  },
+  {
+   "id": "ERA.EARLY_MEDIEVAL",
+   "name": "Early Medieval",
+   "from": 650,
+   "to": 1206,
+   "summary": "Regional kingdoms, tripartite struggle, Chola maritime reach, agrarian expansion."
+  },
+  {
+   "id": "ERA.SULTANATE",
+   "name": "Sultanate",
+   "from": 1206,
+   "to": 1526,
+   "summary": "Iqta assignment, Vijayanagara and the Deccan sultanates, regional sultanates."
+  },
+  {
+   "id": "ERA.MUGHAL",
+   "name": "Mughal & Early Modern",
+   "from": 1526,
+   "to": 1757,
+   "summary": "Mansabdari and zabt revenue, Maratha expansion, European trading companies."
+  },
+  {
+   "id": "ERA.COLONIAL",
+   "name": "Company & Crown",
+   "from": 1757,
+   "to": 1947,
+   "summary": "Land revenue settlements, railways, paramountcy, the Drain."
+  },
+  {
+   "id": "ERA.REPUBLIC",
+   "name": "Republic",
+   "from": 1947,
+   "to": null,
+   "summary": "Federal union, planning, reorganisation, liberalisation."
+  }
+ ],
+ "polities": [
+  {
+   "id": "CUL.MEHRGARH",
+   "name": "Mehrgarh",
+   "era": "ERA.NEOLITHIC",
+   "from": -7000,
+   "to": -2600,
+   "type": "culture",
+   "date_precision": "millennium",
+   "confidence": 0.55,
+   "core_regions": [
+    "PK.BALOCHISTAN"
+   ],
+   "provenance": "DERIVED",
+   "note": "Earliest farming in the region; wheat, barley, cattle."
+  },
+  {
+   "id": "CUL.BHIRRANA",
+   "name": "Bhirrana–Ghaggar Neolithic",
+   "era": "ERA.NEOLITHIC",
+   "from": -7000,
+   "to": -3300,
+   "type": "culture",
+   "date_precision": "millennium",
+   "confidence": 0.4,
+   "core_regions": [
+    "IN.HR"
+   ],
+   "provenance": "DERIVED",
+   "note": "Contested early dates on the Ghaggar-Hakra."
+  },
+  {
+   "id": "CUL.LAHURADEWA",
+   "name": "Lahuradewa & Middle Ganga",
+   "era": "ERA.NEOLITHIC",
+   "from": -6500,
+   "to": -3000,
+   "type": "culture",
+   "date_precision": "millennium",
+   "confidence": 0.4,
+   "core_regions": [
+    "IN.UP"
+   ],
+   "provenance": "DERIVED",
+   "note": "Independent rice domestication argued here."
+  },
+  {
+   "id": "CUL.SOUTH_NEOLITHIC",
+   "name": "South Indian Ashmound Neolithic",
+   "era": "ERA.EARLY_HARAPPAN",
+   "from": -3000,
+   "to": -1200,
+   "type": "culture",
+   "date_precision": "century",
+   "confidence": 0.5,
+   "core_regions": [
+    "IN.KA",
+    "IN.AP"
+   ],
+   "provenance": "DERIVED",
+   "note": "Cattle pastoralism; ashmounds of the Deccan."
+  },
+  {
+   "id": "CUL.BURZAHOM",
+   "name": "Burzahom & Kashmir Neolithic",
+   "era": "ERA.EARLY_HARAPPAN",
+   "from": -3000,
+   "to": -1000,
+   "type": "culture",
+   "date_precision": "century",
+   "confidence": 0.5,
+   "core_regions": [
+    "IN.JK"
+   ],
+   "provenance": "DERIVED",
+   "note": "Pit dwellings; links north toward Central Asia."
+  },
+  {
+   "id": "CUL.AHAR_BANAS",
+   "name": "Ahar–Banas",
+   "era": "ERA.EARLY_HARAPPAN",
+   "from": -3000,
+   "to": -1500,
+   "type": "culture",
+   "date_precision": "century",
+   "confidence": 0.5,
+   "core_regions": [
+    "IN.RJ"
+   ],
+   "provenance": "DERIVED",
+   "note": "Chalcolithic copper working in Mewar."
+  },
+  {
+   "id": "CUL.KAYATHA",
+   "name": "Kayatha",
+   "era": "ERA.MATURE_HARAPPAN",
+   "from": -2400,
+   "to": -1700,
+   "type": "culture",
+   "date_precision": "century",
+   "confidence": 0.45,
+   "core_regions": [
+    "IN.MP"
+   ],
+   "provenance": "DERIVED",
+   "note": "Malwa chalcolithic sequence."
+  },
+  {
+   "id": "CUL.EARLY_HARAPPAN",
+   "name": "Early Harappan (Ravi / Kot Diji / Sothi-Siswal)",
+   "era": "ERA.EARLY_HARAPPAN",
+   "from": -3300,
+   "to": -2600,
+   "type": "culture",
+   "date_precision": "century",
+   "confidence": 0.6,
+   "core_regions": [
+    "PK.PUNJAB",
+    "IN.HR",
+    "IN.RJ"
+   ],
+   "provenance": "DERIVED",
+   "note": "Regional cultures converging on shared norms."
+  },
+  {
+   "id": "NET.INDUS",
+   "name": "Indus Civilisation",
+   "era": "ERA.MATURE_HARAPPAN",
+   "from": -2600,
+   "to": -1900,
+   "type": "network",
+   "date_precision": "century",
+   "confidence": 0.75,
+   "core_regions": [
+    "PK.SINDH",
+    "PK.PUNJAB",
+    "IN.GJ",
+    "IN.HR",
+    "IN.RJ"
+   ],
+   "provenance": "DERIVED",
+   "note": "Standardised weights, script, planned cities. No palaces, no royal burials, no army. Modelled as a network, not a state."
+  },
+  {
+   "id": "NET.INDUS.SINDHI",
+   "name": "Sindhi domain (Mohenjo-daro)",
+   "era": "ERA.MATURE_HARAPPAN",
+   "from": -2600,
+   "to": -1900,
+   "type": "network",
+   "date_precision": "century",
+   "confidence": 0.6,
+   "core_regions": [
+    "PK.SINDH"
+   ],
+   "provenance": "DERIVED",
+   "note": "Regional domain of the Indus network."
+  },
+  {
+   "id": "NET.INDUS.PUNJAB",
+   "name": "Punjab domain (Harappa)",
+   "era": "ERA.MATURE_HARAPPAN",
+   "from": -2600,
+   "to": -1900,
+   "type": "network",
+   "date_precision": "century",
+   "confidence": 0.6,
+   "core_regions": [
+    "PK.PUNJAB"
+   ],
+   "provenance": "DERIVED",
+   "note": "Regional domain of the Indus network."
+  },
+  {
+   "id": "NET.INDUS.SORATH",
+   "name": "Sorath domain (Dholavira, Lothal)",
+   "era": "ERA.MATURE_HARAPPAN",
+   "from": -2600,
+   "to": -1900,
+   "type": "network",
+   "date_precision": "century",
+   "confidence": 0.6,
+   "core_regions": [
+    "IN.GJ"
+   ],
+   "provenance": "DERIVED",
+   "note": "Gujarat domain; maritime contact with the Gulf."
+  },
+  {
+   "id": "NET.INDUS.EASTERN",
+   "name": "Eastern domain (Rakhigarhi, Kalibangan)",
+   "era": "ERA.MATURE_HARAPPAN",
+   "from": -2600,
+   "to": -1900,
+   "type": "network",
+   "date_precision": "century",
+   "confidence": 0.6,
+   "core_regions": [
+    "IN.HR",
+    "IN.RJ"
+   ],
+   "provenance": "DERIVED",
+   "note": "Ghaggar-Hakra domain."
+  },
+  {
+   "id": "CUL.CEMETERY_H",
+   "name": "Cemetery H",
+   "era": "ERA.LATE_HARAPPAN",
+   "from": -1900,
+   "to": -1300,
+   "type": "culture",
+   "date_precision": "century",
+   "confidence": 0.55,
+   "core_regions": [
+    "PK.PUNJAB"
+   ],
+   "provenance": "DERIVED",
+   "note": "Late/post-urban Harappan in the Punjab."
+  },
+  {
+   "id": "CUL.JHUKAR",
+   "name": "Jhukar",
+   "era": "ERA.LATE_HARAPPAN",
+   "from": -1900,
+   "to": -1500,
+   "type": "culture",
+   "date_precision": "century",
+   "confidence": 0.5,
+   "core_regions": [
+    "PK.SINDH"
+   ],
+   "provenance": "DERIVED",
+   "note": "Post-urban Sindh."
+  },
+  {
+   "id": "CUL.OCP",
+   "name": "Ochre Coloured Pottery / Copper Hoards",
+   "era": "ERA.LATE_HARAPPAN",
+   "from": -2000,
+   "to": -1500,
+   "type": "culture",
+   "date_precision": "century",
+   "confidence": 0.45,
+   "core_regions": [
+    "IN.UP",
+    "IN.HR"
+   ],
+   "provenance": "DERIVED",
+   "note": "Doab copper hoards; association contested."
+  },
+  {
+   "id": "CUL.PGW",
+   "name": "Painted Grey Ware",
+   "era": "ERA.LATE_HARAPPAN",
+   "from": -1200,
+   "to": -600,
+   "type": "culture",
+   "date_precision": "century",
+   "confidence": 0.7,
+   "core_regions": [
+    "IN.UP",
+    "IN.HR",
+    "IN.PB"
+   ],
+   "provenance": "DERIVED",
+   "note": "Material horizon commonly correlated with the later Vedic period."
+  },
+  {
+   "id": "CUL.MEGALITHIC",
+   "name": "South Indian Megalithic (Iron Age)",
+   "era": "ERA.LATE_HARAPPAN",
+   "from": -1500,
+   "to": -300,
+   "type": "culture",
+   "date_precision": "century",
+   "confidence": 0.65,
+   "core_regions": [
+    "IN.TN",
+    "IN.KA",
+    "IN.KL",
+    "IN.TG"
+   ],
+   "provenance": "DERIVED",
+   "note": "Iron, urn burials; precedes the Sangam polities."
+  },
+  {
+   "id": "POL.KURU",
+   "name": "Kuru",
+   "era": "ERA.LATE_HARAPPAN",
+   "from": -1200,
+   "to": -500,
+   "type": "janapada",
+   "date_precision": "century",
+   "confidence": 0.5,
+   "core_regions": [
+    "IN.HR",
+    "IN.UP"
+   ],
+   "provenance": "DERIVED",
+   "note": "First well-attested Vedic polity; ritual codification."
+  },
+  {
+   "id": "POL.PANCHALA",
+   "name": "Panchala",
+   "era": "ERA.LATE_HARAPPAN",
+   "from": -1100,
+   "to": -350,
+   "type": "janapada",
+   "date_precision": "century",
+   "confidence": 0.5,
+   "core_regions": [
+    "IN.UP"
+   ],
+   "provenance": "DERIVED",
+   "note": "Later a mahajanapada; briefly a gana-sangha."
+  },
+  {
+   "id": "POL.VIDEHA",
+   "name": "Videha",
+   "era": "ERA.LATE_HARAPPAN",
+   "from": -1100,
+   "to": -600,
+   "type": "janapada",
+   "date_precision": "century",
+   "confidence": 0.45,
+   "core_regions": [
+    "IN.BR",
+    "NP.MADHESH"
+   ],
+   "provenance": "DERIVED",
+   "note": "Absorbed into the Vajji confederacy."
+  },
+  {
+   "id": "POL.MAGADHA",
+   "name": "Magadha",
+   "era": "ERA.SECOND_URBAN",
+   "from": -700,
+   "to": -322,
+   "type": "kingdom",
+   "date_precision": "century",
+   "confidence": 0.8,
+   "core_regions": [
+    "IN.BR"
+   ],
+   "provenance": "DERIVED",
+   "note": "Iron, river control and Rajgir/Pataliputra; eventual victor."
+  },
+  {
+   "id": "POL.KOSALA",
+   "name": "Kosala",
+   "era": "ERA.SECOND_URBAN",
+   "from": -700,
+   "to": -362,
+   "type": "kingdom",
+   "date_precision": "century",
+   "confidence": 0.7,
+   "core_regions": [
+    "IN.UP"
+   ],
+   "provenance": "DERIVED",
+   "note": "Annexed by Magadha under the Haryankas."
+  },
+  {
+   "id": "POL.KASI",
+   "name": "Kasi",
+   "era": "ERA.SECOND_URBAN",
+   "from": -700,
+   "to": -500,
+   "type": "kingdom",
+   "date_precision": "century",
+   "confidence": 0.65,
+   "core_regions": [
+    "IN.UP"
+   ],
+   "provenance": "DERIVED",
+   "note": "Absorbed by Kosala, then Magadha."
+  },
+  {
+   "id": "POL.ANGA",
+   "name": "Anga",
+   "era": "ERA.SECOND_URBAN",
+   "from": -700,
+   "to": -530,
+   "type": "kingdom",
+   "date_precision": "century",
+   "confidence": 0.65,
+   "core_regions": [
+    "IN.BR",
+    "IN.JH"
+   ],
+   "provenance": "DERIVED",
+   "note": "Annexed by Bimbisara."
+  },
+  {
+   "id": "POL.VAJJI",
+   "name": "Vajji (Licchavi confederacy)",
+   "era": "ERA.SECOND_URBAN",
+   "from": -700,
+   "to": -468,
+   "type": "gana-sangha",
+   "date_precision": "century",
+   "confidence": 0.7,
+   "core_regions": [
+    "IN.BR"
+   ],
+   "provenance": "DERIVED",
+   "note": "Republic-like oligarchy; conquered by Ajatashatru."
+  },
+  {
+   "id": "POL.MALLA",
+   "name": "Malla",
+   "era": "ERA.SECOND_URBAN",
+   "from": -700,
+   "to": -450,
+   "type": "gana-sangha",
+   "date_precision": "century",
+   "confidence": 0.6,
+   "core_regions": [
+    "IN.UP",
+    "IN.BR"
+   ],
+   "provenance": "DERIVED",
+   "note": "Oligarchic; site of the Buddha’s parinirvana."
+  },
+  {
+   "id": "POL.VATSA",
+   "name": "Vatsa",
+   "era": "ERA.SECOND_URBAN",
+   "from": -700,
+   "to": -400,
+   "type": "kingdom",
+   "date_precision": "century",
+   "confidence": 0.6,
+   "core_regions": [
+    "IN.UP"
+   ],
+   "provenance": "DERIVED",
+   "note": "Kaushambi; a major trade node."
+  },
+  {
+   "id": "POL.AVANTI",
+   "name": "Avanti",
+   "era": "ERA.SECOND_URBAN",
+   "from": -700,
+   "to": -400,
+   "type": "kingdom",
+   "date_precision": "century",
+   "confidence": 0.65,
+   "core_regions": [
+    "IN.MP"
+   ],
+   "provenance": "DERIVED",
+   "note": "Ujjain; long rival of Magadha."
+  },
+  {
+   "id": "POL.CHEDI",
+   "name": "Chedi",
+   "era": "ERA.SECOND_URBAN",
+   "from": -700,
+   "to": -400,
+   "type": "kingdom",
+   "date_precision": "century",
+   "confidence": 0.55,
+   "core_regions": [
+    "IN.MP",
+    "IN.UP"
+   ],
+   "provenance": "DERIVED"
+  },
+  {
+   "id": "POL.MATSYA",
+   "name": "Matsya",
+   "era": "ERA.SECOND_URBAN",
+   "from": -700,
+   "to": -400,
+   "type": "kingdom",
+   "date_precision": "century",
+   "confidence": 0.55,
+   "core_regions": [
+    "IN.RJ"
+   ],
+   "provenance": "DERIVED"
+  },
+  {
+   "id": "POL.SURASENA",
+   "name": "Surasena",
+   "era": "ERA.SECOND_URBAN",
+   "from": -700,
+   "to": -400,
+   "type": "kingdom",
+   "date_precision": "century",
+   "confidence": 0.55,
+   "core_regions": [
+    "IN.UP"
+   ],
+   "provenance": "DERIVED",
+   "note": "Mathura."
+  },
+  {
+   "id": "POL.ASSAKA",
+   "name": "Assaka",
+   "era": "ERA.SECOND_URBAN",
+   "from": -700,
+   "to": -300,
+   "type": "kingdom",
+   "date_precision": "century",
+   "confidence": 0.5,
+   "core_regions": [
+    "IN.MH",
+    "IN.TG"
+   ],
+   "provenance": "DERIVED",
+   "note": "Only southern mahajanapada."
+  },
+  {
+   "id": "POL.GANDHARA",
+   "name": "Gandhara",
+   "era": "ERA.SECOND_URBAN",
+   "from": -700,
+   "to": -518,
+   "type": "kingdom",
+   "date_precision": "century",
+   "confidence": 0.7,
+   "core_regions": [
+    "PK.KP",
+    "AF.NANGARHAR"
+   ],
+   "provenance": "DERIVED",
+   "note": "Taxila; absorbed by the Achaemenids."
+  },
+  {
+   "id": "POL.KAMBOJA",
+   "name": "Kamboja",
+   "era": "ERA.SECOND_URBAN",
+   "from": -700,
+   "to": -300,
+   "type": "gana-sangha",
+   "date_precision": "century",
+   "confidence": 0.5,
+   "core_regions": [
+    "AF.KABUL",
+    "PK.KP"
+   ],
+   "provenance": "DERIVED"
+  },
+  {
+   "id": "POL.MALLA_KUSHINARA",
+   "name": "Kuru (late)",
+   "era": "ERA.SECOND_URBAN",
+   "from": -600,
+   "to": -400,
+   "type": "gana-sangha",
+   "date_precision": "century",
+   "confidence": 0.5,
+   "core_regions": [
+    "IN.HR"
+   ],
+   "provenance": "DERIVED",
+   "note": "Reduced to an oligarchy by this period."
+  },
+  {
+   "id": "POL.PANCHALA_LATE",
+   "name": "Panchala (late)",
+   "era": "ERA.SECOND_URBAN",
+   "from": -600,
+   "to": -350,
+   "type": "gana-sangha",
+   "date_precision": "century",
+   "confidence": 0.5,
+   "core_regions": [
+    "IN.UP"
+   ],
+   "provenance": "DERIVED"
+  },
+  {
+   "id": "POL.ACHAEMENID",
+   "name": "Achaemenid satrapies (Gandara, Hindush)",
+   "era": "ERA.SECOND_URBAN",
+   "from": -518,
+   "to": -330,
+   "type": "satrapy",
+   "date_precision": "decade",
+   "confidence": 0.8,
+   "core_regions": [
+    "PK.KP",
+    "PK.PUNJAB",
+    "PK.SINDH"
+   ],
+   "provenance": "DERIVED",
+   "note": "First imperial administration in the subcontinent."
+  },
+  {
+   "id": "POL.MACEDONIAN",
+   "name": "Macedonian campaign",
+   "era": "ERA.SECOND_URBAN",
+   "from": -327,
+   "to": -325,
+   "type": "occupation",
+   "date_precision": "year",
+   "confidence": 0.9,
+   "core_regions": [
+    "PK.PUNJAB"
+   ],
+   "provenance": "SOURCED",
+   "note": "Alexander; withdrawal at the Beas."
+  },
+  {
+   "id": "POL.SELEUCID",
+   "name": "Seleucid claim",
+   "era": "ERA.MAURYAN",
+   "from": -312,
+   "to": -303,
+   "type": "empire",
+   "date_precision": "decade",
+   "confidence": 0.85,
+   "core_regions": [
+    "AF.KABUL",
+    "PK.KP"
+   ],
+   "provenance": "SOURCED",
+   "note": "Ceded to Chandragupta in 303 BCE."
+  },
+  {
+   "id": "POL.HARYANKA",
+   "name": "Haryanka dynasty",
+   "era": "ERA.SECOND_URBAN",
+   "from": -544,
+   "to": -413,
+   "type": "dynasty",
+   "date_precision": "decade",
+   "confidence": 0.75,
+   "core_regions": [
+    "IN.BR"
+   ],
+   "provenance": "DERIVED",
+   "note": "Bimbisara, Ajatashatru. Magadhan expansion begins."
+  },
+  {
+   "id": "POL.SHISHUNAGA",
+   "name": "Shishunaga dynasty",
+   "era": "ERA.SECOND_URBAN",
+   "from": -413,
+   "to": -345,
+   "type": "dynasty",
+   "date_precision": "decade",
+   "confidence": 0.7,
+   "core_regions": [
+    "IN.BR"
+   ],
+   "provenance": "DERIVED",
+   "note": "Absorbs Avanti."
+  },
+  {
+   "id": "POL.NANDA",
+   "name": "Nanda Empire",
+   "era": "ERA.SECOND_URBAN",
+   "from": -345,
+   "to": -322,
+   "type": "empire",
+   "date_precision": "decade",
+   "confidence": 0.75,
+   "core_regions": [
+    "IN.BR",
+    "IN.UP",
+    "IN.OD"
+   ],
+   "provenance": "DERIVED",
+   "note": "Vast standing army; heavy taxation."
+  },
+  {
+   "id": "POL.MAURYA",
+   "name": "Maurya Empire",
+   "era": "ERA.MAURYAN",
+   "from": -322,
+   "to": -185,
+   "type": "empire",
+   "date_precision": "decade",
+   "confidence": 0.9,
+   "core_regions": [
+    "IN.BR",
+    "IN.UP",
+    "PK.PUNJAB",
+    "IN.OD",
+    "IN.KA"
+   ],
+   "provenance": "SOURCED",
+   "note": "First subcontinental empire. Ashokan edicts give the first directly attested administrative geography."
+  },
+  {
+   "id": "POL.SHUNGA",
+   "name": "Shunga",
+   "era": "ERA.CLASSICAL",
+   "from": -185,
+   "to": -73,
+   "type": "dynasty",
+   "date_precision": "decade",
+   "confidence": 0.8,
+   "core_regions": [
+    "IN.MP",
+    "IN.UP",
+    "IN.BR"
+   ],
+   "provenance": "DERIVED"
+  },
+  {
+   "id": "POL.KANVA",
+   "name": "Kanva",
+   "era": "ERA.CLASSICAL",
+   "from": -73,
+   "to": -28,
+   "type": "dynasty",
+   "date_precision": "decade",
+   "confidence": 0.7,
+   "core_regions": [
+    "IN.MP"
+   ],
+   "provenance": "DERIVED"
+  },
+  {
+   "id": "POL.SATAVAHANA",
+   "name": "Satavahana",
+   "era": "ERA.CLASSICAL",
+   "from": -100,
+   "to": 225,
+   "type": "empire",
+   "date_precision": "century",
+   "confidence": 0.75,
+   "core_regions": [
+    "IN.MH",
+    "IN.TG",
+    "IN.AP"
+   ],
+   "provenance": "DERIVED",
+   "note": "Deccan; start date contested between 3rd and 1st c. BCE."
+  },
+  {
+   "id": "POL.INDO_GREEK",
+   "name": "Indo-Greek kingdoms",
+   "era": "ERA.CLASSICAL",
+   "from": -180,
+   "to": 10,
+   "type": "kingdom",
+   "date_precision": "decade",
+   "confidence": 0.8,
+   "core_regions": [
+    "PK.PUNJAB",
+    "AF.KABUL"
+   ],
+   "provenance": "DERIVED",
+   "note": "Menander; bilingual coinage is the main evidence."
+  },
+  {
+   "id": "POL.INDO_SCYTHIAN",
+   "name": "Indo-Scythian (Saka)",
+   "era": "ERA.CLASSICAL",
+   "from": -150,
+   "to": 400,
+   "type": "kingdom",
+   "date_precision": "decade",
+   "confidence": 0.75,
+   "core_regions": [
+    "PK.SINDH",
+    "IN.GJ",
+    "IN.MP"
+   ],
+   "provenance": "DERIVED"
+  },
+  {
+   "id": "POL.WESTERN_SATRAPS",
+   "name": "Western Satraps",
+   "era": "ERA.CLASSICAL",
+   "from": 35,
+   "to": 405,
+   "type": "satrapy",
+   "date_precision": "decade",
+   "confidence": 0.85,
+   "core_regions": [
+    "IN.GJ",
+    "IN.MP",
+    "IN.MH"
+   ],
+   "provenance": "SOURCED",
+   "note": "Dated coinage — unusually precise for the period."
+  },
+  {
+   "id": "POL.INDO_PARTHIAN",
+   "name": "Indo-Parthian",
+   "era": "ERA.CLASSICAL",
+   "from": 19,
+   "to": 226,
+   "type": "kingdom",
+   "date_precision": "decade",
+   "confidence": 0.7,
+   "core_regions": [
+    "PK.KP",
+    "AF.KABUL"
+   ],
+   "provenance": "DERIVED"
+  },
+  {
+   "id": "POL.KUSHAN",
+   "name": "Kushan Empire",
+   "era": "ERA.CLASSICAL",
+   "from": 30,
+   "to": 375,
+   "type": "empire",
+   "date_precision": "decade",
+   "confidence": 0.85,
+   "core_regions": [
+    "PK.KP",
+    "PK.PUNJAB",
+    "IN.UP"
+   ],
+   "provenance": "SOURCED",
+   "note": "Silk Road hinge; Kanishka."
+  },
+  {
+   "id": "POL.KALINGA",
+   "name": "Kalinga",
+   "era": "ERA.SECOND_URBAN",
+   "from": -700,
+   "to": -261,
+   "type": "kingdom",
+   "date_precision": "century",
+   "confidence": 0.7,
+   "core_regions": [
+    "IN.OD"
+   ],
+   "provenance": "DERIVED",
+   "note": "Independent until Ashoka. The one Mauryan conquest with a first-person account of its cost."
+  },
+  {
+   "id": "POL.MAHAMEGHAVAHANA",
+   "name": "Mahameghavahana (Kalinga)",
+   "era": "ERA.CLASSICAL",
+   "from": -250,
+   "to": 400,
+   "type": "dynasty",
+   "date_precision": "century",
+   "confidence": 0.6,
+   "core_regions": [
+    "IN.OD"
+   ],
+   "provenance": "DERIVED",
+   "note": "Kharavela and the Hathigumpha inscription; Kalinga independent again."
+  },
+  {
+   "id": "POL.CHERA_EARLY",
+   "name": "Chera (Sangam)",
+   "era": "ERA.CLASSICAL",
+   "from": -300,
+   "to": 300,
+   "type": "kingdom",
+   "date_precision": "century",
+   "confidence": 0.6,
+   "core_regions": [
+    "IN.KL",
+    "IN.TN"
+   ],
+   "provenance": "DERIVED",
+   "note": "Sangam-era; Roman trade at Muziris."
+  },
+  {
+   "id": "POL.CHOLA_EARLY",
+   "name": "Chola (Sangam)",
+   "era": "ERA.CLASSICAL",
+   "from": -300,
+   "to": 300,
+   "type": "kingdom",
+   "date_precision": "century",
+   "confidence": 0.6,
+   "core_regions": [
+    "IN.TN"
+   ],
+   "provenance": "DERIVED",
+   "note": "Karikala; the early, pre-imperial Cholas."
+  },
+  {
+   "id": "POL.PANDYA_EARLY",
+   "name": "Pandya (Sangam)",
+   "era": "ERA.CLASSICAL",
+   "from": -300,
+   "to": 300,
+   "type": "kingdom",
+   "date_precision": "century",
+   "confidence": 0.6,
+   "core_regions": [
+    "IN.TN"
+   ],
+   "provenance": "DERIVED",
+   "note": "Madurai."
+  },
+  {
+   "id": "POL.GUPTA",
+   "name": "Gupta Empire",
+   "era": "ERA.GUPTA",
+   "from": 320,
+   "to": 550,
+   "type": "empire",
+   "date_precision": "decade",
+   "confidence": 0.9,
+   "core_regions": [
+    "IN.BR",
+    "IN.UP",
+    "IN.MP",
+    "IN.WB"
+   ],
+   "provenance": "SOURCED",
+   "note": "Land grants, temple architecture, mathematics and astronomy."
+  },
+  {
+   "id": "POL.VAKATAKA",
+   "name": "Vakataka",
+   "era": "ERA.GUPTA",
+   "from": 250,
+   "to": 500,
+   "type": "kingdom",
+   "date_precision": "decade",
+   "confidence": 0.85,
+   "core_regions": [
+    "IN.MH",
+    "IN.MP"
+   ],
+   "provenance": "SOURCED",
+   "note": "Ajanta patronage; matrimonially tied to the Guptas."
+  },
+  {
+   "id": "POL.PALLAVA",
+   "name": "Pallava",
+   "era": "ERA.GUPTA",
+   "from": 275,
+   "to": 897,
+   "type": "kingdom",
+   "date_precision": "decade",
+   "confidence": 0.85,
+   "core_regions": [
+    "IN.TN",
+    "IN.AP"
+   ],
+   "provenance": "SOURCED",
+   "note": "Mahabalipuram; Tamil temple architecture begins."
+  },
+  {
+   "id": "POL.KADAMBA",
+   "name": "Kadamba",
+   "era": "ERA.GUPTA",
+   "from": 345,
+   "to": 525,
+   "type": "kingdom",
+   "date_precision": "decade",
+   "confidence": 0.8,
+   "core_regions": [
+    "IN.KA"
+   ],
+   "provenance": "DERIVED",
+   "note": "Banavasi; first Kannada-region dynasty."
+  },
+  {
+   "id": "POL.GANGA_W",
+   "name": "Western Ganga",
+   "era": "ERA.GUPTA",
+   "from": 350,
+   "to": 1000,
+   "type": "kingdom",
+   "date_precision": "decade",
+   "confidence": 0.8,
+   "core_regions": [
+    "IN.KA"
+   ],
+   "provenance": "DERIVED",
+   "note": "Talakad; Jain patronage."
+  },
+  {
+   "id": "POL.MAITRAKA",
+   "name": "Maitraka",
+   "era": "ERA.GUPTA",
+   "from": 475,
+   "to": 776,
+   "type": "kingdom",
+   "date_precision": "decade",
+   "confidence": 0.8,
+   "core_regions": [
+    "IN.GJ"
+   ],
+   "provenance": "DERIVED",
+   "note": "Valabhi; a major learning centre."
+  },
+  {
+   "id": "POL.ALCHON",
+   "name": "Alchon Huns",
+   "era": "ERA.GUPTA",
+   "from": 470,
+   "to": 670,
+   "type": "confederacy",
+   "date_precision": "decade",
+   "confidence": 0.7,
+   "core_regions": [
+    "PK.PUNJAB",
+    "IN.RJ"
+   ],
+   "provenance": "DERIVED",
+   "note": "Toramana, Mihirakula."
+  },
+  {
+   "id": "POL.KAMARUPA",
+   "name": "Kamarupa",
+   "era": "ERA.GUPTA",
+   "from": 350,
+   "to": 1140,
+   "type": "kingdom",
+   "date_precision": "decade",
+   "confidence": 0.75,
+   "core_regions": [
+    "IN.AS"
+   ],
+   "provenance": "DERIVED",
+   "note": "Brahmaputra valley."
+  },
+  {
+   "id": "POL.MAUKHARI",
+   "name": "Maukhari",
+   "era": "ERA.GUPTA",
+   "from": 550,
+   "to": 606,
+   "type": "kingdom",
+   "date_precision": "decade",
+   "confidence": 0.75,
+   "core_regions": [
+    "IN.UP"
+   ],
+   "provenance": "DERIVED",
+   "note": "Kannauj."
+  },
+  {
+   "id": "POL.VARDHANA",
+   "name": "Pushyabhuti (Harsha)",
+   "era": "ERA.GUPTA",
+   "from": 606,
+   "to": 647,
+   "type": "empire",
+   "date_precision": "year",
+   "confidence": 0.85,
+   "core_regions": [
+    "IN.UP",
+    "IN.HR"
+   ],
+   "provenance": "SOURCED",
+   "note": "Harshavardhana; last great north Indian power before fragmentation."
+  },
+  {
+   "id": "POL.CHALUKYA_BADAMI",
+   "name": "Chalukya of Badami",
+   "era": "ERA.GUPTA",
+   "from": 543,
+   "to": 753,
+   "type": "kingdom",
+   "date_precision": "decade",
+   "confidence": 0.85,
+   "core_regions": [
+    "IN.KA",
+    "IN.MH"
+   ],
+   "provenance": "SOURCED",
+   "note": "Pulakeshin II halts Harsha at the Narmada."
+  },
+  {
+   "id": "POL.PRATIHARA",
+   "name": "Gurjara-Pratihara",
+   "era": "ERA.EARLY_MEDIEVAL",
+   "from": 730,
+   "to": 1036,
+   "type": "empire",
+   "date_precision": "decade",
+   "confidence": 0.85,
+   "core_regions": [
+    "IN.RJ",
+    "IN.UP",
+    "IN.MP"
+   ],
+   "provenance": "SOURCED",
+   "note": "One leg of the tripartite struggle for Kannauj."
+  },
+  {
+   "id": "POL.PALA",
+   "name": "Pala",
+   "era": "ERA.EARLY_MEDIEVAL",
+   "from": 750,
+   "to": 1161,
+   "type": "empire",
+   "date_precision": "decade",
+   "confidence": 0.85,
+   "core_regions": [
+    "IN.WB",
+    "IN.BR",
+    "BD.RAJSHAHI"
+   ],
+   "provenance": "SOURCED",
+   "note": "Buddhist patronage; Nalanda and Vikramashila."
+  },
+  {
+   "id": "POL.RASHTRAKUTA",
+   "name": "Rashtrakuta",
+   "era": "ERA.EARLY_MEDIEVAL",
+   "from": 753,
+   "to": 982,
+   "type": "empire",
+   "date_precision": "decade",
+   "confidence": 0.85,
+   "core_regions": [
+    "IN.KA",
+    "IN.MH"
+   ],
+   "provenance": "SOURCED",
+   "note": "Ellora Kailasa; third leg of the tripartite struggle."
+  },
+  {
+   "id": "POL.CHALUKYA_W",
+   "name": "Western Chalukya (Kalyani)",
+   "era": "ERA.EARLY_MEDIEVAL",
+   "from": 973,
+   "to": 1189,
+   "type": "empire",
+   "date_precision": "decade",
+   "confidence": 0.85,
+   "core_regions": [
+    "IN.KA"
+   ],
+   "provenance": "SOURCED",
+   "note": "Long war with the Cholas."
+  },
+  {
+   "id": "POL.CHALUKYA_E",
+   "name": "Eastern Chalukya (Vengi)",
+   "era": "ERA.EARLY_MEDIEVAL",
+   "from": 624,
+   "to": 1189,
+   "type": "kingdom",
+   "date_precision": "decade",
+   "confidence": 0.8,
+   "core_regions": [
+    "IN.AP"
+   ],
+   "provenance": "DERIVED"
+  },
+  {
+   "id": "POL.CHOLA",
+   "name": "Chola Empire",
+   "era": "ERA.EARLY_MEDIEVAL",
+   "from": 848,
+   "to": 1279,
+   "type": "empire",
+   "date_precision": "decade",
+   "confidence": 0.95,
+   "core_regions": [
+    "IN.TN",
+    "IN.KL",
+    "LK.NORTHERN"
+   ],
+   "provenance": "SOURCED",
+   "note": "Maritime reach to Srivijaya; exceptional inscriptional record of village assemblies."
+  },
+  {
+   "id": "POL.PANDYA",
+   "name": "Pandya (later)",
+   "era": "ERA.EARLY_MEDIEVAL",
+   "from": 1190,
+   "to": 1345,
+   "type": "kingdom",
+   "date_precision": "decade",
+   "confidence": 0.85,
+   "core_regions": [
+    "IN.TN"
+   ],
+   "provenance": "SOURCED",
+   "note": "Inscriptions and Chola-Pandya war records; the later Pandya revival is well attested epigraphically."
+  },
+  {
+   "id": "POL.CHERA_PERUMAL",
+   "name": "Chera Perumals of Makotai",
+   "era": "ERA.EARLY_MEDIEVAL",
+   "from": 800,
+   "to": 1102,
+   "type": "kingdom",
+   "date_precision": "decade",
+   "confidence": 0.75,
+   "core_regions": [
+    "IN.KL"
+   ],
+   "provenance": "DERIVED"
+  },
+  {
+   "id": "POL.PARAMARA",
+   "name": "Paramara",
+   "era": "ERA.EARLY_MEDIEVAL",
+   "from": 800,
+   "to": 1327,
+   "type": "kingdom",
+   "date_precision": "decade",
+   "confidence": 0.85,
+   "core_regions": [
+    "IN.MP"
+   ],
+   "provenance": "SOURCED",
+   "note": "Bhoja of Dhar."
+  },
+  {
+   "id": "POL.CHANDELA",
+   "name": "Chandela",
+   "era": "ERA.EARLY_MEDIEVAL",
+   "from": 831,
+   "to": 1315,
+   "type": "kingdom",
+   "date_precision": "decade",
+   "confidence": 0.85,
+   "core_regions": [
+    "IN.MP",
+    "IN.UP"
+   ],
+   "provenance": "SOURCED",
+   "note": "Khajuraho."
+  },
+  {
+   "id": "POL.CHAULUKYA",
+   "name": "Chaulukya (Solanki)",
+   "era": "ERA.EARLY_MEDIEVAL",
+   "from": 940,
+   "to": 1244,
+   "type": "kingdom",
+   "date_precision": "decade",
+   "confidence": 0.85,
+   "core_regions": [
+    "IN.GJ"
+   ],
+   "provenance": "SOURCED",
+   "note": "Somnath; Jain mercantile wealth."
+  },
+  {
+   "id": "POL.SENA",
+   "name": "Sena",
+   "era": "ERA.EARLY_MEDIEVAL",
+   "from": 1070,
+   "to": 1230,
+   "type": "kingdom",
+   "date_precision": "decade",
+   "confidence": 0.8,
+   "core_regions": [
+    "IN.WB",
+    "BD.DHAKA"
+   ],
+   "provenance": "DERIVED"
+  },
+  {
+   "id": "POL.KAKATIYA",
+   "name": "Kakatiya",
+   "era": "ERA.EARLY_MEDIEVAL",
+   "from": 1083,
+   "to": 1323,
+   "type": "kingdom",
+   "date_precision": "decade",
+   "confidence": 0.85,
+   "core_regions": [
+    "IN.TG",
+    "IN.AP"
+   ],
+   "provenance": "SOURCED",
+   "note": "Tank irrigation across the Telangana uplands."
+  },
+  {
+   "id": "POL.HOYSALA",
+   "name": "Hoysala",
+   "era": "ERA.EARLY_MEDIEVAL",
+   "from": 1026,
+   "to": 1343,
+   "type": "kingdom",
+   "date_precision": "decade",
+   "confidence": 0.85,
+   "core_regions": [
+    "IN.KA"
+   ],
+   "provenance": "SOURCED",
+   "note": "Belur, Halebidu."
+  },
+  {
+   "id": "POL.YADAVA",
+   "name": "Seuna (Yadava) of Devagiri",
+   "era": "ERA.EARLY_MEDIEVAL",
+   "from": 1187,
+   "to": 1317,
+   "type": "kingdom",
+   "date_precision": "decade",
+   "confidence": 0.85,
+   "core_regions": [
+    "IN.MH"
+   ],
+   "provenance": "SOURCED",
+   "note": "Devagiri inscriptions and the Marathi literary record."
+  },
+  {
+   "id": "POL.GANGA_E",
+   "name": "Eastern Ganga",
+   "era": "ERA.EARLY_MEDIEVAL",
+   "from": 1078,
+   "to": 1434,
+   "type": "kingdom",
+   "date_precision": "decade",
+   "confidence": 0.85,
+   "core_regions": [
+    "IN.OD"
+   ],
+   "provenance": "SOURCED",
+   "note": "Konark, Puri."
+  },
+  {
+   "id": "POL.SHAHI",
+   "name": "Kabul Shahi",
+   "era": "ERA.EARLY_MEDIEVAL",
+   "from": 850,
+   "to": 1026,
+   "type": "kingdom",
+   "date_precision": "decade",
+   "confidence": 0.75,
+   "core_regions": [
+    "AF.KABUL",
+    "PK.KP"
+   ],
+   "provenance": "DERIVED",
+   "note": "Falls to Mahmud of Ghazni."
+  },
+  {
+   "id": "POL.GHAZNAVID",
+   "name": "Ghaznavid (Punjab)",
+   "era": "ERA.EARLY_MEDIEVAL",
+   "from": 1001,
+   "to": 1186,
+   "type": "sultanate",
+   "date_precision": "decade",
+   "confidence": 0.9,
+   "core_regions": [
+    "PK.PUNJAB"
+   ],
+   "provenance": "SOURCED",
+   "note": "Lahore as an eastern capital."
+  },
+  {
+   "id": "POL.GHURID",
+   "name": "Ghurid",
+   "era": "ERA.EARLY_MEDIEVAL",
+   "from": 1148,
+   "to": 1215,
+   "type": "sultanate",
+   "date_precision": "decade",
+   "confidence": 0.9,
+   "core_regions": [
+    "AF.GHOR",
+    "PK.PUNJAB",
+    "IN.DL"
+   ],
+   "provenance": "SOURCED",
+   "note": "Second Tarain, 1192."
+  },
+  {
+   "id": "POL.AHOM",
+   "name": "Ahom kingdom",
+   "era": "ERA.SULTANATE",
+   "from": 1228,
+   "to": 1826,
+   "type": "kingdom",
+   "date_precision": "year",
+   "confidence": 0.95,
+   "core_regions": [
+    "IN.AS"
+   ],
+   "provenance": "SOURCED",
+   "note": "Six centuries; repels the Mughals at Saraighat, 1671."
+  },
+  {
+   "id": "POL.TRIPURA",
+   "name": "Twipra (Manikya)",
+   "era": "ERA.SULTANATE",
+   "from": 1280,
+   "to": 1949,
+   "type": "kingdom",
+   "date_precision": "decade",
+   "confidence": 0.85,
+   "core_regions": [
+    "IN.TR"
+   ],
+   "provenance": "SOURCED",
+   "note": "The Rajmala chronicle and Mughal-period records; the early regnal list is traditional."
+  },
+  {
+   "id": "POL.DELHI_MAMLUK",
+   "name": "Delhi Sultanate — Mamluk",
+   "era": "ERA.SULTANATE",
+   "from": 1206,
+   "to": 1290,
+   "type": "sultanate",
+   "date_precision": "year",
+   "confidence": 0.95,
+   "core_regions": [
+    "IN.DL",
+    "IN.UP"
+   ],
+   "provenance": "SOURCED",
+   "note": "Iltutmish, Razia, Balban. Iqta assignment established."
+  },
+  {
+   "id": "POL.DELHI_KHALJI",
+   "name": "Delhi Sultanate — Khalji",
+   "era": "ERA.SULTANATE",
+   "from": 1290,
+   "to": 1320,
+   "type": "sultanate",
+   "date_precision": "year",
+   "confidence": 0.95,
+   "core_regions": [
+    "IN.DL"
+   ],
+   "provenance": "SOURCED",
+   "note": "Alauddin: price control, market regulation, Deccan raids."
+  },
+  {
+   "id": "POL.DELHI_TUGHLAQ",
+   "name": "Delhi Sultanate — Tughlaq",
+   "era": "ERA.SULTANATE",
+   "from": 1320,
+   "to": 1414,
+   "type": "sultanate",
+   "date_precision": "year",
+   "confidence": 0.95,
+   "core_regions": [
+    "IN.DL"
+   ],
+   "provenance": "SOURCED",
+   "note": "Daulatabad transfer; token currency; Timur’s sack in 1398."
+  },
+  {
+   "id": "POL.DELHI_SAYYID",
+   "name": "Delhi Sultanate — Sayyid",
+   "era": "ERA.SULTANATE",
+   "from": 1414,
+   "to": 1451,
+   "type": "sultanate",
+   "date_precision": "year",
+   "confidence": 0.95,
+   "core_regions": [
+    "IN.DL"
+   ],
+   "provenance": "SOURCED",
+   "note": "Persian chronicles of the Sultanate; coinage."
+  },
+  {
+   "id": "POL.DELHI_LODI",
+   "name": "Delhi Sultanate — Lodi",
+   "era": "ERA.SULTANATE",
+   "from": 1451,
+   "to": 1526,
+   "type": "sultanate",
+   "date_precision": "year",
+   "confidence": 0.95,
+   "core_regions": [
+    "IN.DL",
+    "IN.UP"
+   ],
+   "provenance": "SOURCED",
+   "note": "Ends at Panipat."
+  },
+  {
+   "id": "POL.BENGAL_SULT",
+   "name": "Bengal Sultanate",
+   "era": "ERA.SULTANATE",
+   "from": 1352,
+   "to": 1576,
+   "type": "sultanate",
+   "date_precision": "year",
+   "confidence": 0.95,
+   "core_regions": [
+    "IN.WB",
+    "BD.DHAKA"
+   ],
+   "provenance": "SOURCED",
+   "note": "Independent, wealthy, and a distinct Bengali literary patron."
+  },
+  {
+   "id": "POL.JAUNPUR",
+   "name": "Jaunpur Sultanate",
+   "era": "ERA.SULTANATE",
+   "from": 1394,
+   "to": 1479,
+   "type": "sultanate",
+   "date_precision": "year",
+   "confidence": 0.9,
+   "core_regions": [
+    "IN.UP"
+   ],
+   "provenance": "SOURCED",
+   "note": "Sharqi."
+  },
+  {
+   "id": "POL.MALWA_SULT",
+   "name": "Malwa Sultanate",
+   "era": "ERA.SULTANATE",
+   "from": 1392,
+   "to": 1562,
+   "type": "sultanate",
+   "date_precision": "year",
+   "confidence": 0.9,
+   "core_regions": [
+    "IN.MP"
+   ],
+   "provenance": "SOURCED",
+   "note": "Mandu."
+  },
+  {
+   "id": "POL.GUJARAT_SULT",
+   "name": "Gujarat Sultanate",
+   "era": "ERA.SULTANATE",
+   "from": 1407,
+   "to": 1573,
+   "type": "sultanate",
+   "date_precision": "year",
+   "confidence": 0.9,
+   "core_regions": [
+    "IN.GJ"
+   ],
+   "provenance": "SOURCED",
+   "note": "Maritime revenue; contests the Portuguese."
+  },
+  {
+   "id": "POL.KASHMIR_SULT",
+   "name": "Kashmir Sultanate",
+   "era": "ERA.SULTANATE",
+   "from": 1339,
+   "to": 1586,
+   "type": "sultanate",
+   "date_precision": "year",
+   "confidence": 0.9,
+   "core_regions": [
+    "IN.JK"
+   ],
+   "provenance": "SOURCED",
+   "note": "Zain-ul-Abidin."
+  },
+  {
+   "id": "POL.BAHMANI",
+   "name": "Bahmani Sultanate",
+   "era": "ERA.SULTANATE",
+   "from": 1347,
+   "to": 1527,
+   "type": "sultanate",
+   "date_precision": "year",
+   "confidence": 0.95,
+   "core_regions": [
+    "IN.TG",
+    "IN.KA",
+    "IN.MH"
+   ],
+   "provenance": "SOURCED",
+   "note": "First Deccan sultanate; splits into five."
+  },
+  {
+   "id": "POL.VIJAYANAGARA",
+   "name": "Vijayanagara Empire",
+   "era": "ERA.SULTANATE",
+   "from": 1336,
+   "to": 1646,
+   "type": "empire",
+   "date_precision": "year",
+   "confidence": 0.95,
+   "core_regions": [
+    "IN.KA",
+    "IN.AP",
+    "IN.TN"
+   ],
+   "provenance": "SOURCED",
+   "note": "Nayaka assignment system; Hampi."
+  },
+  {
+   "id": "POL.AHMADNAGAR",
+   "name": "Ahmadnagar Sultanate",
+   "era": "ERA.SULTANATE",
+   "from": 1490,
+   "to": 1636,
+   "type": "sultanate",
+   "date_precision": "year",
+   "confidence": 0.95,
+   "core_regions": [
+    "IN.MH"
+   ],
+   "provenance": "SOURCED",
+   "note": "Deccan sultanate chronicles, coinage, and Mughal campaign records."
+  },
+  {
+   "id": "POL.BIJAPUR",
+   "name": "Bijapur Sultanate (Adil Shahi)",
+   "era": "ERA.SULTANATE",
+   "from": 1490,
+   "to": 1686,
+   "type": "sultanate",
+   "date_precision": "year",
+   "confidence": 0.95,
+   "core_regions": [
+    "IN.KA"
+   ],
+   "provenance": "SOURCED",
+   "note": "Adil Shahi chronicles, architecture, and Mughal campaign records."
+  },
+  {
+   "id": "POL.GOLCONDA",
+   "name": "Golconda Sultanate (Qutb Shahi)",
+   "era": "ERA.SULTANATE",
+   "from": 1518,
+   "to": 1687,
+   "type": "sultanate",
+   "date_precision": "year",
+   "confidence": 0.95,
+   "core_regions": [
+    "IN.TG"
+   ],
+   "provenance": "SOURCED",
+   "note": "Diamonds; Hyderabad founded 1591."
+  },
+  {
+   "id": "POL.BERAR",
+   "name": "Berar Sultanate",
+   "era": "ERA.SULTANATE",
+   "from": 1490,
+   "to": 1572,
+   "type": "sultanate",
+   "date_precision": "year",
+   "confidence": 0.9,
+   "core_regions": [
+    "IN.MH"
+   ],
+   "provenance": "SOURCED",
+   "note": "Bahmani succession records and Deccan chronicles."
+  },
+  {
+   "id": "POL.BIDAR",
+   "name": "Bidar Sultanate",
+   "era": "ERA.SULTANATE",
+   "from": 1492,
+   "to": 1619,
+   "type": "sultanate",
+   "date_precision": "year",
+   "confidence": 0.9,
+   "core_regions": [
+    "IN.KA"
+   ],
+   "provenance": "SOURCED",
+   "note": "Barid Shahi coinage and Deccan chronicles."
+  },
+  {
+   "id": "POL.GAJAPATI",
+   "name": "Gajapati",
+   "era": "ERA.SULTANATE",
+   "from": 1434,
+   "to": 1541,
+   "type": "kingdom",
+   "date_precision": "year",
+   "confidence": 0.9,
+   "core_regions": [
+    "IN.OD"
+   ],
+   "provenance": "SOURCED",
+   "note": "Odia copper plates and temple records at Puri."
+  },
+  {
+   "id": "POL.MEWAR",
+   "name": "Mewar (Sisodia)",
+   "era": "ERA.SULTANATE",
+   "from": 1326,
+   "to": 1949,
+   "type": "kingdom",
+   "date_precision": "year",
+   "confidence": 0.95,
+   "core_regions": [
+    "IN.RJ"
+   ],
+   "provenance": "SOURCED",
+   "note": "Rana Sanga, Pratap; the longest Rajput resistance."
+  },
+  {
+   "id": "POL.MARWAR",
+   "name": "Marwar (Rathore)",
+   "era": "ERA.SULTANATE",
+   "from": 1226,
+   "to": 1949,
+   "type": "kingdom",
+   "date_precision": "year",
+   "confidence": 0.95,
+   "core_regions": [
+    "IN.RJ"
+   ],
+   "provenance": "SOURCED",
+   "note": "Jodhpur."
+  },
+  {
+   "id": "POL.AMBER",
+   "name": "Amber / Jaipur (Kachhwaha)",
+   "era": "ERA.SULTANATE",
+   "from": 1128,
+   "to": 1949,
+   "type": "kingdom",
+   "date_precision": "year",
+   "confidence": 0.95,
+   "core_regions": [
+    "IN.RJ"
+   ],
+   "provenance": "SOURCED",
+   "note": "Early and durable Mughal alliance."
+  },
+  {
+   "id": "POL.MUGHAL",
+   "name": "Mughal Empire",
+   "era": "ERA.MUGHAL",
+   "from": 1526,
+   "to": 1857,
+   "type": "empire",
+   "date_precision": "year",
+   "confidence": 1,
+   "core_regions": [
+    "IN.DL",
+    "IN.UP",
+    "IN.PB",
+    "IN.BR",
+    "IN.WB",
+    "IN.MP",
+    "IN.GJ"
+   ],
+   "provenance": "SOURCED",
+   "note": "Mansabdari and zabt. The Ain-i-Akbari (1595) is the richest pre-colonial dataset in existence for the region."
+  },
+  {
+   "id": "POL.SUR",
+   "name": "Sur Empire",
+   "era": "ERA.MUGHAL",
+   "from": 1540,
+   "to": 1556,
+   "type": "empire",
+   "date_precision": "year",
+   "confidence": 0.95,
+   "core_regions": [
+    "IN.DL",
+    "IN.BR"
+   ],
+   "provenance": "SOURCED",
+   "note": "Sher Shah: the rupiya, the Grand Trunk Road, revenue survey."
+  },
+  {
+   "id": "POL.MARATHA",
+   "name": "Maratha Confederacy",
+   "era": "ERA.MUGHAL",
+   "from": 1674,
+   "to": 1818,
+   "type": "confederacy",
+   "date_precision": "year",
+   "confidence": 1,
+   "core_regions": [
+    "IN.MH",
+    "IN.MP",
+    "IN.GJ"
+   ],
+   "provenance": "SOURCED",
+   "note": "Chauth and sardeshmukhi — a tribute-overlordship system, not territorial annexation."
+  },
+  {
+   "id": "POL.MARATHA.SCINDIA",
+   "name": "Scindia of Gwalior",
+   "era": "ERA.MUGHAL",
+   "from": 1731,
+   "to": 1948,
+   "type": "kingdom",
+   "date_precision": "year",
+   "confidence": 0.95,
+   "core_regions": [
+    "IN.MP"
+   ],
+   "provenance": "SOURCED",
+   "note": "Maratha and Company records; treaty documents."
+  },
+  {
+   "id": "POL.MARATHA.HOLKAR",
+   "name": "Holkar of Indore",
+   "era": "ERA.MUGHAL",
+   "from": 1731,
+   "to": 1948,
+   "type": "kingdom",
+   "date_precision": "year",
+   "confidence": 0.95,
+   "core_regions": [
+    "IN.MP"
+   ],
+   "provenance": "SOURCED",
+   "note": "Maratha and Company records; treaty documents."
+  },
+  {
+   "id": "POL.MARATHA.GAEKWAD",
+   "name": "Gaekwad of Baroda",
+   "era": "ERA.MUGHAL",
+   "from": 1721,
+   "to": 1949,
+   "type": "kingdom",
+   "date_precision": "year",
+   "confidence": 0.95,
+   "core_regions": [
+    "IN.GJ"
+   ],
+   "provenance": "SOURCED",
+   "note": "Maratha and Company records; the Baroda residency archive."
+  },
+  {
+   "id": "POL.MARATHA.BHONSLE",
+   "name": "Bhonsle of Nagpur",
+   "era": "ERA.MUGHAL",
+   "from": 1739,
+   "to": 1853,
+   "type": "kingdom",
+   "date_precision": "year",
+   "confidence": 0.95,
+   "core_regions": [
+    "IN.MH"
+   ],
+   "provenance": "SOURCED",
+   "note": "Maratha and Company records; treaty documents."
+  },
+  {
+   "id": "POL.SIKH_MISLS",
+   "name": "Sikh Misls",
+   "era": "ERA.MUGHAL",
+   "from": 1748,
+   "to": 1799,
+   "type": "confederacy",
+   "date_precision": "year",
+   "confidence": 0.9,
+   "core_regions": [
+    "IN.PB",
+    "PK.PUNJAB"
+   ],
+   "provenance": "SOURCED",
+   "note": "Twelve confederacies; a genuinely non-monarchic sovereignty model."
+  },
+  {
+   "id": "POL.SIKH_EMPIRE",
+   "name": "Sikh Empire",
+   "era": "ERA.COLONIAL",
+   "from": 1799,
+   "to": 1849,
+   "type": "empire",
+   "date_precision": "year",
+   "confidence": 1,
+   "core_regions": [
+    "IN.PB",
+    "PK.PUNJAB",
+    "IN.JK"
+   ],
+   "provenance": "SOURCED",
+   "note": "Ranjit Singh; last major independent power to fall."
+  },
+  {
+   "id": "POL.HYDERABAD",
+   "name": "Hyderabad (Asaf Jahi)",
+   "era": "ERA.MUGHAL",
+   "from": 1724,
+   "to": 1948,
+   "type": "kingdom",
+   "date_precision": "year",
+   "confidence": 1,
+   "core_regions": [
+    "IN.TG"
+   ],
+   "provenance": "SOURCED",
+   "note": "Largest princely state."
+  },
+  {
+   "id": "POL.AWADH",
+   "name": "Awadh",
+   "era": "ERA.MUGHAL",
+   "from": 1722,
+   "to": 1856,
+   "type": "kingdom",
+   "date_precision": "year",
+   "confidence": 1,
+   "core_regions": [
+    "IN.UP"
+   ],
+   "provenance": "SOURCED",
+   "note": "Annexed under the doctrine of lapse’s cousin, misgovernment."
+  },
+  {
+   "id": "POL.BENGAL_NAWABS",
+   "name": "Nawabs of Bengal",
+   "era": "ERA.MUGHAL",
+   "from": 1717,
+   "to": 1757,
+   "type": "kingdom",
+   "date_precision": "year",
+   "confidence": 1,
+   "core_regions": [
+    "IN.WB",
+    "BD.DHAKA"
+   ],
+   "provenance": "SOURCED",
+   "note": "Ends at Plassey."
+  },
+  {
+   "id": "POL.CARNATIC",
+   "name": "Nawabs of the Carnatic",
+   "era": "ERA.MUGHAL",
+   "from": 1690,
+   "to": 1855,
+   "type": "kingdom",
+   "date_precision": "year",
+   "confidence": 0.95,
+   "core_regions": [
+    "IN.TN"
+   ],
+   "provenance": "SOURCED",
+   "note": "Company and French records; the Carnatic wars are documented from both sides."
+  },
+  {
+   "id": "POL.MYSORE_WODEYAR",
+   "name": "Mysore (Wodeyar)",
+   "era": "ERA.MUGHAL",
+   "from": 1399,
+   "to": 1950,
+   "type": "kingdom",
+   "date_precision": "year",
+   "confidence": 1,
+   "core_regions": [
+    "IN.KA"
+   ],
+   "provenance": "SOURCED",
+   "note": "Interrupted 1761–1799; later a model developmental state."
+  },
+  {
+   "id": "POL.MYSORE_SULT",
+   "name": "Mysore under Hyder Ali & Tipu Sultan",
+   "era": "ERA.COLONIAL",
+   "from": 1761,
+   "to": 1799,
+   "type": "kingdom",
+   "date_precision": "year",
+   "confidence": 1,
+   "core_regions": [
+    "IN.KA"
+   ],
+   "provenance": "SOURCED",
+   "note": "Rocket artillery, state trading monopolies, four Anglo-Mysore wars."
+  },
+  {
+   "id": "POL.TRAVANCORE",
+   "name": "Travancore",
+   "era": "ERA.MUGHAL",
+   "from": 1729,
+   "to": 1949,
+   "type": "kingdom",
+   "date_precision": "year",
+   "confidence": 1,
+   "core_regions": [
+    "IN.KL"
+   ],
+   "provenance": "SOURCED",
+   "note": "Early state investment in schooling and public health."
+  },
+  {
+   "id": "POL.COCHIN",
+   "name": "Cochin",
+   "era": "ERA.MUGHAL",
+   "from": 1500,
+   "to": 1949,
+   "type": "kingdom",
+   "date_precision": "year",
+   "confidence": 0.95,
+   "core_regions": [
+    "IN.KL"
+   ],
+   "provenance": "SOURCED",
+   "note": "Portuguese, Dutch and Company records, and the local granthavari."
+  },
+  {
+   "id": "POL.ROHILKHAND",
+   "name": "Rohilkhand",
+   "era": "ERA.MUGHAL",
+   "from": 1721,
+   "to": 1774,
+   "type": "kingdom",
+   "date_precision": "year",
+   "confidence": 0.9,
+   "core_regions": [
+    "IN.UP"
+   ],
+   "provenance": "SOURCED",
+   "note": "Persian chronicles and Company records of the Rohilla war."
+  },
+  {
+   "id": "POL.BHARATPUR",
+   "name": "Bharatpur (Jat)",
+   "era": "ERA.MUGHAL",
+   "from": 1722,
+   "to": 1949,
+   "type": "kingdom",
+   "date_precision": "year",
+   "confidence": 0.9,
+   "core_regions": [
+    "IN.RJ"
+   ],
+   "provenance": "SOURCED",
+   "note": "Jat chronicles, Mughal records, and Company siege accounts."
+  },
+  {
+   "id": "POL.MANIPUR",
+   "name": "Manipur (Ningthouja)",
+   "era": "ERA.MUGHAL",
+   "from": 33,
+   "to": 1949,
+   "type": "kingdom",
+   "date_precision": "century",
+   "confidence": 0.7,
+   "core_regions": [
+    "IN.MN"
+   ],
+   "provenance": "DERIVED",
+   "note": "Traditional chronology begins 33 CE; reliable from c. 1400."
+  },
+  {
+   "id": "POL.PORTUGUESE",
+   "name": "Estado da Índia (Portuguese)",
+   "era": "ERA.MUGHAL",
+   "from": 1505,
+   "to": 1961,
+   "type": "colonial",
+   "date_precision": "year",
+   "confidence": 1,
+   "core_regions": [
+    "IN.GA",
+    "IN.DD"
+   ],
+   "provenance": "SOURCED",
+   "note": "Goa, Daman, Diu; annexed by India in 1961."
+  },
+  {
+   "id": "POL.DUTCH_IN",
+   "name": "Dutch India",
+   "era": "ERA.MUGHAL",
+   "from": 1605,
+   "to": 1825,
+   "type": "colonial",
+   "date_precision": "year",
+   "confidence": 0.95,
+   "core_regions": [
+    "IN.KL",
+    "IN.TN"
+   ],
+   "provenance": "SOURCED",
+   "note": "VOC archives, which are voluminous and commercial."
+  },
+  {
+   "id": "POL.DANISH_IN",
+   "name": "Danish India",
+   "era": "ERA.MUGHAL",
+   "from": 1620,
+   "to": 1845,
+   "type": "colonial",
+   "date_precision": "year",
+   "confidence": 0.9,
+   "core_regions": [
+    "IN.TN",
+    "IN.WB"
+   ],
+   "provenance": "SOURCED",
+   "note": "Tranquebar, Serampore."
+  },
+  {
+   "id": "POL.FRENCH_IN",
+   "name": "French India",
+   "era": "ERA.MUGHAL",
+   "from": 1668,
+   "to": 1954,
+   "type": "colonial",
+   "date_precision": "year",
+   "confidence": 1,
+   "core_regions": [
+    "IN.PY",
+    "IN.TN"
+   ],
+   "provenance": "SOURCED",
+   "note": "Pondicherry, Chandernagore, Mahe, Yanam, Karaikal."
+  },
+  {
+   "id": "POL.EIC",
+   "name": "English East India Company",
+   "era": "ERA.MUGHAL",
+   "from": 1600,
+   "to": 1858,
+   "type": "company",
+   "date_precision": "year",
+   "confidence": 1,
+   "core_regions": [
+    "IN.WB",
+    "IN.TN",
+    "IN.MH"
+   ],
+   "provenance": "SOURCED",
+   "note": "Territorial from the 1765 Diwani of Bengal."
+  },
+  {
+   "id": "POL.BRITISH_RAJ",
+   "name": "British Raj",
+   "era": "ERA.COLONIAL",
+   "from": 1858,
+   "to": 1947,
+   "type": "colonial",
+   "date_precision": "year",
+   "confidence": 1,
+   "core_regions": [
+    "IN.DL",
+    "IN.WB"
+   ],
+   "provenance": "SOURCED",
+   "note": "Crown rule. Directly administered provinces plus ~565 princely states under paramountcy."
+  },
+  {
+   "id": "POL.PRES_BENGAL",
+   "name": "Bengal Presidency",
+   "era": "ERA.COLONIAL",
+   "from": 1765,
+   "to": 1947,
+   "type": "province",
+   "date_precision": "year",
+   "confidence": 1,
+   "core_regions": [
+    "IN.WB",
+    "IN.BR",
+    "IN.OD"
+   ],
+   "provenance": "SOURCED",
+   "note": "Permanent Settlement, 1793."
+  },
+  {
+   "id": "POL.PRES_MADRAS",
+   "name": "Madras Presidency",
+   "era": "ERA.COLONIAL",
+   "from": 1652,
+   "to": 1947,
+   "type": "province",
+   "date_precision": "year",
+   "confidence": 1,
+   "core_regions": [
+    "IN.TN",
+    "IN.AP",
+    "IN.KL"
+   ],
+   "provenance": "SOURCED",
+   "note": "Ryotwari settlement."
+  },
+  {
+   "id": "POL.PRES_BOMBAY",
+   "name": "Bombay Presidency",
+   "era": "ERA.COLONIAL",
+   "from": 1618,
+   "to": 1947,
+   "type": "province",
+   "date_precision": "year",
+   "confidence": 1,
+   "core_regions": [
+    "IN.MH",
+    "IN.GJ",
+    "IN.KA"
+   ],
+   "provenance": "SOURCED",
+   "note": "Ryotwari; cotton and the mill economy."
+  },
+  {
+   "id": "POL.NWP",
+   "name": "North-Western Provinces & Oudh",
+   "era": "ERA.COLONIAL",
+   "from": 1836,
+   "to": 1947,
+   "type": "province",
+   "date_precision": "year",
+   "confidence": 1,
+   "core_regions": [
+    "IN.UP"
+   ],
+   "provenance": "SOURCED",
+   "note": "Mahalwari settlement."
+  },
+  {
+   "id": "POL.PUNJAB_PROV",
+   "name": "Punjab Province",
+   "era": "ERA.COLONIAL",
+   "from": 1849,
+   "to": 1947,
+   "type": "province",
+   "date_precision": "year",
+   "confidence": 1,
+   "core_regions": [
+    "IN.PB",
+    "PK.PUNJAB",
+    "IN.HR"
+   ],
+   "provenance": "SOURCED",
+   "note": "Canal colonies from the 1880s."
+  },
+  {
+   "id": "POL.KASHMIR_STATE",
+   "name": "Jammu & Kashmir (Dogra)",
+   "era": "ERA.COLONIAL",
+   "from": 1846,
+   "to": 1947,
+   "type": "kingdom",
+   "date_precision": "year",
+   "confidence": 1,
+   "core_regions": [
+    "IN.JK",
+    "IN.LA"
+   ],
+   "provenance": "SOURCED",
+   "note": "Treaty of Amritsar."
+  },
+  {
+   "id": "POL.DOMINION_IN",
+   "name": "Dominion of India",
+   "era": "ERA.REPUBLIC",
+   "from": 1947,
+   "to": 1950,
+   "type": "dominion",
+   "date_precision": "year",
+   "confidence": 1,
+   "core_regions": [
+    "IN.DL"
+   ],
+   "provenance": "SOURCED",
+   "note": "Transition; integration of the princely states."
+  },
+  {
+   "id": "POL.INDIA",
+   "name": "Republic of India",
+   "era": "ERA.REPUBLIC",
+   "from": 1950,
+   "to": null,
+   "type": "federal",
+   "date_precision": "year",
+   "confidence": 1,
+   "core_regions": [
+    "IN.DL"
+   ],
+   "provenance": "SOURCED",
+   "note": "States Reorganisation 1956; liberalisation 1991."
+  },
+  {
+   "id": "POL.PAKISTAN",
+   "name": "Pakistan",
+   "era": "ERA.REPUBLIC",
+   "from": 1947,
+   "to": null,
+   "type": "federal",
+   "date_precision": "year",
+   "confidence": 1,
+   "core_regions": [
+    "PK.ISLAMABAD"
+   ],
+   "provenance": "SOURCED",
+   "note": "Included for boundary and trade context."
+  },
+  {
+   "id": "POL.BANGLADESH",
+   "name": "Bangladesh",
+   "era": "ERA.REPUBLIC",
+   "from": 1971,
+   "to": null,
+   "type": "federal",
+   "date_precision": "year",
+   "confidence": 1,
+   "core_regions": [
+    "BD.DHAKA"
+   ],
+   "provenance": "SOURCED",
+   "note": "Included for boundary and trade context."
+  }
+ ],
+ "relations": [
+  {
+   "superior": "POL.ACHAEMENID",
+   "subordinate": "POL.GANDHARA",
+   "kind": "annexation",
+   "from": -518,
+   "to": -330,
+   "confidence": 0.8,
+   "note": "Gandara and Hindush become satrapies."
+  },
+  {
+   "superior": "POL.HARYANKA",
+   "subordinate": "POL.ANGA",
+   "kind": "annexation",
+   "from": -530,
+   "to": -413,
+   "confidence": 0.75,
+   "note": "Bimbisara annexes Anga."
+  },
+  {
+   "superior": "POL.HARYANKA",
+   "subordinate": "POL.VAJJI",
+   "kind": "conquest",
+   "from": -468,
+   "to": -413,
+   "confidence": 0.7,
+   "note": "Ajatashatru after a long war."
+  },
+  {
+   "superior": "POL.HARYANKA",
+   "subordinate": "POL.KOSALA",
+   "kind": "annexation",
+   "from": -362,
+   "to": -345,
+   "confidence": 0.65,
+   "note": "Absorbed into Magadha."
+  },
+  {
+   "superior": "POL.SHISHUNAGA",
+   "subordinate": "POL.AVANTI",
+   "kind": "annexation",
+   "from": -400,
+   "to": -345,
+   "confidence": 0.65
+  },
+  {
+   "superior": "POL.MAURYA",
+   "subordinate": "POL.NANDA",
+   "kind": "succession",
+   "from": -322,
+   "to": -322,
+   "confidence": 0.9,
+   "note": "Chandragupta overthrows the Nandas."
+  },
+  {
+   "superior": "POL.MAURYA",
+   "subordinate": "POL.SELEUCID",
+   "kind": "tributary",
+   "from": -303,
+   "to": -303,
+   "confidence": 0.7,
+   "note": "Territorial cession westward after the treaty."
+  },
+  {
+   "superior": "POL.MAURYA",
+   "subordinate": "POL.KALINGA",
+   "kind": "conquest",
+   "from": -261,
+   "to": -185,
+   "confidence": 0.9,
+   "note": "The Kalinga war; Ashoka’s thirteenth rock edict."
+  },
+  {
+   "superior": "POL.SHUNGA",
+   "subordinate": "POL.MAURYA",
+   "kind": "succession",
+   "from": -185,
+   "to": -185,
+   "confidence": 0.85,
+   "note": "Pushyamitra’s coup."
+  },
+  {
+   "superior": "POL.KUSHAN",
+   "subordinate": "POL.INDO_PARTHIAN",
+   "kind": "conquest",
+   "from": 60,
+   "to": 226,
+   "confidence": 0.7
+  },
+  {
+   "superior": "POL.GUPTA",
+   "subordinate": "POL.WESTERN_SATRAPS",
+   "kind": "conquest",
+   "from": 405,
+   "to": 405,
+   "confidence": 0.85,
+   "note": "Chandragupta II annexes Gujarat."
+  },
+  {
+   "superior": "POL.VARDHANA",
+   "subordinate": "POL.MAUKHARI",
+   "kind": "succession",
+   "from": 606,
+   "to": 647,
+   "confidence": 0.8,
+   "note": "Harsha unites Thanesar and Kannauj."
+  },
+  {
+   "superior": "POL.CHALUKYA_BADAMI",
+   "subordinate": "POL.VARDHANA",
+   "kind": "tributary",
+   "from": 618,
+   "to": 647,
+   "confidence": 0.6,
+   "note": "Pulakeshin II halts Harsha; no submission either way."
+  },
+  {
+   "superior": "POL.RASHTRAKUTA",
+   "subordinate": "POL.CHALUKYA_BADAMI",
+   "kind": "succession",
+   "from": 753,
+   "to": 753,
+   "confidence": 0.85
+  },
+  {
+   "superior": "POL.CHALUKYA_W",
+   "subordinate": "POL.RASHTRAKUTA",
+   "kind": "succession",
+   "from": 973,
+   "to": 973,
+   "confidence": 0.85
+  },
+  {
+   "superior": "POL.CHOLA",
+   "subordinate": "POL.PANDYA_EARLY",
+   "kind": "conquest",
+   "from": 910,
+   "to": 1190,
+   "confidence": 0.85,
+   "note": "Pandya country under Chola overlordship."
+  },
+  {
+   "superior": "POL.CHOLA",
+   "subordinate": "POL.CHERA_PERUMAL",
+   "kind": "suzerainty",
+   "from": 1000,
+   "to": 1102,
+   "confidence": 0.7
+  },
+  {
+   "superior": "POL.GHAZNAVID",
+   "subordinate": "POL.SHAHI",
+   "kind": "conquest",
+   "from": 1026,
+   "to": 1186,
+   "confidence": 0.9
+  },
+  {
+   "superior": "POL.GHURID",
+   "subordinate": "POL.GHAZNAVID",
+   "kind": "succession",
+   "from": 1186,
+   "to": 1186,
+   "confidence": 0.9
+  },
+  {
+   "superior": "POL.DELHI_MAMLUK",
+   "subordinate": "POL.GHURID",
+   "kind": "succession",
+   "from": 1206,
+   "to": 1206,
+   "confidence": 0.95,
+   "note": "Qutb-ud-din Aibak."
+  },
+  {
+   "superior": "POL.DELHI_KHALJI",
+   "subordinate": "POL.YADAVA",
+   "kind": "tributary",
+   "from": 1296,
+   "to": 1317,
+   "confidence": 0.9,
+   "note": "Devagiri pays tribute, then is annexed."
+  },
+  {
+   "superior": "POL.DELHI_KHALJI",
+   "subordinate": "POL.KAKATIYA",
+   "kind": "tributary",
+   "from": 1310,
+   "to": 1323,
+   "confidence": 0.9
+  },
+  {
+   "superior": "POL.DELHI_TUGHLAQ",
+   "subordinate": "POL.KAKATIYA",
+   "kind": "annexation",
+   "from": 1323,
+   "to": 1347,
+   "confidence": 0.9
+  },
+  {
+   "superior": "POL.BAHMANI",
+   "subordinate": "POL.DELHI_TUGHLAQ",
+   "kind": "succession",
+   "from": 1347,
+   "to": 1347,
+   "confidence": 0.95,
+   "note": "Deccan secession."
+  },
+  {
+   "superior": "POL.VIJAYANAGARA",
+   "subordinate": "POL.HOYSALA",
+   "kind": "succession",
+   "from": 1343,
+   "to": 1343,
+   "confidence": 0.85
+  },
+  {
+   "superior": "POL.MUGHAL",
+   "subordinate": "POL.DELHI_LODI",
+   "kind": "succession",
+   "from": 1526,
+   "to": 1526,
+   "confidence": 1,
+   "note": "First Panipat."
+  },
+  {
+   "superior": "POL.SUR",
+   "subordinate": "POL.MUGHAL",
+   "kind": "conquest",
+   "from": 1540,
+   "to": 1555,
+   "confidence": 0.95,
+   "note": "Humayun in exile."
+  },
+  {
+   "superior": "POL.MUGHAL",
+   "subordinate": "POL.SUR",
+   "kind": "succession",
+   "from": 1556,
+   "to": 1556,
+   "confidence": 0.95,
+   "note": "Second Panipat."
+  },
+  {
+   "superior": "POL.MUGHAL",
+   "subordinate": "POL.AMBER",
+   "kind": "vassal",
+   "from": 1562,
+   "to": 1707,
+   "confidence": 0.95,
+   "note": "Matrimonial alliance and mansab service."
+  },
+  {
+   "superior": "POL.MUGHAL",
+   "subordinate": "POL.MEWAR",
+   "kind": "tributary",
+   "from": 1615,
+   "to": 1707,
+   "confidence": 0.85,
+   "note": "Submission after decades of resistance."
+  },
+  {
+   "superior": "POL.MUGHAL",
+   "subordinate": "POL.GUJARAT_SULT",
+   "kind": "annexation",
+   "from": 1573,
+   "to": 1707,
+   "confidence": 0.95
+  },
+  {
+   "superior": "POL.MUGHAL",
+   "subordinate": "POL.BENGAL_SULT",
+   "kind": "annexation",
+   "from": 1576,
+   "to": 1717,
+   "confidence": 0.95
+  },
+  {
+   "superior": "POL.MUGHAL",
+   "subordinate": "POL.AHMADNAGAR",
+   "kind": "annexation",
+   "from": 1636,
+   "to": 1707,
+   "confidence": 0.95
+  },
+  {
+   "superior": "POL.MUGHAL",
+   "subordinate": "POL.BIJAPUR",
+   "kind": "annexation",
+   "from": 1686,
+   "to": 1707,
+   "confidence": 0.95
+  },
+  {
+   "superior": "POL.MUGHAL",
+   "subordinate": "POL.GOLCONDA",
+   "kind": "annexation",
+   "from": 1687,
+   "to": 1707,
+   "confidence": 0.95
+  },
+  {
+   "superior": "POL.MUGHAL",
+   "subordinate": "POL.AHOM",
+   "kind": "conquest",
+   "from": 1662,
+   "to": 1671,
+   "confidence": 0.9,
+   "note": "Reversed at Saraighat."
+  },
+  {
+   "superior": "POL.MARATHA",
+   "subordinate": "POL.MUGHAL",
+   "kind": "tributary",
+   "from": 1719,
+   "to": 1803,
+   "confidence": 0.9,
+   "note": "Chauth and sardeshmukhi extracted across Mughal territory."
+  },
+  {
+   "superior": "POL.MARATHA",
+   "subordinate": "POL.MARATHA.SCINDIA",
+   "kind": "suzerainty",
+   "from": 1731,
+   "to": 1818,
+   "confidence": 0.9,
+   "note": "Peshwa overlordship, increasingly nominal."
+  },
+  {
+   "superior": "POL.MARATHA",
+   "subordinate": "POL.MARATHA.HOLKAR",
+   "kind": "suzerainty",
+   "from": 1731,
+   "to": 1818,
+   "confidence": 0.9
+  },
+  {
+   "superior": "POL.MARATHA",
+   "subordinate": "POL.MARATHA.GAEKWAD",
+   "kind": "suzerainty",
+   "from": 1721,
+   "to": 1802,
+   "confidence": 0.9
+  },
+  {
+   "superior": "POL.MARATHA",
+   "subordinate": "POL.MARATHA.BHONSLE",
+   "kind": "suzerainty",
+   "from": 1739,
+   "to": 1818,
+   "confidence": 0.9
+  },
+  {
+   "superior": "POL.EIC",
+   "subordinate": "POL.BENGAL_NAWABS",
+   "kind": "protectorate",
+   "from": 1757,
+   "to": 1765,
+   "confidence": 1,
+   "note": "Plassey; then the Diwani."
+  },
+  {
+   "superior": "POL.EIC",
+   "subordinate": "POL.MYSORE_SULT",
+   "kind": "conquest",
+   "from": 1799,
+   "to": 1799,
+   "confidence": 1,
+   "note": "Fourth Anglo-Mysore war."
+  },
+  {
+   "superior": "POL.EIC",
+   "subordinate": "POL.MYSORE_WODEYAR",
+   "kind": "paramountcy",
+   "from": 1799,
+   "to": 1858,
+   "confidence": 1,
+   "note": "Restored under subsidiary alliance."
+  },
+  {
+   "superior": "POL.EIC",
+   "subordinate": "POL.MARATHA.GAEKWAD",
+   "kind": "paramountcy",
+   "from": 1802,
+   "to": 1858,
+   "confidence": 1,
+   "note": "Treaty of Bassein begins the subsidiary system in the Deccan."
+  },
+  {
+   "superior": "POL.EIC",
+   "subordinate": "POL.MARATHA",
+   "kind": "conquest",
+   "from": 1818,
+   "to": 1818,
+   "confidence": 1,
+   "note": "Third Anglo-Maratha war; the Peshwa is pensioned."
+  },
+  {
+   "superior": "POL.EIC",
+   "subordinate": "POL.HYDERABAD",
+   "kind": "paramountcy",
+   "from": 1798,
+   "to": 1858,
+   "confidence": 1,
+   "note": "Subsidiary alliance."
+  },
+  {
+   "superior": "POL.EIC",
+   "subordinate": "POL.SIKH_EMPIRE",
+   "kind": "annexation",
+   "from": 1849,
+   "to": 1858,
+   "confidence": 1,
+   "note": "Second Anglo-Sikh war."
+  },
+  {
+   "superior": "POL.EIC",
+   "subordinate": "POL.AWADH",
+   "kind": "annexation",
+   "from": 1856,
+   "to": 1858,
+   "confidence": 1
+  },
+  {
+   "superior": "POL.EIC",
+   "subordinate": "POL.AHOM",
+   "kind": "annexation",
+   "from": 1826,
+   "to": 1858,
+   "confidence": 1,
+   "note": "Treaty of Yandabo."
+  },
+  {
+   "superior": "POL.EIC",
+   "subordinate": "POL.KASHMIR_STATE",
+   "kind": "paramountcy",
+   "from": 1846,
+   "to": 1858,
+   "confidence": 1,
+   "note": "Treaty of Amritsar."
+  },
+  {
+   "superior": "POL.BRITISH_RAJ",
+   "subordinate": "POL.EIC",
+   "kind": "succession",
+   "from": 1858,
+   "to": 1858,
+   "confidence": 1,
+   "note": "Government of India Act 1858."
+  },
+  {
+   "superior": "POL.BRITISH_RAJ",
+   "subordinate": "POL.HYDERABAD",
+   "kind": "paramountcy",
+   "from": 1858,
+   "to": 1947,
+   "confidence": 1
+  },
+  {
+   "superior": "POL.BRITISH_RAJ",
+   "subordinate": "POL.MYSORE_WODEYAR",
+   "kind": "paramountcy",
+   "from": 1858,
+   "to": 1947,
+   "confidence": 1
+  },
+  {
+   "superior": "POL.BRITISH_RAJ",
+   "subordinate": "POL.TRAVANCORE",
+   "kind": "paramountcy",
+   "from": 1858,
+   "to": 1947,
+   "confidence": 1
+  },
+  {
+   "superior": "POL.BRITISH_RAJ",
+   "subordinate": "POL.KASHMIR_STATE",
+   "kind": "paramountcy",
+   "from": 1858,
+   "to": 1947,
+   "confidence": 1
+  },
+  {
+   "superior": "POL.BRITISH_RAJ",
+   "subordinate": "POL.MEWAR",
+   "kind": "paramountcy",
+   "from": 1858,
+   "to": 1947,
+   "confidence": 1
+  },
+  {
+   "superior": "POL.BRITISH_RAJ",
+   "subordinate": "POL.MARATHA.SCINDIA",
+   "kind": "paramountcy",
+   "from": 1858,
+   "to": 1947,
+   "confidence": 1
+  },
+  {
+   "superior": "POL.BRITISH_RAJ",
+   "subordinate": "POL.MARATHA.HOLKAR",
+   "kind": "paramountcy",
+   "from": 1858,
+   "to": 1947,
+   "confidence": 1
+  },
+  {
+   "superior": "POL.BRITISH_RAJ",
+   "subordinate": "POL.TRIPURA",
+   "kind": "paramountcy",
+   "from": 1858,
+   "to": 1947,
+   "confidence": 1
+  },
+  {
+   "superior": "POL.BRITISH_RAJ",
+   "subordinate": "POL.MANIPUR",
+   "kind": "paramountcy",
+   "from": 1891,
+   "to": 1947,
+   "confidence": 1,
+   "note": "After the Anglo-Manipur war."
+  },
+  {
+   "superior": "POL.DOMINION_IN",
+   "subordinate": "POL.BRITISH_RAJ",
+   "kind": "succession",
+   "from": 1947,
+   "to": 1947,
+   "confidence": 1,
+   "note": "Indian Independence Act."
+  },
+  {
+   "superior": "POL.PAKISTAN",
+   "subordinate": "POL.BRITISH_RAJ",
+   "kind": "succession",
+   "from": 1947,
+   "to": 1947,
+   "confidence": 1,
+   "note": "Partition."
+  },
+  {
+   "superior": "POL.INDIA",
+   "subordinate": "POL.DOMINION_IN",
+   "kind": "succession",
+   "from": 1950,
+   "to": 1950,
+   "confidence": 1,
+   "note": "Constitution comes into force."
+  },
+  {
+   "superior": "POL.DOMINION_IN",
+   "subordinate": "POL.HYDERABAD",
+   "kind": "annexation",
+   "from": 1948,
+   "to": 1948,
+   "confidence": 1,
+   "note": "Operation Polo."
+  },
+  {
+   "superior": "POL.DOMINION_IN",
+   "subordinate": "POL.TRAVANCORE",
+   "kind": "accession",
+   "from": 1949,
+   "to": 1949,
+   "confidence": 1
+  },
+  {
+   "superior": "POL.INDIA",
+   "subordinate": "POL.MYSORE_WODEYAR",
+   "kind": "accession",
+   "from": 1950,
+   "to": 1950,
+   "confidence": 1
+  },
+  {
+   "superior": "POL.INDIA",
+   "subordinate": "POL.PORTUGUESE",
+   "kind": "annexation",
+   "from": 1961,
+   "to": 1961,
+   "confidence": 1,
+   "note": "Goa, Daman and Diu."
+  },
+  {
+   "superior": "POL.INDIA",
+   "subordinate": "POL.FRENCH_IN",
+   "kind": "accession",
+   "from": 1954,
+   "to": 1954,
+   "confidence": 1,
+   "note": "De facto transfer; ratified 1962."
+  },
+  {
+   "superior": "POL.BANGLADESH",
+   "subordinate": "POL.PAKISTAN",
+   "kind": "succession",
+   "from": 1971,
+   "to": 1971,
+   "confidence": 1
+  }
+ ]
+}

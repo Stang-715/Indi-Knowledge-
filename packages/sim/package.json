@@ -1,0 +1,7 @@
+{
+  "name": "@paramountcy/sim",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "src/engine.js",
+  "description": "Deterministic, headless simulation core. No rendering, no wall clock, no Math.random."
+}

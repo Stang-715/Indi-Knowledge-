@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://indi-knowledge.dev/schema/entity.schema.json",
+  "title": "World entity",
+  "description": "One thing in the world at some rung of the scale ladder, together with an honest statement of where its values came from.",
+  "type": "object",
+  "required": ["id", "kind", "level", "provenance"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Stable, hierarchical, permanent. Never renumbered, never reused. A retired id is tombstoned, not recycled.",
+      "pattern": "^IN(\\.[A-Z0-9_]+)+$",
+      "examples": ["IN.TN.THANJAVUR", "IN.TN.THANJAVUR.KUMBAKONAM.W07"]
+    },
+    "kind": {
+      "type": "string",
+      "enum": ["nation", "region", "state", "division", "district", "tehsil", "block",
+               "panchayat", "settlement", "city", "ward", "locality", "street", "plot", "building"]
+    },
+    "level": { "type": "integer", "minimum": 0, "maximum": 16, "description": "Rung of the scale ladder. See packages/schema/scale-ladder.json." },
+    "parent": { "type": ["string", "null"], "description": "id of the containing entity; null only for IN." },
+    "geometry_ref": { "type": ["string", "null"], "description": "Reference into the pack's geometry store. Null below level 14, where geometry is generated." },
+    "provenance": { "$ref": "#/$defs/provenance" },
+    "field_provenance": {
+      "type": "object",
+      "description": "Per-field override of the entity-level provenance. A village may hold a SOURCED population and a SYNTHESIZED street layout.",
+      "additionalProperties": { "$ref": "#/$defs/provenance" }
+    },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "as_of": { "type": "string", "format": "date", "description": "The date the values describe, not the date they were authored." },
+    "source": {
+      "type": ["object", "null"],
+      "description": "Required when provenance is SOURCED or DERIVED.",
+      "required": ["name", "license"],
+      "properties": {
+        "name": { "type": "string" },
+        "url": { "type": "string", "format": "uri" },
+        "license": { "type": "string" },
+        "accessed": { "type": "string", "format": "date" }
+      }
+    },
+    "seed": { "type": ["string", "null"], "description": "Required when provenance is SYNTHESIZED. Hashed with the world seed to drive worldgen." },
+    "fields": { "type": "object", "description": "Simulation payload. Shape depends on kind." },
+    "constraints": {
+      "type": "object",
+      "description": "Marginals this entity's children must be fitted to. Consumed by iterative proportional fitting; see docs/02-data-spine.md section 2.",
+      "additionalProperties": { "type": ["number", "object"] }
+    },
+    "tombstone": {
+      "type": ["object", "null"],
+      "description": "Set when this id is retired. Decisions referencing it follow the remap.",
+      "required": ["retired_in", "reason"],
+      "properties": {
+        "retired_in": { "type": "string", "description": "Datapack version that retired it." },
+        "reason": { "type": "string", "enum": ["merged", "split", "never_existed", "renamed"] },
+        "remap_to": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  },
+  "$defs": {
+    "provenance": {
+      "type": "string",
+      "enum": ["SOURCED", "DERIVED", "SYNTHESIZED", "ABSENT"],
+      "description": "SOURCED: real, cited. DERIVED: computed from sourced data. SYNTHESIZED: deterministically invented by worldgen. ABSENT: explicitly unknown; renders as unsurveyed."
+    }
+  }
+}

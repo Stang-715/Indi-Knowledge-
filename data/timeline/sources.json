@@ -1,0 +1,293 @@
+{
+ "note": "Citations for the disputed events (phase 40). Keys match event id or title fragment, longest wins, like cards and affects. Two citations minimum per dispute, which is what validation rule 5 (07-timeline §5.2) always required and could never check. The specialist pass (15-specialist-pass.md) reviews and extends these; the generalist versions exist so the reviewers' first week is review.",
+ "sources": {
+  "SUTLEJ_AVULSION": [
+   "Clift et al. 2012, 'U-Pb zircon dating evidence for a Pleistocene Sarasvati River', Geology 40",
+   "Singh et al. 2017, 'Counter-intuitive influence of Himalayan river morphodynamics on Indus Civilisation urban settlements', Nature Communications 8"
+  ],
+  "Bhirrana period IA": [
+   "Rao et al. 2005, 'New light on the excavation of Harappan settlement at Bhirrana', Puratattva 35",
+   "Sarkar et al. 2016, 'Oxygen isotope in archaeological bioapatites from India', Scientific Reports 6"
+  ],
+  "Lahuradewa": [
+   "Tewari et al. 2008, 'Early Farming at Lahuradewa', Pragdhara 18",
+   "Fuller 2011, 'Finding Plant Domestication in the Indian Subcontinent', Current Anthropology 52(S4)"
+  ],
+  "Koldihwa": [
+   "Sharma et al. 1980, Excavations at Koldihwa (Allahabad reports)",
+   "Fuller 2006, 'Agricultural Origins and Frontiers in South Asia', Journal of World Prehistory 20"
+  ],
+  "Sivagalai": [
+   "TN Dept. of Archaeology 2022, Sivagalai excavation report and AMS dates",
+   "Rajan & Yathees Kumar 2021, 'Iron Age chronology of South India', Current Science 121 (critique of the earliest dates)"
+  ],
+  "GHAGGAR_PERENNIAL": [
+   "Giosan et al. 2012, 'Fluvial landscapes of the Harappan civilisation', PNAS 109",
+   "Danino 2010, The Lost River: On the Trail of the Sarasvati"
+  ],
+  "Fire altars at Kalibangan": [
+   "Lal 2003, Excavations at Kalibangan: The Early Harappans (ASI)",
+   "Possehl 2002, The Indus Civilization: A Contemporary Perspective (sceptical reading)"
+  ],
+  "YAMUNA_CAPTURE": [
+   "Clift & Giosan 2013, 'Sediment fluxes and buffering in the post-glacial Indus', Basin Research",
+   "Valdiya 2002, Saraswati: The River That Disappeared"
+  ],
+  "Kot Diji burns": [
+   "Khan 1965, 'Excavations at Kot Diji', Pakistan Archaeology 2",
+   "Possehl 2002, The Indus Civilization (on transition burning layers)"
+  ],
+  "granaries": [
+   "Wheeler 1968, The Indus Civilization (3rd ed.)",
+   "Fentress 1976, 'Resource Access and Exchange: The Question of the Harappan Granary' (reinterpretation)"
+  ],
+  "Indus script in use": [
+   "Parpola 1994, Deciphering the Indus Script",
+   "Farmer, Sproat & Witzel 2004, 'The Collapse of the Indus-Script Thesis', EJVS 11"
+  ],
+  "NO_WEAPONS": [
+   "Cork 2005, 'Peaceful Harappans?', Antiquity 79",
+   "Kenoyer 1998, Ancient Cities of the Indus Valley Civilization"
+  ],
+  "Lothal's basin": [
+   "Rao 1979, Lothal: A Harappan Port Town (ASI)",
+   "Leshnik 1968, 'The Harappan Port at Lothal: Another View', American Anthropologist 70"
+  ],
+  "Surkotada's horse": [
+   "Sharma 1974, faunal report in Joshi, Excavation at Surkotada",
+   "Meadow & Patel 1997, 'A comment on horse remains from Surkotada', South Asian Studies 13"
+  ],
+  "Kalibangan: evidence read as earthquake": [
+   "Lal 1979, 'Kalibangan and the Indus Civilization'",
+   "Raikes 1968, 'Kalibangan: Death from Natural Causes', Antiquity 42"
+  ],
+  "Mayiladumparai": [
+   "TN Dept. of Archaeology 2022, Mayiladumparai report and AMS determinations",
+   "Possehl & Gullapalli 1999, 'The Early Iron Age in South Asia' (for the older baseline)"
+  ],
+  "copper hoards": [
+   "Yule 1985, Metalwork of the Bronze Age in India",
+   "P. Kumar 2002, 'The Copper Hoards Problem: A Technological Angle', Man and Environment 27"
+  ],
+  "Daimabad bronzes": [
+   "Sali 1986, Daimabad 1976-79 (ASI Memoir 83)",
+   "Dhavalikar 1982, 'Daimabad Bronzes' in Possehl (ed.), Harappan Civilization"
+  ],
+  "Mangadu": [
+   "Rajan 2015, 'Iron Age burial sites in Kongu region'",
+   "Gullapalli 2009, 'Early Metal in South India', Journal of World Prehistory 22"
+  ],
+  "DWARKA_SUBMERGE": [
+   "Rao 1999, The Lost City of Dvaraka (NIO)",
+   "Gaur & Sundaresh 2007, 'Underwater exploration off Dwarka' , Man and Environment 32 (cautious reassessment)"
+  ],
+  "Indo-Aryan migration": [
+   "Narasimhan et al. 2019, 'The formation of human populations in South and Central Asia', Science 365",
+   "Bryant 2001, The Quest for the Origins of Vedic Culture (survey of both positions)"
+  ],
+  "JORWE_DROUGHT": [
+   "Dhavalikar 1988, The First Farmers of the Deccan",
+   "Ponton et al. 2012, 'Holocene aridification of India', Geophysical Research Letters 39"
+  ],
+  "Iron working begins in the Ganga": [
+   "Tewari 2003, 'The origins of iron-working in India', Antiquity 77",
+   "Chakrabarti 1992, The Early Use of Iron in India"
+  ],
+  "IRON_CLEARANCE_1200": [
+   "Makhan Lal 1986, 'Iron tools, forest clearance and urbanisation in the Gangetic plains', Man and Environment 10",
+   "Erdosy 1988, Urbanisation in Early Historic India (sceptical of the axe thesis)"
+  ],
+  "Malhar": [
+   "Tewari et al. 2002, 'Preliminary report of excavation at Malhar', Pragdhara 12",
+   "Possehl & Gullapalli 1999, 'The Early Iron Age in South Asia'"
+  ],
+  "four-varna": [
+   "Jamison & Brereton 2014, The Rigveda: A Translation (on RV 10.90)",
+   "Olivelle 2012, 'The Semantic History of Dharma' and related essays on varna's textual layers"
+  ],
+  "Kausambi's rampart": [
+   "Sharma 1960, Excavations at Kausambi 1957-59",
+   "Erdosy 1987, 'Early Historic Cities of Northern India' , South Asian Studies 3 (redating)"
+  ],
+  "Tamil Brahmi's precursors": [
+   "Mahadevan 2003, Early Tamil Epigraphy",
+   "Rajan 2015, Early Writing System: A Journey from Graffiti to Brahmi"
+  ],
+  "TAM_GRAFFITI": [
+   "Rajan & Yathees Kumar 2013, 'New evidences on scientific dates for Brahmi script', Pratnatattva 21",
+   "Falk 2014, 'Owners' graffiti on pottery from Tissamaharama' (comparative caution)"
+  ],
+  "Mahavira": [
+   "Dundas 2002, The Jains (2nd ed.)",
+   "Jacobi 1884, introduction to Jaina Sutras (SBE 22) on the chronology"
+  ],
+  "Keeladi": [
+   "Sivanantham & Seran (eds.) 2019, Keeladi: An Urban Settlement on the Banks of the Vaigai (TN Dept.)",
+   "Ramakrishna 2023 excavation report controversy coverage; ASI correspondence 2017-23"
+  ],
+  "The Buddha —": [
+   "Bechert (ed.) 1991-97, The Dating of the Historical Buddha (3 vols)",
+   "Cousins 1996, 'The Dating of the Historical Buddha: A Review Article', JRAS 6"
+  ],
+  "Dhulikatta": [
+   "IAR 1975-80 excavation summaries for Dhulikatta and Kotalingala",
+   "Parasher-Sen 1993, Social and Economic History of Early Deccan"
+  ],
+  "Porunthal": [
+   "Rajan 2010, 'Porunthal excavation report', History Today 11",
+   "Mahadevan 2010, 'Porunthal potsherds and the antiquity of Tamil writing' (advocacy) with Falk's caution 2014"
+  ],
+  "Wari-Bateshwar": [
+   "Haque 2001, Excavation at Wari-Bateshwar: A Preliminary Study",
+   "Chakrabarti 1992, Ancient Bangladesh (dating caution)"
+  ],
+  "Brahmi script emerges": [
+   "Salomon 1998, Indian Epigraphy",
+   "Falk 1993, Schrift im alten Indien (derivation argument)"
+  ],
+  "Chanakya": [
+   "Trautmann 1971, Kautilya and the Arthasastra (authorship analysis)",
+   "Olivelle 2013, King, Governance, and Law in Ancient India (date range)"
+  ],
+  "Jain council at Pataliputra": [
+   "Dundas 2002, The Jains, ch. 2",
+   "Wiles 2006, 'The dating of the Jaina councils', in Studies in Jaina History and Culture"
+  ],
+  "Jain Agamas": [
+   "Dundas 2002, The Jains (canon formation)",
+   "Balbir 2000, 'Jain-Agama research' surveys"
+  ],
+  "Srinagari": [
+   "Kalhana, Rajatarangini I (Stein tr. 1900) — the only source",
+   "Stein 1900, introduction and notes (on its reliability for the Mauryan period)"
+  ],
+  "Kallanai": [
+   "Nilakanta Sastri 1955, The Colas (on Karikala traditions)",
+   "Agoramoorthy 2008, 'The Grand Anicut' , Water History surveys (structure's dating)"
+  ],
+  "ASM_SW_ROUTE": [
+   "Yang 2004, 'Horses, Silver, and Cowries: Yunnan in Global Perspective', JWH 15",
+   "Sen 2003, Buddhism, Diplomacy, and Trade (on the route's textual basis)"
+  ],
+  "Ningthouja": [
+   "Cheitharol Kumbaba (court chronicle) tr. Parratt 2005",
+   "Kabui 1991, History of Manipur, vol. 1 (on traditional chronology)"
+  ],
+  "Shaka era; Kanishka": [
+   "Falk 2001, 'The yuga of Sphujiddhvaja and the era of the Kusanas', SRAA 7",
+   "Golzio 2008, 'The Calendar Systems of Ancient India' (on 78 CE reading)"
+  ],
+  "Fourth Buddhist Council": [
+   "Xuanzang, Records of the Western Regions (Beal tr.), Book III",
+   "Lamotte 1988, History of Indian Buddhism (historicity discussion)"
+  ],
+  "Pattanam": [
+   "Cherian et al. 2009-15, Pattanam excavation interim reports (KCHR)",
+   "Gurukkal 2016, Rethinking Classical Indo-Roman Trade (sceptical of the Muziris identification)"
+  ],
+  "Kalabhras": [
+   "Nilakanta Sastri 1955, A History of South India (interregnum reading)",
+   "Champakalakshmi 1996, Trade, Ideology and Urbanization (re-reading the 'dark age')"
+  ],
+  "Zinc distillation": [
+   "Craddock et al. 1983, 'Zinc production at Zawar', in Bronze Age copper sources",
+   "Biswas 1993, 'The primacy of India in ancient brass and zinc metallurgy', IJHS 28 (dating range)"
+  ],
+  "Elephanta": [
+   "Spink 1958-, arguments for Kalachuri attribution",
+   "Berkson, Doniger & Michell 1983, Elephanta: The Cave of Shiva"
+  ],
+  "Shashanka": [
+   "Bana, Harshacharita (Cowell & Thomas tr.) — hostile testimony",
+   "Majumdar (ed.) 1943, History of Bengal I (era attribution debate)"
+  ],
+  "Appar and the Shaiva turn": [
+   "Peterson 1989, Poems to Siva: The Hymns of the Tamil Saints",
+   "Davis 1998, 'The story of the disappearing Jains' in Open Boundaries (on the persecution narratives)"
+  ],
+  "JAIN_PERSECUTION_TAMIL": [
+   "Periyapuranam (12th c.) — the tradition's own account",
+   "Davis 1998, 'The story of the disappearing Jains' (historiographic caution)"
+  ],
+  "Lalitaditya": [
+   "Kalhana, Rajatarangini IV (Stein tr.)",
+   "Stein 1900, notes ad loc. (on epic inflation of the conquest list)"
+  ],
+  "Shankara founds four mathas": [
+   "Cenkner 1983, A Tradition of Teachers: Sankara and the Jagadgurus",
+   "Clark 2006, The Dasanami-Samnyasis (institutional history scepticism)"
+  ],
+  "Nambudiri": [
+   "Veluthat 1978, Brahman Settlements in Kerala",
+   "Narayanan 1996, Perumals of Kerala (on the Keralolpatti's late tendentious account)"
+  ],
+  "Buddhism thins": [
+   "Verardi 2011, Hardships and Downfall of Buddhism in India",
+   "Sarao 2012, The Decline of Buddhism in India: A Fresh Perspective"
+  ],
+  "Somnath": [
+   "Thapar 2004, Somanatha: The Many Voices of a History",
+   "Ferishta and the Persian court tradition (Briggs tr. 1829) — the celebratory strand"
+  ],
+  "RAJ_ZAWAR_ZINC": [
+   "Craddock (ed.) 1998, 2000 Years of Zinc and Brass (British Museum)",
+   "Willies 1984, 'Ancient zinc mining at Zawar, Rajasthan' , Mining Magazine"
+  ],
+  "Chittor": [
+   "Amir Khusrau, Khaza'in ul-Futuh (eyewitness, victor's side)",
+   "Sreenivasan 2007, The Many Lives of a Rajput Queen (on the memory tradition)"
+  ],
+  "Vijayanagara founded": [
+   "Filliozat 1973, 'Sur l'origine de Vijayanagara'",
+   "Wagoner 2000, 'Harihara, Bukka and the Sultan' in Beyond Turk and Hindu (conversion-return narrative)"
+  ],
+  "Durga Devi": [
+   "Mahikavati-bakhar and Deccan chronicle references",
+   "Guha 2006, Environment and Ethnicity in India (on the famine's uncertain contours)"
+  ],
+  "KASHMIR_LIBRARIES": [
+   "Jonaraja, Rajatarangini continuation (Kaul ed.)",
+   "Slaje 2004, Medieval Kashmir and the Science of History (source criticism)"
+  ],
+  "Sikandar": [
+   "Jonaraja (contemporary, court) and Srivara",
+   "Obrock 2015, 'Translation and History: Persian and Sanskrit narratives of Sultan Sikandar'"
+  ],
+  "QUAKE_1737": [
+   "Bilham 1994, 'The 1737 Calcutta earthquake and cyclone evaluated', BSSA 84",
+   "Contemporary Company shipping loss records (reassessed casualty figures)"
+  ],
+  "BENGAL_CYCLONE_1737": [
+   "Bilham 1994, BSSA 84 (separating cyclone from earthquake)",
+   "Company records, Fort William correspondence 1737"
+  ],
+  "DEINDUSTRIAL": [
+   "Twomey 1983, 'Employment in nineteenth century Indian textiles', EEH 20",
+   "Ray 2011, Bengal Industries and the British Industrial Revolution (counter-reading)"
+  ],
+  "Sati is prohibited": [
+   "Mani 1998, Contentious Traditions: The Debate on Sati in Colonial India",
+   "Regulation XVII of 1829 with the orthodox counter-petitions (Parliamentary Papers)"
+  ],
+  "Tod": [
+   "Tod 1829-32, Annals and Antiquities of Rajasthan",
+   "Peabody 2003, Hindu Kingship and Polity in Precolonial India (on Tod's method)"
+  ],
+  "SHIFTING_ARGUMENT": [
+   "Guha 1999, Savaging the Wild: forestry and shifting cultivation debates",
+   "Scott 2009, The Art of Not Being Governed (comparative reframing)"
+  ],
+  "Poona Pact": [
+   "Ambedkar 1945, What Congress and Gandhi Have Done to the Untouchables",
+   "Pyarelal 1932, The Epic Fast (the other side's account)"
+  ],
+  "Bengal famine of 1943": [
+   "Sen 1981, Poverty and Famines, ch. 6",
+   "Mukerjee 2010, Churchill's Secret War; and the Famine Inquiry Commission Report 1945"
+  ],
+  "FOURTH_COUNCIL": [
+   "Xuanzang, Records of the Western Regions (Beal tr.), Book III",
+   "Lamotte 1988, History of Indian Buddhism (on the council's historicity outside the northern tradition)"
+  ]
+ }
+}

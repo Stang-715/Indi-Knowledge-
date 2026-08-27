@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://indi-knowledge.dev/schema/polity.schema.json",
+  "title": "Sovereignty spine",
+  "description": "Who ruled whom, and when. Sovereignty is stored as a relation table rather than a territorial colouring, because for most of the timeline rule was graded and overlapping rather than exclusive. See docs/04-eras.md section 3.",
+  "type": "object",
+  "required": ["eras", "polities", "relations"],
+  "properties": {
+    "eras": { "type": "array", "items": { "$ref": "#/$defs/era" } },
+    "polities": { "type": "array", "items": { "$ref": "#/$defs/polity" } },
+    "relations": { "type": "array", "items": { "$ref": "#/$defs/relation" } }
+  },
+  "$defs": {
+    "year": {
+      "type": "integer",
+      "description": "Negative is BCE (-322 = 322 BCE). No year zero: -1 is 1 BCE, 1 is 1 CE."
+    },
+    "era": {
+      "type": "object",
+      "required": ["id", "name", "from", "to"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^ERA\\.[A-Z0-9_]+$" },
+        "name": { "type": "string" },
+        "from": { "$ref": "#/$defs/year" },
+        "to": { "type": ["integer", "null"], "description": "null = ongoing." },
+        "summary": { "type": "string" }
+      }
+    },
+    "polity": {
+      "type": "object",
+      "required": ["id", "name", "era", "from", "to", "type", "date_precision", "confidence"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^(POL|CUL|NET)\\.[A-Z0-9_.]+$", "description": "POL = a polity. CUL = an archaeological culture, which is NOT a polity and cannot rule. NET = a network without evidence of centralised rule." },
+        "name": { "type": "string" },
+        "era": { "type": "string", "description": "Era of ORIGIN, not containment. A polity may outlive or predate its era; the only invariant is that its lifespan overlaps it." },
+        "from": { "$ref": "#/$defs/year" },
+        "to": { "type": ["integer", "null"] },
+        "type": {
+          "type": "string",
+          "enum": ["culture", "network", "chiefdom", "janapada", "gana-sangha", "kingdom", "dynasty",
+                   "empire", "satrapy", "occupation", "sultanate", "confederacy", "company",
+                   "colonial", "province", "dominion", "federal"],
+          "description": "'culture' and 'network' exist so the model can say 'nobody ruled here' without pretending a state existed."
+        },
+        "date_precision": { "type": "string", "enum": ["year", "decade", "century", "millennium"] },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1, "description": "How sure we are this existed as described. Climbs from ~0.45 in the Neolithic to 1.0 in the Republic; that gradient is the game's opacity setting." },
+        "core_regions": { "type": "array", "items": { "type": "string" }, "description": "Coarse anchor only. Precise historical extent is a later georeferencing pour." },
+        "provenance": { "type": "string", "enum": ["SOURCED", "DERIVED", "SYNTHESIZED", "ABSENT"] },
+        "note": { "type": "string" }
+      }
+    },
+    "relation": {
+      "type": "object",
+      "description": "One rule relation. Graded and overlapping by design: a place may simultaneously have a holder, a revenue claimant, a tributary superior and a paramount.",
+      "required": ["superior", "subordinate", "kind", "from", "to", "confidence"],
+      "properties": {
+        "superior": { "type": "string" },
+        "subordinate": { "type": "string" },
+        "kind": {
+          "type": "string",
+          "enum": ["conquest", "annexation", "tributary", "vassal", "suzerainty",
+                   "paramountcy", "protectorate", "accession", "succession"],
+          "description": "Ordered roughly by how much autonomy the subordinate keeps. 'succession' means one polity replaced another rather than ruled it."
+        },
+        "from": { "$ref": "#/$defs/year" },
+        "to": { "$ref": "#/$defs/year" },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "note": { "type": "string" }
+      }
+    }
+  }
+}

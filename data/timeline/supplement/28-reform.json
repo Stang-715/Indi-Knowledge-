@@ -1,0 +1,1249 @@
+{
+ "phase": 28,
+ "name": "The renouncers",
+ "note": "Sixty REFORM events. Councils and schisms, the bhakti movements region by region, the Sufi and Sikh traditions, and the caste question carried as a single thread from one late Rigvedic hymn to Article 17 — twenty-one events on THR.THE_CASTE_QUESTION, which had almost none.",
+ "events": [
+  {
+   "id": "EVT.REF.PURUSHA_SUKTA",
+   "title": "The Purusha Sukta states four varnas, once, in a late hymn",
+   "class": "REFORM",
+   "magnitude": "W",
+   "year": -950,
+   "era": "ERA.EARLY_VEDIC",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Rigveda 10.90, whose language and position in the tenth mandala mark it as among the latest material in the collection.",
+   "window": [
+    -990,
+    -910
+   ],
+   "threads": [
+    "THR.THE_CASTE_QUESTION"
+   ],
+   "note": "One hymn, late, in a collection of a thousand. Everything after argues with it."
+  },
+  {
+   "id": "EVT.REF.VARNA_JATI_SPLIT",
+   "title": "Varna and jati come apart: four categories, and hundreds of groups",
+   "class": "REFORM",
+   "magnitude": "W",
+   "year": -400,
+   "era": "ERA.SECOND_URBAN",
+   "provenance": "SOURCED",
+   "certainty": 0.65,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Dharmasutras, which try to fit named occupational and regional groups into the four-fold scheme and produce mixed categories to do it.",
+   "window": [
+    -440,
+    -360
+   ],
+   "year_end": 200,
+   "threads": [
+    "THR.THE_CASTE_QUESTION"
+   ],
+   "note": "The theory has four boxes. The society has hundreds of groups. The gap is where the argument lives."
+  },
+  {
+   "id": "EVT.REF.BUDDHA_ON_BIRTH",
+   "title": "The Buddha argues that birth does not make a brahmin",
+   "class": "REFORM",
+   "magnitude": "W",
+   "year": -480,
+   "era": "ERA.SECOND_URBAN",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Vasettha and Ambattha suttas, which put the argument in the mouth of brahmin interlocutors and have them lose it.",
+   "window": [
+    -520,
+    -440
+   ],
+   "threads": [
+    "THR.THE_CASTE_QUESTION",
+    "THR.THE_RENOUNCERS"
+   ]
+  },
+  {
+   "id": "EVT.REF.SANGHA_OPEN",
+   "title": "The sangha admits across varna, and a barber ordains before princes",
+   "class": "REFORM",
+   "magnitude": "M",
+   "year": -470,
+   "era": "ERA.SECOND_URBAN",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Vinaya's account of Upali's ordination ahead of the Shakya nobles, so that they would have to bow to him.",
+   "window": [
+    -510,
+    -430
+   ],
+   "threads": [
+    "THR.THE_CASTE_QUESTION",
+    "THR.THE_RENOUNCERS"
+   ]
+  },
+  {
+   "id": "EVT.REF.SANGHA_WOMEN",
+   "title": "The bhikkhuni order is founded, on conditions",
+   "class": "REFORM",
+   "magnitude": "M",
+   "year": -460,
+   "era": "ERA.SECOND_URBAN",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Cullavagga's account of Mahapajapati's request, its refusal, and the eight garudhammas attached to the eventual assent.",
+   "window": [
+    -500,
+    -420
+   ],
+   "threads": [
+    "THR.THE_CASTE_QUESTION",
+    "THR.THE_RENOUNCERS"
+   ],
+   "note": "Admitted, and subordinated in the same paragraph. The text records both."
+  },
+  {
+   "id": "EVT.REF.THERIGATHA",
+   "title": "The Therigatha: seventy-three women record why they left",
+   "class": "REFORM",
+   "magnitude": "M",
+   "year": -300,
+   "era": "ERA.MAURYAN",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The collection itself, the earliest surviving anthology of women's writing anywhere.",
+   "window": [
+    -340,
+    -260
+   ],
+   "threads": [
+    "THR.THE_RENOUNCERS",
+    "THR.THE_CASTE_QUESTION"
+   ]
+  },
+  {
+   "id": "EVT.REF.AJIVIKA_DOCTRINE",
+   "title": "Makkhali Gosala teaches niyati — everything is already settled",
+   "class": "REFORM",
+   "magnitude": "M",
+   "year": -500,
+   "era": "ERA.SECOND_URBAN",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Samannaphala Sutta and the Jain Bhagavati Sutra, both hostile witnesses, which is all we have.",
+   "window": [
+    -540,
+    -460
+   ],
+   "threads": [
+    "THR.THE_RENOUNCERS"
+   ],
+   "note": "A whole school known only through the writings of people who thought it was wrong."
+  },
+  {
+   "id": "EVT.REF.UNTOUCHABILITY_EARLY",
+   "title": "Exclusion hardens: the first texts on ritual pollution by contact",
+   "class": "REFORM",
+   "magnitude": "W",
+   "year": 100,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.65,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The later Dharmasutras and the Manusmriti's chapters on mixed castes, and Faxian's report of signalling on approach.",
+   "window": [
+    60,
+    140
+   ],
+   "year_end": 400,
+   "threads": [
+    "THR.THE_CASTE_QUESTION"
+   ]
+  },
+  {
+   "id": "EVT.REF.BHAKTI_ACCESS",
+   "title": "Bhakti opens the temple door in argument if not always in fact",
+   "class": "REFORM",
+   "magnitude": "W",
+   "year": 700,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Nayanar and Alvar hagiographies, which include Nandanar and Tiruppan Alvar, and the tension the stories themselves record.",
+   "window": [
+    660,
+    740
+   ],
+   "year_end": 900,
+   "threads": [
+    "THR.THE_CASTE_QUESTION"
+   ]
+  },
+  {
+   "id": "EVT.REF.BASAVA_COMMENSALITY",
+   "title": "Basava's Anubhava Mantapa seats artisans and brahmins together",
+   "class": "REFORM",
+   "magnitude": "W",
+   "year": 1160,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "evidence": "The vachanas themselves, and the violence that followed the inter-caste marriage the movement sanctioned.",
+   "window": [
+    1120,
+    1200
+   ],
+   "threads": [
+    "THR.THE_CASTE_QUESTION"
+   ]
+  },
+  {
+   "id": "EVT.REF.RAMANANDA",
+   "title": "Ramananda takes disciples without regard to birth",
+   "class": "REFORM",
+   "magnitude": "M",
+   "year": 1420,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.65,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Bhaktamal tradition and the disciple lists that name Ravidas, Kabir and Sena.",
+   "window": [
+    1380,
+    1460
+   ],
+   "threads": [
+    "THR.THE_CASTE_QUESTION"
+   ]
+  },
+  {
+   "id": "EVT.REF.RAVIDAS",
+   "title": "Ravidas describes Begampura, a city without sorrow or tax or caste",
+   "class": "REFORM",
+   "magnitude": "W",
+   "year": 1470,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "His verses in the Guru Granth Sahib and the Rajasthani manuscript tradition.",
+   "window": [
+    1430,
+    1510
+   ],
+   "threads": [
+    "THR.THE_CASTE_QUESTION"
+   ],
+   "note": "A leatherworker describes a city with no grading of men. It is a utopia, and it is a critique."
+  },
+  {
+   "id": "EVT.REF.NANAK_LANGAR",
+   "title": "Nanak makes the shared kitchen a condition of the congregation",
+   "class": "REFORM",
+   "magnitude": "W",
+   "year": 1500,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The institution of langar and pangat, and the janamsakhi accounts of Nanak eating with whoever came.",
+   "window": [
+    1460,
+    1540
+   ],
+   "threads": [
+    "THR.THE_CASTE_QUESTION"
+   ]
+  },
+  {
+   "id": "EVT.REF.CHOKHAMELA",
+   "title": "Chokhamela sings outside the temple he is not allowed to enter",
+   "class": "REFORM",
+   "magnitude": "M",
+   "year": 1330,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false,
+   "evidence": "His abhangas, and his samadhi's position at the threshold of the Pandharpur temple.",
+   "window": [
+    1290,
+    1370
+   ],
+   "threads": [
+    "THR.THE_CASTE_QUESTION"
+   ]
+  },
+  {
+   "id": "EVT.REF.NARAYANA_GURU",
+   "title": "Narayana Guru consecrates a temple, and is asked by what right",
+   "class": "REFORM",
+   "magnitude": "W",
+   "year": 1888,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.KERALA",
+   "dispute": false,
+   "evidence": "The Aruvippuram consecration and the notice he put up: one caste, one religion, one God for man.",
+   "threads": [
+    "THR.THE_CASTE_QUESTION"
+   ]
+  },
+  {
+   "id": "EVT.REF.VAIKOM",
+   "title": "The Vaikom satyagraha opens the roads around a temple",
+   "class": "REFORM",
+   "magnitude": "W",
+   "year": 1924,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 1.0,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.KERALA",
+   "dispute": false,
+   "evidence": "The satyagraha's records, the Travancore state's concession on three of four roads, and the 1936 Temple Entry Proclamation that followed.",
+   "threads": [
+    "THR.THE_CASTE_QUESTION"
+   ]
+  },
+  {
+   "id": "EVT.REF.PHULE",
+   "title": "Jyotirao and Savitribai Phule open a school for girls and for the excluded",
+   "class": "REFORM",
+   "magnitude": "W",
+   "year": 1848,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false,
+   "evidence": "The school records at Bhide Wada, Pune, and Gulamgiri, published 1873.",
+   "threads": [
+    "THR.THE_CASTE_QUESTION"
+   ],
+   "note": "A woman teaching, in 1848, in a country where most men could not read."
+  },
+  {
+   "id": "EVT.REF.PERIYAR",
+   "title": "The Self-Respect movement holds weddings without priests",
+   "class": "REFORM",
+   "magnitude": "W",
+   "year": 1925,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 1.0,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "evidence": "The Suyamariyathai marriage form, and the 1967 amendment that made it legally valid.",
+   "threads": [
+    "THR.THE_CASTE_QUESTION"
+   ]
+  },
+  {
+   "id": "EVT.REF.MAHAD",
+   "title": "The Mahad satyagraha drinks from a public tank",
+   "class": "REFORM",
+   "magnitude": "W",
+   "year": 1927,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 1.0,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false,
+   "evidence": "The Chavdar tank action, the court case that followed, and the public burning of the Manusmriti in December.",
+   "threads": [
+    "THR.THE_CASTE_QUESTION"
+   ]
+  },
+  {
+   "id": "EVT.REF.POONA_PACT",
+   "title": "The Poona Pact: separate electorates traded for reserved seats",
+   "class": "REFORM",
+   "magnitude": "W",
+   "year": 1932,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 1.0,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": true,
+   "evidence": "The agreement itself, signed under the pressure of a fast unto death, and the Assembly debates that followed.",
+   "threads": [
+    "THR.THE_CASTE_QUESTION"
+   ],
+   "dispute_scope": "interpretation",
+   "note": "Both parties described it afterwards as a defeat. The game should present it that way."
+  },
+  {
+   "id": "EVT.REF.ARTICLE_17",
+   "title": "The Constituent Assembly accepts the abolition of untouchability as a fundamental right",
+   "class": "REFORM",
+   "magnitude": "W",
+   "year": 1947,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 1.0,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Fundamental Rights Sub-Committee report of April 1947 and the Assembly's clause-by-clause debate, including the argument over whether the word should be defined or left to the courts.",
+   "threads": [
+    "THR.THE_CASTE_QUESTION"
+   ],
+   "note": "It becomes Article 17 in 1949, two years after the campaign ends. The last thing the game shows you is an argument still in progress."
+  },
+  {
+   "id": "EVT.REF.FIRST_COUNCIL",
+   "title": "The first council recites the canon back to itself",
+   "class": "REFORM",
+   "magnitude": "W",
+   "year": -483,
+   "era": "ERA.SECOND_URBAN",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Vinaya's account of the recitation at Rajagriha, and the division of the canon between Ananda and Upali.",
+   "window": [
+    -523,
+    -443
+   ],
+   "threads": [
+    "THR.THE_RENOUNCERS"
+   ]
+  },
+  {
+   "id": "EVT.REF.SECOND_COUNCIL",
+   "title": "The second council splits over ten small rules",
+   "class": "REFORM",
+   "magnitude": "W",
+   "year": -383,
+   "era": "ERA.SECOND_URBAN",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Vinaya accounts, which disagree about the ten points and agree about the split.",
+   "window": [
+    -423,
+    -343
+   ],
+   "threads": [
+    "THR.THE_RENOUNCERS"
+   ],
+   "note": "A schism over whether a monk may accept coins. Small rules are never small."
+  },
+  {
+   "id": "EVT.REF.MAHASANGHIKA",
+   "title": "The Mahasanghika separate, and the eighteen schools begin",
+   "class": "REFORM",
+   "magnitude": "M",
+   "year": -350,
+   "era": "ERA.SECOND_URBAN",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The doxographies of the Sthavira and Mahasanghika traditions, which name each other's errors.",
+   "window": [
+    -390,
+    -310
+   ],
+   "threads": [
+    "THR.THE_RENOUNCERS"
+   ]
+  },
+  {
+   "id": "EVT.REF.THIRD_COUNCIL",
+   "title": "The third council, and the missions that follow it",
+   "class": "REFORM",
+   "magnitude": "W",
+   "year": -250,
+   "era": "ERA.MAURYAN",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Sri Lankan chronicles, and Ashoka's schism edict at Sanchi, Sarnath and Kausambi.",
+   "window": [
+    -290,
+    -210
+   ],
+   "threads": [
+    "THR.THE_RENOUNCERS"
+   ]
+  },
+  {
+   "id": "EVT.REF.SCHISM_EDICT",
+   "title": "Ashoka's schism edict threatens to unfrock a monk who splits the order",
+   "class": "REFORM",
+   "magnitude": "M",
+   "year": -250,
+   "era": "ERA.MAURYAN",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The minor pillar edict at three sites, which orders the offender put in white cloth and out of the residence.",
+   "window": [
+    -290,
+    -210
+   ],
+   "threads": [
+    "THR.THE_RENOUNCERS"
+   ],
+   "note": "A king legislating monastic discipline. The state has opinions about the sangha."
+  },
+  {
+   "id": "EVT.REF.JAIN_PATALIPUTRA",
+   "title": "The Jain council at Pataliputra, and the first division",
+   "class": "REFORM",
+   "magnitude": "M",
+   "year": -300,
+   "era": "ERA.MAURYAN",
+   "provenance": "SOURCED",
+   "certainty": 0.6,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": true,
+   "evidence": "The Svetambara account of a twelve-year famine, Bhadrabahu's migration south, and the disagreement about what was recovered.",
+   "window": [
+    -340,
+    -260
+   ],
+   "threads": [
+    "THR.THE_RENOUNCERS"
+   ],
+   "dispute_scope": "occurrence"
+  },
+  {
+   "id": "EVT.REF.DIGAMBARA_SPLIT",
+   "title": "Digambara and Svetambara harden into separate traditions",
+   "class": "REFORM",
+   "magnitude": "W",
+   "year": 100,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "Two separate canonical positions, two commentarial traditions and, from this period, two distinct sculptural conventions.",
+   "window": [
+    60,
+    140
+   ],
+   "threads": [
+    "THR.THE_RENOUNCERS"
+   ]
+  },
+  {
+   "id": "EVT.REF.VALABHI_COUNCIL_REF",
+   "title": "The Valabhi council fixes the Svetambara canon in writing",
+   "class": "REFORM",
+   "magnitude": "W",
+   "year": 454,
+   "era": "ERA.GUPTA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.GUJARAT",
+   "dispute": false,
+   "evidence": "The Svetambara tradition's own account, and the recension that follows it.",
+   "window": [
+    414,
+    494
+   ],
+   "threads": [
+    "THR.THE_RENOUNCERS"
+   ]
+  },
+  {
+   "id": "EVT.REF.FOURTH_COUNCIL",
+   "title": "The fourth council under Kanishka, and Sanskrit displaces Prakrit",
+   "class": "REFORM",
+   "magnitude": "M",
+   "year": 100,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.65,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KASHMIR",
+   "dispute": true,
+   "evidence": "Xuanzang's account, and the shift to Sanskrit in the northwestern Buddhist textual record.",
+   "window": [
+    60,
+    140
+   ],
+   "threads": [
+    "THR.THE_RENOUNCERS"
+   ],
+   "dispute_scope": "date"
+  },
+  {
+   "id": "EVT.REF.MAHAYANA_TURN",
+   "title": "The Mahayana sutras appear, claiming to be older than they are",
+   "class": "REFORM",
+   "magnitude": "W",
+   "year": 50,
+   "era": "ERA.CLASSICAL",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Prajnaparamita literature, whose earliest Chinese translations date its circulation, and its own framing device.",
+   "window": [
+    10,
+    90
+   ],
+   "year_end": 200,
+   "threads": [
+    "THR.THE_RENOUNCERS"
+   ]
+  },
+  {
+   "id": "EVT.REF.VAJRAYANA",
+   "title": "Vajrayana takes shape in the eastern monasteries",
+   "class": "REFORM",
+   "magnitude": "W",
+   "year": 700,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The tantras and their Tibetan transmission lineages, and the Pala-period iconography at Ratnagiri and Nalanda.",
+   "window": [
+    660,
+    740
+   ],
+   "year_end": 1000,
+   "threads": [
+    "THR.THE_RENOUNCERS"
+   ]
+  },
+  {
+   "id": "EVT.REF.BUDDHIST_DECLINE_CAUSE",
+   "title": "Buddhism thins in India while it grows everywhere else",
+   "class": "REFORM",
+   "magnitude": "W",
+   "year": 900,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.6,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": true,
+   "evidence": "The end of the inscription and endowment record, against the continued Tibetan, Chinese and Southeast Asian traditions.",
+   "window": [
+    860,
+    940
+   ],
+   "year_end": 1300,
+   "threads": [
+    "THR.THE_RENOUNCERS"
+   ],
+   "dispute_scope": "causation",
+   "note": "Argued for two centuries and unsettled. The game shows the positions and does not pick one."
+  },
+  {
+   "id": "EVT.REF.NAYANARS",
+   "title": "The Nayanars sing Shiva in Tamil, and walk between temples",
+   "class": "REFORM",
+   "magnitude": "W",
+   "year": 650,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "evidence": "The Tevaram hymns and the temple inscriptions that endow their recitation.",
+   "window": [
+    610,
+    690
+   ]
+  },
+  {
+   "id": "EVT.REF.ALVARS",
+   "title": "The Alvars sing Vishnu, and one of the twelve is a woman",
+   "class": "REFORM",
+   "magnitude": "W",
+   "year": 700,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "evidence": "The Divya Prabandham, and Andal's Tiruppavai, still recited in Margazhi.",
+   "window": [
+    660,
+    740
+   ]
+  },
+  {
+   "id": "EVT.REF.SHANKARA_MATHAS",
+   "title": "Shankara founds four mathas at the compass points",
+   "class": "REFORM",
+   "magnitude": "W",
+   "year": 800,
+   "era": "ERA.REGIONAL_KINGDOMS",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": true,
+   "evidence": "The matha traditions themselves and their succession lists, whose early portions are disputed.",
+   "window": [
+    760,
+    840
+   ],
+   "dispute_scope": "occurrence",
+   "note": "An institution designed to outlive its founder. Twelve hundred years later it has."
+  },
+  {
+   "id": "EVT.REF.VIRASHAIVA",
+   "title": "The Virashaivas reject temple, priest and caste in one movement",
+   "class": "REFORM",
+   "magnitude": "W",
+   "year": 1150,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "evidence": "The vachana corpus and the Basava Purana.",
+   "window": [
+    1110,
+    1190
+   ]
+  },
+  {
+   "id": "EVT.REF.MADHVA",
+   "title": "Madhva argues for difference against Shankara's identity",
+   "class": "REFORM",
+   "magnitude": "M",
+   "year": 1250,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "evidence": "His commentaries and the Udupi matha tradition.",
+   "window": [
+    1210,
+    1290
+   ]
+  },
+  {
+   "id": "EVT.REF.JNANESHWAR_REF",
+   "title": "Jnaneshwar puts the Gita into Marathi and is expelled for it",
+   "class": "REFORM",
+   "magnitude": "W",
+   "year": 1290,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false,
+   "evidence": "The Jnaneshwari itself, and the tradition of his family's excommunication.",
+   "window": [
+    1250,
+    1330
+   ]
+  },
+  {
+   "id": "EVT.REF.VARKARI",
+   "title": "The Varkari pilgrimage to Pandharpur becomes an annual institution",
+   "class": "REFORM",
+   "magnitude": "W",
+   "year": 1300,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false,
+   "evidence": "The abhanga corpus, and the palkhi routes still walked.",
+   "window": [
+    1260,
+    1340
+   ]
+  },
+  {
+   "id": "EVT.REF.CHAITANYA",
+   "title": "Chaitanya's kirtan takes devotion into the street",
+   "class": "REFORM",
+   "magnitude": "W",
+   "year": 1510,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.BENGAL",
+   "dispute": false,
+   "evidence": "The Chaitanya Charitamrita, and the Bengal Vaishnava institutional record."
+  },
+  {
+   "id": "EVT.REF.SANKARDEV",
+   "title": "Sankardev's Ekasarana and the namghar as a village institution",
+   "class": "REFORM",
+   "magnitude": "W",
+   "year": 1470,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.85,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ASSAM",
+   "dispute": false,
+   "evidence": "The borgeet and ankiya nat corpus, and the namghar network across the Brahmaputra valley.",
+   "window": [
+    1430,
+    1510
+   ],
+   "note": "A prayer house that is also the village assembly. Devotion with a constitution."
+  },
+  {
+   "id": "EVT.REF.MIRABAI",
+   "title": "Mirabai leaves a court to sing, and the court cannot get her back",
+   "class": "REFORM",
+   "magnitude": "M",
+   "year": 1520,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.RAJASTHAN",
+   "dispute": false,
+   "evidence": "Her padas in the Rajasthani and Braj traditions, and their inclusion in the Guru Granth Sahib.",
+   "window": [
+    1480,
+    1560
+   ]
+  },
+  {
+   "id": "EVT.REF.LALLESHWARI",
+   "title": "Lal Ded's vakhs pass into Kashmiri speech and stay there",
+   "class": "REFORM",
+   "magnitude": "M",
+   "year": 1350,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KASHMIR",
+   "dispute": false,
+   "evidence": "The vakhs, transmitted orally for centuries before collection, and quoted as proverb.",
+   "window": [
+    1310,
+    1390
+   ]
+  },
+  {
+   "id": "EVT.REF.NAMDEV",
+   "title": "Namdev carries Marathi abhangas north into Punjab",
+   "class": "REFORM",
+   "magnitude": "M",
+   "year": 1300,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false,
+   "evidence": "His verses in both the Marathi tradition and the Guru Granth Sahib.",
+   "window": [
+    1260,
+    1340
+   ]
+  },
+  {
+   "id": "EVT.REF.ANNAMACHARYA",
+   "title": "Annamacharya's keertanas are engraved on copper and sealed in a wall",
+   "class": "REFORM",
+   "magnitude": "M",
+   "year": 1450,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.ANDHRA",
+   "dispute": false,
+   "evidence": "The copper plates recovered from the Tirumala temple in 1922, some thirteen thousand songs.",
+   "window": [
+    1410,
+    1490
+   ],
+   "note": "Sealed in a room for four hundred years. Redundancy by accident."
+  },
+  {
+   "id": "EVT.REF.PURANDARA",
+   "title": "Purandara Dasa sets the Carnatic teaching sequence still used",
+   "class": "REFORM",
+   "magnitude": "M",
+   "year": 1520,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "evidence": "The graded exercises attributed to him, which every student still begins with.",
+   "window": [
+    1480,
+    1560
+   ]
+  },
+  {
+   "id": "EVT.REF.SUFI_CHISHTI",
+   "title": "The Chishti khanqahs open their kitchens to whoever comes",
+   "class": "REFORM",
+   "magnitude": "W",
+   "year": 1200,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The malfuzat literature, the Ajmer and Delhi dargah endowments, and the sama' controversy.",
+   "window": [
+    1160,
+    1240
+   ]
+  },
+  {
+   "id": "EVT.REF.KABIR_PANTH",
+   "title": "Kabir refuses both temple and mosque, and both claim him after",
+   "class": "REFORM",
+   "magnitude": "M",
+   "year": 1500,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.8,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The three recensions of his verse, and the tradition that both communities claimed the body.",
+   "window": [
+    1460,
+    1540
+   ]
+  },
+  {
+   "id": "EVT.REF.SIKH_PANTH",
+   "title": "The Sikh panth takes institutional form: sangat, langar, and a line of Gurus",
+   "class": "REFORM",
+   "magnitude": "W",
+   "year": 1520,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.9,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The janamsakhis, the Goindval pothis, and the succession from Nanak."
+  },
+  {
+   "id": "EVT.REF.KHALSA",
+   "title": "The Khalsa is instituted at Anandpur",
+   "class": "REFORM",
+   "magnitude": "W",
+   "year": 1699,
+   "era": "ERA.EARLY_MODERN",
+   "provenance": "SOURCED",
+   "certainty": 0.95,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Sikh chronicles and the surviving hukamnamas."
+  },
+  {
+   "id": "EVT.REF.SHAKTA_TANTRA",
+   "title": "Shakta and Tantric practice spreads through Bengal, Assam and Kashmir",
+   "class": "REFORM",
+   "magnitude": "M",
+   "year": 900,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The tantric corpus, the Kamakhya tradition, and the Pala-period iconography.",
+   "window": [
+    860,
+    940
+   ],
+   "year_end": 1300
+  },
+  {
+   "id": "EVT.REF.NATH_SIDDHAS",
+   "title": "The Nath siddhas cut across religion and caste and leave verse behind",
+   "class": "REFORM",
+   "magnitude": "M",
+   "year": 1100,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.65,
+   "trigger": "window",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Gorakh bani, the Charyapada, and the Nath monastic network from Nepal to Gujarat.",
+   "window": [
+    1060,
+    1140
+   ],
+   "year_end": 1400
+  },
+  {
+   "id": "EVT.REF.MAHANUBHAVA",
+   "title": "The Mahanubhava sect writes prose in Marathi and encrypts it",
+   "class": "REFORM",
+   "magnitude": "R",
+   "year": 1270,
+   "era": "ERA.CHOLA",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.MAHARASHTRA",
+   "dispute": false,
+   "evidence": "The Lilacharitra, and the sect's sakala cipher scripts.",
+   "window": [
+    1230,
+    1310
+   ],
+   "note": "They wrote their scripture in code to keep it from outsiders. It nearly worked too well."
+  },
+  {
+   "id": "EVT.REF.SHRIVAISHNAVA_SPLIT",
+   "title": "The Srivaishnavas divide over whether grace requires effort",
+   "class": "REFORM",
+   "magnitude": "R",
+   "year": 1350,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.75,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.TAMILAKAM",
+   "dispute": false,
+   "evidence": "The Vadakalai and Tenkalai commentarial traditions, and the temple litigation between them.",
+   "window": [
+    1310,
+    1390
+   ]
+  },
+  {
+   "id": "EVT.REF.LINGAYAT_INSTITUTION",
+   "title": "The Lingayat mathas become landholding institutions",
+   "class": "REFORM",
+   "magnitude": "R",
+   "year": 1400,
+   "era": "ERA.DELHI_VIJAYANAGARA",
+   "provenance": "SOURCED",
+   "certainty": 0.7,
+   "trigger": "window",
+   "scope": "regional",
+   "region": "RGN.KARNATAKA",
+   "dispute": false,
+   "evidence": "The matha inscription and grant record across the Kannada country.",
+   "window": [
+    1360,
+    1440
+   ]
+  },
+  {
+   "id": "EVT.REF.BRAHMO",
+   "title": "The Brahmo Samaj argues for reform from inside the texts",
+   "class": "REFORM",
+   "magnitude": "W",
+   "year": 1828,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 1.0,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.BENGAL",
+   "dispute": false,
+   "evidence": "The Samaj's trust deed, and Rammohan Roy's translations and tracts."
+  },
+  {
+   "id": "EVT.REF.ARYA_SAMAJ",
+   "title": "The Arya Samaj argues for reform by returning to the Vedas",
+   "class": "REFORM",
+   "magnitude": "W",
+   "year": 1875,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 1.0,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The Satyarth Prakash, and the Samaj's school network."
+  },
+  {
+   "id": "EVT.REF.SATI_ABOLITION",
+   "title": "Sati is prohibited by regulation, after argument on both sides in Sanskrit",
+   "class": "REFORM",
+   "magnitude": "W",
+   "year": 1829,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 1.0,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": true,
+   "evidence": "Bengal Regulation XVII, and the petitions for and against, several of them citing the same texts.",
+   "threads": [
+    "THR.THE_CASTE_QUESTION"
+   ],
+   "dispute_scope": "interpretation"
+  },
+  {
+   "id": "EVT.REF.WIDOW_REMARRIAGE",
+   "title": "The Widow Remarriage Act, argued through the shastras",
+   "class": "REFORM",
+   "magnitude": "M",
+   "year": 1856,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 1.0,
+   "trigger": "dated",
+   "scope": "regional",
+   "region": "RGN.BENGAL",
+   "dispute": false,
+   "evidence": "Act XV of 1856, and Vidyasagar's tracts marshalling scriptural authority for it.",
+   "threads": [
+    "THR.THE_CASTE_QUESTION"
+   ]
+  },
+  {
+   "id": "EVT.REF.AMBEDKAR_CONVERSION",
+   "title": "Ambedkar and half a million others take Buddhist vows at Nagpur",
+   "class": "REFORM",
+   "magnitude": "W",
+   "year": 1946,
+   "era": "ERA.COLONIAL",
+   "provenance": "SOURCED",
+   "certainty": 1.0,
+   "trigger": "dated",
+   "scope": "subcontinental",
+   "region": null,
+   "dispute": false,
+   "evidence": "The announcement of intent at Yeola in 1935 and the conversion at Nagpur, with its twenty-two vows.",
+   "threads": [
+    "THR.THE_CASTE_QUESTION",
+    "THR.THE_RENOUNCERS"
+   ],
+   "note": "The oldest renouncer tradition in the country, taken up again to answer the oldest question in it."
+  }
+ ]
+}
