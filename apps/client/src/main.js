@@ -46,7 +46,7 @@ import { composeChronicle, chronicleHTML, chronicleText } from '../../../package
 import { makeSlipTracker } from '../../../packages/ui/src/slips.js';
 import { interiorHTML, scriptoriumModel } from '../../../packages/ui/src/interiors.js';
 import { drawFrom } from '../../../packages/sim/src/rng.js';
-import { RECITE_COST } from '../../../packages/sim/src/teaching.js';
+import { RECITE_COST, cardFreshness, isCardLocked } from '../../../packages/sim/src/teaching.js';
 import { drawBoundaries } from './boundaries.js';
 import { drawPeopleMode, setListenFocus } from './people-layer.js';
 import { buildCodexIndex, searchCodex, codexHTML, shelfHTML, resultsHTML }
@@ -1559,6 +1559,7 @@ function paint() {
   $('scribes').textContent  = n(s.pops.scribes);
   $('soldiers').textContent = n(s.pops.soldiers);
   paintVitals(s);
+  renderEduDock();
   paintSituations(s);
   paintFlows(s);
   renderDistrictDetail(s);
@@ -1887,9 +1888,14 @@ function renderVerbRow() {
   if (LENS.lens.payload) {
     const opts = LENS.lens.payload.options(state);
     if (!opts.some(o => o.id === LENS.payload)) LENS.payload = opts[0]?.id ?? null;
-    picker = `<select data-lens-payload title="${LENS.lens.payload.label}">
-      ${opts.map(o => `<option value="${o.id}" ${o.id === LENS.payload ? 'selected' : ''}>${o.label}</option>`).join('')}
-    </select>`;
+    // teachcards has its own picker — the Library shelf (#eduDock) — so the
+    // raw <select> would just duplicate it; LENS.payload is still the same
+    // state either way, the shelf just sets it directly instead.
+    if (LENS.lens.id !== 'teachcards') {
+      picker = `<select data-lens-payload title="${LENS.lens.payload.label}">
+        ${opts.map(o => `<option value="${o.id}" ${o.id === LENS.payload ? 'selected' : ''}>${o.label}</option>`).join('')}
+      </select>`;
+    }
   }
   vr.innerHTML = picker + LENS.lens.verbs.map(v =>
     `<button class="btn" data-verb="${v.id}" title="${v.tip ?? ''}"
@@ -1908,13 +1914,13 @@ function armLens(lensId) {
   if (LENS?.lens.id === lensId) { cancelLens(); return; }
   LENS = { lens: l, verb: l.verbs.length === 1 ? l.verbs[0] : null, payload: null };
   l.onArm?.(state);
-  buildLensTray(); renderVerbRow(); draw(3); scheduleFull();
+  buildLensTray(); renderVerbRow(); renderEduDock(); draw(3); scheduleFull();
 }
 function cancelLens() {
   if (!LENS) return;
   LENS.lens.onCancel?.(state);
   LENS = null;
-  buildLensTray(); renderVerbRow(); draw(3); scheduleFull();
+  buildLensTray(); renderVerbRow(); renderEduDock(); draw(3); scheduleFull();
 }
 document.addEventListener('click', (e) => {
   const lb = e.target.closest('[data-lens]');
@@ -2174,29 +2180,146 @@ registerLens({
 });
 
 /* ── The Teach lens: the atlas game's learning loop, on the table ─────────
- * A card is a crisp recitable line over a corpus work. Arm the lens, pick
- * the card, click a district: decide('recite', {work, district}) — the work
- * gains a living carrier, the people remember for a generation, and the
- * chibi crowd in the people mode stops to listen. This also lands the
- * "endow school" verb docs/21-hud.md §A4 specified and phase 16 left out. */
+ * A card is a crisp recitable line over a corpus work. Arm the lens, study
+ * a card off the shelf, recite it over a district: decide('recite',
+ * {work, card, district}) — the work gains a living carrier, the card
+ * itself is credited (several cards can share one work — all 18 Gita
+ * chapters are one WRK.GITA), and the chibi crowd in the people mode stops
+ * to listen. This also lands the "endow school" verb docs/21-hud.md §A4
+ * specified and phase 16 left out. */
 const EDU_BY_ID = new Map((EDU?.cards ?? []).map(c => [c.id, c]));
+
+/** A card's 1-based position within its own kind, parsed from its id
+ *  ("EDU.GITA.07" → 7). Only Gita chapters are sequenced; everything else
+ *  reports 0 and is therefore never locked. */
+function eduOrder(id) {
+  if (!id.startsWith('EDU.GITA.')) return 0;
+  return parseInt(id.slice('EDU.GITA.'.length), 10) || 0;
+}
+const eduSibling = (n) => 'EDU.GITA.' + String(n).padStart(2, '0');
+
+function eduAvailable(s, card) {
+  const w = s.corpus.get(card.work);
+  return !!(w && w.exists && !w.lost);
+}
+function eduLocked(s, card) {
+  return isCardLocked(s, { kind: card.kind, order: eduOrder(card.id) }, eduSibling);
+}
+/** locked / taught / fading / studied / fresh — the shelf badge state. */
+function eduCardState(s, card) {
+  if (eduLocked(s, card)) return 'locked';
+  if (s.taughtCards?.has(card.id)) {
+    return cardFreshness(s, card.id) < 0.75 ? 'fading' : 'taught';
+  }
+  if (s.studied?.has(card.id)) return 'studied';
+  return 'fresh';
+}
+const EDU_BADGE = { locked: '🔒', fresh: '✨', studied: '📖', taught: '✔', fading: '🕯' };
+const EDU_KIND_LABEL = { gita: 'गीता', skill: 'कौशल' };
+
+function renderEduDock() {
+  const dock = $('eduDock');
+  if (LENS?.lens?.id !== 'teachcards' || !state) { dock.hidden = true; return; }
+  dock.hidden = false;
+  const cards = (EDU?.cards ?? []).filter((c) => eduAvailable(state, c));
+  dock.innerHTML = `<div class="edu-head">the library — study a card, then recite it to a district</div>
+    <div class="edu-shelf">${cards.map((c) => {
+      const st = eduCardState(state, c);
+      const locked = st === 'locked';
+      return `<button class="edu-card ${st} ${LENS.payload === c.id ? 'armed' : ''}"
+        data-edu-card="${c.id}" ${locked ? 'disabled' : ''}
+        title="${locked ? 'Recite the previous chapter first' : ''}">
+        <span class="ek">${EDU_BADGE[st]}</span>
+        <span class="et">${EDU_KIND_LABEL[c.kind] ?? c.kind}</span>
+        <span class="en">${c.title}</span>
+        <span class="es">${c.subtitle}</span>
+      </button>`;
+    }).join('')}</div>`;
+}
+$('eduDock').addEventListener('click', (e) => {
+  const b = e.target.closest('[data-edu-card]');
+  if (!b || b.disabled || !LENS) return;
+  const card = EDU_BY_ID.get(b.dataset.eduCard);
+  if (!card) return;
+  openEduStudy(card);
+});
+
+/** The study card: rendered into the shared #drawer, exactly like a
+ *  timeline event card. Opening it is itself a `study` decision (reading
+ *  is teaching, just gentler) — free, ambient, idempotent. A taught card
+ *  gets a recall quiz instead of the "go recite this" nudge. */
+function openEduStudy(card) {
+  LENS.payload = card.id;
+  renderVerbRow(); renderEduDock();
+  if (state && !state.studied.has(card.id)) decide('study', { kind: 'edu', id: card.id });
+
+  const taught = state.taughtCards?.has(card.id);
+  let body = `<div class="study-kicker">${card.kind === 'gita' ? 'BHAGAVAD GITA' : 'SKILL'} · ${card.subtitle}</div>
+    <h3>${card.title}</h3>
+    <div class="study-recite"><p>“${card.recite}”</p></div>
+    <p>${card.summary}</p>`;
+  if (card.sloka) {
+    body += `<div class="study-sloka">
+      <div class="dev">${card.sloka.sa}</div>
+      <div class="tr">${card.sloka.translit}</div>
+      <div>${card.sloka.en} <span class="ref">(${card.sloka.ref})</span></div>
+    </div>`;
+  }
+  if (card.source) body += `<div class="study-source">${card.source}</div>`;
+
+  if (taught) {
+    const pool = (EDU?.cards ?? []).filter((c) => c.id !== card.id && eduAvailable(state, c));
+    const opts = [card.title];
+    const shuffled = [...pool].sort(() => Math.random() - 0.5);
+    while (opts.length < 3 && shuffled.length) opts.push(shuffled.pop().title);
+    opts.sort(() => Math.random() - 0.5);
+    body += `<div class="study-quiz"><div class="study-kicker">RECALL QUIZ</div>
+      <p>Which teaching is the line above from?</p>
+      ${opts.map((t) => `<button class="quiz-opt" data-ok="${t === card.title ? 1 : 0}">${t}</button>`).join('')}
+      <div class="quiz-msg"></div></div>`;
+  } else {
+    body += `<p class="study-source">Arm this card, then click a district on the map to recite it — ${RECITE_COST} grain and a reciter's breath.</p>`;
+  }
+  $('drawer-inner').innerHTML = body;
+  $('drawer').classList.add('on');
+}
+document.addEventListener('click', (e) => {
+  const q = e.target.closest('.quiz-opt');
+  if (!q) return;
+  const msg = q.closest('.study-quiz').querySelector('.quiz-msg');
+  if (q.dataset.ok === '1') {
+    // studying it again (the quiz itself is the "reading") already keeps it
+    // in state.studied; the real refresh is a fresh recital, so point there
+    msg.textContent = '✔ Recalled correctly — recite it again to truly refresh the people’s memory.';
+    msg.className = 'quiz-msg good';
+  } else {
+    q.classList.add('shake');
+    msg.textContent = 'Not this one — read the line again.';
+    msg.className = 'quiz-msg bad';
+    setTimeout(() => q.classList.remove('shake'), 400);
+  }
+});
+
 if (EDU_BY_ID.size) {
   registerLens({
     id: 'teachcards', glyph: '📖',
-    title: 'Teach — study a card, recite it to the people of a district',
+    title: 'Teach — study a card off the shelf, recite it to the people of a district',
     onArm() {
       this._prevMode = mapMode;
       if (!modeLocked) setMapMode('people');
     },
     onCancel() {
       setListenFocus(null);
+      $('eduDock').hidden = true;
       if (!modeLocked && this._prevMode) setMapMode(this._prevMode);
     },
     payload: {
+      // the shelf (#eduDock) is the real picker; this stays the source of
+      // truth the lens engine and verbs read (LENS.payload)
       label: 'The card in hand — its line is what you will recite.',
       options: (s) => (EDU?.cards ?? [])
-        .filter(c => { const w = s.corpus.get(c.work); return w && w.exists && !w.lost; })
-        .map(c => ({ id: c.id, label: `${c.title} — “${c.recite}”` })),
+        .filter((c) => eduAvailable(s, c) && !eduLocked(s, c))
+        .map((c) => ({ id: c.id, label: `${c.title} — “${c.recite}”` })),
     },
     verbs: [
       { id: 'recite', label: 'recite here',
@@ -2205,7 +2328,7 @@ if (EDU_BY_ID.size) {
           : s.pops.reciters < 1 || s.grain < RECITE_COST ? 'could' : 'can',
         execute: (d, cardId) => {
           const card = EDU_BY_ID.get(cardId);
-          if (card) decide('recite', { work: card.work, district: d.id });
+          if (card) decide('recite', { work: card.work, card: card.id, district: d.id });
         } },
       { id: 'endow', label: 'endow a school',
         tip: 'Grain to a living lineage, so the teaching outlives the teacher.',

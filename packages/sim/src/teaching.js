@@ -27,6 +27,29 @@ export function freshness(state, workId) {
   return Math.max(FRESH_FLOOR, 1 - 0.01 * (age - FRESH_YEARS));
 }
 
+/** How fresh one education CARD's teaching is, 0..1 — same curve as a work,
+ *  keyed by card id instead. Cards that were only studied (read, never
+ *  recited) are not "taught" at all: freshness is 0 until a real recital. */
+export function cardFreshness(state, cardId) {
+  const t = state.taughtCards?.get(cardId);
+  if (t == null) return 0;
+  const age = state.year - t;
+  if (age <= FRESH_YEARS) return 1;
+  return Math.max(FRESH_FLOOR, 1 - 0.01 * (age - FRESH_YEARS));
+}
+
+/** Sequential unlock: a Gita chapter stays locked until the one before it
+ *  has actually been recited (studying it is not enough). `order` is the
+ *  card's 1-based position within its own kind — chapter number for Gita,
+ *  meaningless (unused) for kinds with no sequence. `siblingId(order)` maps
+ *  a position back to a card id within the same kind, so this stays generic
+ *  rather than hard-coding the "EDU.GITA.NN" id shape here. */
+export function isCardLocked(state, card, siblingId) {
+  if (card.kind !== 'gita' || card.order <= 1) return false;
+  const prev = siblingId(card.order - 1);
+  return !state.taughtCards?.has(prev);
+}
+
 /** How much of the read coverage a people has picked up simply by paying
  *  attention — cards opened, works read. Caps once the reading habit is
  *  well established; it does not need to cover the whole corpus to count. */
@@ -54,7 +77,12 @@ export function literacy(state) {
 }
 
 export const DECISIONS = {
-  /** recite {work, district?}: teach one work to the people. */
+  /** recite {work, card?, district?}: teach one work to the people. `card`
+   *  is optional and purely for the Library's own bookkeeping — several
+   *  education cards can share one corpus work (all 18 Gita chapters are
+   *  one work, WRK.GITA), so the card is tracked separately from the work
+   *  it recites, letting the shelf show each chapter's own taught state
+   *  and lock chapter N+1 until N has actually been recited. */
   recite(state, d, rng) {
     const c = state.corpus.get(d.work);
     if (!c || !c.exists || c.lost) return;
@@ -68,6 +96,10 @@ export const DECISIONS = {
     else c.carriers.push({ medium: 'memory', place: 'home', born: d.year, health: 1 });
 
     state.taughtWorks.set(d.work, d.year);
+    if (d.card) {
+      if (!state.taughtCards) state.taughtCards = new Map();
+      state.taughtCards.set(d.card, d.year);
+    }
     bumpPillar(state, 'CULTIVATION', 0.4);
     state.stats.recitals = (state.stats.recitals ?? 0) + 1;
 

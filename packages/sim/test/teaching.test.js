@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { run } from '../src/engine.js';
-import { freshness, literacy, RECITE_COST, FRESH_YEARS, FRESH_FLOOR } from '../src/teaching.js';
+import { freshness, literacy, RECITE_COST, FRESH_YEARS, FRESH_FLOOR, cardFreshness, isCardLocked } from '../src/teaching.js';
 
 const DP = {
   timeline: JSON.parse(readFileSync(new URL('../../../data/timeline/timeline.json', import.meta.url), 'utf8')),
@@ -138,4 +138,66 @@ test('a taught people carries further: farmers outgrow an untaught control', () 
   assert.ok(taught.literacy > untaught.literacy, 'sanity: the taught run is actually more literate');
   assert.ok(taught.pops.farmers > untaught.pops.farmers,
     `taught farmers (${taught.pops.farmers}) should exceed untaught (${untaught.pops.farmers})`);
+});
+
+/* ── education cards: per-card taught state, distinct from the work ─────── */
+
+test('reciting with a card id tracks that card, separately from the work', () => {
+  const s = run(DP, 'card-1', [
+    { year: -950, action: 'recite', work: RV, card: 'EDU.GITA.01', district: 'DIS.KAVERI_DELTA' },
+  ], { to: -900 });
+  assert.ok(s.taughtCards.has('EDU.GITA.01'));
+  assert.equal(s.taughtCards.get('EDU.GITA.01'), -950);
+  assert.ok(s.taughtWorks.has(RV), 'the underlying work is still credited too');
+});
+
+test('a recital with no card id leaves taughtCards untouched', () => {
+  const s = run(DP, 'card-2', [{ year: -950, action: 'recite', work: RV }], { to: -900 });
+  assert.equal(s.taughtCards.size, 0);
+});
+
+test('cardFreshness mirrors the work freshness curve, keyed by card', () => {
+  const log = [{ year: -1400, action: 'recite', work: RV, card: 'EDU.GITA.01' }];
+  const soon = run(DP, 'card-3', log, { to: -1400 + FRESH_YEARS - 10 });
+  assert.equal(cardFreshness(soon, 'EDU.GITA.01'), 1);
+  const later = run(DP, 'card-3', log, { to: -1400 + FRESH_YEARS + 200 });
+  const f = cardFreshness(later, 'EDU.GITA.01');
+  assert.ok(f < 1 && f >= FRESH_FLOOR);
+  assert.equal(cardFreshness(later, 'EDU.GITA.02'), 0, 'a never-taught card is never fresh');
+});
+
+test('a Gita chapter locks until the previous one is actually recited', () => {
+  const sib = (n) => 'EDU.GITA.' + String(n).padStart(2, '0');
+  const ch1 = { kind: 'gita', order: 1 };
+  const ch2 = { kind: 'gita', order: 2 };
+  const ch3 = { kind: 'gita', order: 3 };
+  const untaught = run(DP, 'card-4', [], { to: -900 });
+  assert.equal(isCardLocked(untaught, ch1, sib), false, 'chapter 1 is never locked');
+  assert.equal(isCardLocked(untaught, ch2, sib), true, 'chapter 2 locked before chapter 1 is taught');
+
+  const taught1 = run(DP, 'card-4', [
+    { year: -950, action: 'recite', work: RV, card: sib(1) },
+  ], { to: -900 });
+  assert.equal(isCardLocked(taught1, ch2, sib), false, 'chapter 2 unlocks once chapter 1 is recited');
+  assert.equal(isCardLocked(taught1, ch3, sib), true, 'chapter 3 still locked — chapter 2 not yet taught');
+});
+
+test('studying a card (without reciting) does not unlock the next one', () => {
+  const sib = (n) => 'EDU.GITA.' + String(n).padStart(2, '0');
+  const ch2 = { kind: 'gita', order: 2 };
+  const s = run(DP, 'card-5', [
+    { year: -950, action: 'study', kind: 'card', id: sib(1) },
+  ], { to: -900 });
+  assert.equal(isCardLocked(s, ch2, sib), true, 'reading is not reciting — the sequence still needs the real thing');
+});
+
+test('card-keyed recitals replay deterministically', () => {
+  const log = [
+    { year: -1200, action: 'recite', work: RV, card: 'EDU.GITA.01', district: 'DIS.KAVERI_DELTA' },
+    { year: -1100, action: 'recite', work: RV, card: 'EDU.GITA.02' },
+  ];
+  const a = run(DP, 'card-6', log);
+  const b = run(DP, 'card-6', log);
+  assert.equal(a.fingerprint, b.fingerprint);
+  assert.deepEqual([...a.taughtCards.entries()], [...b.taughtCards.entries()]);
 });

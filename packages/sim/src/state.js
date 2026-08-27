@@ -44,6 +44,10 @@ export function newState(opts = {}) {
 
     /** Teaching: workId → year last recited to the people (teaching.js). */
     taughtWorks: new Map(),
+    /** Education-card bookkeeping: cardId → year last recited. Several cards
+     *  can share one work (18 Gita chapters, one WRK.GITA); this is what
+     *  lets the Library shelf track each card's own taught state. */
+    taughtCards: new Map(),
     /** What has been read: card and work ids, once each — the ambient half
      *  of teaching.js. Never decays; it is exposure, not mastery. */
     studied: new Set(),

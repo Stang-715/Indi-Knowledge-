@@ -72,6 +72,48 @@
   .vital.dire .v { color:#8a3324; font-weight:700; }
   .vital .v i.up { color:#3a7a4a; font-style:normal; }
   .vital .v i.down { color:#8a3324; font-style:normal; }
+
+  /* The Library shelf: the teachcards lens's own card-picker, replacing the
+     plain <select> with something you can actually browse. */
+  #eduDock { position:absolute; left:8px; right:8px; bottom:8px; z-index:5;
+    background:var(--sheet); border:1px solid var(--rule); box-shadow:var(--shadow-lift);
+    padding:8px 10px; max-height:38%; display:flex; flex-direction:column; gap:6px; }
+  #eduDock .edu-head { font-size:10px; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--ink-soft); display:flex; justify-content:space-between; align-items:center; }
+  #eduDock .edu-shelf { display:flex; gap:6px; overflow-x:auto; padding-bottom:2px; }
+  .edu-card { flex:0 0 auto; width:118px; min-height:74px; text-align:left;
+    border:1px solid var(--rule); background:var(--paper); color:var(--ink);
+    padding:6px 7px; font:inherit; cursor:pointer; position:relative;
+    transition:transform .1s ease, box-shadow .1s ease; }
+  .edu-card:hover:not(:disabled) { transform:translateY(-2px); box-shadow:var(--shadow-contact); }
+  .edu-card.locked { opacity:.45; cursor:not-allowed; }
+  .edu-card.taught { border-color:var(--gold); }
+  .edu-card.armed { outline:2px solid var(--gold); outline-offset:1px; }
+  .edu-card .ek { position:absolute; top:4px; right:5px; font-size:.75rem; }
+  .edu-card .et { display:block; font-size:9px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-soft); }
+  .edu-card .en { display:block; font-weight:700; font-size:12px; line-height:1.2; margin:2px 0; }
+  .edu-card .es { display:block; font-size:10px; color:var(--ink-soft); white-space:nowrap;
+    overflow:hidden; text-overflow:ellipsis; }
+
+  /* The study card, rendered into the shared #drawer. */
+  .study-kicker { font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--warn); }
+  .study-recite { border-left:3px solid var(--gold); padding-left:10px; margin:8px 0; }
+  .study-recite p { font-family:var(--serif); font-size:1.05rem; margin:2px 0; }
+  .study-sloka { font-size:.85rem; line-height:1.55; margin:8px 0; }
+  .study-sloka .dev { font-size:.95rem; }
+  .study-sloka .tr { font-style:italic; color:var(--ink-soft); }
+  .study-sloka .ref { color:var(--ink-faint); font-size:.72rem; }
+  .study-source { font-size:.72rem; color:var(--ink-soft); }
+  .study-quiz { margin-top:12px; border-top:1px dashed var(--rule); padding-top:10px; }
+  .quiz-opt { display:block; width:100%; text-align:left; margin:4px 0; padding:7px 10px;
+    font:inherit; font-size:.82rem; background:var(--paper); border:1px solid var(--rule);
+    cursor:pointer; }
+  .quiz-opt:hover { border-color:var(--ink-soft); }
+  .quiz-opt.shake { animation:quizShake .4s; border-color:var(--warn); }
+  @keyframes quizShake { 25%{transform:translateX(-4px)} 75%{transform:translateX(4px)} }
+  .quiz-msg { font-size:.78rem; min-height:1.2em; margin-top:4px; }
+  .quiz-msg.good { color:#3a7a4a; }
+  .quiz-msg.bad { color:var(--warn); }
   .pillarglyphs { display:flex; gap:4px; cursor:pointer; padding:3px 8px;
                   border:1px solid transparent; }
   .pillarglyphs:hover { border-color:var(--rule); background:var(--sheet); }
@@ -211,6 +253,7 @@
     </div>
     <div id="drawer"><div id="drawer-inner"></div>
       <button class="btn" id="drawer-close">close</button></div>
+    <div id="eduDock" hidden></div>
   </div>
 
   <aside>
