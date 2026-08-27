@@ -114,16 +114,38 @@
 
   /* ---------- persistence ---------- */
 
-  function save() {
-    var data = JSON.stringify({
+  function buildSave() {
+    return {
       v: 2, day: st.day, taught: st.taught, studied: st.studied,
       stateTaught: st.stateTaught, pop: window.GamePopulation.count(),
       literacy: st.literacy, prosperity: st.prosperity,
       taughtDay: st.taughtDay, scholars: window.GamePopulation.scholarCount(),
       events: window.GameEvents.serialize()
-    });
+    };
+  }
+
+  function save() {
+    var data = JSON.stringify(buildSave());
     try { localStorage.setItem(SAVE_KEY, data); }
     catch (e) { memorySave = data; }
+  }
+
+  function applySave(d) {
+    st.day = d.day || 0;
+    st.taught = d.taught || {};
+    st.studied = d.studied || {};
+    st.stateTaught = d.stateTaught || {};
+    st.prosperity = d.prosperity || {};
+    st.pop = Math.max(30, Math.min(500, d.pop || 240));
+    st.literacy = d.literacy || 22;
+    st.events = d.events || null;
+    st.scholars = d.scholars || 0;
+    st.taughtDay = d.taughtDay || {};
+    // v1 saves carry no taughtDay: treat everything taught as fresh now
+    Object.keys(st.taught).forEach(function (id) {
+      if (st.taughtDay[id] == null) st.taughtDay[id] = st.day;
+    });
+    prevLiteracy = st.literacy;
   }
 
   function load() {
@@ -132,23 +154,7 @@
     if (!raw) return;
     try {
       var d = JSON.parse(raw);
-      if (d && (d.v === 1 || d.v === 2)) {
-        st.day = d.day || 0;
-        st.taught = d.taught || {};
-        st.studied = d.studied || {};
-        st.stateTaught = d.stateTaught || {};
-        st.prosperity = d.prosperity || {};
-        st.pop = Math.max(30, Math.min(500, d.pop || 240));
-        st.literacy = d.literacy || 22;
-        st.events = d.events || null;
-        st.scholars = d.scholars || 0;
-        st.taughtDay = d.taughtDay || {};
-        // v1 saves carry no taughtDay: treat everything taught as fresh now
-        Object.keys(st.taught).forEach(function (id) {
-          if (st.taughtDay[id] == null) st.taughtDay[id] = st.day;
-        });
-        prevLiteracy = st.literacy;
-      }
+      if (d && (d.v === 1 || d.v === 2)) applySave(d);
     } catch (e) { /* corrupt save: start fresh */ }
   }
 
@@ -357,6 +363,20 @@
         st.taughtDay[id] = st.day;
         save();
       }
+    },
+    getState: function () { return st; },
+    exportSave: function () { return buildSave(); },
+    importSave: function (obj) {
+      endRecite(false);
+      if (window.GameUI.isStudyOpen()) window.GameUI.closeStudy();
+      applySave(obj);
+      window.GameEvents.init(st.events);
+      window.GamePopulation.init(st.pop);
+      window.GamePopulation.markScholars(st.scholars);
+      window.GameUI.refreshDock();
+      window.GameUI.updateHud(st, 0);
+      if (window.Game.choroplethFill) window.IndiaMap.recolor();
+      save();
     },
     choroplethFill: null
   };

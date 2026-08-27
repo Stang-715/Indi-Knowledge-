@@ -320,6 +320,31 @@ body:not(.game-on) #gameTools { display: none; }
 #studyModal .study-moral { font-size: 0.84rem; color: var(--ink); }
 #studyModal .study-origin { font-size: 0.72rem; color: var(--ink-soft); }
 
+/* ---- goals & save panel ---- */
+#gamePanel .goal-list { margin-top: 4px; }
+#gamePanel .goal {
+  font-size: 0.84rem;
+  padding: 4px 0;
+  color: var(--ink-soft);
+  border-bottom: 1px dashed var(--line);
+}
+#gamePanel .goal.done { color: var(--teal-deep); }
+#gamePanel .goal .gp { float: right; font-size: 0.74rem; }
+#gamePanel .share-note { font-size: 0.78rem; color: var(--ink-soft); margin: 4px 0 8px; }
+#gamePanel textarea {
+  width: 100%;
+  height: 58px;
+  font: 0.7rem/1.3 monospace;
+  border: 1.5px solid var(--line);
+  border-radius: 7px;
+  padding: 6px;
+  background: var(--paper);
+  color: var(--ink);
+  resize: vertical;
+  box-sizing: border-box;
+}
+#gamePanel .share-in { margin-top: 10px; }
+
 /* dock and hud hidden while game is off (elements carry [hidden] too) */
 body:not(.game-on) #gameHud,
 body:not(.game-on) #libraryDock,

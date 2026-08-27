@@ -16,7 +16,7 @@ that has not yet been taught, the literacy rate drops until the player studies a
 recites it. This is the game's core loop: **interactive combat through literacy**.
 Knowledge is the weapon; ignorance is the enemy; teaching is how you fight.
 
-## Phase 1 — Population & the Learning Loop *(implemented in this branch)*
+## Phase 1 — Population & the Learning Loop *(implemented)*
 
 The foundation: the population exists, and it can be taught.
 
@@ -43,7 +43,7 @@ The foundation: the population exists, and it can be taught.
   saves to `localStorage` and survives reload. A 🎮 toolbar button toggles game mode;
   the atlas works untouched with the game off.
 
-## Phase 2 — Autonomous Work & Economy
+## Phase 2 — Autonomous Work & Economy *(implemented)*
 
 Teaching becomes practical. Skill cards join the Library — agriculture, cattle
 keeping, weaving, basic arithmetic — sourced from the atlas's soil/craft/community
@@ -54,7 +54,7 @@ food/prosperity resource produced by working NPCs, which feeds into the mortalit
 model: a well-taught state feeds itself. How well you teach determines how well the
 population survives.
 
-## Phase 3 — Events & Literacy Combat
+## Phase 3 — Events & Literacy Combat *(implemented)*
 
 The "combat" matures. Periodic challenges strike a region: a drought, an epidemic, a
 wave of rumor and superstition. Each event names the knowledge that counters it — a
@@ -64,7 +64,7 @@ tale whose moral answers it. Regions where the counter-text was never taught tak
 population losses; well-taught regions shrug events off. Event banners, a threat
 timer, and visible aftermath make literacy the weapon it was always meant to be.
 
-## Phase 4 — Depth of Knowledge
+## Phase 4 — Depth of Knowledge *(implemented: decay, quizzes, scholars, literacy view)*
 
 From coverage to mastery. Gita chapters expand into sloka-by-sloka mini-decks;
 knowledge decays over time and is refreshed by recall quizzes (the game asks the
@@ -74,7 +74,7 @@ literacy propagates geographically. Literacy resolves from state level down to
 district level, and the choropleth shows knowledge flowing outward from where you
 taught.
 
-## Phase 5 — Sharing Knowledge
+## Phase 5 — Sharing Knowledge *(implemented: save codes & goals; pack pipeline in docs/CARD-PACKS.md)*
 
 The population's learning leaves the single screen. Save codes let players export and
 import a taught population. Community goals ("teach the whole Gita to every state")

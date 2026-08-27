@@ -154,6 +154,65 @@
       window.IndiaMap.recolor();
     });
     tools.appendChild(lit);
+    var gear = el("button", "tool-chip", "⚙ Goals & save");
+    gear.addEventListener("click", openPanel);
+    tools.appendChild(gear);
+  }
+
+  function openPanel() {
+    var panel = document.getElementById("gamePanel");
+    var st = window.Game.getState();
+    var goals = window.GameShare.goals(
+      st,
+      window.GamePopulation.scholarCount(),
+      window.GamePopulation.count(),
+      avgProsperity(st)
+    );
+    var code = window.GameShare.exportCode(window.Game.exportSave());
+    panel.innerHTML = "<div class='study-card'>" +
+      "<button class='study-close' aria-label='Close'>✕</button>" +
+      "<div class='study-kicker'>COMMUNITY GOALS</div>" +
+      "<div class='goal-list'>" + goals.map(function (g) {
+        return "<div class='goal " + (g.done ? "done" : "") + "'>" +
+          (g.done ? "✔" : "○") + " " + esc(g.label) +
+          " <span class='gp'>" + esc(g.progress) + "</span></div>";
+      }).join("") + "</div>" +
+      "<div class='study-kicker' style='margin-top:14px'>SHARE THIS POPULATION</div>" +
+      "<p class='share-note'>Copy the code to carry your taught population to another browser; paste a code below to take one in.</p>" +
+      "<textarea class='share-out' readonly></textarea>" +
+      "<button class='quiz-opt copy-btn'>📋 Copy save code</button>" +
+      "<textarea class='share-in' placeholder='Paste a save code here…'></textarea>" +
+      "<button class='quiz-opt import-btn'>⬇ Load save code</button>" +
+      "<div class='quiz-msg share-msg'></div>" +
+      "</div>";
+    panel.querySelector(".share-out").value = code;
+    panel.querySelector(".study-close").addEventListener("click", function () { panel.hidden = true; });
+    panel.addEventListener("click", function (e) { if (e.target === panel) panel.hidden = true; });
+    var msg = panel.querySelector(".share-msg");
+    panel.querySelector(".copy-btn").addEventListener("click", function () {
+      var ta = panel.querySelector(".share-out");
+      ta.select();
+      var done = function () { msg.textContent = "Copied."; msg.className = "quiz-msg share-msg good"; };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(ta.value).then(done, function () { document.execCommand("copy"); done(); });
+      } else {
+        document.execCommand("copy");
+        done();
+      }
+    });
+    panel.querySelector(".import-btn").addEventListener("click", function () {
+      try {
+        var obj = window.GameShare.importCode(panel.querySelector(".share-in").value);
+        window.Game.importSave(obj);
+        msg.textContent = "Save loaded — the population remembers.";
+        msg.className = "quiz-msg share-msg good";
+        panel.querySelector(".share-out").value = window.GameShare.exportCode(window.Game.exportSave());
+      } catch (err) {
+        msg.textContent = err.message;
+        msg.className = "quiz-msg share-msg bad";
+      }
+    });
+    panel.hidden = false;
   }
 
   window.GameUI = {
@@ -182,6 +241,7 @@
       banner.hidden = true;
       var tools = document.getElementById("gameTools");
       tools.hidden = true;
+      document.getElementById("gamePanel").hidden = true;
       var lit = tools.querySelector(".tool-chip");
       if (lit) lit.classList.remove("active");
     },
