@@ -46,6 +46,9 @@ import { composeChronicle, chronicleHTML, chronicleText } from '../../../package
 import { makeSlipTracker } from '../../../packages/ui/src/slips.js';
 import { interiorHTML, scriptoriumModel } from '../../../packages/ui/src/interiors.js';
 import { drawFrom } from '../../../packages/sim/src/rng.js';
+import { RECITE_COST } from '../../../packages/sim/src/teaching.js';
+import { drawBoundaries } from './boundaries.js';
+import { drawPeopleMode, setListenFocus } from './people-layer.js';
 import { buildCodexIndex, searchCodex, codexHTML, shelfHTML, resultsHTML }
   from '../../../packages/ui/src/codex.js';
 import { CHOLA, CHAPTERS, chapterAt, reckoning, openingState }
@@ -60,7 +63,7 @@ const mark = (label) => { marks.push([label, performance.now() - T0]); };
 
 /* ── World ──────────────────────────────────────────────────────────────── */
 
-const [bundle, timeline, works, cityData, people, cardsDoc, gazetteer, texture, occupations, fontManifest] = await Promise.all([
+const [bundle, timeline, works, cityData, people, cardsDoc, gazetteer, texture, occupations, fontManifest, BOUNDARIES, EDU] = await Promise.all([
   fetch('../../data/skeleton/bundle.json').then(r => r.json()),
   fetch('../../data/timeline/timeline.json').then(r => r.json()),
   fetch('../../data/corpus/works.json').then(r => r.json()),
@@ -71,6 +74,8 @@ const [bundle, timeline, works, cityData, people, cardsDoc, gazetteer, texture, 
   fetch('../../data/timeline/texture.json').then(r => r.json()),
   fetch('../../data/timeline/occupations.json').then(r => r.json()),
   fetch('../../data/fonts/manifest.json').then(r => r.json()).catch(() => null),
+  fetch('../../data/atlas/boundaries.json').then(r => r.json()).catch(() => null),
+  fetch('../../data/corpus/education.json').then(r => r.json()).catch(() => null),
 ]);
 const PLACE_BY_ID = new Map(gazetteer.places.map(g => [g.id, g]));
 
@@ -331,6 +336,10 @@ function draw(step) {
   if (mapMode === 'survey') drawSurvey(proj, level);
   if (mapMode === 'mandala') drawMandala(proj, level);
   if (mapMode === 'corpus') drawCorpusMode(proj);
+  if (mapMode === 'people') {
+    drawBoundaries(ctx, proj, level, BOUNDARIES, dpr);
+    drawPeopleMode(ctx, proj, state, BOUNDARIES, level, dpr);
+  }
   drawSites(proj, level, dive);
   if (LENS) drawLensOverlay(proj);
 }
@@ -793,6 +802,16 @@ cv.addEventListener('pointerdown', (e) => {
   cv.classList.add('drag'); cv.setPointerCapture(e.pointerId);
 });
 cv.addEventListener('pointermove', (e) => {
+  // Teach lens armed: the crowd within earshot of the cursor turns to listen.
+  if (LENS?.lens?.id === 'teachcards' && state && !dragging) {
+    const rect = cv.getBoundingClientRect();
+    const p = cam.projection(cv.width, cv.height);
+    setListenFocus({
+      lon: p.toLon((e.clientX - rect.left) * dpr),
+      lat: p.toLat((e.clientY - rect.top) * dpr),
+      rDeg: 2.2,
+    });
+  }
   if (!dragging) return;
   const proj = cam.projection(cv.width, cv.height);
   const dx = (e.clientX - last[0]) * dpr, dy = (e.clientY - last[1]) * dpr;
@@ -919,6 +938,7 @@ const MODES = [
   { id: 'survey',  label: 'survey',  hint: 'What we know, and what we have not looked at.' },
   { id: 'mandala', label: 'mandala', hint: 'Sovereignty as it actually was: held, taxed, tributary, paramount — four claims, not one colour.' },
   { id: 'corpus',  label: 'corpus',  hint: 'Where the works are physically held — every carrier, placed.' },
+  { id: 'people',  label: 'people',  hint: 'The population, going about its work over the atlas boundaries — and listening when you teach.' },
 ];
 // The globe (phase 18): modes are selectable AND lockable. A locked mode
 // survives a lens's contextual switch; an unlocked one is borrowed and
@@ -1194,6 +1214,8 @@ function paintVitals(s) {
        <span class="k">Grain</span><span class="v">${Math.round(s.grain).toLocaleString()}${flow}</span></span>
      <span class="vital ${corpusCls}" data-goto="chest" title="Extant · at last carrier · lost. Click: the Library.">
        <span class="k">Corpus</span><span class="v">${cs.extant} · ${last} · ${cs.lost}</span></span>
+     <span class="vital" title="The literacy rate: taught coverage of the corpus, its survival, and CULTIVATION. Recite to raise it; neglect lets it fade.">
+       <span class="k">Literacy</span><span class="v">${Math.round(s.literacy ?? 0)}%</span></span>
      <span class="vital ${capped ? 'bad' : ''}" data-goto="pillars" title="The trust ladder${capped ? ` — capped at ${cap} under occupation` : ''}. Click: the gauges.">
        <span class="k">Trust</span><span class="v">${rung.name}</span></span>
      <span class="pillarglyphs" data-goto="pillars" title="Agriculture · Trade · Structure · Networking. Click: the full gauges.">
@@ -2131,6 +2153,51 @@ registerLens({
   ],
 });
 
+/* ── The Teach lens: the atlas game's learning loop, on the table ─────────
+ * A card is a crisp recitable line over a corpus work. Arm the lens, pick
+ * the card, click a district: decide('recite', {work, district}) — the work
+ * gains a living carrier, the people remember for a generation, and the
+ * chibi crowd in the people mode stops to listen. This also lands the
+ * "endow school" verb docs/21-hud.md §A4 specified and phase 16 left out. */
+const EDU_BY_ID = new Map((EDU?.cards ?? []).map(c => [c.id, c]));
+if (EDU_BY_ID.size) {
+  registerLens({
+    id: 'teachcards', glyph: '📖',
+    title: 'Teach — study a card, recite it to the people of a district',
+    onArm() {
+      this._prevMode = mapMode;
+      if (!modeLocked) setMapMode('people');
+    },
+    onCancel() {
+      setListenFocus(null);
+      if (!modeLocked && this._prevMode) setMapMode(this._prevMode);
+    },
+    payload: {
+      label: 'The card in hand — its line is what you will recite.',
+      options: (s) => (EDU?.cards ?? [])
+        .filter(c => { const w = s.corpus.get(c.work); return w && w.exists && !w.lost; })
+        .map(c => ({ id: c.id, label: `${c.title} — “${c.recite}”` })),
+    },
+    verbs: [
+      { id: 'recite', label: 'recite here',
+        tip: `${RECITE_COST} grain and a reciter's breath. The card's work gains a living carrier and the people remember it for a generation.`,
+        eligible: (s, d, cardId) => !cardId ? 'never'
+          : s.pops.reciters < 1 || s.grain < RECITE_COST ? 'could' : 'can',
+        execute: (d, cardId) => {
+          const card = EDU_BY_ID.get(cardId);
+          if (card) decide('recite', { work: card.work, district: d.id });
+        } },
+      { id: 'endow', label: 'endow a school',
+        tip: 'Grain to a living lineage, so the teaching outlives the teacher.',
+        eligible: (s) => endowable(s).length ? 'can' : 'could',
+        execute: () => {
+          const e = endowable(state);
+          if (e.length) decide('endow', { person: e[0].id });
+        } },
+    ],
+  });
+}
+
 /* ── The Court (phase 12): the stack, the occupations, the ladder ─────────── */
 function paintCourt(s) {
   const cap = trustCeiling(s, DP);
@@ -2572,6 +2639,9 @@ function tick(t) {
   const dt = lastT ? Math.min(100, t - lastT) : 16;
   lastT = t;
   if (state) TELEMETRY.tick(eraOf(state.year)?.id, playing);
+  // The people mode is alive even with the clock stopped: the crowd's gentle
+  // wander is wall-clock presentation, so it needs frames while visible.
+  if (!playing && state && mapMode === 'people') draw(3);
   if (!playing || !state) return;
   // The clock is audible in the era's own material (phase 52): a soft gnomon
   // breath before coinage, falling water after, brass past 1600. Once a second,
