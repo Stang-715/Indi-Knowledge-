@@ -82,3 +82,60 @@ test('a recital without grain or reciters does nothing', () => {
   const s0 = run(DP, 'teach-8', [], { to: -900 });
   assert.ok(RECITE_COST > 0 && s0.grain >= 0);
 });
+
+/* ── study: reading is teaching, just gentler ────────────────────────────── */
+
+test('study is free and ungated: it works even with no grain and no reciters', () => {
+  // recite would refuse under these conditions (RECITE_COST=20, 0 reciters);
+  // study carries no such gate — it is reading, not a ceremony.
+  const s = run(DP, 'study-1', [
+    { year: -5990, action: 'study', kind: 'card', id: 'EV.TEST.1' },
+  ], { to: -5989, initial: { grain: 5, pops: { farmers: 1000, reciters: 0, scribes: 0, soldiers: 0, merchants: 0, teachers: 0 } } });
+  assert.ok(s.studied.has('EV.TEST.1'), 'study should land with no grain and no reciters');
+  assert.equal(s.stats.studied, 1);
+});
+
+test('studying the same id twice is idempotent', () => {
+  const s = run(DP, 'study-2', [
+    { year: -950, action: 'study', kind: 'card', id: 'EV.TEST.1' },
+    { year: -940, action: 'study', kind: 'card', id: 'EV.TEST.1' },
+  ], { to: -900 });
+  assert.equal(s.studied.size, 1);
+  assert.equal(s.stats.studied, 1);
+});
+
+test('study alone (no recital at all) still raises literacy', () => {
+  const bare = run(DP, 'study-3', [], { to: -900 });
+  const read = run(DP, 'study-3', Array.from({ length: 20 }, (_, i) => (
+    { year: -990 + i, action: 'study', kind: 'card', id: `EV.TEST.${i}` }
+  )), { to: -900 });
+  assert.ok(read.literacy > bare.literacy, 'reading alone should lift literacy some');
+});
+
+test('study replays deterministically', () => {
+  const log = [
+    { year: -950, action: 'study', kind: 'card', id: 'EV.TEST.1' },
+    { year: -900, action: 'study', kind: 'work', id: RV },
+  ];
+  const a = run(DP, 'study-4', log);
+  const b = run(DP, 'study-4', log);
+  assert.equal(a.fingerprint, b.fingerprint);
+  assert.deepEqual([...a.studied], [...b.studied]);
+});
+
+/* ── the growth loop: teach them and they grow ───────────────────────────── */
+
+test('a taught people carries further: farmers outgrow an untaught control', () => {
+  // several recitals + reads across the classical era, then let two centuries
+  // of ordinary logistic growth run so the carrying-capacity gap compounds
+  const recitals = [-1400, -1300, -1200, -1100, -1000, -900, -800]
+    .map((year) => ({ year, action: 'recite', work: RV }));
+  const reads = Array.from({ length: 30 }, (_, i) => (
+    { year: -1400 + i * 20, action: 'study', kind: 'card', id: `EV.GROWTH.${i}` }
+  ));
+  const taught = run(DP, 'growth-1', [...recitals, ...reads], { to: -400 });
+  const untaught = run(DP, 'growth-1', [], { to: -400 });
+  assert.ok(taught.literacy > untaught.literacy, 'sanity: the taught run is actually more literate');
+  assert.ok(taught.pops.farmers > untaught.pops.farmers,
+    `taught farmers (${taught.pops.farmers}) should exceed untaught (${untaught.pops.farmers})`);
+});

@@ -44,6 +44,9 @@ export function newState(opts = {}) {
 
     /** Teaching: workId → year last recited to the people (teaching.js). */
     taughtWorks: new Map(),
+    /** What has been read: card and work ids, once each — the ambient half
+     *  of teaching.js. Never decays; it is exposure, not mastery. */
+    studied: new Set(),
     literacy: 2,
 
     /** People: id → person. Set up by people.js. */

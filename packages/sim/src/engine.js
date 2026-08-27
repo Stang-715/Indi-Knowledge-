@@ -248,8 +248,12 @@ function tickEconomy(state, span) {
   const { reciters, scribes, soldiers, merchants } = state.pops;
 
   // Carrying capacity. Foraging supports very few; irrigation and double-cropping
-  // support an order of magnitude more.
-  const K = 1000 * (1 + effectivePillar(state, 'AGRICULTURE') / 10);
+  // support an order of magnitude more. A taught people also carries further:
+  // literacy up to its cap of 98 lifts capacity by up to ~39% — the mechanical
+  // form of "teach them and they grow." No separate growth system; this just
+  // widens the ceiling the logistic curve below was always climbing toward.
+  const K = 1000 * (1 + effectivePillar(state, 'AGRICULTURE') / 10)
+    * (1 + (state.literacy ?? 2) / 250);
   const farmers = state.pops.farmers;
 
   const yieldPerFarmer = 0.035 * (0.55 + effectivePillar(state, 'AGRICULTURE') / 120);

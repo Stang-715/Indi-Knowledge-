@@ -27,8 +27,16 @@ export function freshness(state, workId) {
   return Math.max(FRESH_FLOOR, 1 - 0.01 * (age - FRESH_YEARS));
 }
 
-/** The literacy rate, 2..98: taught coverage of the composed corpus,
- *  its physical survival, and the CULTIVATION pillar. */
+/** How much of the read coverage a people has picked up simply by paying
+ *  attention — cards opened, works read. Caps once the reading habit is
+ *  well established; it does not need to cover the whole corpus to count. */
+const STUDY_CAP = 60;
+
+/** The literacy rate, 2..98: taught coverage of the composed corpus (recite,
+ *  the costly deliberate verb), its physical survival, ambient read coverage
+ *  (study, the free quiet verb), and the CULTIVATION pillar. Two verbs, two
+ *  terms — recital is stronger per-work but study is what keeps a people
+ *  from going illiterate between recitals. */
 export function literacy(state) {
   let composed = 0, extant = 0, taughtW = 0;
   for (const [id, c] of state.corpus) {
@@ -39,7 +47,9 @@ export function literacy(state) {
   }
   const coverage = composed ? taughtW / composed : 0;
   const survival = composed ? extant / composed : 1;
-  const raw = 60 * coverage + 20 * survival + 0.2 * (state.pillars.CULTIVATION ?? 0);
+  const readCoverage = Math.min(1, (state.studied?.size ?? 0) / STUDY_CAP);
+  const raw = 50 * coverage + 15 * survival + 15 * readCoverage
+    + 0.18 * (state.pillars.CULTIVATION ?? 0);
   return Math.max(2, Math.min(98, raw));
 }
 
@@ -68,6 +78,18 @@ export const DECISIONS = {
       record(state, d.year, 'decision', 'A listener takes up teaching.');
     }
     record(state, d.year, 'decision', `A recital is held${d.district ? ` in ${d.district}` : ''}.`);
+  },
+
+  /** study {kind:'card'|'work', id}: reading is teaching, just gentler. Free,
+   *  no gate, no district — an ambient national exposure, idempotent by id.
+   *  Kept distinct from recite on purpose: this is what makes the click that
+   *  opens a card matter to the population, without letting the player farm
+   *  it — the set only ever grows, so opening the same thing twice is inert. */
+  study(state, d) {
+    if (!state.studied) state.studied = new Set();
+    if (state.studied.has(d.id)) return;
+    state.studied.add(d.id);
+    state.stats.studied = (state.stats.studied ?? 0) + 1;
   },
 };
 

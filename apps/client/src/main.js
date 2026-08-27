@@ -153,6 +153,9 @@ function openCard(ev) {
   $('drawer-inner').innerHTML = renderCard(m);
   $('drawer').classList.add('on');
   TELEMETRY.cardOpened();
+  // Reading is teaching, just gentler: the people are listening whenever you
+  // read, not only when you recite. Free, ambient, idempotent by card id.
+  if (state && !state.studied.has(ev.id)) decide('study', { kind: 'card', id: ev.id });
 }
 
 /** "Keep this card": render the 1200x1600 plate and present it to save.
@@ -932,7 +935,8 @@ cv.addEventListener('touchend', () => { pinch = null; });
 
 /* ── Map modes: transparent sheets laid over the model ──────────────────── */
 
-let mapMode = 'terrain';
+// The population is the game: the table opens on the people, not the land.
+let mapMode = 'people';
 const MODES = [
   { id: 'terrain', label: 'terrain', hint: 'The land, before anyone owns it.' },
   { id: 'survey',  label: 'survey',  hint: 'What we know, and what we have not looked at.' },
@@ -953,7 +957,7 @@ function setMapMode(id) {
 }
 $('modes').innerHTML = MODES.map(m =>
   `<button class="tab" role="tab" data-mode="${m.id}" title="${m.hint}"
-     aria-selected="${m.id === 'terrain'}">${m.label}</button>`).join('')
+     aria-selected="${m.id === mapMode}">${m.label}</button>`).join('')
   + `<button class="tab" id="modelock" title="Lock the mode: a locked mode is not borrowed by lenses." aria-pressed="false">\u{1F513}</button>`;
 $('modes').addEventListener('click', (e) => {
   if (e.target.id === 'modelock') {
@@ -1203,14 +1207,23 @@ function paintVitals(s) {
     flow = ` <small>${d >= 0 ? '+' : ''}${Math.round(d)}/yr</small>`;
   }
   const falling = lastVital && s.year > lastVital.year && s.grain < lastVital.grain;
-  lastVital = { year: s.year, grain: s.grain };
+  const totalPop = s.pops.farmers + s.pops.reciters + s.pops.scribes
+    + s.pops.soldiers + s.pops.merchants + s.pops.teachers;
+  let popTrend = '';
+  if (lastVital && s.year > lastVital.year && lastVital.pop != null) {
+    popTrend = totalPop > lastVital.pop ? ' <i class="up">▲</i>'
+      : totalPop < lastVital.pop ? ' <i class="down">▼</i>' : '';
+  }
+  lastVital = { year: s.year, grain: s.grain, pop: totalPop };
   const grainCls = s.grain < 100 ? 'dire' : falling ? 'bad' : '';
   // At a fresh start EVERYTHING is technically at risk, which makes "at risk"
   // noise. The middle number is the count that cannot wait: works down to one
   // carrier — one fire, one fever, and the text is gone.
   const corpusCls = last > 0 ? 'dire' : cs.lost > 0 ? 'bad' : '';
   $('vitals').innerHTML =
-    `<span class="vital ${grainCls}" data-goto="ledger" title="The treasury, and its flow. Click: the Ledger.">
+    `<span class="vital" data-goto="land" title="The population — everyone your teaching and your grain keep alive. This is the number the whole game is for.">
+       <span class="k">Population</span><span class="v">${Math.round(totalPop).toLocaleString()}${popTrend}</span></span>
+     <span class="vital ${grainCls}" data-goto="ledger" title="The treasury, and its flow. Click: the Ledger.">
        <span class="k">Grain</span><span class="v">${Math.round(s.grain).toLocaleString()}${flow}</span></span>
      <span class="vital ${corpusCls}" data-goto="chest" title="Extant · at last carrier · lost. Click: the Library.">
        <span class="k">Corpus</span><span class="v">${cs.extant} · ${last} · ${cs.lost}</span></span>
@@ -1489,7 +1502,14 @@ document.addEventListener('click', (e) => {
   const f = e.target.closest('[data-libf]');
   if (f) { libFilter = f.dataset.libf; if (state) paintLibrary(state); return; }
   const w = e.target.closest('[data-work]');
-  if (w) { libSelected = w.dataset.work; if (state) paintLibrary(state); return; }
+  if (w) {
+    libSelected = w.dataset.work;
+    // decide() repaints everything (including the Library) on its own; only
+    // call it when there is something new to log, else just repaint as before.
+    if (state && !state.studied.has(libSelected)) decide('study', { kind: 'work', id: libSelected });
+    else if (state) paintLibrary(state);
+    return;
+  }
   const cp = e.target.closest('[data-lib-copy]');
   if (cp && state) { decide('copy', { work: cp.dataset.libCopy }); return; }
   const th = e.target.closest('[data-lib-teach]');
