@@ -15,7 +15,7 @@ import { fileURLToPath } from "node:url";
 import vm from "node:vm";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const partsDir = join(root, "data", "parts");
+const partsDir = join(root, "atlas-data", "parts");
 
 const TABS = {
   soil: ["Soil Health", ["Soil Health Card portal (soilhealth.dac.gov.in)", "ICAR-IISS soil fertility reports", "State agriculture department reports"]],
@@ -48,7 +48,7 @@ for (const tab of wanted) {
   if (!TABS[tab]) { console.warn(`unknown tab: ${tab}`); continue; }
 
   // existing pack entries (kept where no fresh part covers the state)
-  const packFile = join(root, "data", `${tab}.js`);
+  const packFile = join(root, "atlas-data", `${tab}.js`);
   let states = {};
   let meta = null;
   if (existsSync(packFile)) {
