@@ -14,6 +14,49 @@ let listen = null; // {lon, lat, rDeg} while the Teach lens hovers the map
 
 export function setListenFocus(f) { listen = f; }
 
+/**
+ * Scale: a fixed roster of chibi glyphs, not one per head — nobody wants to
+ * count a billion dots. TARGET stays constant as the population grows from
+ * a few thousand to millions; instead the PEOPLE each glyph stands for grows,
+ * and the glyph grows with it — a hamlet's chibi looks like everyone else's,
+ * a metropolis's chibi is visibly bigger. "The bigger the chibi, the bigger
+ * the city" is the whole idea; this is its arithmetic.
+ */
+const TARGET_CHIBIS = 160;
+
+function scaleFor(peopleHere) {
+  if (peopleHere < 400) return 1.0;      // a hamlet
+  if (peopleHere < 4_000) return 1.25;   // a village
+  if (peopleHere < 40_000) return 1.55;  // a town
+  if (peopleHere < 400_000) return 1.9;  // a city
+  return 2.3;                            // a metropolis — one figure for a great many
+}
+
+/**
+ * How much of the population lives near each atlas district, for the
+ * purpose of handing out the chibi roster — not a claim about real
+ * settlement counts. Weighted by the sim's own survey grid (packages/sim/
+ * src/survey.js), whose `land` field is real terrain coverage, not invented
+ * here: it is the same number the Survey map mode and district estimates
+ * already use. Computed once (terrain is static for the campaign) and cached.
+ */
+let districtWeight = null;
+function buildDistrictWeights(boundaries, simDistricts) {
+  const grid = [...simDistricts.values()];
+  const w = new Map();
+  for (const s of boundaries.states) {
+    for (const d of s.districts) {
+      let best = 1, bestDist = Infinity;
+      for (const g of grid) {
+        const dd = (g.lon - d.c[0]) ** 2 + (g.lat - d.c[1]) ** 2;
+        if (dd < bestDist) { bestDist = dd; best = g.land ?? 1; }
+      }
+      w.set(d.id, Math.max(0.15, best));
+    }
+  }
+  return w;
+}
+
 /** role for figure i, from the sim's own population mix */
 function roleFor(pops, u) {
   const total = pops.farmers + pops.reciters + pops.scribes + pops.merchants + pops.teachers + pops.soldiers || 1;
@@ -107,27 +150,38 @@ export function drawPeopleMode(ctx, proj, state, boundaries, level, dpr) {
   const decade = Math.floor(state.year / 10);
   const pops = state.pops;
   const totalPop = pops.farmers + pops.reciters + pops.scribes + pops.merchants + pops.teachers + pops.soldiers;
-  const h = Math.max(7, Math.min(15, 6 + level * 1.4)) * dpr;
+  const baseH = Math.max(7, Math.min(15, 6 + level * 1.4)) * dpr;
+
+  if (!districtWeight && state.districts && state.districts.size) {
+    districtWeight = buildDistrictWeights(boundaries, state.districts);
+  }
 
   // districts whose centroid the camera can see get the crowd: density is
   // per visible district, so the model reads populated at every zoom
   const w = ctx.canvas.width, ch = ctx.canvas.height;
   const visible = [];
+  let totalW = 0;
   for (const s of boundaries.states) {
     for (const d of s.districts) {
       const x = proj.toX(d.c[0]), y = proj.toY(d.c[1]);
-      if (x > -60 && y > -60 && x < w + 60 && y < ch + 60) visible.push(d);
+      if (x > -60 && y > -60 && x < w + 60 && y < ch + 60) {
+        visible.push(d);
+        totalW += districtWeight?.get(d.id) ?? 1;
+      }
     }
   }
   if (!visible.length) return;
-  // symbolic: one figure per ~15 heads, split across what is on screen
-  const budget = Math.max(90, Math.min(420, Math.round(totalPop / 15)));
-  const per = Math.max(1, Math.min(6, Math.round(budget / visible.length)));
 
   ctx.save();
   let n = 0;
   for (const d of visible) {
-    for (let i = 0; i < per && n < budget; i++, n++) {
+    const share = totalW ? (districtWeight?.get(d.id) ?? 1) / totalW : 1 / visible.length;
+    const count = Math.min(6, Math.round(TARGET_CHIBIS * share));
+    if (count <= 0) continue;
+    const peopleHere = totalPop * share;
+    const scale = scaleFor(peopleHere / count);
+    const h = baseH * scale;
+    for (let i = 0; i < count; i++, n++) {
       const spread = 0.5; // degrees of scatter around the district centroid
       const lon = d.c[0] + (drawFrom('chibi-u', d.id, decade, i) - 0.5) * spread
         + Math.sin(now * 0.35 + n * 1.7) * 0.04;

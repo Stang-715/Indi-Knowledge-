@@ -54,15 +54,19 @@ food/prosperity resource produced by working NPCs, which feeds into the mortalit
 model: a well-taught state feeds itself. How well you teach determines how well the
 population survives.
 
-## Phase 3 — Events & Literacy Combat *(implemented)*
+## Phase 3 — Events & Growth Pressure *(implemented; reframed — see below)*
 
-The "combat" matures. Periodic challenges strike a region: a drought, an epidemic, a
-wave of rumor and superstition. Each event names the knowledge that counters it — a
-drought is fought by reciting the agriculture cards to the afflicted states; a
-despair event by the Gita's chapters on duty and steadiness; a rumor wave by the folk
-tale whose moral answers it. Regions where the counter-text was never taught take
-population losses; well-taught regions shrug events off. Event banners, a threat
-timer, and visible aftermath make literacy the weapon it was always meant to be.
+Periodic challenges strike a region: a drought, a wave of despair, a rumor of
+superstition. Each event names the knowledge that answers it — a drought by the
+agriculture cards, a despair event by the Gita's chapters on duty and steadiness, a
+rumor by the folk tale whose moral answers it. This game is a nurture game, not a
+combat one, so **an unanswered event never kills anyone.** It stalls the affected
+state's growth for a few days — prosperity stops climbing, though it never falls
+below where it was — until the event passes or is taught. Answering it in time does
+more than clear the problem: it lifts the stall immediately and gives that state's
+population a visible growth pulse, the reward for teaching the right thing in the
+right place. Event banners and pulsing state markers keep the stakes visible; the
+stakes themselves are "grow slower for a while," never "lose people."
 
 ## Phase 4 — Depth of Knowledge *(implemented: decay, quizzes, scholars, literacy view)*
 

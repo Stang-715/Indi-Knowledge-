@@ -24,6 +24,7 @@
     stateTaught: {}, // slug -> {cardId: true}
     taughtDay: {},   // cardId -> game-day of the last (re-)recite
     prosperity: {},  // slug -> 0..100 (default 20)
+    stagnant: {},    // slug -> game-day until which prosperity growth is stalled
     scholars: 0,
     pop: 240
   };
@@ -107,7 +108,11 @@
       var w = stats[slug];
       var workerFrac = w && w.pop ? w.workers / w.pop : 0;
       var P = prosperityOf(slug);
-      P += dtDays * (10 * workerFrac * arithBonus(slug) - 3);
+      var growth = 10 * workerFrac * arithBonus(slug);
+      // a stagnant state (an unanswered event) grows at a fifth pace — a
+      // stall, not a punishment; it never loses ground, it just waits
+      var stalled = st.stagnant[slug] && st.day < st.stagnant[slug];
+      P += dtDays * ((stalled ? growth * 0.2 : growth) - 3);
       st.prosperity[slug] = Math.max(0, Math.min(100, P));
     });
   }
@@ -118,7 +123,7 @@
     return {
       v: 2, day: st.day, taught: st.taught, studied: st.studied,
       stateTaught: st.stateTaught, pop: window.GamePopulation.count(),
-      literacy: st.literacy, prosperity: st.prosperity,
+      literacy: st.literacy, prosperity: st.prosperity, stagnant: st.stagnant,
       taughtDay: st.taughtDay, scholars: window.GamePopulation.scholarCount(),
       events: window.GameEvents.serialize()
     };
@@ -136,6 +141,7 @@
     st.studied = d.studied || {};
     st.stateTaught = d.stateTaught || {};
     st.prosperity = d.prosperity || {};
+    st.stagnant = d.stagnant || {};
     st.pop = Math.max(30, Math.min(500, d.pop || 240));
     st.literacy = d.literacy || 22;
     st.events = d.events || null;
@@ -214,9 +220,13 @@
         st.stateTaught[card.stateSlug] = st.stateTaught[card.stateSlug] || {};
         st.stateTaught[card.stateSlug][card.id] = true;
       }
-      // knowledge as a weapon: a matching recite over an afflicted state resolves it
+      // knowledge answers the need: a matching recite over an afflicted state
+      // resolves it, lifts the stall, and gives that state a growth pulse —
+      // the reward for teaching the right thing in the right place
       window.GameEvents.onRecite(card, slugs).forEach(function (e) {
         st.prosperity[e.slug] = Math.min(100, prosperityOf(e.slug) + 10);
+        delete st.stagnant[e.slug];
+        window.GamePopulation.growthPulse(e.slug, 3 + Math.floor(Math.random() * 3));
       });
       window.GameUI.disarm();
       window.GameUI.refreshDock();
@@ -282,8 +292,7 @@
       window.GamePopulation.assignJobs(jobsTaughtByState());
       economyTick(dtDays);
       window.GameEvents.step(st.day, {
-        cull: function (slug, frac) { window.GamePopulation.cull(slug, frac); },
-        prosperityHit: function (slug, amt) { st.prosperity[slug] = Math.max(0, prosperityOf(slug) - amt); },
+        stagnate: function (slug, days) { st.stagnant[slug] = st.day + days; },
         literacyHit: function (amt) { st.literacy = Math.max(8, st.literacy - amt); },
         pickStates: function (n, exclude) {
           var candidates = window.IndiaMap.listStates()
@@ -393,6 +402,9 @@
       if (on) { stop(); btn.classList.remove("active"); }
       else { start(); btn.classList.add("active"); }
     });
+    // the population is the game: it greets you, you don't have to summon it
+    start();
+    btn.classList.add("active");
 
     document.addEventListener("mousemove", function (e) {
       mouse.x = e.clientX;

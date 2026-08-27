@@ -326,6 +326,19 @@
         n--;
       }
     },
+
+    // growth pulse: teaching the right card at the right place gives a state
+    // a small, visible influx — the reward for resolving an event correctly,
+    // not just for the problem going away.
+    growthPulse: function (slug, n) {
+      for (var i = 0; i < n && npcs.length < 500; i++) {
+        var npc = spawnInState(slug);
+        if (npc) {
+          npcs.push(npc);
+          effects.push({ x: npc.x, y: npc.y, t: 0, kind: "birth" });
+        }
+      }
+    },
     setCount: function (target) {
       while (npcs.length > target) npcs.pop();
       var slugs = Object.keys(stateNodes).filter(function (s) { return stateNodes[s].length; });

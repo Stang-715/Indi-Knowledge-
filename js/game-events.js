@@ -2,10 +2,17 @@
    GameEvents — regional challenges fought with knowledge.
    A drought is broken by reciting agriculture over it; a wave
    of despair by the Gita; a rumor by a folk tale's moral.
-   Unanswered events expire and take their toll.
+   This is a growth game, not a combat one: an unanswered event
+   never kills anyone. It stalls a state's growth for a while —
+   prosperity stops climbing — until it is taught or it passes.
+   Answering it in time doesn't just clear the problem: it gives
+   that state's population a visible growth pulse, the reward for
+   teaching the right thing at the right place.
    ============================================================ */
 (function () {
   "use strict";
+
+  var STAGNATE_DAYS = 6;
 
   var TYPES = {
     drought: {
@@ -14,9 +21,9 @@
       color: "#c98a1b",
       hint: "recite an Agriculture skill over it",
       counters: function (card) { return card.kind === "skill" && card.job === "farmer"; },
-      expire: function (slug, ctx) { ctx.cull(slug, 0.12); ctx.prosperityHit(slug, 20); },
+      expire: function (slug, ctx) { ctx.stagnate(slug, STAGNATE_DAYS); },
       resolvedMsg: "The drought breaks — the fields drink again.",
-      expiredMsg: "The drought takes its toll"
+      expiredMsg: "Growth stalls as the drought lingers"
     },
     despair: {
       label: "Wave of despair",
@@ -24,9 +31,9 @@
       color: "#7a4e8e",
       hint: "recite the Bhagavad Gita over it",
       counters: function (card) { return card.kind === "gita"; },
-      expire: function (slug, ctx) { ctx.cull(slug, 0.10); ctx.literacyHit(0.8); },
+      expire: function (slug, ctx) { ctx.stagnate(slug, STAGNATE_DAYS); ctx.literacyHit(0.8); },
       resolvedMsg: "Hearts steady — the despair lifts.",
-      expiredMsg: "Despair takes its toll"
+      expiredMsg: "Growth stalls as despair lingers"
     },
     rumor: {
       label: "Rumor & superstition",
@@ -34,9 +41,9 @@
       color: "#6b6b64",
       hint: "recite a Folk Tale over it",
       counters: function (card) { return card.kind === "folklore"; },
-      expire: function (slug, ctx) { ctx.literacyHit(1.2); ctx.prosperityHit(slug, 10); },
+      expire: function (slug, ctx) { ctx.stagnate(slug, STAGNATE_DAYS); ctx.literacyHit(1.2); },
       resolvedMsg: "The tale's moral scatters the rumor.",
-      expiredMsg: "Superstition takes its toll"
+      expiredMsg: "Growth stalls as the rumor spreads"
     }
   };
   var TYPE_KEYS = Object.keys(TYPES);
@@ -72,7 +79,7 @@
       return t;
     },
 
-    // 1 Hz. ctx: {cull(slug, frac), prosperityHit(slug, amt), literacyHit(amt),
+    // 1 Hz. ctx: {stagnate(slug, days), literacyHit(amt),
     //             pickStates(n, excludeSlugs), stateName(slug)}
     step: function (day, ctx) {
       if (day >= nextEventDay) {
