@@ -15,6 +15,9 @@ let listen = null; // {lon, lat, rDeg} while the Teach lens hovers the map
 
 export function setListenFocus(f) { listen = f; }
 
+let holdRipple = null; // {lon, lat, rDeg, frac, startedAt} while a recital is held
+export function setHoldRipple(v) { holdRipple = v; }
+
 /**
  * Scale: a fixed roster of chibi glyphs, not one per head — nobody wants to
  * count a billion dots. TARGET stays constant as the population grows from
@@ -42,9 +45,11 @@ function scaleFor(peopleHere) {
  * already use. Computed once (terrain is static for the campaign) and cached.
  */
 let districtWeight = null;
+let totalWeightAll = 0; // sum of every district's weight, camera-independent
 function buildDistrictWeights(boundaries, simDistricts) {
   const grid = [...simDistricts.values()];
   const w = new Map();
+  totalWeightAll = 0;
   for (const s of boundaries.states) {
     for (const d of s.districts) {
       let best = 1, bestDist = Infinity;
@@ -52,10 +57,34 @@ function buildDistrictWeights(boundaries, simDistricts) {
         const dd = (g.lon - d.c[0]) ** 2 + (g.lat - d.c[1]) ** 2;
         if (dd < bestDist) { bestDist = dd; best = g.land ?? 1; }
       }
-      w.set(d.id, Math.max(0.15, best));
+      const weight = Math.max(0.15, best);
+      w.set(d.id, weight);
+      totalWeightAll += weight;
     }
   }
   return w;
+}
+
+/** Is anyone actually near enough to hear a recital at (lon, lat)? This is
+ *  a gameplay gate, not a rendering count — it deliberately does NOT go
+ *  through the cosmetic TARGET_CHIBIS budget above (that budget spreads
+ *  160 glyphs across 724 atlas districts for the eye, and on that math
+ *  almost no single district ever clears rounding to a whole glyph; asking
+ *  "did a glyph land exactly here" would make nearly all of India read as
+ *  empty, which is wrong). Instead it reads the sim's own district
+ *  population estimate (packages/sim/src/survey.js, the same number the
+ *  Survey mode shows) for the nearest of its real districts — any land
+ *  within reach of one has real people; only open water, off every
+ *  district, is truly silent. */
+export function chibiCountNear(state, boundaries, lon, lat) {
+  if (!state?.districts?.size) return 0;
+  let nearest = null, bd = Infinity;
+  for (const g of state.districts.values()) {
+    const dd = (g.lon - lon) ** 2 + (g.lat - lat) ** 2;
+    if (dd < bd) { bd = dd; nearest = g; }
+  }
+  if (!nearest || bd > 2.2 * 2.2) return 0;
+  return nearest.estimate ?? 0;
 }
 
 /** role for figure i, from the sim's own population mix */
@@ -223,6 +252,25 @@ export function drawPeopleMode(ctx, proj, state, boundaries, level, dpr) {
 
   if (!districtWeight && state.districts && state.districts.size) {
     districtWeight = buildDistrictWeights(boundaries, state.districts);
+  }
+
+  if (holdRipple) {
+    const cx = proj.toX(holdRipple.lon), cy = proj.toY(holdRipple.lat);
+    const r = proj.toX(holdRipple.lon + holdRipple.rDeg) - cx;
+    ctx.save();
+    ctx.fillStyle = 'rgba(201,162,39,0.10)';
+    ctx.strokeStyle = 'rgba(201,162,39,0.55)';
+    ctx.lineWidth = 1.2 * dpr;
+    ctx.beginPath();
+    ctx.arc(cx, cy, Math.abs(r), 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+    // an expanding pulse tracks how full the hold is
+    ctx.globalAlpha = 0.8;
+    ctx.beginPath();
+    ctx.arc(cx, cy, Math.abs(r) * Math.max(0.05, holdRipple.frac), 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.restore();
   }
 
   // districts whose centroid the camera can see get the crowd: density is

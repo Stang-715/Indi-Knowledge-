@@ -48,7 +48,7 @@ import { interiorHTML, scriptoriumModel } from '../../../packages/ui/src/interio
 import { drawFrom } from '../../../packages/sim/src/rng.js';
 import { RECITE_COST, cardFreshness, isCardLocked } from '../../../packages/sim/src/teaching.js';
 import { drawBoundaries } from './boundaries.js';
-import { drawPeopleMode, setListenFocus } from './people-layer.js';
+import { drawPeopleMode, setListenFocus, chibiCountNear, setHoldRipple } from './people-layer.js';
 import { buildCodexIndex, searchCodex, codexHTML, shelfHTML, resultsHTML }
   from '../../../packages/ui/src/codex.js';
 import { CHOLA, CHAPTERS, chapterAt, reckoning, openingState }
@@ -799,12 +799,98 @@ function drawSites(proj, level, dive) {
 
 /* ── Input ──────────────────────────────────────────────────────────────── */
 
+/* ── Hold-to-recite: teaching is a held moment, not a tap ──────────────────
+ * Every other lens verb executes on a tap. Recite alone asks for a hold —
+ * a progress ring fills while the crowd within earshot gathers, and only a
+ * COMPLETED hold executes. Release early — or hold over empty land where
+ * chibiCountNear is zero — and nothing happens: the atlas game's own rule,
+ * where "no one can hear you" was never a punishment, just the truth. */
+const RECITE_HOLD_MS = 3200;
+let holdRecite = null; // {target, x, y, startedAt, elapsed, raf}
+
+function isReciteArmed() {
+  return LENS?.lens?.id === 'teachcards' && LENS.verb?.id === 'recite' && LENS.payload;
+}
+function reciteHitTest(clientX, clientY) {
+  const rect = cv.getBoundingClientRect();
+  const px = (clientX - rect.left) * dpr, py = (clientY - rect.top) * dpr;
+  const proj = cam.projection(cv.width, cv.height);
+  const lon = proj.toLon(px), lat = proj.toLat(py);
+  let best = null, bd = 2.2;
+  for (const t of lensTargets(LENS.verb)) {
+    const dist = Math.hypot(t.lon - lon, t.lat - lat);
+    if (dist < bd) { bd = dist; best = t; }
+  }
+  return best;
+}
+function startHoldRecite(e) {
+  const target = reciteHitTest(e.clientX, e.clientY);
+  if (!target) return false;
+  const st = normalizeEligibility(LENS.verb.eligible(state, target, LENS.payload));
+  if (st !== 'can') {
+    notice({ kind: 'texture', year: state.year, text: `${target.name}: ${ELIGIBILITY[st].hint}` });
+    return false;
+  }
+  holdRecite = { target, x: e.clientX, y: e.clientY, startedAt: performance.now(), elapsed: 0 };
+  $('eduRecite').hidden = false;
+  tickHoldRecite();
+  return true;
+}
+function cancelHoldRecite() {
+  if (holdRecite?.raf) cancelAnimationFrame(holdRecite.raf);
+  holdRecite = null;
+  setHoldRipple(null);
+  $('eduRecite').hidden = true;
+}
+function tickHoldRecite() {
+  if (!holdRecite) return;
+  const rect = cv.getBoundingClientRect();
+  const p = cam.projection(cv.width, cv.height);
+  const lon = p.toLon((holdRecite.x - rect.left) * dpr), lat = p.toLat((holdRecite.y - rect.top) * dpr);
+  const rDeg = 2.2;
+  setListenFocus({ lon, lat, rDeg });
+  const listeners = chibiCountNear(state, BOUNDARIES, lon, lat);
+  const bar = $('eduRecite');
+  if (listeners <= 0) {
+    // no one to hear it: the hold does not advance, and does not lose ground
+    bar.classList.add('mute');
+    bar.innerHTML = `<span class="rtext">no one can hear you here</span>`;
+    setHoldRipple({ lon, lat, rDeg, frac: 0.05 });
+  } else {
+    bar.classList.remove('mute');
+    holdRecite.elapsed = performance.now() - holdRecite.startedAt;
+    const frac = Math.min(1, holdRecite.elapsed / RECITE_HOLD_MS);
+    bar.innerHTML = `<span class="rfill" style="width:${(frac * 100).toFixed(1)}%"></span><span class="rtext">reciting…</span>`;
+    setHoldRipple({ lon, lat, rDeg, frac });
+    if (frac >= 1) {
+      LENS.verb.execute(holdRecite.target, LENS.payload);
+      TELEMETRY.lensExecuted(LENS.lens.id);
+      cancelHoldRecite();
+      return;
+    }
+  }
+  draw(3);
+  holdRecite.raf = requestAnimationFrame(tickHoldRecite);
+}
+
 let dragging = false, last = null;
 cv.addEventListener('pointerdown', (e) => {
-  dragging = true; last = [e.clientX, e.clientY];
+  last = [e.clientX, e.clientY];
+  if (isReciteArmed() && startHoldRecite(e)) {
+    cv.setPointerCapture(e.pointerId);
+    return; // held, not dragged — the camera stays put while teaching
+  }
+  dragging = true;
   cv.classList.add('drag'); cv.setPointerCapture(e.pointerId);
 });
 cv.addEventListener('pointermove', (e) => {
+  if (holdRecite) {
+    // moving too far away from where the hold started cancels it, same as
+    // any other tap-vs-drag threshold in this app
+    if (Math.hypot(e.clientX - holdRecite.x, e.clientY - holdRecite.y) > 12) cancelHoldRecite();
+    else { holdRecite.x = e.clientX; holdRecite.y = e.clientY; }
+    return;
+  }
   // Teach lens armed: the crowd within earshot of the cursor turns to listen.
   if (LENS?.lens?.id === 'teachcards' && state && !dragging) {
     const rect = cv.getBoundingClientRect();
@@ -824,6 +910,7 @@ cv.addEventListener('pointermove', (e) => {
 });
 const endDrag = () => { dragging = false; cv.classList.remove('drag'); };
 cv.addEventListener('pointerup', (e) => {
+  if (holdRecite) { cancelHoldRecite(); return; } // release early: lost, on purpose
   // A tap (no real drag) hit-tests the frame's caravans: click one to watch
   // it — the phase-34 ruling's exception. Click empty road to stop watching.
   const moved = last ? Math.hypot(e.clientX - last[0], e.clientY - last[1]) : 99;
@@ -909,7 +996,7 @@ function openClaims(d) {
   renderDistrictDetail(state);
   openRail('land', false);
 }
-cv.addEventListener('pointercancel', endDrag);
+cv.addEventListener('pointercancel', (e) => { if (holdRecite) cancelHoldRecite(); endDrag(); });
 
 cv.addEventListener('wheel', (e) => {
   e.preventDefault();
@@ -2309,6 +2396,7 @@ if (EDU_BY_ID.size) {
       if (!modeLocked) setMapMode('people');
     },
     onCancel() {
+      cancelHoldRecite();
       setListenFocus(null);
       $('eduDock').hidden = true;
       if (!modeLocked && this._prevMode) setMapMode(this._prevMode);
@@ -2594,6 +2682,12 @@ document.addEventListener('keydown', (e) => {
 window.__test = {
   year: () => state?.year,
   cam: () => ({ cx: cam.cx, cy: cam.cy, span: cam.span }),
+  lonLatToScreen(lon, lat) {
+    const proj = cam.projection(cv.width, cv.height);
+    const rect = cv.getBoundingClientRect();
+    return { x: rect.left + proj.toX(lon) / dpr, y: rect.top + proj.toY(lat) / dpr };
+  },
+  chibisNear: (lon, lat) => chibiCountNear(state, BOUNDARIES, lon, lat),
   diveTo(id) {
     const c = cityRenderer.city(id);
     if (!c) return false;

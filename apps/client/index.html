@@ -114,6 +114,16 @@
   .quiz-msg { font-size:.78rem; min-height:1.2em; margin-top:4px; }
   .quiz-msg.good { color:#3a7a4a; }
   .quiz-msg.bad { color:var(--warn); }
+
+  /* Hold-to-recite: teaching is a held moment, not a tap. */
+  #eduRecite { position:absolute; left:50%; bottom:26%; transform:translateX(-50%);
+    z-index:6; width:min(280px, 70%); height:20px; background:var(--sheet);
+    border:1px solid var(--ink); box-shadow:var(--shadow-lift); overflow:hidden; }
+  #eduRecite .rfill { position:absolute; inset:0 auto 0 0; width:0;
+    background:linear-gradient(90deg, var(--gold), #DBB43A); }
+  #eduRecite .rtext { position:absolute; inset:0; display:flex; align-items:center;
+    justify-content:center; font-size:.7rem; letter-spacing:.06em; color:var(--ink); }
+  #eduRecite.mute .rtext { color:var(--warn); }
   .pillarglyphs { display:flex; gap:4px; cursor:pointer; padding:3px 8px;
                   border:1px solid transparent; }
   .pillarglyphs:hover { border-color:var(--rule); background:var(--sheet); }
@@ -254,6 +264,7 @@
     <div id="drawer"><div id="drawer-inner"></div>
       <button class="btn" id="drawer-close">close</button></div>
     <div id="eduDock" hidden></div>
+    <div id="eduRecite" hidden></div>
   </div>
 
   <aside>
