@@ -11,7 +11,7 @@
  * decision log — and the decision log is the save file (docs/10-buildplan.md A.3).
  */
 import { loadSkeleton }      from '../../../packages/worldgen/src/skeleton.js';
-import { compileOrography }  from '../../../packages/worldgen/src/terrain.js';
+import { compileOrography, landHeight } from '../../../packages/worldgen/src/terrain.js';
 import { buildClimate }      from '../../../packages/worldgen/src/climate.js';
 import { RealmRenderer }     from '../../../packages/render-realm/src/renderer.js';
 import { Camera, fitSpan }   from '../../../packages/render-realm/src/camera.js';
@@ -343,6 +343,7 @@ function draw(step) {
   if (mapMode === 'corpus') drawCorpusMode(proj);
   if (mapMode === 'literacy') drawLiteracyMode(proj);
   if (mapMode === 'knowledge') drawKnowledgeMode(proj);
+  if (mapMode === 'relief') drawReliefMode(proj);
   if (mapMode === 'people') {
     drawBoundaries(ctx, proj, level, BOUNDARIES, dpr);
     drawPeopleMode(ctx, proj, state, BOUNDARIES, level, dpr);
@@ -565,6 +566,73 @@ function drawLiteracyMode(proj) {
   ctx.strokeRect(lx, ly - 9 * dpr, 12 * dpr, 10 * dpr);
   ctx.fillStyle = '#2A2118';
   ctx.fillText('taught locally', lx + 16 * dpr, ly);
+  ctx.restore();
+}
+
+/** Elevation, banded — the classic hypsometric ramp: green lowland through
+ *  tan plateau, brown highland, grey rock, white snow. */
+function elevationTint(m) {
+  if (m < 100)  return [90, 140, 80];
+  if (m < 400)  return [150, 160, 90];
+  if (m < 1000) return [180, 140, 90];
+  if (m < 2500) return [150, 110, 90];
+  if (m < 4000) return [140, 130, 135];
+  return [235, 235, 240];
+}
+
+/**
+ * Relief: elevation and slope, shaded — the atlas's separate WebGL 3D mode
+ * (js/map3d.js's per-state extrusion, a second camera and geometry system)
+ * given this table's own grammar instead. Height comes straight from the
+ * same landHeight() the terrain renderer itself samples
+ * (packages/worldgen/src/terrain.js), so nothing here can disagree with the
+ * ground already drawn underneath; the light-and-shadow is a classic
+ * cartographic hillshade — the trick a physical relief map or a GIS layer
+ * uses to make slope legible without a second dimension of camera.
+ */
+function drawReliefMode(proj) {
+  if (!state?.districts) return;
+  const w = 28 / 9, h = 29 / 9;
+  const EPS = 0.35;
+  ctx.save();
+  for (const d of state.districts.values()) {
+    const x0 = proj.toX(d.lon - w / 2), x1 = proj.toX(d.lon + w / 2);
+    const y0 = proj.toY(d.lat + h / 2), y1 = proj.toY(d.lat - h / 2);
+    if (x1 < 0 || y1 < 0 || x0 > cv.width || y0 > cv.height) continue;
+
+    const hc = landHeight(O, d.lon, d.lat);
+    // Light from the northwest — the cartographic convention every relief
+    // map since the 19th century has used, because a light from directly
+    // overhead flattens the very slopes it exists to show.
+    const dhx = landHeight(O, d.lon + EPS, d.lat) - landHeight(O, d.lon - EPS, d.lat);
+    const dhy = landHeight(O, d.lon, d.lat + EPS) - landHeight(O, d.lon, d.lat - EPS);
+    const shade = Math.max(0, Math.min(1, 0.55 - dhx * 0.0009 + dhy * 0.0009));
+
+    const [r, g, b] = elevationTint(hc);
+    ctx.globalAlpha = 0.55;
+    ctx.fillStyle = `rgb(${r},${g},${b})`;
+    ctx.fillRect(x0, y0, x1 - x0, y1 - y0);
+    ctx.globalAlpha = shade > 0.5 ? (shade - 0.5) * 0.7 : (0.5 - shade) * 0.7;
+    ctx.fillStyle = shade > 0.5 ? '#fff' : '#141009';
+    ctx.fillRect(x0, y0, x1 - x0, y1 - y0);
+    ctx.globalAlpha = 1;
+    ctx.strokeStyle = 'rgba(42,33,24,.28)';
+    ctx.lineWidth = 0.7 * dpr;
+    ctx.strokeRect(x0, y0, x1 - x0, y1 - y0);
+  }
+
+  // Legend: the elevation ramp, in metres.
+  ctx.font = `${Math.round(11 * dpr)}px Georgia, serif`;
+  const ly = cv.height - 52 * dpr;
+  let lx = 14 * dpr;
+  for (const [label, m] of [['<100m', 50], ['400m', 400], ['1000m', 1000], ['2500m', 2500], ['4000m', 4000], ['4000m+', 4500]]) {
+    const [r, g, b] = elevationTint(m);
+    ctx.fillStyle = `rgb(${r},${g},${b})`;
+    ctx.fillRect(lx, ly - 9 * dpr, 14 * dpr, 10 * dpr);
+    ctx.fillStyle = '#2A2118';
+    ctx.fillText(label, lx + 18 * dpr, ly);
+    lx += ctx.measureText(label).width + 34 * dpr;
+  }
   ctx.restore();
 }
 
@@ -1143,6 +1211,7 @@ const MODES = [
   { id: 'people',  label: 'people',  hint: 'The population, going about its work over the atlas boundaries — and listening when you teach.' },
   { id: 'literacy', label: 'literacy', hint: 'Who can actually read: the national figure, pulled up wherever a district has been taught its own lessons.' },
   { id: 'knowledge', label: 'knowledge', hint: "The atlas's own ten layers — soil, history, governance, craft, wars, scripture, folklore, heritage — laid over the same land." },
+  { id: 'relief', label: 'relief', hint: "Elevation, shaded: the atlas's 3D mode as this table's own grammar — height and slope, not a second camera." },
 ];
 // The globe (phase 18): modes are selectable AND lockable. A locked mode
 // survives a lens's contextual switch; an unlocked one is borrowed and
