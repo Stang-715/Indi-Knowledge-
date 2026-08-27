@@ -7,6 +7,7 @@
  * back into the sim.
  */
 import { drawFrom } from '../../../packages/sim/src/rng.js';
+import { armyLevel } from '../../../packages/sim/src/military.js';
 
 const PALETTE = ['#f4491c', '#00a085', '#fdae1c', '#7a4e8e', '#f79fb4'];
 
@@ -68,10 +69,31 @@ function roleFor(pops, u) {
   return 'farmers';
 }
 
-function drawChibi(ctx, x, y, h, palette, role, listening, now, phase, dpr) {
+/**
+ * How long a fight stays visible on the map after its log entry lands —
+ * real sim time, not a fixed wall-clock window, so it reads right whether
+ * the clock is crawling or running at 100x.
+ */
+const FIGHT_AFTERGLOW_YEARS = 2;
+
+/** Was there a real fight — trade.js's own 'encounter'/'mission' log entries,
+ *  never invented here — recently enough that the army should still be
+ *  shown clashing? Scans from the newest entry backward, so it's cheap even
+ *  on a long campaign log. */
+function recentlyFought(state) {
+  const log = state.log;
+  for (let i = log.length - 1; i >= 0; i--) {
+    const l = log[i];
+    if (state.year - l.year > FIGHT_AFTERGLOW_YEARS) return false;
+    if ((l.kind === 'encounter' || l.kind === 'mission') && l.method === 'fight') return true;
+  }
+  return false;
+}
+
+function drawChibi(ctx, x, y, h, palette, role, listening, now, phase, dpr, level, fighting) {
   const headR = h * 0.30;
   const bodyW = h * 0.34, bodyH = h * 0.42;
-  const walk = listening ? 0 : Math.sin(now * 4 + phase);
+  const walk = listening ? 0 : Math.sin(now * (fighting ? 8 : 4) + phase);
   const bob = listening ? Math.sin(now * 5 + phase) * h * 0.06 : 0;
 
   ctx.save();
@@ -133,6 +155,49 @@ function drawChibi(ctx, x, y, h, palette, role, listening, now, phase, dpr) {
     ctx.moveTo(bodyW * 0.5, -bodyH * 0.6);
     ctx.lineTo(bodyW * 0.5 + h * 0.24, -bodyH * 0.6 - Math.abs(walk) * h * 0.22);
     ctx.stroke();
+  } else if (role === 'soldiers') {
+    // a raised spear, angled sharper while a real fight is on the log
+    const raise = fighting ? 0.55 : 0.25;
+    ctx.strokeStyle = '#3e2540';
+    ctx.lineWidth = Math.max(1, h * 0.07);
+    ctx.beginPath();
+    ctx.moveTo(bodyW * 0.4, -bodyH * 0.5);
+    ctx.lineTo(bodyW * 0.4 + h * raise, -bodyH * 0.5 - h * 0.5);
+    ctx.stroke();
+    ctx.fillStyle = fighting ? '#c63c13' : '#7b6a7e';
+    ctx.beginPath();
+    ctx.arc(bodyW * 0.4 + h * raise, -bodyH * 0.5 - h * 0.5, h * 0.045, 0, Math.PI * 2);
+    ctx.fill();
+    if (fighting) {
+      ctx.strokeStyle = '#c63c13';
+      ctx.lineWidth = Math.max(0.6, h * 0.05);
+      for (let s = 0; s < 3; s++) {
+        const a = now * 10 + s * (Math.PI * 2 / 3);
+        ctx.beginPath();
+        ctx.moveTo(Math.cos(a) * h * 0.5, hy + Math.sin(a) * h * 0.5);
+        ctx.lineTo(Math.cos(a) * h * 0.65, hy + Math.sin(a) * h * 0.65);
+        ctx.stroke();
+      }
+    }
+    // the level: what the whole standing army currently is, not just this
+    // figure — there is one army, not one per glyph, so every soldier chibi
+    // reads the same number, honestly
+    if (level != null) {
+      ctx.fillStyle = '#f7f7f5';
+      ctx.strokeStyle = '#3e2540';
+      ctx.lineWidth = Math.max(0.6, h * 0.04);
+      const tag = String(level);
+      ctx.font = `${Math.max(7, Math.round(h * 0.42))}px monospace`;
+      const tw = ctx.measureText(tag).width;
+      ctx.beginPath();
+      if (ctx.roundRect) ctx.roundRect(-tw / 2 - h * 0.08, hy - headR - h * 0.55, tw + h * 0.16, h * 0.4, h * 0.08);
+      else ctx.rect(-tw / 2 - h * 0.08, hy - headR - h * 0.55, tw + h * 0.16, h * 0.4);
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle = '#3e2540';
+      ctx.textAlign = 'center';
+      ctx.fillText(tag, 0, hy - headR - h * 0.24);
+    }
   }
 
   if (listening) {
@@ -151,6 +216,10 @@ export function drawPeopleMode(ctx, proj, state, boundaries, level, dpr) {
   const pops = state.pops;
   const totalPop = pops.farmers + pops.reciters + pops.scribes + pops.merchants + pops.teachers + pops.soldiers;
   const baseH = Math.max(7, Math.min(15, 6 + level * 1.4)) * dpr;
+  // one standing army, not one per glyph: every soldier chibi reads the
+  // same real level, and the same real fight-or-not
+  const armyLvl = pops.soldiers > 0 ? armyLevel(state) : null;
+  const fighting = armyLvl != null && recentlyFought(state);
 
   if (!districtWeight && state.districts && state.districts.size) {
     districtWeight = buildDistrictWeights(boundaries, state.districts);
@@ -194,7 +263,8 @@ export function drawPeopleMode(ctx, proj, state, boundaries, level, dpr) {
         && (lon - listen.lon) ** 2 + (lat - listen.lat) ** 2 < listen.rDeg ** 2;
       const role = roleFor(pops, drawFrom('chibi-role', d.id, decade, i));
       const palette = PALETTE[Math.floor(drawFrom('chibi-cloth', d.id, decade, i) * PALETTE.length)];
-      drawChibi(ctx, x, y, h, palette, role, listening, now, n * 1.31, dpr);
+      drawChibi(ctx, x, y, h, palette, role, listening, now, n * 1.31, dpr,
+        role === 'soldiers' ? armyLvl : null, role === 'soldiers' && fighting);
     }
   }
   ctx.restore();

@@ -10,6 +10,7 @@
  */
 import { record, bumpPillar, flow } from './state.js';
 import { drawFrom } from './rng.js';
+import { armyLevel } from './military.js';
 
 /** The five kinds of choke. One resolver, five skins (docs/11 §6). */
 export const CHOKES = {
@@ -123,7 +124,7 @@ export function resolveEncounter(state, r, c, method, year, rng) {
   const out = { method, kind };
   switch (method) {
     case 'fight': {
-      const strength = Math.min(0.9, 0.25 + state.pops.soldiers / 40
+      const strength = Math.min(0.9, 0.25 + armyLevel(state) / 40
         + (ordersOf(r).escort === 'heavy' ? 0.2 : ordersOf(r).escort === 'light' ? 0.1 : 0));
       if (u < strength) { out.result = 'won'; r.safety = Math.min(0.95, r.safety + 0.1); }
       else { out.result = 'lost'; c.value *= 0.4; c.progress = Math.max(0, c.progress - c.days * 0.2); }
@@ -185,7 +186,7 @@ export function tickTrade(state, span, rng) {
       const spec = CHOKES[r.choke.kind];
       const works = spec.works.includes(m.method);
       const u = drawFrom(state.seed ?? 'x', 'mission', m.route, m.started);
-      const strength = m.method === 'fight' ? Math.min(0.9, state.pops.soldiers / 30) : 0.7;
+      const strength = m.method === 'fight' ? Math.min(0.9, armyLevel(state) / 30) : 0.7;
       if (works && (m.method !== 'fight' || u < strength)) {
         r.choke = null; r.open = true;
         r.safety = Math.min(0.95, r.safety + 0.3);
@@ -235,7 +236,7 @@ export function tickTrade(state, span, rng) {
     // old rate a route was worthless within a century of opening, which made
     // garrisoning a tax rather than a choice.
     r.hold = Math.max(0.08, r.hold - 0.0012 * span);
-    const cover = state.pops.soldiers > 0 ? Math.min(0.4, state.pops.soldiers / 60) : 0;
+    const cover = state.pops.soldiers > 0 ? Math.min(0.4, armyLevel(state) / 60) : 0;
     r.safety = Math.max(0.1, Math.min(0.95, r.safety * 0.998 + cover * 0.02 * span));
     const floor = (ESCORT_LEVELS[ordersOf(r).escort] ?? ESCORT_LEVELS.none).safetyFloor;
     if (floor) r.safety = Math.max(r.safety, floor);
@@ -332,7 +333,7 @@ export const DECISIONS = {
     const spec = CHOKES[r.choke.kind];
     const method = d.method ?? 'fight';
     const works = spec.works.includes(method);
-    const strength = method === 'fight' ? state.pops.soldiers / 30 : 0.7;
+    const strength = method === 'fight' ? armyLevel(state) / 30 : 0.7;
     if (works && (method !== 'fight' || rng.float() < Math.min(0.9, strength))) {
       r.choke = null; r.open = true;
       r.safety = Math.min(0.95, r.safety + 0.3);

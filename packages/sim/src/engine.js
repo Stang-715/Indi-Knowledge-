@@ -25,6 +25,7 @@ import { blocked } from './pillars.js';
 import { compareDecisions } from './save.js';
 import { initFrontier, tickFrontier, DECISIONS as FRONTIER_DECISIONS } from './frontier.js';
 import { tickTeaching, DECISIONS as TEACHING_DECISIONS } from './teaching.js';
+import { DECISIONS as MILITARY_DECISIONS } from './military.js';
 
 /** Pillar deltas by event class. Coarse, deliberately — tuning comes later. */
 // CLASS_EFFECTS and MAG_WEIGHT moved to effects.js (phase 35) — shared with
@@ -370,6 +371,7 @@ export function applyDecision(state, d, datapack, rng) {
       if (FRONTIER_DECISIONS[d.action]) return FRONTIER_DECISIONS[d.action](state, d, rng.world);
       if (TRADE_DECISIONS[d.action])  return TRADE_DECISIONS[d.action](state, d, rng.trade);
       if (TEACHING_DECISIONS[d.action]) return TEACHING_DECISIONS[d.action](state, d, rng.people);
+      if (MILITARY_DECISIONS[d.action]) return MILITARY_DECISIONS[d.action](state, d, rng.trade);
       return;
   }
 }
