@@ -63,6 +63,11 @@ export function newState(opts = {}) {
     /** Districts: id → what we know and how we know it. Set up by survey.js. */
     districts: new Map(),
 
+    /** Regional challenges — drought, despair, rumour. Set up by challenges.js. */
+    challenges: [],
+    growthStalledUntil: 0,
+    nextChallengeYear: null,
+
     /** Sovereignty: districtId → four claims. Set up by sovereignty.js. */
     claims: new Map(),
     polities: new Map(),
@@ -85,7 +90,8 @@ export function newState(opts = {}) {
     /** Counters the UI reads. */
     stats: { eventsFired: 0, worksLost: 0, worksCopied: 0, tradesCompleted: 0,
              caravansLost: 0, teachersSent: 0, chokesCleared: 0,
-             endowments: 0, schoolsLost: 0, surveys: 0, surveysDisappointing: 0, blocked: 0, learnedFromFrontier: 0, displaced: 0 },
+             endowments: 0, schoolsLost: 0, surveys: 0, surveysDisappointing: 0, blocked: 0, learnedFromFrontier: 0, displaced: 0,
+             challengesResolved: 0, challengesExpired: 0 },
   };
 }
 
@@ -165,7 +171,10 @@ export function fingerprint(state) {
     shocks: state.shocks.length,
     people: sortedMap(state.people, ([id, p]) => [id, p.alive ? 1 : 0, p.patronised ? 1 : 0, Math.round(p.returned)]),
     schools: sortedMap(state.schools, ([id, s]) => [id, s.members?.length ?? 0, s.works?.length ?? 0]),
-    districts: sortedMap(state.districts, ([id, d]) => [id, d.tier, d.surveyed ?? 0, d.truth ?? 0]),
+    districts: sortedMap(state.districts, ([id, d]) => [id, d.tier, d.surveyed ?? 0, d.truth ?? 0, d.estimate ?? 0]),
+    challenges: [...state.challenges].sort((a, b) => a.id.localeCompare(b.id))
+      .map((c) => [c.id, c.type, c.district, c.expiresYear]),
+    growthStalledUntil: state.growthStalledUntil,
     frontier: sortedMap(state.frontier, ([id, f]) => [id, f.present ? 1 : 0, f.taught.length, Math.round(f.displaced * 100)]),
     claims: sortedMap(state.claims, ([id, c]) => [id, c.holder ?? '', c.revenue ?? '', c.tributary ?? '', c.paramount ?? '']),
     stats: state.stats,

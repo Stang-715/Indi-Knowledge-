@@ -209,6 +209,7 @@ body {
 .notice--loss::before { background: var(--loss); }
 .notice--good::before { background: var(--land-fertile); }
 .notice--epoch::before { background: var(--gold); }
+.notice--challenge::before { background: var(--warn); }
 @keyframes arrive { from { transform: translateX(22px); opacity: 0 } to { transform: none; opacity: 1 } }
 
 /* --- 12. Button: primary is a gold wax seal ----------------------------- */

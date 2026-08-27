@@ -26,6 +26,7 @@ import { compareDecisions } from './save.js';
 import { initFrontier, tickFrontier, DECISIONS as FRONTIER_DECISIONS } from './frontier.js';
 import { tickTeaching, DECISIONS as TEACHING_DECISIONS } from './teaching.js';
 import { DECISIONS as MILITARY_DECISIONS } from './military.js';
+import { initChallenges, tickChallenges, growthStalled } from './challenges.js';
 
 /** Pillar deltas by event class. Coarse, deliberately — tuning comes later. */
 // CLASS_EFFECTS and MAG_WEIGHT moved to effects.js (phase 35) — shared with
@@ -67,6 +68,7 @@ export function run(datapack, seed, decisionLog = [], opts = {}) {
   initSurvey(state, datapack, from);
   initSovereignty(state, datapack, from);
   initFrontier(state, datapack, from);
+  initChallenges(state, from);
 
   // Decisions indexed by the year they are taken.
   const decisionsByYear = new Map();
@@ -109,6 +111,10 @@ export function run(datapack, seed, decisionLog = [], opts = {}) {
     tickCorpus(state, span, rng.corpus, datapack);
     // Teaching after the corpus: literacy reads what actually survived the tick.
     tickTeaching(state, span);
+    // Challenges after teaching: a challenge can only be answered by a card
+    // that already exists to recite, and growth-stall has to be current
+    // before tickEconomy reads it this same tick.
+    tickChallenges(state, span);
     tickTrade(state, span, rng.trade);
     tickFrontier(state, span, rng.world);
     tickShocks(state, span);
@@ -267,9 +273,13 @@ function tickEconomy(state, span) {
   flow(state, 'harvest', produced);
   flow(state, 'keepers fed', -consumed);
 
-  // Logistic growth toward capacity, slowed when the granary is empty.
+  // Logistic growth toward capacity, slowed when the granary is empty, and
+  // slowed again while an unanswered challenge — a drought, a despair, a
+  // rumour left untaught — has the affected people stalled (challenges.js).
+  // Never reversed to loss: teaching is what growth was always waiting on.
   const fed = state.grain > 0 ? 1 : 0.2;
-  const r = 0.004 * fed;
+  const stalled = growthStalled(state) ? 0.4 : 1;
+  const r = 0.004 * fed * stalled;
   state.pops.farmers = Math.max(200, Math.min(4_000_000,
     farmers + farmers * r * (1 - farmers / K) * span));
 

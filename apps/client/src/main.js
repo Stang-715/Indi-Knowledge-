@@ -47,6 +47,7 @@ import { makeSlipTracker } from '../../../packages/ui/src/slips.js';
 import { interiorHTML, scriptoriumModel } from '../../../packages/ui/src/interiors.js';
 import { drawFrom } from '../../../packages/sim/src/rng.js';
 import { RECITE_COST, cardFreshness, isCardLocked } from '../../../packages/sim/src/teaching.js';
+import { CHALLENGE_TYPES } from '../../../packages/sim/src/challenges.js';
 import { drawBoundaries } from './boundaries.js';
 import { drawPeopleMode, setListenFocus, chibiCountNear, setHoldRipple } from './people-layer.js';
 import { buildCodexIndex, searchCodex, codexHTML, shelfHTML, resultsHTML }
@@ -342,6 +343,7 @@ function draw(step) {
   if (mapMode === 'people') {
     drawBoundaries(ctx, proj, level, BOUNDARIES, dpr);
     drawPeopleMode(ctx, proj, state, BOUNDARIES, level, dpr);
+    drawChallenges(proj);
   }
   drawSites(proj, level, dive);
   if (LENS) drawLensOverlay(proj);
@@ -405,6 +407,45 @@ function drawLensOverlay(proj) {
       ctx.fillStyle = e.color;
       ctx.fill();
     }
+  }
+  ctx.restore();
+}
+
+/** Challenge colors, client-side only — the sim names types, the client
+ *  paints them (challenges.js stays free of presentation). */
+const CHAL_COLOR = { drought: '#c98a1b', despair: '#7a4e8e', rumor: '#6b6b64' };
+
+/**
+ * Regional challenges — drought, despair, rumour — pulsing where they stand,
+ * so the player sees the district that needs the right card before it lapses
+ * into a growth stall. Pulse phase is keyed by state.year, not the wall clock,
+ * so it stays deterministic-friendly and honors reduced-motion like the W-event
+ * pulse above.
+ */
+function drawChallenges(proj) {
+  if (!state?.challenges?.length) return;
+  ctx.save();
+  ctx.font = `${Math.round(13 * dpr)}px Georgia, serif`;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  for (const c of state.challenges) {
+    const d = state.districts.get(c.district);
+    if (!d) continue;
+    const x = proj.toX(d.lon), y = proj.toY(d.lat);
+    if (x < -40 || y < -40 || x > cv.width + 40 || y > cv.height + 40) continue;
+    const T = CHALLENGE_TYPES[c.type];
+    const color = CHAL_COLOR[c.type] ?? '#a8642b';
+    const age = Math.max(0, state.year - c.startYear);
+    const pulse = REDUCED_MOTION ? 0.5 : (age % 6) / 6;
+    ctx.globalAlpha = 0.7 * (1 - pulse * 0.6);
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 1.6 * dpr;
+    ctx.beginPath(); ctx.arc(x, y, (9 + pulse * 9) * dpr, 0, Math.PI * 2); ctx.stroke();
+    ctx.globalAlpha = 0.95;
+    ctx.fillStyle = color;
+    ctx.beginPath(); ctx.arc(x, y, 7 * dpr, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = '#fff';
+    ctx.fillText(T.icon, x, y);
   }
   ctx.restore();
 }
@@ -1666,18 +1707,21 @@ function paint() {
   $('goods').innerHTML = [...s.goods].map(g => `<span class="token">${g}</span>`).join('');
 
   const interesting = s.log.filter(l =>
-    ['epoch','catastrophe','loss','goods','teacher','decision','famine','texture','preserve'].includes(l.kind));
+    ['epoch','catastrophe','loss','goods','teacher','decision','famine','texture','preserve',
+     'challenge','challenge-resolved','challenge-expired'].includes(l.kind));
   $('log').innerHTML = interesting.slice(-40).reverse().map(l =>
     `<div data-year="${l.year}" title="Open the year page for ${formatYear(l.year)}"
         style="cursor:pointer"><span class="y">${formatYear(l.year)}</span>${l.text}</div>`).join('');
 
   // New notices since the last paint.
   for (const l of interesting.slice(lastLogLen)) {
-    if (['catastrophe','epoch','loss'].includes(l.kind)) notice(l);
+    if (['catastrophe','epoch','loss','challenge','challenge-resolved','challenge-expired'].includes(l.kind)) notice(l);
     // One deliberate silence, in 1193.
     if (l.kind === 'catastrophe' && /Nalanda sacked/.test(l.text)) sound.silence(4);
     else if (l.kind === 'catastrophe') sound.strike('loss');
     else if (l.kind === 'epoch') sound.strike('epoch');
+    else if (l.kind === 'challenge-resolved') sound.strike('epoch');
+    else if (l.kind === 'challenge-expired') sound.strike('loss');
     // The m-tier, audible: each texture incident is one quiet strike in its
     // family's timbre (phase 52).
     else if (l.kind === 'texture') sound.strikeFamily(textureFamily(l.template));
@@ -2636,7 +2680,10 @@ function notice(l) {
   const kind = l.kind === 'catastrophe' ? 'notice--loss'
              : l.kind === 'loss' ? 'notice--loss'
              : l.kind === 'epoch' ? 'notice--epoch'
-             : l.kind === 'texture' ? 'notice--texture' : 'notice--good';
+             : l.kind === 'texture' ? 'notice--texture'
+             : l.kind === 'challenge' ? 'notice--challenge'
+             : l.kind === 'challenge-expired' ? 'notice--loss'
+             : l.kind === 'challenge-resolved' ? 'notice--good' : 'notice--good';
   const el = document.createElement('div');
   el.className = `notice ${kind}`;
   if (l.id) { el.dataset.event = l.id; el.style.cursor = 'pointer';
@@ -2688,6 +2735,7 @@ window.__test = {
     return { x: rect.left + proj.toX(lon) / dpr, y: rect.top + proj.toY(lat) / dpr };
   },
   chibisNear: (lon, lat) => chibiCountNear(state, BOUNDARIES, lon, lat),
+  challenges: () => state?.challenges,
   diveTo(id) {
     const c = cityRenderer.city(id);
     if (!c) return false;

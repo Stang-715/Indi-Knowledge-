@@ -11,6 +11,7 @@
  * f(datapack, seed, decision_log).
  */
 import { record, bumpPillar, flow } from './state.js';
+import { resolveChallenges } from './challenges.js';
 
 export const RECITE_COST = 20;
 /** Taught knowledge holds full strength this many years, then fades. */
@@ -99,6 +100,7 @@ export const DECISIONS = {
     if (d.card) {
       if (!state.taughtCards) state.taughtCards = new Map();
       state.taughtCards.set(d.card, d.year);
+      if (d.district) resolveChallenges(state, d.district, d.card);
     }
     bumpPillar(state, 'CULTIVATION', 0.4);
     state.stats.recitals = (state.stats.recitals ?? 0) + 1;
