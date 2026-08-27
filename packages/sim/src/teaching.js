@@ -96,6 +96,35 @@ export function districtLiteracy(state, districtId) {
   return Math.max(2, Math.min(98, blended));
 }
 
+/** Skill cards taught grant real jobs, not just a knowledge count — ported
+ *  from the atlas prototype's jobsTaughtByState (js/game.js:82-101). A card
+ *  id's own kind-and-subject shape (EDU.SKILL.<SUBJECT>.<n>) is the job map;
+ *  no separate job field to keep in sync with the card deck. Jobs are
+ *  national here (Paramountcy has one pop, not one per state) — teaching
+ *  Agriculture I anywhere makes every farmer that much better at farming. */
+const JOB_PREFIX = { 'EDU.SKILL.AGRI': 'farmer', 'EDU.SKILL.CATTLE': 'herder', 'EDU.SKILL.CRAFT': 'artisan' };
+
+export function taughtJobs(state) {
+  const jobs = new Set();
+  for (const id of state.taughtCards?.keys() ?? []) {
+    for (const [prefix, job] of Object.entries(JOB_PREFIX)) {
+      if (id.startsWith(prefix)) jobs.add(job);
+    }
+  }
+  return jobs;
+}
+
+/** Arithmetic cards have no job of their own — like the prototype's
+ *  arithBonus, they instead sharpen every trade: each one taught is worth
+ *  another 15% on top of the base yield. */
+export function skillYieldBonus(state) {
+  let n = 0;
+  for (const id of state.taughtCards?.keys() ?? []) {
+    if (id.startsWith('EDU.SKILL.ARITH')) n++;
+  }
+  return 1 + 0.15 * n;
+}
+
 export const DECISIONS = {
   /** recite {work, card?, district?}: teach one work to the people. `card`
    *  is optional and purely for the Library's own bookkeeping — several

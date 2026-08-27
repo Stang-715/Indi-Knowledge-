@@ -24,7 +24,7 @@ import { initSovereignty, DECISIONS as SOV_DECISIONS } from './sovereignty.js';
 import { blocked } from './pillars.js';
 import { compareDecisions } from './save.js';
 import { initFrontier, tickFrontier, DECISIONS as FRONTIER_DECISIONS } from './frontier.js';
-import { tickTeaching, DECISIONS as TEACHING_DECISIONS } from './teaching.js';
+import { tickTeaching, DECISIONS as TEACHING_DECISIONS, taughtJobs, skillYieldBonus } from './teaching.js';
 import { DECISIONS as MILITARY_DECISIONS } from './military.js';
 import { initChallenges, tickChallenges, growthStalled } from './challenges.js';
 
@@ -259,12 +259,24 @@ function tickEconomy(state, span) {
   // literacy up to its cap of 98 lifts capacity by up to ~39% — the mechanical
   // form of "teach them and they grow." No separate growth system; this just
   // widens the ceiling the logistic curve below was always climbing toward.
+  // Skill cards grant real jobs, not just a knowledge count (taughtJobs,
+  // teaching.js): Agriculture teaches better fields, Husbandry a herd that
+  // widens the ceiling itself, and Arithmetic sharpens every yield equally
+  // rather than any one trade — the same shape as the atlas prototype's
+  // jobsTaughtByState / arithBonus, ported to Paramountcy's single national
+  // pop instead of per-state pools.
+  const jobs = taughtJobs(state);
   const K = 1000 * (1 + effectivePillar(state, 'AGRICULTURE') / 10)
-    * (1 + (state.literacy ?? 2) / 250);
+    * (1 + (state.literacy ?? 2) / 250)
+    * (jobs.has('herder') ? 1.08 : 1);
   const farmers = state.pops.farmers;
 
-  const yieldPerFarmer = 0.035 * (0.55 + effectivePillar(state, 'AGRICULTURE') / 120);
-  const produced = farmers * yieldPerFarmer * span;
+  const yieldPerFarmer = 0.035 * (0.55 + effectivePillar(state, 'AGRICULTURE') / 120)
+    * (jobs.has('farmer') ? 1.1 : 1) * skillYieldBonus(state);
+  // A taught craft trades for its own keep: artisans put grain-equivalent
+  // value into the granary the same way patronage takes it out.
+  const craftBonus = jobs.has('artisan') ? 15 * span : 0;
+  const produced = farmers * yieldPerFarmer * span + craftBonus;
   // Teachers abroad are not in this sum. They eat at the monastery that took
   // them in — the cost of sending one is the journey, and the maintainer you no
   // longer have at home.

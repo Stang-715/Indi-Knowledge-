@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { run } from '../src/engine.js';
-import { freshness, literacy, RECITE_COST, FRESH_YEARS, FRESH_FLOOR, cardFreshness, isCardLocked, districtLiteracy } from '../src/teaching.js';
+import { freshness, literacy, RECITE_COST, FRESH_YEARS, FRESH_FLOOR, cardFreshness, isCardLocked, districtLiteracy, taughtJobs, skillYieldBonus } from '../src/teaching.js';
 
 const DP = {
   timeline: JSON.parse(readFileSync(new URL('../../../data/timeline/timeline.json', import.meta.url), 'utf8')),
@@ -235,4 +235,63 @@ test('district literacy replays deterministically', () => {
   const a = run(DP, 'dist-4', log, { to: -1000 });
   const b = run(DP, 'dist-4', log, { to: -1000 });
   assert.equal(districtLiteracy(a, 'DST.4.4'), districtLiteracy(b, 'DST.4.4'));
+});
+
+/* ── skill cards grant jobs ───────────────────────────────────────────── */
+
+const KP = 'WRK.KRISHIPARASHARA'; // Agriculture, Husbandry and Craft cards recite this
+
+// KP composes from 400; recital sits right after so the corpus decay these
+// tests are not exercising can't intermittently swallow it before the card
+// gets recited (Krishi-Parashara is otherwise lost under several seeds well
+// before 950 — corpus.js's neglect model, working as intended, just not what
+// these tests are about).
+test('an Agriculture card taught grants the farmer job; nothing else does yet', () => {
+  const s = run(DP, 'job-1',
+    [{ year: 405, action: 'recite', work: KP, card: 'EDU.SKILL.AGRI.1' }], { to: 420 });
+  const jobs = taughtJobs(s);
+  assert.ok(jobs.has('farmer'));
+  assert.ok(!jobs.has('herder') && !jobs.has('artisan'));
+});
+
+test('Husbandry grants herder, Craft grants artisan — independent of each other', () => {
+  const s = run(DP, 'job-2', [
+    { year: 405, action: 'recite', work: KP, card: 'EDU.SKILL.CATTLE.1' },
+    { year: 406, action: 'recite', work: KP, card: 'EDU.SKILL.CRAFT.1' },
+  ], { to: 420 });
+  const jobs = taughtJobs(s);
+  assert.ok(jobs.has('herder') && jobs.has('artisan'));
+  assert.ok(!jobs.has('farmer'));
+});
+
+test('Arithmetic cards have no job of their own — they sharpen every yield instead', () => {
+  const zero = run(DP, 'job-3', [], { to: 420 });
+  assert.equal(skillYieldBonus(zero), 1);
+  const one = run(DP, 'job-3',
+    [{ year: 405, action: 'recite', work: KP, card: 'EDU.SKILL.ARITH.1' }], { to: 420 });
+  assert.ok(!taughtJobs(one).size, 'arithmetic grants no job');
+  assert.equal(skillYieldBonus(one), 1.15);
+  const two = run(DP, 'job-3', [
+    { year: 405, action: 'recite', work: KP, card: 'EDU.SKILL.ARITH.1' },
+    { year: 406, action: 'recite', work: KP, card: 'EDU.SKILL.ARITH.2' },
+  ], { to: 420 });
+  assert.equal(skillYieldBonus(two), 1.30);
+});
+
+test('a taught farmer job measurably grows more grain than an untaught control', () => {
+  const untaught = run(DP, 'job-4', [], { from: 400, to: 600 });
+  const taught = run(DP, 'job-4',
+    [{ year: 405, action: 'recite', work: KP, card: 'EDU.SKILL.AGRI.1' }], { from: 400, to: 600 });
+  assert.ok(taught.grain > untaught.grain,
+    'teaching Agriculture should tell on the granary over two centuries, not just the log');
+});
+
+test('skill-job recitals replay deterministically', () => {
+  const log = [
+    { year: 405, action: 'recite', work: KP, card: 'EDU.SKILL.AGRI.1' },
+    { year: 406, action: 'recite', work: KP, card: 'EDU.SKILL.CATTLE.1' },
+  ];
+  const a = run(DP, 'job-5', log, { to: 450 });
+  const b = run(DP, 'job-5', log, { to: 450 });
+  assert.equal(a.fingerprint, b.fingerprint);
 });
