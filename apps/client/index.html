@@ -203,6 +203,14 @@
   #log { max-height:150px; overflow-y:auto; font-size:12px; line-height:1.5; }
   #log div { padding:1px 0; }
   #log .y { color:var(--ink-faint); font-family:var(--mono); font-size:10px; margin-right:6px; }
+  #goals { display:flex; flex-direction:column; gap:4px; font-size:12px; }
+  .goal { display:flex; align-items:center; gap:7px; padding:3px 0; }
+  .goal .mark { width:14px; height:14px; flex:0 0 auto; border:1px solid var(--rule);
+    display:flex; align-items:center; justify-content:center; font-size:10px;
+    color:var(--gold); background:var(--paper); }
+  .goal.done .mark { background:var(--gold); color:var(--sheet); border-color:var(--gold); }
+  .goal.done .label { text-decoration:line-through; color:var(--ink-soft); }
+  .goal .prog { margin-left:auto; font-family:var(--mono); font-size:10px; color:var(--ink-faint); }
 </style>
 </head>
 <body data-era="neolithic">
@@ -290,6 +298,11 @@
     <div class="panel o-all">
       <h2 data-purpose="Works gaining a written carrier at your desks, thinnest first.">Copying</h2>
       <div id="copyqueue"></div>
+    </div>
+
+    <div class="panel o-all">
+      <h2 data-purpose="What a taught population actually adds up to — checked off as the campaign earns them.">Goals</h2>
+      <div id="goals"></div>
     </div>
 
     <div class="panel o-all">

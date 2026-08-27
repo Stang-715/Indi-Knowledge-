@@ -1788,6 +1788,7 @@ function paint() {
   lastLogLen = interesting.length;
   syncSound();
 
+  paintGoals(s);
   paintActions();
   paintRoutes();
   paintPeople();
@@ -1797,6 +1798,52 @@ function paint() {
   paintWatched();
   checkSlips();
   paintLocks();
+}
+
+/**
+ * Community goals (ported from the atlas prototype's GameShare.goals): what
+ * a taught population actually adds up to, checked off as the campaign earns
+ * it. Every target reads straight off real sim state — nothing here is a
+ * second scoreboard, it is the same numbers the HUD already shows, framed as
+ * a checklist.
+ */
+const GOAL_POP_TARGET = 10_000;
+function paintGoals(s) {
+  const el = $('goals');
+  if (!el) return;
+  const cards = [...EDU_BY_ID.values()];
+  const gitaTaught = cards.filter(c => c.kind === 'gita' && s.taughtCards?.has(c.id)).length;
+  const gitaTotal = cards.filter(c => c.kind === 'gita').length || 18;
+  const skillTaught = cards.filter(c => c.kind === 'skill' && s.taughtCards?.has(c.id)).length;
+  const skillTotal = cards.filter(c => c.kind === 'skill').length || 8;
+  const totalPop = Math.round(s.pops.farmers + s.pops.reciters + s.pops.scribes
+    + s.pops.merchants + s.pops.teachers + s.pops.soldiers);
+  const districtsTaught = s.districtTaught?.size ?? 0;
+  const DISTRICT_TARGET = 5;
+  const CHALLENGE_TARGET = 3;
+  const TEACHER_TARGET = 5;
+  const LITERACY_TARGET = 60;
+
+  const goals = [
+    { label: 'Teach the whole Bhagavad Gita', done: gitaTaught >= gitaTotal, prog: `${gitaTaught}/${gitaTotal}` },
+    { label: 'Teach all eight skills', done: skillTaught >= skillTotal, prog: `${skillTaught}/${skillTotal}` },
+    { label: `Literacy above ${LITERACY_TARGET}%`, done: (s.literacy ?? 0) >= LITERACY_TARGET,
+      prog: `${Math.round(s.literacy ?? 0)}/${LITERACY_TARGET}` },
+    { label: `Raise ${TEACHER_TARGET} teachers`, done: s.pops.teachers >= TEACHER_TARGET,
+      prog: `${Math.round(s.pops.teachers)}/${TEACHER_TARGET}` },
+    { label: `A population of ${GOAL_POP_TARGET.toLocaleString()}`, done: totalPop >= GOAL_POP_TARGET,
+      prog: `${totalPop.toLocaleString()}/${GOAL_POP_TARGET.toLocaleString()}` },
+    { label: `Answer ${CHALLENGE_TARGET} challenges`, done: (s.stats.challengesResolved ?? 0) >= CHALLENGE_TARGET,
+      prog: `${s.stats.challengesResolved ?? 0}/${CHALLENGE_TARGET}` },
+    { label: `${DISTRICT_TARGET} districts taught their own lesson`, done: districtsTaught >= DISTRICT_TARGET,
+      prog: `${districtsTaught}/${DISTRICT_TARGET}` },
+  ];
+
+  el.innerHTML = goals.map(g => `<div class="goal ${g.done ? 'done' : ''}">
+    <span class="mark">${g.done ? '✓' : ''}</span>
+    <span class="label">${g.label}</span>
+    <span class="prog">${g.prog}</span>
+  </div>`).join('');
 }
 
 /**
