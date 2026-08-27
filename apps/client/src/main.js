@@ -48,6 +48,7 @@ import { interiorHTML, scriptoriumModel } from '../../../packages/ui/src/interio
 import { drawFrom } from '../../../packages/sim/src/rng.js';
 import { RECITE_COST, cardFreshness, isCardLocked, districtLiteracy } from '../../../packages/sim/src/teaching.js';
 import { CHALLENGE_TYPES } from '../../../packages/sim/src/challenges.js';
+import { KNOWLEDGE_TABS, slugFromBndId, loadKnowledgeTab, findStateAt, confidenceWeight } from './knowledge.js';
 import { drawBoundaries } from './boundaries.js';
 import { drawPeopleMode, setListenFocus, chibiCountNear, setHoldRipple } from './people-layer.js';
 import { buildCodexIndex, searchCodex, codexHTML, shelfHTML, resultsHTML }
@@ -341,6 +342,7 @@ function draw(step) {
   if (mapMode === 'mandala') drawMandala(proj, level);
   if (mapMode === 'corpus') drawCorpusMode(proj);
   if (mapMode === 'literacy') drawLiteracyMode(proj);
+  if (mapMode === 'knowledge') drawKnowledgeMode(proj);
   if (mapMode === 'people') {
     drawBoundaries(ctx, proj, level, BOUNDARIES, dpr);
     drawPeopleMode(ctx, proj, state, BOUNDARIES, level, dpr);
@@ -1023,6 +1025,16 @@ cv.addEventListener('pointerup', (e) => {
     paintWatched();
     return;
   }
+  // Knowledge mode hit-tests the atlas's own state outlines, not the sim's
+  // survey grid — a different geometry with its own dossier, not a district
+  // detail panel.
+  if (mapMode === 'knowledge') {
+    const proj = cam.projection(cv.width, cv.height);
+    const lon = proj.toLon(px), lat = proj.toLat(py);
+    const s = findStateAt(BOUNDARIES, lon, lat);
+    if (s) openKnowledgeState(s);
+    return;
+  }
   // Clicking a district opens its panel in ANY informational mode (phase 10)
   // — the census's state-panel pattern. Mandala mode merely colors the answer.
   // With a lens verb armed (phase 14), the same click EXECUTES instead: the
@@ -1130,6 +1142,7 @@ const MODES = [
   { id: 'corpus',  label: 'corpus',  hint: 'Where the works are physically held — every carrier, placed.' },
   { id: 'people',  label: 'people',  hint: 'The population, going about its work over the atlas boundaries — and listening when you teach.' },
   { id: 'literacy', label: 'literacy', hint: 'Who can actually read: the national figure, pulled up wherever a district has been taught its own lessons.' },
+  { id: 'knowledge', label: 'knowledge', hint: "The atlas's own ten layers — soil, history, governance, craft, wars, scripture, folklore, heritage — laid over the same land." },
 ];
 // The globe (phase 18): modes are selectable AND lockable. A locked mode
 // survives a lens's contextual switch; an unlocked one is borrowed and
@@ -1140,6 +1153,12 @@ function setMapMode(id) {
   mapMode = id;
   for (const t of $('modes').querySelectorAll('[data-mode]'))
     t.setAttribute('aria-selected', t.dataset.mode === id);
+  if (id === 'knowledge') {
+    renderKnowTabs();
+    if (!knowData && !knowLoading) selectKnowTab(knowTab);
+  } else if ($('knowTabs')) {
+    $('knowTabs').hidden = true;
+  }
   draw(1);
 }
 $('modes').innerHTML = MODES.map(m =>
@@ -1157,6 +1176,125 @@ $('modes').addEventListener('click', (e) => {
   if (!b) return;
   setMapMode(b.dataset.mode);
 });
+
+/* ── Knowledge layers: the atlas's own ten subject tabs ──────────────────── */
+
+let knowTab = 'soil';
+let knowData = null;   // this tab's atlas-data payload, once loaded
+let knowLoading = false;
+
+function renderKnowTabs() {
+  const el = $('knowTabs');
+  if (!el) return;
+  el.hidden = mapMode !== 'knowledge';
+  if (mapMode !== 'knowledge') return;
+  el.innerHTML = KNOWLEDGE_TABS.map(t =>
+    `<button class="tab tiny" data-know="${t.key}" aria-selected="${t.key === knowTab}"
+       title="${t.label}">${t.icon} ${t.label}</button>`).join('')
+    + (knowLoading ? `<span class="tiny muted">loading…</span>` : '');
+}
+function selectKnowTab(key) {
+  knowTab = key;
+  knowData = null;
+  knowLoading = true;
+  renderKnowTabs();
+  loadKnowledgeTab(key).then((d) => {
+    if (knowTab !== key) return; // a later click already moved on
+    knowData = d;
+    knowLoading = false;
+    renderKnowTabs();
+    draw(1);
+  }).catch(() => { knowLoading = false; renderKnowTabs(); });
+}
+$('knowTabs')?.addEventListener('click', (e) => {
+  const b = e.target.closest('[data-know]');
+  if (!b) return;
+  selectKnowTab(b.dataset.know);
+});
+
+/**
+ * The knowledge choropleth: one atlas subject at a time, over the real state
+ * outlines. Rather than a bespoke metric per tab (the atlas's own approach —
+ * ten separate color functions, one per data shape), every tab reads the
+ * same two fields every entry actually carries: presence and `confidence`.
+ * A state with a richer, more confident record glows gold; one with none
+ * reads as bare paper — the same "the gaps ARE the game" grammar Survey
+ * mode already uses, applied to curated knowledge instead of population.
+ */
+function drawKnowledgeMode(proj) {
+  if (!BOUNDARIES) return;
+  ctx.save();
+  ctx.globalAlpha = 1;
+  for (const s of BOUNDARIES.states) {
+    const entry = knowData?.states?.[slugFromBndId(s.id)];
+    ctx.beginPath();
+    for (const ring of s.outline) {
+      ctx.moveTo(proj.toX(ring[0]), proj.toY(ring[1]));
+      for (let i = 2; i < ring.length; i += 2) ctx.lineTo(proj.toX(ring[i]), proj.toY(ring[i + 1]));
+      ctx.closePath();
+    }
+    if (entry) {
+      // A plum wash, not gold — gold already means "yours" everywhere else
+      // in this interface, and a hue this close to the terrain's own tans
+      // reads as no fill at all (confirmed by pixel-sampling during testing).
+      const w = confidenceWeight(entry);
+      ctx.fillStyle = `rgba(122,78,142,${(0.32 + w * 0.4).toFixed(2)})`;
+    } else {
+      ctx.fillStyle = 'rgba(216,203,170,0.4)'; // unsurveyed paper, same tone as Survey mode
+    }
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(62,37,64,0.4)';
+    ctx.lineWidth = 1 * dpr;
+    ctx.stroke();
+  }
+  // Legend.
+  ctx.font = `${Math.round(11 * dpr)}px Georgia, serif`;
+  const ly = cv.height - 52 * dpr;
+  let lx = 14 * dpr;
+  for (const [label, w] of [['no record', 0], ['low', 0.35], ['medium', 0.62], ['high', 1]]) {
+    ctx.fillStyle = w === 0 ? 'rgba(216,203,170,0.6)' : `rgba(122,78,142,${(0.32 + w * 0.4).toFixed(2)})`;
+    ctx.fillRect(lx, ly - 9 * dpr, 14 * dpr, 10 * dpr);
+    ctx.fillStyle = '#2A2118';
+    ctx.fillText(label, lx + 18 * dpr, ly);
+    lx += ctx.measureText(label).width + 34 * dpr;
+  }
+  ctx.restore();
+}
+
+/** The dossier: reuses the shared drawer, since the ten tabs' schemas share
+ *  enough (name, summary, facts, sources, confidence) that one generic
+ *  renderer covers all of them without ten bespoke templates — the atlas's
+ *  own per-tab RENDER[key] functions differ mostly in the extra sections
+ *  this port does not attempt to reproduce one-for-one. */
+function openKnowledgeState(s) {
+  const slug = slugFromBndId(s.id);
+  const entry = knowData?.states?.[slug];
+  const tabMeta = KNOWLEDGE_TABS.find((t) => t.key === knowTab);
+  const districts = s.districts.map((d) => d.name).sort();
+  if (!entry) {
+    $('drawer-inner').innerHTML = `<article class="card">
+      <h3>${tabMeta?.icon ?? ''} ${s.name ?? slug}</h3>
+      <p class="muted">No verified ${tabMeta?.label.toLowerCase() ?? 'record'} for this state yet.</p>
+      <h4>Districts</h4>
+      <div class="chip-row">${districts.map((n) => `<span class="token">${n}</span>`).join('')}</div>
+    </article>`;
+  } else {
+    const facts = (entry.facts ?? []).slice(0, 8).map((f) => `<li>${f}</li>`).join('');
+    const sources = (entry.sources ?? []).slice(0, 6).map((src) =>
+      `<li>${src.url ? `<a href="${src.url}" target="_blank" rel="noopener">${src.title}</a>` : src.title}
+        <span class="tiny muted">${[src.publisher, src.year].filter(Boolean).join(', ')}</span></li>`).join('');
+    $('drawer-inner').innerHTML = `<article class="card">
+      <h3>${tabMeta?.icon ?? ''} ${entry.name ?? s.name}</h3>
+      <span class="confidence-badge">${entry.confidence ?? 'unrated'} confidence</span>
+      <p>${entry.summary ?? ''}</p>
+      ${facts ? `<h4>Facts</h4><ul>${facts}</ul>` : ''}
+      ${sources ? `<h4>Sources</h4><ul class="tiny">${sources}</ul>` : ''}
+      <h4>Districts</h4>
+      <div class="chip-row">${districts.map((n) => `<span class="token">${n}</span>`).join('')}</div>
+    </article>`;
+  }
+  $('drawer').classList.add('on');
+}
 
 /* ── The game ───────────────────────────────────────────────────────────── */
 
