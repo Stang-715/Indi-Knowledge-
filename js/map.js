@@ -343,5 +343,22 @@
       var st = window.INDIA_MAP.states[slug];
       return st ? st.districts.map(function (d) { return d.n; }) : [];
     },
+    getMapSize: function () { return { w: W, h: M.H }; },
+    getViewBox: function () {
+      var vb = (M.svg.getAttribute("viewBox") || "").split(/\s+/).map(Number);
+      return vb.length === 4 ? { x: vb[0], y: vb[1], w: vb[2], h: vb[3] } : { x: 0, y: 0, w: W, h: M.H };
+    },
+    getStateBBox: function (slug) {
+      var b = M.stateBBox[slug];
+      return b ? b.slice() : null;
+    },
+    getStateCentroid: function (slug) {
+      var b = M.stateBBox[slug];
+      return b ? [(b[0] + b[2]) / 2, (b[1] + b[3]) / 2] : null;
+    },
+    getDistrictCentroids: function (slug) {
+      var di = M.distInfo[slug];
+      return di ? di.map(function (d) { return [d.c[0], d.c[1]]; }) : [];
+    },
   };
 })();

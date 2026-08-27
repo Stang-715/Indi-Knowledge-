@@ -1,0 +1,246 @@
+/* ============================================================
+   Game mode — population & the learning loop.
+   Uses the atlas's folk screen-print tokens from style.css.
+   ============================================================ */
+
+#gameCanvas {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 4;
+}
+
+/* ---- HUD ---- */
+#gameHud {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 6;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 0.82rem;
+}
+#gameHud .hud-item {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 4px 9px;
+  color: var(--ink);
+  box-shadow: 0 1px 4px rgba(62, 37, 64, 0.12);
+}
+#gameHud .hud-item.unread {
+  border-color: var(--verm);
+  color: var(--verm-deep);
+  animation: hudPulse 1.6s ease-in-out infinite;
+}
+#gameHud i.up { color: var(--teal-deep); font-style: normal; }
+#gameHud i.down { color: var(--verm-deep); font-style: normal; }
+@keyframes hudPulse {
+  50% { box-shadow: 0 0 0 4px rgba(244, 73, 28, 0.15); }
+}
+
+/* ---- recite progress ---- */
+#reciteBar {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  z-index: 6;
+  width: min(320px, 70%);
+  height: 22px;
+  background: var(--card);
+  border: 1px solid var(--ink);
+  border-radius: 11px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(62, 37, 64, 0.2);
+}
+#reciteBar .rfill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: linear-gradient(90deg, var(--orange-mid), var(--verm));
+  transition: width 0.08s linear;
+}
+#reciteBar .rtext,
+#reciteBar .rmsg {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+}
+#reciteBar .rmsg { color: var(--verm-deep); }
+
+/* ---- library dock ---- */
+#libraryDock {
+  margin-top: 10px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 8px 10px 10px;
+}
+#libraryDock .dock-head {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+  margin-bottom: 7px;
+}
+#libraryDock .dock-head b { color: var(--verm-deep); letter-spacing: 0.14em; }
+#libraryDock kbd {
+  background: var(--paper-deep);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 0 4px;
+  font-size: 0.7rem;
+}
+#libraryDock .dock-shelf {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+.gcard {
+  flex: 0 0 auto;
+  width: 112px;
+  min-height: 82px;
+  text-align: left;
+  border: 1.5px solid var(--ink);
+  border-radius: 8px;
+  background: var(--paper);
+  color: var(--ink);
+  padding: 6px 8px;
+  cursor: pointer;
+  position: relative;
+  font: inherit;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.gcard[data-kind="gita"] { background: var(--orange-pale); }
+.gcard[data-kind="folklore"] { background: #d9efe9; }
+.gcard:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(62, 37, 64, 0.22);
+}
+.gcard.locked { opacity: 0.45; cursor: not-allowed; }
+.gcard.taught { border-color: var(--teal-deep); }
+.gcard.armed {
+  outline: 2px solid var(--verm);
+  outline-offset: 2px;
+  animation: hudPulse 1.6s ease-in-out infinite;
+}
+.gcard .gcard-badge { position: absolute; top: 4px; right: 6px; font-size: 0.8rem; }
+.gcard .gcard-kind {
+  display: block;
+  font-size: 0.68rem;
+  color: var(--ink-soft);
+}
+.gcard .gcard-title {
+  display: block;
+  font-weight: 700;
+  font-size: 0.78rem;
+  line-height: 1.15;
+  margin: 2px 0;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.gcard .gcard-sub {
+  display: block;
+  font-size: 0.66rem;
+  color: var(--ink-soft);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* ---- study modal ---- */
+.study-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background: rgba(62, 37, 64, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.study-modal[hidden] { display: none; }
+#studyModal .study-card {
+  position: relative;
+  width: min(560px, 92vw);
+  max-height: 86vh;
+  overflow: auto;
+  background: var(--card);
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  padding: 20px 26px 18px;
+  box-shadow: 0 10px 30px rgba(62, 37, 64, 0.35);
+}
+#studyModal .study-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  border: none;
+  background: none;
+  font-size: 1.05rem;
+  cursor: pointer;
+  color: var(--ink-soft);
+}
+#studyModal .study-kicker {
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  color: var(--verm-deep);
+}
+#studyModal .study-hint {
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  border-top: 1px dashed var(--line);
+  padding-top: 12px;
+  margin-top: 12px;
+}
+#studyModal h2 {
+  font-family: var(--font-display);
+  color: var(--ink);
+  font-size: 1.25rem;
+  margin: 6px 0 2px;
+}
+#studyModal .study-sa { font-size: 0.8rem; color: var(--ink-soft); }
+#studyModal .study-recite .k {
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
+  color: var(--teal-deep);
+  margin-top: 8px;
+}
+#studyModal .study-recite p {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--verm-deep);
+  margin: 4px 0 8px;
+  border-left: 3px solid var(--verm);
+  padding-left: 10px;
+}
+#studyModal .study-summary { font-size: 0.86rem; line-height: 1.5; color: var(--ink); }
+#studyModal .study-sloka {
+  font-size: 0.85rem;
+  line-height: 1.55;
+}
+#studyModal .study-sloka .dev { font-size: 0.95rem; color: var(--ink); }
+#studyModal .study-sloka .tr { font-style: italic; color: var(--ink-soft); }
+#studyModal .study-sloka .en { color: var(--ink); }
+#studyModal .study-sloka .ref { color: var(--ink-soft); font-size: 0.75rem; }
+#studyModal .study-moral { font-size: 0.84rem; color: var(--ink); }
+#studyModal .study-origin { font-size: 0.72rem; color: var(--ink-soft); }
+
+/* dock and hud hidden while game is off (elements carry [hidden] too) */
+body:not(.game-on) #gameHud,
+body:not(.game-on) #libraryDock,
+body:not(.game-on) #reciteBar { display: none; }
+
+#btnGame.active {
+  background: var(--verm);
+  color: #fff;
+  border-color: var(--verm-deep);
+}

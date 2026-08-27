@@ -6,6 +6,7 @@
   <title>India Knowledge Map · भारत — Interactive Atlas</title>
   <meta name="description" content="An interactive, research-backed knowledge map of India — soil health, history, governance, communities, art, craft, wars, Vedas and folk tales, state by state and district by district.">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/game.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🇮🇳</text></svg>">
 </head>
 <body>
@@ -36,6 +37,7 @@
         <button class="tool-btn zbtn" id="btnZL" title="Spin left (Q)">⟲</button>
         <button class="tool-btn zbtn" id="btnZR" title="Spin right (E)">⟳</button>
         <button class="tool-btn" id="btnReset" title="Back to national view">⤺ India</button>
+        <button class="tool-btn" id="btnGame" title="Toggle game mode: teach the population">🎮 Game</button>
       </div>
       <div class="map-viewport" id="mapStage">
         <div class="map-tilt" id="svgWrap">
@@ -45,8 +47,11 @@
           <canvas id="indiaMap3D" aria-label="Three-dimensional model of India, drag to rotate"></canvas>
         </div>
         <div class="orbit-hint">drag to orbit 360° · scroll to zoom · click a state for its card · double-click to reset</div>
+        <div id="gameHud" hidden></div>
+        <div id="reciteBar" hidden></div>
       </div>
       <div class="map-legend" id="mapLegend"></div>
+      <div id="libraryDock" hidden></div>
     </section>
 
     <aside class="panel" aria-label="Details panel">
@@ -57,6 +62,7 @@
 
   <div id="tooltip" role="tooltip"></div>
   <div id="statePopup" class="state-popup" role="dialog" aria-label="State summary"></div>
+  <div id="studyModal" class="study-modal" role="dialog" aria-label="Study a card" hidden></div>
 
   <footer class="app-footer">
     <div class="credit">Built with Claude Code — researched by a fleet of Claude agents, re-checked by a QC agent</div>
@@ -95,5 +101,13 @@
   <script src="js/orbit.js"></script>
   <script src="js/map3d.js"></script>
   <script src="js/app.js"></script>
+
+  <!-- game mode: population & the learning loop (docs/GAME-PHASES.md) -->
+  <script src="data/gita.js"></script>
+  <script src="js/game-cards.js"></script>
+  <script src="js/game-population.js"></script>
+  <script src="js/game-render.js"></script>
+  <script src="js/game-ui.js"></script>
+  <script src="js/game.js"></script>
 </body>
 </html>

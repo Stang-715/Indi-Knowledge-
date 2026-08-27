@@ -47,6 +47,18 @@ No build step, no server, no dependencies:
   from the height gradient. The legend states the vertical exaggeration.
 - **Search box** jumps to any state; **Esc** returns to India.
 
+## 🎮 Game mode — teach the population
+
+The **🎮 Game** button in the map toolbar brings the atlas to life: a population of tiny
+chibi characters wanders the map on winding footpaths between districts, and your job is
+to **educate them**. The Library shelf along the bottom holds the books as cards — the
+Bhagavad Gita revealed chapter by chapter, and the folk tales of the atlas. Click a card
+to study its crisp recitable summary, then **hold SPACE** over the map to recite it; the
+people in earshot stop and listen. Teaching raises the **literacy rate**; every new book
+that appears untaught drags it down; and literacy decides survival — low literacy raises
+deaths, high literacy brings births. Progress saves in your browser. The full multi-phase
+design is in [docs/GAME-PHASES.md](docs/GAME-PHASES.md).
+
 ## Data integrity (the strict filter)
 
 This is *not* an open wiki. Every entry ships with:
