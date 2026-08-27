@@ -238,6 +238,74 @@ function drawChibi(ctx, x, y, h, palette, role, listening, now, phase, dpr, leve
   ctx.restore();
 }
 
+/**
+ * Scholars: teachers, walking a slow circuit between two districts and
+ * pausing there to teach — the roaming re-teach NPC, ported from the atlas
+ * prototype's scholar mode (js/game-population.js: promoteScholars, the
+ * walk/teach state machine). The sim mechanic this makes visible already
+ * exists and is real: a teacher slows the fade of the oldest taught work
+ * each tick (teaching.js's tickTeaching) — this is only its face on the map.
+ * The walk itself is presentation, keyed by state.year so it is stable while
+ * paused and replays identically; capped for legibility, same reasoning as
+ * TARGET_CHIBIS above.
+ */
+const MAX_SCHOLAR_GLYPHS = 10;
+const SCHOLAR_CYCLE_YEARS = 8;
+
+function scholarDistricts(state) {
+  return [...state.districts.values()].filter((d) => (d.estimate ?? 0) > 0);
+}
+
+function drawScholars(ctx, proj, state, dpr, now) {
+  const teachers = state.pops.teachers ?? 0;
+  if (teachers < 1) return;
+  const pool = scholarDistricts(state);
+  if (pool.length < 2) return;
+  const n = Math.min(MAX_SCHOLAR_GLYPHS, Math.ceil(teachers));
+  const w = ctx.canvas.width, ch = ctx.canvas.height;
+
+  ctx.save();
+  for (let i = 0; i < n; i++) {
+    const a = pool[Math.floor(drawFrom('scholar-a', i) * pool.length)];
+    let b = pool[Math.floor(drawFrom('scholar-b', i) * pool.length)];
+    if (b === a) b = pool[(pool.indexOf(a) + 1) % pool.length];
+
+    const phase = drawFrom('scholar-phase', i);
+    const cycle = (((state.year / SCHOLAR_CYCLE_YEARS) + phase) % 1 + 1) % 1;
+    let lon, lat, teaching = false;
+    if (cycle < 0.35) { lon = a.lon; lat = a.lat; teaching = true; }
+    else if (cycle < 0.5) {
+      const t = (cycle - 0.35) / 0.15;
+      lon = a.lon + (b.lon - a.lon) * t; lat = a.lat + (b.lat - a.lat) * t;
+    } else if (cycle < 0.85) { lon = b.lon; lat = b.lat; teaching = true; }
+    else {
+      const t = (cycle - 0.85) / 0.15;
+      lon = b.lon + (a.lon - b.lon) * t; lat = b.lat + (a.lat - b.lat) * t;
+    }
+
+    const x = proj.toX(lon), y = proj.toY(lat);
+    if (x < -30 || y < -30 || x > w + 30 || y > ch + 30) continue;
+
+    if (teaching) {
+      const pulse = (now * 0.6 + i * 0.3) % 1;
+      ctx.globalAlpha = 0.5 * (1 - pulse);
+      ctx.strokeStyle = '#C9A227';
+      ctx.lineWidth = 1.2 * dpr;
+      ctx.beginPath();
+      ctx.arc(x, y, (5 + pulse * 12) * dpr, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.globalAlpha = 1;
+    }
+    drawChibi(ctx, x, y, 11 * dpr, '#3e2540', 'teachers', teaching, now, i * 1.9, dpr, null, false);
+    // a satchel dot, so a scholar reads distinct from the ordinary crowd
+    ctx.fillStyle = '#c9a227';
+    ctx.beginPath();
+    ctx.arc(x + 5 * dpr, y - 3 * dpr, 2.2 * dpr, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  ctx.restore();
+}
+
 export function drawPeopleMode(ctx, proj, state, boundaries, level, dpr) {
   if (!state || !boundaries) return;
   const now = performance.now() / 1000;
@@ -315,5 +383,6 @@ export function drawPeopleMode(ctx, proj, state, boundaries, level, dpr) {
         role === 'soldiers' ? armyLvl : null, role === 'soldiers' && fighting);
     }
   }
+  drawScholars(ctx, proj, state, dpr, now);
   ctx.restore();
 }
