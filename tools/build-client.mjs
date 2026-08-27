@@ -81,15 +81,37 @@ const DATA = {
   'texture':   'data/timeline/texture.json',
   'occupations': 'data/timeline/occupations.json',
   'fonts':     'data/fonts/manifest.json',
+  // These two were fetched at runtime with a silent .catch(() => null) and
+  // never actually added here — on a real dev server that fetch succeeds and
+  // nothing looked wrong, but a published single-file artifact has no sibling
+  // data/ tree to fetch from, so BOUNDARIES/EDU (the atlas boundaries and the
+  // education deck) came back null there: no chibis, no district shapes, no
+  // recite cards, all failing quietly. Inlining them is the actual fix.
+  'boundaries': 'data/atlas/boundaries.json',
+  'education': 'data/corpus/education.json',
 };
 const inlined = Object.fromEntries(
   Object.entries(DATA).map(([k, p]) => [k, JSON.parse(readFileSync(join(ROOT, p), 'utf8'))]));
 
+/* ── Knowledge tabs (atlas-data/*.js): inline for the same reason ────────── */
+const KNOWLEDGE_KEYS = ['soil', 'history', 'governance', 'community', 'art', 'craft', 'wars', 'vedas', 'folklore', 'heritage'];
+const knowledgeInline = {};
+for (const key of KNOWLEDGE_KEYS) {
+  const src = readFileSync(join(ROOT, 'atlas-data', `${key}.js`), 'utf8');
+  // Each file is `window.INDIA_DATA.<key> = {...};` — lift just the object
+  // literal rather than re-running the assignment, so this stays plain JSON
+  // and the artifact's CSP (no `unsafe-eval`-style script injection) never
+  // has to load a second live <script> at runtime.
+  const m = src.match(/window\.INDIA_DATA\.\w+\s*=\s*([\s\S]*?);\s*$/);
+  if (!m) { console.warn(`  ! could not parse atlas-data/${key}.js — skipped`); continue; }
+  knowledgeInline[key] = JSON.parse(m[1]);
+}
+
 let entryCode = modules.get(ENTRY).src;
 // Replace the fetch block with the inlined data.
 entryCode = entryCode.replace(
-  /const \[bundle, timeline, works, cityData, people, cardsDoc, gazetteer, texture, occupations, fontManifest\] = await Promise\.all\(\[[\s\S]*?\]\);/,
-  'const { skeleton: bundle, timeline, works, cities: cityData, people, cards: cardsDoc, gazetteer, texture, occupations, fonts: fontManifest } = __DATA;');
+  /const \[bundle, timeline, works, cityData, people, cardsDoc, gazetteer, texture, occupations, fontManifest, BOUNDARIES, EDU\] = await Promise\.all\(\[[\s\S]*?\]\);/,
+  'const { skeleton: bundle, timeline, works, cities: cityData, people, cards: cardsDoc, gazetteer, texture, occupations, fonts: fontManifest, boundaries: BOUNDARIES, education: EDU } = __DATA;');
 modules.set(ENTRY, { ...modules.get(ENTRY), src: entryCode });
 
 /* ── Assemble ───────────────────────────────────────────────────────────── */
@@ -137,6 +159,7 @@ const out = `<title>Paramountcy</title>
 ${body}
 <script type="module">
 globalThis.__BUILD = ${JSON.stringify(BUILD)};
+globalThis.__KNOWLEDGE_INLINE = ${JSON.stringify(knowledgeInline)};
 const __DATA = ${JSON.stringify(inlined)};
 const __m = {};
 ${order.map(wrap).join('\n\n')}

@@ -31,16 +31,23 @@ export function slugFromBndId(id) {
 
 const loaded = new Map(); // key -> Promise<data | null>
 
-/** Fetch one tab's data file exactly once, however many times it is opened. */
+/** Fetch one tab's data file exactly once, however many times it is opened.
+ *  The bundled single-file build (tools/build-client.mjs) has no sibling
+ *  atlas-data/ tree to fetch from, so it inlines every tab's data ahead of
+ *  time into `window.__KNOWLEDGE_INLINE` — checked first, so the artifact
+ *  never touches the network for this at all. */
 export function loadKnowledgeTab(key) {
   if (loaded.has(key)) return loaded.get(key);
-  const p = new Promise((resolve, reject) => {
-    const el = document.createElement('script');
-    el.src = `../../atlas-data/${key}.js`;
-    el.onload = () => resolve(window.INDIA_DATA?.[key] ?? null);
-    el.onerror = () => reject(new Error(`could not load atlas-data/${key}.js`));
-    document.head.appendChild(el);
-  });
+  const inline = globalThis.__KNOWLEDGE_INLINE?.[key];
+  const p = inline
+    ? Promise.resolve(inline)
+    : new Promise((resolve, reject) => {
+        const el = document.createElement('script');
+        el.src = `../../atlas-data/${key}.js`;
+        el.onload = () => resolve(window.INDIA_DATA?.[key] ?? null);
+        el.onerror = () => reject(new Error(`could not load atlas-data/${key}.js`));
+        document.head.appendChild(el);
+      });
   loaded.set(key, p);
   return p;
 }
