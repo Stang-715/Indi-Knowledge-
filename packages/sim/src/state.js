@@ -42,6 +42,10 @@ export function newState(opts = {}) {
     /** Corpus: workId → carrier record. Set up by corpus.js. */
     corpus: new Map(),
 
+    /** Teaching: workId → year last recited to the people (teaching.js). */
+    taughtWorks: new Map(),
+    literacy: 2,
+
     /** People: id → person. Set up by people.js. */
     people: new Map(),
     schools: new Map(),

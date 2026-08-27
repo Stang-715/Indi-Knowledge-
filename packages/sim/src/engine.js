@@ -24,6 +24,7 @@ import { initSovereignty, DECISIONS as SOV_DECISIONS } from './sovereignty.js';
 import { blocked } from './pillars.js';
 import { compareDecisions } from './save.js';
 import { initFrontier, tickFrontier, DECISIONS as FRONTIER_DECISIONS } from './frontier.js';
+import { tickTeaching, DECISIONS as TEACHING_DECISIONS } from './teaching.js';
 
 /** Pillar deltas by event class. Coarse, deliberately — tuning comes later. */
 // CLASS_EFFECTS and MAG_WEIGHT moved to effects.js (phase 35) — shared with
@@ -105,6 +106,8 @@ export function run(datapack, seed, decisionLog = [], opts = {}) {
     // to exist before the corpus asks how much it can remember.
     tickPeople(state, span, rng.people, datapack);
     tickCorpus(state, span, rng.corpus, datapack);
+    // Teaching after the corpus: literacy reads what actually survived the tick.
+    tickTeaching(state, span);
     tickTrade(state, span, rng.trade);
     tickFrontier(state, span, rng.world);
     tickShocks(state, span);
@@ -362,6 +365,7 @@ export function applyDecision(state, d, datapack, rng) {
       if (SOV_DECISIONS[d.action])    return SOV_DECISIONS[d.action](state, d, rng.world);
       if (FRONTIER_DECISIONS[d.action]) return FRONTIER_DECISIONS[d.action](state, d, rng.world);
       if (TRADE_DECISIONS[d.action])  return TRADE_DECISIONS[d.action](state, d, rng.trade);
+      if (TEACHING_DECISIONS[d.action]) return TEACHING_DECISIONS[d.action](state, d, rng.people);
       return;
   }
 }
