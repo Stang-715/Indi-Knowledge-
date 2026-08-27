@@ -52,6 +52,11 @@ export function newState(opts = {}) {
      *  of teaching.js. Never decays; it is exposure, not mastery. */
     studied: new Set(),
     literacy: 2,
+    /** districtId → (cardId → year last recited THERE). The national
+     *  literacy() figure has no geography; this is what lets a district
+     *  that is actually being taught read higher than one that is merely
+     *  living in a literate country. Set by teaching.js's recite decision. */
+    districtTaught: new Map(),
 
     /** People: id → person. Set up by people.js. */
     people: new Map(),
@@ -175,6 +180,8 @@ export function fingerprint(state) {
     challenges: [...state.challenges].sort((a, b) => a.id.localeCompare(b.id))
       .map((c) => [c.id, c.type, c.district, c.expiresYear]),
     growthStalledUntil: state.growthStalledUntil,
+    districtTaught: sortedMap(state.districtTaught,
+      ([id, m]) => [id, [...m.entries()].sort((a, b) => a[0].localeCompare(b[0]))]),
     frontier: sortedMap(state.frontier, ([id, f]) => [id, f.present ? 1 : 0, f.taught.length, Math.round(f.displaced * 100)]),
     claims: sortedMap(state.claims, ([id, c]) => [id, c.holder ?? '', c.revenue ?? '', c.tributary ?? '', c.paramount ?? '']),
     stats: state.stats,

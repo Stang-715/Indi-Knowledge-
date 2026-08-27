@@ -77,6 +77,25 @@ export function literacy(state) {
   return Math.max(2, Math.min(98, raw));
 }
 
+/** A district's own literacy, 2..98: the national figure, pulled toward
+ *  however fresh the cards actually recited THERE still are. A district
+ *  taught nothing of its own reads exactly at the national baseline; one
+ *  where recitals stay current reads above it, the same 65/35 blend the
+ *  atlas prototype's stateLiteracy used (js/game.js). */
+export function districtLiteracy(state, districtId) {
+  const national = state.literacy ?? 2;
+  const local = state.districtTaught?.get(districtId);
+  if (!local || !local.size) return national;
+  let sum = 0;
+  for (const [, taughtYear] of local) {
+    const age = state.year - taughtYear;
+    sum += age <= FRESH_YEARS ? 1 : Math.max(FRESH_FLOOR, 1 - 0.01 * (age - FRESH_YEARS));
+  }
+  const localCoverage = sum / local.size; // 0..1, freshness of what was taught HERE specifically
+  const blended = 0.65 * national + 0.35 * (localCoverage * 98);
+  return Math.max(2, Math.min(98, blended));
+}
+
 export const DECISIONS = {
   /** recite {work, card?, district?}: teach one work to the people. `card`
    *  is optional and purely for the Library's own bookkeeping — several
@@ -100,7 +119,12 @@ export const DECISIONS = {
     if (d.card) {
       if (!state.taughtCards) state.taughtCards = new Map();
       state.taughtCards.set(d.card, d.year);
-      if (d.district) resolveChallenges(state, d.district, d.card);
+      if (d.district) {
+        resolveChallenges(state, d.district, d.card);
+        if (!state.districtTaught) state.districtTaught = new Map();
+        if (!state.districtTaught.has(d.district)) state.districtTaught.set(d.district, new Map());
+        state.districtTaught.get(d.district).set(d.card, d.year);
+      }
     }
     bumpPillar(state, 'CULTIVATION', 0.4);
     state.stats.recitals = (state.stats.recitals ?? 0) + 1;

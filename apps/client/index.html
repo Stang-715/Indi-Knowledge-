@@ -78,6 +78,10 @@
   #eduDock { position:absolute; left:8px; right:8px; bottom:8px; z-index:5;
     background:var(--sheet); border:1px solid var(--rule); box-shadow:var(--shadow-lift);
     padding:8px 10px; max-height:38%; display:flex; flex-direction:column; gap:6px; }
+  /* An ID selector setting `display` outranks the UA [hidden] rule, so the
+     dock kept its flex box (and kept eating clicks) even while hidden — this
+     reasserts it explicitly rather than relying on selector bookkeeping. */
+  #eduDock[hidden] { display:none; }
   #eduDock .edu-head { font-size:10px; letter-spacing:.1em; text-transform:uppercase;
     color:var(--ink-soft); display:flex; justify-content:space-between; align-items:center; }
   #eduDock .edu-shelf { display:flex; gap:6px; overflow-x:auto; padding-bottom:2px; }

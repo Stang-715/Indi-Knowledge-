@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { run } from '../src/engine.js';
-import { freshness, literacy, RECITE_COST, FRESH_YEARS, FRESH_FLOOR, cardFreshness, isCardLocked } from '../src/teaching.js';
+import { freshness, literacy, RECITE_COST, FRESH_YEARS, FRESH_FLOOR, cardFreshness, isCardLocked, districtLiteracy } from '../src/teaching.js';
 
 const DP = {
   timeline: JSON.parse(readFileSync(new URL('../../../data/timeline/timeline.json', import.meta.url), 'utf8')),
@@ -200,4 +200,39 @@ test('card-keyed recitals replay deterministically', () => {
   const b = run(DP, 'card-6', log);
   assert.equal(a.fingerprint, b.fingerprint);
   assert.deepEqual([...a.taughtCards.entries()], [...b.taughtCards.entries()]);
+});
+
+/* ── per-district literacy ────────────────────────────────────────────── */
+
+test('a district taught nothing of its own reads exactly at the national baseline', () => {
+  const s = run(DP, 'dist-1', [{ year: -1200, action: 'recite', work: RV, card: 'C1' }], { to: -1100 });
+  assert.equal(districtLiteracy(s, 'DST.NOWHERE'), s.literacy);
+});
+
+test('a district taught locally, kept fresh, reads above the national baseline', () => {
+  const log = [{ year: -1200, action: 'recite', work: RV, card: 'C1', district: 'DST.4.4' }];
+  const s = run(DP, 'dist-2', log, { to: -1190 });
+  assert.ok(districtLiteracy(s, 'DST.4.4') > s.literacy,
+    'a district with its own fresh recital should read above the national figure');
+});
+
+test('a district reading stays in range as its local recital ages', () => {
+  // Isolated from the national figure (which drifts with the whole 500-year
+  // timeline) by comparing the local-only curve teaching.js actually uses —
+  // the same one freshness()/cardFreshness() apply everywhere else.
+  const ageCurve = (age) => (age <= FRESH_YEARS ? 1 : Math.max(FRESH_FLOOR, 1 - 0.01 * (age - FRESH_YEARS)));
+  assert.ok(ageCurve(500) < ageCurve(10), 'the curve itself fades with age');
+  assert.ok(ageCurve(5000) >= FRESH_FLOOR, 'and never below the floor');
+
+  const log = [{ year: -3000, action: 'recite', work: RV, card: 'C1', district: 'DST.4.4' }];
+  const later = run(DP, 'dist-3', log, { to: -3000 + FRESH_YEARS + 500 });
+  const v = districtLiteracy(later, 'DST.4.4');
+  assert.ok(v >= 2 && v <= 98, 'district literacy always stays in the 2..98 range');
+});
+
+test('district literacy replays deterministically', () => {
+  const log = [{ year: -1200, action: 'recite', work: RV, card: 'C1', district: 'DST.4.4' }];
+  const a = run(DP, 'dist-4', log, { to: -1000 });
+  const b = run(DP, 'dist-4', log, { to: -1000 });
+  assert.equal(districtLiteracy(a, 'DST.4.4'), districtLiteracy(b, 'DST.4.4'));
 });

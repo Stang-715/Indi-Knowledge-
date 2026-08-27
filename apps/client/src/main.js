@@ -46,7 +46,7 @@ import { composeChronicle, chronicleHTML, chronicleText } from '../../../package
 import { makeSlipTracker } from '../../../packages/ui/src/slips.js';
 import { interiorHTML, scriptoriumModel } from '../../../packages/ui/src/interiors.js';
 import { drawFrom } from '../../../packages/sim/src/rng.js';
-import { RECITE_COST, cardFreshness, isCardLocked } from '../../../packages/sim/src/teaching.js';
+import { RECITE_COST, cardFreshness, isCardLocked, districtLiteracy } from '../../../packages/sim/src/teaching.js';
 import { CHALLENGE_TYPES } from '../../../packages/sim/src/challenges.js';
 import { drawBoundaries } from './boundaries.js';
 import { drawPeopleMode, setListenFocus, chibiCountNear, setHoldRipple } from './people-layer.js';
@@ -340,6 +340,7 @@ function draw(step) {
   if (mapMode === 'survey') drawSurvey(proj, level);
   if (mapMode === 'mandala') drawMandala(proj, level);
   if (mapMode === 'corpus') drawCorpusMode(proj);
+  if (mapMode === 'literacy') drawLiteracyMode(proj);
   if (mapMode === 'people') {
     drawBoundaries(ctx, proj, level, BOUNDARIES, dpr);
     drawPeopleMode(ctx, proj, state, BOUNDARIES, level, dpr);
@@ -505,6 +506,63 @@ function drawMandala(proj) {
     ctx.fillText(label, lx + 16 * dpr, ly);
     lx += (ctx.measureText(label).width + 44 * dpr);
   }
+  ctx.restore();
+}
+
+/** Warm-to-gold ramp: a struggling district reads warn-red, a well-taught
+ *  one reads the same gold the rest of the interface uses for "yours" and
+ *  "good." Interpolated in the 2..98 range districtLiteracy actually returns. */
+function literacyColor(v) {
+  const t = Math.max(0, Math.min(1, (v - 2) / 96));
+  const lo = [168, 100, 43], hi = [201, 162, 39]; // --warn, --gold
+  const c = lo.map((l, i) => Math.round(l + (hi[i] - l) * t));
+  return `rgb(${c[0]},${c[1]},${c[2]})`;
+}
+
+/**
+ * The literacy choropleth (phase, this session): one sheet, one number per
+ * district — districtLiteracy() (teaching.js), the national figure pulled up
+ * wherever a district has been taught its own lessons. Same grid geometry as
+ * survey and mandala, so switching modes doesn't relearn the map.
+ */
+function drawLiteracyMode(proj) {
+  if (!state?.districts) return;
+  const w = 28 / 9, h = 29 / 9;
+  ctx.save();
+  for (const d of state.districts.values()) {
+    const x0 = proj.toX(d.lon - w / 2), x1 = proj.toX(d.lon + w / 2);
+    const y0 = proj.toY(d.lat + h / 2), y1 = proj.toY(d.lat - h / 2);
+    if (x1 < 0 || y1 < 0 || x0 > cv.width || y0 > cv.height) continue;
+    const v = districtLiteracy(state, d.id);
+    ctx.fillStyle = literacyColor(v);
+    ctx.globalAlpha = 0.55;
+    ctx.fillRect(x0 + 1, y0 + 1, x1 - x0 - 2, y1 - y0 - 2);
+    ctx.globalAlpha = 1;
+    if (state.districtTaught?.get(d.id)?.size) {
+      ctx.strokeStyle = 'rgba(201,162,39,.85)';
+      ctx.lineWidth = 1.5 * dpr;
+      ctx.strokeRect(x0 + 2, y0 + 2, x1 - x0 - 4, y1 - y0 - 4);
+    }
+  }
+  // Legend: the ramp itself, and what the gold outline means. Clear of the
+  // mode-tab bar overlaying the canvas's own bottom edge.
+  ctx.font = `${Math.round(11 * dpr)}px Georgia, serif`;
+  const ly = cv.height - 52 * dpr;
+  let lx = 14 * dpr;
+  const stops = [2, 26, 50, 74, 98];
+  for (const s of stops) {
+    ctx.fillStyle = literacyColor(s);
+    ctx.fillRect(lx, ly - 9 * dpr, 14 * dpr, 10 * dpr);
+    lx += 16 * dpr;
+  }
+  ctx.fillStyle = '#2A2118';
+  ctx.fillText(`literacy: ${Math.round(2)}% → ${Math.round(98)}%`, lx + 6 * dpr, ly);
+  lx += ctx.measureText(`literacy: ${Math.round(2)}% → ${Math.round(98)}%`).width + 30 * dpr;
+  ctx.strokeStyle = 'rgba(201,162,39,.85)';
+  ctx.lineWidth = 1.5 * dpr;
+  ctx.strokeRect(lx, ly - 9 * dpr, 12 * dpr, 10 * dpr);
+  ctx.fillStyle = '#2A2118';
+  ctx.fillText('taught locally', lx + 16 * dpr, ly);
   ctx.restore();
 }
 
@@ -1071,6 +1129,7 @@ const MODES = [
   { id: 'mandala', label: 'mandala', hint: 'Sovereignty as it actually was: held, taxed, tributary, paramount — four claims, not one colour.' },
   { id: 'corpus',  label: 'corpus',  hint: 'Where the works are physically held — every carrier, placed.' },
   { id: 'people',  label: 'people',  hint: 'The population, going about its work over the atlas boundaries — and listening when you teach.' },
+  { id: 'literacy', label: 'literacy', hint: 'Who can actually read: the national figure, pulled up wherever a district has been taught its own lessons.' },
 ];
 // The globe (phase 18): modes are selectable AND lockable. A locked mode
 // survives a lens's contextual switch; an unlocked one is borrowed and
