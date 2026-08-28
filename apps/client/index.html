@@ -6,427 +6,127 @@
 <title>Paramountcy</title>
 <link rel="stylesheet" href="../../packages/ui/src/kit.css">
 <style>
-  html,body { height:100%; }
-  /* The frame (phase 2, docs/21-hud.md): five regions. Row one is the status
-     bar; row two splits rail | stage | side. The rail stays hidden until
-     phase 6 populates it — an empty 58px column reads as a bug, not a plan. */
-  #app { display:grid; grid-template-rows: auto 1fr; height:100dvh; gap:0; }
-  #main { display:grid; grid-template-columns: 1fr 322px; min-height:0; }
-  #rail { display:none; }
-  body[data-rail] #main { grid-template-columns: 58px 1fr 322px; }
-  body[data-rail] #rail { display:flex; background:var(--sheet);
-    border-right:1px solid var(--rule); flex-direction:column; align-items:center;
-    padding:10px 0; gap:7px; }
-  /* Below 900px the panel goes under the map rather than beside it.
-     `grid-template-rows: 1fr auto` looks right and is not: `auto` is
-     content-sized, ten panels are taller than any phone, and the `1fr` map row
-     is squeezed to ZERO height. The map was 390x0 — present, painted, and
-     invisible. Give the stage an explicit share and let the panel scroll. */
-  @media (max-width: 900px) {
-    #main  { grid-template-columns: 1fr !important; grid-template-rows: 52dvh minmax(0, 1fr); }
-    body[data-rail] #rail { flex-direction:row; padding:4px 8px; overflow-x:auto;
-      border-right:0; border-bottom:1px solid var(--rule); grid-row:2; }
-    body[data-rail] #main { grid-template-rows: 52dvh auto minmax(0, 1fr); }
-    #stage { min-height: 0; }
-    aside  { border-left: 0; border-top: 1px solid var(--rule); min-height: 0; }
-    /* The status bar carries many controls; at 390px they wrap, never overflow. */
-    #hud   { gap: 5px; padding: 5px 7px; }
-    #hud .rule { display: none; }
-    #year  { font-size: 15px; min-width: 80px; }
-    #notices { right: 8px; top: auto; bottom: 8px; width: auto; left: 8px; }
-    #scrubber { width: 110px; }
-    /* On a phone the stage is only 56dvh, so a full-height card would cover the
-       very thing the player opened the game to look at. Trim it to a title and
-       two taps; the descriptions are read on desktop and in the way here. */
-    #start { padding: 0 10px 10px; }
-    .startcard { max-width: none; padding: 12px 14px 12px; width: 100%; }
-    .startcard h1 { font-size: 20px; margin-bottom: 2px; }
-    .startcard .lede { display: none; }
-    .picks .btn { padding: 9px 12px; }
-    .picks .btn span { display: none; }
-  }
-  /* A grid child will not shrink below its content unless told to. */
-  #stage, aside { min-width: 0; }
+  /* The Recite Game: one screen, one card, one bar, two doors.
+     Everything the old client stacked on this page — panels, lenses, mode
+     tabs, drawers — is deliberately gone. */
+  html, body { height: 100%; overflow: hidden; }
+  body { background: var(--table, #23404a); }
 
-  #stage { position:relative; overflow:hidden; }
-  #map { display:block; width:100%; height:100%; touch-action:none; cursor:grab; }
-  #map.drag { cursor:grabbing; }
+  #stage { position: fixed; inset: 0; }
+  #map { position: absolute; inset: 0; width: 100%; height: 100%; display: block;
+    cursor: grab; touch-action: none; }
+  #map:active { cursor: grabbing; }
 
-  /* The status bar: the old floating #hud, laid flat across the table edge. */
-  #hud { display:flex; gap:8px; align-items:center; flex-wrap:wrap;
-         background:var(--paper); border-bottom:1px solid var(--rule); padding:6px 12px;
-         box-shadow:var(--shadow-contact); position:relative; z-index:20; }
-  #year { font-size:17px; font-weight:600; font-variant-numeric:tabular-nums; min-width:96px; }
-  #era  { font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); }
-  #hud .spacer { flex:1; }
-  /* Vitals (phase 3): the zero-click layer. Every readout is a click-through
-     and every danger state must be visible without opening anything. */
-  #vitals { display:flex; gap:4px; align-items:center; }
-  .vital { display:flex; flex-direction:column; gap:1px; cursor:pointer;
-           padding:2px 8px; border:1px solid transparent; }
-  .vital:hover { border-color:var(--rule); background:var(--sheet); }
-  .vital .k { font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-soft); }
-  .vital .v { font-family:var(--mono); font-size:13.5px; font-variant-numeric:tabular-nums; }
-  .vital .v small { font-size:10px; color:var(--ink-soft); }
-  .vital.bad .v  { color:var(--warn); font-weight:700; }
-  .vital.dire .v { color:#8a3324; font-weight:700; }
-  .vital .v i.up { color:#3a7a4a; font-style:normal; }
-  .vital .v i.down { color:#8a3324; font-style:normal; }
+  /* ── Top strip ─────────────────────────────────────────────────────── */
+  #hud { position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
+    display: flex; align-items: center; gap: 14px; z-index: 5;
+    background: var(--paper); border: 1px solid var(--rule);
+    box-shadow: var(--shadow-lift); padding: 7px 14px; font-size: 13px; }
+  #hud .sep { width: 1px; height: 18px; background: var(--rule); }
+  #day { font-weight: 700; }
+  #era { color: var(--ink-soft); font-family: var(--mono); font-size: 11px; }
+  #speed { font-size: 13px; padding: 2px 9px; cursor: pointer; }
+  .meter { display: flex; align-items: center; gap: 6px; }
+  .meter .k { font-size: 10px; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--ink-soft); }
+  .meter .bar { width: 64px; height: 8px; border: 1px solid var(--ink);
+    background: var(--sheet-shade); position: relative; }
+  .meter .bar i { position: absolute; inset: 0 auto 0 0; display: block; }
+  #orderbar { background: var(--gold, #C9A227); }
+  #foodbar { background: #7A8F52; }
+  #popn { font-weight: 700; font-variant-numeric: tabular-nums; }
+  #money { font-weight: 700; color: var(--warn); }
 
-  /* The Library shelf: the teachcards lens's own card-picker, replacing the
-     plain <select> with something you can actually browse. */
-  #eduDock { position:absolute; left:8px; right:8px; bottom:8px; z-index:5;
-    background:var(--sheet); border:1px solid var(--rule); box-shadow:var(--shadow-lift);
-    padding:8px 10px; max-height:38%; display:flex; flex-direction:column; gap:6px; }
-  /* An ID selector setting `display` outranks the UA [hidden] rule, so the
-     dock kept its flex box (and kept eating clicks) even while hidden — this
-     reasserts it explicitly rather than relying on selector bookkeeping. */
-  #eduDock[hidden] { display:none; }
-  #eduDock .edu-head { font-size:10px; letter-spacing:.1em; text-transform:uppercase;
-    color:var(--ink-soft); display:flex; justify-content:space-between; align-items:center; }
-  #eduDock .edu-shelf { display:flex; gap:6px; overflow-x:auto; padding-bottom:2px; }
-  .edu-card { flex:0 0 auto; width:118px; min-height:74px; text-align:left;
-    border:1px solid var(--rule); background:var(--paper); color:var(--ink);
-    padding:6px 7px; font:inherit; cursor:pointer; position:relative;
-    transition:transform .1s ease, box-shadow .1s ease; }
-  .edu-card:hover:not(:disabled) { transform:translateY(-2px); box-shadow:var(--shadow-contact); }
-  .edu-card.locked { opacity:.45; cursor:not-allowed; }
-  .edu-card.taught { border-color:var(--gold); }
-  .edu-card.armed { outline:2px solid var(--gold); outline-offset:1px; }
-  .edu-card .ek { position:absolute; top:4px; right:5px; font-size:.75rem; }
-  .edu-card .et { display:block; font-size:9px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-soft); }
-  .edu-card .en { display:block; font-weight:700; font-size:12px; line-height:1.2; margin:2px 0; }
-  .edu-card .es { display:block; font-size:10px; color:var(--ink-soft); white-space:nowrap;
-    overflow:hidden; text-overflow:ellipsis; }
+  /* ── The card & the bar ────────────────────────────────────────────── */
+  #cardslot { position: absolute; left: 50%; bottom: 66px; transform: translateX(-50%);
+    z-index: 5; width: min(430px, 86vw); background: var(--paper);
+    border: 1px solid var(--ink); box-shadow: var(--shadow-lift);
+    padding: 12px 16px 10px; text-align: center; }
+  #cardbook { font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--ink-soft); }
+  #cardtitle { font-size: 16px; font-weight: 700; margin: 2px 0 4px;
+    text-wrap: balance; }
+  #cardtext { font-size: 12.5px; line-height: 1.5; color: var(--ink-soft);
+    font-style: italic; }
+  #recitehint { font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--ink-faint); margin-top: 8px; }
 
-  /* The study card, rendered into the shared #drawer. */
-  .study-kicker { font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--warn); }
-  .study-recite { border-left:3px solid var(--gold); padding-left:10px; margin:8px 0; }
-  .study-recite p { font-family:var(--serif); font-size:1.05rem; margin:2px 0; }
-  .study-sloka { font-size:.85rem; line-height:1.55; margin:8px 0; }
-  .study-sloka .dev { font-size:.95rem; }
-  .study-sloka .tr { font-style:italic; color:var(--ink-soft); }
-  .study-sloka .ref { color:var(--ink-faint); font-size:.72rem; }
-  .study-source { font-size:.72rem; color:var(--ink-soft); }
-  .study-quiz { margin-top:12px; border-top:1px dashed var(--rule); padding-top:10px; }
-  .quiz-opt { display:block; width:100%; text-align:left; margin:4px 0; padding:7px 10px;
-    font:inherit; font-size:.82rem; background:var(--paper); border:1px solid var(--rule);
-    cursor:pointer; }
-  .quiz-opt:hover { border-color:var(--ink-soft); }
-  .quiz-opt.shake { animation:quizShake .4s; border-color:var(--warn); }
-  @keyframes quizShake { 25%{transform:translateX(-4px)} 75%{transform:translateX(4px)} }
-  .quiz-msg { font-size:.78rem; min-height:1.2em; margin-top:4px; }
-  .quiz-msg.good { color:#3a7a4a; }
-  .quiz-msg.bad { color:var(--warn); }
+  #recitebar { position: absolute; left: 50%; bottom: 34px; transform: translateX(-50%);
+    z-index: 5; width: min(430px, 86vw); height: 18px; background: var(--sheet);
+    border: 1px solid var(--ink); overflow: hidden; opacity: 0; transition: opacity .12s; }
+  #recitebar.on { opacity: 1; }
+  #recitefill { display: block; height: 100%; width: 0;
+    background: linear-gradient(90deg, var(--gold, #C9A227), #DBB43A); }
 
-  /* Hold-to-recite: teaching is a held moment, not a tap. */
-  #eduRecite { position:absolute; left:50%; bottom:26%; transform:translateX(-50%);
-    z-index:6; width:min(280px, 70%); height:20px; background:var(--sheet);
-    border:1px solid var(--ink); box-shadow:var(--shadow-lift); overflow:hidden; }
-  #eduRecite .rfill { position:absolute; inset:0 auto 0 0; width:0;
-    background:linear-gradient(90deg, var(--gold), #DBB43A); }
-  #eduRecite .rtext { position:absolute; inset:0; display:flex; align-items:center;
-    justify-content:center; font-size:.7rem; letter-spacing:.06em; color:var(--ink); }
-  #eduRecite.mute .rtext { color:var(--warn); }
-  .pillarglyphs { display:flex; gap:4px; cursor:pointer; padding:3px 8px;
-                  border:1px solid transparent; }
-  .pillarglyphs:hover { border-color:var(--rule); background:var(--sheet); }
-  .pg { width:6px; height:24px; background:var(--sheet-shade);
-        box-shadow:inset 0 1px 2px rgba(42,33,24,.3); position:relative; }
-  .pg i { position:absolute; left:0; right:0; bottom:0; background:var(--table-deep); }
+  /* ── The two doors ─────────────────────────────────────────────────── */
+  .door { position: absolute; bottom: 14px; z-index: 5; font-size: 13px;
+    padding: 8px 14px; cursor: pointer; background: var(--paper);
+    border: 1px solid var(--rule); box-shadow: var(--shadow-lift); }
+  .door:hover { box-shadow: var(--shadow-contact); }
+  #btnCards { left: 14px; }
+  #btnBooks { right: 14px; }
 
-  /* The start card sits low and the scrim is light, because the first thing a
-     player should see is the map — not a dark sheet over it. Reported as
-     "I can't see the map", and they were right: the map was behind a 55% scrim. */
-  #start { position:absolute; inset:0; display:grid; align-items:end; justify-items:center;
-           padding:0 16px 6vh; z-index:30; pointer-events:none;
-           background:linear-gradient(to bottom, rgba(42,33,24,0) 34%, rgba(42,33,24,.34) 100%); }
-  #start .startcard { pointer-events:auto; }
-  #start.off { display:none; }
-  .startcard { background:var(--paper); border:1px solid var(--rule); max-width:520px;
-               padding:26px 28px 24px; box-shadow:var(--shadow-lift); }
-  .startcard h1 { margin:0 0 4px; font-size:30px; letter-spacing:.01em; }
-  .startcard .lede { margin:0 0 18px; color:var(--ink-soft); font-size:14px; line-height:1.5; }
-  .picks { display:flex; flex-direction:column; gap:8px; }
-  /* A class selector and the UA [hidden] rule tie on specificity, and author
-     CSS wins ties — so .picks{display:flex} silently overrode [hidden] the
-     same way #eduDock's own display:flex did earlier this session. Reasserted
-     explicitly rather than relying on selector bookkeeping again. */
-  .picks[hidden], #statepick[hidden] { display:none; }
-  .picks .btn { text-align:left; padding:11px 14px; display:flex; flex-direction:column; gap:3px; }
-  .picks .btn b { font-size:15px; }
-  .picks .btn span { font-size:12px; opacity:.8; font-weight:400; }
-  #statepick .lede-state { margin:0 0 12px; color:var(--ink-soft); font-size:13px; line-height:1.5; }
-  .statepick-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:5px;
-    max-height:44vh; overflow-y:auto; }
-  .statepick-grid .btn { font-size:12px; padding:7px 8px; text-align:left; }
-  .chosen-state { margin:0 0 4px; font-size:13px; color:var(--ink-soft); }
-  .chosen-state b { color:var(--ink); }
-  #backToStates { align-self:flex-start; font-size:11px; padding:5px 9px; }
-  #scrub { display:flex; align-items:center; gap:8px; }
-  #scrubber { width:190px; accent-color:var(--gold); }
-  #scrub-year { font-family:var(--mono); font-size:11px; min-width:66px; }
-  #modes { position:absolute; left:14px; bottom:14px; display:flex; gap:2px; }
-  #knowTabs { position:absolute; left:14px; bottom:52px; display:flex; gap:2px;
-    flex-wrap:wrap; max-width:min(640px, 70%); }
-  #knowTabs .tab.tiny { font-size:11px; padding:4px 8px; }
-  .chip-row { display:flex; flex-wrap:wrap; gap:5px; margin:6px 0; }
-  .chip-row .token { font-size:11px; }
-  .confidence-badge { display:inline-block; font-size:10px; letter-spacing:.06em; text-transform:uppercase;
-    color:var(--ink-soft); border:1px solid var(--rule); padding:2px 6px; margin:2px 0 6px; }
-  #notices { position:absolute; right:14px; top:14px; width:290px;
-             display:flex; flex-direction:column; gap:6px; pointer-events:none; }
-  #loading { position:absolute; inset:0; display:grid; place-items:center;
-             background:var(--table); font-size:14px; color:var(--ink-soft); z-index:9; }
+  /* ── Full-screen pages ─────────────────────────────────────────────── */
+  .page { position: fixed; inset: 0; z-index: 20; background: var(--paper);
+    overflow-y: auto; padding: 26px clamp(16px, 6vw, 72px); }
+  .page[hidden] { display: none; }
+  .page h1 { margin: 0 0 4px; font-size: 26px; }
+  .page .lede { color: var(--ink-soft); font-size: 13px; margin: 0 0 20px; }
+  .page .back { position: fixed; top: 14px; right: 18px; font-size: 13px;
+    padding: 6px 12px; cursor: pointer; background: var(--sheet);
+    border: 1px solid var(--rule); }
 
-  aside { background:var(--sheet); border-left:1px solid var(--rule);
-          overflow-y:auto; padding:14px; display:flex; flex-direction:column; gap:12px; }
-  aside::-webkit-scrollbar { width:9px; }
-  aside::-webkit-scrollbar-thumb { background:var(--table-deep); }
-
-  .panel h2 { margin:0 0 8px; font-size:11px; letter-spacing:.12em;
-              text-transform:uppercase; color:var(--ink-soft); font-weight:600; }
-  .acts { display:flex; flex-wrap:wrap; gap:5px; }
-  #chest { max-height:270px; overflow-y:auto; }
-  #frontier { font-size:12px; }
-  #locked { margin-top:8px; font-size:11px; color:var(--ink-soft); }
-  #locked div { padding:2px 0; }
-  #locked b { color:var(--warn); }
-  .stances { display:flex; gap:3px; }
-  .stances button { font-size:10px; padding:1px 6px; }
-  #people { font-size:12px; }
-  .per { display:flex; align-items:baseline; gap:7px; padding:4px 0;
-         border-bottom:1px solid rgba(42,33,24,.08); }
-  .per .nm { flex:1; }
-  .per .role { font-size:10px; letter-spacing:.06em; text-transform:uppercase;
-               color:var(--ink-soft); }
-  .per button { font-size:11px; padding:2px 8px; }
-  .prov { font-size:9px; letter-spacing:.08em; padding:1px 4px; border:1px solid var(--rule);
-          color:var(--ink-soft); }
-  .prov--SOURCED { border-color:var(--land-fertile); color:#4c6136; }
-  .prov--DERIVED { border-color:var(--land-arid); }
-  .prov--SYNTHESIZED { border-style:dashed; opacity:.75; }
-  .disputed { color:var(--warn); font-weight:600; }
-  #endowments { margin-top:7px; font-size:11px; }
-  .endw { display:flex; justify-content:space-between; padding:2px 0; color:var(--ink-soft); }
-  .endw.dead { opacity:.45; text-decoration:line-through; }
-  #routes { font-size:12px; }
-  .route { padding:4px 0; border-bottom:1px solid rgba(42,33,24,.08); }
-  .route .nm { display:flex; justify-content:space-between; }
-  .route .four { display:flex; gap:6px; margin-top:3px; }
-  .route .four span { flex:1; }
-  .route .four i { display:block; height:4px; background:var(--sheet-shade);
-                   box-shadow:inset 0 1px 2px rgba(42,33,24,.3); }
-  .route .four i b { display:block; height:100%; background:var(--table-deep); }
-  .route.choked .nm { color:var(--warn); font-weight:600; }
-  #log { max-height:150px; overflow-y:auto; font-size:12px; line-height:1.5; }
-  #log div { padding:1px 0; }
-  #log .y { color:var(--ink-faint); font-family:var(--mono); font-size:10px; margin-right:6px; }
-  #goals { display:flex; flex-direction:column; gap:4px; font-size:12px; }
-  .goal { display:flex; align-items:center; gap:7px; padding:3px 0; }
-  .goal .mark { width:14px; height:14px; flex:0 0 auto; border:1px solid var(--rule);
-    display:flex; align-items:center; justify-content:center; font-size:10px;
-    color:var(--gold); background:var(--paper); }
-  .goal.done .mark { background:var(--gold); color:var(--sheet); border-color:var(--gold); }
-  .goal.done .label { text-decoration:line-through; color:var(--ink-soft); }
-  .goal .prog { margin-left:auto; font-family:var(--mono); font-size:10px; color:var(--ink-faint); }
-  #mystate { font-size:12px; line-height:1.6; }
-  #mystate .ms-era { color:var(--gold); font-style:italic; }
-  #mystate .ms-row { display:flex; justify-content:space-between; }
-  #mystate .ms-row .k { color:var(--ink-soft); }
+  /* ── Toasts ────────────────────────────────────────────────────────── */
+  #toasts { position: absolute; top: 64px; left: 50%; transform: translateX(-50%);
+    z-index: 6; display: flex; flex-direction: column; gap: 6px; align-items: center;
+    pointer-events: none; }
+  .toast { background: var(--paper); border: 1px solid var(--rule);
+    box-shadow: var(--shadow-lift); padding: 6px 14px; font-size: 12.5px;
+    transition: opacity .4s; }
 </style>
 </head>
-<body data-era="neolithic">
-<div id="app">
+<body>
+<div id="stage">
+  <canvas id="map" tabindex="0" role="application"
+    aria-label="The living map. Hold Space to recite the current card to the population."></canvas>
+
   <div id="hud">
-    <div class="clockbar">
-      <div class="gnomon" id="gnomon"></div>
-      <div>
-        <div id="year">6000 BCE</div>
-        <div id="era">Early Neolithic</div>
-      </div>
-    </div>
-    <div class="rule" style="width:1px;height:30px;margin:0 4px"></div>
-    <button class="btn" id="play">▶ play</button>
-    <button class="btn" id="speed">1×</button>
-    <div id="scrub"><input type="range" id="scrubber" min="0" max="100" value="100"
-      title="Scrub the campaign. A replay is the same world evaluated at a different year."><span id="scrub-year"></span></div>
-    <div class="rule" style="width:1px;height:30px;margin:0 4px"></div>
-    <span id="vitals"></span>
-    <button class="btn" id="sitbtn" title="Situations: what needs attention, by tier. Red is irreversible.">situations<span class="num" id="sitnum">0</span></button>
-    <span class="spacer"></span>
-    <button class="btn" id="soundbtn" title="The audio is the corpus: fuller when more is held, darker when more is lost, and silent in 1193.">♪ off</button>
-    <button class="btn" id="share" title="Copy a link that opens this exact campaign.">share</button>
-    <button class="btn" id="savebtn" title="Copy the campaign to the clipboard. It is a few kilobytes — the world is recomputed from it.">save</button>
-    <button class="btn" id="helpbtn" title="Label every panel with its one-line purpose.">?</button>
-    <button class="btn" id="codex" title="The reference: every era, chapter, event, thread and work — dates shown as the evidence supports them, never as this campaign will roll them.">codex</button>
-    <button class="btn" id="chronicle" title="The book of this campaign: what happened, what you did, and a taste of the quiet years. Kept the way the Ahoms kept theirs.">chronicle</button>
-    <button class="btn" id="telemetry" title="Playtest data: copy the local session metrics to paste into a findings report. Nothing leaves this machine on its own.">metrics</button>
-    <button class="btn" id="creditsbtn" title="The type, the record, the method — licences and the colophon.">credits</button>
-    <label class="btn" for="loadfile" title="Open a saved campaign from a file.">load
-      <input type="file" id="loadfile" accept=".json" hidden></label>
-  </div>
-  <div id="main">
-  <nav id="rail" aria-label="Drawers"></nav>
-  <div id="stage">
-    <canvas id="map" tabindex="0" role="application" aria-label="The map of the subcontinent. Arrow keys pan, plus and minus zoom, space plays and pauses."></canvas>
-    <div id="loading">building the world…</div>
-    <div id="modes" class="tabs"></div>
-    <div id="knowTabs" class="tabs knowtabs" hidden></div>
-    <div id="interiors" style="display:none">
-        <button class="btn tiny" data-room="scriptorium" title="What is being copied right now, thinnest first.">the scriptorium</button>
-        <button class="btn tiny" data-room="treasury" title="The endowments actually paying, and what value weighs.">the treasury</button>
-        <button class="btn tiny" data-room="assembly" title="This year's committee, drawn by lot the way the wall says.">the assembly</button>
-      </div>
-      <div id="notices" aria-live="polite"></div>
-      <div id="sitlist" style="display:none"></div>
-    <div id="start">
-      <div class="startcard">
-        <h1>Paramountcy</h1>
-        <p class="lede">An India-only grand strategy game where the economy you
-          protect is a library.</p>
-        <div id="statepick">
-          <p class="lede-state">Choose the state you'll answer for. Everything you
-            build there is yours to develop; the rest of India stays open to teach,
-            survey and trade in, just not to build in.</p>
-          <div class="statepick-grid" id="statepickGrid"></div>
-        </div>
-        <div class="picks" id="campaignPicks" hidden>
-          <p class="chosen-state" id="chosenStateLine"></p>
-          <button class="btn btn--primary" data-campaign="chola">
-            <b>The Chola Age</b><span>Thanjavur, 850. The record runs to village
-            resolution here — and the survey is unfinished, and the Pandyas are not.
-            First task: feed a reciter before you raise a wall.</span></button>
-          <button class="btn" data-campaign="full">
-            <b>The long campaign</b><span>Mehrgarh, 6000 BCE. Seven thousand nine
-            hundred and forty-seven years, and for the first three thousand the
-            library is people. First task: grow enough to feed one memory.</span></button>
-          <button class="btn tiny" id="backToStates">&larr; choose a different state</button>
-        </div>
-      </div>
-    </div>
-    <div id="drawer"><div id="drawer-inner"></div>
-      <button class="btn" id="drawer-close">close</button></div>
-    <div id="eduDock" hidden></div>
-    <div id="eduRecite" hidden></div>
+    <span id="day">Day 0</span>
+    <span id="era">6000 BCE</span>
+    <button class="btn" id="speed" title="Speed: one day is ten seconds; press to go faster.">▸</button>
+    <span class="sep"></span>
+    <span class="meter" title="The population — the children you are raising."><span class="k">Pop</span><span id="popn">0</span></span>
+    <span class="meter" title="Order: how far this population has come from the wild. Recite morals to raise it; it frays on its own."><span class="k">Order</span><span class="bar"><i id="orderbar"></i></span></span>
+    <span class="meter" title="Food: the hunt, then the harvest. An empty pot kills."><span class="k">Food</span><span class="bar"><i id="foodbar"></i></span></span>
+    <span id="money" hidden>₹ 0</span>
   </div>
 
-  <aside>
-    <div class="tabs" id="outliner-tabs" style="margin-bottom:2px">
-      <button class="tab" data-otab="all" aria-selected="true">all</button>
-      <button class="tab" data-otab="pinned" aria-selected="false">pinned</button>
-    </div>
-    <div class="panel" id="o-pinned-wrap">
-      <h2 data-purpose="What you chose to keep in sight. Stars anywhere pin here.">Pinned</h2>
-      <div id="outliner-pins"></div>
-    </div>
-    <div class="panel o-all">
-      <h2 data-purpose="What is happening whether you watch or not. These cannot be dismissed while they run.">Ongoing</h2>
-      <div id="occupation-banner"></div>
-      <div id="outliner-auto"></div>
-      <div id="watched" class="watched" style="display:none"></div>
-    </div>
-    <div id="slips" aria-live="polite"></div>
-    <div class="panel o-all">
-      <h2 data-purpose="Works gaining a written carrier at your desks, thinnest first.">Copying</h2>
-      <div id="copyqueue"></div>
-    </div>
+  <div id="toasts" aria-live="polite"></div>
 
-    <div class="panel o-all" id="mystate-wrap" hidden>
-      <h2 data-purpose="The state you chose to develop, and what stands there so far.">My State</h2>
-      <div id="mystate"></div>
-    </div>
-
-    <div class="panel o-all">
-      <h2 data-purpose="What a taught population actually adds up to — checked off as the campaign earns them.">Goals</h2>
-      <div id="goals"></div>
-    </div>
-
-    <div class="panel o-all">
-      <h2>Chronicle</h2>
-      <div id="log"></div>
-    </div>
-
-    <div id="colophon" class="tiny muted" title="The fingerprint a bug report needs: commit, build date, datapack hash."></div>
-  </aside>
+  <div id="cardslot">
+    <div id="cardbook"></div>
+    <div id="cardtitle"></div>
+    <div id="cardtext"></div>
+    <div id="recitehint">hold [space] to recite</div>
   </div>
+  <div id="recitebar"><i id="recitefill"></i></div>
+
+  <button class="door" id="btnCards">🃏 Cards</button>
+  <button class="door" id="btnBooks">📖 Books</button>
 </div>
 
-<!-- The six drawer bodies (HUD phase 6). Parked here unmounted; openRail()
-     mounts one at a time into the rail panel. IDs and their listeners
-     survive the move because the nodes move, not their markup. -->
-<div id="panels" hidden>
-  <div class="railbody" data-rail-panel="ledger" data-title="The Ledger">
-    <div class="panel ledger">
-      <h2 data-purpose="What you have: grain, coin, people.">Holdings</h2>
-      <div class="ledger-row"><span>Grain</span><span class="v" id="grain">—</span></div>
-      <div class="ledger-row"><span>Coin</span><span class="v" id="coin">—</span></div>
-      <div class="ledger-row"><span>Farmers</span><span class="v" id="farmers">—</span></div>
-      <div class="ledger-row"><span>Reciters</span><span class="v" id="reciters">—</span></div>
-      <div class="ledger-row"><span>Scribes</span><span class="v" id="scribes">—</span></div>
-      <div class="ledger-row"><span>Guards</span><span class="v" id="soldiers">—</span></div>
-    </div>
-    <div class="panel"><h2>Flows</h2><div id="flows"></div></div>
-    <div class="panel"><h2>Decisions</h2><div class="acts" id="acts"></div></div>
-    <div class="panel"><h2>Goods</h2><div class="tokens" id="goods"></div></div>
-  </div>
-
-  <div class="railbody" data-rail-panel="library" data-title="The Library">
-    <div class="panel">
-      <h2 data-purpose="The library you are keeping alive. Grey means gone.">The Corpus <span class="tiny muted" id="corpus-sum"></span></h2>
-      <div class="tabs" id="libfilters" style="margin-bottom:6px"></div>
-      <div id="workdetail"></div>
-      <div class="chest" id="chest"></div>
-    </div>
-  </div>
-
-  <div class="railbody" data-rail-panel="people" data-title="The People">
-    <div class="panel">
-      <h2 data-purpose="The named: reciters, scribes, patrons — the knowledge infrastructure.">People <span class="tiny muted" id="people-sum"></span></h2>
-      <div id="people"></div>
-      <h2 style="margin-top:10px" data-purpose="Schools: unbroken lines of hands. One member left means one death ends it.">Lineages</h2>
-      <div id="lineages"></div>
-      <div id="endowments"></div>
-    </div>
-  </div>
-
-  <div class="railbody" data-rail-panel="land" data-title="The Land">
-    <div id="districtdetail"></div>
-    <div class="panel">
-      <h2 id="indus-h" style="display:none" data-purpose="The Indus cities against the drying. Triage, not defence.">The Emptying <span class="tiny muted" id="indus-sum"></span></h2>
-      <div id="indus"></div>
-      <h2 data-purpose="The people of the treeline. Learn and Clear are both remembered.">The Frontier <span class="tiny muted" id="frontier-sum"></span></h2>
-      <div id="frontier"></div>
-      <h2>Survey <span class="tiny muted" id="survey-sum"></span></h2>
-      <div id="survey"></div>
-    </div>
-  </div>
-
-  <div class="railbody" data-rail-panel="road" data-title="The Road">
-    <div class="panel">
-      <h2 data-purpose="Roads and sea lanes. Standing orders keep them working while you look away.">Routes</h2>
-      <div id="routes"></div>
-      <div class="acts" id="route-acts" style="margin-top:6px"></div>
-    </div>
-    <div class="panel">
-      <h2 data-purpose="Expeditions on the march. They take as long as the road does.">Missions</h2>
-      <div id="missionlist"></div>
-    </div>
-    <div class="panel">
-      <h2 data-purpose="Standing is bought with shared surplus, and a generation's appetite is finite.">Partners</h2>
-      <div id="partnerlist"></div>
-    </div>
-  </div>
-
-  <div class="railbody" data-rail-panel="court" data-title="The Court">
-    <div class="panel">
-      <h2>Pillars <span class="tiny muted" id="trust-rung"></span></h2>
-      <div id="pillars"></div>
-      <div id="locked"></div>
-    </div>
-    <div class="panel"><h2>Sovereignty</h2><div id="court"></div></div>
-  </div>
+<div class="page" id="page-cards" hidden>
+  <button class="back" data-back>← back to the stage</button>
+  <h1>The Collection</h1>
+  <p class="lede">Every card you will ever recite, face-down until its level. Coming with the deck.</p>
 </div>
-<script type="module" src="./src/main.js"></script>
+
+<div class="page" id="page-books" hidden>
+  <button class="back" data-back>← back to the stage</button>
+  <h1>The Library</h1>
+  <p class="lede">The books, by shelf and by subject — and a place for your own. Coming with the deck.</p>
+</div>
+
+<script type="module" src="./src/game.js"></script>
 </body>
 </html>

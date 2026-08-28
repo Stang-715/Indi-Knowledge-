@@ -16,7 +16,7 @@ import { dirname, join, resolve, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
-const ENTRY = join(ROOT, 'apps/client/src/main.js');
+const ENTRY = join(ROOT, 'apps/client/src/game.js');
 const OUT = join(ROOT, 'dist/paramountcy.html');
 
 /* ── Resolve the module graph ───────────────────────────────────────────── */
@@ -70,68 +70,30 @@ function wrap(file) {
 
 /* ── Inline data ────────────────────────────────────────────────────────── */
 
+// The recite game needs almost nothing: the terrain skeleton, and (from
+// phase 2) the deck. Everything the old client inlined — timeline, works,
+// gazetteer, fonts, ten knowledge-tab files — went with its UI. A data file
+// fetched by the entry but missing from this map fails invisibly on a
+// published artifact (no sibling data/ tree to fetch from), which is the
+// bug this list exists to prevent; keep it in lockstep with game.js's
+// fetch block.
 const DATA = {
   'skeleton':  'data/skeleton/bundle.json',
-  'timeline':  'data/timeline/timeline.json',
-  'works':     'data/corpus/works.json',
-  'cities':    'data/cities/cities.json',
-  'people':    'data/people/people.json',
-  'cards':     'data/timeline/cards.json',
-  'gazetteer': 'data/gazetteer/places.json',
-  'texture':   'data/timeline/texture.json',
-  'occupations': 'data/timeline/occupations.json',
-  'fonts':     'data/fonts/manifest.json',
-  // These two were fetched at runtime with a silent .catch(() => null) and
-  // never actually added here — on a real dev server that fetch succeeds and
-  // nothing looked wrong, but a published single-file artifact has no sibling
-  // data/ tree to fetch from, so BOUNDARIES/EDU (the atlas boundaries and the
-  // education deck) came back null there: no chibis, no district shapes, no
-  // recite cards, all failing quietly. Inlining them is the actual fix.
-  'boundaries': 'data/atlas/boundaries.json',
-  'education': 'data/corpus/education.json',
 };
 const inlined = Object.fromEntries(
   Object.entries(DATA).map(([k, p]) => [k, JSON.parse(readFileSync(join(ROOT, p), 'utf8'))]));
 
-/* ── Knowledge tabs (atlas-data/*.js): inline for the same reason ────────── */
-const KNOWLEDGE_KEYS = ['soil', 'history', 'governance', 'community', 'art', 'craft', 'wars', 'vedas', 'folklore', 'heritage'];
-const knowledgeInline = {};
-for (const key of KNOWLEDGE_KEYS) {
-  const src = readFileSync(join(ROOT, 'atlas-data', `${key}.js`), 'utf8');
-  // Each file is `window.INDIA_DATA.<key> = {...};` — lift just the object
-  // literal rather than re-running the assignment, so this stays plain JSON
-  // and the artifact's CSP (no `unsafe-eval`-style script injection) never
-  // has to load a second live <script> at runtime.
-  const m = src.match(/window\.INDIA_DATA\.\w+\s*=\s*([\s\S]*?);\s*$/);
-  if (!m) { console.warn(`  ! could not parse atlas-data/${key}.js — skipped`); continue; }
-  knowledgeInline[key] = JSON.parse(m[1]);
-}
-
 let entryCode = modules.get(ENTRY).src;
 // Replace the fetch block with the inlined data.
 entryCode = entryCode.replace(
-  /const \[bundle, timeline, works, cityData, people, cardsDoc, gazetteer, texture, occupations, fontManifest, BOUNDARIES, EDU\] = await Promise\.all\(\[[\s\S]*?\]\);/,
-  'const { skeleton: bundle, timeline, works, cities: cityData, people, cards: cardsDoc, gazetteer, texture, occupations, fonts: fontManifest, boundaries: BOUNDARIES, education: EDU } = __DATA;');
+  /const \[bundle\] = await Promise\.all\(\[[\s\S]*?\]\);/,
+  'const [bundle] = [__DATA.skeleton];');
 modules.set(ENTRY, { ...modules.get(ENTRY), src: entryCode });
 
 /* ── Assemble ───────────────────────────────────────────────────────────── */
 
 const css = readFileSync(join(ROOT, 'packages/ui/src/kit.css'), 'utf8');
-
-/* ── Indic fonts (phase 41): exact-subset woff2, embedded as data URIs ──── */
-let fontCSS = '';
-try {
-  const fm = JSON.parse(readFileSync(join(ROOT, 'data/fonts/manifest.json'), 'utf8'));
-  for (const [script, info] of Object.entries(fm.fonts)) {
-    for (const part of info.parts) {
-      const b64 = readFileSync(join(ROOT, 'data/fonts', part.file)).toString('base64');
-      fontCSS += `@font-face{font-family:'PI-${script}';` +
-        `src:url(data:font/woff2;base64,${b64}) format('woff2');` +
-        `unicode-range:${part.range};font-display:swap;}\n`;
-    }
-  }
-  console.log(`  fonts: ${Object.keys(fm.fonts).length} scripts, ${(fm.total / 1024).toFixed(1)} KB embedded`);
-} catch { console.warn('  ! no Indic fonts embedded (run tools/fetch-fonts.mjs)'); }
+const fontCSS = '';   // the game labels nothing in Indic scripts any more
 const html = readFileSync(join(ROOT, 'apps/client/index.html'), 'utf8');
 
 const body = html
@@ -159,7 +121,6 @@ const out = `<title>Paramountcy</title>
 ${body}
 <script type="module">
 globalThis.__BUILD = ${JSON.stringify(BUILD)};
-globalThis.__KNOWLEDGE_INLINE = ${JSON.stringify(knowledgeInline)};
 const __DATA = ${JSON.stringify(inlined)};
 const __m = {};
 ${order.map(wrap).join('\n\n')}
