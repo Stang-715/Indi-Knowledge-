@@ -25,7 +25,7 @@ import { initPop, tickPop, dailyPop, drawPop, popCount, animalCount,
 import { initDeck, card, allCards, recordRecital, recitedEntries, recitedCount,
          totalXP, levelFor, levelName, nextLevelAt, cardsAtLevel, nextCard,
          timesRecited, bookProgress } from './deck.js';
-import { initPages, openCardsPage, openBooksPage } from './pages.js';
+import { initPages, openCardsPage, openBooksPage, openDetail } from './pages.js';
 
 const $ = (id) => document.getElementById(id);
 
@@ -157,6 +157,9 @@ const G = {
   built: {},                         // buildingId → true
   // The ledger of the raising: what it has cost so far, and what it grew.
   tally: { deathsFight: 0, deathsHunger: 0, births: 0 },
+  // Cards whose full text you have actually opened. You cannot teach what
+  // you have not read, so this gates the first recital of every card.
+  read: new Set(),
 };
 let currentCard = null;
 const BOOK_TITLE = new Map(DECK.books.map((b) => [b.id, b.title]));
@@ -167,6 +170,7 @@ function saveGame() {
   try {
     localStorage.setItem(SAVE_KEY, JSON.stringify({
       day: G.day, meters: G.meters, flags: G.flags, built: G.built, tally: G.tally,
+      read: [...G.read],
       recited: recitedEntries(), currentCardId: currentCard?.id ?? null,
       pop: popCount(),
     }));
@@ -181,22 +185,46 @@ function loadGame() {
   } catch { return null; }
 }
 
-/* ── The recital: hold Space ────────────────────────────────────────────── */
+/* ── The recital: a chant, kept in time ─────────────────────────────────── */
+//
+// Reciting is the whole game, so it is not one button held down. A slow beat
+// runs while you chant; press Space ON each beat and the chant carries, the
+// voice-rings pulse, and the crowd draws nearer. Drift off the beat and the
+// chant stalls; miss three and it falters and is lost. Eight beats to a card.
 
-const RECITE_MS = 3000;
-const LISTEN_RADIUS_DEG = 7;         // a voice that carries — most camps hear it
-let recite = null;                   // { startedAt }
+const BEAT_MS = 900;
+const HIT_WINDOW_MS = 240;           // how near the beat a press must land
+const CHANT_BEATS = 8;
+const MAX_MISSES = 3;
+const LISTEN_RADIUS_MIN = 4.5;       // your voice before the crowd gathers
+const LISTEN_RADIUS_MAX = 9;         // and once they are rapt
+
+let recite = null;   // { startedAt, nextBeat, hits, misses, lastHitAt, beatIndex }
 
 function reciteFocus() {
   const proj = cam.projection(cv.width, cv.height);
-  return { lon: proj.toLon(cv.width / 2), lat: proj.toLat(cv.height / 2), rDeg: LISTEN_RADIUS_DEG };
+  const grip = recite ? recite.hits / CHANT_BEATS : 0;
+  return {
+    lon: proj.toLon(cv.width / 2), lat: proj.toLat(cv.height / 2),
+    rDeg: LISTEN_RADIUS_MIN + (LISTEN_RADIUS_MAX - LISTEN_RADIUS_MIN) * grip,
+  };
 }
 
 function startRecite() {
   if (recite || !currentCard || pageOpen()) return;
-  recite = { startedAt: performance.now() };
+  // You cannot teach what you have not read.
+  if (!G.read.has(currentCard.id)) {
+    $('cardslot').classList.add('needsread');
+    setTimeout(() => $('cardslot').classList.remove('needsread'), 900);
+    toast('Read it first — open the card and take it in.');
+    return;
+  }
+  const now = performance.now();
+  recite = { startedAt: now, nextBeat: now + BEAT_MS, hits: 0, misses: 0,
+             lastHitAt: 0, beatIndex: 0 };
   setListenFocus(reciteFocus());
   $('recitebar').classList.add('on');
+  paintChant();
 }
 
 function endRecite(completed) {
@@ -204,7 +232,49 @@ function endRecite(completed) {
   setListenFocus(null);
   $('recitebar').classList.remove('on');
   $('recitefill').style.width = '0%';
+  $('chantpips').innerHTML = '';
+  $('recitebar').classList.remove('hit', 'miss');
   if (completed) onRecited(currentCard);
+}
+
+/** One press of Space during a chant: on the beat, or not. */
+function chantPress() {
+  if (!recite) return;
+  const now = performance.now();
+  const off = Math.abs(now - recite.nextBeat);
+  // Also accept a press just AFTER the beat has already ticked past.
+  const offPrev = Math.abs(now - (recite.nextBeat - BEAT_MS));
+  if (Math.min(off, offPrev) <= HIT_WINDOW_MS) {
+    recite.hits++;
+    recite.lastHitAt = now;
+    $('recitebar').classList.remove('miss');
+    $('recitebar').classList.add('hit');
+    setTimeout(() => $('recitebar')?.classList.remove('hit'), 160);
+    if (recite.hits >= CHANT_BEATS) { endRecite(true); return; }
+  } else {
+    chantMiss();
+  }
+  paintChant();
+}
+
+function chantMiss() {
+  if (!recite) return;
+  recite.misses++;
+  $('recitebar').classList.remove('hit');
+  $('recitebar').classList.add('miss');
+  setTimeout(() => $('recitebar')?.classList.remove('miss'), 200);
+  if (recite.misses >= MAX_MISSES) {
+    endRecite(false);
+    toast('The chant falters and the crowd drifts away.');
+  }
+}
+
+function paintChant() {
+  if (!recite) return;
+  $('recitefill').style.width = `${(recite.hits / CHANT_BEATS * 100).toFixed(1)}%`;
+  $('chantpips').innerHTML = Array.from({ length: CHANT_BEATS }, (_, i) =>
+    `<i class="${i < recite.hits ? 'on' : ''}"></i>`).join('')
+    + `<b class="misses">${'✕'.repeat(recite.misses)}</b>`;
 }
 
 /** What each kind of teaching does to the world. Morals calm; stories
@@ -254,15 +324,10 @@ function onRecited(c) {
 }
 
 window.addEventListener('keydown', (e) => {
-  if (e.code === 'Space' && !e.repeat) { e.preventDefault(); startRecite(); }
-});
-window.addEventListener('keyup', (e) => {
-  if (e.code === 'Space' && recite) {
-    e.preventDefault();
-    const done = performance.now() - recite.startedAt >= RECITE_MS;
-    endRecite(done);
-    if (!done) toast('The words trail off — a recital needs finishing.');
-  }
+  if (e.code !== 'Space' || e.repeat) return;
+  e.preventDefault();
+  if (recite) chantPress();
+  else startRecite();
 });
 window.addEventListener('blur', () => { if (recite) endRecite(false); });
 
@@ -281,8 +346,16 @@ $('btnBooks').addEventListener('click', openBooksPage);
 for (const el of document.querySelectorAll('[data-back]'))
   el.addEventListener('click', closePages);
 window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePages(); });
+$('btnRead').addEventListener('click', () => { if (currentCard) openDetail(currentCard.id, 'stage'); });
+
 initPages({
   getLevel: () => G.level,
+  onRead: (id) => {
+    if (G.read.has(id)) return;
+    G.read.add(id);
+    saveGame();
+    paintHUD();
+  },
   setCurrentCard: (id) => {
     const c = card(id);
     if (!c) return;
@@ -382,6 +455,13 @@ function paintHUD() {
   $('cardtitle').textContent = currentCard ? currentCard.title : 'Everything is recited — keep it warm';
   $('cardbook').textContent = currentCard ? (BOOK_TITLE.get(currentCard.book) ?? currentCard.book) : '';
   $('cardtext').textContent = currentCard ? currentCard.recite : '';
+  const unread = currentCard && !G.read.has(currentCard.id);
+  $('btnRead').hidden = !currentCard;
+  $('btnRead').textContent = unread ? '📖 Read it' : '📖 Read again';
+  $('cardslot').classList.toggle('unread', !!unread);
+  $('recitehint').textContent = !currentCard ? ''
+    : unread ? 'read it before you can teach it'
+    : 'press [space] to start — then keep the beat';
   $('btnCards').textContent = `🃏 Cards ${recitedCount()}/${allCards().length}`;
   const bp = bookProgress().filter((b) => b.done > 0).length;
   $('btnBooks').textContent = `📖 Books ${bp}/${bookProgress().length}`;
@@ -448,24 +528,49 @@ function frame(t) {
     drawPop(ctx, proj, dpr, t / 1000, G.level);
 
     if (recite) {
-      const frac = Math.min(1, (t - recite.startedAt) / RECITE_MS);
-      $('recitefill').style.width = `${(frac * 100).toFixed(1)}%`;
-      const f = reciteFocus();
-      setListenFocus(f);
-      const cx = proj.toX(f.lon), cy = proj.toY(f.lat);
-      const rMax = Math.abs(proj.toX(f.lon + f.rDeg) - cx);
-      ctx.save();
-      ctx.strokeStyle = 'rgba(201,162,39,0.55)';
-      ctx.lineWidth = 1.4 * dpr;
-      for (let i = 0; i < 3; i++) {
-        const rr = rMax * (((t / 1400) + i / 3) % 1);
-        ctx.globalAlpha = 0.6 * (1 - rr / rMax);
-        ctx.beginPath();
-        ctx.arc(cx, cy, rr, 0, Math.PI * 2);
-        ctx.stroke();
+      const now = performance.now();
+      // The beat passes whether or not you were on it.
+      while (recite && now > recite.nextBeat + HIT_WINDOW_MS) {
+        recite.nextBeat += BEAT_MS;
+        recite.beatIndex++;
+        // A beat that went by without a press near it is a missed beat —
+        // unless the press that answered it landed early, inside the window.
+        if (recite.lastHitAt < recite.nextBeat - BEAT_MS - HIT_WINDOW_MS) {
+          chantMiss();
+          if (recite) paintChant();
+        }
       }
-      ctx.restore();
-      if (frac >= 1) endRecite(true);
+      if (recite) {
+        // The strike marker sweeps toward the beat; the zone is the window.
+        const untilBeat = recite.nextBeat - now;
+        const sweep = 1 - Math.max(0, Math.min(1, untilBeat / BEAT_MS));
+        $('chantmarker').style.left = `${(sweep * 100).toFixed(1)}%`;
+        const f = reciteFocus();
+        setListenFocus(f);
+        const cx = proj.toX(f.lon), cy = proj.toY(f.lat);
+        const rMax = Math.abs(proj.toX(f.lon + f.rDeg) - cx);
+        ctx.save();
+        ctx.strokeStyle = 'rgba(201,162,39,0.55)';
+        ctx.lineWidth = 1.4 * dpr;
+        // Rings ride the beat itself, so the map pulses in time with you.
+        for (let i = 0; i < 3; i++) {
+          const rr = rMax * (((now / (BEAT_MS * 1.6)) + i / 3) % 1);
+          ctx.globalAlpha = 0.6 * (1 - rr / rMax);
+          ctx.beginPath();
+          ctx.arc(cx, cy, rr, 0, Math.PI * 2);
+          ctx.stroke();
+        }
+        // A brighter ring snaps out on each clean hit.
+        const sinceHit = now - recite.lastHitAt;
+        if (sinceHit < 420) {
+          ctx.globalAlpha = 0.75 * (1 - sinceHit / 420);
+          ctx.lineWidth = 2.4 * dpr;
+          ctx.beginPath();
+          ctx.arc(cx, cy, rMax * (sinceHit / 420) * 0.9, 0, Math.PI * 2);
+          ctx.stroke();
+        }
+        ctx.restore();
+      }
     }
   }
 
@@ -482,6 +587,7 @@ if (SAVED) {
   Object.assign(G.flags, SAVED.flags ?? {});
   Object.assign(G.built, SAVED.built ?? {});
   Object.assign(G.tally, SAVED.tally ?? {});
+  for (const id of SAVED.read ?? []) G.read.add(id);
   G.level = levelFor(totalXP());
   currentCard = (SAVED.currentCardId && card(SAVED.currentCardId)) || nextCard(G.level);
   initPop(Math.max(12, Math.min(420, SAVED.pop ?? START_POP)));
@@ -507,6 +613,12 @@ window.__test = {
   pop: () => popCount(),
   animals: () => animalCount(),
   reciting: () => !!recite,
+  read: () => [...G.read],
+  markRead: (id) => { G.read.add(id ?? currentCard?.id); paintHUD(); },
+  // The chant, for headless drives: when the next beat lands, and how it goes.
+  chant: () => recite && { hits: recite.hits, misses: recite.misses,
+    nextBeatIn: recite.nextBeat - performance.now(), beats: CHANT_BEATS },
+  beatMs: () => BEAT_MS,
   recited: () => recitedEntries().map(([id]) => id),
   currentCard: () => currentCard?.id ?? null,
   setSpeed: (i) => { G.speedIdx = i; },

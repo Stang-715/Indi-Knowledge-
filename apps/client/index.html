@@ -53,12 +53,35 @@
   #recitehint { font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
     color: var(--ink-faint); margin-top: 8px; }
 
+  #btnRead { margin-top: 9px; font-size: 11px; padding: 4px 10px; }
+  #btnRead[hidden] { display: none; }
+  #cardslot.unread #cardtext { opacity: .55; }
+  #cardslot.needsread { animation: shake .5s; }
+  @keyframes shake { 10%,90% { transform: translateX(-51%) } 30%,70% { transform: translateX(-49%) } }
+
+  /* The chant track: a marker sweeps toward the strike zone once a beat. */
   #recitebar { position: absolute; left: 50%; bottom: 34px; transform: translateX(-50%);
-    z-index: 5; width: min(430px, 86vw); height: 18px; background: var(--sheet);
+    z-index: 5; width: min(430px, 86vw); height: 26px; background: var(--sheet);
     border: 1px solid var(--ink); overflow: hidden; opacity: 0; transition: opacity .12s; }
   #recitebar.on { opacity: 1; }
+  #recitebar.hit { box-shadow: inset 0 0 0 2px var(--gold, #C9A227); }
+  #recitebar.miss { box-shadow: inset 0 0 0 2px var(--loss, #8a3324); }
   #recitefill { display: block; height: 100%; width: 0;
-    background: linear-gradient(90deg, var(--gold, #C9A227), #DBB43A); }
+    background: linear-gradient(90deg, rgba(201,162,39,.45), rgba(219,180,58,.45)); }
+  /* The gold zone is exactly HIT_WINDOW_MS wide as a fraction of BEAT_MS
+     (240/900), so what looks like a hit IS a hit — the marker parks at the
+     right edge during the short grace just after the beat. */
+  #chantzone { position: absolute; top: 0; bottom: 0; right: 0; width: 26.7%;
+    background: rgba(201,162,39,.3); border-left: 1px solid var(--gold, #C9A227); }
+  #chantmarker { position: absolute; top: 0; bottom: 0; width: 3px; left: 0;
+    background: var(--ink); }
+  #chantpips { position: absolute; inset: 0; display: flex; align-items: center;
+    justify-content: center; gap: 4px; pointer-events: none; }
+  #chantpips i { width: 7px; height: 7px; border: 1px solid var(--ink);
+    background: transparent; display: block; }
+  #chantpips i.on { background: var(--gold, #C9A227); }
+  #chantpips .misses { color: var(--loss, #8a3324); font-size: 10px; margin-left: 6px;
+    letter-spacing: 2px; }
 
   /* ── The two doors ─────────────────────────────────────────────────── */
   .door { position: absolute; bottom: 14px; z-index: 5; font-size: 13px;
@@ -201,9 +224,15 @@
     <div id="cardbook"></div>
     <div id="cardtitle"></div>
     <div id="cardtext"></div>
-    <div id="recitehint">hold [space] to recite</div>
+    <button class="btn tiny" id="btnRead">📖 Read it</button>
+    <div id="recitehint">read it before you can teach it</div>
   </div>
-  <div id="recitebar"><i id="recitefill"></i></div>
+  <div id="recitebar">
+    <i id="recitefill"></i>
+    <span id="chantzone"></span>
+    <span id="chantmarker"></span>
+    <span id="chantpips"></span>
+  </div>
 
   <button class="door" id="btnCards">🃏 Cards</button>
   <button class="door" id="btnFund" hidden title="Spend the common pot on what keeps a people organized.">🛕 Fund</button>

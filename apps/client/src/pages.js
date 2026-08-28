@@ -55,24 +55,29 @@ function renderBinder() {
 }
 
 function onCardsClick(e) {
-  const det = e.target.closest('[data-recite]');
-  if (det) { hooks.setCurrentCard(det.dataset.recite); closeDetail(); return; }
-  if (e.target.closest('[data-close-detail]')) { closeDetail(); return; }
+  // The detail's own buttons are handled on the detail element itself.
+  if (e.target.closest('.card-detail')) return;
   const b = e.target.closest('[data-card]');
   if (b) openDetail(b.dataset.card, 'page-cards');
 }
 
 /* ── The card detail (shared by both pages) ─────────────────────────────── */
 
-function openDetail(id, pageId) {
+/**
+ * Open one card's full text. Exported because the stage needs it too: the
+ * card slot's Read button opens exactly this, and reading a card once is
+ * what unlocks reciting it. `hostId` is whichever surface it belongs to.
+ */
+export function openDetail(id, pageId = 'stage') {
   const c = card(id);
   if (!c) return;
+  hooks?.onRead?.(id);
   const books = new Map(allBooks().map((b) => [b.id, b]));
   const n = timesRecited(id);
   closeDetail();
   const el = document.createElement('div');
   el.className = 'card-detail';
-  $(pageId).append(el);
+  ($(pageId) ?? document.body).append(el);
   el.innerHTML = `<div class="cd-box">
     <div class="cd-book">${books.get(c.book)?.icon ?? ''} ${books.get(c.book)?.title ?? c.book}${c.sub ? ` · ${c.sub}` : ''}</div>
     <h2>${c.title}</h2>
@@ -90,6 +95,14 @@ function openDetail(id, pageId) {
       </span>
     </div>
   </div>`;
+  // Bound on the element, not delegated from a page: the detail can now be
+  // hosted on the stage too, where no page handler would ever see it.
+  el.addEventListener('click', (e) => {
+    if (e.target.closest('[data-close-detail]')) { closeDetail(); return; }
+    const r = e.target.closest('[data-recite]');
+    if (r) { hooks.setCurrentCard(r.dataset.recite); closeDetail(); return; }
+    if (e.target === el) closeDetail();     // click the backdrop to dismiss
+  });
   el.hidden = false;
 }
 
@@ -193,9 +206,7 @@ function renderBookOpen(bookId, lv, tabs) {
 }
 
 function onBooksClick(e) {
-  const det = e.target.closest('[data-recite]');
-  if (det) { hooks.setCurrentCard(det.dataset.recite); closeDetail(); return; }
-  if (e.target.closest('[data-close-detail]')) { closeDetail(); return; }
+  if (e.target.closest('.card-detail')) return;
   const tab = e.target.closest('[data-tab]');
   if (tab) { booksView.tab = tab.dataset.tab; booksView.open = null; renderBooks(); return; }
   if (e.target.closest('[data-shelf]')) { booksView.open = null; renderBooks(); return; }
