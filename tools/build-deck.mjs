@@ -110,15 +110,19 @@ cards.push({
 /* ── Kahaniyan: real folk tales, spread level-by-level ──────────────────── */
 
 const tales = [];
+// Titles, tales AND morals all come localized ({en, hi}); take the string
+// either way, keeping the hi variants where they exist.
+const loc = (v, lang = 'en') => (v && typeof v === 'object' ? v[lang] ?? null : v ?? null);
 for (const [slug, s] of Object.entries(folklore.states)) {
   for (const [i, t] of (s.tales ?? []).entries()) {
     tales.push({
       id: `KAH.${slug.toUpperCase().replace(/-/g, '_')}.${i + 1}`,
-      title: t.title?.en ?? 'A tale',
-      hi: t.title?.hi ?? null,
-      moral: t.moral ?? null,
-      text: t.tale?.en ?? '',
-      origin: t.origin ?? s.name,
+      title: loc(t.title) ?? 'A tale',
+      hi: loc(t.title, 'hi'),
+      moral: loc(t.moral),
+      moralHi: loc(t.moral, 'hi'),
+      text: loc(t.tale) ?? '',
+      origin: loc(t.origin) ?? s.name,
     });
   }
 }
@@ -131,7 +135,7 @@ tales.forEach((t, i) => {
     id: t.id, book: 'kahani', category: 'Stories', level: (i % 9) + 1,
     title: t.title, hi: t.hi,
     recite: t.moral ?? t.text.split('. ')[0] + '.',
-    text: t.text, moral: t.moral, origin: t.origin,
+    text: t.text, moral: t.moral, moralHi: t.moralHi, origin: t.origin,
   });
 });
 

@@ -12,7 +12,7 @@
  * untouched elsewhere in the repo). Math.random is fine here: nothing in
  * this file is ever replayed from a log.
  */
-import { drawChibi, drawDeer, drawFire } from './chibi-art.js';
+import { drawChibi, drawDeer, drawFire, drawCow, drawBuilding } from './chibi-art.js';
 
 /* ── Tuning ─────────────────────────────────────────────────────────────── */
 
@@ -98,6 +98,30 @@ export function setListenFocus(f) { listenFocus = f; }
 export function lightFire(lon, lat) { fires.push({ lon, lat }); }
 export const fireCount = () => fires.length;
 
+/* ── The taught economy, visible ────────────────────────────────────────── */
+//
+// game.js owns the numbers; this owns what they LOOK like: taught farming
+// puts tilled fields by the camps and villagers to work in them, taught
+// herding puts cows on the grass, funded buildings stand where they were
+// paid for. Presentation reads the flags, never writes them.
+
+let econ = { farming: 0, herding: 0 };
+let cows = [];        // {lon, lat, phase}
+let buildings = [];   // {type: 'hall'|'school'|'granary', lon, lat}
+
+export function setEconomyFlags(f) {
+  econ = { ...econ, ...f };
+  const want = econ.herding ? Math.min(12, 2 + econ.herding * 3) : 0;
+  while (cows.length < want) {
+    const [clon, clat] = pick(CAMPS);
+    cows.push({ lon: clon + (rnd() - 0.5) * 1.4, lat: clat - 0.25 - rnd() * 0.5, phase: rnd() * 6 });
+  }
+  cows.length = Math.min(cows.length, want);
+}
+
+export function setBuildings(list) { buildings = list; }
+export const cowCount = () => cows.length;
+
 /** Drain the running tallies (deaths, births, meat) since last asked. */
 export function takeCounters() {
   const c = counters;
@@ -157,6 +181,11 @@ export function tickPop(dt, meters) {
             break;
           }
         }
+        // A taught farmer would rather work the field than roam for it.
+        if (econ.farming && rnd() < 0.1 + econ.farming * 0.05) {
+          p.state = 'farm'; p.timer = 3 + rnd() * 4;
+          break;
+        }
         if (meters.food < 55 && rnd() < 0.35) {
           let prey = null, bd = HUNT_RANGE;
           for (const a of animals) {
@@ -172,6 +201,10 @@ export function tickPop(dt, meters) {
 
       case 'walk':
         if (walkToward(p, WALK_SPEED, dt)) { p.state = 'idle'; p.timer = 1 + rnd() * 3; }
+        break;
+
+      case 'farm':
+        if (p.timer <= 0) { p.state = 'idle'; p.timer = 1 + rnd() * 2; }
         break;
 
       case 'fight': {
@@ -277,10 +310,41 @@ export function drawPop(ctx, proj, dpr, now, level) {
   const size = 11 * dpr;
   const wardrobe = WARDROBE[level >= 9 ? 2 : level >= 4 ? 1 : 0];
 
+  // Tilled fields: taught farming, on the ground. More cards, more rows.
+  if (econ.farming > 0) {
+    ctx.save();
+    ctx.strokeStyle = 'rgba(122,82,48,0.55)';
+    ctx.lineWidth = Math.max(1, 1.6 * dpr);
+    const rows = Math.min(5, 1 + econ.farming);
+    for (const [clon, clat] of campList()) {
+      const fx = proj.toX(clon + 0.35), fy = proj.toY(clat - 0.35);
+      if (fx < -60 || fy < -60 || fx > w + 60 || fy > h + 60) continue;
+      for (let r = 0; r < rows; r++) {
+        ctx.beginPath();
+        ctx.moveTo(fx, fy + r * 4 * dpr);
+        ctx.lineTo(fx + 26 * dpr, fy + r * 4 * dpr);
+        ctx.stroke();
+      }
+    }
+    ctx.restore();
+  }
+
+  for (const b of buildings) {
+    const x = proj.toX(b.lon), y = proj.toY(b.lat);
+    if (x < -40 || y < -40 || x > w + 40 || y > h + 40) continue;
+    drawBuilding(ctx, x, y, 22 * dpr, b.type, dpr);
+  }
+
   for (const f of fires) {
     const x = proj.toX(f.lon), y = proj.toY(f.lat);
     if (x < -30 || y < -30 || x > w + 30 || y > h + 30) continue;
     drawFire(ctx, x, y, 14 * dpr, now, f.lon * 7);
+  }
+
+  for (const c of cows) {
+    const x = proj.toX(c.lon), y = proj.toY(c.lat);
+    if (x < -30 || y < -30 || x > w + 30 || y > h + 30) continue;
+    drawCow(ctx, x, y, 10 * dpr, dpr, c.phase, now);
   }
 
   for (const a of animals) {

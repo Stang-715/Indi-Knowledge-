@@ -198,6 +198,54 @@ export function drawDeer(ctx, x, y, h, dpr, phase, now, fleeing) {
   ctx.restore();
 }
 
+/**
+ * A funded building — the shapes money and attention buy. Pictorial-map
+ * grammar: symbolic, at fixed screen size, deliberately out of scale.
+ */
+export function drawBuilding(ctx, x, y, h, type, dpr) {
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.strokeStyle = '#3e2540';
+  ctx.lineWidth = Math.max(0.8, h * 0.05);
+  if (type === 'hall') {
+    // meditation hall: a dome on a plinth, a finial above
+    ctx.fillStyle = '#e0d3b4';
+    ctx.fillRect(-h * 0.45, -h * 0.28, h * 0.9, h * 0.28);
+    ctx.strokeRect(-h * 0.45, -h * 0.28, h * 0.9, h * 0.28);
+    ctx.beginPath();
+    ctx.arc(0, -h * 0.28, h * 0.34, Math.PI, 0);
+    ctx.fill(); ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(0, -h * 0.62); ctx.lineTo(0, -h * 0.8);
+    ctx.stroke();
+    ctx.fillStyle = '#C9A227';
+    ctx.beginPath(); ctx.arc(0, -h * 0.8, h * 0.06, 0, Math.PI * 2); ctx.fill();
+  } else if (type === 'school') {
+    // vedic school: a pitched roof over an open porch, a scroll leaning at the door
+    ctx.fillStyle = '#e0d3b4';
+    ctx.fillRect(-h * 0.42, -h * 0.32, h * 0.84, h * 0.32);
+    ctx.strokeRect(-h * 0.42, -h * 0.32, h * 0.84, h * 0.32);
+    ctx.fillStyle = '#a8642b';
+    ctx.beginPath();
+    ctx.moveTo(-h * 0.52, -h * 0.32); ctx.lineTo(0, -h * 0.62); ctx.lineTo(h * 0.52, -h * 0.32);
+    ctx.closePath(); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = '#f7f7f5';
+    ctx.fillRect(h * 0.12, -h * 0.22, h * 0.14, h * 0.18);
+    ctx.strokeRect(h * 0.12, -h * 0.22, h * 0.14, h * 0.18);
+  } else {
+    // granary: a round bin with a straw cap
+    ctx.fillStyle = '#d9c49a';
+    ctx.beginPath();
+    ctx.ellipse(0, -h * 0.2, h * 0.34, h * 0.26, 0, 0, Math.PI * 2);
+    ctx.fill(); ctx.stroke();
+    ctx.fillStyle = '#b8934e';
+    ctx.beginPath();
+    ctx.moveTo(-h * 0.4, -h * 0.36); ctx.lineTo(0, -h * 0.6); ctx.lineTo(h * 0.4, -h * 0.36);
+    ctx.closePath(); ctx.fill(); ctx.stroke();
+  }
+  ctx.restore();
+}
+
 /** A campfire — the first thing science gives this population. */
 export function drawFire(ctx, x, y, h, now, phase) {
   ctx.save();

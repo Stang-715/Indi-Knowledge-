@@ -80,6 +80,7 @@ function openDetail(id, pageId) {
     <p class="cd-recite">“${c.recite}”</p>
     ${c.text && c.text !== c.recite ? `<p class="cd-text">${c.text}</p>` : ''}
     ${c.moral ? `<p class="cd-moral"><b>Moral:</b> ${c.moral}</p>` : ''}
+    ${c.moralHi ? `<p class="cd-moral cd-hi">${c.moralHi}</p>` : ''}
     ${c.origin ? `<p class="cd-origin">${c.origin}</p>` : ''}
     <div class="cd-row">
       <span class="tiny">${n ? `recited ${n} time${n === 1 ? '' : 's'}` : 'never recited'}</span>

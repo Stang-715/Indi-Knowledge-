@@ -20,7 +20,8 @@ import { RealmRenderer } from '../../../packages/render-realm/src/renderer.js';
 import { Camera, fitSpan } from '../../../packages/render-realm/src/camera.js';
 import { WorldgenClient } from '../../../packages/render-realm/src/workerclient.js';
 import { initPop, tickPop, dailyPop, drawPop, popCount, animalCount,
-         setListenFocus, takeCounters, lightFire, campList, START_POP } from './pop.js';
+         setListenFocus, takeCounters, lightFire, campList, START_POP,
+         setEconomyFlags, setBuildings, cowCount } from './pop.js';
 import { initDeck, card, allCards, recordRecital, recitedEntries, recitedCount,
          totalXP, levelFor, levelName, nextLevelAt, cardsAtLevel, nextCard,
          timesRecited, bookProgress } from './deck.js';
@@ -153,6 +154,7 @@ const G = {
   level: 1,
   meters: { order: 8, food: 50, knowledge: 0, money: 0 },
   flags: { fire: false, farming: 0, herding: 0, craft: 0, barter: false, money: false },
+  built: {},                         // buildingId → true
 };
 let currentCard = null;
 const BOOK_TITLE = new Map(DECK.books.map((b) => [b.id, b.title]));
@@ -162,7 +164,7 @@ const BOOK_TITLE = new Map(DECK.books.map((b) => [b.id, b.title]));
 function saveGame() {
   try {
     localStorage.setItem(SAVE_KEY, JSON.stringify({
-      day: G.day, meters: G.meters, flags: G.flags,
+      day: G.day, meters: G.meters, flags: G.flags, built: G.built,
       recited: recitedEntries(), currentCardId: currentCard?.id ?? null,
       pop: popCount(),
     }));
@@ -209,8 +211,9 @@ function endRecite(completed) {
 const CATEGORY_FX = {
   Morals:      (c) => { bump('order', 7);  toast('The people listen. Order grows.'); },
   Stories:     (c) => { bump('order', 5);  toast(`They retell "${c.title}" at the fires.`); },
-  Agriculture: (c) => { bump('order', 2); G.flags.farming++;
-                        toast('Seeds go into the ground. The pot will fill itself.'); },
+  Agriculture: (c) => { bump('order', 2);
+                        if (c.id.startsWith('EDU.SKILL.CATTLE')) { G.flags.herding++; toast('The herd learns you; you learn the herd.'); }
+                        else { G.flags.farming++; toast('Seeds go into the ground. The pot will fill itself.'); } },
   Craft:       (c) => { bump('order', 2); G.flags.craft++;
                         toast('Hands learn. Tools follow.'); },
   Numbers:     (c) => { bump('order', 2);
@@ -236,6 +239,7 @@ function onRecited(c) {
   bump('knowledge', first ? 3 : 1);
   (CATEGORY_FX[c.category] ?? CATEGORY_FX.Morals)(c);
   if (!first) bump('order', 2); // a re-recital keeps old teaching warm
+  setEconomyFlags({ farming: G.flags.farming, herding: G.flags.herding });
 
   G.level = levelFor(totalXP());
   if (G.level > before) {
@@ -262,11 +266,13 @@ window.addEventListener('blur', () => { if (recite) endRecite(false); });
 
 /* ── Pages (full-screen; real content in phase 3) ───────────────────────── */
 
-const pageOpen = () => !$('page-cards').hidden || !$('page-books').hidden;
+const pageOpen = () =>
+  !$('page-cards').hidden || !$('page-books').hidden || !$('page-fund').hidden;
 function closePages() {
   $('page-cards').hidden = true;
   $('page-books').hidden = true;
-  for (const el of document.querySelectorAll('.card-detail')) el.hidden = true;
+  $('page-fund').hidden = true;
+  for (const el of document.querySelectorAll('.card-detail')) el.remove();
 }
 $('btnCards').addEventListener('click', openCardsPage);
 $('btnBooks').addEventListener('click', openBooksPage);
@@ -285,6 +291,58 @@ initPages({
     toast(`Ready: "${c.title}". Hold Space when you are.`);
   },
   onDeckChanged: () => { saveGame(); paintHUD(); },
+});
+
+/* ── Funding: what money and attention buy ──────────────────────────────── */
+//
+// "I need to fund all the meditation, vedic development, etc., by money and
+// attention so people get more organized." Money arrives with its card
+// (Numbers, level 7); once it exists, a third door opens. Each building is
+// bought once, stands at a real camp on the map, and works every day after.
+
+const BUILDINGS = [
+  { id: 'hall', icon: '🛕', name: 'Meditation Hall', cost: 120, camp: 0,
+    blurb: 'A quiet dome. Order settles on its own: +0.5 Order every day, forever.' },
+  { id: 'school', icon: '📚', name: 'Vedic School', cost: 200, camp: 2,
+    blurb: 'Teachers of teachers. +0.4 Knowledge and +0.2 Order daily — your recitals, carried on without you.' },
+  { id: 'granary', icon: '🏺', name: 'Granary', cost: 150, camp: 4,
+    blurb: 'The harvest, kept past the monsoon: +1.5 Food every day.' },
+];
+
+function syncBuildings() {
+  setBuildings(BUILDINGS.filter((b) => G.built[b.id])
+    .map((b) => { const [lon, lat] = campList()[b.camp]; return { type: b.id, lon: lon - 0.3, lat: lat - 0.15 }; }));
+}
+
+function renderFund() {
+  $('fund-body').innerHTML = `
+    <p class="lede">₹ ${Math.round(G.meters.money)} in the common pot — earned by taught craft and fair trade.
+      A building is bought once and works every day after.</p>
+    ${BUILDINGS.map((b) => {
+      const done = !!G.built[b.id];
+      const can = !done && G.meters.money >= b.cost;
+      return `<div class="fund-row ${done ? 'done' : ''}">
+        <span class="fr-icon">${b.icon}</span>
+        <span class="fr-main"><b>${b.name}</b><span class="fr-blurb">${b.blurb}</span></span>
+        ${done ? '<span class="fr-built">standing</span>'
+               : `<button class="btn ${can ? 'btn--primary' : ''}" data-fund="${b.id}" ${can ? '' : 'disabled'}>₹ ${b.cost}</button>`}
+      </div>`;
+    }).join('')}`;
+}
+
+$('btnFund').addEventListener('click', () => { renderFund(); $('page-fund').hidden = false; });
+$('page-fund').addEventListener('click', (e) => {
+  const b = e.target.closest('[data-fund]');
+  if (!b) return;
+  const def = BUILDINGS.find((x) => x.id === b.dataset.fund);
+  if (!def || G.built[def.id] || G.meters.money < def.cost) return;
+  G.meters.money -= def.cost;
+  G.built[def.id] = true;
+  syncBuildings();
+  toast(`${def.icon} The ${def.name} rises.`);
+  saveGame();
+  renderFund();
+  paintHUD();
 });
 
 /* ── HUD ────────────────────────────────────────────────────────────────── */
@@ -318,6 +376,7 @@ function paintHUD() {
   $('foodbar').style.width = `${G.meters.food}%`;
   $('money').hidden = !G.flags.money;
   if (G.flags.money) $('money').textContent = `₹ ${Math.round(G.meters.money)}`;
+  $('btnFund').hidden = !G.flags.money;
   $('cardtitle').textContent = currentCard ? currentCard.title : 'Everything is recited — keep it warm';
   $('cardbook').textContent = currentCard ? (BOOK_TITLE.get(currentCard.book) ?? currentCard.book) : '';
   $('cardtext').textContent = currentCard ? currentCard.recite : '';
@@ -341,6 +400,10 @@ function onNewDay() {
     G.meters.food + c.meat * meatWorth + fields - popCount() * 0.055));
   // Barter earns a trickle once counting exists; money makes it countable.
   if (G.flags.money) G.meters.money += G.flags.craft * 2 + (G.flags.barter ? 3 : 0);
+  // Funded buildings work every day, unattended — that is what they are FOR.
+  if (G.built.hall) bump('order', 0.5);
+  if (G.built.school) { bump('knowledge', 0.4); bump('order', 0.2); }
+  if (G.built.granary) G.meters.food = Math.min(100, G.meters.food + 1.5);
   if (c.deathsFight) toast(`${c.deathsFight} killed in a quarrel. They needed better words.`);
   if (c.deathsHunger) toast(`${c.deathsHunger} starved. The hunt is not enough.`);
   dailyPop(G.meters);
@@ -411,6 +474,7 @@ if (SAVED) {
   G.day = SAVED.day ?? 0;
   Object.assign(G.meters, SAVED.meters ?? {});
   Object.assign(G.flags, SAVED.flags ?? {});
+  Object.assign(G.built, SAVED.built ?? {});
   G.level = levelFor(totalXP());
   currentCard = (SAVED.currentCardId && card(SAVED.currentCardId)) || nextCard(G.level);
   initPop(Math.max(12, Math.min(420, SAVED.pop ?? START_POP)));
@@ -419,6 +483,8 @@ if (SAVED) {
   currentCard = nextCard(G.level);
   initPop();
 }
+setEconomyFlags({ farming: G.flags.farming, herding: G.flags.herding });
+syncBuildings();
 resize();
 paintHUD();
 requestAnimationFrame(frame);
@@ -440,4 +506,7 @@ window.__test = {
   setOrder: (v) => { G.meters.order = v; },
   reciteNow: () => { if (currentCard) onRecited(currentCard); },   // skip the hold, for fast unlock tests
   wipeSave: () => { try { localStorage.removeItem(SAVE_KEY); } catch {} },
+  cows: () => cowCount(),
+  built: () => ({ ...G.built }),
+  addMoney: (n) => { G.meters.money += n; paintHUD(); },
 };

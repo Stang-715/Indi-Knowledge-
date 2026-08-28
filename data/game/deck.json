@@ -107,15 +107,10 @@
    "level": 1,
    "title": "How the Kingfisher Stole Fire",
    "hi": "मछरंगा चिड़िया आग कैसे लाई",
-   "recite": {
-    "en": "Warmth, like knowledge, is always something somebody else risked carrying to you - so never let it go out.",
-    "hi": "जो गरमी और जो ज्ञान हमारे पास है, वह किसी के जोखिम उठाकर लाने से आया है — इसलिए उसे बुझने मत दो।"
-   },
+   "recite": "Warmth, like knowledge, is always something somebody else risked carrying to you - so never let it go out.",
    "text": "After the great flood the few survivors sat shivering on the bare land, because the water had put out every fire in the world. The only fire still burning belonged to Puluga, the Creator, who lived far off at his own hearth. One day, while Puluga slept, a kingfisher flew in and seized a glowing brand in its beak - in some tellings the bird was the ghost of a dead friend who could not bear to watch the people freeze. As it flew the brand slipped and fell on the sleeping Creator, who woke in a rage and hurled it back at the thief. It missed the bird and landed exactly where the shivering people were sitting, and so fire came back to the Andamanese. Other camps tell it differently: there the kingfisher carries the fire safely and gives it to the ancestors at Wota-emi. From that one brand every hearth in the islands was lit, and it was passed from camp to camp and never allowed to die.",
-   "moral": {
-    "en": "Warmth, like knowledge, is always something somebody else risked carrying to you - so never let it go out.",
-    "hi": "जो गरमी और जो ज्ञान हमारे पास है, वह किसी के जोखिम उठाकर लाने से आया है — इसलिए उसे बुझने मत दो।"
-   },
+   "moral": "Warmth, like knowledge, is always something somebody else risked carrying to you - so never let it go out.",
+   "moralHi": "जो गरमी और जो ज्ञान हमारे पास है, वह किसी के जोखिम उठाकर लाने से आया है — इसलिए उसे बुझने मत दो।",
    "origin": "Great Andamanese (Aka-Bea and northern Aka-Jeru groups); recorded in A.R. Radcliffe-Brown's The Andaman Islanders (fieldwork 1906-08, published 1922), whose myth chapters were later reissued as Myths and Legends of the Andamans, and earlier by E.H. Man (1885)."
   },
   {
@@ -125,15 +120,10 @@
    "level": 1,
    "title": "Bidesiya - The Man Who Went Away",
    "hi": "बिदेसिया — जो परदेस चला गया",
-   "recite": {
-    "en": "Money earned far away is not earnings at all if the people you left behind are the ones who paid for it.",
-    "hi": "परदेस की कमाई कमाई नहीं, अगर उसका मोल पीछे छूटे लोगों ने चुकाया हो।"
-   },
+   "recite": "Money earned far away is not earnings at all if the people you left behind are the ones who paid for it.",
    "text": "In a Bhojpuri village a young man marries Pyari Sundari, and within months he leaves for Calcutta to earn, as thousands of Bhojpuri men were then leaving for the mills, the mines and the tea gardens. The months turn into years and no letter comes. Pyari Sundari waits, holds the house together, and at last begs a batohi, a passing traveller, to carry her message to the city. The traveller finds the husband there, living with another woman, and brings the truth home with him. In Bhikhari Thakur's play the man is finally brought back and made to stand in front of everything his going away has cost - his wife's youth, his mother's eyes, the other woman's position - and the songs give the last word not to the migrant but to the woman who stayed. Bhikhari Thakur was a barber by caste who taught himself to read and write and took his troupe through the villages of Saran with this play; migrant workers still sing its songs on trains.",
-   "moral": {
-    "en": "Money earned far away is not earnings at all if the people you left behind are the ones who paid for it.",
-    "hi": "परदेस की कमाई कमाई नहीं, अगर उसका मोल पीछे छूटे लोगों ने चुकाया हो।"
-   },
+   "moral": "Money earned far away is not earnings at all if the people you left behind are the ones who paid for it.",
+   "moralHi": "परदेस की कमाई कमाई नहीं, अगर उसका मोल पीछे छूटे लोगों ने चुकाया हो।",
    "origin": "Bhojpuri-speaking western Bihar (Kutubpur Diyara, Saran district); the Bidesiya cycle of the folk dramatist Bhikhari Thakur (1887-1971), whose plays gave their name to a whole genre of Bhojpuri folk theatre."
   },
   {
@@ -143,15 +133,10 @@
    "level": 1,
    "title": "How Parashurama Made Goa",
    "hi": "परशुराम ने गोवा कैसे बनाया",
-   "recite": {
-    "en": "Somebody who has given everything away still owns one thing: the will to make something new.",
-    "hi": "जिसने सब कुछ दे दिया, उसके पास भी एक चीज़ बची रहती है — कुछ नया रचने की ज़िद।"
-   },
+   "recite": "Somebody who has given everything away still owns one thing: the will to make something new.",
    "text": "They say that after Parashurama had given away all the land he had won, to brahmins, he was left with not one strip of earth for himself. So he climbed the Sahyadri, performed his austerities, and shot an arrow far out into the western sea, telling the ocean to draw back as far as the arrow flew. The sea drew back, and a shining new strip of land rose between the ghats and the water - the coast that Goans call Parashurama-kshetra, or Gomantak. He then settled families on the new land, gave it its rivers and its groves, and made it fit to live in. Goa still points at Benaulim, whose old name Banavali is explained as 'the place where the arrow fell', and at the Parashurama temple at Paroda in Quepem. Old people stop the story there and add the lesson themselves: even a man who has given everything away has one thing left - the will to make something new.",
-   "moral": {
-    "en": "Somebody who has given everything away still owns one thing: the will to make something new.",
-    "hi": "जिसने सब कुछ दे दिया, उसके पास भी एक चीज़ बची रहती है — कुछ नया रचने की ज़िद।"
-   },
+   "moral": "Somebody who has given everything away still owns one thing: the will to make something new.",
+   "moralHi": "जिसने सब कुछ दे दिया, उसके पास भी एक चीज़ बची रहती है — कुछ नया रचने की ज़िद।",
    "origin": "Konkan coast tradition; the Sahyadrikhanda, a text attached to the Skanda Purana, is the source of the arrow legend, which Goan temple lore anchors at Benaulim (Banavali) in Salcete and at the Parashurama temple at Paroda in Quepem."
   },
   {
@@ -191,15 +176,10 @@
    "level": 2,
    "title": "The Great Flood of Puluga",
    "hi": "पुलुगा का जलप्रलय",
-   "recite": {
-    "en": "The rules that keep a small community alive are not decoration - break them and the sea itself comes to collect.",
-    "hi": "जो नियम एक छोटे समाज को ज़िंदा रखते हैं, वे दिखावे के लिए नहीं होते — उन्हें तोड़ो तो हिसाब लेने समुद्र तक चला आता है।"
-   },
+   "recite": "The rules that keep a small community alive are not decoration - break them and the sea itself comes to collect.",
    "text": "In the first days Puluga the Creator lived among the people and gave them a few plain rules, and told them above all not to disturb him while he rested. For a while they remembered. Then, as people do, they grew careless and broke the rules one by one while he slept. Puluga woke angry and sent the sea over the land, and the water swallowed the camps, the forests and everyone in them. Only two men and two women, who happened to be out in a canoe, rode the flood out. When the water fell they came ashore on a bare, silent island with no fire and nothing to eat, and had to begin the world again. From those four, the Andamanese say, all the peoples of the islands descend - which is why the old people tell children that the rules of the elders and the moods of the sea are not things to play with.",
-   "moral": {
-    "en": "The rules that keep a small community alive are not decoration - break them and the sea itself comes to collect.",
-    "hi": "जो नियम एक छोटे समाज को ज़िंदा रखते हैं, वे दिखावे के लिए नहीं होते — उन्हें तोड़ो तो हिसाब लेने समुद्र तक चला आता है।"
-   },
+   "moral": "The rules that keep a small community alive are not decoration - break them and the sea itself comes to collect.",
+   "moralHi": "जो नियम एक छोटे समाज को ज़िंदा रखते हैं, वे दिखावे के लिए नहीं होते — उन्हें तोड़ो तो हिसाब लेने समुद्र तक चला आता है।",
    "origin": "Great Andamanese flood myth of the South and North Andaman; documented in E.H. Man's On the Aboriginal Inhabitants of the Andaman Islands (1885) and in Radcliffe-Brown's myth chapters (1922), and widely cited in comparative flood-myth surveys."
   },
   {
@@ -209,15 +189,10 @@
    "level": 2,
    "title": "Chandika and the Demons",
    "hi": "चंडिका और असुर",
-   "recite": {
-    "en": "When nobody can stand alone against what has gone wrong, courage pooled together becomes a power nothing can face.",
-    "hi": "जब कोई अकेला बुराई के सामने टिक न सके, तो सबकी हिम्मत मिलकर वह ताक़त बनती है जिसके आगे कुछ नहीं ठहरता।"
-   },
+   "recite": "When nobody can stand alone against what has gone wrong, courage pooled together becomes a power nothing can face.",
    "text": "The Devi Mahatmya tells that when the demon brothers Shumbha and Nishumbha had driven the gods out of heaven, the gods had nothing left but their anger, and their massed light took shape as a single woman - Chandika, riding a lion. Shumbha heard of her beauty and sent messengers to buy her; she answered that she would marry only the one who beat her in battle. So he sent his generals Chanda and Munda to drag her away, and from the dark fury of her brow sprang Kali, who took the heads of both - and it is from Chanda and Munda that the goddess is also called Chamunda. Then the demon armies came in full, and the power of every god took female form beside her, and Shumbha and Nishumbha fell, and heaven was handed back. Villages at the foot of the Shivaliks say the goddess halted here on her way, and the old shrine of Chandi Mandir carries her name. So, since the 1950s, does the city built beside it: Chandi-garh, the fort of Chandi.",
-   "moral": {
-    "en": "When nobody can stand alone against what has gone wrong, courage pooled together becomes a power nothing can face.",
-    "hi": "जब कोई अकेला बुराई के सामने टिक न सके, तो सबकी हिम्मत मिलकर वह ताक़त बनती है जिसके आगे कुछ नहीं ठहरता।"
-   },
+   "moral": "When nobody can stand alone against what has gone wrong, courage pooled together becomes a power nothing can face.",
+   "moralHi": "जब कोई अकेला बुराई के सामने टिक न सके, तो सबकी हिम्मत मिलकर वह ताक़त बनती है जिसके आगे कुछ नहीं ठहरता।",
    "origin": "The Devi Mahatmya (Durga Saptashati) of the Markandeya Purana, as attached locally to the Chandi Mandir shrine in the Shivalik foothills next to Chandigarh; the region also knows the story through Guru Gobind Singh's Braj poem Chandi di Var."
   },
   {
@@ -227,15 +202,10 @@
    "level": 2,
    "title": "Shantadurga, Who Stopped a Quarrel",
    "hi": "शांतादुर्गा, जिन्होंने झगड़ा रोका",
-   "recite": {
-    "en": "The bravest thing in a quarrel is not winning it - it is standing in the middle and ending it.",
-    "hi": "झगड़े में सबसे बड़ी बहादुरी जीतना नहीं, बीच में खड़े होकर उसे ख़त्म कराना है।"
-   },
+   "recite": "The bravest thing in a quarrel is not winning it - it is standing in the middle and ending it.",
    "text": "In the old days Shiva and Vishnu fell into so bitter a quarrel that the worlds began to shake - the two greatest powers there are, set against each other, and nobody with the nerve to step between them. Brahma could do nothing, so he went to Parvati and begged her to intervene, because only she could. She took the form of Shantadurga and went and stood between the two, holding a serpent in each hand, one for Shiva and one for Vishnu. Her simply standing there cooled the quarrel down, and from that day she has been called Shanta-Durga, the Durga who makes peace. Her chief temple in Goa is at Kavlem in Ponda; the old deity was carried there from Quelossim in Salcete when temples were being destroyed under Portuguese rule, and the building as it stands today is traditionally credited to the patronage of Chhatrapati Shahu of Satara in the eighteenth century. At the annual zatra the story is told again before the palanquin goes out.",
-   "moral": {
-    "en": "The bravest thing in a quarrel is not winning it - it is standing in the middle and ending it.",
-    "hi": "झगड़े में सबसे बड़ी बहादुरी जीतना नहीं, बीच में खड़े होकर उसे ख़त्म कराना है।"
-   },
+   "moral": "The bravest thing in a quarrel is not winning it - it is standing in the middle and ending it.",
+   "moralHi": "झगड़े में सबसे बड़ी बहादुरी जीतना नहीं, बीच में खड़े होकर उसे ख़त्म कराना है।",
    "origin": "Goan temple tradition of Shantadurga at Kavlem (Kavale, Ponda taluka), whose deity was shifted from Quelossim in Salcete during the Portuguese destruction of temples in the sixteenth century; the peace-making iconography with a serpent in each hand is standard in Goan accounts of the goddess."
   },
   {
@@ -255,15 +225,10 @@
    "level": 3,
    "title": "Tenali Rama and the King's Cats",
    "hi": "तेनाली राम और राजा की बिल्लियाँ",
-   "recite": {
-    "en": "An order given without thinking makes more mischief than the problem it was meant to cure.",
-    "hi": "बिना सोचे दिया हुआ हुक्म उस मुसीबत से बड़ी मुसीबत खड़ी कर देता है, जिसे वह मिटाने चला था।"
-   },
+   "recite": "An order given without thinking makes more mischief than the problem it was meant to cure.",
    "text": "Rats overran Vijayanagara until nothing was safe - grain, cloth, even the palace records. King Krishnadevaraya decreed that every household be given a cat to hunt the rats and a cow whose milk would feed the cat, with a fine for anyone whose cat died. Tenali Ramakrishna thought the order was silly, so he set a bowl of scalding milk before his cat; the cat burned its tongue and from that day fled at the sight of milk. When the inspectors came, Tenali's cat was thin and would not touch its bowl, and he was summoned to explain himself. He bowed and said that a king may order milk to be poured, but no king can order a cat to want it. Then the officers looked further and found that half the courtiers had been drinking the cats' milk themselves and a few had quietly sold their cows. The king laughed, and was ashamed, and withdrew the order.",
-   "moral": {
-    "en": "An order given without thinking makes more mischief than the problem it was meant to cure.",
-    "hi": "बिना सोचे दिया हुआ हुक्म उस मुसीबत से बड़ी मुसीबत खड़ी कर देता है, जिसे वह मिटाने चला था।"
-   },
+   "moral": "An order given without thinking makes more mischief than the problem it was meant to cure.",
+   "moralHi": "बिना सोचे दिया हुआ हुक्म उस मुसीबत से बड़ी मुसीबत खड़ी कर देता है, जिसे वह मिटाने चला था।",
    "origin": "The Telugu Tenali Ramakrishna cycle, set at the Vijayanagara court of Krishnadevaraya (reigned 1509-1529); carried orally and printed in innumerable Telugu and Hindi Tenali Raman collections, and retold in Burrakatha."
   },
   {
@@ -273,15 +238,10 @@
    "level": 3,
    "title": "The Lambikin",
    "hi": "नन्हा मेमना और ढोलकी",
-   "recite": {
-    "en": "A clever trick will carry you a long way, but the moment you start enjoying the sound of your own cleverness, somebody is listening.",
-    "hi": "चतुराई बहुत दूर तक ले जाती है, पर जिस पल आदमी अपनी ही चतुराई की आवाज़ का मज़ा लेने लगता है, कोई कान लगाकर सुन रहा होता है।"
-   },
+   "recite": "A clever trick will carry you a long way, but the moment you start enjoying the sound of your own cleverness, somebody is listening.",
    "text": "A tiny lambkin skipped off to the fields to grow fat, and on the way a jackal stopped him and said he would eat him. 'Not now,' said Lambikin. 'Let me go to my granny's and grow fatter, and then you may eat me.' A vulture, a tiger, a wolf and an eagle each stopped him in turn, and each got the same answer, and each let him pass. At granny's he ate and grew round, and when it was time to go home he had a little drum made - a drumikin - curled himself up inside it, and rolled off singing that Lambikin was lost in the forest and he himself was only a drum rolling home. Each beast asked the drum whether it had seen Lambikin, and the drum answered that Lambikin had fallen into the fire and so would they, and rolled on past them all. But the jackal, who had waited longest and was hungriest, listened harder - he knew the voice inside the drum, and that was the end of Lambikin. Punjabi grandmothers tell it fast, with the drum's song repeated until the children join in, and then stop dead on the last line.",
-   "moral": {
-    "en": "A clever trick will carry you a long way, but the moment you start enjoying the sound of your own cleverness, somebody is listening.",
-    "hi": "चतुराई बहुत दूर तक ले जाती है, पर जिस पल आदमी अपनी ही चतुराई की आवाज़ का मज़ा लेने लगता है, कोई कान लगाकर सुन रहा होता है।"
-   },
+   "moral": "A clever trick will carry you a long way, but the moment you start enjoying the sound of your own cleverness, somebody is listening.",
+   "moralHi": "चतुराई बहुत दूर तक ले जाती है, पर जिस पल आदमी अपनी ही चतुराई की आवाज़ का मज़ा लेने लगता है, कोई कान लगाकर सुन रहा होता है।",
    "origin": "Punjab plains nursery repertoire shared by Chandigarh's Puadhi-speaking villages; printed by Flora Annie Steel in Wide-Awake Stories (1884), reissued as Tales of the Punjab: Told by the People (1894), with folkloristic notes by R.C. Temple."
   },
   {
@@ -291,15 +251,10 @@
    "level": 3,
    "title": "Jasma Odan",
    "hi": "जसमा ओडण",
-   "recite": {
-    "en": "A person's dignity is the one thing power cannot buy, and force that takes it loses the very thing it wanted.",
-    "hi": "आदमी की इज़्ज़त वह एक चीज़ है जो सत्ता ख़रीद नहीं सकती; और जो उसे ज़बरदस्ती छीनता है, वह अपनी सबसे बड़ी चाह भी खो देता है।"
-   },
+   "recite": "A person's dignity is the one thing power cannot buy, and force that takes it loses the very thing it wanted.",
    "text": "The Ods, who dig tanks and carry earth for a living, came to Patan to dig the great lake for King Siddhraj Jaysinh. Among them was Jasma, wife of Rooda - an Odan so beautiful that word of her reached the palace. The king came to see for himself and offered her everything a king can offer: a queen's place, jewels, and an end to carrying baskets of mud on her head. Jasma refused. An Odan's word to her husband, she said, was not a thing that could be bought. So the king took by force what he could not buy: his men fell on the Od camp and Rooda was killed. Standing over her husband's body Jasma cursed the king - that his lake would never hold water, and that he would die without an heir - and then took her own life. Gujarat still points at the Sahasralinga tank at Patan, and at Siddhraj, who did die childless; and Jasma Odan is still one of the oldest veshas of Bhavai, played through the night on village ground.",
-   "moral": {
-    "en": "A person's dignity is the one thing power cannot buy, and force that takes it loses the very thing it wanted.",
-    "hi": "आदमी की इज़्ज़त वह एक चीज़ है जो सत्ता ख़रीद नहीं सकती; और जो उसे ज़बरदस्ती छीनता है, वह अपनी सबसे बड़ी चाह भी खो देता है।"
-   },
+   "moral": "A person's dignity is the one thing power cannot buy, and force that takes it loses the very thing it wanted.",
+   "moralHi": "आदमी की इज़्ज़त वह एक चीज़ है जो सत्ता ख़रीद नहीं सकती; और जो उसे ज़बरदस्ती छीनता है, वह अपनी सबसे बड़ी चाह भी खो देता है।",
    "origin": "Od (tank-digging) community lore of north Gujarat, attached to King Siddhraj Jaysinh of Patan; one of the oldest and best-known veshas of Bhavai, and brought to the modern Indian stage by Shanta Gandhi's production for the National School of Drama in the late 1960s."
   },
   {
@@ -358,15 +313,10 @@
    "level": 4,
    "title": "Tenali Rama and the Thieves",
    "hi": "तेनाली राम और चोर",
-   "recite": {
-    "en": "Greed will make a man work all night on somebody else's garden; wit beats muscle.",
-    "hi": "लालच आदमी को रातभर दूसरे की क्यारी सींचने पर लगा देता है; अक़्ल के आगे ताक़त हार जाती है।"
-   },
+   "recite": "Greed will make a man work all night on somebody else's garden; wit beats muscle.",
    "text": "One night Tenali Ramakrishna heard whispering behind his house and understood that thieves were waiting for the lamps to go out. So he said loudly to his wife, so that every word carried, that thieves were about in the village and she had better drop all their gold into the well, where no hand could reach it. There was a clatter, something heavy went into the water, and the house went quiet. The thieves worked all night, hauling out bucket after bucket, and the water ran off into Tenali's dry vegetable beds. By dawn the well was empty and at the bottom they found nothing but broken pots and stones. When they climbed out, Tenali was standing there, smiling, and thanked them warmly for watering his garden. They went away with their heads down, and the village told the story for years.",
-   "moral": {
-    "en": "Greed will make a man work all night on somebody else's garden; wit beats muscle.",
-    "hi": "लालच आदमी को रातभर दूसरे की क्यारी सींचने पर लगा देता है; अक़्ल के आगे ताक़त हार जाती है।"
-   },
+   "moral": "Greed will make a man work all night on somebody else's garden; wit beats muscle.",
+   "moralHi": "लालच आदमी को रातभर दूसरे की क्यारी सींचने पर लगा देता है; अक़्ल के आगे ताक़त हार जाती है।",
    "origin": "Telugu Tenali Ramakrishna cycle; one of the best-attested tales of the cycle, printed in Telugu chapbook collections and in English through A.K. Ramanujan's Folktales from India (1991), which draws oral tales from twenty-two Indian languages including Telugu."
   },
   {
@@ -376,15 +326,10 @@
    "level": 4,
    "title": "Bhima and Hidimba",
    "hi": "भीम और हिडिंबा",
-   "recite": {
-    "en": "Strength earns its name only when it guards the sleeping and keeps the promise it made.",
-    "hi": "ताक़त तभी ताक़त कहलाती है जब वह सोते हुओं की रखवाली करे और अपना वादा निभाए।"
-   },
+   "recite": "Strength earns its name only when it guards the sleeping and keeps the promise it made.",
    "text": "Driven out of Hastinapur, the five Pandavas slept one night in a deep forest while Bhima kept watch. The forest belonged to the rakshasa Hidimb, who caught the smell of men and sent his sister Hidimba to fetch them for his meal. She came, saw Bhima, and her heart turned over; instead of leading them to her brother she warned them of the danger. Hidimb came roaring through the trees, and Bhima met him and killed him with his bare hands. Then Kunti and Yudhishthira agreed that Bhima should marry Hidimba, on the condition that he return to his brothers once a son was born. That son was Ghatotkacha, the forest-born boy who would one day fight and die for the Pandavas at Kurukshetra. In Chhattisgarh's Pandvani one singer plays every part in turn - Bhima's roar, Hidimba's plea, Kunti's judgement - and when the fight comes the tambura in his hand becomes a mace.",
-   "moral": {
-    "en": "Strength earns its name only when it guards the sleeping and keeps the promise it made.",
-    "hi": "ताक़त तभी ताक़त कहलाती है जब वह सोते हुओं की रखवाली करे और अपना वादा निभाए।"
-   },
+   "moral": "Strength earns its name only when it guards the sleeping and keeps the promise it made.",
+   "moralHi": "ताक़त तभी ताक़त कहलाती है जब वह सोते हुओं की रखवाली करे और अपना वादा निभाए।",
    "origin": "The Chhattisgarhi Pandvani repertoire, sung largely by Gond, Panika and Devar performers of the Chhattisgarh plains; Pandvani's narrative is usually traced not to the Sanskrit epic directly but to Sabal Singh Chauhan's Hindi verse Mahabharata, and Teejan Bai's Kapalik-style performances carried it to national and world stages."
   },
   {
@@ -394,15 +339,10 @@
    "level": 4,
    "title": "Ra' Navghan and Jahal",
    "hi": "रा' नवघण और जाहल",
-   "recite": {
-    "en": "A debt of loyalty does not expire - whoever was carried when small must be ready to carry when grown.",
-    "hi": "वफ़ा का क़र्ज़ पुराना होकर मिटता नहीं; जिसे छोटा होने पर किसी ने उठाया था, उसे बड़ा होकर उठाने के लिए तैयार रहना चाहिए।"
-   },
+   "recite": "A debt of loyalty does not expire - whoever was carried when small must be ready to carry when grown.",
    "text": "When the Chudasama king of Junagadh was killed, his infant son Navghan was carried out of the fort and hidden in the village of Bodidhar with Devayat Ahir, who brought him up as his own beside his son Uga and his daughter Jahal. Then the enemy learned where the child was and came for him. Devayat did the thing nobody should have to do: he gave up his own son Uga in the prince's place, and kept his mouth shut while the boy was killed. Navghan grew up, took back Junagadh and ruled as Ra' Navghan. Years later word came from Sindh, where Jahal - the girl who had called him brother - had been married: she was in the power of the Sumra chief and had sent her plea to her brother. Navghan rode across the desert with his men, brought Jahal out of Sindh, and repaid at last, in the only coin he had, the son Devayat had given for him. Meghani heard this story in the villages of Saurashtra and set it near the front of his Rasdhar; Kathiawad has never let it go.",
-   "moral": {
-    "en": "A debt of loyalty does not expire - whoever was carried when small must be ready to carry when grown.",
-    "hi": "वफ़ा का क़र्ज़ पुराना होकर मिटता नहीं; जिसे छोटा होने पर किसी ने उठाया था, उसे बड़ा होकर उठाने के लिए तैयार रहना चाहिए।"
-   },
+   "moral": "A debt of loyalty does not expire - whoever was carried when small must be ready to carry when grown.",
+   "moralHi": "वफ़ा का क़र्ज़ पुराना होकर मिटता नहीं; जिसे छोटा होने पर किसी ने उठाया था, उसे बड़ा होकर उठाने के लिए तैयार रहना चाहिए।",
    "origin": "Saurashtra (Junagadh and the village of Bodidhar), Chudasama and Ahir tradition; documented in Zaverchand Meghani's Saurashtra ni Rasdhar, the five-volume collection of Kathiawadi folk tales he gathered village by village in the 1920s."
   },
   {
@@ -452,15 +392,10 @@
    "level": 5,
    "title": "The Tiger and the Man Were Brothers",
    "hi": "बाघ और आदमी, एक ही माँ के बेटे",
-   "recite": {
-    "en": "Kinship does not end where convenience ends - even a killing that had to happen leaves a debt to be paid.",
-    "hi": "रिश्ता वहाँ ख़त्म नहीं होता जहाँ सुविधा ख़त्म होती है — ज़रूरी मार भी अपने पीछे एक क़र्ज़ छोड़ जाती है।"
-   },
+   "recite": "Kinship does not end where convenience ends - even a killing that had to happen leaves a debt to be paid.",
    "text": "The Adi say that in the beginning the tiger and the first man were sons of one mother, and so they were brothers. But the two grew up differently: the man learned to build, to plant and to keep his word, while the tiger learned only to hunt. One day, while the man was away, the tiger's hunger got the better of his kinship and he killed and ate their own people. The man came home to blood and silence and knew at once whose work it was. He made a bow - in some tellings a trap - and killed the tiger; and then he sat down and wept, because the dead animal was his brother. So he performed for the tiger every rite that is done for a dead man of the family. That is why in Adi, Galo and Nyishi villages a man who kills a tiger is not treated as a hero: he must go through the same mourning and purification as if he had killed a relative.",
-   "moral": {
-    "en": "Kinship does not end where convenience ends - even a killing that had to happen leaves a debt to be paid.",
-    "hi": "रिश्ता वहाँ ख़त्म नहीं होता जहाँ सुविधा ख़त्म होती है — ज़रूरी मार भी अपने पीछे एक क़र्ज़ छोड़ जाती है।"
-   },
+   "moral": "Kinship does not end where convenience ends - even a killing that had to happen leaves a debt to be paid.",
+   "moralHi": "रिश्ता वहाँ ख़त्म नहीं होता जहाँ सुविधा ख़त्म होती है — ज़रूरी मार भी अपने पीछे एक क़र्ज़ छोड़ जाती है।",
    "origin": "Adi, Galo and Nyishi communities of central Arunachal Pradesh; versions collected in Verrier Elwin's Myths of the North-East Frontier of India (NEFA, Shillong, 1958), and the tiger-funeral observance it explains is recorded in the region's ethnography."
   },
   {
@@ -470,15 +405,10 @@
    "level": 5,
    "title": "Lorik and Chanda",
    "hi": "लोरिक और चंदा",
-   "recite": {
-    "en": "Love that runs away from home still has the whole road to face; courage without somebody's good sense beside it gets lost.",
-    "hi": "घर छोड़कर भागा प्रेम भी पूरी राह से गुज़रता है; और जिस हिम्मत के साथ किसी की समझ न हो, वह भटक जाती है।"
-   },
+   "recite": "Love that runs away from home still has the whole road to face; courage without somebody's good sense beside it gets lost.",
    "text": "Chanda - Chandaini in the songs - was a Raut girl so beautiful that her name travelled from village to village, but she had been married as a child to a man who was no match for her. Her heart went to Lorik, the strongest and most admired cowherd of the country, who already had a wife, Manjari. Chanda sent word, and the two drove their cattle out of the village and left. The rest of the epic is that long road: strange countries, Lorik's wrestling matches with local champions, fights with robbers and with kings, and Chanda's quick sense saving him each time his courage runs ahead of his judgement. Chhattisgarhi singers linger less on the ending than on the journey - the night halts, the cattle, the quarrels, the songs. Listeners ask for their favourite episode by name, and one story can be spread across many nights.",
-   "moral": {
-    "en": "Love that runs away from home still has the whole road to face; courage without somebody's good sense beside it gets lost.",
-    "hi": "घर छोड़कर भागा प्रेम भी पूरी राह से गुज़रता है; और जिस हिम्मत के साथ किसी की समझ न हो, वह भटक जाती है।"
-   },
+   "moral": "Love that runs away from home still has the whole road to face; courage without somebody's good sense beside it gets lost.",
+   "moralHi": "घर छोड़कर भागा प्रेम भी पूरी राह से गुज़रता है; और जिस हिम्मत के साथ किसी की समझ न हो, वह भटक जाती है।",
    "origin": "Raut and Ahir (Yadav) cattle-herding communities of the Chhattisgarh plains; the Candaini repertoire is documented in Joyce Burkhalter Flueckiger's Gender and Genre in the Folklore of Middle India (Cornell University Press, 1996), and versions of the same epic are sung across eastern Uttar Pradesh and Bihar."
   },
   {
@@ -488,15 +418,10 @@
    "level": 5,
    "title": "Satyavan and Savitri",
    "hi": "सत्यवान और सावित्री",
-   "recite": {
-    "en": "Devotion without a clear head is only grief; Savitri won because she loved and argued at the same time.",
-    "hi": "बिना समझ की श्रद्धा सिर्फ़ शोक है; सावित्री जीती क्योंकि उसने प्रेम और तर्क, दोनों साथ निभाए।"
-   },
+   "recite": "Devotion without a clear head is only grief; Savitri won because she loved and argued at the same time.",
    "text": "Savitri, a king's daughter allowed to choose her own husband, chose Satyavan, a prince who lived in the forest with his blind, exiled father and cut wood for a living. The sage Narada told her plainly that the young man had one year left to live; she married him anyway, went to the forest, and served her husband's parents without once mentioning the date she was counting down. On the day itself she followed Satyavan out to the woods, and when he collapsed she sat with his head in her lap until Yama came for his life. Then she walked behind Yama. He told her to turn back; she kept walking and kept talking, and he began offering her boons to be rid of her - her father-in-law's sight, sons for her own father, a hundred sons for herself - and she accepted them all and still kept walking. At last Yama asked what more she wanted, and she asked only how she was to have a hundred sons with her husband's life in his noose. Yama had been caught by his own gifts and gave Satyavan back. In Haryana this is sung as a saang through the whole night, and Lakhmi Chand's ragnis for it are still called for at village gatherings.",
-   "moral": {
-    "en": "Devotion without a clear head is only grief; Savitri won because she loved and argued at the same time.",
-    "hi": "बिना समझ की श्रद्धा सिर्फ़ शोक है; सावित्री जीती क्योंकि उसने प्रेम और तर्क, दोनों साथ निभाए।"
-   },
+   "moral": "Devotion without a clear head is only grief; Savitri won because she loved and argued at the same time.",
+   "moralHi": "बिना समझ की श्रद्धा सिर्फ़ शोक है; सावित्री जीती क्योंकि उसने प्रेम और तर्क, दोनों साथ निभाए।",
    "origin": "The Savitri story of the Mahabharata's Vana Parva as it lives in Haryana's saang theatre; Satyavan-Savitri is among the saangs written and staged by Pandit Lakhmi Chand (1903-1945), the Surya Kavi of Haryanvi ragni."
   },
   {
@@ -546,15 +471,10 @@
    "level": 6,
    "title": "The Horse That Chose Tawang",
    "hi": "जिस घोड़े ने तवांग चुना",
-   "recite": {
-    "en": "When pushing harder will not show you the way, stop and let the world answer - patience is also a kind of searching.",
-    "hi": "जब ज़ोर लगाकर रास्ता न मिले, तो ठहर जाओ और दुनिया को जवाब देने दो — धीरज भी खोज का एक तरीक़ा है।"
-   },
+   "recite": "When pushing harder will not show you the way, stop and let the world answer - patience is also a kind of searching.",
    "text": "In the Mon country of the far west, Merak Lama Lodre Gyatso was charged with finding the site for a great monastery, and he walked ridge after ridge without finding the right place. At last he stopped, sat down and prayed to be shown the way. While he prayed his horse slipped its tether, and when he opened his eyes the animal was gone. He climbed and searched until he found it standing quietly on a hilltop, exactly where an old shrine called Tana Mandekhang had once stood. He took the horse's choice as the answer to his prayer, called the villagers, and there they raised the monastery that still looks down the valley from its ridge. The place has been called Tawang ever since - ta the horse, wang the chosen - and the gompa grew into the largest Buddhist monastery in India.",
-   "moral": {
-    "en": "When pushing harder will not show you the way, stop and let the world answer - patience is also a kind of searching.",
-    "hi": "जब ज़ोर लगाकर रास्ता न मिले, तो ठहर जाओ और दुनिया को जवाब देने दो — धीरज भी खोज का एक तरीक़ा है।"
-   },
+   "moral": "When pushing harder will not show you the way, stop and let the world answer - patience is also a kind of searching.",
+   "moralHi": "जब ज़ोर लगाकर रास्ता न मिले, तो ठहर जाओ और दुनिया को जवाब देने दो — धीरज भी खोज का एक तरीक़ा है।",
    "origin": "Monpa Buddhist tradition of Tawang; the founding legend of Tawang Monastery (Galden Namgyal Lhatse), preserved in the monastery's own account and in district records, which traditionally date the founding to 1680-81."
   },
   {
@@ -564,15 +484,10 @@
    "level": 6,
    "title": "The Five Lingas the Sea Bathes",
    "hi": "जिन पाँच शिवलिंगों को समुद्र नहलाता है",
-   "recite": {
-    "en": "Devotion needs no grandeur - the sea keeps a shrine going twice a day and asks nothing for it.",
-    "hi": "भक्ति को तड़क-भड़क की ज़रूरत नहीं — समुद्र दिन में दो बार पूजा निभा देता है और बदले में कुछ नहीं माँगता।"
-   },
+   "recite": "Devotion needs no grandeur - the sea keeps a shrine going twice a day and asks nothing for it.",
    "text": "At Fudam, on the sea edge of Diu, five Shiva lingas of five different sizes stand in a cleft of black rock. The islanders say the Pandavas set them there during their years of exile - one for each of the five brothers - worshipped them, and moved on. Because the stones stand below the tide line, the sea comes in twice a day and bathes them, and at high water they vanish altogether under the waves. The place is called Gangeshwar, and people explain the name by saying that the water which bathes the god is Ganga herself, come to the shore. Pilgrims time their visit to low tide so they can walk down among the rocks, and at high tide they stand above and watch the sea do the puja instead. It is the plainest kind of local legend: five stones, five brothers, and an ocean that keeps the ritual going without being asked.",
-   "moral": {
-    "en": "Devotion needs no grandeur - the sea keeps a shrine going twice a day and asks nothing for it.",
-    "hi": "भक्ति को तड़क-भड़क की ज़रूरत नहीं — समुद्र दिन में दो बार पूजा निभा देता है और बदले में कुछ नहीं माँगता।"
-   },
+   "moral": "Devotion needs no grandeur - the sea keeps a shrine going twice a day and asks nothing for it.",
+   "moralHi": "भक्ति को तड़क-भड़क की ज़रूरत नहीं — समुद्र दिन में दो बार पूजा निभा देता है और बदले में कुछ नहीं माँगता।",
    "origin": "Diu island (Fudam village), Gujarati-speaking coastal community; the Gangeshwar Mahadev legend attributing the five tide-washed lingas to the Pandavas' exile, recorded in the territory's temple and tourism accounts."
   },
   {
@@ -582,15 +497,10 @@
    "level": 6,
    "title": "Puran Bhagat",
    "hi": "पूरण भगत",
-   "recite": {
-    "en": "A lie told out of wounded pride destroys the teller first - and the strongest answer to it is not revenge but a blessing.",
-    "hi": "घायल अहंकार से बोला गया झूठ सबसे पहले बोलने वाले को खाता है — और उसका सबसे तगड़ा जवाब बदला नहीं, आशीर्वाद है।"
-   },
+   "recite": "A lie told out of wounded pride destroys the teller first - and the strongest answer to it is not revenge but a blessing.",
    "text": "Raja Salvahan's son Puran was born under a star that required him to be kept away from the palace for twelve years, so he grew up apart and came home a young man his father hardly knew. The king's young second queen, Loona, saw him and wanted him; Puran refused her, saying she stood in the place of his mother. Unable to bear the refusal, Loona went to the king and accused Puran of forcing himself on her, and the king did not ask twice: he had the boy's hands and feet cut off and his body thrown into a dry well outside the city. Years later the yogi Gorakhnath, passing that way, had the well opened, drew Puran out, healed him whole and kept him as a disciple, and people began to call him Puran Bhagat. Long afterwards a broken and childless Loona came to the fakir's hut to beg for a son, not knowing who he was. Puran gave her the blessing without a word about the well, and the son born to her was Rasalu, whose own adventures fill another whole cycle of tales. In Haryana the story is sung as one of Lakhmi Chand's saangs, Bhagat Puranmal.",
-   "moral": {
-    "en": "A lie told out of wounded pride destroys the teller first - and the strongest answer to it is not revenge but a blessing.",
-    "hi": "घायल अहंकार से बोला गया झूठ सबसे पहले बोलने वाले को खाता है — और उसका सबसे तगड़ा जवाब बदला नहीं, आशीर्वाद है।"
-   },
+   "moral": "A lie told out of wounded pride destroys the teller first - and the strongest answer to it is not revenge but a blessing.",
+   "moralHi": "घायल अहंकार से बोला गया झूठ सबसे पहले बोलने वाले को खाता है — और उसका सबसे तगड़ा जवाब बदला नहीं, आशीर्वाद है।",
    "origin": "The Punjab-Haryana qissa of Puran Bhagat (Puranmal), set at Sialkot; sung in Haryana as one of Pandit Lakhmi Chand's saangs, and documented in Qadaryar's nineteenth-century Punjabi qissa and in R.C. Temple's The Legends of the Panjab (from 1884)."
   },
   {
@@ -639,15 +549,10 @@
    "level": 7,
    "title": "Tejimola",
    "hi": "तेजीमला",
-   "recite": {
-    "en": "Cruelty can silence a child for a while, but the truth keeps coming back in new shapes until somebody finally listens.",
-    "hi": "ज़ुल्म किसी की आवाज़ कुछ देर दबा सकता है, पर सच नए-नए रूप लेकर लौटता रहता है — जब तक कोई सुन न ले।"
-   },
+   "recite": "Cruelty can silence a child for a while, but the truth keeps coming back in new shapes until somebody finally listens.",
    "text": "Tejimola was a merchant's daughter whose mother had died and whose stepmother could not bear the sight of her. When the merchant went away trading, the stepmother sent the girl to a wedding in fine clothes she had secretly ruined beforehand, and then punished her for the ruin at the dheki, the rice-husking pedal - crushing one hand, then the other, then her feet, one stroke at a time, until the child was dead, and burying her in the garden. But Tejimola came back. First as a gourd creeper; and when the stepmother cut that down, as a citrus tree; and when the tree was felled, as a lotus in the pond by the river. Her father, coming home by boat, saw the flower and reached out to pick it, and the lotus drew away and said, 'Father, do not pluck me. My hands the stepmother crushed at the dheki, and my feet she broke.' He knew his daughter's voice, and at his pleading the flower became Tejimola again and he carried her home. In Assam it is the first story children ask for, and nobody who has heard it ever forgets the sound of the dheki in it.",
-   "moral": {
-    "en": "Cruelty can silence a child for a while, but the truth keeps coming back in new shapes until somebody finally listens.",
-    "hi": "ज़ुल्म किसी की आवाज़ कुछ देर दबा सकता है, पर सच नए-नए रूप लेकर लौटता रहता है — जब तक कोई सुन न ले।"
-   },
+   "moral": "Cruelty can silence a child for a while, but the truth keeps coming back in new shapes until somebody finally listens.",
+   "moralHi": "ज़ुल्म किसी की आवाज़ कुछ देर दबा सकता है, पर सच नए-नए रूप लेकर लौटता रहता है — जब तक कोई सुन न ले।",
    "origin": "Assamese oral tradition of the Brahmaputra valley; the standard text is in Lakshminath Bezbaroa's Burhi Aair Sadhu (1911), the collection of thirty tales he gathered from village elders."
   },
   {
@@ -657,15 +562,10 @@
    "level": 7,
    "title": "Waghoba, the Tiger God at the Village Edge",
    "hi": "गाँव की सीमा पर बैठा वाघोबा",
-   "recite": {
-    "en": "You are not the only creature with a claim on a place - peace comes from a bargain kept, not from clearing the other side out.",
-    "hi": "किसी जगह पर हक़ सिर्फ़ तुम्हारा नहीं होता — शांति दूसरे को मिटाने से नहीं, निभाए गए करार से आती है।"
-   },
+   "recite": "You are not the only creature with a claim on a place - peace comes from a bargain kept, not from clearing the other side out.",
    "text": "At the edge of Warli and Kokna villages in Dadra & Nagar Haveli you will find a stone or a carved wooden plank with a tiger on it, smeared with red, standing under a tree. This is Waghoba, the tiger god, and the villagers explain him with an old understanding rather than an adventure. The big cats were in these hills before the fields were, they say, and men and tigers had to come to terms or there would be no living here. So the village promised Waghoba his due - a shrine on the boundary, offerings at Waghbaras, the first respect at every festival - and Waghoba in return keeps his own kind away from the cattle pens and the children. If a leopard does take a goat, the elders are more likely to say the offering fell short than that the animal is evil. Researchers studying how people and leopards share this landscape have found that it is exactly this bargain which makes villagers willing to live beside big cats instead of hunting them out. The story ends not with a moral but with a contract, and both sides are expected to keep it.",
-   "moral": {
-    "en": "You are not the only creature with a claim on a place - peace comes from a bargain kept, not from clearing the other side out.",
-    "hi": "किसी जगह पर हक़ सिर्फ़ तुम्हारा नहीं होता — शांति दूसरे को मिटाने से नहीं, निभाए गए करार से आती है।"
-   },
+   "moral": "You are not the only creature with a claim on a place - peace comes from a bargain kept, not from clearing the other side out.",
+   "moralHi": "किसी जगह पर हक़ सिर्फ़ तुम्हारा नहीं होता — शांति दूसरे को मिटाने से नहीं, निभाए गए करार से आती है।",
    "origin": "Warli and Kokna villages of Dadra & Nagar Haveli and the adjoining Dahanu-Palghar belt; Waghoba veneration and the bargain narrative behind it are documented in ethnographic writing on Warli religion and in recent human-leopard coexistence research."
   },
   {
@@ -705,15 +605,10 @@
    "level": 8,
    "title": "Champavati",
    "hi": "चंपावती",
-   "recite": {
-    "en": "Good fortune follows character, not imitation - you cannot copy somebody else's reward without having their heart.",
-    "hi": "सौभाग्य नक़ल से नहीं, स्वभाव से आता है — दूसरे का इनाम पाने के लिए उसका मन भी चाहिए।"
-   },
+   "recite": "Good fortune follows character, not imitation - you cannot copy somebody else's reward without having their heart.",
    "text": "A man had two wives, and Champavati was the daughter of the one he loved less - a gentle girl who did as she was told and never complained. Walking in the forest one day her father met a python that asked for the girl as a bride, and, half afraid and half trusting, he gave his word. Champavati went to the snake's house without an argument, swept it clean, lit a lamp, made her offering and lay down to sleep. In the night the python's skin slipped away and a young man stood in its place, a prince held under a spell, and the house filled with light and wealth. When she came home honoured and rich, the other wife was eaten up with envy and sent her own daughter into the forest to find a python and marry it too. But that snake was only a snake, and it swallowed the girl. Assamese grandmothers end the tale quietly: what came to Champavati came out of what she was, not out of what she wanted.",
-   "moral": {
-    "en": "Good fortune follows character, not imitation - you cannot copy somebody else's reward without having their heart.",
-    "hi": "सौभाग्य नक़ल से नहीं, स्वभाव से आता है — दूसरे का इनाम पाने के लिए उसका मन भी चाहिए।"
-   },
+   "moral": "Good fortune follows character, not imitation - you cannot copy somebody else's reward without having their heart.",
+   "moralHi": "सौभाग्य नक़ल से नहीं, स्वभाव से आता है — दूसरे का इनाम पाने के लिए उसका मन भी चाहिए।",
    "origin": "Assamese folk tale from Burhi Aair Sadhu (1911); it belongs to the international 'animal as bridegroom' tale cycle, in which the heroine's animal husband turns out to be a man."
   },
   {
@@ -723,15 +618,10 @@
    "level": 8,
    "title": "Birbal and the Brinjal",
    "hi": "बीरबल और बैंगन",
-   "recite": {
-    "en": "Flattery follows power, not truth; a wise ruler learns to tell the difference before he needs to.",
-    "hi": "चापलूसी सच के पीछे नहीं, ताक़त के पीछे चलती है; समझदार हाकिम यह फ़र्क़ ज़रूरत पड़ने से पहले पहचान लेता है।"
-   },
+   "recite": "Flattery follows power, not truth; a wise ruler learns to tell the difference before he needs to.",
    "text": "One evening at dinner Akbar tasted a dish of brinjal and could not stop praising the vegetable - its taste, its colour, even the little crown on its head. Birbal agreed at length: the brinjal was the king of vegetables, wholesome and handsome, and wore a crown as royalty should. A few days later the same dish disagreed with the emperor, who pushed the plate away and declared the brinjal a tasteless, windy, worthless thing. Birbal agreed at once - thorny, indigestible, good for nothing, fit only to be thrown out. The emperor caught him: 'The other day you praised it to the skies. Which is it?' Birbal bowed and said, 'Jahanpanah, I am your servant, not the brinjal's.' The court laughed, but Akbar sat with it, because he had just been shown, very politely, what most of the agreement around him was worth.",
-   "moral": {
-    "en": "Flattery follows power, not truth; a wise ruler learns to tell the difference before he needs to.",
-    "hi": "चापलूसी सच के पीछे नहीं, ताक़त के पीछे चलती है; समझदार हाकिम यह फ़र्क़ ज़रूरत पड़ने से पहले पहचान लेता है।"
-   },
+   "moral": "Flattery follows power, not truth; a wise ruler learns to tell the difference before he needs to.",
+   "moralHi": "चापलूसी सच के पीछे नहीं, ताक़त के पीछे चलती है; समझदार हाकिम यह फ़र्क़ ज़रूरत पड़ने से पहले पहचान लेता है।",
    "origin": "The Akbar-Birbal cycle, grown around Raja Birbal (Mahesh Das, died 1586), Akbar's courtier, with Mughal Delhi and Fatehpur Sikri as its setting; carried by oral tellers and printed in Hindi and Urdu chapbooks across north India."
   },
   {
@@ -761,15 +651,10 @@
    "level": 9,
    "title": "Sama and Chakeva",
    "hi": "सामा-चकेवा",
-   "recite": {
-    "en": "Never pass judgement on the strength of gossip - and never abandon somebody who has been judged that way.",
-    "hi": "सुनी-सुनाई बात पर फ़ैसला मत करो — और जिस पर ऐसा फ़ैसला हो गया हो, उसे अकेला मत छोड़ो।"
-   },
+   "recite": "Never pass judgement on the strength of gossip - and never abandon somebody who has been judged that way.",
    "text": "Sama, the story goes, was a daughter of Krishna, and she used to walk to the forest hermitage to listen to the sages. A courtier called Chugla, whose whole trade was carrying tales, whispered to her father that the girl was misbehaving with the ascetics. Krishna believed the whisper without asking a single question, and in his anger cursed his daughter to become a bird. Her brother Chakeva refused to accept it. He took on hard penance and would not rest until the truth came out, and when Chugla's lie was exposed his house was burnt for it - and only then was the curse lifted and Sama made a girl again. Every Kartik the girls of Mithila shape the two birds out of clay, sing to them for days, burn the mouth of Chugla in effigy, and on the last night send the birds off with prayers for their own brothers. It is one of the very few festivals in India built entirely around a sister and a brother.",
-   "moral": {
-    "en": "Never pass judgement on the strength of gossip - and never abandon somebody who has been judged that way.",
-    "hi": "सुनी-सुनाई बात पर फ़ैसला मत करो — और जिस पर ऐसा फ़ैसला हो गया हो, उसे अकेला मत छोड़ो।"
-   },
+   "moral": "Never pass judgement on the strength of gossip - and never abandon somebody who has been judged that way.",
+   "moralHi": "सुनी-सुनाई बात पर फ़ैसला मत करो — और जिस पर ऐसा फ़ैसला हो गया हो, उसे अकेला मत छोड़ो।",
    "origin": "Mithila (north Bihar); the legend behind the Sama-Chakeva rite performed by girls in the month of Kartik, documented in accounts of Maithili folk ritual and in Mithila painting."
   },
   {
@@ -779,15 +664,10 @@
    "level": 9,
    "title": "The Line That Grew Shorter",
    "hi": "जो लकीर छोटी हो गई",
-   "recite": {
-    "en": "You do not have to cut others down in order to rise - build something taller beside them.",
-    "hi": "आगे बढ़ने के लिए किसी को छोटा करना ज़रूरी नहीं — उसके बराबर में कुछ बड़ा खड़ा कर दो।"
-   },
+   "recite": "You do not have to cut others down in order to rise - build something taller beside them.",
    "text": "Akbar came into court one morning, drew a line on the wall, and set his courtiers a task: make this line shorter, but nobody may touch it or rub out any part of it. The courtiers crowded round. Some measured it, some argued that the thing was impossible by definition, and a few quietly hoped the emperor would forget he had asked. Birbal came forward, took the chalk, and drew a second line just below the first - much longer. Then he stepped back and pointed out that the emperor's line had not been touched at all, and was now the shorter of the two. Akbar laughed and the court went quiet. The story has been retold ever since to make one point, and grandmothers still make it: you almost never need to cut anything down. Build something bigger beside it.",
-   "moral": {
-    "en": "You do not have to cut others down in order to rise - build something taller beside them.",
-    "hi": "आगे बढ़ने के लिए किसी को छोटा करना ज़रूरी नहीं — उसके बराबर में कुछ बड़ा खड़ा कर दो।"
-   },
+   "moral": "You do not have to cut others down in order to rise - build something taller beside them.",
+   "moralHi": "आगे बढ़ने के लिए किसी को छोटा करना ज़रूरी नहीं — उसके बराबर में कुछ बड़ा खड़ा कर दो।",
    "origin": "Akbar-Birbal cycle; one of the most widely printed tales of the cycle in Hindi, Urdu and English chapbook collections, and a standard school-reader story across India."
   },
   {
