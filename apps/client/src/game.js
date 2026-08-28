@@ -21,7 +21,7 @@ import { Camera, fitSpan } from '../../../packages/render-realm/src/camera.js';
 import { WorldgenClient } from '../../../packages/render-realm/src/workerclient.js';
 import { initPop, tickPop, dailyPop, drawPop, popCount, animalCount,
          setListenFocus, takeCounters, lightFire, campList, START_POP,
-         setEconomyFlags, setBuildings, cowCount } from './pop.js';
+         setEconomyFlags, setBuildings, cowCount, campAt, campName, campPop } from './pop.js';
 import { initDeck, card, allCards, recordRecital, recitedEntries, recitedCount,
          totalXP, levelFor, levelName, nextLevelAt, cardsAtLevel, nextCard,
          timesRecited, bookProgress } from './deck.js';
@@ -117,9 +117,20 @@ function cameraMoved() {
 }
 let wantFine = true;
 
-/* pan + zoom — the only pointer verbs the stage has */
-let dragging = false, last = null;
-cv.addEventListener('pointerdown', (e) => { dragging = true; last = [e.clientX, e.clientY]; cv.setPointerCapture(e.pointerId); });
+/* pan, zoom, and one tap: go and stand in a camp */
+let dragging = false, last = null, downAt = null;
+
+/** Where the pointer is, in degrees. */
+function pointerLonLat(e) {
+  const rect = cv.getBoundingClientRect();
+  const proj = cam.projection(cv.width, cv.height);
+  return [proj.toLon((e.clientX - rect.left) * dpr), proj.toLat((e.clientY - rect.top) * dpr)];
+}
+
+cv.addEventListener('pointerdown', (e) => {
+  dragging = true; last = [e.clientX, e.clientY]; downAt = [e.clientX, e.clientY];
+  cv.setPointerCapture(e.pointerId);
+});
 cv.addEventListener('pointermove', (e) => {
   if (!dragging) return;
   const proj = cam.projection(cv.width, cv.height);
@@ -129,8 +140,21 @@ cv.addEventListener('pointermove', (e) => {
   wantFine = false;
   cameraMoved();
 });
-cv.addEventListener('pointerup', () => { dragging = false; });
-cv.addEventListener('pointercancel', () => { dragging = false; });
+cv.addEventListener('pointerup', (e) => {
+  dragging = false;
+  // A tap, not a drag: in the wide view a tap on a camp goes in.
+  const moved = downAt ? Math.hypot(e.clientX - downAt[0], e.clientY - downAt[1]) : 99;
+  downAt = null;
+  if (moved > 6 || recite) return;
+  const [lon, lat] = pointerLonLat(e);
+  if (view.camp < 0) {
+    const i = campAt(lon, lat);
+    if (i >= 0) enterCamp(i);
+  } else {
+    onCloseupTap(lon, lat);
+  }
+});
+cv.addEventListener('pointercancel', () => { dragging = false; downAt = null; });
 cv.addEventListener('wheel', (e) => {
   e.preventDefault();
   const rect = cv.getBoundingClientRect();
@@ -184,6 +208,79 @@ function loadGame() {
     return s;
   } catch { return null; }
 }
+
+/* ── The close-up: go and stand in one camp ─────────────────────────────── */
+//
+// Not a second renderer — the same canvas, the same people, the camera
+// simply walks in. `view.camp` is the whole mode: -1 is the subcontinent,
+// anything else is that settlement, its people drawn large and alone.
+
+// Wide enough to hold the whole camp: villagers roam CAMP_RADIUS (1.6°) from
+// their fire, so a tighter framing than ~3.5° would put most of them
+// off-screen — a close-up of nobody.
+const CLOSEUP_SPAN = 3.6;
+const view = { camp: -1, wide: null };   // wide: the framing to come back to
+
+/** Ease the camera to a target over ~450ms; the terrain cache follows. */
+let flight = null;
+function flyTo(cx, cy, span) {
+  flight = { t0: performance.now(), ms: 450,
+    from: { cx: cam.cx, cy: cam.cy, span: cam.span }, to: { cx, cy, span } };
+}
+function stepFlight(now) {
+  if (!flight) return;
+  const k = Math.min(1, (now - flight.t0) / flight.ms);
+  const e = k < 0.5 ? 2 * k * k : 1 - (-2 * k + 2) ** 2 / 2;   // easeInOutQuad
+  cam.cx = flight.from.cx + (flight.to.cx - flight.from.cx) * e;
+  cam.cy = flight.from.cy + (flight.to.cy - flight.from.cy) * e;
+  cam.span = flight.from.span + (flight.to.span - flight.from.span) * e;
+  wantFine = k >= 1;
+  cameraMoved();
+  if (k >= 1) flight = null;
+}
+
+function enterCamp(i) {
+  if (view.camp === i) return;
+  if (view.camp < 0) view.wide = { cx: cam.cx, cy: cam.cy, span: cam.span };
+  view.camp = i;
+  const [lon, lat] = campList()[i];
+  flyTo(lon, lat, CLOSEUP_SPAN);
+  paintCampChip();
+}
+
+function exitCamp() {
+  if (view.camp < 0) return;
+  view.camp = -1;
+  if (view.wide) flyTo(view.wide.cx, view.wide.cy, view.wide.span);
+  paintCampChip();
+}
+
+function paintCampChip() {
+  const on = view.camp >= 0;
+  $('campchip').hidden = !on;
+  $('camphint').hidden = !on;
+  if (!on) return;
+  $('campname').textContent = campName(view.camp);
+  $('camppop').textContent = `${campPop(view.camp)} here`;
+  $('camphint').textContent = closeupHint();
+}
+
+/** The one next sensible thing to do here, in a sentence. Phase D fills
+ *  this out as the farm verbs arrive. */
+function closeupHint() {
+  return 'you are standing in the camp — Esc or ✕ to step back';
+}
+
+/** A tap inside the close-up. Phase D routes these to the farm. */
+function onCloseupTap(lon, lat) { /* farm verbs land here in phase D */ }
+
+$('campclose').addEventListener('click', exitCamp);
+// Escape backs out of one thing at a time: the chant first, then the camp.
+window.addEventListener('keydown', (e) => {
+  if (e.key !== 'Escape' || pageOpen()) return;
+  if (recite) { endRecite(false); toast('You stop mid-verse.'); return; }
+  if (view.camp >= 0) exitCamp();
+});
 
 /* ── The recital: a chant, kept in time ─────────────────────────────────── */
 //
@@ -512,6 +609,7 @@ function frame(t) {
   while (dayAcc >= DAY_MS) { dayAcc -= DAY_MS; onNewDay(); }
 
   tickPop(dt, G.meters);
+  stepFlight(t);
 
   if (terrainDirty && cv.width) {
     renderTerrainCache(wantFine ? BUDGET.full : BUDGET.preview);
@@ -525,7 +623,7 @@ function frame(t) {
     const proj = cam.projection(w, h);
     ctx.clearRect(0, 0, w, h);
     ctx.drawImage(terrainCv, 0, 0);
-    drawPop(ctx, proj, dpr, t / 1000, G.level);
+    drawPop(ctx, proj, dpr, t / 1000, G.level, view.camp);
 
     if (recite) {
       const now = performance.now();
@@ -619,6 +717,15 @@ window.__test = {
   chant: () => recite && { hits: recite.hits, misses: recite.misses,
     nextBeatIn: recite.nextBeat - performance.now(), beats: CHANT_BEATS },
   beatMs: () => BEAT_MS,
+  camp: () => view.camp,
+  enterCamp: (i) => enterCamp(i),
+  exitCamp: () => exitCamp(),
+  campScreen: (i) => {                     // where a camp sits on screen, for taps
+    const proj = cam.projection(cv.width, cv.height);
+    const rect = cv.getBoundingClientRect();
+    const [lon, lat] = campList()[i];
+    return { x: rect.left + proj.toX(lon) / dpr, y: rect.top + proj.toY(lat) / dpr };
+  },
   recited: () => recitedEntries().map(([id]) => id),
   currentCard: () => currentCard?.id ?? null,
   setSpeed: (i) => { G.speedIdx = i; },

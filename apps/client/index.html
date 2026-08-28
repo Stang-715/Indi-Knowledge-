@@ -40,10 +40,13 @@
   #money { font-weight: 700; color: var(--warn); }
 
   /* ── The card & the bar ────────────────────────────────────────────── */
+  /* The card is a label, not a lid: only its Read button takes clicks, so a
+     camp sitting behind it on the map can still be tapped. */
   #cardslot { position: absolute; left: 50%; bottom: 66px; transform: translateX(-50%);
     z-index: 5; width: min(430px, 86vw); background: var(--paper);
     border: 1px solid var(--ink); box-shadow: var(--shadow-lift);
-    padding: 12px 16px 10px; text-align: center; }
+    padding: 12px 16px 10px; text-align: center; pointer-events: none; }
+  #cardslot #btnRead { pointer-events: auto; }
   #cardbook { font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
     color: var(--ink-soft); }
   #cardtitle { font-size: 16px; font-weight: 700; margin: 2px 0 4px;
@@ -192,6 +195,22 @@
   .ub-text { width: 100%; min-height: 110px; font: inherit; font-size: 12.5px;
     padding: 7px 9px; border: 1px solid var(--rule); background: var(--paper); resize: vertical; }
 
+  /* ── The camp close-up ─────────────────────────────────────────────── */
+  #campchip { position: absolute; top: 14px; left: 14px; z-index: 6;
+    display: flex; align-items: center; gap: 10px; background: var(--paper);
+    border: 1px solid var(--rule); box-shadow: var(--shadow-lift);
+    padding: 7px 10px 7px 13px; font-size: 13px; }
+  #campchip[hidden] { display: none; }
+  #campname { font-weight: 700; }
+  #camppop { font-family: var(--mono); font-size: 11px; color: var(--ink-soft); }
+  #campclose { font-size: 12px; padding: 2px 8px; }
+  /* Under the chip, not at the bottom: the card slot owns the bottom centre. */
+  #camphint { position: absolute; top: 52px; left: 14px; max-width: min(340px, 46vw);
+    z-index: 5; font-size: 11.5px; line-height: 1.45; color: var(--ink-soft);
+    background: var(--paper); border: 1px solid var(--rule);
+    padding: 5px 10px; pointer-events: none; }
+  #camphint[hidden] { display: none; }
+
   /* ── Toasts ────────────────────────────────────────────────────────── */
   #toasts { position: absolute; top: 64px; left: 50%; transform: translateX(-50%);
     z-index: 6; display: flex; flex-direction: column; gap: 6px; align-items: center;
@@ -217,6 +236,13 @@
     <span class="meter" title="Food: the hunt, then the harvest. An empty pot kills."><span class="k">Food</span><span class="bar"><i id="foodbar"></i></span></span>
     <span id="money" hidden>₹ 0</span>
   </div>
+
+  <div id="campchip" hidden>
+    <span id="campname"></span>
+    <span id="camppop"></span>
+    <button class="btn tiny" id="campclose" title="Step back to the whole map (Esc)">✕</button>
+  </div>
+  <div id="camphint" hidden></div>
 
   <div id="toasts" aria-live="polite"></div>
 

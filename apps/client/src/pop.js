@@ -50,10 +50,17 @@ const FIGHT_DEATH_CHANCE = 0.06;  // per finished fight, scaled by wildness
 const MERCY_BELOW = 30;
 
 /** Camps: hand-placed inland points across the subcontinent. Presentation
- *  geography — the terrain renderer paints real land under all of them. */
+ *  geography — the terrain renderer paints real land under all of them.
+ *  Named after the water they sit by, because that is what a camp is for. */
 const CAMPS = [
   [77.8, 23.2], [76.2, 15.1], [80.2, 26.1], [73.6, 26.2], [85.2, 23.4],
   [78.4, 11.1], [74.9, 19.6], [82.4, 21.6], [75.9, 30.6], [87.6, 24.6],
+];
+const CAMP_NAMES = [
+  'The Narmada Camp', 'The Tungabhadra Camp', 'The Ganga Camp',
+  'The Luni Camp', 'The Son Camp', 'The Kaveri Camp',
+  'The Godavari Camp', 'The Mahanadi Camp', 'The Sutlej Camp',
+  'The Brahmaputra Camp',
 ];
 
 /** Clothes follow civilization: leaves, then plain cloth, then dyed cloth. */
@@ -113,6 +120,26 @@ export function initPop(n = START_POP) {
 export const popCount = () => people.length;
 export const animalCount = () => animals.length;
 export const campList = () => CAMPS;
+export const campName = (i) => CAMP_NAMES[i] ?? `Camp ${i + 1}`;
+
+/** Which camp a point falls in, or -1. Used by the stage to turn a tap on
+ *  the map into "show me this settlement, close up". */
+export function campAt(lon, lat, radius = CAMP_RADIUS) {
+  let best = -1, bd = radius;
+  for (let i = 0; i < CAMPS.length; i++) {
+    const d = Math.hypot(CAMPS[i][0] - lon, CAMPS[i][1] - lat);
+    if (d < bd) { bd = d; best = i; }
+  }
+  return best;
+}
+
+/** How many people currently belong to one camp. */
+export function campPop(i) {
+  const c = CAMPS[i];
+  let n = 0;
+  for (const p of people) if (p.camp === c) n++;
+  return n;
+}
 
 export function setListenFocus(f) { listenFocus = f; }
 
@@ -326,13 +353,25 @@ export function dailyPop(meters) {
 /**
  * @param level  civilization level 1..10 — picks the wardrobe
  */
-export function drawPop(ctx, proj, dpr, now, level) {
+/**
+ * @param focus  camp index to show alone, or -1 for the whole map. In a
+ *               close-up the figures are drawn far larger — the same people,
+ *               near enough to watch.
+ */
+export function drawPop(ctx, proj, dpr, now, level, focus = -1) {
   const w = ctx.canvas.width, h = ctx.canvas.height;
-  const size = 11 * dpr;
+  const near = focus >= 0;
+  const size = (near ? 26 : 11) * dpr;
+  const camp = near ? CAMPS[focus] : null;
+  const mine = (p) => !near || p.camp === camp;
   const wardrobe = WARDROBE[level >= 9 ? 2 : level >= 4 ? 1 : 0];
 
-  // Tilled fields: taught farming, on the ground. More cards, more rows.
-  if (econ.farming > 0) {
+  // Everything on the ground grows with the view: in a close-up you are
+  // standing in the camp, not looking down at the subcontinent.
+  const zoom = near ? 2.4 : 1;
+  // Wide view only: the abstract field rows that say "these people farm".
+  // The close-up draws real, workable plots instead (drawPlots below).
+  if (econ.farming > 0 && !near) {
     ctx.save();
     ctx.strokeStyle = 'rgba(122,82,48,0.55)';
     ctx.lineWidth = Math.max(1, 1.6 * dpr);
@@ -353,28 +392,29 @@ export function drawPop(ctx, proj, dpr, now, level) {
   for (const b of buildings) {
     const x = proj.toX(b.lon), y = proj.toY(b.lat);
     if (x < -40 || y < -40 || x > w + 40 || y > h + 40) continue;
-    drawBuilding(ctx, x, y, 22 * dpr, b.type, dpr);
+    drawBuilding(ctx, x, y, 22 * dpr * zoom, b.type, dpr);
   }
 
   for (const f of fires) {
     const x = proj.toX(f.lon), y = proj.toY(f.lat);
     if (x < -30 || y < -30 || x > w + 30 || y > h + 30) continue;
-    drawFire(ctx, x, y, 14 * dpr, now, f.lon * 7);
+    drawFire(ctx, x, y, 14 * dpr * zoom, now, f.lon * 7);
   }
 
   for (const c of cows) {
     const x = proj.toX(c.lon), y = proj.toY(c.lat);
     if (x < -30 || y < -30 || x > w + 30 || y > h + 30) continue;
-    drawCow(ctx, x, y, 10 * dpr, dpr, c.phase, now);
+    drawCow(ctx, x, y, 10 * dpr * zoom, dpr, c.phase, now);
   }
 
   for (const a of animals) {
     const x = proj.toX(a.lon), y = proj.toY(a.lat);
     if (x < -30 || y < -30 || x > w + 30 || y > h + 30) continue;
-    drawDeer(ctx, x, y, 10 * dpr, dpr, a.phase, now, a.state === 'flee');
+    drawDeer(ctx, x, y, 10 * dpr * zoom, dpr, a.phase, now, a.state === 'flee');
   }
 
   for (const p of people) {
+    if (!mine(p)) continue;
     const x = proj.toX(p.lon), y = proj.toY(p.lat);
     if (x < -30 || y < -30 || x > w + 30 || y > h + 30) continue;
     drawChibi(ctx, x, y, size, wardrobe[p.clothIdx], p.state, now, p.phase, dpr);
