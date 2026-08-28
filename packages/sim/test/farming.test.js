@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { run } from '../src/engine.js';
-import { FARM_COST } from '../src/farming.js';
+import { FARM_COST, HERD_CAP } from '../src/farming.js';
 
 const DP = {
   timeline: JSON.parse(readFileSync(new URL('../../../data/timeline/timeline.json', import.meta.url), 'utf8')),
@@ -62,5 +62,48 @@ test('farming replays deterministically', () => {
   const log = [{ year: -5990, action: 'build-farm', district: HOME }];
   const a = run(DP, 'farm-6', log, { to: -5900 });
   const b = run(DP, 'farm-6', log, { to: -5900 });
+  assert.equal(a.fingerprint, b.fingerprint);
+});
+
+/* ── livestock: a real herd ────────────────────────────────────────────── */
+
+// Husbandry cards recite the same work as Agriculture (Krishi-Parashara,
+// composed from 400) — recited right after so corpus decay (a real, working
+// mechanic, just not what these tests are about) can't intermittently
+// swallow it before the card gets recited, same reasoning as teaching.test.js's
+// job tests.
+const HUSBANDRY = { card: 'EDU.SKILL.CATTLE.1', work: 'WRK.KRISHIPARASHARA' };
+
+test('a herd only grows once Husbandry is taught, and only at a built farm', () => {
+  const noHerder = run(DP, 'herd-1',
+    [{ year: 405, action: 'build-farm', district: HOME }], { to: 500 });
+  assert.equal(noHerder.farms.get(HOME).herd, 0, 'no herd without the Husbandry card');
+
+  const withHerder = run(DP, 'herd-1', [
+    { year: 405, action: 'build-farm', district: HOME },
+    { year: 406, action: 'recite', work: HUSBANDRY.work, card: HUSBANDRY.card },
+  ], { to: 500 });
+  const herd = withHerder.farms.get(HOME).herd;
+  assert.ok(herd > 0 && herd <= HERD_CAP, `herd should grow within (0, ${HERD_CAP}], got ${herd}`);
+});
+
+test('herd size measurably raises carrying capacity beyond the taught-but-empty floor', () => {
+  const log = [
+    { year: 405, action: 'build-farm', district: HOME },
+    { year: 406, action: 'recite', work: HUSBANDRY.work, card: HUSBANDRY.card },
+  ];
+  const justTaught = run(DP, 'herd-2', log, { to: 410 });
+  const grown = run(DP, 'herd-2', log, { to: 800 });
+  assert.ok(grown.farms.get(HOME).herd > justTaught.farms.get(HOME).herd,
+    'more time with a herder taught should grow the herd further');
+});
+
+test('herding replays deterministically', () => {
+  const log = [
+    { year: 405, action: 'build-farm', district: HOME },
+    { year: 406, action: 'recite', work: HUSBANDRY.work, card: HUSBANDRY.card },
+  ];
+  const a = run(DP, 'herd-3', log, { to: 700 });
+  const b = run(DP, 'herd-3', log, { to: 700 });
   assert.equal(a.fingerprint, b.fingerprint);
 });

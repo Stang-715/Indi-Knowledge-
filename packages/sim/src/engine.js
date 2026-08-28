@@ -27,7 +27,7 @@ import { initFrontier, tickFrontier, DECISIONS as FRONTIER_DECISIONS } from './f
 import { tickTeaching, DECISIONS as TEACHING_DECISIONS, taughtJobs, skillYieldBonus } from './teaching.js';
 import { DECISIONS as MILITARY_DECISIONS } from './military.js';
 import { initChallenges, tickChallenges, growthStalled } from './challenges.js';
-import { initFarming, DECISIONS as FARM_DECISIONS } from './farming.js';
+import { initFarming, tickFarming, totalHerd, DECISIONS as FARM_DECISIONS } from './farming.js';
 
 /** Pillar deltas by event class. Coarse, deliberately — tuning comes later. */
 // CLASS_EFFECTS and MAG_WEIGHT moved to effects.js (phase 35) — shared with
@@ -117,6 +117,8 @@ export function run(datapack, seed, decisionLog = [], opts = {}) {
     // that already exists to recite, and growth-stall has to be current
     // before tickEconomy reads it this same tick.
     tickChallenges(state, span);
+    // Farming after teaching too: a herd only grows once herder is taught.
+    tickFarming(state, span);
     tickTrade(state, span, rng.trade);
     tickFrontier(state, span, rng.world);
     tickShocks(state, span);
@@ -268,9 +270,15 @@ function tickEconomy(state, span) {
   // jobsTaughtByState / arithBonus, ported to Paramountcy's single national
   // pop instead of per-state pools.
   const jobs = taughtJobs(state);
+  // The herder bonus is a real herd now (farming.js's tickFarming), not a
+  // flat multiplier: it starts at the same +8% floor a taught-but-empty
+  // herder job always gave (a farm with no cattle yet still knows the
+  // method), then grows with the actual head count, capped so a great many
+  // farms cannot make livestock the whole economy.
+  const herdBonus = jobs.has('herder') ? 1.08 + Math.min(0.22, totalHerd(state) * 0.002) : 1;
   const K = 1000 * (1 + effectivePillar(state, 'AGRICULTURE') / 10)
     * (1 + (state.literacy ?? 2) / 250)
-    * (jobs.has('herder') ? 1.08 : 1);
+    * herdBonus;
   const farmers = state.pops.farmers;
 
   const yieldPerFarmer = 0.035 * (0.55 + effectivePillar(state, 'AGRICULTURE') / 120)

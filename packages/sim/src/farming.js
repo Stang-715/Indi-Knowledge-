@@ -18,8 +18,13 @@
  * gate here is the one field the sim already had.
  */
 import { record, bumpPillar } from './state.js';
+import { taughtJobs } from './teaching.js';
 
 export const FARM_COST = { grain: 120 };
+/** How many head one farm's own ground can support — a real ceiling, not a
+ *  flat bonus: this is what makes the herd a place-shaped thing rather than
+ *  another abstract multiplier. */
+export const HERD_CAP = 40;
 
 export function initFarming(state) {
   state.farms = new Map(); // districtId -> { builtYear, level, herd }
@@ -62,3 +67,30 @@ export const DECISIONS = {
       : `The first plough breaks the ground at ${district.name}.`);
   },
 };
+
+/** Standing system: a farm's herd grows toward HERD_CAP once Husbandry is
+ *  taught (taughtJobs' 'herder' flag, teaching.js) — logistic, the same
+ *  shape tickEconomy's own farmer growth already uses. A farm that never
+ *  gets a herder stays at zero; nothing here culls a herd once grown, the
+ *  same growth-not-loss rule the rest of this session's work follows. */
+export function tickFarming(state, span) {
+  if (!state.farms.size || !taughtJobs(state).has('herder')) return;
+  const r = 0.05;
+  for (const farm of state.farms.values()) {
+    // A logistic curve alone never leaves zero (herd * r * (...) is zero at
+    // herd=0); a small standing seed is what actually starts a herd once
+    // herding is known, the way a farm cannot own zero cattle and call
+    // itself a herd at all.
+    const seed = farm.herd < 1 ? 0.6 * span : 0;
+    farm.herd = Math.min(HERD_CAP, farm.herd + farm.herd * r * (1 - farm.herd / HERD_CAP) * span + seed);
+  }
+}
+
+/** Every head of cattle the player's farms carry, summed — what actually
+ *  backs the herder job's effect on carrying capacity in engine.js, in
+ *  place of a flat bonus. */
+export function totalHerd(state) {
+  let n = 0;
+  for (const farm of state.farms.values()) n += farm.herd;
+  return n;
+}

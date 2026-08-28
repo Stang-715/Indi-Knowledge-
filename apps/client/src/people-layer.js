@@ -312,6 +312,81 @@ function drawScholars(ctx, proj, state, dpr, now) {
   ctx.restore();
 }
 
+/**
+ * Cow pets: a farm's own herd (farming.js's tickFarming — a real, tracked
+ * number, not a decoration) grazing near the district that owns it. One
+ * glyph stands for several head, the same compression TARGET_CHIBIS already
+ * uses for people — nobody needs to count forty individual cattle either.
+ */
+function drawCow(ctx, x, y, h, dpr, phase, now) {
+  const bodyW = h * 0.9, bodyH = h * 0.42;
+  const bob = Math.sin(now * 2 + phase) * h * 0.03;
+  ctx.save();
+  ctx.translate(x, y - bob);
+
+  ctx.strokeStyle = '#3e2540';
+  ctx.lineWidth = Math.max(1, h * 0.07);
+  ctx.lineCap = 'round';
+  ctx.beginPath();
+  for (const lx of [-bodyW * 0.32, bodyW * 0.32]) {
+    ctx.moveTo(lx, bodyH * 0.05); ctx.lineTo(lx, bodyH * 0.4);
+  }
+  ctx.stroke();
+
+  ctx.fillStyle = '#f2e6cf';
+  ctx.beginPath();
+  if (ctx.roundRect) ctx.roundRect(-bodyW / 2, -bodyH, bodyW, bodyH, bodyH * 0.4);
+  else ctx.rect(-bodyW / 2, -bodyH, bodyW, bodyH);
+  ctx.fill();
+  ctx.strokeStyle = '#3e2540';
+  ctx.lineWidth = Math.max(0.6, h * 0.04);
+  ctx.stroke();
+
+  ctx.fillStyle = '#8a6a4a';
+  ctx.beginPath();
+  ctx.arc(-bodyW * 0.15, -bodyH * 0.6, h * 0.1, 0, Math.PI * 2);
+  ctx.arc(bodyW * 0.15, -bodyH * 0.25, h * 0.08, 0, Math.PI * 2);
+  ctx.fill();
+
+  const hx = bodyW * 0.55, hy = -bodyH * 0.7;
+  ctx.fillStyle = '#f2e6cf';
+  ctx.beginPath();
+  ctx.arc(hx, hy, h * 0.22, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.strokeStyle = '#c9b28a';
+  ctx.lineWidth = Math.max(0.6, h * 0.045);
+  ctx.beginPath();
+  ctx.moveTo(hx - h * 0.12, hy - h * 0.18); ctx.lineTo(hx - h * 0.2, hy - h * 0.3);
+  ctx.moveTo(hx + h * 0.12, hy - h * 0.18); ctx.lineTo(hx + h * 0.2, hy - h * 0.3);
+  ctx.stroke();
+
+  ctx.restore();
+}
+
+const MAX_COW_GLYPHS_PER_FARM = 6;
+
+function drawCows(ctx, proj, state, dpr, now) {
+  if (!state.farms?.size) return;
+  const w = ctx.canvas.width, ch = ctx.canvas.height;
+  ctx.save();
+  for (const [districtId, farm] of state.farms) {
+    if (!(farm.herd > 0)) continue;
+    const d = state.districts.get(districtId);
+    if (!d) continue;
+    const n = Math.min(MAX_COW_GLYPHS_PER_FARM, Math.max(1, Math.ceil(farm.herd / 8)));
+    for (let i = 0; i < n; i++) {
+      const lon = d.lon + (drawFrom('cow-u', districtId, i) - 0.5) * 0.6;
+      const lat = d.lat + (drawFrom('cow-v', districtId, i) - 0.5) * 0.5;
+      const x = proj.toX(lon), y = proj.toY(lat);
+      if (x < -20 || y < -20 || x > w + 20 || y > ch + 20) continue;
+      drawCow(ctx, x, y, 13 * dpr, dpr, i * 1.7, now);
+    }
+  }
+  ctx.restore();
+}
+
 export function drawPeopleMode(ctx, proj, state, boundaries, level, dpr) {
   if (!state || !boundaries) return;
   const now = performance.now() / 1000;
@@ -390,5 +465,6 @@ export function drawPeopleMode(ctx, proj, state, boundaries, level, dpr) {
     }
   }
   drawScholars(ctx, proj, state, dpr, now);
+  drawCows(ctx, proj, state, dpr, now);
   ctx.restore();
 }

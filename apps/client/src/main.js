@@ -3104,6 +3104,7 @@ window.__test = {
   },
   chibisNear: (lon, lat) => chibiCountNear(state, BOUNDARIES, lon, lat),
   challenges: () => state?.challenges,
+  farms: () => state?.farms && [...state.farms.entries()],
   diveTo(id) {
     const c = cityRenderer.city(id);
     if (!c) return false;
