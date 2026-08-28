@@ -27,6 +27,7 @@ import { initFrontier, tickFrontier, DECISIONS as FRONTIER_DECISIONS } from './f
 import { tickTeaching, DECISIONS as TEACHING_DECISIONS, taughtJobs, skillYieldBonus } from './teaching.js';
 import { DECISIONS as MILITARY_DECISIONS } from './military.js';
 import { initChallenges, tickChallenges, growthStalled } from './challenges.js';
+import { initFarming, DECISIONS as FARM_DECISIONS } from './farming.js';
 
 /** Pillar deltas by event class. Coarse, deliberately — tuning comes later. */
 // CLASS_EFFECTS and MAG_WEIGHT moved to effects.js (phase 35) — shared with
@@ -69,6 +70,7 @@ export function run(datapack, seed, decisionLog = [], opts = {}) {
   initSovereignty(state, datapack, from);
   initFrontier(state, datapack, from);
   initChallenges(state, from);
+  initFarming(state);
 
   // Decisions indexed by the year they are taken.
   const decisionsByYear = new Map();
@@ -394,6 +396,7 @@ export function applyDecision(state, d, datapack, rng) {
       if (TRADE_DECISIONS[d.action])  return TRADE_DECISIONS[d.action](state, d, rng.trade);
       if (TEACHING_DECISIONS[d.action]) return TEACHING_DECISIONS[d.action](state, d, rng.people);
       if (MILITARY_DECISIONS[d.action]) return MILITARY_DECISIONS[d.action](state, d, rng.trade);
+      if (FARM_DECISIONS[d.action]) return FARM_DECISIONS[d.action](state, d, rng.people);
       return;
   }
 }

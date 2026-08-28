@@ -48,6 +48,7 @@ import { interiorHTML, scriptoriumModel } from '../../../packages/ui/src/interio
 import { drawFrom } from '../../../packages/sim/src/rng.js';
 import { RECITE_COST, cardFreshness, isCardLocked, districtLiteracy } from '../../../packages/sim/src/teaching.js';
 import { CHALLENGE_TYPES } from '../../../packages/sim/src/challenges.js';
+import { FARM_COST } from '../../../packages/sim/src/farming.js';
 import { KNOWLEDGE_TABS, slugFromBndId, loadKnowledgeTab, findStateAt, confidenceWeight,
   districtsInState, nearestRegion } from './knowledge.js';
 import { drawBoundaries } from './boundaries.js';
@@ -2447,6 +2448,15 @@ registerLens({
       eligible: (s, t) => !inIndusEra(s) || t.people <= 0 ? 'never'
         : s.grain < 100 ? 'could' : 'can',
       execute: (t) => decide('resettle-east', { town: t.id }) },
+    { id: 'farm', label: 'build a farm',
+      tip: `${FARM_COST.grain} grain. A farm, placed — not just more farmers somewhere. Only in your own state.`,
+      eligible: (s, d) => {
+        const district = s.districts.get(d.id);
+        if (!district || district.region !== s.homeRegion) return 'never';
+        if (s.farms.has(d.id)) return 'already';
+        return s.grain < FARM_COST.grain ? 'could' : 'can';
+      },
+      execute: (d) => decide('build-farm', { district: d.id }) },
   ],
 });
 
