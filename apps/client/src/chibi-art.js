@@ -199,6 +199,152 @@ export function drawDeer(ctx, x, y, h, dpr, phase, now, fleeing) {
 }
 
 /**
+ * One farm plot, at whatever stage the player's own hands have got it to.
+ * `w`/`h` are the plot's screen size; the drawing is deliberately literal —
+ * you should be able to tell wild ground from ploughed rows from a green
+ * crop from a ready harvest at a glance, because those are the four things
+ * the tap does.
+ */
+export function drawPlot(ctx, x, y, w, h, stage, dpr, hover) {
+  ctx.save();
+  ctx.translate(x, y);
+
+  const GROUND = { wild: '#6f7f4a', tilled: '#8a6a45', sown: '#8a6a45',
+                   growing: '#6f8a3f', ready: '#c9a227' };
+  ctx.fillStyle = GROUND[stage] ?? GROUND.wild;
+  ctx.globalAlpha = stage === 'wild' ? 0.5 : 0.85;
+  ctx.fillRect(0, 0, w, h);
+  ctx.globalAlpha = 1;
+
+  ctx.strokeStyle = hover ? '#C9A227' : 'rgba(62,37,64,.55)';
+  ctx.lineWidth = (hover ? 2.2 : 1) * dpr;
+  ctx.strokeRect(0, 0, w, h);
+
+  const rows = 4;
+  const rowY = (r) => h * (r + 1) / (rows + 1);
+
+  if (stage === 'wild') {
+    // tussocks of uncleared grass
+    ctx.strokeStyle = 'rgba(52,72,34,.7)';
+    ctx.lineWidth = Math.max(1, 1.1 * dpr);
+    for (let i = 0; i < 9; i++) {
+      const gx = w * ((i * 0.37) % 1) + w * 0.05, gy = h * ((i * 0.61) % 1) * 0.85 + h * 0.1;
+      ctx.beginPath();
+      ctx.moveTo(gx, gy); ctx.lineTo(gx - w * 0.02, gy - h * 0.13);
+      ctx.moveTo(gx, gy); ctx.lineTo(gx + w * 0.025, gy - h * 0.11);
+      ctx.stroke();
+    }
+  } else {
+    // ploughed rows, always visible once broken
+    ctx.strokeStyle = 'rgba(90,60,34,.75)';
+    ctx.lineWidth = Math.max(1, 1.3 * dpr);
+    for (let r = 0; r < rows; r++) {
+      ctx.beginPath();
+      ctx.moveTo(w * 0.06, rowY(r)); ctx.lineTo(w * 0.94, rowY(r));
+      ctx.stroke();
+    }
+  }
+
+  if (stage === 'sown') {
+    ctx.fillStyle = '#e8dcc2';
+    for (let r = 0; r < rows; r++) {
+      for (let i = 0; i < 5; i++) {
+        ctx.beginPath();
+        ctx.arc(w * (0.14 + i * 0.18), rowY(r), Math.max(1, 1.5 * dpr), 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+  } else if (stage === 'growing') {
+    ctx.strokeStyle = '#3f6b28';
+    ctx.lineWidth = Math.max(1, 1.4 * dpr);
+    for (let r = 0; r < rows; r++) {
+      for (let i = 0; i < 5; i++) {
+        const sx = w * (0.14 + i * 0.18), sy = rowY(r);
+        ctx.beginPath();
+        ctx.moveTo(sx, sy); ctx.lineTo(sx, sy - h * 0.1);
+        ctx.moveTo(sx, sy - h * 0.06); ctx.lineTo(sx - w * 0.025, sy - h * 0.12);
+        ctx.moveTo(sx, sy - h * 0.06); ctx.lineTo(sx + w * 0.025, sy - h * 0.12);
+        ctx.stroke();
+      }
+    }
+  } else if (stage === 'ready') {
+    // heavy heads, leaning
+    ctx.strokeStyle = '#8a6a1e';
+    ctx.lineWidth = Math.max(1, 1.5 * dpr);
+    ctx.fillStyle = '#f0d878';
+    for (let r = 0; r < rows; r++) {
+      for (let i = 0; i < 5; i++) {
+        const sx = w * (0.14 + i * 0.18), sy = rowY(r);
+        ctx.beginPath();
+        ctx.moveTo(sx, sy); ctx.lineTo(sx + w * 0.012, sy - h * 0.15);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.ellipse(sx + w * 0.015, sy - h * 0.17, w * 0.016, h * 0.05, 0.3, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+  }
+  ctx.restore();
+}
+
+/**
+ * The well: a hole that deepens as you dig it, then a stone ring holding
+ * water. `digs` 0..needed shows the digging; once dug, `water` buckets show
+ * what is drawable today.
+ */
+export function drawWell(ctx, x, y, r, digs, needed, water, maxWater, dpr, hover) {
+  ctx.save();
+  ctx.translate(x, y);
+  const dug = digs >= needed;
+
+  if (!dug) {
+    // a widening, deepening pit — progress you can see in the ground
+    const k = digs / needed;
+    ctx.fillStyle = `rgba(74,52,30,${(0.3 + k * 0.55).toFixed(2)})`;
+    ctx.beginPath();
+    ctx.ellipse(0, 0, r * (0.4 + k * 0.6), r * (0.3 + k * 0.45), 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.strokeStyle = hover ? '#C9A227' : 'rgba(62,37,64,.6)';
+    ctx.lineWidth = (hover ? 2.2 : 1.2) * dpr;
+    ctx.stroke();
+    // spoil heaps beside it
+    ctx.fillStyle = 'rgba(122,82,48,.7)';
+    for (let i = 0; i < 3; i++) {
+      ctx.beginPath();
+      ctx.ellipse(r * (1.1 - i * 0.15), r * (0.5 - i * 0.35), r * 0.22, r * 0.12, 0, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  } else {
+    // stone ring
+    ctx.fillStyle = '#8d8377';
+    ctx.beginPath(); ctx.ellipse(0, 0, r, r * 0.72, 0, 0, Math.PI * 2); ctx.fill();
+    ctx.strokeStyle = hover ? '#C9A227' : '#3e2540';
+    ctx.lineWidth = (hover ? 2.4 : 1.3) * dpr;
+    ctx.stroke();
+    // the water in it, as much as there is
+    const k = maxWater ? water / maxWater : 0;
+    ctx.fillStyle = k > 0 ? '#3e7d92' : '#5a4632';
+    ctx.beginPath();
+    ctx.ellipse(0, 0, r * 0.66, r * 0.46, 0, 0, Math.PI * 2);
+    ctx.fill();
+    if (k > 0) {
+      ctx.fillStyle = 'rgba(255,255,255,.35)';
+      ctx.beginPath();
+      ctx.ellipse(-r * 0.18, -r * 0.12, r * 0.2 * k, r * 0.1 * k, 0, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    // buckets drawn today, as pips above the rim
+    for (let i = 0; i < maxWater; i++) {
+      ctx.fillStyle = i < water ? '#3e7d92' : 'rgba(62,37,64,.25)';
+      ctx.beginPath();
+      ctx.arc((i - (maxWater - 1) / 2) * r * 0.34, -r * 0.95, r * 0.11, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+  ctx.restore();
+}
+
+/**
  * A funded building — the shapes money and attention buy. Pictorial-map
  * grammar: symbolic, at fixed screen size, deliberately out of scale.
  */

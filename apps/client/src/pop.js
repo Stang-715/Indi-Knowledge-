@@ -12,7 +12,8 @@
  * untouched elsewhere in the repo). Math.random is fine here: nothing in
  * this file is ever replayed from a log.
  */
-import { drawChibi, drawDeer, drawFire, drawCow, drawBuilding } from './chibi-art.js';
+import { drawChibi, drawDeer, drawFire, drawCow, drawBuilding,
+         drawPlot, drawWell } from './chibi-art.js';
 
 /* ── Tuning ─────────────────────────────────────────────────────────────── */
 
@@ -153,6 +154,52 @@ export const fireCount = () => fires.length;
 // herding puts cows on the grass, funded buildings stand where they were
 // paid for. Presentation reads the flags, never writes them.
 
+/* ── The farm: where the ground is, so hands and eyes agree ─────────────── */
+//
+// One layout function, used by both the drawing here and the tap hit-testing
+// in game.js. If the plots ever move, they move for both at once.
+
+export const FARM_PLOTS = 6;
+export const WELL_DIGS = 6;          // taps to sink a well
+export const WELL_MAX_WATER = 4;
+
+/** Geometry of one camp's farm, in degrees: six plots east of the fire,
+ *  the well site to the west, all inside the camp's own radius. */
+export function farmLayout(i) {
+  const [clon, clat] = CAMPS[i];
+  const plots = [];
+  for (let j = 0; j < FARM_PLOTS; j++) {
+    const col = j % 3, row = (j / 3) | 0;
+    plots.push({ lon: clon + 0.16 + col * 0.42, lat: clat + 0.06 - row * 0.32,
+                 w: 0.34, h: 0.24 });
+  }
+  return { plots, well: { lon: clon - 0.45, lat: clat - 0.30, r: 0.14 } };
+}
+
+/** Call a few villagers over to the spot just worked, and let them work it.
+ *  Presentation only — the plot's state lives in game.js. */
+export function workAt(lon, lat, seconds = 5) {
+  const near = people
+    .map((p) => [Math.hypot(p.lon - lon, p.lat - lat), p])
+    .sort((a, b) => a[0] - b[0])
+    .slice(0, 3);
+  for (const [, p] of near) {
+    if (p.state === 'listen' || p.state === 'fight') continue;
+    p.state = 'farm';
+    p.goto = true;
+    p.tlon = lon + (rnd() - 0.5) * 0.22;
+    p.tlat = lat + (rnd() - 0.5) * 0.16;
+    p.timer = seconds + rnd() * 2;
+  }
+}
+
+/** A harvest: grain bursts where the hands were. */
+export function grainBurst(lon, lat) {
+  for (let k = 0; k < 7; k++)
+    effects.push({ lon: lon + (rnd() - 0.5) * 0.3, lat: lat + (rnd() - 0.5) * 0.22,
+                   t: 0, kind: 'grain' });
+}
+
 let econ = { farming: 0, herding: 0 };
 let cows = [];        // {lon, lat, phase}
 let buildings = [];   // {type: 'hall'|'school'|'granary', lon, lat}
@@ -252,7 +299,9 @@ export function tickPop(dt, meters) {
         break;
 
       case 'farm':
-        if (p.timer <= 0) { p.state = 'idle'; p.timer = 1 + rnd() * 2; }
+        // Called over to a plot someone just worked: walk there, then work it.
+        if (p.goto) { if (walkToward(p, WALK_SPEED * 1.4, dt)) p.goto = false; break; }
+        if (p.timer <= 0) { p.state = 'idle'; p.timer = 1 + rnd() * 2; p.goto = false; }
         break;
 
       case 'fight': {
@@ -358,10 +407,10 @@ export function dailyPop(meters) {
  *               close-up the figures are drawn far larger — the same people,
  *               near enough to watch.
  */
-export function drawPop(ctx, proj, dpr, now, level, focus = -1) {
+export function drawPop(ctx, proj, dpr, now, level, focus = -1, farm = null) {
   const w = ctx.canvas.width, h = ctx.canvas.height;
   const near = focus >= 0;
-  const size = (near ? 26 : 11) * dpr;
+  const size = (near ? 30 : 11) * dpr;
   const camp = near ? CAMPS[focus] : null;
   const mine = (p) => !near || p.camp === camp;
   const wardrobe = WARDROBE[level >= 9 ? 2 : level >= 4 ? 1 : 0];
@@ -387,6 +436,24 @@ export function drawPop(ctx, proj, dpr, now, level, focus = -1) {
       }
     }
     ctx.restore();
+  }
+
+  // The close-up draws the real farm: six plots you can work, and the well.
+  if (near && farm) {
+    const L = farmLayout(focus);
+    for (let j = 0; j < L.plots.length; j++) {
+      const g = L.plots[j];
+      const x = proj.toX(g.lon - g.w / 2), y = proj.toY(g.lat + g.h / 2);
+      drawPlot(ctx, x, y, proj.toX(g.lon + g.w / 2) - x, proj.toY(g.lat - g.h / 2) - y,
+               farm.plots[j].stage, dpr, farm.hover === j);
+    }
+    if (farm.wellShown) {
+      const wl = L.well;
+      const wx = proj.toX(wl.lon), wy = proj.toY(wl.lat);
+      drawWell(ctx, wx, wy, Math.abs(proj.toX(wl.lon + wl.r) - wx),
+               farm.well.digs, WELL_DIGS, farm.well.water, WELL_MAX_WATER, dpr,
+               farm.hover === 'well');
+    }
   }
 
   for (const b of buildings) {
@@ -439,6 +506,11 @@ export function drawPop(ctx, proj, dpr, now, level, focus = -1) {
       ctx.beginPath();
       ctx.arc(x, y, (3 + e.t * 8) * dpr, 0, Math.PI * 2);
       ctx.stroke();
+    } else if (e.kind === 'grain') {
+      ctx.fillStyle = '#e6c34a';
+      ctx.beginPath();
+      ctx.ellipse(x, y - e.t * 14 * dpr, 2.6 * dpr, 1.4 * dpr, 0.5, 0, Math.PI * 2);
+      ctx.fill();
     } else {
       ctx.fillStyle = '#c63c13';
       ctx.beginPath();

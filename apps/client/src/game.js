@@ -21,7 +21,8 @@ import { Camera, fitSpan } from '../../../packages/render-realm/src/camera.js';
 import { WorldgenClient } from '../../../packages/render-realm/src/workerclient.js';
 import { initPop, tickPop, dailyPop, drawPop, popCount, animalCount,
          setListenFocus, takeCounters, lightFire, campList, START_POP,
-         setEconomyFlags, setBuildings, cowCount, campAt, campName, campPop } from './pop.js';
+         setEconomyFlags, setBuildings, cowCount, campAt, campName, campPop,
+         farmLayout, workAt, grainBurst, FARM_PLOTS, WELL_DIGS, WELL_MAX_WATER } from './pop.js';
 import { initDeck, card, allCards, recordRecital, recitedEntries, recitedCount,
          totalXP, levelFor, levelName, nextLevelAt, cardsAtLevel, nextCard,
          timesRecited, bookProgress } from './deck.js';
@@ -132,7 +133,12 @@ cv.addEventListener('pointerdown', (e) => {
   cv.setPointerCapture(e.pointerId);
 });
 cv.addEventListener('pointermove', (e) => {
-  if (!dragging) return;
+  if (!dragging) {
+    if (view.camp >= 0) hoverFarm = farmHit(...pointerLonLat(e));
+    cv.style.cursor = hoverFarm != null ? 'pointer' : '';
+    return;
+  }
+  hoverFarm = null;
   const proj = cam.projection(cv.width, cv.height);
   cam.panBy(-(e.clientX - last[0]) * dpr / cv.width * cam.span,
              (e.clientY - last[1]) * dpr / cv.height * proj.spanY);
@@ -184,6 +190,8 @@ const G = {
   // Cards whose full text you have actually opened. You cannot teach what
   // you have not read, so this gates the first recital of every card.
   read: new Set(),
+  // The ground you have worked, camp by camp: campIdx → { plots, well }.
+  farms: {},
 };
 let currentCard = null;
 const BOOK_TITLE = new Map(DECK.books.map((b) => [b.id, b.title]));
@@ -194,7 +202,7 @@ function saveGame() {
   try {
     localStorage.setItem(SAVE_KEY, JSON.stringify({
       day: G.day, meters: G.meters, flags: G.flags, built: G.built, tally: G.tally,
-      read: [...G.read],
+      read: [...G.read], farms: G.farms,
       recited: recitedEntries(), currentCardId: currentCard?.id ?? null,
       pop: popCount(),
     }));
@@ -251,6 +259,7 @@ function enterCamp(i) {
 function exitCamp() {
   if (view.camp < 0) return;
   view.camp = -1;
+  hoverFarm = null;
   if (view.wide) flyTo(view.wide.cx, view.wide.cy, view.wide.span);
   paintCampChip();
 }
@@ -265,14 +274,142 @@ function paintCampChip() {
   $('camphint').textContent = closeupHint();
 }
 
-/** The one next sensible thing to do here, in a sentence. Phase D fills
- *  this out as the farm verbs arrive. */
-function closeupHint() {
-  return 'you are standing in the camp — Esc or ✕ to step back';
+/* ── The farm: work you do with your hands ──────────────────────────────── */
+//
+// No toolbar. Inside a camp the verbs ARE the taps: a wild plot ploughs, a
+// tilled plot takes seed, a sown plot drinks from the well, a ripe plot is
+// harvested, and the well itself is dug one tap at a time. Each verb is
+// taught by the card that unlocks it — you cannot plough before "Soil & the
+// Seed", nor sink a well before "Water & the Field".
+
+const CARD_PLOUGH = 'EDU.SKILL.AGRI.1';
+const CARD_WELL = 'EDU.SKILL.AGRI.2';
+const GROW_DAYS = 3;                 // watered → ripe
+const HARVEST_FOOD = 6;
+
+const knowsPlough = () => timesRecited(CARD_PLOUGH) > 0;
+const knowsWell = () => timesRecited(CARD_WELL) > 0;
+
+/** The farm record for a camp, created the first time it is looked at. */
+function farmFor(i) {
+  return (G.farms[i] ??= {
+    plots: Array.from({ length: FARM_PLOTS }, () => ({ stage: 'wild', days: 0 })),
+    well: { digs: 0, water: 0 },
+  });
 }
 
-/** A tap inside the close-up. Phase D routes these to the farm. */
-function onCloseupTap(lon, lat) { /* farm verbs land here in phase D */ }
+/** What drawPop should paint under the close-up, or null before the seed
+ *  card: an unploughed camp shows plain ground, not six empty squares. */
+function farmView() {
+  if (view.camp < 0 || !knowsPlough()) return null;
+  const f = farmFor(view.camp);
+  return { plots: f.plots, well: f.well, wellShown: knowsWell(), hover: hoverFarm };
+}
+
+/** What lies under a point in the close-up: a plot index, 'well', or null. */
+let hoverFarm = null;
+function farmHit(lon, lat) {
+  const i = view.camp;
+  if (i < 0 || !knowsPlough()) return null;
+  const L = farmLayout(i);
+  if (knowsWell() && Math.hypot(lon - L.well.lon, lat - L.well.lat) <= L.well.r * 1.5) return 'well';
+  for (let j = 0; j < L.plots.length; j++) {
+    const g = L.plots[j];
+    if (Math.abs(lon - g.lon) <= g.w / 2 && Math.abs(lat - g.lat) <= g.h / 2) return j;
+  }
+  return null;
+}
+
+/** A tap inside the close-up: find what was touched, and do the one thing
+ *  that thing is asking for. */
+function onCloseupTap(lon, lat) {
+  const i = view.camp;
+  if (i < 0) return;
+  if (!knowsPlough()) { toast('Nobody here knows what to do with soil yet. Recite "Soil & the Seed".'); return; }
+  const farm = farmFor(i);
+  const L = farmLayout(i);
+  const hit = farmHit(lon, lat);
+  if (hit === 'well') tapWell(farm, L.well);
+  else if (hit != null) tapPlot(farm, farm.plots[hit], L.plots[hit]);
+}
+
+function tapWell(farm, at) {
+  if (farm.well.digs < WELL_DIGS) {
+    farm.well.digs++;
+    workAt(at.lon, at.lat, 4);
+    toast(farm.well.digs >= WELL_DIGS
+      ? 'Water. The field need not wait for rain again.'
+      : `You dig. ${WELL_DIGS - farm.well.digs} more to reach water.`);
+  } else if (farm.well.water <= 0) {
+    toast('The well is dry today — it fills again by morning.');
+  } else {
+    toast(`${farm.well.water} bucket${farm.well.water === 1 ? '' : 's'} drawn and waiting.`);
+  }
+  afterFarmChange();
+}
+
+function tapPlot(farm, plot, at) {
+  switch (plot.stage) {
+    case 'wild':
+      plot.stage = 'tilled'; plot.days = 0;
+      toast('Ploughed. The soil is open.');
+      break;
+    case 'tilled':
+      plot.stage = 'sown'; plot.days = 0;
+      toast('Sown. Now it needs water.');
+      break;
+    case 'sown':
+      if (!knowsWell()) { toast('It waits on rain. Recite "Water & the Field" to sink a well.'); return; }
+      if (farm.well.digs < WELL_DIGS) { toast('The well is not dug yet — tap the pit to dig.'); return; }
+      if (farm.well.water <= 0) { toast('The well is dry today — it fills again by morning.'); return; }
+      farm.well.water--;
+      plot.stage = 'growing'; plot.days = 0;
+      toast('Watered. Three days to the harvest.');
+      break;
+    case 'growing':
+      toast(`Still growing — ${Math.max(1, GROW_DAYS - plot.days)} day${GROW_DAYS - plot.days === 1 ? '' : 's'} to go.`);
+      return;
+    case 'ready':
+      plot.stage = 'tilled'; plot.days = 0;
+      G.meters.food = Math.min(100, G.meters.food + HARVEST_FOOD);
+      grainBurst(at.lon, at.lat);
+      toast(`Harvest — +${HARVEST_FOOD} food. The ground is ready for the next sowing.`);
+      break;
+  }
+  workAt(at.lon, at.lat);
+  afterFarmChange();
+}
+
+function afterFarmChange() { saveGame(); paintHUD(); paintCampChip(); }
+
+/** Every camp's crops grow and every well refills, whether or not you are
+ *  standing there — the work you did keeps working. */
+function dailyFarms() {
+  for (const f of Object.values(G.farms)) {
+    if (f.well.digs >= WELL_DIGS) f.well.water = Math.min(WELL_MAX_WATER, f.well.water + 1);
+    for (const plot of f.plots) {
+      if (plot.stage !== 'growing') continue;
+      plot.days++;
+      if (plot.days >= GROW_DAYS) { plot.stage = 'ready'; plot.days = 0; }
+    }
+  }
+}
+
+/** The one next sensible thing to do here, in a sentence. */
+function closeupHint() {
+  if (view.camp < 0) return '';
+  if (!knowsPlough()) return 'wild ground — recite "Soil & the Seed" before anyone can break it';
+  const f = farmFor(view.camp);
+  if (f.plots.some((p) => p.stage === 'ready')) return 'a golden plot is ripe — tap it to harvest';
+  if (f.plots.some((p) => p.stage === 'wild')) return 'tap a plot to plough it';
+  if (f.plots.some((p) => p.stage === 'tilled')) return 'tap the open soil to sow seed';
+  if (knowsWell() && f.well.digs < WELL_DIGS) return `tap the well pit to dig — ${WELL_DIGS - f.well.digs} to go`;
+  if (f.plots.some((p) => p.stage === 'sown')) {
+    if (!knowsWell()) return 'the seed waits on rain — recite "Water & the Field"';
+    return f.well.water > 0 ? 'tap the sown plots to water them' : 'the well is dry — it fills each morning';
+  }
+  return 'the field is growing — come back in a day or two';
+}
 
 $('campclose').addEventListener('click', exitCamp);
 // Escape backs out of one thing at a time: the chant first, then the camp.
@@ -418,6 +555,7 @@ function onRecited(c) {
   if (first || G.level > before) currentCard = nextCard(G.level);
   saveGame();
   paintHUD();
+  paintCampChip();   // a new card can change what the camp is asking for
 }
 
 window.addEventListener('keydown', (e) => {
@@ -574,7 +712,9 @@ function onNewDay() {
   // Food: yesterday's hunts feed today; taught fields feed steadily; the pot
   // empties by headcount. Fire makes the meat go further.
   const c = takeCounters();
-  const fields = G.flags.farming * 1.6 + G.flags.herding * 1.2;
+  // The abstract yield is now a trickle: harvesting by hand is the real
+  // food engine, and a tended six-plot camp beats it several times over.
+  const fields = G.flags.farming * 0.6 + G.flags.herding * 1.2;
   const meatWorth = G.flags.fire ? 5 : 4;
   G.meters.food = Math.max(0, Math.min(100,
     G.meters.food + c.meat * meatWorth + fields - popCount() * 0.055));
@@ -589,9 +729,11 @@ function onNewDay() {
   G.tally.births += c.births;
   if (c.deathsFight) toast(`${c.deathsFight} killed in a quarrel. They needed better words.`);
   if (c.deathsHunger) toast(`${c.deathsHunger} starved. The hunt is not enough.`);
+  dailyFarms();
   dailyPop(G.meters);
   saveGame();
   paintHUD();
+  paintCampChip();   // crops ripened overnight; the hint should say so
 }
 
 /* ── The loop ───────────────────────────────────────────────────────────── */
@@ -623,7 +765,7 @@ function frame(t) {
     const proj = cam.projection(w, h);
     ctx.clearRect(0, 0, w, h);
     ctx.drawImage(terrainCv, 0, 0);
-    drawPop(ctx, proj, dpr, t / 1000, G.level, view.camp);
+    drawPop(ctx, proj, dpr, t / 1000, G.level, view.camp, farmView());
 
     if (recite) {
       const now = performance.now();
@@ -686,6 +828,11 @@ if (SAVED) {
   Object.assign(G.built, SAVED.built ?? {});
   Object.assign(G.tally, SAVED.tally ?? {});
   for (const id of SAVED.read ?? []) G.read.add(id);
+  for (const [k, f] of Object.entries(SAVED.farms ?? {})) {
+    const farm = farmFor(Number(k));
+    for (let j = 0; j < FARM_PLOTS; j++) Object.assign(farm.plots[j], f.plots?.[j] ?? {});
+    Object.assign(farm.well, f.well ?? {});
+  }
   G.level = levelFor(totalXP());
   currentCard = (SAVED.currentCardId && card(SAVED.currentCardId)) || nextCard(G.level);
   initPop(Math.max(12, Math.min(420, SAVED.pop ?? START_POP)));
@@ -730,10 +877,21 @@ window.__test = {
   currentCard: () => currentCard?.id ?? null,
   setSpeed: (i) => { G.speedIdx = i; },
   setOrder: (v) => { G.meters.order = v; },
+  setCard: (id) => { const c = card(id); if (c) { currentCard = c; paintHUD(); } return !!c; },
   reciteNow: () => { if (currentCard) onRecited(currentCard); },   // skip the hold, for fast unlock tests
   wipeSave: () => { try { localStorage.removeItem(SAVE_KEY); } catch {} },
   cows: () => cowCount(),
   built: () => ({ ...G.built }),
   tally: () => ({ ...G.tally }),
   addMoney: (n) => { G.meters.money += n; paintHUD(); },
+  farm: (i) => JSON.parse(JSON.stringify(farmFor(i ?? Math.max(0, view.camp)))),
+  hint: () => $('camphint').textContent,
+  // Where a farm feature sits on screen, so a drive can tap it for real.
+  farmScreen: (i, what) => {
+    const L = farmLayout(i);
+    const g = what === 'well' ? L.well : L.plots[what];
+    const proj = cam.projection(cv.width, cv.height);
+    const rect = cv.getBoundingClientRect();
+    return { x: rect.left + proj.toX(g.lon) / dpr, y: rect.top + proj.toY(g.lat) / dpr };
+  },
 };
