@@ -79,6 +79,7 @@ function wrap(file) {
 // fetch block.
 const DATA = {
   'skeleton':  'data/skeleton/bundle.json',
+  'deck':      'data/game/deck.json',
 };
 const inlined = Object.fromEntries(
   Object.entries(DATA).map(([k, p]) => [k, JSON.parse(readFileSync(join(ROOT, p), 'utf8'))]));
@@ -86,8 +87,8 @@ const inlined = Object.fromEntries(
 let entryCode = modules.get(ENTRY).src;
 // Replace the fetch block with the inlined data.
 entryCode = entryCode.replace(
-  /const \[bundle\] = await Promise\.all\(\[[\s\S]*?\]\);/,
-  'const [bundle] = [__DATA.skeleton];');
+  /const \[bundle, DECK\] = await Promise\.all\(\[[\s\S]*?\]\);/,
+  'const [bundle, DECK] = [__DATA.skeleton, __DATA.deck];');
 modules.set(ENTRY, { ...modules.get(ENTRY), src: entryCode });
 
 /* ── Assemble ───────────────────────────────────────────────────────────── */

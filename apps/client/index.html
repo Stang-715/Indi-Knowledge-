@@ -25,6 +25,8 @@
   #hud .sep { width: 1px; height: 18px; background: var(--rule); }
   #day { font-weight: 700; }
   #era { color: var(--ink-soft); font-family: var(--mono); font-size: 11px; }
+  #lvl { color: var(--gold, #C9A227); font-size: 11px; font-weight: 700;
+    letter-spacing: .04em; }
   #speed { font-size: 13px; padding: 2px 9px; cursor: pointer; }
   .meter { display: flex; align-items: center; gap: 6px; }
   .meter .k { font-size: 10px; letter-spacing: .08em; text-transform: uppercase;
@@ -93,6 +95,7 @@
   <div id="hud">
     <span id="day">Day 0</span>
     <span id="era">6000 BCE</span>
+    <span id="lvl">Lv 1</span>
     <button class="btn" id="speed" title="Speed: one day is ten seconds; press to go faster.">▸</button>
     <span class="sep"></span>
     <span class="meter" title="The population — the children you are raising."><span class="k">Pop</span><span id="popn">0</span></span>

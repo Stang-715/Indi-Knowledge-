@@ -79,13 +79,13 @@ function makeAnimal() {
   };
 }
 
-export function initPop() {
+export function initPop(n = START_POP) {
   people = [];
   animals = [];
   fires = [];
   effects = [];
   counters = { deathsFight: 0, deathsHunger: 0, births: 0, meat: 0 };
-  for (let i = 0; i < START_POP; i++) people.push(makePerson(CAMPS[i % CAMPS.length]));
+  for (let i = 0; i < n; i++) people.push(makePerson(CAMPS[i % CAMPS.length]));
   for (let i = 0; i < START_ANIMALS; i++) animals.push(makeAnimal());
 }
 

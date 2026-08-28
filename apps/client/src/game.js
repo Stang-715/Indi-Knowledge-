@@ -20,14 +20,18 @@ import { RealmRenderer } from '../../../packages/render-realm/src/renderer.js';
 import { Camera, fitSpan } from '../../../packages/render-realm/src/camera.js';
 import { WorldgenClient } from '../../../packages/render-realm/src/workerclient.js';
 import { initPop, tickPop, dailyPop, drawPop, popCount, animalCount,
-         setListenFocus, takeCounters, START_POP } from './pop.js';
+         setListenFocus, takeCounters, lightFire, campList, START_POP } from './pop.js';
+import { initDeck, card, allCards, recordRecital, recitedEntries, recitedCount,
+         totalXP, levelFor, levelName, nextLevelAt, cardsAtLevel, nextCard,
+         timesRecited, bookProgress } from './deck.js';
 
 const $ = (id) => document.getElementById(id);
 
-/* ── World: terrain only ────────────────────────────────────────────────── */
+/* ── World: terrain and the deck ────────────────────────────────────────── */
 
-const [bundle] = await Promise.all([
+const [bundle, DECK] = await Promise.all([
   fetch('../../data/skeleton/bundle.json').then(r => r.json()),
+  fetch('../../data/game/deck.json').then(r => r.json()),
 ]);
 
 const SK = loadSkeleton(bundle);
@@ -140,25 +144,37 @@ cv.addEventListener('wheel', (e) => {
 const DAY_MS = 10_000;               // one day at 1x — the floor the user set
 const SPEEDS = [1, 4, 12];
 const START_YEAR = -6000;
+const SAVE_KEY = 'recite-game-v1';
 
 const G = {
   day: 0,
   speedIdx: 0,
   level: 1,
-  xp: 0,
   meters: { order: 8, food: 50, knowledge: 0, money: 0 },
-  moneyKnown: false,
-  recited: new Set(),               // card ids, phase 2 fills this properly
+  flags: { fire: false, farming: 0, herding: 0, craft: 0, barter: false, money: false },
 };
+let currentCard = null;
+const BOOK_TITLE = new Map(DECK.books.map((b) => [b.id, b.title]));
 
-/** Phase 1's single hardcoded card — the deck arrives in phase 2. */
-const FIRST_CARD = {
-  id: 'EDU.GITA.01',
-  book: 'Bhagavad Gita',
-  title: "The Yoga of Arjuna's Despair",
-  recite: 'You grieve for those who need no grief. The wise mourn neither the living nor the dead.',
-};
-let currentCard = FIRST_CARD;
+/* ── Save & restore: a raised population should survive a refresh ───────── */
+
+function saveGame() {
+  try {
+    localStorage.setItem(SAVE_KEY, JSON.stringify({
+      day: G.day, meters: G.meters, flags: G.flags,
+      recited: recitedEntries(), currentCardId: currentCard?.id ?? null,
+      pop: popCount(),
+    }));
+  } catch { /* storage may be unavailable; the game still plays */ }
+}
+
+function loadGame() {
+  try {
+    const s = JSON.parse(localStorage.getItem(SAVE_KEY) ?? 'null');
+    if (!s) return null;
+    return s;
+  } catch { return null; }
+}
 
 /* ── The recital: hold Space ────────────────────────────────────────────── */
 
@@ -186,12 +202,45 @@ function endRecite(completed) {
   if (completed) onRecited(currentCard);
 }
 
-function onRecited(card) {
-  G.recited.add(card.id);
-  G.meters.order = Math.min(100, G.meters.order + 7);
-  G.meters.knowledge = Math.min(100, G.meters.knowledge + 3);
-  G.xp += 10;
-  toast(`The people listen. Order grows.`);
+/** What each kind of teaching does to the world. Morals calm; stories
+ *  gentle; skills change what the population can DO (flags the pop and
+ *  economy read); everything adds a little knowledge. */
+const CATEGORY_FX = {
+  Morals:      (c) => { bump('order', 7);  toast('The people listen. Order grows.'); },
+  Stories:     (c) => { bump('order', 5);  toast(`They retell "${c.title}" at the fires.`); },
+  Agriculture: (c) => { bump('order', 2); G.flags.farming++;
+                        toast('Seeds go into the ground. The pot will fill itself.'); },
+  Craft:       (c) => { bump('order', 2); G.flags.craft++;
+                        toast('Hands learn. Tools follow.'); },
+  Numbers:     (c) => { bump('order', 2);
+                        if (c.id === 'EDU.SKILL.ARITH.1') { G.flags.barter = true; toast('They begin to trade — this for that, counted fairly.'); }
+                        else if (!G.flags.money) { G.flags.money = true; toast('Money. Value stops being heavy and starts being counted.'); }
+                        else toast('The counting sharpens.'); },
+  Science:     (c) => { bump('order', 2);
+                        if (c.id === 'SCI.FIRE' && !G.flags.fire) {
+                          G.flags.fire = true;
+                          for (const [lon, lat] of campList()) lightFire(lon + 0.15, lat + 0.1);
+                          toast('Fire. The camps glow tonight.');
+                        } else toast('Science takes another step.'); },
+  Vedas:       (c) => { bump('order', 6); bump('knowledge', 4);
+                        toast('The old hymns settle over everything.'); },
+};
+function bump(k, v) { G.meters[k] = Math.min(100, G.meters[k] + v); }
+
+function onRecited(c) {
+  const before = G.level;
+  const { first } = recordRecital(c.id);
+  bump('knowledge', first ? 3 : 1);
+  (CATEGORY_FX[c.category] ?? CATEGORY_FX.Morals)(c);
+  if (!first) bump('order', 2); // a re-recital keeps old teaching warm
+
+  G.level = levelFor(totalXP());
+  if (G.level > before) {
+    const revealed = cardsAtLevel(G.level).length;
+    toast(`⬆ Level ${G.level} — ${levelName(G.level)}. ${revealed} new card${revealed === 1 ? '' : 's'} revealed.`);
+  }
+  if (first || G.level > before) currentCard = nextCard(G.level);
+  saveGame();
   paintHUD();
 }
 
@@ -241,16 +290,21 @@ function toast(text) {
 function paintHUD() {
   $('day').textContent = `Day ${G.day}`;
   $('era').textContent = fmtYear(START_YEAR + G.day);
+  $('lvl').textContent = `Lv ${G.level} · ${levelName(G.level)}`;
+  const nxt = nextLevelAt(G.level);
+  $('lvl').title = nxt == null ? 'The top of the mountain.'
+    : `${totalXP()} XP — next level at ${nxt}. New recitals earn the most.`;
   $('popn').textContent = popCount();
   $('orderbar').style.width = `${G.meters.order}%`;
   $('foodbar').style.width = `${G.meters.food}%`;
-  $('money').hidden = !G.moneyKnown;
-  if (G.moneyKnown) $('money').textContent = `₹ ${Math.round(G.meters.money)}`;
-  $('cardtitle').textContent = currentCard ? currentCard.title : '—';
-  $('cardbook').textContent = currentCard ? currentCard.book : '';
+  $('money').hidden = !G.flags.money;
+  if (G.flags.money) $('money').textContent = `₹ ${Math.round(G.meters.money)}`;
+  $('cardtitle').textContent = currentCard ? currentCard.title : 'Everything is recited — keep it warm';
+  $('cardbook').textContent = currentCard ? (BOOK_TITLE.get(currentCard.book) ?? currentCard.book) : '';
   $('cardtext').textContent = currentCard ? currentCard.recite : '';
-  $('btnCards').textContent = `🃏 Cards ${G.recited.size}/1`;
-  $('btnBooks').textContent = `📖 Books`;
+  $('btnCards').textContent = `🃏 Cards ${recitedCount()}/${allCards().length}`;
+  const bp = bookProgress().filter((b) => b.done > 0).length;
+  $('btnBooks').textContent = `📖 Books ${bp}/${bookProgress().length}`;
 }
 
 /* ── The day ────────────────────────────────────────────────────────────── */
@@ -259,12 +313,19 @@ function onNewDay() {
   G.day++;
   // Order frays on its own: an untaught population drifts back toward wild.
   G.meters.order = Math.max(4, G.meters.order - 0.25);
-  // Food: yesterday's hunts feed today; the pot empties by headcount.
+  // Food: yesterday's hunts feed today; taught fields feed steadily; the pot
+  // empties by headcount. Fire makes the meat go further.
   const c = takeCounters();
-  G.meters.food = Math.max(0, Math.min(100, G.meters.food + c.meat * 4 - popCount() * 0.055));
+  const fields = G.flags.farming * 1.6 + G.flags.herding * 1.2;
+  const meatWorth = G.flags.fire ? 5 : 4;
+  G.meters.food = Math.max(0, Math.min(100,
+    G.meters.food + c.meat * meatWorth + fields - popCount() * 0.055));
+  // Barter earns a trickle once counting exists; money makes it countable.
+  if (G.flags.money) G.meters.money += G.flags.craft * 2 + (G.flags.barter ? 3 : 0);
   if (c.deathsFight) toast(`${c.deathsFight} killed in a quarrel. They needed better words.`);
   if (c.deathsHunger) toast(`${c.deathsHunger} starved. The hunt is not enough.`);
   dailyPop(G.meters);
+  saveGame();
   paintHUD();
 }
 
@@ -325,7 +386,20 @@ function frame(t) {
 
 /* ── Boot ───────────────────────────────────────────────────────────────── */
 
-initPop();
+const SAVED = loadGame();
+initDeck(DECK, SAVED?.recited);
+if (SAVED) {
+  G.day = SAVED.day ?? 0;
+  Object.assign(G.meters, SAVED.meters ?? {});
+  Object.assign(G.flags, SAVED.flags ?? {});
+  G.level = levelFor(totalXP());
+  currentCard = (SAVED.currentCardId && card(SAVED.currentCardId)) || nextCard(G.level);
+  initPop(Math.max(12, Math.min(420, SAVED.pop ?? START_POP)));
+  if (G.flags.fire) for (const [lon, lat] of campList()) lightFire(lon + 0.15, lat + 0.1);
+} else {
+  currentCard = nextCard(G.level);
+  initPop();
+}
 resize();
 paintHUD();
 requestAnimationFrame(frame);
@@ -334,11 +408,17 @@ document.body.classList.add('ready');
 /* Test hook (headless drives only; not a player surface). */
 window.__test = {
   day: () => G.day,
+  level: () => G.level,
+  xp: () => totalXP(),
+  flags: () => ({ ...G.flags }),
   meters: () => ({ ...G.meters }),
   pop: () => popCount(),
   animals: () => animalCount(),
   reciting: () => !!recite,
-  recited: () => [...G.recited],
+  recited: () => recitedEntries().map(([id]) => id),
+  currentCard: () => currentCard?.id ?? null,
   setSpeed: (i) => { G.speedIdx = i; },
   setOrder: (v) => { G.meters.order = v; },
+  reciteNow: () => { if (currentCard) onRecited(currentCard); },   // skip the hold, for fast unlock tests
+  wipeSave: () => { try { localStorage.removeItem(SAVE_KEY); } catch {} },
 };
