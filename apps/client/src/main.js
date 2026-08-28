@@ -48,7 +48,7 @@ import { interiorHTML, scriptoriumModel } from '../../../packages/ui/src/interio
 import { drawFrom } from '../../../packages/sim/src/rng.js';
 import { RECITE_COST, cardFreshness, isCardLocked, districtLiteracy } from '../../../packages/sim/src/teaching.js';
 import { CHALLENGE_TYPES } from '../../../packages/sim/src/challenges.js';
-import { FARM_COST } from '../../../packages/sim/src/farming.js';
+import { FARM_COST, HERD_CAP, totalHerd } from '../../../packages/sim/src/farming.js';
 import { KNOWLEDGE_TABS, slugFromBndId, loadKnowledgeTab, findStateAt, confidenceWeight,
   districtsInState, nearestRegion } from './knowledge.js';
 import { drawBoundaries } from './boundaries.js';
@@ -2041,6 +2041,7 @@ function paint() {
   lastLogLen = interesting.length;
   syncSound();
 
+  paintMyState(s);
   paintGoals(s);
   paintActions();
   paintRoutes();
@@ -2051,6 +2052,43 @@ function paint() {
   paintWatched();
   checkSlips();
   paintLocks();
+}
+
+/**
+ * My State: the state chosen at boot (Phase 1), and what stands there so
+ * far — farms built, the herd they carry, and a soft era label read off the
+ * AGRICULTURE pillar. The label is presentation only, over a continuous
+ * number the sim has always had (docs/06-pillars-and-campaign.md already
+ * describes this pillar's arc as "foraging → domestication → irrigation"
+ * as flavor, never a mechanical gate) — deliberately not a new mechanic.
+ */
+function eraLabel(agriculture) {
+  if (agriculture < 15) return 'hunting and gathering';
+  if (agriculture < 40) return 'early farming';
+  return 'settled agriculture';
+}
+function paintMyState(s) {
+  const wrap = $('mystate-wrap');
+  const el = $('mystate');
+  if (!wrap || !el) return;
+  if (!playerStateName) { wrap.hidden = true; return; }
+  wrap.hidden = false;
+
+  const myFarms = [...s.farms.entries()]
+    .filter(([id]) => s.districts.get(id)?.region === s.homeRegion);
+  const herd = Math.round(totalHerd(s));
+
+  const herdCap = myFarms.length * HERD_CAP;
+  const rows = [
+    ['Farms built', myFarms.length],
+    ['Herd', herdCap ? `${herd} / ${herdCap} head` : `${herd} head`],
+    ['AGRICULTURE', Math.round(s.pillars.AGRICULTURE)],
+  ];
+
+  el.innerHTML = `<p class="ms-era">${playerStateName} reads as <b>${eraLabel(s.pillars.AGRICULTURE)}</b>.</p>
+    ${rows.map(([k, v]) => `<div class="ms-row"><span class="k">${k}</span><span>${v}</span></div>`).join('')}
+    ${myFarms.length ? `<div class="chip-row">${myFarms.map(([id]) =>
+      `<span class="token">${s.districts.get(id)?.name ?? id}</span>`).join('')}</div>` : ''}`;
 }
 
 /**

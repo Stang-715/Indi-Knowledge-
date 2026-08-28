@@ -230,6 +230,10 @@
   .goal.done .mark { background:var(--gold); color:var(--sheet); border-color:var(--gold); }
   .goal.done .label { text-decoration:line-through; color:var(--ink-soft); }
   .goal .prog { margin-left:auto; font-family:var(--mono); font-size:10px; color:var(--ink-faint); }
+  #mystate { font-size:12px; line-height:1.6; }
+  #mystate .ms-era { color:var(--gold); font-style:italic; }
+  #mystate .ms-row { display:flex; justify-content:space-between; }
+  #mystate .ms-row .k { color:var(--ink-soft); }
 </style>
 </head>
 <body data-era="neolithic">
@@ -326,6 +330,11 @@
     <div class="panel o-all">
       <h2 data-purpose="Works gaining a written carrier at your desks, thinnest first.">Copying</h2>
       <div id="copyqueue"></div>
+    </div>
+
+    <div class="panel o-all" id="mystate-wrap" hidden>
+      <h2 data-purpose="The state you chose to develop, and what stands there so far.">My State</h2>
+      <div id="mystate"></div>
     </div>
 
     <div class="panel o-all">
