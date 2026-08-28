@@ -152,9 +152,11 @@ const G = {
   day: 0,
   speedIdx: 0,
   level: 1,
-  meters: { order: 8, food: 50, knowledge: 0, money: 0 },
+  meters: { order: 12, food: 50, knowledge: 0, money: 0 },
   flags: { fire: false, farming: 0, herding: 0, craft: 0, barter: false, money: false },
   built: {},                         // buildingId → true
+  // The ledger of the raising: what it has cost so far, and what it grew.
+  tally: { deathsFight: 0, deathsHunger: 0, births: 0 },
 };
 let currentCard = null;
 const BOOK_TITLE = new Map(DECK.books.map((b) => [b.id, b.title]));
@@ -164,7 +166,7 @@ const BOOK_TITLE = new Map(DECK.books.map((b) => [b.id, b.title]));
 function saveGame() {
   try {
     localStorage.setItem(SAVE_KEY, JSON.stringify({
-      day: G.day, meters: G.meters, flags: G.flags, built: G.built,
+      day: G.day, meters: G.meters, flags: G.flags, built: G.built, tally: G.tally,
       recited: recitedEntries(), currentCardId: currentCard?.id ?? null,
       pop: popCount(),
     }));
@@ -389,8 +391,9 @@ function paintHUD() {
 
 function onNewDay() {
   G.day++;
-  // Order frays on its own: an untaught population drifts back toward wild.
-  G.meters.order = Math.max(4, G.meters.order - 0.25);
+  // Order frays on its own: an untaught population drifts back toward wild —
+  // slowly enough that a few days away from the game is not a catastrophe.
+  G.meters.order = Math.max(4, G.meters.order - 0.15);
   // Food: yesterday's hunts feed today; taught fields feed steadily; the pot
   // empties by headcount. Fire makes the meat go further.
   const c = takeCounters();
@@ -404,6 +407,9 @@ function onNewDay() {
   if (G.built.hall) bump('order', 0.5);
   if (G.built.school) { bump('knowledge', 0.4); bump('order', 0.2); }
   if (G.built.granary) G.meters.food = Math.min(100, G.meters.food + 1.5);
+  G.tally.deathsFight += c.deathsFight;
+  G.tally.deathsHunger += c.deathsHunger;
+  G.tally.births += c.births;
   if (c.deathsFight) toast(`${c.deathsFight} killed in a quarrel. They needed better words.`);
   if (c.deathsHunger) toast(`${c.deathsHunger} starved. The hunt is not enough.`);
   dailyPop(G.meters);
@@ -475,6 +481,7 @@ if (SAVED) {
   Object.assign(G.meters, SAVED.meters ?? {});
   Object.assign(G.flags, SAVED.flags ?? {});
   Object.assign(G.built, SAVED.built ?? {});
+  Object.assign(G.tally, SAVED.tally ?? {});
   G.level = levelFor(totalXP());
   currentCard = (SAVED.currentCardId && card(SAVED.currentCardId)) || nextCard(G.level);
   initPop(Math.max(12, Math.min(420, SAVED.pop ?? START_POP)));
@@ -508,5 +515,6 @@ window.__test = {
   wipeSave: () => { try { localStorage.removeItem(SAVE_KEY); } catch {} },
   cows: () => cowCount(),
   built: () => ({ ...G.built }),
+  tally: () => ({ ...G.tally }),
   addMoney: (n) => { G.meters.money += n; paintHUD(); },
 };

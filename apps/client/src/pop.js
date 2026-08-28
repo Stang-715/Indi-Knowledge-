@@ -24,9 +24,30 @@ const WALK_SPEED = 0.22;          // degrees per real second, at 1x
 const CAMP_RADIUS = 1.6;          // how far a villager strays from home, deg
 const FIGHT_RANGE = 0.55;         // how close two hotheads must be, deg
 const FIGHT_SECONDS = 2.6;
-const FIGHT_DEATH_CHANCE = 0.11;  // per fight, scaled by wildness
 const HUNT_RANGE = 2.2;
 const ANIMAL_RESPAWN_DAYS = 1.2;
+
+/**
+ * How violent the wild is.
+ *
+ * The first build killed nine of fifty-six in thirteen days, which made the
+ * opening a bereavement rather than an invitation. These two numbers are the
+ * whole dial: quarrels start less often, and far fewer of them end in a
+ * death. Both still scale with wildness, so an untended people does bleed —
+ * about one or two in the first ten days — and a taught one very nearly
+ * stops.
+ */
+const FIGHT_START_CHANCE = 0.10;  // per idle decision, scaled by wildness
+const FIGHT_DEATH_CHANCE = 0.06;  // per finished fight, scaled by wildness
+
+/**
+ * Small-band mercy: below this many people a quarrel is a quarrel, never a
+ * funeral. The starting band cannot be wiped out before the player has found
+ * the Space bar — and unlike a timed grace period, this is a rule the fiction
+ * can state plainly: a band this small cannot afford to lose anyone, and
+ * knows it.
+ */
+const MERCY_BELOW = 30;
 
 /** Camps: hand-placed inland points across the subcontinent. Presentation
  *  geography — the terrain renderer paints real land under all of them. */
@@ -168,7 +189,7 @@ export function tickPop(dt, meters) {
         if (p.timer > 0) break;
         // What does a wild person do next? Mostly wander and forage;
         // sometimes pick a fight (scaled by wildness); hunt if hungry times.
-        if (rnd() < 0.16 * wild) {
+        if (rnd() < FIGHT_START_CHANCE * wild) {
           let foe = null, bd = FIGHT_RANGE;
           for (const q of people) {
             if (q === p || q.state === 'listen' || q.state === 'fight') continue;
@@ -214,7 +235,7 @@ export function tickPop(dt, meters) {
           const foe = p.foe;
           p.state = 'idle'; p.timer = 1.5 + rnd(); p.foe = null;
           foe.state = 'idle'; foe.timer = 1.5 + rnd(); foe.foe = null;
-          if (rnd() < FIGHT_DEATH_CHANCE * (0.35 + wild)) {
+          if (people.length > MERCY_BELOW && rnd() < FIGHT_DEATH_CHANCE * wild) {
             const dead = rnd() < 0.5 ? p : foe;
             effects.push({ lon: dead.lon, lat: dead.lat, t: 0, kind: 'death' });
             people.splice(people.indexOf(dead), 1);
