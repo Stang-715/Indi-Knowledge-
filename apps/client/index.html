@@ -78,6 +78,86 @@
     padding: 6px 12px; cursor: pointer; background: var(--sheet);
     border: 1px solid var(--rule); }
 
+  /* ── The binder ────────────────────────────────────────────────────── */
+  .binder-books { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 18px; }
+  .binder-books .chip { font-size: 11px; border: 1px solid var(--rule);
+    background: var(--sheet); padding: 3px 8px; }
+  .binder-books .chip b { color: var(--gold, #C9A227); }
+  #binder-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 8px; padding-bottom: 40px; }
+  .bcard { position: relative; min-height: 92px; border: 1px solid var(--ink);
+    background: var(--sheet); padding: 8px 9px; text-align: left; font: inherit;
+    cursor: pointer; display: flex; flex-direction: column; gap: 4px; }
+  .bcard.fresh { box-shadow: inset 0 0 0 2px var(--gold, #C9A227); }
+  .bcard.done { background: var(--paper); }
+  .bcard:hover:not(.locked) { box-shadow: var(--shadow-contact); }
+  .bcard .bicon { font-size: 15px; }
+  .bcard .btitle { font-size: 11.5px; line-height: 1.35; font-weight: 600; }
+  .bcard .bnew { position: absolute; top: 6px; right: 6px; font-size: 9px;
+    letter-spacing: .1em; color: var(--gold, #C9A227); font-weight: 700; }
+  .bcard .bcount { position: absolute; top: 6px; right: 6px; font-size: 10px;
+    color: var(--ink-faint); font-family: var(--mono); }
+  .bcard.locked { background: #3e3427; border-color: #2a2118; cursor: default;
+    align-items: center; justify-content: center; }
+  .bcard.locked .bq { font-size: 26px; color: rgba(232,220,194,.28); }
+  .bcard.locked .blv { position: absolute; bottom: 6px; right: 8px; font-size: 10px;
+    color: rgba(232,220,194,.5); font-family: var(--mono); }
+
+  /* ── The library ───────────────────────────────────────────────────── */
+  .lib-tabs { display: flex; gap: 6px; margin: 0 0 14px; }
+  .shelf-row { display: flex; align-items: center; gap: 10px; width: 100%;
+    padding: 9px 10px; border: 1px solid var(--rule); background: var(--sheet);
+    margin-bottom: 6px; cursor: pointer; font: inherit; text-align: left; }
+  .shelf-row:hover { box-shadow: var(--shadow-contact); }
+  .sr-icon { font-size: 17px; }
+  .sr-title { font-weight: 700; font-size: 13.5px; flex: 0 1 auto; }
+  .sr-bar { flex: 1; height: 8px; border: 1px solid var(--ink);
+    background: var(--sheet-shade); position: relative; min-width: 60px; }
+  .sr-bar i { position: absolute; inset: 0 auto 0 0; background: var(--gold, #C9A227); }
+  .sr-n { font-family: var(--mono); font-size: 11px; color: var(--ink-soft); white-space: nowrap; }
+  .shelf-pages { display: flex; flex-wrap: wrap; gap: 4px; margin: -2px 0 14px; }
+  .pchip { width: 26px; height: 26px; border: 1px solid var(--rule); background: var(--sheet);
+    font-size: 12px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; }
+  .pchip.done { background: var(--paper); color: var(--gold, #C9A227); font-weight: 700; }
+  .pchip.locked { opacity: .45; cursor: default; }
+  .bo-title { margin: 10px 0 2px; }
+  .bo-pages { display: flex; flex-direction: column; gap: 4px; padding-bottom: 40px; }
+  .bo-page { display: flex; align-items: center; gap: 10px; padding: 8px 10px;
+    border: 1px solid var(--rule); background: var(--sheet); font: inherit;
+    text-align: left; cursor: pointer; }
+  .bo-page:hover:not(.locked) { box-shadow: var(--shadow-contact); }
+  .bo-page.done { background: var(--paper); }
+  .bo-page.locked { opacity: .5; cursor: default; }
+  .bo-page .bp-t { flex: 1; font-size: 13px; }
+  .bo-page .bp-n { font-family: var(--mono); font-size: 10px; color: var(--ink-faint); }
+
+  /* ── The card detail ───────────────────────────────────────────────── */
+  .card-detail { position: fixed; inset: 0; z-index: 30; display: grid;
+    place-items: center; background: rgba(42,33,24,.45); padding: 20px; }
+  .card-detail[hidden] { display: none; }
+  .cd-box { background: var(--paper); border: 1px solid var(--ink);
+    box-shadow: var(--shadow-lift); max-width: 560px; width: 100%;
+    max-height: 84vh; overflow-y: auto; padding: 18px 22px; }
+  .cd-book { font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--ink-soft); }
+  .cd-box h2 { margin: 4px 0 2px; font-size: 20px; text-wrap: balance; }
+  .cd-hi { color: var(--ink-soft); font-size: 14px; margin-bottom: 6px; }
+  .cd-recite { font-style: italic; font-size: 14px; margin: 10px 0; }
+  .cd-text { font-size: 13px; line-height: 1.6; color: var(--ink-soft); white-space: pre-line; }
+  .cd-moral { font-size: 13px; }
+  .cd-origin { font-size: 11px; color: var(--ink-faint); }
+  .cd-row { display: flex; justify-content: space-between; align-items: center;
+    gap: 10px; margin-top: 14px; }
+
+  /* ── Bring your own book ───────────────────────────────────────────── */
+  .upload-box { margin: 26px 0 60px; border: 1px dashed var(--rule);
+    background: var(--sheet); padding: 14px 16px; }
+  .upload-box h2 { margin: 0 0 4px; font-size: 16px; }
+  .ub-title { width: 100%; font: inherit; padding: 7px 9px; margin: 8px 0 6px;
+    border: 1px solid var(--rule); background: var(--paper); }
+  .ub-text { width: 100%; min-height: 110px; font: inherit; font-size: 12.5px;
+    padding: 7px 9px; border: 1px solid var(--rule); background: var(--paper); resize: vertical; }
+
   /* ── Toasts ────────────────────────────────────────────────────────── */
   #toasts { position: absolute; top: 64px; left: 50%; transform: translateX(-50%);
     z-index: 6; display: flex; flex-direction: column; gap: 6px; align-items: center;
@@ -120,14 +200,14 @@
 
 <div class="page" id="page-cards" hidden>
   <button class="back" data-back>← back to the stage</button>
-  <h1>The Collection</h1>
-  <p class="lede">Every card you will ever recite, face-down until its level. Coming with the deck.</p>
+  <div id="binder-head"></div>
+  <div id="binder-grid"></div>
 </div>
 
 <div class="page" id="page-books" hidden>
   <button class="back" data-back>← back to the stage</button>
   <h1>The Library</h1>
-  <p class="lede">The books, by shelf and by subject — and a place for your own. Coming with the deck.</p>
+  <div id="books-body"></div>
 </div>
 
 <script type="module" src="./src/game.js"></script>

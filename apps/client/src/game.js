@@ -24,6 +24,7 @@ import { initPop, tickPop, dailyPop, drawPop, popCount, animalCount,
 import { initDeck, card, allCards, recordRecital, recitedEntries, recitedCount,
          totalXP, levelFor, levelName, nextLevelAt, cardsAtLevel, nextCard,
          timesRecited, bookProgress } from './deck.js';
+import { initPages, openCardsPage, openBooksPage } from './pages.js';
 
 const $ = (id) => document.getElementById(id);
 
@@ -224,6 +225,8 @@ const CATEGORY_FX = {
                         } else toast('Science takes another step.'); },
   Vedas:       (c) => { bump('order', 6); bump('knowledge', 4);
                         toast('The old hymns settle over everything.'); },
+  Modern:      (c) => { bump('order', 4); bump('knowledge', 2);
+                        toast('Your own book, read to your children.'); },
 };
 function bump(k, v) { G.meters[k] = Math.min(100, G.meters[k] + v); }
 
@@ -260,12 +263,28 @@ window.addEventListener('blur', () => { if (recite) endRecite(false); });
 /* ── Pages (full-screen; real content in phase 3) ───────────────────────── */
 
 const pageOpen = () => !$('page-cards').hidden || !$('page-books').hidden;
-$('btnCards').addEventListener('click', () => { $('page-cards').hidden = false; });
-$('btnBooks').addEventListener('click', () => { $('page-books').hidden = false; });
+function closePages() {
+  $('page-cards').hidden = true;
+  $('page-books').hidden = true;
+  for (const el of document.querySelectorAll('.card-detail')) el.hidden = true;
+}
+$('btnCards').addEventListener('click', openCardsPage);
+$('btnBooks').addEventListener('click', openBooksPage);
 for (const el of document.querySelectorAll('[data-back]'))
-  el.addEventListener('click', () => { $('page-cards').hidden = true; $('page-books').hidden = true; });
-window.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') { $('page-cards').hidden = true; $('page-books').hidden = true; }
+  el.addEventListener('click', closePages);
+window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePages(); });
+initPages({
+  getLevel: () => G.level,
+  setCurrentCard: (id) => {
+    const c = card(id);
+    if (!c) return;
+    currentCard = c;
+    closePages();
+    saveGame();
+    paintHUD();
+    toast(`Ready: "${c.title}". Hold Space when you are.`);
+  },
+  onDeckChanged: () => { saveGame(); paintHUD(); },
 });
 
 /* ── HUD ────────────────────────────────────────────────────────────────── */

@@ -13,11 +13,97 @@ let byId = new Map();
 /** recited: cardId → times recited. The save file's heart. */
 let recited = new Map();
 
+/* ── The player's own books ("upload Atomic Habits") ────────────────────── */
+//
+// A modern book is the player's to bring: pasted text or a .txt, split into
+// readable pages, each page a recitable card on its own shelf. Stored only
+// in this browser (localStorage) — the game reads what the player gives it
+// and claims nothing about the rights to it.
+
+const USER_KEY = 'recite-game-books-v1';
+let userBooks = []; // [{ id, title, pages: [{ title, recite, text }] }]
+
+function loadUserBooks() {
+  try { userBooks = JSON.parse(localStorage.getItem(USER_KEY) ?? '[]'); }
+  catch { userBooks = []; }
+}
+function saveUserBooks() {
+  try { localStorage.setItem(USER_KEY, JSON.stringify(userBooks)); } catch {}
+}
+
+/** Split raw text into pages a person could actually read aloud. */
+export function paginate(text, target = 650) {
+  const paras = text.replace(/\r\n/g, '\n').split(/\n\s*\n|\n/).map((p) => p.trim()).filter(Boolean);
+  const pages = [];
+  let cur = '';
+  for (const p of paras) {
+    if (cur && cur.length + p.length > target) { pages.push(cur); cur = p; }
+    else cur = cur ? cur + '\n\n' + p : p;
+    // a single huge paragraph still has to break somewhere
+    while (cur.length > target * 1.6) {
+      const cut = cur.lastIndexOf('. ', target);
+      const at = cut > target * 0.4 ? cut + 1 : target;
+      pages.push(cur.slice(0, at).trim());
+      cur = cur.slice(at).trim();
+    }
+  }
+  if (cur) pages.push(cur);
+  return pages;
+}
+
+function userBookEntries() {
+  const books = [], cards = [];
+  for (const b of userBooks) {
+    books.push({ id: b.id, title: b.title, icon: '📕', user: true });
+    b.pages.forEach((p, i) => {
+      cards.push({
+        id: `${b.id}.P${i + 1}`, book: b.id, category: 'Modern', level: 1,
+        title: `${p.title ?? `Page ${i + 1}`}`, sub: b.title,
+        recite: p.recite, text: p.text,
+      });
+    });
+  }
+  return { books, cards };
+}
+
+let baseBooks = [], baseCards = [];
+
+function rebuild() {
+  const u = userBookEntries();
+  BOOKS = [...baseBooks, ...u.books];
+  CARDS = [...baseCards, ...u.cards];
+  byId = new Map(CARDS.map((c) => [c.id, c]));
+}
+
+export function addUserBook(title, text) {
+  const pages = paginate(text).map((t) => ({
+    title: null,
+    recite: t.split(/(?<=[.!?])\s/)[0].slice(0, 180),
+    text: t,
+  }));
+  if (!pages.length) return null;
+  const id = `USR.${Date.now().toString(36)}`;
+  userBooks.push({ id, title: title.trim() || 'An untitled book', pages });
+  saveUserBooks();
+  rebuild();
+  return id;
+}
+
+export function removeUserBook(id) {
+  const b = userBooks.find((x) => x.id === id);
+  if (!b) return;
+  userBooks = userBooks.filter((x) => x !== b);
+  for (const cid of [...recited.keys()]) if (cid.startsWith(id + '.')) recited.delete(cid);
+  saveUserBooks();
+  rebuild();
+}
+
 export function initDeck(deckData, savedRecited) {
   LEVELS = deckData.levels;
-  BOOKS = deckData.books;
-  CARDS = deckData.cards;
-  byId = new Map(CARDS.map((c) => [c.id, c]));
+  baseBooks = deckData.books;
+  baseCards = deckData.cards;
+  loadUserBooks();
+  rebuild();
   recited = new Map(savedRecited ?? []);
   // A save from an older deck may hold ids the deck no longer ships. Drop
   // them rather than crash — the XP they earned is honestly gone with them.
