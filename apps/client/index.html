@@ -148,9 +148,21 @@
   .startcard h1 { margin:0 0 4px; font-size:30px; letter-spacing:.01em; }
   .startcard .lede { margin:0 0 18px; color:var(--ink-soft); font-size:14px; line-height:1.5; }
   .picks { display:flex; flex-direction:column; gap:8px; }
+  /* A class selector and the UA [hidden] rule tie on specificity, and author
+     CSS wins ties — so .picks{display:flex} silently overrode [hidden] the
+     same way #eduDock's own display:flex did earlier this session. Reasserted
+     explicitly rather than relying on selector bookkeeping again. */
+  .picks[hidden], #statepick[hidden] { display:none; }
   .picks .btn { text-align:left; padding:11px 14px; display:flex; flex-direction:column; gap:3px; }
   .picks .btn b { font-size:15px; }
   .picks .btn span { font-size:12px; opacity:.8; font-weight:400; }
+  #statepick .lede-state { margin:0 0 12px; color:var(--ink-soft); font-size:13px; line-height:1.5; }
+  .statepick-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:5px;
+    max-height:44vh; overflow-y:auto; }
+  .statepick-grid .btn { font-size:12px; padding:7px 8px; text-align:left; }
+  .chosen-state { margin:0 0 4px; font-size:13px; color:var(--ink-soft); }
+  .chosen-state b { color:var(--ink); }
+  #backToStates { align-self:flex-start; font-size:11px; padding:5px 9px; }
   #scrub { display:flex; align-items:center; gap:8px; }
   #scrubber { width:190px; accent-color:var(--gold); }
   #scrub-year { font-family:var(--mono); font-size:11px; min-width:66px; }
@@ -269,7 +281,14 @@
         <h1>Paramountcy</h1>
         <p class="lede">An India-only grand strategy game where the economy you
           protect is a library.</p>
-        <div class="picks">
+        <div id="statepick">
+          <p class="lede-state">Choose the state you'll answer for. Everything you
+            build there is yours to develop; the rest of India stays open to teach,
+            survey and trade in, just not to build in.</p>
+          <div class="statepick-grid" id="statepickGrid"></div>
+        </div>
+        <div class="picks" id="campaignPicks" hidden>
+          <p class="chosen-state" id="chosenStateLine"></p>
           <button class="btn btn--primary" data-campaign="chola">
             <b>The Chola Age</b><span>Thanjavur, 850. The record runs to village
             resolution here — and the survey is unfinished, and the Pandyas are not.
@@ -278,6 +297,7 @@
             <b>The long campaign</b><span>Mehrgarh, 6000 BCE. Seven thousand nine
             hundred and forty-seven years, and for the first three thousand the
             library is people. First task: grow enough to feed one memory.</span></button>
+          <button class="btn tiny" id="backToStates">&larr; choose a different state</button>
         </div>
       </div>
     </div>
@@ -335,7 +355,7 @@
       <div class="ledger-row"><span>Farmers</span><span class="v" id="farmers">—</span></div>
       <div class="ledger-row"><span>Reciters</span><span class="v" id="reciters">—</span></div>
       <div class="ledger-row"><span>Scribes</span><span class="v" id="scribes">—</span></div>
-      <div class="ledger-row"><span>Soldiers</span><span class="v" id="soldiers">—</span></div>
+      <div class="ledger-row"><span>Guards</span><span class="v" id="soldiers">—</span></div>
     </div>
     <div class="panel"><h2>Flows</h2><div id="flows"></div></div>
     <div class="panel"><h2>Decisions</h2><div class="acts" id="acts"></div></div>

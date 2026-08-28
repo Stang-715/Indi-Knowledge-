@@ -313,7 +313,7 @@ export const DECISIONS = {
     state.grain -= cost;
     flow(state, 'soldiers', -cost);
     state.pops.soldiers += n;
-    record(state, d.year, 'decision', `${n} raised to guard the roads.`);
+    record(state, d.year, 'decision', `${n} guards raised to watch the roads.`);
   },
   'escort'(state, d) {
     const r = state.routes.get(d.route);

@@ -82,3 +82,45 @@ const CONFIDENCE_WEIGHT = { high: 1, medium: 0.62, low: 0.35 };
 export function confidenceWeight(entry) {
   return CONFIDENCE_WEIGHT[entry?.confidence] ?? 0.5;
 }
+
+/* ── Your state ────────────────────────────────────────────────────────── */
+
+/** Which of the sim's own districts (packages/sim/src/survey.js's 53-cell
+ *  grid, NOT this file's 724-district atlas boundaries) fall inside a
+ *  chosen real-world state's outline. This is the actual scoping rule for
+ *  anything the player builds "in their state" — precise, because it tests
+ *  real geometry rather than the coarser 12-region spine every district
+ *  already carries as `region`.
+ *
+ *  A strict-containment test alone leaves 18 of the 36 states — Bihar,
+ *  Kerala, West Bengal, Punjab among them — with NOTHING: the sim's grid is
+ *  9x9 over the whole subcontinent, coarse enough that a real state can sit
+ *  entirely between cell centres without ever containing one. So when the
+ *  strict list is empty, this falls back to the single nearest sim district
+ *  to the state's own centroid — every state gets at least one place to
+ *  build, honestly labelled as "nearest" rather than silently doing nothing. */
+export function districtsInState(simDistricts, s) {
+  const out = [];
+  for (const d of simDistricts.values()) {
+    if (pointInRings(s.outline, d.lon, d.lat)) out.push(d);
+  }
+  if (out.length) return out;
+  let nearest = null, bestD = Infinity;
+  for (const d of simDistricts.values()) {
+    const dd = (d.lon - s.c[0]) ** 2 + (d.lat - s.c[1]) ** 2;
+    if (dd < bestD) { bestD = dd; nearest = d; }
+  }
+  return nearest ? [nearest] : [];
+}
+
+/** The nearest of the sim's twelve documented regional spines (survey.js's
+ *  `ANCHORS`) to a point — how a chosen real-world state becomes the sim's
+ *  own `homeRegion`, without a second hand-maintained state→region table. */
+export function nearestRegion(anchors, lon, lat) {
+  let best = anchors[0], bestD = Infinity;
+  for (const a of anchors) {
+    const d = Math.hypot((a.lon - lon) * 0.93, a.lat - lat);
+    if (d < bestD) { bestD = d; best = a; }
+  }
+  return best.id;
+}

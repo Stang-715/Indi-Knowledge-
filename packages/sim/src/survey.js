@@ -27,8 +27,10 @@ export const TIER = {
 /** A survey costs people and years, not just grain. */
 export const SURVEY_COST = { grain: 90, years: 4 };
 
-/** Approximate centres of the twelve documented regional spines. */
-const ANCHORS = [
+/** Approximate centres of the twelve documented regional spines. Exported so
+ *  the client can map a player's chosen real-world state to the nearest
+ *  spine (its `homeRegion`) without a second, separately-maintained table. */
+export const ANCHORS = [
   { id: 'RGN.TAMILAKAM',    lon: 78.6, lat: 10.6 },
   { id: 'RGN.KARNATAKA',    lon: 76.2, lat: 14.6 },
   { id: 'RGN.ANDHRA',       lon: 79.4, lat: 16.6 },

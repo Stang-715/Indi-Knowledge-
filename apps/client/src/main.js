@@ -27,7 +27,7 @@ import { endowable, endowmentLedger, living, lineageOf }
 import { cardModel, renderCard, renderYearPage, indexCards, authoredFor,
          indexThreads, threadsFor }
   from '../../../packages/ui/src/eventcard.js';
-import { surveyable, surveySummary, TIER, SURVEY_COST }
+import { surveyable, surveySummary, TIER, SURVEY_COST, ANCHORS }
   from '../../../packages/sim/src/survey.js';
 import { blocked, locked, trustRung, nextRung } from '../../../packages/sim/src/pillars.js';
 import { frontierPresent, frontierLedger, STANCE } from '../../../packages/sim/src/frontier.js';
@@ -48,7 +48,8 @@ import { interiorHTML, scriptoriumModel } from '../../../packages/ui/src/interio
 import { drawFrom } from '../../../packages/sim/src/rng.js';
 import { RECITE_COST, cardFreshness, isCardLocked, districtLiteracy } from '../../../packages/sim/src/teaching.js';
 import { CHALLENGE_TYPES } from '../../../packages/sim/src/challenges.js';
-import { KNOWLEDGE_TABS, slugFromBndId, loadKnowledgeTab, findStateAt, confidenceWeight } from './knowledge.js';
+import { KNOWLEDGE_TABS, slugFromBndId, loadKnowledgeTab, findStateAt, confidenceWeight,
+  districtsInState, nearestRegion } from './knowledge.js';
 import { drawBoundaries } from './boundaries.js';
 import { drawPeopleMode, setListenFocus, chibiCountNear, setHoldRipple } from './people-layer.js';
 import { buildCodexIndex, searchCodex, codexHTML, shelfHTML, resultsHTML }
@@ -1401,7 +1402,7 @@ function recompute() {
   try {
     state = run(DP, SEED, decisions, campaign
       ? { from: campaign.from, to: target, initial: openingState(campaign) }
-      : { to: target });
+      : { to: target, initial: playerHomeRegion ? { homeRegion: playerHomeRegion } : undefined });
     paint();
   } catch (e) {
     playing = false; $('play').textContent = '▶ play';
@@ -1421,9 +1422,51 @@ function showDamaged(e) {
   });
 }
 
+/* ── Your state (phase, this session): chosen before any campaign ────────── */
+//
+// "As the game begins, you need to select a state to keep developing the
+// game and the people inside it." The choice is your home base — the sim's
+// own homeRegion for the open long campaign, and the district-scoping rule
+// everything you BUILD (farms, later) answers to — but it never locks the
+// rest of the map away: recite, survey and trade already work anywhere, and
+// stay that way. The Chola Age keeps its own fixed historical setting
+// (Thanjavur) regardless of what you pick here — a preset scenario is
+// allowed to insist on its own place, the way it already insists on its own
+// starting year and pillars (packages/sim/src/campaign.js).
+let playerState = null;       // BND.* id
+let playerStateName = '';
+let playerHomeRegion = null;  // RGN.* id, derived once at pick time
+
+function renderStatePicker() {
+  const grid = $('statepickGrid');
+  if (!grid || !BOUNDARIES) return;
+  const states = [...BOUNDARIES.states].sort((a, b) => (a.name ?? a.id).localeCompare(b.name ?? b.id));
+  grid.innerHTML = states.map((s) =>
+    `<button class="btn" data-state="${s.id}">${s.name ?? s.id}</button>`).join('');
+}
+renderStatePicker();
+
+function choosePlayerState(bndId) {
+  const s = BOUNDARIES?.states.find((x) => x.id === bndId);
+  if (!s) return;
+  playerState = bndId;
+  playerStateName = s.name ?? bndId;
+  playerHomeRegion = nearestRegion(ANCHORS, s.c[0], s.c[1]);
+  $('statepick').hidden = true;
+  $('campaignPicks').hidden = false;
+  $('chosenStateLine').innerHTML = `Developing <b>${playerStateName}</b>.`;
+}
+
 /* ── Campaigns ──────────────────────────────────────────────────────────── */
 
 $('start').addEventListener('click', (e) => {
+  if (e.target.closest('#backToStates')) {
+    $('campaignPicks').hidden = true;
+    $('statepick').hidden = false;
+    return;
+  }
+  const sb = e.target.closest('[data-state]');
+  if (sb) { choosePlayerState(sb.dataset.state); return; }
   const b = e.target.closest('[data-campaign]');
   if (!b) return;
   if (b.dataset.campaign === 'chola') {
@@ -1554,7 +1597,7 @@ function paintWatched() {
          meets it ${Math.round(c.days - c.progress)} days from home.</p>
       <div class="scene-acts">${opts.map(m =>
         `<button class="btn ${m === 'fight' ? 'btn--primary' : ''}" data-scene="${m}"
-           title="${m === 'fight' ? `Soldiers decide it: ${state.pops.soldiers} available.`
+           title="${m === 'fight' ? `Guards decide it: ${state.pops.soldiers} available.`
                  : m === 'pay' ? 'A cut of the cargo, and the road.'
                  : m === 'reroute' ? 'The long way round: +40% days.'
                  : 'Camp, and hope it moves on: days and a little cargo.'}">${m}</button>`).join('')}
@@ -1625,6 +1668,8 @@ function paintVitals(s) {
        <span class="k">Literacy</span><span class="v">${Math.round(s.literacy ?? 0)}%</span></span>
      <span class="vital ${capped ? 'bad' : ''}" data-goto="pillars" title="The trust ladder${capped ? ` — capped at ${cap} under occupation` : ''}. Click: the gauges.">
        <span class="k">Trust</span><span class="v">${rung.name}</span></span>
+     ${playerStateName ? `<span class="vital" title="The state you chose to develop. Everything you build (farms, and what follows) answers to this — the rest of India stays open to teach, survey and trade in.">
+       <span class="k">State</span><span class="v">${playerStateName}</span></span>` : ''}
      <span class="pillarglyphs" data-goto="pillars" title="Agriculture · Trade · Structure · Networking. Click: the full gauges.">
        ${VITAL_PILLARS.map(p => `<span class="pg"><i style="height:${Math.round(s.pillars[p])}%"></i></span>`).join('')}</span>`;
 }
@@ -2959,8 +3004,8 @@ function paintActions() {
       tip:'50 grain. One more work held in living memory.' },
     { a:'train-scribe',   label:'Train a scribe',   ok: s.grain >= 80,
       tip:'80 grain. Scribes maintain manuscripts and make new ones.' },
-    { a:'raise-soldiers', label:'Raise 5 soldiers', ok: s.grain >= 100,
-      tip:'100 grain. Soldiers make roads safe for caravans.' },
+    { a:'raise-soldiers', label:'Raise 5 guards', ok: s.grain >= 100,
+      tip:'100 grain. Guards make roads safe for caravans — the only figures in this population who ever carry a weapon.' },
   ].map(x => {
     const g = gate(x.a);
     return g ? { ...x, ok: false, tip: g.why } : x;

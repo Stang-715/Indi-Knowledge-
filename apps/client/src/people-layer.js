@@ -185,7 +185,13 @@ function drawChibi(ctx, x, y, h, palette, role, listening, now, phase, dpr, leve
     ctx.lineTo(bodyW * 0.5 + h * 0.24, -bodyH * 0.6 - Math.abs(walk) * h * 0.22);
     ctx.stroke();
   } else if (role === 'soldiers') {
-    // a raised spear, angled sharper while a real fight is on the log
+    // Guards — national and state guards, raised deliberately (raise-soldiers)
+    // and never more than a small fraction of the population (roleFor draws
+    // this role proportionally to pops.soldiers/total, same as every other
+    // role). This is the ONLY branch in this function that ever draws a
+    // weapon: a raised spear, angled sharper while a real fight is on the log.
+    // Everyone else — farmers, reciters, teachers, merchants — always walks
+    // unarmed, on purpose.
     const raise = fighting ? 0.55 : 0.25;
     ctx.strokeStyle = '#3e2540';
     ctx.lineWidth = Math.max(1, h * 0.07);

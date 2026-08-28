@@ -33,6 +33,6 @@ export const DECISIONS = {
     if (n <= 0) return;
     state.pops.soldiers -= n;
     state.pops.farmers += n;
-    record(state, d.year, 'decision', `${n} soldier(s) stand down and return to the fields.`);
+    record(state, d.year, 'decision', `${n} guard(s) stand down and return to the fields.`);
   },
 };
