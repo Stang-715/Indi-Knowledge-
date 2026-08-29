@@ -33,6 +33,7 @@ import { initLenses, registerLens, lensList, lensById, armedLens, armedLensId,
          keyToLens, ELIGIBILITY, ELIGIBILITY_ORDER } from './lenses.js';
 import { drawGrid, drawMarks, drawWash, surveyCells, surveyCellAt,
          drawIsolation, stateBounds } from './sheet.js';
+import { drawIso as drawIsoBlocks } from './iso.js';
 
 const $ = (id) => document.getElementById(id);
 
@@ -322,8 +323,44 @@ function renderStatePanel() {
   $('statepanel').hidden = false;
 }
 
-/* Phase 3 fills the isometric preview; Phase 4 fills the decisions. */
-function drawIso(st) { $('sp-iso').hidden = true; $('sp-isocap').hidden = true; }
+/**
+ * The ISO preview. Height is where your people actually are, district by
+ * district — the one number that varies across a state, that the game itself
+ * knows, and that decides where the next thing should go. The record's own
+ * numbers are per state, so extruding by them would draw a flat slab and call
+ * it information.
+ */
+function drawIso(st) {
+  const cv2 = $('sp-iso');
+  // Count your people into districts once, then read the blocks off it.
+  const byDistrict = new Map();
+  for (let i = 0; i < campList().length; i++) {
+    const [lon, lat] = campList()[i];
+    if (stateAt(lon, lat)?.slug !== st.slug) continue;
+    let best = null, bd = Infinity;
+    for (const d of st.districts) {
+      const dd = Math.hypot(d.c[0] - lon, d.c[1] - lat);
+      if (dd < bd) { bd = dd; best = d; }
+    }
+    if (best) byDistrict.set(best.id, (byDistrict.get(best.id) ?? 0) + campPop(i));
+  }
+  const most = Math.max(1, ...byDistrict.values());
+  const l = armedLens();
+  const RGB = { field: [122, 143, 82], hearth: [168, 100, 43], order: [62, 132, 150],
+                chronicle: [122, 78, 142], survey: [110, 106, 98] };
+
+  cv2.hidden = false;
+  $('sp-isocap').hidden = false;
+  drawIsoBlocks(cv2.getContext('2d'), st, {
+    value: (d) => (byDistrict.get(d.id) ?? 0) / most,
+    rgb: RGB[l?.id] ?? [122, 78, 142],
+    mark: (d) => byDistrict.has(d.id),
+  });
+  const held = byDistrict.size;
+  $('sp-isocap').textContent = held
+    ? `gold is where your people stand — ${held} of ${st.districts.length} districts · height is how many`
+    : `${st.districts.length} districts, and none of your people stand in any of them yet`;
+}
 function renderStateActs(st, mine) { $('sp-acts').innerHTML = ''; }
 
 const row = (k, v) => `<div class="sp-row"><b>${esc(k)}</b><span>${esc(v)}</span></div>`;
@@ -1354,6 +1391,8 @@ window.__test = {
   currentCard: () => currentCard?.id ?? null,
   setSpeed: (i) => { G.speedIdx = i; },
   setOrder: (v) => { G.meters.order = v; paintHUD(); paintCampChip(); paintLegend(); },
+  setFood: (v) => { G.meters.food = v; paintHUD(); },
+  tapAt: (lon, lat) => lensExecute(effectiveLens(), lon, lat),
   setCard: (id) => { const c = card(id); if (c) { currentCard = c; paintHUD(); } return !!c; },
   reciteNow: () => { if (currentCard) onRecited(currentCard); },   // skip the hold, for fast unlock tests
   wipeSave: () => { try { localStorage.removeItem(SAVE_KEY); } catch {} },
