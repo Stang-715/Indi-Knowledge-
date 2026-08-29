@@ -123,6 +123,36 @@ export const animalCount = () => animals.length;
 export const campList = () => CAMPS;
 export const campName = (i) => CAMP_NAMES[i] ?? `Camp ${i + 1}`;
 
+/**
+ * Found a settlement. The ten starting camps are where these people already
+ * were; everything after this is somewhere you chose to put them, so a new
+ * camp arrives with a handful of movers rather than out of nothing.
+ *
+ * @returns the new camp's index
+ */
+export function addCamp(lon, lat, name, settlers = 6) {
+  CAMPS.push([lon, lat]);
+  CAMP_NAMES.push(name ?? `Camp ${CAMPS.length}`);
+  const i = CAMPS.length - 1;
+  const home = CAMPS[i];
+  // The movers come from the most crowded camp, so founding is a real choice
+  // about where your people stand and not a free population bonus.
+  const from = CAMPS.map((c, j) => [campPop(j), j]).sort((a, b) => b[0] - a[0])[0]?.[1];
+  let moved = 0;
+  for (const p of people) {
+    if (moved >= settlers) break;
+    if (from == null || p.camp !== CAMPS[from] || p.state === 'listen') continue;
+    p.camp = home;
+    p.lon = lon + (rnd() - 0.5) * CAMP_RADIUS;
+    p.lat = lat + (rnd() - 0.5) * CAMP_RADIUS;
+    p.tlon = p.lon; p.tlat = p.lat;
+    p.state = 'idle'; p.timer = rnd();
+    moved++;
+  }
+  if (fires.length) lightFire(lon + 0.15, lat + 0.1);   // fire travels with them
+  return i;
+}
+
 /** Which camp a point falls in, or -1. Used by the stage to turn a tap on
  *  the map into "show me this settlement, close up". */
 export function campAt(lon, lat, radius = CAMP_RADIUS) {

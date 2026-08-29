@@ -23,7 +23,7 @@ import { initPop, tickPop, dailyPop, drawPop, popCount, animalCount,
          setListenFocus, takeCounters, lightFire, campList, START_POP,
          setEconomyFlags, setBuildings, cowCount, campAt, campName, campPop,
          farmLayout, workAt, grainBurst, FARM_PLOTS, WELL_DIGS, WELL_MAX_WATER,
-         CAMP_RADIUS } from './pop.js';
+         CAMP_RADIUS, addCamp } from './pop.js';
 import { initDeck, card, allCards, recordRecital, recitedEntries, recitedCount,
          totalXP, levelFor, levelName, nextLevelAt, cardsAtLevel, nextCard,
          timesRecited, bookProgress, cardInBooks } from './deck.js';
@@ -31,7 +31,7 @@ import { initPages, openCardsPage, openBooksPage, openDetail } from './pages.js'
 import { initLenses, registerLens, lensList, lensById, armedLens, armedLensId,
          arm, disarm, actionAt, execute as lensExecute, buildTray, paintTray,
          keyToLens, ELIGIBILITY, ELIGIBILITY_ORDER } from './lenses.js';
-import { drawGrid, drawMarks, drawWash } from './sheet.js';
+import { drawGrid, drawMarks, drawWash, surveyCells, surveyCellAt } from './sheet.js';
 
 const $ = (id) => document.getElementById(id);
 
@@ -204,6 +204,8 @@ const G = {
   farms: {},
   // The sheet lying on the table, or '' for the bare model.
   lens: '',
+  // Camps you founded yourself, beyond the ten these people already held.
+  founded: [],
 };
 let currentCard = null;
 const BOOK_TITLE = new Map(DECK.books.map((b) => [b.id, b.title]));
@@ -216,6 +218,7 @@ function saveGame() {
       day: G.day, meters: G.meters, flags: G.flags, built: G.built, builtAt: G.builtAt,
       tally: G.tally,
       read: [...G.read], farms: G.farms, lens: armedLensId() ?? '',
+      founded: G.founded,
       recited: recitedEntries(), currentCardId: currentCard?.id ?? null,
       pop: popCount(),
     }));
@@ -617,6 +620,78 @@ function nextCardIn(books) {
   const mine = allCards().filter((c) => c.level <= lv && cardInBooks(c, books));
   return mine.find((c) => timesRecited(c.id) === 0) ?? mine[0] ?? null;
 }
+
+/* ── The Survey: where your people are not, yet ─────────────────────────── */
+
+const SETTLE_FOOD = 18;              // what founding a camp costs the pot
+const SETTLE_ORDER = 22;             // and the Order it takes to move people
+
+/** Name a new camp for the ground it stands on: the nearest district the
+ *  atlas actually surveyed, so the map names itself rather than counting. */
+function placeName(lon, lat) {
+  const st = stateAt(lon, lat);
+  if (!st) return `The ${Math.round(Math.abs(lat))}° Camp`;
+  let best = null, bd = Infinity;
+  for (const d of st.districts) {
+    const dd = Math.hypot(d.c[0] - lon, d.c[1] - lat);
+    if (dd < bd) { bd = dd; best = d.name; }
+  }
+  return `The ${best ?? st.name} Camp`;
+}
+
+const LENS_SURVEY = registerLens({
+  id: 'survey', glyph: '🧭', name: 'The Survey', grid: 'survey', books: [],
+  blurb: 'The country cell by cell — where your people are, and where they are not.',
+  target: (lon, lat) => {
+    const cell = surveyCellAt(lon, lat);
+    if (!cell) return null;
+    // Taken means a camp stands INSIDE this cell — not merely near it. A cell
+    // is ~3° across and a camp's people roam 1.6°, so a radius test would call
+    // half the country occupied by ten settlements.
+    const taken = campList().some(([lon2, lat2]) =>
+      Math.abs(lon2 - cell.lon) <= cell.w / 2 && Math.abs(lat2 - cell.lat) <= cell.h / 2);
+    return { kind: 'cell', cell, land: !!stateAt(cell.lon, cell.lat), taken };
+  },
+  verbs: [
+    { id: 'settle', label: 'found a camp',
+      eligible: (t) => {
+        if (!t.land) return 'never';                 // the Bay of Bengal is not a district
+        if (t.taken) return 'already';
+        if (G.meters.order < SETTLE_ORDER) return 'could';
+        return G.meters.food >= SETTLE_FOOD ? 'can' : 'could';
+      },
+      why: (t) => t.taken ? 'Your people already hold this ground.'
+        : G.meters.order < SETTLE_ORDER
+          ? `Too wild to send anyone out — Order ${Math.round(G.meters.order)}, and ${SETTLE_ORDER} is the least it takes.`
+          : `Founding a camp costs ${SETTLE_FOOD} food; the pot holds ${Math.round(G.meters.food)}.`,
+      execute: (t) => {
+        G.meters.food = Math.max(0, G.meters.food - SETTLE_FOOD);
+        const name = placeName(t.cell.lon, t.cell.lat);
+        addCamp(t.cell.lon, t.cell.lat, name);
+        G.founded.push({ lon: t.cell.lon, lat: t.cell.lat, name, day: G.day });
+        cameraMoved();
+        toast(`${name} is founded. Some of your people have walked out to it.`);
+        saveGame();
+        paintHUD();
+        paintCampChip();
+        paintLegend();
+      } },
+  ],
+  // Every cell answers, so the empty country reads as opportunity rather than
+  // as nothing — which is the whole reason to lay this sheet down.
+  marks: () => surveyCells().map((cell) => {
+    const a = actionAt(LENS_SURVEY, cell.lon, cell.lat);
+    return a && a.state !== 'never'
+      ? { lon: cell.lon, lat: cell.lat, w: cell.w * 0.72, h: cell.h * 0.72, state: a.state } : null;
+  }).filter(Boolean),
+  hint: () => {
+    if (G.meters.order < SETTLE_ORDER)
+      return `too wild to settle new ground — Order ${Math.round(G.meters.order)} of the ${SETTLE_ORDER} it takes`;
+    return G.meters.food >= SETTLE_FOOD
+      ? `tap any empty cell to found a camp (${SETTLE_FOOD} food)`
+      : `${SETTLE_FOOD} food founds a camp; the pot holds ${Math.round(G.meters.food)}`;
+  },
+});
 
 /** The sheet actually governing taps: what you armed, or the one this view
  *  has always used. Arming nothing must leave the game exactly as it was. */
@@ -1156,6 +1231,12 @@ if (SAVED) {
   Object.assign(G.builtAt, SAVED.builtAt ?? {});
   Object.assign(G.tally, SAVED.tally ?? {});
   for (const id of SAVED.read ?? []) G.read.add(id);
+  // Re-found what you founded, in order, before anything reads a camp index.
+  for (const f of SAVED.founded ?? []) {
+    if (typeof f?.lon !== 'number') continue;
+    G.founded.push(f);
+    addCamp(f.lon, f.lat, f.name, 0);   // no movers: the people are already counted
+  }
   for (const [k, f] of Object.entries(SAVED.farms ?? {})) {
     const farm = farmFor(Number(k));
     for (let j = 0; j < FARM_PLOTS; j++) Object.assign(farm.plots[j], f.plots?.[j] ?? {});
@@ -1206,7 +1287,7 @@ window.__test = {
   recited: () => recitedEntries().map(([id]) => id),
   currentCard: () => currentCard?.id ?? null,
   setSpeed: (i) => { G.speedIdx = i; },
-  setOrder: (v) => { G.meters.order = v; },
+  setOrder: (v) => { G.meters.order = v; paintHUD(); paintCampChip(); paintLegend(); },
   setCard: (id) => { const c = card(id); if (c) { currentCard = c; paintHUD(); } return !!c; },
   reciteNow: () => { if (currentCard) onRecited(currentCard); },   // skip the hold, for fast unlock tests
   wipeSave: () => { try { localStorage.removeItem(SAVE_KEY); } catch {} },
@@ -1215,6 +1296,8 @@ window.__test = {
   tally: () => ({ ...G.tally }),
   addMoney: (n) => { G.meters.money += n; paintHUD(); },
   lenses: () => lensList().map((l) => l.id),
+  freeCells: () => surveyCells().filter((c) => actionAt(LENS_SURVEY, c.lon, c.lat)?.state === 'can'),
+  camps: () => campList().map((c, i) => `${campName(i)} @${c[0].toFixed(1)},${c[1].toFixed(1)}`),
   bookOf: (id) => card(id)?.book ?? null,
   screenAt: (lon, lat) => {
     const proj = cam.projection(cv.width, cv.height);

@@ -4,8 +4,9 @@
  * Two halves, on purpose:
  *
  *   · the GRID — the subdivision this sheet reads the country in. Camps and
- *     the ground each one walks, the states the atlas surveyed, or those
- *     states cut into districts, the unit of administration. A grid only
+ *     the ground each one walks, the states the atlas surveyed, those states
+ *     cut into districts (the unit of administration), or the 9×9 survey
+ *     lattice the sim itself divides the country into. A grid only
  *     changes when the camera or the sheet changes, so it is baked into the
  *     terrain cache alongside the rivers rather than redrawn every frame —
  *     and so is the wash a knowledge sheet lays under it.
@@ -21,6 +22,51 @@
 import { ELIGIBILITY } from './lenses.js';
 
 /* ── The grids ──────────────────────────────────────────────────────────── */
+
+/** The survey lattice — the same 9×9 the sim divides the country into
+ *  (packages/sim/src/survey.js), so the two never disagree about a cell. */
+export const SURVEY_GRID = { w: 66.0, s: 6.0, e: 94.0, n: 35.0, cols: 9, rows: 9 };
+
+/** The cell a point falls in, as {col, row, lon, lat, w, h}, or null outside. */
+export function surveyCellAt(lon, lat) {
+  const G = SURVEY_GRID;
+  const cw = (G.e - G.w) / G.cols, ch = (G.n - G.s) / G.rows;
+  const col = Math.floor((lon - G.w) / cw), row = Math.floor((lat - G.s) / ch);
+  if (col < 0 || row < 0 || col >= G.cols || row >= G.rows) return null;
+  return { col, row, w: cw, h: ch,
+           lon: G.w + (col + 0.5) * cw, lat: G.s + (row + 0.5) * ch };
+}
+
+/** Every cell of the lattice, in reading order. */
+export function surveyCells() {
+  const G = SURVEY_GRID, out = [];
+  const cw = (G.e - G.w) / G.cols, ch = (G.n - G.s) / G.rows;
+  for (let row = 0; row < G.rows; row++)
+    for (let col = 0; col < G.cols; col++)
+      out.push({ col, row, w: cw, h: ch,
+                 lon: G.w + (col + 0.5) * cw, lat: G.s + (row + 0.5) * ch });
+  return out;
+}
+
+function drawSurveyGrid(ctx, proj, dpr) {
+  const G = SURVEY_GRID;
+  ctx.beginPath();
+  for (let c = 0; c <= G.cols; c++) {
+    const lon = G.w + (G.e - G.w) * (c / G.cols);
+    ctx.moveTo(proj.toX(lon), proj.toY(G.n));
+    ctx.lineTo(proj.toX(lon), proj.toY(G.s));
+  }
+  for (let r = 0; r <= G.rows; r++) {
+    const lat = G.s + (G.n - G.s) * (r / G.rows);
+    ctx.moveTo(proj.toX(G.w), proj.toY(lat));
+    ctx.lineTo(proj.toX(G.e), proj.toY(lat));
+  }
+  ctx.setLineDash([5 * dpr, 5 * dpr]);
+  ctx.strokeStyle = 'rgba(62, 37, 64, 0.30)';
+  ctx.lineWidth = 0.9 * dpr;
+  ctx.stroke();
+  ctx.setLineDash([]);
+}
 
 function strokeRing(ctx, proj, flat) {
   ctx.moveTo(proj.toX(flat[0]), proj.toY(flat[1]));
@@ -77,6 +123,7 @@ export function drawGrid(ctx, proj, dpr, level, kind, { atlas, camps, campRadius
   ctx.save();
   if (kind === 'states' || kind === 'districts')
     drawStateGrid(ctx, proj, dpr, level, atlas, kind === 'districts');
+  else if (kind === 'survey') drawSurveyGrid(ctx, proj, dpr);
   else if (kind === 'camps' && camps) drawCampGrid(ctx, proj, dpr, camps, campRadius ?? 1.6);
   ctx.restore();
 }
