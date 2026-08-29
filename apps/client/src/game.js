@@ -31,7 +31,8 @@ import { initPages, openCardsPage, openBooksPage, openDetail } from './pages.js'
 import { initLenses, registerLens, lensList, lensById, armedLens, armedLensId,
          arm, disarm, actionAt, execute as lensExecute, buildTray, paintTray,
          keyToLens, ELIGIBILITY, ELIGIBILITY_ORDER } from './lenses.js';
-import { drawGrid, drawMarks, drawWash, surveyCells, surveyCellAt } from './sheet.js';
+import { drawGrid, drawMarks, drawWash, surveyCells, surveyCellAt,
+         drawIsolation, stateBounds } from './sheet.js';
 
 const $ = (id) => document.getElementById(id);
 
@@ -243,7 +244,7 @@ function loadGame() {
 // their fire, so a tighter framing than ~3.5° would put most of them
 // off-screen — a close-up of nobody.
 const CLOSEUP_SPAN = 3.6;
-const view = { camp: -1, wide: null };   // wide: the framing to come back to
+const view = { camp: -1, state: null, wide: null };   // wide: the framing to come back to
 
 /** Ease the camera to a target over ~450ms; the terrain cache follows. */
 let flight = null;
@@ -263,9 +264,80 @@ function stepFlight(now) {
   if (k >= 1) flight = null;
 }
 
+/* ── The state view: one state, alone, and what you decide there ────────── */
+//
+// Isolation is the point. When you are deciding about a state you should be
+// looking at that state and nothing else, so the rest of the country goes
+// under paper and the camera walks in. Everything the sheets already know how
+// to say about this ground gathers into one panel beside it.
+
+let isoFade = 0;                     // 0 = the whole country, 1 = this state alone
+let lastIsoState = null;             // kept so the paper can slide back off
+
+function enterState(slug) {
+  const st = ATLAS.states.find((x) => x.slug === slug);
+  if (!st || view.state === slug) return;
+  if (view.camp >= 0) exitCamp();
+  if (!view.wide) view.wide = { cx: cam.cx, cy: cam.cy, span: cam.span };
+  view.state = slug;
+  const b = stateBounds(st);
+  flyTo((b.w + b.e) / 2, (b.s + b.n) / 2, fitSpan(b, cv.width, cv.height) * 1.35);
+  renderStatePanel();
+  paintCampChip();
+}
+
+function exitState() {
+  if (!view.state) return;
+  view.state = null;
+  $('statepanel').hidden = true;
+  if (view.wide) { flyTo(view.wide.cx, view.wide.cy, view.wide.span); view.wide = null; }
+  paintCampChip();
+}
+
+const focusedState = () => view.state && ATLAS.states.find((x) => x.slug === view.state);
+
+/** Everything the record and the game know about this ground, on one slip. */
+function renderStatePanel() {
+  const st = focusedState();
+  if (!st) { $('statepanel').hidden = true; return; }
+  const ch = RECORD.chronicle[st.slug], go = RECORD.order[st.slug];
+  const mine = campsIn(st);
+  const l = armedLens();
+
+  $('sp-kicker').textContent = l ? `${l.glyph} ${l.name}` : 'the state view';
+  $('sp-name').textContent = st.name;
+  $('sp-body').innerHTML = [
+    ch?.summary && `<p>${esc(ch.summary)}</p>`,
+    row('Your camps here', mine.length ? mine.map((i) => campName(i)).join(', ') : 'none yet'),
+    row('People here', mine.reduce((n, i) => n + campPop(i), 0)),
+    go && row('Capital', go.capital),
+    go && row('Districts', go.n),
+    go && row('Formed', go.formed),
+    ch?.unesco != null && row('World Heritage', `${ch.unesco} propert${ch.unesco === 1 ? 'y' : 'ies'}`),
+    ch?.sites?.length && row('What still stands', ch.sites.join(' · ')),
+    ch?.first && row(ch.first.year, ch.first.what),
+  ].filter(Boolean).join('');
+  renderStateActs(st, mine);
+  drawIso(st);
+  $('statepanel').hidden = false;
+}
+
+/* Phase 3 fills the isometric preview; Phase 4 fills the decisions. */
+function drawIso(st) { $('sp-iso').hidden = true; $('sp-isocap').hidden = true; }
+function renderStateActs(st, mine) { $('sp-acts').innerHTML = ''; }
+
+const row = (k, v) => `<div class="sp-row"><b>${esc(k)}</b><span>${esc(v)}</span></div>`;
+
+/** Which of your camps stand inside this state's outline. */
+function campsIn(st) {
+  const out = [];
+  campList().forEach(([lon, lat], i) => { if (stateAt(lon, lat)?.slug === st.slug) out.push(i); });
+  return out;
+}
+
 function enterCamp(i) {
   if (view.camp === i) return;
-  if (view.camp < 0) view.wide = { cx: cam.cx, cy: cam.cy, span: cam.span };
+  if (view.camp < 0 && !view.wide) view.wide = { cx: cam.cx, cy: cam.cy, span: cam.span };
   view.camp = i;
   const [lon, lat] = campList()[i];
   flyTo(lon, lat, CLOSEUP_SPAN);
@@ -276,8 +348,18 @@ function exitCamp() {
   if (view.camp < 0) return;
   view.camp = -1;
   hoverFarm = null;
-  if (view.wide) flyTo(view.wide.cx, view.wide.cy, view.wide.span);
+  // Stepping out of a camp inside a state view returns to that state, not to
+  // the whole country — you back out one rung at a time.
+  if (view.state) enterStateFraming();
+  else if (view.wide) { flyTo(view.wide.cx, view.wide.cy, view.wide.span); view.wide = null; }
   paintCampChip();
+}
+
+function enterStateFraming() {
+  const st = focusedState();
+  if (!st) return;
+  const b = stateBounds(st);
+  flyTo((b.w + b.e) / 2, (b.s + b.n) / 2, fitSpan(b, cv.width, cv.height) * 1.35);
 }
 
 function paintCampChip() {
@@ -373,26 +455,6 @@ function washFrom(table) {
 }
 
 const esc = (t) => String(t ?? '').replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
-
-/** The dossier: a slip laid on the table, in the same frame a card uses. */
-function openDossier(title, kicker, rows) {
-  for (const el of document.querySelectorAll('.card-detail')) el.remove();
-  const el = document.createElement('div');
-  el.className = 'card-detail';
-  el.innerHTML = `<div class="cd-box">
-    <div class="cd-book">${esc(kicker)}</div>
-    <h2>${esc(title)}</h2>
-    ${rows.filter(Boolean).map(([k, v]) => k
-      ? `<p class="cd-moral"><b>${esc(k)}</b> · ${esc(v)}</p>`
-      : `<p class="cd-text">${esc(v)}</p>`).join('')}
-    <p class="cd-origin">From the atlas's researched packs — see atlas-data/ for the full record and its sources.</p>
-    <div class="cd-row"><button class="btn" data-close-detail>close</button></div>
-  </div>`;
-  el.addEventListener('click', (e) => {
-    if (e.target === el || e.target.closest('[data-close-detail]')) el.remove();
-  });
-  $('stage').append(el);
-}
 
 /* ── The lenses: sheets you lay over the table ──────────────────────────── */
 //
@@ -546,16 +608,9 @@ const LENS_ORDER = registerLens({
     return st ? { kind: 'state', slug: st.slug, rec: RECORD.order[st.slug] } : null;
   },
   verbs: [
-    { id: 'read-order', label: 'read how it is governed',
+    { id: 'read-order', label: 'go and look at it',
       eligible: (t) => t.kind === 'state' ? (t.rec ? 'can' : 'never') : 'never',
-      execute: (t) => openDossier(t.rec.name, 'how this ground is governed', [
-        ['', t.rec.summary],
-        t.rec.capital && ['Capital', t.rec.capital],
-        t.rec.formed && ['Formed', t.rec.formed],
-        t.rec.n && ['Districts', t.rec.n],
-        t.rec.legislature && ['Legislature', t.rec.legislature],
-        t.rec.policy && ['A flagship policy', `${t.rec.policy.name} — ${t.rec.policy.area}`],
-      ]) },
+      execute: (t) => enterState(t.slug) },
     { id: 'fund', label: 'fund it',
       eligible: (t) => {
         if (!t.def) return 'already';           // everything the pot can buy, stands
@@ -595,16 +650,9 @@ const LENS_CHRONICLE = registerLens({
     return st ? { kind: 'state', slug: st.slug, rec: RECORD.chronicle[st.slug] } : null;
   },
   verbs: [
-    { id: 'read-record', label: 'read the record',
+    { id: 'read-record', label: 'go and look at it',
       eligible: (t) => t.rec ? 'can' : 'never',
-      execute: (t) => openDossier(t.rec.name, 'what this ground remembers', [
-        ['', t.rec.summary],
-        t.rec.first && [t.rec.first.year, t.rec.first.what],
-        t.rec.dynasties.length && ['Who ruled here', t.rec.dynasties.join(' · ')],
-        t.rec.events && ['Documented events', t.rec.events],
-        t.rec.unesco && ['World Heritage', `${t.rec.unesco} propert${t.rec.unesco === 1 ? 'y' : 'ies'}`],
-        t.rec.sites.length && ['What still stands', t.rec.sites.join(' · ')],
-      ]) },
+      execute: (t) => enterState(t.slug) },
   ],
   hint: () => 'tap any state to read what this ground remembers',
   // The wash IS this sheet's mark. Ringing the camps would answer a question
@@ -716,6 +764,7 @@ initLenses({
     }
     paintCampChip();
     paintHUD();
+    if (view.state) renderStatePanel();
     saveGame();
     if (l) toast(`${l.glyph} ${l.name} — ${l.blurb}`);
   },
@@ -793,12 +842,14 @@ function closeupHint() {
 }
 
 $('campclose').addEventListener('click', exitCamp);
+$('sp-close').addEventListener('click', exitState);
 // Escape backs out of one thing at a time: the chant first, then the camp.
 window.addEventListener('keydown', (e) => {
   if (e.key !== 'Escape' || pageOpen()) return;
   if (recite) { endRecite(false); toast('You stop mid-verse.'); return; }
   if (armedLens()) { disarm(); toast('You lift the sheet off the table.'); return; }
-  if (view.camp >= 0) exitCamp();
+  if (view.camp >= 0) { exitCamp(); return; }
+  if (view.state) exitState();
 });
 
 /* ── The recital: a chant, kept in time ─────────────────────────────────── */
@@ -1166,8 +1217,20 @@ function frame(t) {
     const proj = cam.projection(w, h);
     ctx.clearRect(0, 0, w, h);
     ctx.drawImage(terrainCv, 0, 0);
+    // The rest of the country slides under paper over ~300ms, and back out
+    // again when you step away — the same easing as the camera walking in.
     drawMarks(ctx, proj, dpr, lensMarks());
     drawPop(ctx, proj, dpr, t / 1000, G.level, view.camp, farmView());
+
+    // The paper goes over EVERYTHING outside the focused state, people
+    // included — otherwise a crowd goes on walking about in the dark, which
+    // is precisely the distraction the state view exists to remove. It slides
+    // on and off over ~300ms, in step with the camera walking in.
+    const wantIso = view.state ? 1 : 0;
+    if (isoFade !== wantIso) isoFade = wantIso > isoFade
+      ? Math.min(1, isoFade + rdt * 3.3) : Math.max(0, isoFade - rdt * 3.3);
+    if (view.state) lastIsoState = focusedState();
+    if (isoFade > 0 && lastIsoState) drawIsolation(ctx, proj, dpr, lastIsoState, isoFade);
 
     if (recite) {
       const now = performance.now();
@@ -1276,6 +1339,9 @@ window.__test = {
     nextBeatIn: recite.nextBeat - performance.now(), beats: CHANT_BEATS },
   beatMs: () => BEAT_MS,
   camp: () => view.camp,
+  state: () => view.state,
+  enterState: (slug) => enterState(slug),
+  exitState: () => exitState(),
   enterCamp: (i) => enterCamp(i),
   exitCamp: () => exitCamp(),
   campScreen: (i) => {                     // where a camp sits on screen, for taps

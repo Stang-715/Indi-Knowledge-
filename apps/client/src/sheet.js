@@ -156,6 +156,50 @@ export function drawWash(ctx, proj, dpr, atlas, values, rgb) {
   ctx.restore();
 }
 
+/* ── Isolation: one state lit, the rest under paper ─────────────────────── */
+
+/**
+ * Focus a state by hiding everything else. The whole canvas is covered in
+ * the table's own paper and the chosen state is punched out of it, so what
+ * is left is the one place you are deciding about — the rest of the country
+ * is not deleted, it is simply out of the light.
+ *
+ * Drawn as one path with an outer rectangle and the state's rings inside it,
+ * filled even-odd: one fill, no clipping stack, no second canvas.
+ */
+export function drawIsolation(ctx, proj, dpr, state, alpha = 1) {
+  if (!state || alpha <= 0) return;
+  const w = ctx.canvas.width, h = ctx.canvas.height;
+  ctx.save();
+  ctx.globalAlpha = alpha;
+  ctx.beginPath();
+  ctx.rect(0, 0, w, h);
+  for (const ring of state.outline) strokeRing(ctx, proj, ring);
+  ctx.fillStyle = 'rgba(247, 243, 233, 0.93)';
+  ctx.fill('evenodd');
+  // A firm edge, so the lit ground reads as cut out rather than washed over.
+  ctx.beginPath();
+  for (const ring of state.outline) strokeRing(ctx, proj, ring);
+  ctx.strokeStyle = 'rgba(62, 37, 64, 0.55)';
+  ctx.lineWidth = 1.6 * dpr;
+  ctx.stroke();
+  ctx.restore();
+}
+
+/** The lon/lat box a state occupies, for framing the camera on it. */
+export function stateBounds(state) {
+  let w = 180, s = 90, e = -180, n = -90;
+  for (const ring of state.outline) {
+    for (let i = 0; i < ring.length; i += 2) {
+      if (ring[i] < w) w = ring[i];
+      if (ring[i] > e) e = ring[i];
+      if (ring[i + 1] < s) s = ring[i + 1];
+      if (ring[i + 1] > n) n = ring[i + 1];
+    }
+  }
+  return { w, s, e, n };
+}
+
 /* ── The marks ──────────────────────────────────────────────────────────── */
 
 /**

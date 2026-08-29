@@ -265,6 +265,36 @@
     margin-bottom: 10px; }
   .chip--lens:hover { background: var(--sheet-shade); }
 
+  /* ── The state view ────────────────────────────────────────────────── */
+  #statepanel { position: absolute; top: 14px; right: 14px; bottom: 14px; width: 336px;
+    z-index: 7; display: flex; flex-direction: column; gap: 10px; overflow-y: auto;
+    background: var(--paper); border: 1px solid var(--rule);
+    box-shadow: var(--shadow-lift); padding: 14px 16px; }
+  #statepanel[hidden] { display: none; }
+  .sp-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+  .sp-kicker { font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--ink-soft); }
+  #sp-name { margin: 2px 0 0; font-size: 19px; text-wrap: balance; }
+  #sp-iso { width: 100%; height: auto; display: block; background: var(--sheet);
+    border: 1px solid var(--rule); }
+  #sp-iso[hidden], .sp-isocap[hidden] { display: none; }
+  .sp-isocap { font-size: 10.5px; color: var(--ink-soft); margin-top: -6px; }
+  .sp-body { font-size: 12.5px; line-height: 1.55; }
+  .sp-body p { margin: 0 0 8px; }
+  .sp-row { display: flex; gap: 8px; justify-content: space-between;
+    border-bottom: 1px solid var(--rule); padding: 4px 0; }
+  .sp-row b { font-weight: 400; color: var(--ink-soft); }
+  .sp-row span { text-align: right; }
+  .sp-acts { display: flex; flex-direction: column; gap: 6px; margin-top: auto; padding-top: 8px; }
+  .sp-act { display: flex; align-items: center; gap: 9px; text-align: left; width: 100%;
+    font: inherit; font-size: 12.5px; padding: 8px 10px; cursor: pointer;
+    background: var(--sheet); border: 1px solid var(--rule); }
+  .sp-act:hover:not(:disabled) { border-color: var(--gold); }
+  .sp-act:disabled { cursor: default; opacity: .55; }
+  .sp-act i { width: 9px; height: 9px; border: 1px solid var(--rule); flex: none; }
+  .sp-act em { font-style: normal; color: var(--ink-soft); font-size: 11px; display: block; }
+  @media (max-width: 820px) { #statepanel { width: min(300px, 52vw); } }
+
   /* ── Toasts ────────────────────────────────────────────────────────── */
   #toasts { position: absolute; top: 64px; left: 50%; transform: translateX(-50%);
     z-index: 6; display: flex; flex-direction: column; gap: 6px; align-items: center;
@@ -303,6 +333,23 @@
        lifts it off again. -->
   <div id="lensrail" aria-label="Lenses: sheets to lay over the map"></div>
   <div id="lenslegend" hidden aria-label="What the colours on the sheet mean"></div>
+
+  <!-- The state view: one state lit, everything it is and everything you can
+       decide about it, gathered on one slip beside the map. -->
+  <aside id="statepanel" hidden aria-label="The state you are looking at">
+    <div class="sp-head">
+      <div>
+        <div class="sp-kicker" id="sp-kicker"></div>
+        <h2 id="sp-name"></h2>
+      </div>
+      <button class="btn tiny" id="sp-close" title="Back to the whole country (Esc)">✕</button>
+    </div>
+    <canvas id="sp-iso" width="600" height="380"
+      aria-label="An isometric model of this state's districts"></canvas>
+    <div class="sp-isocap" id="sp-isocap"></div>
+    <div class="sp-body" id="sp-body"></div>
+    <div class="sp-acts" id="sp-acts"></div>
+  </aside>
 
   <div id="toasts" aria-live="polite"></div>
 
