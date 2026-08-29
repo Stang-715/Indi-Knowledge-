@@ -211,6 +211,28 @@
     padding: 5px 10px; pointer-events: none; }
   #camphint[hidden] { display: none; }
 
+  /* ── The lens rail: sheets at the edge of the table ────────────────── */
+  #lensrail { position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+    z-index: 6; display: flex; flex-direction: column; gap: 7px; }
+  #lensrail .lens { display: flex; align-items: center; gap: 9px; width: auto;
+    height: auto; border-radius: 0; padding: 7px 12px 7px 9px; cursor: pointer;
+    background: var(--paper); border: 1px solid var(--rule);
+    box-shadow: var(--shadow-contact); font: inherit; font-size: 12px;
+    color: var(--ink-soft); text-align: left;
+    /* A sheet slides out from the edge as it comes down. */
+    transform: translateX(-4px); opacity: .82;
+    transition: transform .25s ease, opacity .25s ease, border-color .25s ease; }
+  #lensrail .lens:hover { opacity: 1; transform: translateX(0); border-color: var(--gold); }
+  #lensrail .lens[aria-pressed="true"] { opacity: 1; transform: translateX(0);
+    border-color: var(--gold); border-left-width: 3px; color: var(--ink);
+    box-shadow: var(--shadow-lift); }
+  #lensrail .lens-glyph { font-size: 16px; line-height: 1; }
+  #lensrail .lens-name { letter-spacing: .01em; }
+  @media (max-width: 720px) {
+    #lensrail .lens-name { display: none; }
+    #lensrail .lens { padding: 8px; }
+  }
+
   /* ── Toasts ────────────────────────────────────────────────────────── */
   #toasts { position: absolute; top: 64px; left: 50%; transform: translateX(-50%);
     z-index: 6; display: flex; flex-direction: column; gap: 6px; align-items: center;
@@ -243,6 +265,11 @@
     <button class="btn tiny" id="campclose" title="Step back to the whole map (Esc)">✕</button>
   </div>
   <div id="camphint" hidden></div>
+
+  <!-- The lens rail: glass sheets stacked at the edge of the table.
+       Lay one down and the world answers in its language. Keys 1..n, 0 or Esc
+       lifts it off again. -->
+  <div id="lensrail" aria-label="Lenses: sheets to lay over the map"></div>
 
   <div id="toasts" aria-live="polite"></div>
 

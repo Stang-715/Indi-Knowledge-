@@ -27,6 +27,9 @@ import { initDeck, card, allCards, recordRecital, recitedEntries, recitedCount,
          totalXP, levelFor, levelName, nextLevelAt, cardsAtLevel, nextCard,
          timesRecited, bookProgress } from './deck.js';
 import { initPages, openCardsPage, openBooksPage, openDetail } from './pages.js';
+import { initLenses, registerLens, lensList, lensById, armedLens, armedLensId,
+         arm, disarm, actionAt, execute as lensExecute, buildTray, paintTray,
+         keyToLens } from './lenses.js';
 
 const $ = (id) => document.getElementById(id);
 
@@ -153,12 +156,7 @@ cv.addEventListener('pointerup', (e) => {
   downAt = null;
   if (moved > 6 || recite) return;
   const [lon, lat] = pointerLonLat(e);
-  if (view.camp < 0) {
-    const i = campAt(lon, lat);
-    if (i >= 0) enterCamp(i);
-  } else {
-    onCloseupTap(lon, lat);
-  }
+  lensExecute(effectiveLens(), lon, lat);
 });
 cv.addEventListener('pointercancel', () => { dragging = false; downAt = null; });
 cv.addEventListener('wheel', (e) => {
@@ -185,6 +183,7 @@ const G = {
   meters: { order: 12, food: 50, knowledge: 0, money: 0 },
   flags: { fire: false, farming: 0, herding: 0, craft: 0, barter: false, money: false },
   built: {},                         // buildingId → true
+  builtAt: {},                       // buildingId → the camp it was raised at
   // The ledger of the raising: what it has cost so far, and what it grew.
   tally: { deathsFight: 0, deathsHunger: 0, births: 0 },
   // Cards whose full text you have actually opened. You cannot teach what
@@ -192,6 +191,8 @@ const G = {
   read: new Set(),
   // The ground you have worked, camp by camp: campIdx → { plots, well }.
   farms: {},
+  // The sheet lying on the table, or '' for the bare model.
+  lens: '',
 };
 let currentCard = null;
 const BOOK_TITLE = new Map(DECK.books.map((b) => [b.id, b.title]));
@@ -201,8 +202,9 @@ const BOOK_TITLE = new Map(DECK.books.map((b) => [b.id, b.title]));
 function saveGame() {
   try {
     localStorage.setItem(SAVE_KEY, JSON.stringify({
-      day: G.day, meters: G.meters, flags: G.flags, built: G.built, tally: G.tally,
-      read: [...G.read], farms: G.farms,
+      day: G.day, meters: G.meters, flags: G.flags, built: G.built, builtAt: G.builtAt,
+      tally: G.tally,
+      read: [...G.read], farms: G.farms, lens: armedLensId() ?? '',
       recited: recitedEntries(), currentCardId: currentCard?.id ?? null,
       pop: popCount(),
     }));
@@ -265,13 +267,18 @@ function exitCamp() {
 }
 
 function paintCampChip() {
-  const on = view.camp >= 0;
-  $('campchip').hidden = !on;
-  $('camphint').hidden = !on;
-  if (!on) return;
-  $('campname').textContent = campName(view.camp);
-  $('camppop').textContent = `${campPop(view.camp)} here`;
-  $('camphint').textContent = closeupHint();
+  const inCamp = view.camp >= 0;
+  $('campchip').hidden = !inCamp;
+  if (inCamp) {
+    $('campname').textContent = campName(view.camp);
+    $('camppop').textContent = `${campPop(view.camp)} here`;
+  }
+  // The hint line belongs to whatever sheet is down, so it speaks in the
+  // wide view too — not only from inside a camp.
+  const hint = inCamp || armedLens() ? (effectiveLens().hint?.() ?? '') : '';
+  $('camphint').hidden = !hint;
+  $('camphint').textContent = hint;
+  $('camphint').style.top = inCamp ? '' : '14px';
 }
 
 /* ── The farm: work you do with your hands ──────────────────────────────── */
@@ -320,65 +327,196 @@ function farmHit(lon, lat) {
   return null;
 }
 
-/** A tap inside the close-up: find what was touched, and do the one thing
- *  that thing is asking for. */
-function onCloseupTap(lon, lat) {
-  const i = view.camp;
-  if (i < 0) return;
-  if (!knowsPlough()) { toast('Nobody here knows what to do with soil yet. Recite "Soil & the Seed".'); return; }
-  const farm = farmFor(i);
-  const L = farmLayout(i);
-  const hit = farmHit(lon, lat);
-  if (hit === 'well') tapWell(farm, L.well);
-  else if (hit != null) tapPlot(farm, farm.plots[hit], L.plots[hit]);
+/* ── The lenses: sheets you lay over the table ──────────────────────────── */
+//
+// The tap routing lives here, not in a special case per feature. Whatever
+// sheet is down decides what the world is asking for; the farm's five verbs
+// are simply the first lens, and the wide-view "walk into a camp" is the
+// second. With nothing armed the table behaves exactly as it always did:
+// the Field sheet inside a camp, the Hearth sheet over the subcontinent.
+
+const FIELD_MSG = {
+  water: () => !knowsWell() ? 'It waits on rain. Recite "Water & the Field" to sink a well.'
+    : 'The well is not dug yet — tap the pit to dig.',
+  dry: () => 'The well is dry today — it fills again by morning.',
+};
+
+const LENS_FIELD = registerLens({
+  id: 'field', glyph: '🌾', name: 'The Field', grid: 'camps', books: ['krishi'],
+  blurb: 'Soil, seed, water and the harvest — the ground worked by hand.',
+  target(lon, lat) {
+    const i = view.camp;
+    if (i < 0) return null;
+    if (!knowsPlough()) return { kind: 'ground', camp: i };
+    const farm = farmFor(i);
+    const L = farmLayout(i);
+    const hit = farmHit(lon, lat);
+    if (hit === 'well') return { kind: 'well', camp: i, farm, at: L.well };
+    if (hit != null) return { kind: 'plot', camp: i, farm, j: hit, plot: farm.plots[hit], at: L.plots[hit] };
+    return null;
+  },
+  verbs: [
+    { id: 'harvest', label: 'harvest',
+      eligible: (t) => t.kind === 'plot' && t.plot.stage === 'ready' ? 'can' : 'never',
+      execute: (t) => {
+        t.plot.stage = 'tilled'; t.plot.days = 0;
+        G.meters.food = Math.min(100, G.meters.food + HARVEST_FOOD);
+        grainBurst(t.at.lon, t.at.lat);
+        toast(`Harvest — +${HARVEST_FOOD} food. The ground is ready for the next sowing.`);
+        workAt(t.at.lon, t.at.lat);
+        afterFarmChange();
+      } },
+    { id: 'plough', label: 'plough',
+      eligible: (t) => t.kind === 'plot' && t.plot.stage === 'wild' ? 'can' : 'never',
+      execute: (t) => {
+        t.plot.stage = 'tilled'; t.plot.days = 0;
+        toast('Ploughed. The soil is open.');
+        workAt(t.at.lon, t.at.lat);
+        afterFarmChange();
+      } },
+    { id: 'sow', label: 'sow seed',
+      eligible: (t) => t.kind === 'plot' && t.plot.stage === 'tilled' ? 'can' : 'never',
+      execute: (t) => {
+        t.plot.stage = 'sown'; t.plot.days = 0;
+        toast('Sown. Now it needs water.');
+        workAt(t.at.lon, t.at.lat);
+        afterFarmChange();
+      } },
+    { id: 'water', label: 'water',
+      eligible: (t) => {
+        if (t.kind !== 'plot' || t.plot.stage !== 'sown') return 'never';
+        if (!knowsWell() || t.farm.well.digs < WELL_DIGS || t.farm.well.water <= 0) return 'could';
+        return 'can';
+      },
+      why: (t) => t.farm.well.digs >= WELL_DIGS && knowsWell() ? FIELD_MSG.dry() : FIELD_MSG.water(),
+      execute: (t) => {
+        t.farm.well.water--;
+        t.plot.stage = 'growing'; t.plot.days = 0;
+        toast('Watered. Three days to the harvest.');
+        workAt(t.at.lon, t.at.lat);
+        afterFarmChange();
+      } },
+    { id: 'dig', label: 'dig the well',
+      eligible: (t) => {
+        if (t.kind !== 'well') return 'never';
+        if (!knowsWell()) return 'could';
+        return t.farm.well.digs < WELL_DIGS ? 'can' : 'already';
+      },
+      why: (t) => t.farm.well.digs >= WELL_DIGS
+        ? (t.farm.well.water > 0
+            ? `${t.farm.well.water} bucket${t.farm.well.water === 1 ? '' : 's'} drawn and waiting.`
+            : FIELD_MSG.dry())
+        : 'Recite "Water & the Field" before anyone here can sink a well.',
+      execute: (t) => {
+        t.farm.well.digs++;
+        workAt(t.at.lon, t.at.lat, 4);
+        // Striking water fills the well then and there — the last spadeful
+        // is the reward, not the start of another wait.
+        if (t.farm.well.digs >= WELL_DIGS) t.farm.well.water = WELL_MAX_WATER;
+        toast(t.farm.well.digs >= WELL_DIGS
+          ? 'Water — the well fills to the brim. The field need not wait for rain again.'
+          : `You dig. ${WELL_DIGS - t.farm.well.digs} more to reach water.`);
+        afterFarmChange();
+      } },
+    { id: 'wait', label: 'let it grow',
+      eligible: (t) => t.kind === 'plot' && t.plot.stage === 'growing' ? 'progress' : 'never',
+      why: (t) => `Still growing — ${Math.max(1, GROW_DAYS - t.plot.days)} day${GROW_DAYS - t.plot.days === 1 ? '' : 's'} to go.`,
+      execute: () => {} },
+    { id: 'learn', label: 'learn the soil',
+      eligible: (t) => t.kind === 'ground' ? 'could' : 'never',
+      why: () => 'Nobody here knows what to do with soil yet. Recite "Soil & the Seed".',
+      execute: () => {} },
+  ],
+  hint: () => closeupHint(),
+});
+
+const LENS_HEARTH = registerLens({
+  id: 'hearth', glyph: '🪔', name: 'The Hearth', grid: 'camps', books: ['kahani', 'gita'],
+  blurb: 'Where your people gather — walk in and stand among them.',
+  target: (lon, lat) => {
+    if (view.camp >= 0) return null;
+    const i = campAt(lon, lat);
+    return i >= 0 ? { kind: 'camp', camp: i } : null;
+  },
+  verbs: [
+    { id: 'visit', label: 'go and stand there',
+      eligible: () => 'can',
+      execute: (t) => enterCamp(t.camp) },
+  ],
+  hint: () => view.camp >= 0
+    ? 'you are standing among them — Esc or ✕ to step back'
+    : 'tap a camp to walk into it',
+});
+
+const LENS_ORDER = registerLens({
+  id: 'order', glyph: '⚖️', name: 'The Order', grid: 'camps', books: [],
+  blurb: 'What the common pot pays for: halls, schools, granaries.',
+  // Funding is placed, not assigned: the next thing the people need rises at
+  // the camp you tap, which is the only decision the common pot ever asks for.
+  target: (lon, lat) => {
+    const i = view.camp >= 0 ? view.camp : campAt(lon, lat);
+    return i >= 0 ? { kind: 'camp', camp: i, def: BUILDINGS.find((b) => !G.built[b.id]) } : null;
+  },
+  verbs: [
+    { id: 'fund', label: 'fund it',
+      eligible: (t) => {
+        if (!t.def) return 'already';           // everything the pot can buy, stands
+        if (!G.flags.money) return 'could';
+        return G.meters.money >= t.def.cost ? 'can' : 'could';
+      },
+      why: (t) => !t.def ? 'Every building the pot can buy already stands.'
+        : !G.flags.money ? 'There is no money yet. Teach barter and counting first.'
+        : `The ${t.def.name} costs ₹${t.def.cost}; the pot holds ₹${Math.round(G.meters.money)}.`,
+      execute: (t) => {
+        G.meters.money -= t.def.cost;
+        G.built[t.def.id] = true;
+        G.builtAt[t.def.id] = t.camp;
+        syncBuildings();
+        toast(`${t.def.icon} The ${t.def.name} rises at ${campName(t.camp)}.`);
+        saveGame();
+        paintHUD();
+        paintCampChip();
+      } },
+  ],
+  hint: () => {
+    if (!G.flags.money) return 'nothing to fund yet — money comes with barter and counting';
+    const next = BUILDINGS.find((b) => !G.built[b.id]);
+    return next ? `₹${Math.round(G.meters.money)} in the pot — tap a camp to raise the ${next.name} (₹${next.cost})`
+                : 'every building stands; the pot is yours to grow';
+  },
+});
+
+const LENS_CHRONICLE = registerLens({
+  id: 'chronicle', glyph: '🏛️', name: 'The Chronicle', grid: 'survey', books: [],
+  blurb: 'What this ground remembers — the record laid over the living map.',
+  target: (lon, lat) => {
+    const i = view.camp >= 0 ? view.camp : campAt(lon, lat, 3.5);
+    return i >= 0 ? { kind: 'camp', camp: i } : null;
+  },
+  hint: () => 'a reading sheet — nothing to do here, only to see',
+});
+
+/** The sheet actually governing taps: what you armed, or the one this view
+ *  has always used. Arming nothing must leave the game exactly as it was. */
+function effectiveLens() {
+  return armedLens() ?? (view.camp >= 0 ? LENS_FIELD : LENS_HEARTH);
 }
 
-function tapWell(farm, at) {
-  if (farm.well.digs < WELL_DIGS) {
-    farm.well.digs++;
-    workAt(at.lon, at.lat, 4);
-    toast(farm.well.digs >= WELL_DIGS
-      ? 'Water. The field need not wait for rain again.'
-      : `You dig. ${WELL_DIGS - farm.well.digs} more to reach water.`);
-  } else if (farm.well.water <= 0) {
-    toast('The well is dry today — it fills again by morning.');
-  } else {
-    toast(`${farm.well.water} bucket${farm.well.water === 1 ? '' : 's'} drawn and waiting.`);
-  }
-  afterFarmChange();
-}
+initLenses({
+  onArm: (l) => {
+    paintTray($('lensrail'));
+    document.body.dataset.lens = l?.id ?? '';
+    paintCampChip();
+    paintHUD();
+    saveGame();
+    if (l) toast(`${l.glyph} ${l.name} — ${l.blurb}`);
+  },
+  // A verb that cannot act says why, in the words the farm already used.
+  onBlocked: (a) => { const m = a.verb?.why?.(a.target); if (m) toast(m); },
+});
 
-function tapPlot(farm, plot, at) {
-  switch (plot.stage) {
-    case 'wild':
-      plot.stage = 'tilled'; plot.days = 0;
-      toast('Ploughed. The soil is open.');
-      break;
-    case 'tilled':
-      plot.stage = 'sown'; plot.days = 0;
-      toast('Sown. Now it needs water.');
-      break;
-    case 'sown':
-      if (!knowsWell()) { toast('It waits on rain. Recite "Water & the Field" to sink a well.'); return; }
-      if (farm.well.digs < WELL_DIGS) { toast('The well is not dug yet — tap the pit to dig.'); return; }
-      if (farm.well.water <= 0) { toast('The well is dry today — it fills again by morning.'); return; }
-      farm.well.water--;
-      plot.stage = 'growing'; plot.days = 0;
-      toast('Watered. Three days to the harvest.');
-      break;
-    case 'growing':
-      toast(`Still growing — ${Math.max(1, GROW_DAYS - plot.days)} day${GROW_DAYS - plot.days === 1 ? '' : 's'} to go.`);
-      return;
-    case 'ready':
-      plot.stage = 'tilled'; plot.days = 0;
-      G.meters.food = Math.min(100, G.meters.food + HARVEST_FOOD);
-      grainBurst(at.lon, at.lat);
-      toast(`Harvest — +${HARVEST_FOOD} food. The ground is ready for the next sowing.`);
-      break;
-  }
-  workAt(at.lon, at.lat);
-  afterFarmChange();
-}
+/** A tap on the world: hand it to the sheet that is down. */
+function onCloseupTap(lon, lat) { lensExecute(effectiveLens(), lon, lat); }
 
 function afterFarmChange() { saveGame(); paintHUD(); paintCampChip(); }
 
@@ -416,6 +554,7 @@ $('campclose').addEventListener('click', exitCamp);
 window.addEventListener('keydown', (e) => {
   if (e.key !== 'Escape' || pageOpen()) return;
   if (recite) { endRecite(false); toast('You stop mid-verse.'); return; }
+  if (armedLens()) { disarm(); toast('You lift the sheet off the table.'); return; }
   if (view.camp >= 0) exitCamp();
 });
 
@@ -558,6 +697,17 @@ function onRecited(c) {
   paintCampChip();   // a new card can change what the camp is asking for
 }
 
+// The number keys lay sheets down and 0 lifts them; typing in a text box
+// (the bring-your-own-book form) must never be hijacked.
+window.addEventListener('keydown', (e) => {
+  if (e.metaKey || e.ctrlKey || e.altKey || e.repeat) return;
+  if (/^(INPUT|TEXTAREA)$/.test(e.target?.tagName ?? '')) return;
+  const id = keyToLens(e.key);
+  if (id === undefined) return;
+  e.preventDefault();
+  arm(id === armedLensId() ? null : id);
+});
+
 window.addEventListener('keydown', (e) => {
   if (e.code !== 'Space' || e.repeat) return;
   e.preventDefault();
@@ -621,7 +771,10 @@ const BUILDINGS = [
 
 function syncBuildings() {
   setBuildings(BUILDINGS.filter((b) => G.built[b.id])
-    .map((b) => { const [lon, lat] = campList()[b.camp]; return { type: b.id, lon: lon - 0.3, lat: lat - 0.15 }; }));
+    .map((b) => {
+      const [lon, lat] = campList()[G.builtAt[b.id] ?? b.camp];
+      return { type: b.id, lon: lon - 0.3, lat: lat - 0.15 };
+    }));
 }
 
 function renderFund() {
@@ -648,6 +801,7 @@ $('page-fund').addEventListener('click', (e) => {
   if (!def || G.built[def.id] || G.meters.money < def.cost) return;
   G.meters.money -= def.cost;
   G.built[def.id] = true;
+  G.builtAt[def.id] ??= def.camp;
   syncBuildings();
   toast(`${def.icon} The ${def.name} rises.`);
   saveGame();
@@ -826,6 +980,7 @@ if (SAVED) {
   Object.assign(G.meters, SAVED.meters ?? {});
   Object.assign(G.flags, SAVED.flags ?? {});
   Object.assign(G.built, SAVED.built ?? {});
+  Object.assign(G.builtAt, SAVED.builtAt ?? {});
   Object.assign(G.tally, SAVED.tally ?? {});
   for (const id of SAVED.read ?? []) G.read.add(id);
   for (const [k, f] of Object.entries(SAVED.farms ?? {})) {
@@ -843,6 +998,8 @@ if (SAVED) {
 }
 setEconomyFlags({ farming: G.flags.farming, herding: G.flags.herding });
 syncBuildings();
+buildTray($('lensrail'));
+if (SAVED?.lens) arm(SAVED.lens);
 resize();
 paintHUD();
 requestAnimationFrame(frame);
@@ -884,6 +1041,20 @@ window.__test = {
   built: () => ({ ...G.built }),
   tally: () => ({ ...G.tally }),
   addMoney: (n) => { G.meters.money += n; paintHUD(); },
+  lenses: () => lensList().map((l) => l.id),
+  setMoney: (n) => { G.meters.money = n; G.flags.money = true; paintHUD(); },
+  farmLonLat: (i, what) => {
+    const L = farmLayout(i);
+    return what === 'well' ? L.well : L.plots[what];
+  },
+  lens: () => armedLensId() ?? '',
+  arm: (id) => arm(id)?.id ?? '',
+  disarm: () => disarm(),
+  // What the sheet that is down would do at a point — the verb and its pigment.
+  peek: (lon, lat) => {
+    const a = actionAt(effectiveLens(), lon, lat);
+    return a && { verb: a.verb?.id ?? null, state: a.state, kind: a.target.kind };
+  },
   farm: (i) => JSON.parse(JSON.stringify(farmFor(i ?? Math.max(0, view.camp)))),
   hint: () => $('camphint').textContent,
   // Where a farm feature sits on screen, so a drive can tap it for real.
