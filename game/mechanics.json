@@ -1,0 +1,472 @@
+{
+  "$comment": "The bridge from Historia to the simulation. Every tag in taxonomy.json that has gameplay meaning maps to resource deltas here, so a newly ingested event becomes playable without anyone hand-authoring it. Deltas are per-event and scaled by the event's `magnitude`.",
+  "version": "1.0.0",
+  "resources": {
+    "treasury": {
+      "label": "Treasury",
+      "min": -999,
+      "max": 999,
+      "start": 20,
+      "note": "Revenue net of spending. Goes negative; debt costs Legitimacy."
+    },
+    "grain": {
+      "label": "Grain",
+      "min": 0,
+      "max": 100,
+      "start": 50,
+      "note": "Food security buffer. Zero plus a shock equals famine."
+    },
+    "labour": {
+      "label": "Labour",
+      "min": 0,
+      "max": 100,
+      "start": 50,
+      "note": "Working population. Migration and mortality move it."
+    },
+    "artisanry": {
+      "label": "Artisanry",
+      "min": 0,
+      "max": 100,
+      "start": 30,
+      "note": "Craft capacity. Slow to build, fast to lose, expensive to revive."
+    },
+    "literacy": {
+      "label": "Literacy",
+      "min": 0,
+      "max": 100,
+      "start": 10,
+      "note": "The compounding resource. Pays nothing early."
+    },
+    "legitimacy": {
+      "label": "Legitimacy",
+      "min": 0,
+      "max": 100,
+      "start": 50,
+      "note": "Consent to be governed. Gates what reforms you can attempt at all."
+    },
+    "infrastructure": {
+      "label": "Infrastructure",
+      "min": 0,
+      "max": 100,
+      "start": 15,
+      "note": "Ports, canals, rail, power."
+    },
+    "unrest": {
+      "label": "Unrest",
+      "min": 0,
+      "max": 20,
+      "start": 2,
+      "note": "Above 7 spawns insurgency; military action cannot clear it."
+    },
+    "water": {
+      "label": "Water Table",
+      "min": 0,
+      "max": 100,
+      "start": 80,
+      "note": "Hidden until irrigation is built. Then visible, and falling."
+    },
+    "insight": {
+      "label": "Insight",
+      "min": 0,
+      "max": 999,
+      "start": 0,
+      "note": "Earned by reading and answering Historia. The currency that unlocks build options."
+    }
+  },
+  "tag_effects": {
+    "$comment": "delta = value * event.magnitude. `scar` marks a permanent modifier the player cannot undo, only mitigate.",
+    "port_established": {
+      "treasury": 6,
+      "infrastructure": 8,
+      "labour": 3
+    },
+    "port_boom": {
+      "treasury": 10,
+      "artisanry": 4
+    },
+    "trade_treaty": {
+      "treasury": 5,
+      "legitimacy": -2
+    },
+    "revenue_surge": {
+      "treasury": 12
+    },
+    "revenue_decline": {
+      "treasury": -10
+    },
+    "craft_flourish": {
+      "artisanry": 12,
+      "treasury": 4,
+      "legitimacy": 3
+    },
+    "guild_formation": {
+      "artisanry": 8,
+      "legitimacy": 4
+    },
+    "craft_collapse": {
+      "artisanry": -20,
+      "labour": -6,
+      "scar": "craft_lost"
+    },
+    "deindustrialisation": {
+      "artisanry": -14,
+      "treasury": -6
+    },
+    "gi_tag_award": {
+      "artisanry": 10,
+      "treasury": 5,
+      "legitimacy": 5
+    },
+    "annexation": {
+      "legitimacy": -12,
+      "treasury": 8,
+      "unrest": 2
+    },
+    "invasion": {
+      "labour": -8,
+      "treasury": -10,
+      "unrest": 3,
+      "legitimacy": -6
+    },
+    "battle": {
+      "labour": -5,
+      "treasury": -6
+    },
+    "rebellion": {
+      "unrest": 4,
+      "legitimacy": -5,
+      "labour": -4
+    },
+    "insurgency": {
+      "unrest": 6,
+      "treasury": -8,
+      "infrastructure": -5,
+      "scar": "insurgency_zone"
+    },
+    "insurgency_entrenched": {
+      "unrest": 8,
+      "treasury": -10,
+      "scar": "insurgency_zone"
+    },
+    "peace_accord": {
+      "unrest": -8,
+      "legitimacy": 6,
+      "treasury": -6
+    },
+    "partition": {
+      "labour": -25,
+      "treasury": -20,
+      "unrest": 6,
+      "infrastructure": -15,
+      "scar": "severed_border"
+    },
+    "revenue_settlement": {
+      "treasury": 10,
+      "grain": -12,
+      "legitimacy": -6
+    },
+    "revenue_extraction": {
+      "treasury": 12,
+      "grain": -10,
+      "unrest": 2
+    },
+    "tariff_change": {
+      "artisanry": -8,
+      "treasury": 4
+    },
+    "land_reform": {
+      "legitimacy": 10,
+      "grain": 8,
+      "treasury": -8,
+      "unrest": -3
+    },
+    "state_reorganisation": {
+      "legitimacy": 12,
+      "unrest": -6
+    },
+    "statehood_demand": {
+      "unrest": 3,
+      "legitimacy": -3
+    },
+    "language_movement": {
+      "unrest": 3,
+      "legitimacy": -4
+    },
+    "caste_mobilisation": {
+      "unrest": 2,
+      "legitimacy": 2,
+      "literacy": 3
+    },
+    "agitation": {
+      "unrest": 3,
+      "legitimacy": -2
+    },
+    "capital_designation": {
+      "infrastructure": 15,
+      "treasury": 6,
+      "legitimacy": 5
+    },
+    "regional_imbalance": {
+      "unrest": 3,
+      "legitimacy": -4
+    },
+    "crop_failure": {
+      "grain": -25,
+      "labour": -3
+    },
+    "drought": {
+      "grain": -20,
+      "water": -15
+    },
+    "famine": {
+      "labour": -30,
+      "grain": -30,
+      "legitimacy": -15,
+      "unrest": 5,
+      "scar": "famine_memory"
+    },
+    "flood": {
+      "infrastructure": -12,
+      "grain": -15,
+      "labour": -5
+    },
+    "cyclone": {
+      "infrastructure": -15,
+      "labour": -6
+    },
+    "earthquake": {
+      "infrastructure": -20,
+      "labour": -8
+    },
+    "epidemic": {
+      "labour": -15,
+      "treasury": -8
+    },
+    "population_loss": {
+      "labour": -18,
+      "legitimacy": -6
+    },
+    "population_boom": {
+      "labour": 12
+    },
+    "canal_built": {
+      "infrastructure": 12,
+      "grain": 10,
+      "water": -10
+    },
+    "dam_built": {
+      "infrastructure": 14,
+      "grain": 8,
+      "water": -5,
+      "unrest": 2
+    },
+    "irrigation_expansion": {
+      "grain": 14,
+      "water": -18
+    },
+    "agri_yield_rise": {
+      "grain": 18,
+      "treasury": 8
+    },
+    "agri_yield_fall": {
+      "grain": -15,
+      "treasury": -6
+    },
+    "railway_arrival": {
+      "infrastructure": 14,
+      "treasury": 6,
+      "artisanry": -4
+    },
+    "electrification": {
+      "infrastructure": 12,
+      "treasury": -6
+    },
+    "mineral_discovery": {
+      "treasury": 15,
+      "unrest": 2
+    },
+    "industrial_boom": {
+      "treasury": 14,
+      "infrastructure": 10,
+      "labour": 6,
+      "artisanry": -5
+    },
+    "it_boom": {
+      "treasury": 18,
+      "literacy": 6
+    },
+    "sez_designation": {
+      "treasury": 10,
+      "unrest": 3
+    },
+    "policy_liberalisation": {
+      "treasury": 10,
+      "unrest": 2,
+      "legitimacy": -2
+    },
+    "displacement": {
+      "unrest": 5,
+      "labour": -5,
+      "legitimacy": -6
+    },
+    "urbanisation": {
+      "infrastructure": 8,
+      "labour": 5,
+      "grain": -5
+    },
+    "cooperative_formation": {
+      "treasury": 6,
+      "legitimacy": 8,
+      "artisanry": 5
+    },
+    "literacy_drive": {
+      "literacy": 10,
+      "treasury": -8
+    },
+    "literacy_rise": {
+      "literacy": 15,
+      "legitimacy": 6
+    },
+    "public_health_drive": {
+      "labour": 8,
+      "legitimacy": 6,
+      "treasury": -6
+    },
+    "infant_mortality_fall": {
+      "labour": 10,
+      "legitimacy": 8
+    },
+    "migration": {
+      "labour": -10,
+      "treasury": 4
+    },
+    "remittance_inflow": {
+      "treasury": 14,
+      "labour": -4,
+      "scar": "external_dependency"
+    },
+    "dynastic_patronage": {
+      "legitimacy": 8,
+      "artisanry": 6,
+      "treasury": -6
+    },
+    "temple_construction": {
+      "legitimacy": 10,
+      "artisanry": 8,
+      "treasury": -10
+    },
+    "monastic_endowment": {
+      "legitimacy": 6,
+      "literacy": 5,
+      "treasury": -5
+    },
+    "cash_crop_shift": {
+      "treasury": 8,
+      "grain": -14
+    },
+    "siege": {
+      "labour": -6,
+      "grain": -12,
+      "treasury": -5
+    },
+    "industrial_licensing": {
+      "treasury": -4,
+      "infrastructure": 5,
+      "legitimacy": -3
+    }
+  },
+  "scars": {
+    "$comment": "Permanent modifiers. The point of a scar is that the player cannot buy their way out; they can only build around it. This is what makes history feel like history rather than a scoreboard.",
+    "famine_memory": {
+      "legitimacy_cap": -10,
+      "note": "Legitimacy can never again reach 100 in this state."
+    },
+    "craft_lost": {
+      "artisanry_regrowth": 0.33,
+      "note": "Artisanry rebuilds at a third of normal rate; the tradition itself needs a Revival project."
+    },
+    "insurgency_zone": {
+      "build_locked": true,
+      "note": "District closed to building until cleared by Accord."
+    },
+    "severed_border": {
+      "adjacency_deleted": true,
+      "note": "Trade adjacency through the border is gone permanently."
+    },
+    "external_dependency": {
+      "volatility": 0.25,
+      "note": "Treasury swings with a foreign economy you do not control."
+    }
+  },
+  "insight_economy": {
+    "$comment": "How reading Historia converts into the power to act. This is the hybrid the design turns on: knowledge is literally the build currency.",
+    "read_event": 1,
+    "read_full_era": 8,
+    "quiz_correct": {
+      "easy": 2,
+      "medium": 4,
+      "hard": 7,
+      "expert": 12
+    },
+    "quiz_wrong": 0,
+    "identify_pattern_before_it_fires": 25,
+    "costs": {
+      "unlock_era_build_tree": 40,
+      "unlock_craft_revival": 60,
+      "preview_next_scenario_card": 15,
+      "consult_the_record": 10
+    }
+  },
+  "turn": {
+    "$comment": "Turn length follows the era's own resolution, so ancient play is broad and modern play is granular -- the tempo of the game teaches the shape of the record.",
+    "span_from_era": true,
+    "phases": [
+      "Historia (read)",
+      "Decide",
+      "Resolve",
+      "Consequence",
+      "Omen"
+    ]
+  },
+  "recovery": {
+    "$comment": "Per-year drift applied between events. Without it every shock ratchets and the whole simulation pins at its bounds within a century -- history has recovery, and a model that only accumulates damage is not a model of history. Rates are per year and applied over the gap between consecutive events. Rates are deliberately slow: a state that starved in 1770 should still read differently in 1900. Fast recovery erases exactly the history this game is about.",
+    "labour": {
+      "rate": 0.02,
+      "toward": 60,
+      "note": "Population recovers from famine and war over decades."
+    },
+    "unrest": {
+      "rate": 0.025,
+      "toward": 1,
+      "note": "Grievance fades if nothing renews it. Scars slow this."
+    },
+    "grain": {
+      "rate": 0.05,
+      "toward": 50,
+      "note": "Harvests resume."
+    },
+    "legitimacy": {
+      "rate": 0.012,
+      "toward": 45,
+      "note": "Regimes normalise; consent drifts to a mediocre baseline."
+    },
+    "water": {
+      "rate": 0.006,
+      "toward": 80,
+      "note": "Aquifers recharge, slowly, and only if not being drawn down."
+    },
+    "treasury": {
+      "rate": 0.008,
+      "toward": 25,
+      "note": "Ordinary revenue and ordinary spending pull toward subsistence."
+    },
+    "scar_damping": {
+      "insurgency_zone": {
+        "unrest": 0.25
+      },
+      "famine_memory": {
+        "legitimacy": 0.5
+      }
+    }
+  }
+}

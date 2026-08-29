@@ -1,0 +1,1828 @@
+{
+  "thresholds": {
+    "min_states": 2,
+    "min_strength": 0.35
+  },
+  "n_matches": 30,
+  "promoted_to_rules": [
+    {
+      "motif_id": "linguistic_statehood",
+      "label": "Identity Becomes a Border",
+      "thesis": "Where a population's identity -- language, tribe or region -- does not match the administration governing it, mobilisation follows and the map is eventually redrawn to fit. Language is the paradigm case (Tamil Nadu, Gujarat); tribal identity does the same work in Jharkhand.",
+      "game_rule": "Governing a population whose language or identity you do not share adds +1 Unrest/turn, compounding. At 10 the territory secedes into a new state — playable by another player in multiplayer.",
+      "states": [
+        "gujarat",
+        "jharkhand",
+        "kerala",
+        "punjab",
+        "tamil-nadu"
+      ],
+      "n_states": 5,
+      "n_instances": 8,
+      "mean_strength": 0.892,
+      "best": {
+        "motif_id": "linguistic_statehood",
+        "motif_label": "Identity Becomes a Border",
+        "state_id": "tamil-nadu",
+        "stages": [
+          {
+            "stage": "friction",
+            "event_id": "tamil-nadu.1937.movement.0f09ef",
+            "year": 1937,
+            "title": "The anti-Hindi agitations",
+            "confidence": 0.92,
+            "compound": false
+          },
+          {
+            "stage": "agitation",
+            "event_id": "tamil-nadu.1967.highlight.9d27fe",
+            "year": 1967,
+            "title": "The DMK takes power",
+            "confidence": 0.95,
+            "compound": false
+          },
+          {
+            "stage": "redraw",
+            "event_id": "tamil-nadu.1969.legislature.e39e3b",
+            "year": 1969,
+            "title": "Madras State is renamed Tamil Nadu",
+            "confidence": 0.95,
+            "compound": false
+          }
+        ],
+        "span": [
+          1937,
+          1969
+        ],
+        "completeness": 1.0,
+        "tightness": 0.967,
+        "evidence": 0.94,
+        "strength": 0.972,
+        "skipped": []
+      }
+    },
+    {
+      "motif_id": "extraction_famine",
+      "label": "The Revenue Ratchet",
+      "thesis": "A revenue demand fixed independently of the harvest converts a bad monsoon into a mass death event. The famine is fiscal, not meteorological.",
+      "game_rule": "Setting Revenue to Fixed grants +2 Treasury per turn but removes the harvest-failure buffer. A drought while Fixed triggers Famine: -30% population, -2 Legitimacy, permanent Unrest scar.",
+      "states": [
+        "tamil-nadu",
+        "west-bengal"
+      ],
+      "n_states": 2,
+      "n_instances": 2,
+      "mean_strength": 0.819,
+      "best": {
+        "motif_id": "extraction_famine",
+        "motif_label": "The Revenue Ratchet",
+        "state_id": "west-bengal",
+        "stages": [
+          {
+            "stage": "conquest",
+            "event_id": "west-bengal.1757.war.89a809",
+            "year": 1757,
+            "title": "Battle of Plassey",
+            "confidence": 0.94,
+            "compound": false
+          },
+          {
+            "stage": "settlement",
+            "event_id": "west-bengal.1765.legislature.46ec81",
+            "year": 1765,
+            "title": "The Company obtains the Diwani of Bengal",
+            "confidence": 0.94,
+            "compound": false
+          },
+          {
+            "stage": "shock",
+            "event_id": "west-bengal.1770.disaster.977b9d",
+            "year": 1770,
+            "title": "The Great Bengal Famine",
+            "confidence": 0.93,
+            "compound": false
+          },
+          {
+            "stage": "famine",
+            "event_id": "west-bengal.1770.disaster.977b9d",
+            "year": 1770,
+            "title": "The Great Bengal Famine",
+            "confidence": 0.93,
+            "compound": true
+          }
+        ],
+        "span": [
+          1757,
+          1770
+        ],
+        "completeness": 0.875,
+        "tightness": 0.942,
+        "evidence": 0.935,
+        "strength": 0.909,
+        "skipped": []
+      }
+    }
+  ],
+  "local_patterns": [
+    {
+      "motif_id": "accord_cycle",
+      "label": "Insurgency and Accord",
+      "thesis": "Armed movements in India end at negotiated accords, not at military victory — and unimplemented accords restart the cycle.",
+      "game_rule": "Insurgency cannot be reduced below 3 by military action. Only Accord clears it — and an Accord whose terms you fail to fund re-ignites at +2 within 10 turns.",
+      "states": [
+        "punjab"
+      ],
+      "n_states": 1,
+      "n_instances": 1,
+      "mean_strength": 0.961,
+      "best": {
+        "motif_id": "accord_cycle",
+        "motif_label": "Insurgency and Accord",
+        "state_id": "punjab",
+        "stages": [
+          {
+            "stage": "rising",
+            "event_id": "punjab.1984.war.4f8926",
+            "year": 1984,
+            "title": "Operation Blue Star and its aftermath",
+            "confidence": 0.9,
+            "compound": false
+          },
+          {
+            "stage": "accord",
+            "event_id": "punjab.1985.legislature.d2c490",
+            "year": 1985,
+            "title": "The Rajiv-Longowal Accord",
+            "confidence": 0.9,
+            "compound": false
+          }
+        ],
+        "span": [
+          1984,
+          1985
+        ],
+        "completeness": 1.0,
+        "tightness": 0.98,
+        "evidence": 0.9,
+        "strength": 0.961,
+        "skipped": []
+      }
+    },
+    {
+      "motif_id": "reform_dividend",
+      "label": "The Long Dividend",
+      "thesis": "Land reform and schooling pay nothing for a generation, then compound. States that spend early on people outperform states that spend early on plant.",
+      "game_rule": "Human-capital spend returns nothing for 15 turns, then pays 3x indefinitely. The AI opponents never build it. It is how a resource-poor state wins a long game.",
+      "states": [
+        "kerala"
+      ],
+      "n_states": 1,
+      "n_instances": 4,
+      "mean_strength": 0.913,
+      "best": {
+        "motif_id": "reform_dividend",
+        "motif_label": "The Long Dividend",
+        "state_id": "kerala",
+        "stages": [
+          {
+            "stage": "seed",
+            "event_id": "kerala.1957.highlight.c13471",
+            "year": 1957,
+            "title": "The world's first elected communist government takes office",
+            "confidence": 0.95,
+            "compound": false
+          },
+          {
+            "stage": "widen",
+            "event_id": "kerala.1969.legislature.9a8e84",
+            "year": 1969,
+            "title": "Kerala Land Reforms (Amendment) Act",
+            "confidence": 0.93,
+            "compound": false
+          },
+          {
+            "stage": "dividend",
+            "event_id": "kerala.1973.development.33300e",
+            "year": 1973,
+            "title": "The Gulf migration and the remittance economy",
+            "confidence": 0.85,
+            "compound": false
+          }
+        ],
+        "span": [
+          1957,
+          1973
+        ],
+        "completeness": 1.0,
+        "tightness": 0.95,
+        "evidence": 0.91,
+        "strength": 0.959,
+        "skipped": []
+      }
+    },
+    {
+      "motif_id": "resource_curse",
+      "label": "The Resource Curse",
+      "thesis": "Mineral wealth under communally-held land produces extraction, displacement and eventually armed resistance — the insurgency maps onto the ore body.",
+      "game_rule": "Every Mine placed on tribal-tenure land adds +3 Treasury and +1 permanent Unrest. Unrest above 7 spawns an insurgency that closes the district to all further building until resolved by Accord or Autonomy — never by force alone.",
+      "states": [
+        "jharkhand"
+      ],
+      "n_states": 1,
+      "n_instances": 2,
+      "mean_strength": 0.889,
+      "best": {
+        "motif_id": "resource_curse",
+        "motif_label": "The Resource Curse",
+        "state_id": "jharkhand",
+        "stages": [
+          {
+            "stage": "discovery",
+            "event_id": "jharkhand.1907.development.7f090d",
+            "year": 1907,
+            "title": "Tata Steel is built at Sakchi",
+            "confidence": 0.92,
+            "compound": false
+          },
+          {
+            "stage": "displacement",
+            "event_id": "jharkhand.1948.development.6bb6d7",
+            "year": 1948,
+            "title": "The Damodar Valley Corporation dams",
+            "confidence": 0.85,
+            "compound": false
+          },
+          {
+            "stage": "grievance",
+            "event_id": "jharkhand.2000.legislature.de8edf",
+            "year": 2000,
+            "title": "Jharkhand attains statehood",
+            "confidence": 0.96,
+            "compound": false
+          },
+          {
+            "stage": "entrenchment",
+            "event_id": "jharkhand.2000.war.6341c9",
+            "year": 2000,
+            "title": "Maoist insurgency in the mineral belt",
+            "confidence": 0.82,
+            "compound": false
+          }
+        ],
+        "span": [
+          1907,
+          2000
+        ],
+        "completeness": 1.0,
+        "tightness": 0.717,
+        "evidence": 0.887,
+        "strength": 0.904,
+        "skipped": []
+      }
+    },
+    {
+      "motif_id": "craft_kill",
+      "label": "The Unmaking of a Craft",
+      "thesis": "Craft economies die from demand-side policy — monopsony, tariffs, mechanised imports — far faster than from any loss of skill.",
+      "game_rule": "Artisanry decays 4%/turn while a foreign power holds your Trade channel. Below 25% the craft is LOST — it cannot be rebuilt this era, only revived later at triple cost via a GI-tag project.",
+      "states": [
+        "west-bengal"
+      ],
+      "n_states": 1,
+      "n_instances": 4,
+      "mean_strength": 0.886,
+      "best": {
+        "motif_id": "craft_kill",
+        "motif_label": "The Unmaking of a Craft",
+        "state_id": "west-bengal",
+        "stages": [
+          {
+            "stage": "control",
+            "event_id": "west-bengal.1793.legislature.0073cd",
+            "year": 1793,
+            "title": "The Permanent Settlement",
+            "confidence": 0.94,
+            "compound": false
+          },
+          {
+            "stage": "erosion",
+            "event_id": "west-bengal.1800.craft.9a6f78",
+            "year": 1800,
+            "title": "The collapse of Bengal's handloom weaving",
+            "confidence": 0.8,
+            "compound": false
+          },
+          {
+            "stage": "outflow",
+            "event_id": "west-bengal.1911.legislature.a598b3",
+            "year": 1911,
+            "title": "The capital moves from Calcutta to Delhi",
+            "confidence": 0.93,
+            "compound": false
+          }
+        ],
+        "span": [
+          1793,
+          1911
+        ],
+        "completeness": 1.0,
+        "tightness": 0.715,
+        "evidence": 0.89,
+        "strength": 0.904,
+        "skipped": []
+      }
+    },
+    {
+      "motif_id": "irrigation_trap",
+      "label": "The Irrigation Trap",
+      "thesis": "Subsidised water and guaranteed procurement raise yields spectacularly, then lock the region into the crop that exhausts its water.",
+      "game_rule": "Irrigation gives +50% yield and sets a hidden Water Table counter draining each turn. At zero, yields fall below the pre-irrigation baseline and the fix costs more than the original works.",
+      "states": [
+        "punjab"
+      ],
+      "n_states": 1,
+      "n_instances": 2,
+      "mean_strength": 0.875,
+      "best": {
+        "motif_id": "irrigation_trap",
+        "motif_label": "The Irrigation Trap",
+        "state_id": "punjab",
+        "stages": [
+          {
+            "stage": "works",
+            "event_id": "punjab.1966.development.529d03",
+            "year": 1966,
+            "title": "The Green Revolution",
+            "confidence": 0.95,
+            "compound": false
+          },
+          {
+            "stage": "boom",
+            "event_id": "punjab.1966.development.529d03",
+            "year": 1966,
+            "title": "The Green Revolution",
+            "confidence": 0.95,
+            "compound": true
+          },
+          {
+            "stage": "depletion",
+            "event_id": "punjab.1995.disaster.bfa36b",
+            "year": 1995,
+            "title": "Groundwater depletion and the paddy trap",
+            "confidence": 0.85,
+            "compound": false
+          }
+        ],
+        "span": [
+          1966,
+          1995
+        ],
+        "completeness": 0.833,
+        "tightness": 0.917,
+        "evidence": 0.917,
+        "strength": 0.879,
+        "skipped": []
+      }
+    },
+    {
+      "motif_id": "partition_shock",
+      "label": "The Cut",
+      "thesis": "A border drawn through a functioning economy severs producers from markets and people from land; the demographic shock outlives the political one by generations.",
+      "game_rule": "Partition is the only irreversible map event. You lose territory, gain refugees (Labour +, Housing -, Unrest +), and every adjacency bonus through the severed border is deleted permanently.",
+      "states": [
+        "west-bengal"
+      ],
+      "n_states": 1,
+      "n_instances": 1,
+      "mean_strength": 0.875,
+      "best": {
+        "motif_id": "partition_shock",
+        "motif_label": "The Cut",
+        "state_id": "west-bengal",
+        "stages": [
+          {
+            "stage": "cut",
+            "event_id": "west-bengal.1947.war.709e18",
+            "year": 1947,
+            "title": "Partition and the making of West Bengal",
+            "confidence": 0.97,
+            "compound": false
+          },
+          {
+            "stage": "movement",
+            "event_id": "west-bengal.1947.war.709e18",
+            "year": 1947,
+            "title": "Partition and the making of West Bengal",
+            "confidence": 0.97,
+            "compound": true
+          },
+          {
+            "stage": "remaking",
+            "event_id": "west-bengal.1967.movement.d8d166",
+            "year": 1967,
+            "title": "The Naxalbari uprising",
+            "confidence": 0.92,
+            "compound": false
+          }
+        ],
+        "span": [
+          1947,
+          1967
+        ],
+        "completeness": 0.833,
+        "tightness": 0.833,
+        "evidence": 0.953,
+        "strength": 0.875,
+        "skipped": []
+      }
+    },
+    {
+      "motif_id": "diaspora_engine",
+      "label": "The Remittance Engine",
+      "thesis": "Educate a population a poor economy cannot employ and it exports labour; the wages come home as consumption and human development without industrialisation.",
+      "game_rule": "High Literacy + low Industry opens the Migration channel: -Labour, +Treasury, +Wellbeing, and a hidden Fragility counter tied to a foreign economy you do not control.",
+      "states": [
+        "kerala"
+      ],
+      "n_states": 1,
+      "n_instances": 3,
+      "mean_strength": 0.844,
+      "best": {
+        "motif_id": "diaspora_engine",
+        "motif_label": "The Remittance Engine",
+        "state_id": "kerala",
+        "stages": [
+          {
+            "stage": "schooling",
+            "event_id": "kerala.1957.highlight.c13471",
+            "year": 1957,
+            "title": "The world's first elected communist government takes office",
+            "confidence": 0.95,
+            "compound": false
+          },
+          {
+            "stage": "departure",
+            "event_id": "kerala.1973.development.33300e",
+            "year": 1973,
+            "title": "The Gulf migration and the remittance economy",
+            "confidence": 0.85,
+            "compound": false
+          },
+          {
+            "stage": "inflow",
+            "event_id": "kerala.1973.development.33300e",
+            "year": 1973,
+            "title": "The Gulf migration and the remittance economy",
+            "confidence": 0.85,
+            "compound": true
+          }
+        ],
+        "span": [
+          1957,
+          1973
+        ],
+        "completeness": 0.833,
+        "tightness": 0.96,
+        "evidence": 0.883,
+        "strength": 0.876,
+        "skipped": []
+      }
+    },
+    {
+      "motif_id": "capital_drain",
+      "label": "The Capital Drain",
+      "thesis": "Losing capital status costs a city more than the buildings it keeps: investment follows administration, and the decline shows up decades later.",
+      "game_rule": "Moving your capital gives the new city +40% growth and the old one -20% for 20 turns. Reversing the move does not restore it.",
+      "states": [
+        "west-bengal"
+      ],
+      "n_states": 1,
+      "n_instances": 1,
+      "mean_strength": 0.799,
+      "best": {
+        "motif_id": "capital_drain",
+        "motif_label": "The Capital Drain",
+        "state_id": "west-bengal",
+        "stages": [
+          {
+            "stage": "shift",
+            "event_id": "west-bengal.1911.legislature.a598b3",
+            "year": 1911,
+            "title": "The capital moves from Calcutta to Delhi",
+            "confidence": 0.93,
+            "compound": false
+          },
+          {
+            "stage": "divergence",
+            "event_id": "west-bengal.1980.development.200e14",
+            "year": 1980,
+            "title": "The jute economy declines",
+            "confidence": 0.8,
+            "compound": false
+          }
+        ],
+        "span": [
+          1911,
+          1980
+        ],
+        "completeness": 1.0,
+        "tightness": 0.233,
+        "evidence": 0.865,
+        "strength": 0.799,
+        "skipped": []
+      }
+    },
+    {
+      "motif_id": "patronage_monument",
+      "label": "Loot into Stone",
+      "thesis": "Successful conquest is converted into monumental building and endowed craft — the temple is a war memorial with an economy attached.",
+      "game_rule": "Spending war spoils on a Monument converts one-off Treasury into permanent Legitimacy and unlocks that era's craft tree. Hoarding the spoils instead keeps the gold and forfeits the tree.",
+      "states": [
+        "kerala"
+      ],
+      "n_states": 1,
+      "n_instances": 1,
+      "mean_strength": 0.776,
+      "best": {
+        "motif_id": "patronage_monument",
+        "motif_label": "Loot into Stone",
+        "state_id": "kerala",
+        "stages": [
+          {
+            "stage": "victory",
+            "event_id": "kerala.1741.war.9b773f",
+            "year": 1741,
+            "title": "Battle of Colachel",
+            "confidence": 0.9,
+            "compound": false
+          },
+          {
+            "stage": "endowment",
+            "event_id": "kerala.1750.legislature.f42e88",
+            "year": 1750,
+            "title": "Trippadidanam: Travancore dedicated to Padmanabha",
+            "confidence": 0.85,
+            "compound": false
+          }
+        ],
+        "span": [
+          1741,
+          1750
+        ],
+        "completeness": 0.667,
+        "tightness": 0.85,
+        "evidence": 0.875,
+        "strength": 0.776,
+        "skipped": [
+          "craft"
+        ]
+      }
+    },
+    {
+      "motif_id": "port_bloom",
+      "label": "Harbour to Workshop",
+      "thesis": "A usable harbour pulls in trade, trade capitalises craft, and craft becomes the region's identity long after the trade moves on.",
+      "game_rule": "Building a port on a coastal state raises Trade for 3 turns; if Trade stays high for 5 turns, Artisanry gains a permanent +1 craft slot.",
+      "states": [
+        "gujarat"
+      ],
+      "n_states": 1,
+      "n_instances": 1,
+      "mean_strength": 0.637,
+      "best": {
+        "motif_id": "port_bloom",
+        "motif_label": "Harbour to Workshop",
+        "state_id": "gujarat",
+        "stages": [
+          {
+            "stage": "harbour",
+            "event_id": "gujarat.1668.development.83eaaa",
+            "year": 1668,
+            "title": "Bombay rises and Surat declines",
+            "confidence": 0.78,
+            "compound": false
+          },
+          {
+            "stage": "craft",
+            "event_id": "gujarat.1861.development.ce4bb3",
+            "year": 1861,
+            "title": "Ahmedabad's first cotton mill",
+            "confidence": 0.85,
+            "compound": false
+          }
+        ],
+        "span": [
+          1668,
+          1861
+        ],
+        "completeness": 0.667,
+        "tightness": 0.26,
+        "evidence": 0.815,
+        "strength": 0.637,
+        "skipped": [
+          "exchange"
+        ]
+      }
+    }
+  ],
+  "all_matches": [
+    {
+      "motif_id": "port_bloom",
+      "motif_label": "Harbour to Workshop",
+      "state_id": "gujarat",
+      "stages": [
+        {
+          "stage": "harbour",
+          "event_id": "gujarat.1668.development.83eaaa",
+          "year": 1668,
+          "title": "Bombay rises and Surat declines",
+          "confidence": 0.78,
+          "compound": false
+        },
+        {
+          "stage": "craft",
+          "event_id": "gujarat.1861.development.ce4bb3",
+          "year": 1861,
+          "title": "Ahmedabad's first cotton mill",
+          "confidence": 0.85,
+          "compound": false
+        }
+      ],
+      "span": [
+        1668,
+        1861
+      ],
+      "completeness": 0.667,
+      "tightness": 0.26,
+      "evidence": 0.815,
+      "strength": 0.637,
+      "skipped": [
+        "exchange"
+      ]
+    },
+    {
+      "motif_id": "linguistic_statehood",
+      "motif_label": "Identity Becomes a Border",
+      "state_id": "gujarat",
+      "stages": [
+        {
+          "stage": "friction",
+          "event_id": "gujarat.1956.movement.fbc632",
+          "year": 1956,
+          "title": "The Mahagujarat Movement",
+          "confidence": 0.88,
+          "compound": false
+        },
+        {
+          "stage": "agitation",
+          "event_id": "gujarat.1956.movement.fbc632",
+          "year": 1956,
+          "title": "The Mahagujarat Movement",
+          "confidence": 0.88,
+          "compound": true
+        },
+        {
+          "stage": "redraw",
+          "event_id": "gujarat.1960.legislature.a9f396",
+          "year": 1960,
+          "title": "Gujarat is formed",
+          "confidence": 0.96,
+          "compound": false
+        }
+      ],
+      "span": [
+        1956,
+        1960
+      ],
+      "completeness": 0.833,
+      "tightness": 1.0,
+      "evidence": 0.907,
+      "strength": 0.892,
+      "skipped": []
+    },
+    {
+      "motif_id": "resource_curse",
+      "motif_label": "The Resource Curse",
+      "state_id": "jharkhand",
+      "stages": [
+        {
+          "stage": "discovery",
+          "event_id": "jharkhand.1907.development.7f090d",
+          "year": 1907,
+          "title": "Tata Steel is built at Sakchi",
+          "confidence": 0.92,
+          "compound": false
+        },
+        {
+          "stage": "displacement",
+          "event_id": "jharkhand.1948.development.6bb6d7",
+          "year": 1948,
+          "title": "The Damodar Valley Corporation dams",
+          "confidence": 0.85,
+          "compound": false
+        },
+        {
+          "stage": "grievance",
+          "event_id": "jharkhand.2000.legislature.de8edf",
+          "year": 2000,
+          "title": "Jharkhand attains statehood",
+          "confidence": 0.96,
+          "compound": false
+        },
+        {
+          "stage": "entrenchment",
+          "event_id": "jharkhand.2000.war.6341c9",
+          "year": 2000,
+          "title": "Maoist insurgency in the mineral belt",
+          "confidence": 0.82,
+          "compound": false
+        }
+      ],
+      "span": [
+        1907,
+        2000
+      ],
+      "completeness": 1.0,
+      "tightness": 0.717,
+      "evidence": 0.887,
+      "strength": 0.904,
+      "skipped": []
+    },
+    {
+      "motif_id": "resource_curse",
+      "motif_label": "The Resource Curse",
+      "state_id": "jharkhand",
+      "stages": [
+        {
+          "stage": "discovery",
+          "event_id": "jharkhand.1955.development.fadc70",
+          "year": 1955,
+          "title": "Bokaro, Ranchi and the public sector build-out",
+          "confidence": 0.85,
+          "compound": false
+        },
+        {
+          "stage": "displacement",
+          "event_id": "jharkhand.1955.development.fadc70",
+          "year": 1955,
+          "title": "Bokaro, Ranchi and the public sector build-out",
+          "confidence": 0.85,
+          "compound": true
+        },
+        {
+          "stage": "grievance",
+          "event_id": "jharkhand.2000.legislature.de8edf",
+          "year": 2000,
+          "title": "Jharkhand attains statehood",
+          "confidence": 0.96,
+          "compound": false
+        },
+        {
+          "stage": "entrenchment",
+          "event_id": "jharkhand.2000.war.6341c9",
+          "year": 2000,
+          "title": "Maoist insurgency in the mineral belt",
+          "confidence": 0.82,
+          "compound": false
+        }
+      ],
+      "span": [
+        1955,
+        2000
+      ],
+      "completeness": 0.875,
+      "tightness": 0.883,
+      "evidence": 0.87,
+      "strength": 0.875,
+      "skipped": []
+    },
+    {
+      "motif_id": "linguistic_statehood",
+      "motif_label": "Identity Becomes a Border",
+      "state_id": "jharkhand",
+      "stages": [
+        {
+          "stage": "friction",
+          "event_id": "jharkhand.1973.movement.c189af",
+          "year": 1973,
+          "title": "The Jharkhand Mukti Morcha is founded",
+          "confidence": 0.88,
+          "compound": false
+        },
+        {
+          "stage": "agitation",
+          "event_id": "jharkhand.2000.legislature.de8edf",
+          "year": 2000,
+          "title": "Jharkhand attains statehood",
+          "confidence": 0.96,
+          "compound": false
+        },
+        {
+          "stage": "redraw",
+          "event_id": "jharkhand.2000.legislature.de8edf",
+          "year": 2000,
+          "title": "Jharkhand attains statehood",
+          "confidence": 0.96,
+          "compound": true
+        }
+      ],
+      "span": [
+        1973,
+        2000
+      ],
+      "completeness": 0.833,
+      "tightness": 0.775,
+      "evidence": 0.933,
+      "strength": 0.857,
+      "skipped": []
+    },
+    {
+      "motif_id": "reform_dividend",
+      "motif_label": "The Long Dividend",
+      "state_id": "kerala",
+      "stages": [
+        {
+          "stage": "seed",
+          "event_id": "kerala.1817.legislature.95c233",
+          "year": 1817,
+          "title": "Travancore's royal rescript on education",
+          "confidence": 0.8,
+          "compound": false
+        },
+        {
+          "stage": "widen",
+          "event_id": "kerala.1957.highlight.c13471",
+          "year": 1957,
+          "title": "The world's first elected communist government takes office",
+          "confidence": 0.95,
+          "compound": false
+        },
+        {
+          "stage": "dividend",
+          "event_id": "kerala.1973.development.33300e",
+          "year": 1973,
+          "title": "The Gulf migration and the remittance economy",
+          "confidence": 0.85,
+          "compound": false
+        }
+      ],
+      "span": [
+        1817,
+        1973
+      ],
+      "completeness": 1.0,
+      "tightness": 0.496,
+      "evidence": 0.867,
+      "strength": 0.853,
+      "skipped": []
+    },
+    {
+      "motif_id": "reform_dividend",
+      "motif_label": "The Long Dividend",
+      "state_id": "kerala",
+      "stages": [
+        {
+          "stage": "seed",
+          "event_id": "kerala.1957.highlight.c13471",
+          "year": 1957,
+          "title": "The world's first elected communist government takes office",
+          "confidence": 0.95,
+          "compound": false
+        },
+        {
+          "stage": "widen",
+          "event_id": "kerala.1969.legislature.9a8e84",
+          "year": 1969,
+          "title": "Kerala Land Reforms (Amendment) Act",
+          "confidence": 0.93,
+          "compound": false
+        },
+        {
+          "stage": "dividend",
+          "event_id": "kerala.1973.development.33300e",
+          "year": 1973,
+          "title": "The Gulf migration and the remittance economy",
+          "confidence": 0.85,
+          "compound": false
+        }
+      ],
+      "span": [
+        1957,
+        1973
+      ],
+      "completeness": 1.0,
+      "tightness": 0.95,
+      "evidence": 0.91,
+      "strength": 0.959,
+      "skipped": []
+    },
+    {
+      "motif_id": "reform_dividend",
+      "motif_label": "The Long Dividend",
+      "state_id": "kerala",
+      "stages": [
+        {
+          "stage": "seed",
+          "event_id": "kerala.1957.legislature.c52982",
+          "year": 1957,
+          "title": "The Kerala Education Bill",
+          "confidence": 0.88,
+          "compound": false
+        },
+        {
+          "stage": "widen",
+          "event_id": "kerala.1969.legislature.9a8e84",
+          "year": 1969,
+          "title": "Kerala Land Reforms (Amendment) Act",
+          "confidence": 0.93,
+          "compound": false
+        },
+        {
+          "stage": "dividend",
+          "event_id": "kerala.1973.development.33300e",
+          "year": 1973,
+          "title": "The Gulf migration and the remittance economy",
+          "confidence": 0.85,
+          "compound": false
+        }
+      ],
+      "span": [
+        1957,
+        1973
+      ],
+      "completeness": 1.0,
+      "tightness": 0.95,
+      "evidence": 0.887,
+      "strength": 0.95,
+      "skipped": []
+    },
+    {
+      "motif_id": "reform_dividend",
+      "motif_label": "The Long Dividend",
+      "state_id": "kerala",
+      "stages": [
+        {
+          "stage": "seed",
+          "event_id": "kerala.1969.legislature.9a8e84",
+          "year": 1969,
+          "title": "Kerala Land Reforms (Amendment) Act",
+          "confidence": 0.93,
+          "compound": false
+        },
+        {
+          "stage": "widen",
+          "event_id": "kerala.1969.legislature.9a8e84",
+          "year": 1969,
+          "title": "Kerala Land Reforms (Amendment) Act",
+          "confidence": 0.93,
+          "compound": true
+        },
+        {
+          "stage": "dividend",
+          "event_id": "kerala.1973.development.33300e",
+          "year": 1973,
+          "title": "The Gulf migration and the remittance economy",
+          "confidence": 0.85,
+          "compound": false
+        }
+      ],
+      "span": [
+        1969,
+        1973
+      ],
+      "completeness": 0.833,
+      "tightness": 0.988,
+      "evidence": 0.903,
+      "strength": 0.889,
+      "skipped": []
+    },
+    {
+      "motif_id": "linguistic_statehood",
+      "motif_label": "Identity Becomes a Border",
+      "state_id": "kerala",
+      "stages": [
+        {
+          "stage": "friction",
+          "event_id": "kerala.1924.movement.3fb1c4",
+          "year": 1924,
+          "title": "Vaikom Satyagraha",
+          "confidence": 0.88,
+          "compound": false
+        },
+        {
+          "stage": "agitation",
+          "event_id": "kerala.1924.movement.3fb1c4",
+          "year": 1924,
+          "title": "Vaikom Satyagraha",
+          "confidence": 0.88,
+          "compound": true
+        },
+        {
+          "stage": "redraw",
+          "event_id": "kerala.1949.legislature.11b536",
+          "year": 1949,
+          "title": "Travancore and Cochin merge",
+          "confidence": 0.9,
+          "compound": false
+        }
+      ],
+      "span": [
+        1924,
+        1949
+      ],
+      "completeness": 0.833,
+      "tightness": 0.8,
+      "evidence": 0.887,
+      "strength": 0.845,
+      "skipped": []
+    },
+    {
+      "motif_id": "diaspora_engine",
+      "motif_label": "The Remittance Engine",
+      "state_id": "kerala",
+      "stages": [
+        {
+          "stage": "schooling",
+          "event_id": "kerala.1817.legislature.95c233",
+          "year": 1817,
+          "title": "Travancore's royal rescript on education",
+          "confidence": 0.8,
+          "compound": false
+        },
+        {
+          "stage": "departure",
+          "event_id": "kerala.1973.development.33300e",
+          "year": 1973,
+          "title": "The Gulf migration and the remittance economy",
+          "confidence": 0.85,
+          "compound": false
+        },
+        {
+          "stage": "inflow",
+          "event_id": "kerala.1973.development.33300e",
+          "year": 1973,
+          "title": "The Gulf migration and the remittance economy",
+          "confidence": 0.85,
+          "compound": true
+        }
+      ],
+      "span": [
+        1817,
+        1973
+      ],
+      "completeness": 0.833,
+      "tightness": 0.61,
+      "evidence": 0.833,
+      "strength": 0.789,
+      "skipped": []
+    },
+    {
+      "motif_id": "diaspora_engine",
+      "motif_label": "The Remittance Engine",
+      "state_id": "kerala",
+      "stages": [
+        {
+          "stage": "schooling",
+          "event_id": "kerala.1957.highlight.c13471",
+          "year": 1957,
+          "title": "The world's first elected communist government takes office",
+          "confidence": 0.95,
+          "compound": false
+        },
+        {
+          "stage": "departure",
+          "event_id": "kerala.1973.development.33300e",
+          "year": 1973,
+          "title": "The Gulf migration and the remittance economy",
+          "confidence": 0.85,
+          "compound": false
+        },
+        {
+          "stage": "inflow",
+          "event_id": "kerala.1973.development.33300e",
+          "year": 1973,
+          "title": "The Gulf migration and the remittance economy",
+          "confidence": 0.85,
+          "compound": true
+        }
+      ],
+      "span": [
+        1957,
+        1973
+      ],
+      "completeness": 0.833,
+      "tightness": 0.96,
+      "evidence": 0.883,
+      "strength": 0.876,
+      "skipped": []
+    },
+    {
+      "motif_id": "diaspora_engine",
+      "motif_label": "The Remittance Engine",
+      "state_id": "kerala",
+      "stages": [
+        {
+          "stage": "schooling",
+          "event_id": "kerala.1957.legislature.c52982",
+          "year": 1957,
+          "title": "The Kerala Education Bill",
+          "confidence": 0.88,
+          "compound": false
+        },
+        {
+          "stage": "departure",
+          "event_id": "kerala.1973.development.33300e",
+          "year": 1973,
+          "title": "The Gulf migration and the remittance economy",
+          "confidence": 0.85,
+          "compound": false
+        },
+        {
+          "stage": "inflow",
+          "event_id": "kerala.1973.development.33300e",
+          "year": 1973,
+          "title": "The Gulf migration and the remittance economy",
+          "confidence": 0.85,
+          "compound": true
+        }
+      ],
+      "span": [
+        1957,
+        1973
+      ],
+      "completeness": 0.833,
+      "tightness": 0.96,
+      "evidence": 0.86,
+      "strength": 0.868,
+      "skipped": []
+    },
+    {
+      "motif_id": "patronage_monument",
+      "motif_label": "Loot into Stone",
+      "state_id": "kerala",
+      "stages": [
+        {
+          "stage": "victory",
+          "event_id": "kerala.1741.war.9b773f",
+          "year": 1741,
+          "title": "Battle of Colachel",
+          "confidence": 0.9,
+          "compound": false
+        },
+        {
+          "stage": "endowment",
+          "event_id": "kerala.1750.legislature.f42e88",
+          "year": 1750,
+          "title": "Trippadidanam: Travancore dedicated to Padmanabha",
+          "confidence": 0.85,
+          "compound": false
+        }
+      ],
+      "span": [
+        1741,
+        1750
+      ],
+      "completeness": 0.667,
+      "tightness": 0.85,
+      "evidence": 0.875,
+      "strength": 0.776,
+      "skipped": [
+        "craft"
+      ]
+    },
+    {
+      "motif_id": "linguistic_statehood",
+      "motif_label": "Identity Becomes a Border",
+      "state_id": "punjab",
+      "stages": [
+        {
+          "stage": "friction",
+          "event_id": "punjab.1907.movement.e3f599",
+          "year": 1907,
+          "title": "The Colonization Bill agitation",
+          "confidence": 0.85,
+          "compound": false
+        },
+        {
+          "stage": "agitation",
+          "event_id": "punjab.1966.legislature.469ebc",
+          "year": 1966,
+          "title": "The Punjabi Suba and reorganisation",
+          "confidence": 0.93,
+          "compound": false
+        },
+        {
+          "stage": "redraw",
+          "event_id": "punjab.1966.legislature.469ebc",
+          "year": 1966,
+          "title": "The Punjabi Suba and reorganisation",
+          "confidence": 0.93,
+          "compound": true
+        }
+      ],
+      "span": [
+        1907,
+        1966
+      ],
+      "completeness": 0.833,
+      "tightness": 0.508,
+      "evidence": 0.903,
+      "strength": 0.793,
+      "skipped": []
+    },
+    {
+      "motif_id": "accord_cycle",
+      "motif_label": "Insurgency and Accord",
+      "state_id": "punjab",
+      "stages": [
+        {
+          "stage": "rising",
+          "event_id": "punjab.1984.war.4f8926",
+          "year": 1984,
+          "title": "Operation Blue Star and its aftermath",
+          "confidence": 0.9,
+          "compound": false
+        },
+        {
+          "stage": "accord",
+          "event_id": "punjab.1985.legislature.d2c490",
+          "year": 1985,
+          "title": "The Rajiv-Longowal Accord",
+          "confidence": 0.9,
+          "compound": false
+        }
+      ],
+      "span": [
+        1984,
+        1985
+      ],
+      "completeness": 1.0,
+      "tightness": 0.98,
+      "evidence": 0.9,
+      "strength": 0.961,
+      "skipped": []
+    },
+    {
+      "motif_id": "irrigation_trap",
+      "motif_label": "The Irrigation Trap",
+      "state_id": "punjab",
+      "stages": [
+        {
+          "stage": "works",
+          "event_id": "punjab.1885.development.7aee71",
+          "year": 1885,
+          "title": "The canal colonies",
+          "confidence": 0.9,
+          "compound": false
+        },
+        {
+          "stage": "boom",
+          "event_id": "punjab.1966.development.529d03",
+          "year": 1966,
+          "title": "The Green Revolution",
+          "confidence": 0.95,
+          "compound": false
+        },
+        {
+          "stage": "depletion",
+          "event_id": "punjab.1995.disaster.bfa36b",
+          "year": 1995,
+          "title": "Groundwater depletion and the paddy trap",
+          "confidence": 0.85,
+          "compound": false
+        }
+      ],
+      "span": [
+        1885,
+        1995
+      ],
+      "completeness": 1.0,
+      "tightness": 0.533,
+      "evidence": 0.9,
+      "strength": 0.872,
+      "skipped": []
+    },
+    {
+      "motif_id": "irrigation_trap",
+      "motif_label": "The Irrigation Trap",
+      "state_id": "punjab",
+      "stages": [
+        {
+          "stage": "works",
+          "event_id": "punjab.1966.development.529d03",
+          "year": 1966,
+          "title": "The Green Revolution",
+          "confidence": 0.95,
+          "compound": false
+        },
+        {
+          "stage": "boom",
+          "event_id": "punjab.1966.development.529d03",
+          "year": 1966,
+          "title": "The Green Revolution",
+          "confidence": 0.95,
+          "compound": true
+        },
+        {
+          "stage": "depletion",
+          "event_id": "punjab.1995.disaster.bfa36b",
+          "year": 1995,
+          "title": "Groundwater depletion and the paddy trap",
+          "confidence": 0.85,
+          "compound": false
+        }
+      ],
+      "span": [
+        1966,
+        1995
+      ],
+      "completeness": 0.833,
+      "tightness": 0.917,
+      "evidence": 0.917,
+      "strength": 0.879,
+      "skipped": []
+    },
+    {
+      "motif_id": "extraction_famine",
+      "motif_label": "The Revenue Ratchet",
+      "state_id": "tamil-nadu",
+      "stages": [
+        {
+          "stage": "conquest",
+          "event_id": "tamil-nadu.1801.legislature.c1cce3",
+          "year": 1801,
+          "title": "The Carnatic is annexed and Madras Presidency consolidated",
+          "confidence": 0.88,
+          "compound": false
+        },
+        {
+          "stage": "settlement",
+          "event_id": "tamil-nadu.1801.legislature.c1cce3",
+          "year": 1801,
+          "title": "The Carnatic is annexed and Madras Presidency consolidated",
+          "confidence": 0.88,
+          "compound": true
+        },
+        {
+          "stage": "famine",
+          "event_id": "tamil-nadu.1876.disaster.9ab73b",
+          "year": 1876,
+          "title": "The Great Famine of Madras",
+          "confidence": 0.9,
+          "compound": false
+        }
+      ],
+      "span": [
+        1801,
+        1876
+      ],
+      "completeness": 0.625,
+      "tightness": 0.688,
+      "evidence": 0.887,
+      "strength": 0.729,
+      "skipped": [
+        "shock"
+      ]
+    },
+    {
+      "motif_id": "linguistic_statehood",
+      "motif_label": "Identity Becomes a Border",
+      "state_id": "tamil-nadu",
+      "stages": [
+        {
+          "stage": "friction",
+          "event_id": "tamil-nadu.1916.movement.bbf9a6",
+          "year": 1916,
+          "title": "The South Indian Liberal Federation is founded",
+          "confidence": 0.88,
+          "compound": false
+        },
+        {
+          "stage": "agitation",
+          "event_id": "tamil-nadu.1937.movement.0f09ef",
+          "year": 1937,
+          "title": "The anti-Hindi agitations",
+          "confidence": 0.92,
+          "compound": false
+        },
+        {
+          "stage": "redraw",
+          "event_id": "tamil-nadu.1969.legislature.e39e3b",
+          "year": 1969,
+          "title": "Madras State is renamed Tamil Nadu",
+          "confidence": 0.95,
+          "compound": false
+        }
+      ],
+      "span": [
+        1916,
+        1969
+      ],
+      "completeness": 1.0,
+      "tightness": 0.792,
+      "evidence": 0.917,
+      "strength": 0.929,
+      "skipped": []
+    },
+    {
+      "motif_id": "linguistic_statehood",
+      "motif_label": "Identity Becomes a Border",
+      "state_id": "tamil-nadu",
+      "stages": [
+        {
+          "stage": "friction",
+          "event_id": "tamil-nadu.1925.movement.5cffa1",
+          "year": 1925,
+          "title": "Periyar launches the Self-Respect Movement",
+          "confidence": 0.9,
+          "compound": false
+        },
+        {
+          "stage": "agitation",
+          "event_id": "tamil-nadu.1937.movement.0f09ef",
+          "year": 1937,
+          "title": "The anti-Hindi agitations",
+          "confidence": 0.92,
+          "compound": false
+        },
+        {
+          "stage": "redraw",
+          "event_id": "tamil-nadu.1969.legislature.e39e3b",
+          "year": 1969,
+          "title": "Madras State is renamed Tamil Nadu",
+          "confidence": 0.95,
+          "compound": false
+        }
+      ],
+      "span": [
+        1925,
+        1969
+      ],
+      "completeness": 1.0,
+      "tightness": 0.867,
+      "evidence": 0.923,
+      "strength": 0.946,
+      "skipped": []
+    },
+    {
+      "motif_id": "linguistic_statehood",
+      "motif_label": "Identity Becomes a Border",
+      "state_id": "tamil-nadu",
+      "stages": [
+        {
+          "stage": "friction",
+          "event_id": "tamil-nadu.1937.movement.0f09ef",
+          "year": 1937,
+          "title": "The anti-Hindi agitations",
+          "confidence": 0.92,
+          "compound": false
+        },
+        {
+          "stage": "agitation",
+          "event_id": "tamil-nadu.1967.highlight.9d27fe",
+          "year": 1967,
+          "title": "The DMK takes power",
+          "confidence": 0.95,
+          "compound": false
+        },
+        {
+          "stage": "redraw",
+          "event_id": "tamil-nadu.1969.legislature.e39e3b",
+          "year": 1969,
+          "title": "Madras State is renamed Tamil Nadu",
+          "confidence": 0.95,
+          "compound": false
+        }
+      ],
+      "span": [
+        1937,
+        1969
+      ],
+      "completeness": 1.0,
+      "tightness": 0.967,
+      "evidence": 0.94,
+      "strength": 0.972,
+      "skipped": []
+    },
+    {
+      "motif_id": "linguistic_statehood",
+      "motif_label": "Identity Becomes a Border",
+      "state_id": "tamil-nadu",
+      "stages": [
+        {
+          "stage": "friction",
+          "event_id": "tamil-nadu.1967.highlight.9d27fe",
+          "year": 1967,
+          "title": "The DMK takes power",
+          "confidence": 0.95,
+          "compound": false
+        },
+        {
+          "stage": "agitation",
+          "event_id": "tamil-nadu.1967.highlight.9d27fe",
+          "year": 1967,
+          "title": "The DMK takes power",
+          "confidence": 0.95,
+          "compound": true
+        },
+        {
+          "stage": "redraw",
+          "event_id": "tamil-nadu.1969.legislature.e39e3b",
+          "year": 1969,
+          "title": "Madras State is renamed Tamil Nadu",
+          "confidence": 0.95,
+          "compound": false
+        }
+      ],
+      "span": [
+        1967,
+        1969
+      ],
+      "completeness": 0.833,
+      "tightness": 0.983,
+      "evidence": 0.95,
+      "strength": 0.904,
+      "skipped": []
+    },
+    {
+      "motif_id": "extraction_famine",
+      "motif_label": "The Revenue Ratchet",
+      "state_id": "west-bengal",
+      "stages": [
+        {
+          "stage": "conquest",
+          "event_id": "west-bengal.1757.war.89a809",
+          "year": 1757,
+          "title": "Battle of Plassey",
+          "confidence": 0.94,
+          "compound": false
+        },
+        {
+          "stage": "settlement",
+          "event_id": "west-bengal.1765.legislature.46ec81",
+          "year": 1765,
+          "title": "The Company obtains the Diwani of Bengal",
+          "confidence": 0.94,
+          "compound": false
+        },
+        {
+          "stage": "shock",
+          "event_id": "west-bengal.1770.disaster.977b9d",
+          "year": 1770,
+          "title": "The Great Bengal Famine",
+          "confidence": 0.93,
+          "compound": false
+        },
+        {
+          "stage": "famine",
+          "event_id": "west-bengal.1770.disaster.977b9d",
+          "year": 1770,
+          "title": "The Great Bengal Famine",
+          "confidence": 0.93,
+          "compound": true
+        }
+      ],
+      "span": [
+        1757,
+        1770
+      ],
+      "completeness": 0.875,
+      "tightness": 0.942,
+      "evidence": 0.935,
+      "strength": 0.909,
+      "skipped": []
+    },
+    {
+      "motif_id": "craft_kill",
+      "motif_label": "The Unmaking of a Craft",
+      "state_id": "west-bengal",
+      "stages": [
+        {
+          "stage": "control",
+          "event_id": "west-bengal.1757.war.89a809",
+          "year": 1757,
+          "title": "Battle of Plassey",
+          "confidence": 0.94,
+          "compound": false
+        },
+        {
+          "stage": "erosion",
+          "event_id": "west-bengal.1800.craft.9a6f78",
+          "year": 1800,
+          "title": "The collapse of Bengal's handloom weaving",
+          "confidence": 0.8,
+          "compound": false
+        },
+        {
+          "stage": "outflow",
+          "event_id": "west-bengal.1911.legislature.a598b3",
+          "year": 1911,
+          "title": "The capital moves from Calcutta to Delhi",
+          "confidence": 0.93,
+          "compound": false
+        }
+      ],
+      "span": [
+        1757,
+        1911
+      ],
+      "completeness": 1.0,
+      "tightness": 0.565,
+      "evidence": 0.89,
+      "strength": 0.874,
+      "skipped": []
+    },
+    {
+      "motif_id": "craft_kill",
+      "motif_label": "The Unmaking of a Craft",
+      "state_id": "west-bengal",
+      "stages": [
+        {
+          "stage": "control",
+          "event_id": "west-bengal.1765.legislature.46ec81",
+          "year": 1765,
+          "title": "The Company obtains the Diwani of Bengal",
+          "confidence": 0.94,
+          "compound": false
+        },
+        {
+          "stage": "erosion",
+          "event_id": "west-bengal.1800.craft.9a6f78",
+          "year": 1800,
+          "title": "The collapse of Bengal's handloom weaving",
+          "confidence": 0.8,
+          "compound": false
+        },
+        {
+          "stage": "outflow",
+          "event_id": "west-bengal.1911.legislature.a598b3",
+          "year": 1911,
+          "title": "The capital moves from Calcutta to Delhi",
+          "confidence": 0.93,
+          "compound": false
+        }
+      ],
+      "span": [
+        1765,
+        1911
+      ],
+      "completeness": 1.0,
+      "tightness": 0.598,
+      "evidence": 0.89,
+      "strength": 0.881,
+      "skipped": []
+    },
+    {
+      "motif_id": "craft_kill",
+      "motif_label": "The Unmaking of a Craft",
+      "state_id": "west-bengal",
+      "stages": [
+        {
+          "stage": "control",
+          "event_id": "west-bengal.1770.disaster.977b9d",
+          "year": 1770,
+          "title": "The Great Bengal Famine",
+          "confidence": 0.93,
+          "compound": false
+        },
+        {
+          "stage": "erosion",
+          "event_id": "west-bengal.1800.craft.9a6f78",
+          "year": 1800,
+          "title": "The collapse of Bengal's handloom weaving",
+          "confidence": 0.8,
+          "compound": false
+        },
+        {
+          "stage": "outflow",
+          "event_id": "west-bengal.1911.legislature.a598b3",
+          "year": 1911,
+          "title": "The capital moves from Calcutta to Delhi",
+          "confidence": 0.93,
+          "compound": false
+        }
+      ],
+      "span": [
+        1770,
+        1911
+      ],
+      "completeness": 1.0,
+      "tightness": 0.619,
+      "evidence": 0.887,
+      "strength": 0.884,
+      "skipped": []
+    },
+    {
+      "motif_id": "craft_kill",
+      "motif_label": "The Unmaking of a Craft",
+      "state_id": "west-bengal",
+      "stages": [
+        {
+          "stage": "control",
+          "event_id": "west-bengal.1793.legislature.0073cd",
+          "year": 1793,
+          "title": "The Permanent Settlement",
+          "confidence": 0.94,
+          "compound": false
+        },
+        {
+          "stage": "erosion",
+          "event_id": "west-bengal.1800.craft.9a6f78",
+          "year": 1800,
+          "title": "The collapse of Bengal's handloom weaving",
+          "confidence": 0.8,
+          "compound": false
+        },
+        {
+          "stage": "outflow",
+          "event_id": "west-bengal.1911.legislature.a598b3",
+          "year": 1911,
+          "title": "The capital moves from Calcutta to Delhi",
+          "confidence": 0.93,
+          "compound": false
+        }
+      ],
+      "span": [
+        1793,
+        1911
+      ],
+      "completeness": 1.0,
+      "tightness": 0.715,
+      "evidence": 0.89,
+      "strength": 0.904,
+      "skipped": []
+    },
+    {
+      "motif_id": "capital_drain",
+      "motif_label": "The Capital Drain",
+      "state_id": "west-bengal",
+      "stages": [
+        {
+          "stage": "shift",
+          "event_id": "west-bengal.1911.legislature.a598b3",
+          "year": 1911,
+          "title": "The capital moves from Calcutta to Delhi",
+          "confidence": 0.93,
+          "compound": false
+        },
+        {
+          "stage": "divergence",
+          "event_id": "west-bengal.1980.development.200e14",
+          "year": 1980,
+          "title": "The jute economy declines",
+          "confidence": 0.8,
+          "compound": false
+        }
+      ],
+      "span": [
+        1911,
+        1980
+      ],
+      "completeness": 1.0,
+      "tightness": 0.233,
+      "evidence": 0.865,
+      "strength": 0.799,
+      "skipped": []
+    },
+    {
+      "motif_id": "partition_shock",
+      "motif_label": "The Cut",
+      "state_id": "west-bengal",
+      "stages": [
+        {
+          "stage": "cut",
+          "event_id": "west-bengal.1947.war.709e18",
+          "year": 1947,
+          "title": "Partition and the making of West Bengal",
+          "confidence": 0.97,
+          "compound": false
+        },
+        {
+          "stage": "movement",
+          "event_id": "west-bengal.1947.war.709e18",
+          "year": 1947,
+          "title": "Partition and the making of West Bengal",
+          "confidence": 0.97,
+          "compound": true
+        },
+        {
+          "stage": "remaking",
+          "event_id": "west-bengal.1967.movement.d8d166",
+          "year": 1967,
+          "title": "The Naxalbari uprising",
+          "confidence": 0.92,
+          "compound": false
+        }
+      ],
+      "span": [
+        1947,
+        1967
+      ],
+      "completeness": 0.833,
+      "tightness": 0.833,
+      "evidence": 0.953,
+      "strength": 0.875,
+      "skipped": []
+    }
+  ]
+}

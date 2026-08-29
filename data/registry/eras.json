@@ -1,0 +1,150 @@
+{
+  "$comment": "Layered era registry for Historia. Resolution declines as you go back in time: ancient eras are era-blocks, colonial is decade-resolved, republic is year-resolved. The game's turn tempo is driven by `turn_span_years`.",
+  "version": "1.0.0",
+  "eras": [
+    {
+      "id": "era.prehistoric_indus",
+      "label": "Prehistoric & Indus",
+      "start": -7000,
+      "end": -1500,
+      "resolution": "era",
+      "turn_span_years": 250,
+      "confidence_ceiling": 0.55,
+      "note": "Archaeological, not textual. Events are site-level and probabilistic.",
+      "map_style": "sparse_sites"
+    },
+    {
+      "id": "era.vedic_janapada",
+      "label": "Vedic & Janapada",
+      "start": -1500,
+      "end": -600,
+      "resolution": "era",
+      "turn_span_years": 100,
+      "confidence_ceiling": 0.6,
+      "map_style": "cultural_zones"
+    },
+    {
+      "id": "era.mahajanapada_mauryan",
+      "label": "Mahajanapada & Mauryan",
+      "start": -600,
+      "end": -185,
+      "resolution": "era",
+      "turn_span_years": 25,
+      "confidence_ceiling": 0.75,
+      "map_style": "kingdoms"
+    },
+    {
+      "id": "era.classical",
+      "label": "Classical: Satavahana to Gupta",
+      "start": -185,
+      "end": 550,
+      "resolution": "era",
+      "turn_span_years": 25,
+      "confidence_ceiling": 0.8,
+      "map_style": "kingdoms"
+    },
+    {
+      "id": "era.early_medieval",
+      "label": "Early Medieval Regional Kingdoms",
+      "start": 550,
+      "end": 1206,
+      "resolution": "decade",
+      "turn_span_years": 20,
+      "confidence_ceiling": 0.85,
+      "map_style": "kingdoms"
+    },
+    {
+      "id": "era.sultanate",
+      "label": "Delhi & Deccan Sultanates",
+      "start": 1206,
+      "end": 1526,
+      "resolution": "decade",
+      "turn_span_years": 10,
+      "confidence_ceiling": 0.88,
+      "map_style": "kingdoms"
+    },
+    {
+      "id": "era.mughal",
+      "label": "Mughal Empire & Regional Powers",
+      "start": 1526,
+      "end": 1707,
+      "resolution": "decade",
+      "turn_span_years": 10,
+      "confidence_ceiling": 0.9,
+      "map_style": "subahs"
+    },
+    {
+      "id": "era.successor_states",
+      "label": "Maratha, Sikh & Successor States",
+      "start": 1707,
+      "end": 1818,
+      "resolution": "year",
+      "turn_span_years": 5,
+      "confidence_ceiling": 0.92,
+      "map_style": "kingdoms"
+    },
+    {
+      "id": "era.company_raj",
+      "label": "Company Raj",
+      "start": 1757,
+      "end": 1858,
+      "resolution": "year",
+      "turn_span_years": 5,
+      "confidence_ceiling": 0.94,
+      "overlaps": ["era.successor_states"],
+      "map_style": "presidencies"
+    },
+    {
+      "id": "era.british_raj",
+      "label": "British Raj",
+      "start": 1858,
+      "end": 1947,
+      "resolution": "year",
+      "turn_span_years": 2,
+      "confidence_ceiling": 0.96,
+      "map_style": "provinces_and_princely"
+    },
+    {
+      "id": "era.nation_building",
+      "label": "Republic: Nation-Building",
+      "start": 1947,
+      "end": 1966,
+      "resolution": "year",
+      "turn_span_years": 1,
+      "confidence_ceiling": 0.98,
+      "map_style": "modern_states"
+    },
+    {
+      "id": "era.green_revolution",
+      "label": "Republic: Green Revolution & Turmoil",
+      "start": 1966,
+      "end": 1991,
+      "resolution": "year",
+      "turn_span_years": 1,
+      "confidence_ceiling": 0.98,
+      "map_style": "modern_states"
+    },
+    {
+      "id": "era.liberalisation",
+      "label": "Republic: Liberalisation",
+      "start": 1991,
+      "end": 2014,
+      "resolution": "year",
+      "turn_span_years": 1,
+      "confidence_ceiling": 0.99,
+      "map_style": "modern_states"
+    },
+    {
+      "id": "era.digital",
+      "label": "Republic: Digital India",
+      "start": 2014,
+      "end": 2026,
+      "resolution": "year",
+      "turn_span_years": 1,
+      "confidence_ceiling": 0.99,
+      "map_style": "modern_states",
+      "live": true,
+      "note": "Historia keeps updating: this era's end year advances annually via the ingest cron."
+    }
+  ]
+}

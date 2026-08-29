@@ -1,0 +1,990 @@
+{
+  "state_id": "gujarat",
+  "schema_version": "1.0.0",
+  "generated_at": "2026-08-29T14:17:02+00:00",
+  "provenance": "seed-v1-authored-pending-verification",
+  "coverage": {
+    "era.prehistoric_indus": {
+      "event_count": 1,
+      "gap_years": [],
+      "mean_confidence": 0.55
+    },
+    "era.early_medieval": {
+      "event_count": 1,
+      "gap_years": [],
+      "mean_confidence": 0.85
+    },
+    "era.sultanate": {
+      "event_count": 2,
+      "gap_years": [],
+      "mean_confidence": 0.88
+    },
+    "era.mughal": {
+      "event_count": 3,
+      "gap_years": [],
+      "mean_confidence": 0.837
+    },
+    "era.british_raj": {
+      "event_count": 4,
+      "gap_years": [
+        1900,
+        1901,
+        1902,
+        1903,
+        1904,
+        1905,
+        1906,
+        1907,
+        1908,
+        1909,
+        1910,
+        1911,
+        1912,
+        1913,
+        1914,
+        1915,
+        1916,
+        1917,
+        1919,
+        1920,
+        1921,
+        1922,
+        1923,
+        1924,
+        1925,
+        1926,
+        1927,
+        1928,
+        1929,
+        1931,
+        1932,
+        1933,
+        1934,
+        1935,
+        1936,
+        1937,
+        1938,
+        1939,
+        1940,
+        1941,
+        1942,
+        1943,
+        1944,
+        1945,
+        1947
+      ],
+      "mean_confidence": 0.897
+    },
+    "era.nation_building": {
+      "event_count": 2,
+      "gap_years": [
+        1947,
+        1948,
+        1949,
+        1950,
+        1951,
+        1952,
+        1953,
+        1954,
+        1955,
+        1957,
+        1958,
+        1959,
+        1961,
+        1962,
+        1963,
+        1964,
+        1965,
+        1966
+      ],
+      "mean_confidence": 0.92
+    },
+    "era.green_revolution": {
+      "event_count": 2,
+      "gap_years": [
+        1966,
+        1967,
+        1968,
+        1969,
+        1971,
+        1972,
+        1973,
+        1974,
+        1975,
+        1976,
+        1977,
+        1978,
+        1980,
+        1981,
+        1982,
+        1983,
+        1984,
+        1985,
+        1986,
+        1987,
+        1988,
+        1989,
+        1990,
+        1991
+      ],
+      "mean_confidence": 0.89
+    },
+    "era.liberalisation": {
+      "event_count": 3,
+      "gap_years": [
+        1991,
+        1992,
+        1993,
+        1994,
+        1995,
+        1996,
+        1997,
+        1998,
+        1999,
+        2000,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014
+      ],
+      "mean_confidence": 0.883
+    }
+  },
+  "events": [
+    {
+      "id": "gujarat.-2400.development.8176ec",
+      "year": -2400,
+      "year_end": -1900,
+      "year_precision": "quarter_century",
+      "era": "era.prehistoric_indus",
+      "category": "development",
+      "title": "Lothal's dock and the Harappan sea trade",
+      "summary": "Lothal's brick basin — read by most excavators as a tidal dock — and Dholavira's water engineering mark Gujarat as India's earliest maritime and hydraulic economy. Bead workshops indicate export craft, not just subsistence.",
+      "tags": [
+        "craft_flourish",
+        "port_established"
+      ],
+      "places": [
+        "Lothal",
+        "Dholavira"
+      ],
+      "actors": [
+        "Harappan civilisation"
+      ],
+      "magnitude": 0.7,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.55,
+      "review": {
+        "status": "flagged",
+        "flags": [
+          "contested_history",
+          "low_confidence"
+        ],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": true,
+      "sim": {
+        "channel": "economy",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Gujarat",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "gujarat.1026.war.54f5d0",
+      "year": 1026,
+      "year_end": null,
+      "year_precision": "exact",
+      "era": "era.early_medieval",
+      "category": "war",
+      "title": "Mahmud of Ghazni sacks Somnath",
+      "summary": "The raid on the Somnath temple carried off its wealth and became one of the most contested memories in Indian history — invoked and reinterpreted continuously for the next thousand years.",
+      "tags": [
+        "invasion"
+      ],
+      "places": [
+        "Somnath"
+      ],
+      "actors": [
+        "Mahmud of Ghazni"
+      ],
+      "magnitude": 0.8,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.85,
+      "review": {
+        "status": "flagged",
+        "flags": [
+          "contested_history",
+          "sensitive"
+        ],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": true,
+      "sim": {
+        "channel": "military",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Gujarat",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "gujarat.1297.war.bdee79",
+      "year": 1297,
+      "year_end": null,
+      "year_precision": "exact",
+      "era": "era.sultanate",
+      "category": "war",
+      "title": "Alauddin Khalji annexes Gujarat",
+      "summary": "Khalji forces defeated Karna of the Vaghela dynasty, ending Rajput rule and bringing Gujarat's ports and their customs revenue into the Delhi Sultanate.",
+      "tags": [
+        "annexation",
+        "invasion",
+        "revenue_extraction"
+      ],
+      "places": [
+        "Anhilwad Patan"
+      ],
+      "actors": [
+        "Alauddin Khalji",
+        "Karna Vaghela"
+      ],
+      "magnitude": 0.75,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.88,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "military",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Gujarat",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "gujarat.1411.development.b5e296",
+      "year": 1411,
+      "year_end": null,
+      "year_precision": "exact",
+      "era": "era.sultanate",
+      "category": "development",
+      "title": "Ahmad Shah I founds Ahmedabad",
+      "summary": "The new capital on the Sabarmati drew weavers, dyers and merchants. Ahmedabad's textile identity — and its guild (mahajan) form of self-organisation — dates from this foundation.",
+      "tags": [
+        "craft_flourish",
+        "guild_formation",
+        "urbanisation"
+      ],
+      "places": [
+        "Ahmedabad"
+      ],
+      "actors": [
+        "Ahmad Shah I"
+      ],
+      "magnitude": 0.8,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.88,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "economy",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Gujarat",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "gujarat.1572.development.18e58c",
+      "year": 1572,
+      "year_end": 1700,
+      "year_precision": "decade",
+      "era": "era.mughal",
+      "category": "development",
+      "title": "Surat as the Mughal empire's premier port",
+      "summary": "Surat handled the Hajj traffic and the western trade, with Gujarati, Armenian and European merchants operating side by side. Gujarati textiles reached East Africa, the Gulf and Southeast Asia.",
+      "tags": [
+        "craft_flourish",
+        "port_established",
+        "revenue_surge"
+      ],
+      "places": [
+        "Surat"
+      ],
+      "actors": [
+        "Mughal Empire",
+        "Gujarati merchant houses"
+      ],
+      "magnitude": 0.9,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.85,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "economy",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Gujarat",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "gujarat.1614.legislature.683bf5",
+      "year": 1614,
+      "year_end": null,
+      "year_precision": "exact",
+      "era": "era.mughal",
+      "category": "legislature",
+      "title": "The English factory at Surat",
+      "summary": "After Swally, the English secured a firman for a factory at Surat — their first durable Indian foothold, and the commercial bridgehead that Bombay would later inherit.",
+      "tags": [
+        "port_established",
+        "trade_treaty"
+      ],
+      "places": [
+        "Surat"
+      ],
+      "actors": [
+        "East India Company",
+        "Jahangir"
+      ],
+      "magnitude": 0.7,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.88,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "governance",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Gujarat",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "gujarat.1668.development.83eaaa",
+      "year": 1668,
+      "year_end": 1750,
+      "year_precision": "decade",
+      "era": "era.mughal",
+      "category": "development",
+      "title": "Bombay rises and Surat declines",
+      "summary": "The cession of Bombay to the English and its fortified deep-water harbour drew trade off Surat, whose silting river and Maratha raids compounded the shift. Gujarat's mercantile capital migrated south.",
+      "tags": [
+        "migration",
+        "port_established",
+        "revenue_decline"
+      ],
+      "places": [
+        "Surat",
+        "Bombay"
+      ],
+      "actors": [
+        "East India Company"
+      ],
+      "magnitude": 0.75,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.78,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "economy",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Gujarat",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "gujarat.1861.development.ce4bb3",
+      "year": 1861,
+      "year_end": null,
+      "year_precision": "exact",
+      "era": "era.british_raj",
+      "category": "development",
+      "title": "Ahmedabad's first cotton mill",
+      "summary": "Ranchhodlal Chhotalal opened the Shahpur mill, founding an Indian-owned mechanised textile industry financed by Gujarati merchant capital. Ahmedabad became the 'Manchester of the East'.",
+      "tags": [
+        "craft_flourish",
+        "industrial_boom"
+      ],
+      "places": [
+        "Ahmedabad"
+      ],
+      "actors": [
+        "Ranchhodlal Chhotalal"
+      ],
+      "magnitude": 0.85,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.85,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "economy",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Gujarat",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "gujarat.1918.movement.bc1c46",
+      "year": 1918,
+      "year_end": null,
+      "year_precision": "exact",
+      "era": "era.british_raj",
+      "category": "movement",
+      "title": "The Ahmedabad mill strike",
+      "summary": "Gandhi's fast in support of mill workers produced a negotiated settlement and, from it, the Textile Labour Association — a distinctive arbitration-based union tradition rather than a confrontational one.",
+      "tags": [
+        "agitation",
+        "guild_formation"
+      ],
+      "places": [
+        "Ahmedabad"
+      ],
+      "actors": [
+        "Mahatma Gandhi",
+        "Anasuya Sarabhai"
+      ],
+      "magnitude": 0.7,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.88,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "unrest",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Gujarat",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "gujarat.1930.movement.3dc5cd",
+      "year": 1930,
+      "year_end": null,
+      "year_precision": "exact",
+      "era": "era.british_raj",
+      "category": "movement",
+      "title": "The Dandi March",
+      "summary": "Gandhi walked 385 km from Sabarmati to Dandi to make salt in defiance of the salt monopoly, igniting nationwide civil disobedience. The march made Gujarat the stage of the freedom movement's most legible act.",
+      "tags": [
+        "agitation"
+      ],
+      "places": [
+        "Sabarmati",
+        "Dandi"
+      ],
+      "actors": [
+        "Mahatma Gandhi"
+      ],
+      "magnitude": 0.95,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.96,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "unrest",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Gujarat",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "gujarat.1946.development.903e69",
+      "year": 1946,
+      "year_end": null,
+      "year_precision": "exact",
+      "era": "era.british_raj",
+      "category": "development",
+      "title": "The Kaira district milk cooperative is founded",
+      "summary": "Farmers in Kheda organised to bypass a monopsony milk contractor. The union — later Amul — became the model for producer-owned processing and marketing across India.",
+      "tags": [
+        "cooperative_formation"
+      ],
+      "places": [
+        "Anand",
+        "Kheda"
+      ],
+      "actors": [
+        "Tribhuvandas Patel",
+        "Verghese Kurien"
+      ],
+      "magnitude": 0.85,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.9,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "economy",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Gujarat",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "gujarat.1956.movement.fbc632",
+      "year": 1956,
+      "year_end": 1960,
+      "year_precision": "exact",
+      "era": "era.nation_building",
+      "category": "movement",
+      "title": "The Mahagujarat Movement",
+      "summary": "Agitation for a separate Gujarati-speaking state out of bilingual Bombay State ran alongside the Samyukta Maharashtra movement. Both succeeded simultaneously.",
+      "tags": [
+        "agitation",
+        "language_movement",
+        "statehood_demand"
+      ],
+      "places": [
+        "Ahmedabad"
+      ],
+      "actors": [
+        "Indulal Yagnik"
+      ],
+      "magnitude": 0.85,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.88,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "unrest",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Gujarat",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "gujarat.1960.legislature.a9f396",
+      "year": 1960,
+      "year_end": null,
+      "year_precision": "exact",
+      "era": "era.nation_building",
+      "category": "legislature",
+      "title": "Gujarat is formed",
+      "summary": "Bombay State was divided on 1 May 1960 into Gujarat and Maharashtra, completing the linguistic reorganisation begun in 1956.",
+      "tags": [
+        "language_movement",
+        "state_reorganisation"
+      ],
+      "places": [
+        "Gujarat"
+      ],
+      "actors": [],
+      "magnitude": 0.95,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.96,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "governance",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Gujarat",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "gujarat.1970.development.cf31f9",
+      "year": 1970,
+      "year_end": 1996,
+      "year_precision": "decade",
+      "era": "era.green_revolution",
+      "category": "development",
+      "title": "Operation Flood",
+      "summary": "The Anand cooperative model was scaled nationally from Gujarat, making India the world's largest milk producer. A state's institutional invention became national policy.",
+      "tags": [
+        "agri_yield_rise",
+        "cooperative_formation"
+      ],
+      "places": [
+        "Anand"
+      ],
+      "actors": [
+        "Verghese Kurien",
+        "National Dairy Development Board"
+      ],
+      "magnitude": 0.9,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.9,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "economy",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Gujarat",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "gujarat.1979.disaster.093f11",
+      "year": 1979,
+      "year_end": null,
+      "year_precision": "exact",
+      "era": "era.green_revolution",
+      "category": "disaster",
+      "title": "The Machchhu dam failure at Morbi",
+      "summary": "The Machchhu-II dam failed during extreme rainfall, inundating Morbi. It remains among the deadliest dam disasters recorded anywhere.",
+      "tags": [
+        "dam_built",
+        "flood",
+        "population_loss"
+      ],
+      "places": [
+        "Morbi"
+      ],
+      "actors": [],
+      "magnitude": 0.8,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.88,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "resilience",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Gujarat",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "gujarat.2001.disaster.6a6bbf",
+      "year": 2001,
+      "year_end": null,
+      "year_precision": "exact",
+      "era": "era.liberalisation",
+      "category": "disaster",
+      "title": "The Bhuj earthquake",
+      "summary": "A magnitude ~7.7 earthquake devastated Kutch. The reconstruction that followed became a template for disaster-resilient rebuilding and a major channel of state capacity-building.",
+      "tags": [
+        "earthquake",
+        "population_loss",
+        "urbanisation"
+      ],
+      "places": [
+        "Bhuj",
+        "Kutch"
+      ],
+      "actors": [],
+      "magnitude": 0.9,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.95,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "resilience",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Gujarat",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "gujarat.2002.war.16eb5d",
+      "year": 2002,
+      "year_end": null,
+      "year_precision": "exact",
+      "era": "era.liberalisation",
+      "category": "war",
+      "title": "The 2002 Gujarat violence",
+      "summary": "Communal violence following the Godhra train burning killed over a thousand people, predominantly Muslim, and displaced many more. Accounts of state conduct remain the subject of unresolved public and legal contestation.",
+      "tags": [
+        "migration",
+        "population_loss",
+        "rebellion"
+      ],
+      "places": [
+        "Gujarat"
+      ],
+      "actors": [],
+      "magnitude": 0.9,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.85,
+      "review": {
+        "status": "flagged",
+        "flags": [
+          "contested_history",
+          "sensitive"
+        ],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": true,
+      "sim": {
+        "channel": "military",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Gujarat",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "gujarat.2003.development.b76369",
+      "year": 2003,
+      "year_end": 2014,
+      "year_precision": "decade",
+      "era": "era.liberalisation",
+      "category": "development",
+      "title": "Vibrant Gujarat and the investment turn",
+      "summary": "A biennial investor summit, land banks and single-window clearance drove chemicals, petrochemicals and autos. Growth was industry- and capital-led, with human-development indicators lagging the growth rate.",
+      "tags": [
+        "industrial_boom",
+        "policy_liberalisation",
+        "sez_designation"
+      ],
+      "places": [
+        "Gujarat"
+      ],
+      "actors": [
+        "Government of Gujarat"
+      ],
+      "magnitude": 0.85,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.85,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "economy",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Gujarat",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    }
+  ]
+}

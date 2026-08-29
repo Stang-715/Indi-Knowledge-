@@ -1,0 +1,1196 @@
+{
+  "$comment": "Modern 28 states + 8 UTs. Per the chosen model, each entity INHERITS the history of its present-day territory -- Telangana's Historia carries Kakatiya and Nizam-era Hyderabad even though the state dates to 2014. `lineage` is the honest audit trail shown in the UI so the inheritance is never silently fudged. Wikidata QIDs are resolved at ingest time from `wikipedia_title` rather than hardcoded, so no guessed identifier can silently poison the corpus.",
+  "version": "1.0.0",
+  "history_model": "modern_territory_inheritance",
+  "entities": [
+    {
+      "id": "andhra-pradesh",
+      "name": "Andhra Pradesh",
+      "type": "state",
+      "formed": 1953,
+      "iso_3166_2": "IN-AP",
+      "capital": "Amaravati",
+      "lineage": [
+        "Satavahana",
+        "Eastern Chalukya",
+        "Kakatiya",
+        "Vijayanagara",
+        "Golconda Sultanate",
+        "Madras Presidency",
+        "Hyderabad State",
+        "Andhra State (1953)",
+        "Andhra Pradesh (1956)",
+        "Bifurcation (2014)"
+      ],
+      "endowments": [
+        "coastal",
+        "delta",
+        "river_plain",
+        "port_natural",
+        "monsoon_heavy"
+      ],
+      "sources": {
+        "wikidata_qid": null,
+        "wikipedia_title": "Andhra_Pradesh",
+        "qid_resolution": "runtime"
+      },
+      "map": {
+        "geojson": "assets/geo/andhra-pradesh.geojson",
+        "focus_zoom": null
+      },
+      "historia": "data/historia/andhra-pradesh.json"
+    },
+    {
+      "id": "arunachal-pradesh",
+      "name": "Arunachal Pradesh",
+      "type": "state",
+      "formed": 1987,
+      "iso_3166_2": "IN-AR",
+      "capital": "Itanagar",
+      "lineage": [
+        "Monpa/Adi chiefdoms",
+        "Ahom frontier",
+        "NEFA (1954)",
+        "Union Territory (1972)",
+        "Statehood (1987)"
+      ],
+      "endowments": [
+        "hill",
+        "forest",
+        "border_international",
+        "monsoon_heavy",
+        "landlocked"
+      ],
+      "sources": {
+        "wikidata_qid": null,
+        "wikipedia_title": "Arunachal_Pradesh",
+        "qid_resolution": "runtime"
+      },
+      "map": {
+        "geojson": "assets/geo/arunachal-pradesh.geojson",
+        "focus_zoom": null
+      },
+      "historia": "data/historia/arunachal-pradesh.json"
+    },
+    {
+      "id": "assam",
+      "name": "Assam",
+      "type": "state",
+      "formed": 1950,
+      "iso_3166_2": "IN-AS",
+      "capital": "Dispur",
+      "lineage": [
+        "Kamarupa",
+        "Ahom Kingdom",
+        "Treaty of Yandabo (1826)",
+        "Bengal Presidency",
+        "Assam Province (1874)",
+        "Statehood (1950)",
+        "Successive NE bifurcations"
+      ],
+      "endowments": [
+        "river_plain",
+        "forest",
+        "monsoon_heavy",
+        "border_international",
+        "landlocked"
+      ],
+      "sources": {
+        "wikidata_qid": null,
+        "wikipedia_title": "Assam",
+        "qid_resolution": "runtime"
+      },
+      "map": {
+        "geojson": "assets/geo/assam.geojson",
+        "focus_zoom": null
+      },
+      "historia": "data/historia/assam.json"
+    },
+    {
+      "id": "bihar",
+      "name": "Bihar",
+      "type": "state",
+      "formed": 1936,
+      "iso_3166_2": "IN-BR",
+      "capital": "Patna",
+      "lineage": [
+        "Magadha",
+        "Mauryan Empire",
+        "Gupta Empire",
+        "Pala",
+        "Delhi Sultanate",
+        "Mughal Subah of Bihar",
+        "Bengal Presidency",
+        "Bihar & Orissa (1912)",
+        "Bihar (1936)",
+        "Jharkhand split (2000)"
+      ],
+      "endowments": [
+        "river_plain",
+        "monsoon_heavy",
+        "landlocked",
+        "border_international"
+      ],
+      "sources": {
+        "wikidata_qid": null,
+        "wikipedia_title": "Bihar",
+        "qid_resolution": "runtime"
+      },
+      "map": {
+        "geojson": "assets/geo/bihar.geojson",
+        "focus_zoom": null
+      },
+      "historia": "data/historia/bihar.json"
+    },
+    {
+      "id": "chhattisgarh",
+      "name": "Chhattisgarh",
+      "type": "state",
+      "formed": 2000,
+      "iso_3166_2": "IN-CT",
+      "capital": "Raipur",
+      "lineage": [
+        "Dakshina Kosala",
+        "Kalachuri of Ratanpur",
+        "Maratha rule",
+        "Central Provinces",
+        "Madhya Pradesh",
+        "Statehood (2000)"
+      ],
+      "endowments": [
+        "plateau",
+        "forest",
+        "mineral_coal",
+        "mineral_iron",
+        "landlocked"
+      ],
+      "sources": {
+        "wikidata_qid": null,
+        "wikipedia_title": "Chhattisgarh",
+        "qid_resolution": "runtime"
+      },
+      "map": {
+        "geojson": "assets/geo/chhattisgarh.geojson",
+        "focus_zoom": null
+      },
+      "historia": "data/historia/chhattisgarh.json"
+    },
+    {
+      "id": "goa",
+      "name": "Goa",
+      "type": "state",
+      "formed": 1987,
+      "iso_3166_2": "IN-GA",
+      "capital": "Panaji",
+      "lineage": [
+        "Kadamba",
+        "Vijayanagara",
+        "Bijapur Sultanate",
+        "Portuguese Estado da India (1510)",
+        "Liberation (1961)",
+        "UT with Daman & Diu",
+        "Statehood (1987)"
+      ],
+      "endowments": [
+        "coastal",
+        "port_natural",
+        "mineral_iron",
+        "monsoon_heavy"
+      ],
+      "sources": {
+        "wikidata_qid": null,
+        "wikipedia_title": "Goa",
+        "qid_resolution": "runtime"
+      },
+      "map": {
+        "geojson": "assets/geo/goa.geojson",
+        "focus_zoom": null
+      },
+      "historia": "data/historia/goa.json"
+    },
+    {
+      "id": "gujarat",
+      "name": "Gujarat",
+      "type": "state",
+      "formed": 1960,
+      "iso_3166_2": "IN-GJ",
+      "capital": "Gandhinagar",
+      "lineage": [
+        "Indus/Harappan (Lothal, Dholavira)",
+        "Maitraka",
+        "Chaulukya (Solanki)",
+        "Gujarat Sultanate",
+        "Mughal Subah",
+        "Maratha & princely states",
+        "Bombay Presidency",
+        "Bombay State",
+        "Statehood (1960)"
+      ],
+      "endowments": [
+        "coastal",
+        "port_natural",
+        "desert",
+        "monsoon_rain_shadow",
+        "border_international"
+      ],
+      "sources": {
+        "wikidata_qid": null,
+        "wikipedia_title": "Gujarat",
+        "qid_resolution": "runtime"
+      },
+      "map": {
+        "geojson": "assets/geo/gujarat.geojson",
+        "focus_zoom": null
+      },
+      "historia": "data/historia/gujarat.json"
+    },
+    {
+      "id": "haryana",
+      "name": "Haryana",
+      "type": "state",
+      "formed": 1966,
+      "iso_3166_2": "IN-HR",
+      "capital": "Chandigarh",
+      "lineage": [
+        "Kuru Janapada",
+        "Delhi Sultanate hinterland",
+        "Mughal Subah of Delhi",
+        "Punjab Province",
+        "East Punjab",
+        "Statehood (1966)"
+      ],
+      "endowments": [
+        "river_plain",
+        "landlocked",
+        "monsoon_rain_shadow"
+      ],
+      "sources": {
+        "wikidata_qid": null,
+        "wikipedia_title": "Haryana",
+        "qid_resolution": "runtime"
+      },
+      "map": {
+        "geojson": "assets/geo/haryana.geojson",
+        "focus_zoom": null
+      },
+      "historia": "data/historia/haryana.json"
+    },
+    {
+      "id": "himachal-pradesh",
+      "name": "Himachal Pradesh",
+      "type": "state",
+      "formed": 1971,
+      "iso_3166_2": "IN-HP",
+      "capital": "Shimla",
+      "lineage": [
+        "Hill principalities (Chamba, Kangra, Bilaspur)",
+        "Gorkha invasion",
+        "Punjab Hill States",
+        "UT (1948)",
+        "Statehood (1971)"
+      ],
+      "endowments": [
+        "hill",
+        "forest",
+        "landlocked",
+        "border_international"
+      ],
+      "sources": {
+        "wikidata_qid": null,
+        "wikipedia_title": "Himachal_Pradesh",
+        "qid_resolution": "runtime"
+      },
+      "map": {
+        "geojson": "assets/geo/himachal-pradesh.geojson",
+        "focus_zoom": null
+      },
+      "historia": "data/historia/himachal-pradesh.json"
+    },
+    {
+      "id": "jharkhand",
+      "name": "Jharkhand",
+      "type": "state",
+      "formed": 2000,
+      "iso_3166_2": "IN-JH",
+      "capital": "Ranchi",
+      "lineage": [
+        "Munda/Ho/Santhal polities",
+        "Nagvanshi",
+        "Mughal frontier",
+        "Bengal Presidency",
+        "Bihar",
+        "Statehood (2000)"
+      ],
+      "endowments": [
+        "plateau",
+        "forest",
+        "mineral_coal",
+        "mineral_iron",
+        "mineral_bauxite",
+        "landlocked"
+      ],
+      "sources": {
+        "wikidata_qid": null,
+        "wikipedia_title": "Jharkhand",
+        "qid_resolution": "runtime"
+      },
+      "map": {
+        "geojson": "assets/geo/jharkhand.geojson",
+        "focus_zoom": null
+      },
+      "historia": "data/historia/jharkhand.json"
+    },
+    {
+      "id": "karnataka",
+      "name": "Karnataka",
+      "type": "state",
+      "formed": 1956,
+      "iso_3166_2": "IN-KA",
+      "capital": "Bengaluru",
+      "lineage": [
+        "Kadamba",
+        "Chalukya of Badami",
+        "Rashtrakuta",
+        "Hoysala",
+        "Vijayanagara",
+        "Bijapur Sultanate",
+        "Kingdom of Mysore",
+        "Mysore State (1956)",
+        "Renamed Karnataka (1973)"
+      ],
+      "endowments": [
+        "coastal",
+        "plateau",
+        "monsoon_heavy",
+        "monsoon_rain_shadow",
+        "mineral_iron"
+      ],
+      "sources": {
+        "wikidata_qid": null,
+        "wikipedia_title": "Karnataka",
+        "qid_resolution": "runtime"
+      },
+      "map": {
+        "geojson": "assets/geo/karnataka.geojson",
+        "focus_zoom": null
+      },
+      "historia": "data/historia/karnataka.json"
+    },
+    {
+      "id": "kerala",
+      "name": "Kerala",
+      "type": "state",
+      "formed": 1956,
+      "iso_3166_2": "IN-KL",
+      "capital": "Thiruvananthapuram",
+      "lineage": [
+        "Chera",
+        "Kulasekhara",
+        "Zamorin of Calicut",
+        "Portuguese/Dutch factories",
+        "Travancore",
+        "Cochin",
+        "Malabar District",
+        "Travancore-Cochin (1949)",
+        "Statehood (1956)"
+      ],
+      "endowments": [
+        "coastal",
+        "port_natural",
+        "monsoon_heavy",
+        "hill"
+      ],
+      "sources": {
+        "wikidata_qid": null,
+        "wikipedia_title": "Kerala",
+        "qid_resolution": "runtime"
+      },
+      "map": {
+        "geojson": "assets/geo/kerala.geojson",
+        "focus_zoom": null
+      },
+      "historia": "data/historia/kerala.json"
+    },
+    {
+      "id": "madhya-pradesh",
+      "name": "Madhya Pradesh",
+      "type": "state",
+      "formed": 1956,
+      "iso_3166_2": "IN-MP",
+      "capital": "Bhopal",
+      "lineage": [
+        "Avanti",
+        "Gupta",
+        "Paramara of Malwa",
+        "Chandela of Bundelkhand",
+        "Malwa Sultanate",
+        "Maratha (Scindia, Holkar)",
+        "Central Provinces & Berar",
+        "Statehood (1956)",
+        "Chhattisgarh split (2000)"
+      ],
+      "endowments": [
+        "plateau",
+        "forest",
+        "landlocked",
+        "mineral_coal"
+      ],
+      "sources": {
+        "wikidata_qid": null,
+        "wikipedia_title": "Madhya_Pradesh",
+        "qid_resolution": "runtime"
+      },
+      "map": {
+        "geojson": "assets/geo/madhya-pradesh.geojson",
+        "focus_zoom": null
+      },
+      "historia": "data/historia/madhya-pradesh.json"
+    },
+    {
+      "id": "maharashtra",
+      "name": "Maharashtra",
+      "type": "state",
+      "formed": 1960,
+      "iso_3166_2": "IN-MH",
+      "capital": "Mumbai",
+      "lineage": [
+        "Satavahana",
+        "Rashtrakuta",
+        "Yadava of Devagiri",
+        "Ahmadnagar Sultanate",
+        "Maratha Empire",
+        "Bombay Presidency",
+        "Bombay State",
+        "Statehood (1960)"
+      ],
+      "endowments": [
+        "coastal",
+        "port_natural",
+        "plateau",
+        "monsoon_rain_shadow"
+      ],
+      "sources": {
+        "wikidata_qid": null,
+        "wikipedia_title": "Maharashtra",
+        "qid_resolution": "runtime"
+      },
+      "map": {
+        "geojson": "assets/geo/maharashtra.geojson",
+        "focus_zoom": null
+      },
+      "historia": "data/historia/maharashtra.json"
+    },
+    {
+      "id": "manipur",
+      "name": "Manipur",
+      "type": "state",
+      "formed": 1972,
+      "iso_3166_2": "IN-MN",
+      "capital": "Imphal",
+      "lineage": [
+        "Ningthouja / Meitei Kangleipak",
+        "Burmese invasion (1819-26)",
+        "Anglo-Manipur War (1891)",
+        "Princely state",
+        "Merger (1949)",
+        "UT (1956)",
+        "Statehood (1972)"
+      ],
+      "endowments": [
+        "hill",
+        "river_plain",
+        "forest",
+        "border_international",
+        "landlocked"
+      ],
+      "sources": {
+        "wikidata_qid": null,
+        "wikipedia_title": "Manipur",
+        "qid_resolution": "runtime"
+      },
+      "map": {
+        "geojson": "assets/geo/manipur.geojson",
+        "focus_zoom": null
+      },
+      "historia": "data/historia/manipur.json"
+    },
+    {
+      "id": "meghalaya",
+      "name": "Meghalaya",
+      "type": "state",
+      "formed": 1972,
+      "iso_3166_2": "IN-ML",
+      "capital": "Shillong",
+      "lineage": [
+        "Khasi/Jaintia/Garo polities",
+        "Assam Province",
+        "Autonomous State (1970)",
+        "Statehood (1972)"
+      ],
+      "endowments": [
+        "hill",
+        "forest",
+        "monsoon_heavy",
+        "mineral_coal",
+        "border_international",
+        "landlocked"
+      ],
+      "sources": {
+        "wikidata_qid": null,
+        "wikipedia_title": "Meghalaya",
+        "qid_resolution": "runtime"
+      },
+      "map": {
+        "geojson": "assets/geo/meghalaya.geojson",
+        "focus_zoom": null
+      },
+      "historia": "data/historia/meghalaya.json"
+    },
+    {
+      "id": "mizoram",
+      "name": "Mizoram",
+      "type": "state",
+      "formed": 1987,
+      "iso_3166_2": "IN-MZ",
+      "capital": "Aizawl",
+      "lineage": [
+        "Mizo chiefdoms",
+        "Lushai Hills District",
+        "Mautam famine & MNF insurgency",
+        "UT (1972)",
+        "Peace Accord (1986)",
+        "Statehood (1987)"
+      ],
+      "endowments": [
+        "hill",
+        "forest",
+        "border_international",
+        "landlocked"
+      ],
+      "sources": {
+        "wikidata_qid": null,
+        "wikipedia_title": "Mizoram",
+        "qid_resolution": "runtime"
+      },
+      "map": {
+        "geojson": "assets/geo/mizoram.geojson",
+        "focus_zoom": null
+      },
+      "historia": "data/historia/mizoram.json"
+    },
+    {
+      "id": "nagaland",
+      "name": "Nagaland",
+      "type": "state",
+      "formed": 1963,
+      "iso_3166_2": "IN-NL",
+      "capital": "Kohima",
+      "lineage": [
+        "Naga village republics",
+        "Naga Hills District",
+        "Naga National Council",
+        "Statehood (1963)",
+        "Shillong Accord (1975)"
+      ],
+      "endowments": [
+        "hill",
+        "forest",
+        "border_international",
+        "landlocked"
+      ],
+      "sources": {
+        "wikidata_qid": null,
+        "wikipedia_title": "Nagaland",
+        "qid_resolution": "runtime"
+      },
+      "map": {
+        "geojson": "assets/geo/nagaland.geojson",
+        "focus_zoom": null
+      },
+      "historia": "data/historia/nagaland.json"
+    },
+    {
+      "id": "odisha",
+      "name": "Odisha",
+      "type": "state",
+      "formed": 1936,
+      "iso_3166_2": "IN-OR",
+      "capital": "Bhubaneswar",
+      "lineage": [
+        "Kalinga",
+        "Eastern Ganga",
+        "Gajapati",
+        "Maratha rule",
+        "Bengal Presidency",
+        "Bihar & Orissa (1912)",
+        "Orissa Province (1936)",
+        "Renamed Odisha (2011)"
+      ],
+      "endowments": [
+        "coastal",
+        "delta",
+        "plateau",
+        "mineral_iron",
+        "mineral_bauxite",
+        "monsoon_heavy"
+      ],
+      "sources": {
+        "wikidata_qid": null,
+        "wikipedia_title": "Odisha",
+        "qid_resolution": "runtime"
+      },
+      "map": {
+        "geojson": "assets/geo/odisha.geojson",
+        "focus_zoom": null
+      },
+      "historia": "data/historia/odisha.json"
+    },
+    {
+      "id": "punjab",
+      "name": "Punjab",
+      "type": "state",
+      "formed": 1966,
+      "iso_3166_2": "IN-PB",
+      "capital": "Chandigarh",
+      "lineage": [
+        "Indus/Harappan",
+        "Gandhara-adjacent janapadas",
+        "Delhi Sultanate",
+        "Mughal Subah of Lahore",
+        "Sikh Misls",
+        "Sikh Empire (1799)",
+        "Punjab Province (1849)",
+        "Partition (1947)",
+        "Reorganisation (1966)"
+      ],
+      "endowments": [
+        "river_plain",
+        "landlocked",
+        "border_international",
+        "monsoon_rain_shadow"
+      ],
+      "sources": {
+        "wikidata_qid": null,
+        "wikipedia_title": "Punjab,_India",
+        "qid_resolution": "runtime"
+      },
+      "map": {
+        "geojson": "assets/geo/punjab.geojson",
+        "focus_zoom": null
+      },
+      "historia": "data/historia/punjab.json"
+    },
+    {
+      "id": "rajasthan",
+      "name": "Rajasthan",
+      "type": "state",
+      "formed": 1949,
+      "iso_3166_2": "IN-RJ",
+      "capital": "Jaipur",
+      "lineage": [
+        "Indus/Kalibangan",
+        "Gurjara-Pratihara",
+        "Rajput kingdoms (Mewar, Marwar, Amber)",
+        "Mughal alliance",
+        "Rajputana Agency",
+        "Rajasthan Union (1949)",
+        "Reorganisation (1956)"
+      ],
+      "endowments": [
+        "desert",
+        "monsoon_rain_shadow",
+        "landlocked",
+        "border_international",
+        "hill"
+      ],
+      "sources": {
+        "wikidata_qid": null,
+        "wikipedia_title": "Rajasthan",
+        "qid_resolution": "runtime"
+      },
+      "map": {
+        "geojson": "assets/geo/rajasthan.geojson",
+        "focus_zoom": null
+      },
+      "historia": "data/historia/rajasthan.json"
+    },
+    {
+      "id": "sikkim",
+      "name": "Sikkim",
+      "type": "state",
+      "formed": 1975,
+      "iso_3166_2": "IN-SK",
+      "capital": "Gangtok",
+      "lineage": [
+        "Namgyal Chogyal dynasty (1642)",
+        "British protectorate (1861)",
+        "Indian protectorate (1950)",
+        "Merger & Statehood (1975)"
+      ],
+      "endowments": [
+        "hill",
+        "forest",
+        "border_international",
+        "landlocked",
+        "monsoon_heavy"
+      ],
+      "sources": {
+        "wikidata_qid": null,
+        "wikipedia_title": "Sikkim",
+        "qid_resolution": "runtime"
+      },
+      "map": {
+        "geojson": "assets/geo/sikkim.geojson",
+        "focus_zoom": null
+      },
+      "historia": "data/historia/sikkim.json"
+    },
+    {
+      "id": "tamil-nadu",
+      "name": "Tamil Nadu",
+      "type": "state",
+      "formed": 1956,
+      "iso_3166_2": "IN-TN",
+      "capital": "Chennai",
+      "lineage": [
+        "Sangam Chera-Chola-Pandya",
+        "Pallava",
+        "Imperial Chola",
+        "Vijayanagara & Nayakas",
+        "Madras Presidency",
+        "Madras State (1956)",
+        "Renamed Tamil Nadu (1969)"
+      ],
+      "endowments": [
+        "coastal",
+        "delta",
+        "port_natural",
+        "monsoon_rain_shadow",
+        "plateau"
+      ],
+      "sources": {
+        "wikidata_qid": null,
+        "wikipedia_title": "Tamil_Nadu",
+        "qid_resolution": "runtime"
+      },
+      "map": {
+        "geojson": "assets/geo/tamil-nadu.geojson",
+        "focus_zoom": null
+      },
+      "historia": "data/historia/tamil-nadu.json"
+    },
+    {
+      "id": "telangana",
+      "name": "Telangana",
+      "type": "state",
+      "formed": 2014,
+      "iso_3166_2": "IN-TG",
+      "capital": "Hyderabad",
+      "lineage": [
+        "Satavahana",
+        "Kakatiya of Warangal",
+        "Bahmani & Golconda Sultanate",
+        "Asaf Jahi Nizams of Hyderabad",
+        "Hyderabad State (1948 merger)",
+        "Andhra Pradesh (1956)",
+        "Statehood (2014)"
+      ],
+      "endowments": [
+        "plateau",
+        "landlocked",
+        "monsoon_rain_shadow"
+      ],
+      "sources": {
+        "wikidata_qid": null,
+        "wikipedia_title": "Telangana",
+        "qid_resolution": "runtime"
+      },
+      "map": {
+        "geojson": "assets/geo/telangana.geojson",
+        "focus_zoom": null
+      },
+      "historia": "data/historia/telangana.json"
+    },
+    {
+      "id": "tripura",
+      "name": "Tripura",
+      "type": "state",
+      "formed": 1972,
+      "iso_3166_2": "IN-TR",
+      "capital": "Agartala",
+      "lineage": [
+        "Manikya dynasty of Twipra",
+        "Princely state",
+        "Merger (1949)",
+        "UT (1956)",
+        "Statehood (1972)"
+      ],
+      "endowments": [
+        "hill",
+        "forest",
+        "border_international",
+        "landlocked",
+        "monsoon_heavy"
+      ],
+      "sources": {
+        "wikidata_qid": null,
+        "wikipedia_title": "Tripura",
+        "qid_resolution": "runtime"
+      },
+      "map": {
+        "geojson": "assets/geo/tripura.geojson",
+        "focus_zoom": null
+      },
+      "historia": "data/historia/tripura.json"
+    },
+    {
+      "id": "uttar-pradesh",
+      "name": "Uttar Pradesh",
+      "type": "state",
+      "formed": 1950,
+      "iso_3166_2": "IN-UP",
+      "capital": "Lucknow",
+      "lineage": [
+        "Kuru-Panchala",
+        "Kosala & Kashi",
+        "Kannauj (Pratihara)",
+        "Delhi Sultanate",
+        "Mughal Subah of Awadh & Agra",
+        "Nawabs of Awadh",
+        "North-Western Provinces",
+        "United Provinces",
+        "Statehood (1950)",
+        "Uttarakhand split (2000)"
+      ],
+      "endowments": [
+        "river_plain",
+        "monsoon_heavy",
+        "landlocked",
+        "border_international"
+      ],
+      "sources": {
+        "wikidata_qid": null,
+        "wikipedia_title": "Uttar_Pradesh",
+        "qid_resolution": "runtime"
+      },
+      "map": {
+        "geojson": "assets/geo/uttar-pradesh.geojson",
+        "focus_zoom": null
+      },
+      "historia": "data/historia/uttar-pradesh.json"
+    },
+    {
+      "id": "uttarakhand",
+      "name": "Uttarakhand",
+      "type": "state",
+      "formed": 2000,
+      "iso_3166_2": "IN-UT",
+      "capital": "Dehradun (winter) / Gairsain (summer)",
+      "lineage": [
+        "Katyuri",
+        "Kumaon & Garhwal kingdoms",
+        "Gorkha rule",
+        "Ceded & Conquered Provinces",
+        "United Provinces",
+        "Uttar Pradesh",
+        "Statehood (2000)"
+      ],
+      "endowments": [
+        "hill",
+        "forest",
+        "border_international",
+        "landlocked"
+      ],
+      "sources": {
+        "wikidata_qid": null,
+        "wikipedia_title": "Uttarakhand",
+        "qid_resolution": "runtime"
+      },
+      "map": {
+        "geojson": "assets/geo/uttarakhand.geojson",
+        "focus_zoom": null
+      },
+      "historia": "data/historia/uttarakhand.json"
+    },
+    {
+      "id": "west-bengal",
+      "name": "West Bengal",
+      "type": "state",
+      "formed": 1947,
+      "iso_3166_2": "IN-WB",
+      "capital": "Kolkata",
+      "lineage": [
+        "Vanga & Gauda",
+        "Pala",
+        "Sena",
+        "Bengal Sultanate",
+        "Mughal Subah of Bengal",
+        "Company Diwani (1765)",
+        "Bengal Presidency",
+        "Partition of Bengal (1905, 1947)",
+        "Statehood (1947)"
+      ],
+      "endowments": [
+        "coastal",
+        "delta",
+        "river_plain",
+        "port_natural",
+        "monsoon_heavy",
+        "border_international"
+      ],
+      "sources": {
+        "wikidata_qid": null,
+        "wikipedia_title": "West_Bengal",
+        "qid_resolution": "runtime"
+      },
+      "map": {
+        "geojson": "assets/geo/west-bengal.geojson",
+        "focus_zoom": null
+      },
+      "historia": "data/historia/west-bengal.json"
+    },
+    {
+      "id": "andaman-and-nicobar-islands",
+      "name": "Andaman and Nicobar Islands",
+      "type": "ut",
+      "formed": 1956,
+      "iso_3166_2": "IN-AN",
+      "capital": "Port Blair (Sri Vijaya Puram)",
+      "lineage": [
+        "Indigenous Andamanese & Nicobarese",
+        "Chola naval outpost",
+        "Penal colony (1858)",
+        "Japanese occupation (1942-45)",
+        "UT (1956)"
+      ],
+      "endowments": [
+        "island",
+        "coastal",
+        "forest",
+        "monsoon_heavy",
+        "port_natural"
+      ],
+      "sources": {
+        "wikidata_qid": null,
+        "wikipedia_title": "Andaman_and_Nicobar_Islands",
+        "qid_resolution": "runtime"
+      },
+      "map": {
+        "geojson": "assets/geo/andaman-and-nicobar-islands.geojson",
+        "focus_zoom": null
+      },
+      "historia": "data/historia/andaman-and-nicobar-islands.json"
+    },
+    {
+      "id": "chandigarh",
+      "name": "Chandigarh",
+      "type": "ut",
+      "formed": 1966,
+      "iso_3166_2": "IN-CH",
+      "capital": "Chandigarh",
+      "lineage": [
+        "Planned city (1953, Le Corbusier)",
+        "Capital of Punjab",
+        "Shared capital & UT (1966)"
+      ],
+      "endowments": [
+        "river_plain",
+        "landlocked"
+      ],
+      "sources": {
+        "wikidata_qid": null,
+        "wikipedia_title": "Chandigarh",
+        "qid_resolution": "runtime"
+      },
+      "map": {
+        "geojson": "assets/geo/chandigarh.geojson",
+        "focus_zoom": null
+      },
+      "historia": "data/historia/chandigarh.json"
+    },
+    {
+      "id": "dadra-and-nagar-haveli-and-daman-and-diu",
+      "name": "Dadra and Nagar Haveli and Daman and Diu",
+      "type": "ut",
+      "formed": 2020,
+      "iso_3166_2": "IN-DH",
+      "capital": "Daman",
+      "lineage": [
+        "Koli & Maratha rule",
+        "Portuguese possessions",
+        "Liberation (1954 DNH, 1961 Daman & Diu)",
+        "Merged UT (2020)"
+      ],
+      "endowments": [
+        "coastal",
+        "port_natural"
+      ],
+      "sources": {
+        "wikidata_qid": null,
+        "wikipedia_title": "Dadra_and_Nagar_Haveli_and_Daman_and_Diu",
+        "qid_resolution": "runtime"
+      },
+      "map": {
+        "geojson": "assets/geo/dadra-and-nagar-haveli-and-daman-and-diu.geojson",
+        "focus_zoom": null
+      },
+      "historia": "data/historia/dadra-and-nagar-haveli-and-daman-and-diu.json"
+    },
+    {
+      "id": "delhi",
+      "name": "Delhi",
+      "type": "ut",
+      "formed": 1991,
+      "iso_3166_2": "IN-DL",
+      "capital": "New Delhi",
+      "lineage": [
+        "Indraprastha (traditional)",
+        "Tomara & Chauhan",
+        "Delhi Sultanate (1206)",
+        "Mughal Shahjahanabad",
+        "Capital shift (1911)",
+        "Part C State",
+        "UT (1956)",
+        "NCT (1991)"
+      ],
+      "endowments": [
+        "river_plain",
+        "landlocked"
+      ],
+      "sources": {
+        "wikidata_qid": null,
+        "wikipedia_title": "Delhi",
+        "qid_resolution": "runtime"
+      },
+      "map": {
+        "geojson": "assets/geo/delhi.geojson",
+        "focus_zoom": null
+      },
+      "historia": "data/historia/delhi.json"
+    },
+    {
+      "id": "jammu-and-kashmir",
+      "name": "Jammu and Kashmir",
+      "type": "ut",
+      "formed": 2019,
+      "iso_3166_2": "IN-JK",
+      "capital": "Srinagar (summer) / Jammu (winter)",
+      "lineage": [
+        "Karkota & Lohara dynasties",
+        "Shah Mir Sultanate",
+        "Mughal Subah",
+        "Durrani rule",
+        "Dogra Princely State (1846)",
+        "Accession (1947)",
+        "Article 370 (1954-2019)",
+        "UT (2019)"
+      ],
+      "endowments": [
+        "hill",
+        "border_international",
+        "landlocked",
+        "forest"
+      ],
+      "sources": {
+        "wikidata_qid": null,
+        "wikipedia_title": "Jammu_and_Kashmir_(union_territory)",
+        "qid_resolution": "runtime"
+      },
+      "map": {
+        "geojson": "assets/geo/jammu-and-kashmir.geojson",
+        "focus_zoom": null
+      },
+      "historia": "data/historia/jammu-and-kashmir.json"
+    },
+    {
+      "id": "ladakh",
+      "name": "Ladakh",
+      "type": "ut",
+      "formed": 2019,
+      "iso_3166_2": "IN-LA",
+      "capital": "Leh",
+      "lineage": [
+        "Maryul kingdom (Namgyal)",
+        "Dogra conquest (1834)",
+        "Part of J&K State",
+        "UT (2019)"
+      ],
+      "endowments": [
+        "hill",
+        "desert",
+        "border_international",
+        "landlocked",
+        "monsoon_rain_shadow"
+      ],
+      "sources": {
+        "wikidata_qid": null,
+        "wikipedia_title": "Ladakh",
+        "qid_resolution": "runtime"
+      },
+      "map": {
+        "geojson": "assets/geo/ladakh.geojson",
+        "focus_zoom": null
+      },
+      "historia": "data/historia/ladakh.json"
+    },
+    {
+      "id": "lakshadweep",
+      "name": "Lakshadweep",
+      "type": "ut",
+      "formed": 1956,
+      "iso_3166_2": "IN-LD",
+      "capital": "Kavaratti",
+      "lineage": [
+        "Chera & Cannanore influence",
+        "Arakkal & Ali Raja",
+        "British administration",
+        "UT (1956, renamed 1973)"
+      ],
+      "endowments": [
+        "island",
+        "coastal",
+        "monsoon_heavy"
+      ],
+      "sources": {
+        "wikidata_qid": null,
+        "wikipedia_title": "Lakshadweep",
+        "qid_resolution": "runtime"
+      },
+      "map": {
+        "geojson": "assets/geo/lakshadweep.geojson",
+        "focus_zoom": null
+      },
+      "historia": "data/historia/lakshadweep.json"
+    },
+    {
+      "id": "puducherry",
+      "name": "Puducherry",
+      "type": "ut",
+      "formed": 1963,
+      "iso_3166_2": "IN-PY",
+      "capital": "Puducherry",
+      "lineage": [
+        "Arikamedu Roman trade port",
+        "Pallava/Chola hinterland",
+        "French Comptoirs (1674)",
+        "De facto transfer (1954)",
+        "UT (1963)"
+      ],
+      "endowments": [
+        "coastal",
+        "port_natural",
+        "delta"
+      ],
+      "sources": {
+        "wikidata_qid": null,
+        "wikipedia_title": "Puducherry",
+        "qid_resolution": "runtime"
+      },
+      "map": {
+        "geojson": "assets/geo/puducherry.geojson",
+        "focus_zoom": null
+      },
+      "historia": "data/historia/puducherry.json"
+    }
+  ]
+}

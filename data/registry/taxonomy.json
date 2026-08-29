@@ -1,0 +1,105 @@
+{
+  "$comment": "Event taxonomy. `categories` are the Historia right-rail menu items the player picks. `tags` are the machine-readable atoms the pattern engine matches on -- keep them stable, they are effectively the game's type system.",
+  "version": "1.0.0",
+  "categories": [
+    {
+      "id": "war",
+      "label": "Wars & Conflicts",
+      "rail_order": 1,
+      "icon": "crossed-swords",
+      "covers": ["battles", "sieges", "invasions", "annexations", "rebellions", "insurgencies", "partition violence"],
+      "sim_channel": "military"
+    },
+    {
+      "id": "legislature",
+      "label": "Laws & Legislature",
+      "rail_order": 2,
+      "icon": "scroll",
+      "covers": ["acts", "charters", "treaties", "reorganisation", "constitutional amendments", "state assembly landmarks", "land settlements"],
+      "sim_channel": "governance"
+    },
+    {
+      "id": "craft",
+      "label": "Crafts & Making",
+      "rail_order": 3,
+      "icon": "loom",
+      "covers": ["textiles", "metallurgy", "pottery", "woodwork", "GI tags", "artisan guilds", "shipbuilding", "temple architecture"],
+      "sim_channel": "artisanry"
+    },
+    {
+      "id": "highlight",
+      "label": "Key Highlights",
+      "rail_order": 4,
+      "icon": "star",
+      "covers": ["the headline event of the year for this state"],
+      "sim_channel": "narrative",
+      "note": "Exactly one highlight per state-year is promoted; the rest stay in their own categories."
+    },
+    {
+      "id": "development",
+      "label": "Development Journey",
+      "rail_order": 5,
+      "icon": "rising-path",
+      "covers": ["irrigation", "railways", "ports", "power", "education", "health", "industry", "IT", "welfare schemes"],
+      "sim_channel": "economy"
+    },
+    {
+      "id": "culture",
+      "label": "Culture & Thought",
+      "rail_order": 6,
+      "icon": "lamp",
+      "covers": ["literature", "religion", "reform movements", "cinema", "music", "language"],
+      "sim_channel": "legitimacy"
+    },
+    {
+      "id": "disaster",
+      "label": "Disasters & Shocks",
+      "rail_order": 7,
+      "icon": "storm",
+      "covers": ["famine", "flood", "cyclone", "earthquake", "epidemic", "drought"],
+      "sim_channel": "resilience"
+    },
+    {
+      "id": "movement",
+      "label": "Movements & People",
+      "rail_order": 8,
+      "icon": "raised-hands",
+      "covers": ["social reform", "caste movements", "labour", "environmental", "statehood agitations", "freedom struggle"],
+      "sim_channel": "unrest"
+    }
+  ],
+  "tags": {
+    "$comment": "Controlled vocabulary. The pattern engine matches on these, so additions must be deliberate. Grouped by the causal role they usually play.",
+    "trigger": [
+      "annexation", "invasion", "battle", "siege", "rebellion", "insurgency", "partition",
+      "crop_failure", "drought", "flood", "cyclone", "earthquake", "epidemic",
+      "mineral_discovery", "port_established", "railway_arrival", "canal_built", "dam_built",
+      "dynastic_patronage", "capital_designation", "trade_treaty", "language_movement",
+      "land_reform", "revenue_settlement", "tariff_change", "electrification", "policy_liberalisation"
+    ],
+    "mechanism": [
+      "revenue_extraction", "migration", "urbanisation", "guild_formation", "monastic_endowment",
+      "cash_crop_shift", "irrigation_expansion", "literacy_drive", "public_health_drive",
+      "industrial_licensing", "displacement", "deindustrialisation", "remittance_inflow",
+      "caste_mobilisation", "agitation", "cooperative_formation", "sez_designation"
+    ],
+    "outcome": [
+      "famine", "craft_collapse", "craft_flourish", "revenue_surge", "revenue_decline",
+      "agri_yield_rise", "agri_yield_fall", "population_loss", "population_boom",
+      "state_reorganisation", "statehood_demand", "regional_imbalance", "gi_tag_award",
+      "literacy_rise", "infant_mortality_fall", "industrial_boom", "it_boom",
+      "insurgency_entrenched", "peace_accord", "temple_construction", "port_boom"
+    ],
+    "endowment": [
+      "coastal", "port_natural", "river_plain", "delta", "plateau", "desert", "hill",
+      "forest", "mineral_coal", "mineral_iron", "mineral_bauxite", "monsoon_heavy",
+      "monsoon_rain_shadow", "landlocked", "border_international", "island"
+    ]
+  },
+  "confidence_bands": [
+    { "min": 0.90, "label": "verified", "playable": true, "quizzable": true },
+    { "min": 0.70, "label": "corroborated", "playable": true, "quizzable": true },
+    { "min": 0.50, "label": "single_source", "playable": true, "quizzable": false },
+    { "min": 0.00, "label": "needs_review", "playable": false, "quizzable": false }
+  ]
+}

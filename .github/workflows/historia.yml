@@ -1,0 +1,35 @@
+name: historia
+
+on:
+  push:
+    branches: [main, "claude/**"]
+  pull_request:
+  schedule:
+    # Historia keeps updating: re-ingest weekly so the live era stays current.
+    - cron: "0 3 * * 1"
+
+jobs:
+  pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      # Rebuild from source rather than trusting committed artefacts: if the seed,
+      # the schema or the motifs drift apart, this is where it surfaces.
+      - name: Build seed corpus
+        run: python3 seed/build.py
+      - name: Validate against schema
+        run: python3 tools_validate.py
+      - name: Pattern recognition
+        run: python3 -m patterns.report --json
+      - name: Generate quiz bank
+        run: python3 -m game.quizgen
+      - name: Content-safety regression
+        run: python3 tests_eligibility.py
+      - name: Simulation calibration
+        run: python3 -m game.simulate --compare
+      - name: Fail if generated data drifted from committed data
+        run: python3 tools_drift.py

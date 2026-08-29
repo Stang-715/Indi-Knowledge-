@@ -1,0 +1,1046 @@
+{
+  "state_id": "west-bengal",
+  "schema_version": "1.0.0",
+  "generated_at": "2026-08-29T14:17:02+00:00",
+  "provenance": "seed-v1-authored-pending-verification",
+  "coverage": {
+    "era.early_medieval": {
+      "event_count": 1,
+      "gap_years": [],
+      "mean_confidence": 0.82
+    },
+    "era.sultanate": {
+      "event_count": 1,
+      "gap_years": [],
+      "mean_confidence": 0.85
+    },
+    "era.mughal": {
+      "event_count": 2,
+      "gap_years": [],
+      "mean_confidence": 0.865
+    },
+    "era.company_raj": {
+      "event_count": 6,
+      "gap_years": [],
+      "mean_confidence": 0.905
+    },
+    "era.british_raj": {
+      "event_count": 3,
+      "gap_years": [
+        1900,
+        1901,
+        1902,
+        1903,
+        1904,
+        1906,
+        1907,
+        1908,
+        1909,
+        1910,
+        1912,
+        1913,
+        1914,
+        1915,
+        1916,
+        1917,
+        1918,
+        1919,
+        1920,
+        1921,
+        1922,
+        1923,
+        1924,
+        1925,
+        1926,
+        1927,
+        1928,
+        1929,
+        1930,
+        1931,
+        1932,
+        1933,
+        1934,
+        1935,
+        1936,
+        1937,
+        1938,
+        1939,
+        1940,
+        1941,
+        1942,
+        1944,
+        1945,
+        1946,
+        1947
+      ],
+      "mean_confidence": 0.937
+    },
+    "era.nation_building": {
+      "event_count": 1,
+      "gap_years": [
+        1948,
+        1949,
+        1950,
+        1951,
+        1952,
+        1953,
+        1954,
+        1955,
+        1956,
+        1957,
+        1958,
+        1959,
+        1960,
+        1961,
+        1962,
+        1963,
+        1964,
+        1965,
+        1966
+      ],
+      "mean_confidence": 0.97
+    },
+    "era.green_revolution": {
+      "event_count": 3,
+      "gap_years": [
+        1966,
+        1968,
+        1969,
+        1970,
+        1971,
+        1972,
+        1973,
+        1974,
+        1975,
+        1976,
+        1977,
+        1979,
+        1981,
+        1982,
+        1983,
+        1984,
+        1985,
+        1986,
+        1987,
+        1988,
+        1989,
+        1990,
+        1991
+      ],
+      "mean_confidence": 0.867
+    },
+    "era.liberalisation": {
+      "event_count": 2,
+      "gap_years": [
+        1991,
+        1992,
+        1993,
+        1994,
+        1995,
+        1996,
+        1997,
+        1998,
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2007,
+        2008,
+        2009,
+        2010,
+        2012,
+        2013,
+        2014
+      ],
+      "mean_confidence": 0.925
+    }
+  },
+  "events": [
+    {
+      "id": "west-bengal.1204.war.e67eef",
+      "year": 1204,
+      "year_end": null,
+      "year_precision": "decade",
+      "era": "era.early_medieval",
+      "category": "war",
+      "title": "Bakhtiyar Khalji takes Nadia",
+      "summary": "Ikhtiyar al-Din Muhammad Bakhtiyar Khalji's raid on Nadia broke Sena power in western Bengal and opened five centuries of Islamic rule in the delta.",
+      "tags": [
+        "annexation",
+        "invasion"
+      ],
+      "places": [
+        "Nadia"
+      ],
+      "actors": [
+        "Bakhtiyar Khalji",
+        "Lakshmana Sena"
+      ],
+      "magnitude": 0.8,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.82,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "military",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/West_Bengal",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "west-bengal.1352.highlight.554d58",
+      "year": 1352,
+      "year_end": null,
+      "year_precision": "decade",
+      "era": "era.sultanate",
+      "category": "highlight",
+      "title": "Ilyas Shah unifies the Bengal Sultanate",
+      "summary": "Shamsuddin Ilyas Shah consolidated Lakhnauti, Satgaon and Sonargaon into an independent Bengal Sultanate, beginning a period of distinct Bengali courtly culture and Persian–Bengali literary patronage.",
+      "tags": [
+        "dynastic_patronage"
+      ],
+      "places": [
+        "Lakhnauti",
+        "Sonargaon"
+      ],
+      "actors": [
+        "Shamsuddin Ilyas Shah"
+      ],
+      "magnitude": 0.75,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.85,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "narrative",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/West_Bengal",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "west-bengal.1576.war.8f7cd6",
+      "year": 1576,
+      "year_end": null,
+      "year_precision": "exact",
+      "era": "era.mughal",
+      "category": "war",
+      "title": "Battle of Rajmahal and Mughal annexation",
+      "summary": "Akbar's forces defeated Daud Khan Karrani, making Bengal a Mughal subah. Bengal became the empire's richest revenue province — and therefore its most extracted one.",
+      "tags": [
+        "annexation",
+        "battle",
+        "revenue_extraction"
+      ],
+      "places": [
+        "Rajmahal"
+      ],
+      "actors": [
+        "Akbar",
+        "Daud Khan Karrani"
+      ],
+      "magnitude": 0.8,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.88,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "military",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/West_Bengal",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "west-bengal.1690.development.6d73d9",
+      "year": 1690,
+      "year_end": null,
+      "year_precision": "exact",
+      "era": "era.mughal",
+      "category": "development",
+      "title": "Calcutta founded as a Company factory",
+      "summary": "Job Charnock settled at Sutanuti; the villages of Sutanuti, Kalikata and Govindapur grew into Calcutta. A riverine trading post became, within a century, the capital of British India.",
+      "tags": [
+        "port_established",
+        "urbanisation"
+      ],
+      "places": [
+        "Calcutta"
+      ],
+      "actors": [
+        "Job Charnock",
+        "East India Company"
+      ],
+      "magnitude": 0.85,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.85,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "economy",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/West_Bengal",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "west-bengal.1757.war.89a809",
+      "year": 1757,
+      "year_end": null,
+      "year_precision": "exact",
+      "era": "era.company_raj",
+      "category": "war",
+      "title": "Battle of Plassey",
+      "summary": "Robert Clive defeated Siraj-ud-Daulah at Palashi, largely through the defection of Mir Jafar. The Company gained the power to install a Nawab — the hinge on which British territorial rule in India turns.",
+      "tags": [
+        "annexation",
+        "battle"
+      ],
+      "places": [
+        "Palashi"
+      ],
+      "actors": [
+        "Robert Clive",
+        "Siraj-ud-Daulah",
+        "Mir Jafar"
+      ],
+      "magnitude": 1.0,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.94,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "military",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/West_Bengal",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "west-bengal.1765.legislature.46ec81",
+      "year": 1765,
+      "year_end": null,
+      "year_precision": "exact",
+      "era": "era.company_raj",
+      "category": "legislature",
+      "title": "The Company obtains the Diwani of Bengal",
+      "summary": "After Buxar, the Company received the right to collect revenue in Bengal, Bihar and Orissa. It became a tax-gathering state while remaining nominally a trading company — the structural cause of the extraction that followed.",
+      "tags": [
+        "revenue_extraction",
+        "revenue_settlement"
+      ],
+      "places": [
+        "Bengal"
+      ],
+      "actors": [
+        "East India Company",
+        "Shah Alam II"
+      ],
+      "magnitude": 0.95,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.94,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "governance",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/West_Bengal",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "west-bengal.1770.disaster.977b9d",
+      "year": 1770,
+      "year_end": null,
+      "year_precision": "exact",
+      "era": "era.company_raj",
+      "category": "disaster",
+      "title": "The Great Bengal Famine",
+      "summary": "Harvest failure compounded by undiminished revenue demand killed an estimated ten million — perhaps a third of the population. Revenue collection in 1770-71 was maintained at or above prior levels.",
+      "tags": [
+        "crop_failure",
+        "famine",
+        "population_loss",
+        "revenue_extraction"
+      ],
+      "places": [
+        "Bengal"
+      ],
+      "actors": [
+        "East India Company"
+      ],
+      "magnitude": 1.0,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.93,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "resilience",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/West_Bengal",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "west-bengal.1793.legislature.0073cd",
+      "year": 1793,
+      "year_end": null,
+      "year_precision": "exact",
+      "era": "era.company_raj",
+      "category": "legislature",
+      "title": "The Permanent Settlement",
+      "summary": "Cornwallis fixed land revenue in perpetuity with zamindars as proprietors. It guaranteed Company income, created a rentier landlord class, and left cultivators without security — a settlement whose effects outlast the Raj.",
+      "tags": [
+        "revenue_extraction",
+        "revenue_settlement"
+      ],
+      "places": [
+        "Bengal"
+      ],
+      "actors": [
+        "Lord Cornwallis"
+      ],
+      "magnitude": 0.95,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.94,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "governance",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/West_Bengal",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "west-bengal.1800.craft.9a6f78",
+      "year": 1800,
+      "year_end": 1870,
+      "year_precision": "decade",
+      "era": "era.company_raj",
+      "category": "craft",
+      "title": "The collapse of Bengal's handloom weaving",
+      "summary": "Company monopsony, punitive duties on Indian cloth in Britain, and then machine-spun Lancashire imports destroyed a weaving economy that had clothed much of the world. Muslin and Baluchari traditions nearly vanished.",
+      "tags": [
+        "craft_collapse",
+        "deindustrialisation",
+        "migration"
+      ],
+      "places": [
+        "Murshidabad",
+        "Santipur",
+        "Dhaka"
+      ],
+      "actors": [
+        "East India Company"
+      ],
+      "magnitude": 0.9,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.8,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "artisanry",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/West_Bengal",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "west-bengal.1854.development.c79f6e",
+      "year": 1854,
+      "year_end": null,
+      "year_precision": "exact",
+      "era": "era.company_raj",
+      "category": "development",
+      "title": "The first railway line out of Howrah",
+      "summary": "The East Indian Railway opened Howrah–Hooghly, beginning the network that would move coal, jute and troops — and pull the rural interior into a port-facing economy.",
+      "tags": [
+        "railway_arrival",
+        "urbanisation"
+      ],
+      "places": [
+        "Howrah",
+        "Hooghly"
+      ],
+      "actors": [
+        "East Indian Railway"
+      ],
+      "magnitude": 0.75,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.88,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "economy",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/West_Bengal",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "west-bengal.1905.movement.25c350",
+      "year": 1905,
+      "year_end": null,
+      "year_precision": "exact",
+      "era": "era.british_raj",
+      "category": "movement",
+      "title": "The Partition of Bengal and the Swadeshi movement",
+      "summary": "Curzon's partition of Bengal along communal lines triggered the Swadeshi agitation — boycott of British goods and a revival of indigenous manufacture. The partition was annulled in 1911; the politics it created were not.",
+      "tags": [
+        "agitation",
+        "craft_flourish",
+        "partition"
+      ],
+      "places": [
+        "Bengal"
+      ],
+      "actors": [
+        "Lord Curzon",
+        "Rabindranath Tagore"
+      ],
+      "magnitude": 0.9,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.93,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "unrest",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/West_Bengal",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "west-bengal.1911.legislature.a598b3",
+      "year": 1911,
+      "year_end": null,
+      "year_precision": "exact",
+      "era": "era.british_raj",
+      "category": "legislature",
+      "title": "The capital moves from Calcutta to Delhi",
+      "summary": "Annulling the partition, the Raj also removed the capital to Delhi. Calcutta kept its port and its industry but lost the administrative gravity that had concentrated investment there for 150 years.",
+      "tags": [
+        "capital_designation",
+        "regional_imbalance",
+        "revenue_decline"
+      ],
+      "places": [
+        "Calcutta",
+        "Delhi"
+      ],
+      "actors": [
+        "George V",
+        "Lord Hardinge"
+      ],
+      "magnitude": 0.85,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.93,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "governance",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/West_Bengal",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "west-bengal.1943.disaster.0d88c0",
+      "year": 1943,
+      "year_end": 1944,
+      "year_precision": "exact",
+      "era": "era.british_raj",
+      "category": "disaster",
+      "title": "The Bengal Famine",
+      "summary": "Wartime procurement, the denial policy on boats and rice, halted Burmese imports and refusal to divert shipping produced a famine that killed some three million. Aggregate food availability was not the binding constraint.",
+      "tags": [
+        "famine",
+        "migration",
+        "population_loss"
+      ],
+      "places": [
+        "Bengal"
+      ],
+      "actors": [
+        "Government of Bengal",
+        "War Cabinet"
+      ],
+      "magnitude": 1.0,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.95,
+      "review": {
+        "status": "flagged",
+        "flags": [
+          "contested_history"
+        ],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": true,
+      "sim": {
+        "channel": "resilience",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/West_Bengal",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "west-bengal.1947.war.709e18",
+      "year": 1947,
+      "year_end": null,
+      "year_precision": "exact",
+      "era": "era.nation_building",
+      "category": "war",
+      "title": "Partition and the making of West Bengal",
+      "summary": "Bengal was divided; West Bengal joined India. Millions crossed in both directions over the following decade, and Calcutta absorbed a refugee influx that reshaped its politics, housing and labour market for a generation.",
+      "tags": [
+        "migration",
+        "partition",
+        "population_loss"
+      ],
+      "places": [
+        "Bengal"
+      ],
+      "actors": [],
+      "magnitude": 1.0,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.97,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "military",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/West_Bengal",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "west-bengal.1967.movement.d8d166",
+      "year": 1967,
+      "year_end": null,
+      "year_precision": "exact",
+      "era": "era.green_revolution",
+      "category": "movement",
+      "title": "The Naxalbari uprising",
+      "summary": "A peasant revolt in Naxalbari over land seizure launched a Maoist insurgency that took its name from the village and spread far beyond Bengal, most durably into the mineral belt to the west.",
+      "tags": [
+        "agitation",
+        "insurgency",
+        "rebellion"
+      ],
+      "places": [
+        "Naxalbari"
+      ],
+      "actors": [
+        "Charu Majumdar",
+        "Kanu Sanyal"
+      ],
+      "magnitude": 0.85,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.92,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "unrest",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/West_Bengal",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "west-bengal.1978.legislature.ce89fa",
+      "year": 1978,
+      "year_end": 1982,
+      "year_precision": "exact",
+      "era": "era.green_revolution",
+      "category": "legislature",
+      "title": "Operation Barga",
+      "summary": "The Left Front registered sharecroppers, securing their tenancy and crop share. Registration rather than redistribution — it raised agricultural yields markedly without breaking landholding as Kerala had.",
+      "tags": [
+        "agri_yield_rise",
+        "land_reform"
+      ],
+      "places": [
+        "West Bengal"
+      ],
+      "actors": [
+        "Left Front",
+        "Benoy Choudhury"
+      ],
+      "magnitude": 0.85,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.88,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "governance",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/West_Bengal",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "west-bengal.1980.development.200e14",
+      "year": 1980,
+      "year_end": 2000,
+      "year_precision": "decade",
+      "era": "era.green_revolution",
+      "category": "development",
+      "title": "The jute economy declines",
+      "summary": "Partition had left the mills in West Bengal and most of the growing land in the east; synthetics then eroded demand. Industrial Bengal's signature sector contracted through the closing decades of the century.",
+      "tags": [
+        "deindustrialisation",
+        "revenue_decline"
+      ],
+      "places": [
+        "Hooghly industrial belt"
+      ],
+      "actors": [],
+      "magnitude": 0.8,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.8,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "economy",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/West_Bengal",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "west-bengal.2006.movement.2881fe",
+      "year": 2006,
+      "year_end": 2008,
+      "year_precision": "exact",
+      "era": "era.liberalisation",
+      "category": "movement",
+      "title": "Singur and Nandigram",
+      "summary": "Land acquisition for a Tata small-car plant and a chemical SEZ met sustained resistance. The projects were abandoned and the agitation broke the Left Front's rural base after three decades in power.",
+      "tags": [
+        "agitation",
+        "displacement",
+        "sez_designation"
+      ],
+      "places": [
+        "Singur",
+        "Nandigram"
+      ],
+      "actors": [
+        "Tata Motors",
+        "Mamata Banerjee",
+        "Left Front"
+      ],
+      "magnitude": 0.9,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.9,
+      "review": {
+        "status": "flagged",
+        "flags": [
+          "contested_history"
+        ],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": true,
+      "sim": {
+        "channel": "unrest",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/West_Bengal",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "west-bengal.2011.highlight.db5356",
+      "year": 2011,
+      "year_end": null,
+      "year_precision": "exact",
+      "era": "era.liberalisation",
+      "category": "highlight",
+      "title": "The Left Front's 34-year government ends",
+      "summary": "Trinamool Congress won power, ending the world's longest continuously elected communist government. The land politics of Operation Barga and of Singur bracket its rise and its fall.",
+      "tags": [
+        "agitation"
+      ],
+      "places": [
+        "West Bengal"
+      ],
+      "actors": [
+        "Mamata Banerjee",
+        "Left Front"
+      ],
+      "magnitude": 0.8,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.95,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "narrative",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/West_Bengal",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    }
+  ]
+}

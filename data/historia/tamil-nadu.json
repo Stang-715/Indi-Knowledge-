@@ -1,0 +1,899 @@
+{
+  "state_id": "tamil-nadu",
+  "schema_version": "1.0.0",
+  "generated_at": "2026-08-29T14:17:02+00:00",
+  "provenance": "seed-v1-authored-pending-verification",
+  "coverage": {
+    "era.mahajanapada_mauryan": {
+      "event_count": 1,
+      "gap_years": [],
+      "mean_confidence": 0.7
+    },
+    "era.early_medieval": {
+      "event_count": 3,
+      "gap_years": [],
+      "mean_confidence": 0.85
+    },
+    "era.mughal": {
+      "event_count": 1,
+      "gap_years": [],
+      "mean_confidence": 0.9
+    },
+    "era.company_raj": {
+      "event_count": 1,
+      "gap_years": [],
+      "mean_confidence": 0.88
+    },
+    "era.british_raj": {
+      "event_count": 4,
+      "gap_years": [
+        1900,
+        1901,
+        1902,
+        1903,
+        1904,
+        1905,
+        1906,
+        1907,
+        1908,
+        1909,
+        1910,
+        1911,
+        1912,
+        1913,
+        1914,
+        1915,
+        1917,
+        1918,
+        1919,
+        1920,
+        1921,
+        1922,
+        1923,
+        1924,
+        1926,
+        1927,
+        1928,
+        1929,
+        1930,
+        1931,
+        1932,
+        1933,
+        1934,
+        1935,
+        1936,
+        1938,
+        1939,
+        1940,
+        1941,
+        1942,
+        1943,
+        1944,
+        1945,
+        1946,
+        1947
+      ],
+      "mean_confidence": 0.9
+    },
+    "era.green_revolution": {
+      "event_count": 3,
+      "gap_years": [
+        1966,
+        1968,
+        1970,
+        1971,
+        1972,
+        1973,
+        1974,
+        1975,
+        1976,
+        1977,
+        1978,
+        1979,
+        1980,
+        1981,
+        1983,
+        1984,
+        1985,
+        1986,
+        1987,
+        1988,
+        1989,
+        1990,
+        1991
+      ],
+      "mean_confidence": 0.933
+    },
+    "era.liberalisation": {
+      "event_count": 2,
+      "gap_years": [
+        1991,
+        1992,
+        1993,
+        1994,
+        1996,
+        1997,
+        1998,
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014
+      ],
+      "mean_confidence": 0.9
+    },
+    "era.digital": {
+      "event_count": 1,
+      "gap_years": [
+        2014,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "mean_confidence": 0.92
+    }
+  },
+  "events": [
+    {
+      "id": "tamil-nadu.-300.craft.d91e4a",
+      "year": -300,
+      "year_end": 300,
+      "year_precision": "century",
+      "era": "era.mahajanapada_mauryan",
+      "category": "craft",
+      "title": "The Sangam age and the Chera-Chola-Pandya trade",
+      "summary": "Sangam poetry and excavations at Keezhadi and Arikamedu attest to literate urban settlement, Roman trade and specialised craft — bead-making, shell, iron and fine textiles — across the Tamil country.",
+      "tags": [
+        "craft_flourish",
+        "port_established"
+      ],
+      "places": [
+        "Keezhadi",
+        "Arikamedu",
+        "Madurai"
+      ],
+      "actors": [
+        "Chera",
+        "Chola",
+        "Pandya"
+      ],
+      "magnitude": 0.75,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.7,
+      "review": {
+        "status": "flagged",
+        "flags": [
+          "contested_history"
+        ],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": true,
+      "sim": {
+        "channel": "artisanry",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Tamil_Nadu",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "tamil-nadu.850.highlight.209ec8",
+      "year": 850,
+      "year_end": null,
+      "year_precision": "decade",
+      "era": "era.early_medieval",
+      "category": "highlight",
+      "title": "Vijayalaya founds the imperial Chola line",
+      "summary": "The capture of Thanjavur began the Chola resurgence that would build the most powerful maritime state in Indian history and one of its most sophisticated revenue and temple administrations.",
+      "tags": [
+        "dynastic_patronage"
+      ],
+      "places": [
+        "Thanjavur"
+      ],
+      "actors": [
+        "Vijayalaya Chola"
+      ],
+      "magnitude": 0.8,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.85,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "narrative",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Tamil_Nadu",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "tamil-nadu.1010.craft.8fd4c1",
+      "year": 1010,
+      "year_end": null,
+      "year_precision": "exact",
+      "era": "era.early_medieval",
+      "category": "craft",
+      "title": "The Brihadeeswarar temple is completed",
+      "summary": "Rajaraja I's granite temple at Thanjavur, with its 60-metre vimana, was funded by war booty and endowed with land, dancers, musicians and craftsmen. Its inscriptions are a complete audit of an economy.",
+      "tags": [
+        "craft_flourish",
+        "dynastic_patronage",
+        "guild_formation",
+        "temple_construction"
+      ],
+      "places": [
+        "Thanjavur"
+      ],
+      "actors": [
+        "Rajaraja Chola I"
+      ],
+      "magnitude": 0.9,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.85,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "artisanry",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Tamil_Nadu",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "tamil-nadu.1025.war.70d5e5",
+      "year": 1025,
+      "year_end": null,
+      "year_precision": "exact",
+      "era": "era.early_medieval",
+      "category": "war",
+      "title": "Rajendra Chola's naval expedition to Srivijaya",
+      "summary": "A Chola fleet raided Srivijayan ports across the Malacca Strait, securing the eastern trade route. It is the only sustained overseas naval projection by a pre-modern Indian state.",
+      "tags": [
+        "battle",
+        "invasion",
+        "port_boom"
+      ],
+      "places": [
+        "Srivijaya",
+        "Nagapattinam"
+      ],
+      "actors": [
+        "Rajendra Chola I"
+      ],
+      "magnitude": 0.85,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.85,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "military",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Tamil_Nadu",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "tamil-nadu.1639.development.01d6f7",
+      "year": 1639,
+      "year_end": null,
+      "year_precision": "exact",
+      "era": "era.mughal",
+      "category": "development",
+      "title": "Fort St George founded at Madras",
+      "summary": "The Company acquired a coastal strip from the Nayak of Wandiwash and built Fort St George; the weaving villages around it grew into Madras, the Company's first city and its southern base.",
+      "tags": [
+        "craft_flourish",
+        "port_established",
+        "urbanisation"
+      ],
+      "places": [
+        "Madras"
+      ],
+      "actors": [
+        "Francis Day",
+        "East India Company"
+      ],
+      "magnitude": 0.85,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.9,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "economy",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Tamil_Nadu",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "tamil-nadu.1801.legislature.c1cce3",
+      "year": 1801,
+      "year_end": null,
+      "year_precision": "exact",
+      "era": "era.company_raj",
+      "category": "legislature",
+      "title": "The Carnatic is annexed and Madras Presidency consolidated",
+      "summary": "The Nawab's territories passed to the Company and the ryotwari settlement was extended, assessing individual cultivators directly rather than through zamindars — a different extraction machine from Bengal's.",
+      "tags": [
+        "annexation",
+        "revenue_extraction",
+        "revenue_settlement"
+      ],
+      "places": [
+        "Madras Presidency"
+      ],
+      "actors": [
+        "East India Company",
+        "Thomas Munro"
+      ],
+      "magnitude": 0.8,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.88,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "governance",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Tamil_Nadu",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "tamil-nadu.1876.disaster.9ab73b",
+      "year": 1876,
+      "year_end": 1878,
+      "year_precision": "exact",
+      "era": "era.british_raj",
+      "category": "disaster",
+      "title": "The Great Famine of Madras",
+      "summary": "Drought met a policy of non-interference with grain markets and export continued through the crisis. Mortality across the Madras Presidency ran into millions; relief was rationed on a deliberately punitive scale.",
+      "tags": [
+        "crop_failure",
+        "drought",
+        "famine",
+        "migration",
+        "population_loss"
+      ],
+      "places": [
+        "Madras Presidency"
+      ],
+      "actors": [
+        "Lord Lytton",
+        "Richard Temple"
+      ],
+      "magnitude": 0.95,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.9,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "resilience",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Tamil_Nadu",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "tamil-nadu.1916.movement.bbf9a6",
+      "year": 1916,
+      "year_end": null,
+      "year_precision": "exact",
+      "era": "era.british_raj",
+      "category": "movement",
+      "title": "The South Indian Liberal Federation is founded",
+      "summary": "The Justice Party organised non-Brahmin professional and landed interests, and in office introduced communal representation in education and public employment — the origin of reservation policy in India.",
+      "tags": [
+        "agitation",
+        "caste_mobilisation"
+      ],
+      "places": [
+        "Madras"
+      ],
+      "actors": [
+        "Justice Party",
+        "T. M. Nair",
+        "P. Theagaraya Chetty"
+      ],
+      "magnitude": 0.85,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.88,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "unrest",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Tamil_Nadu",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "tamil-nadu.1925.movement.5cffa1",
+      "year": 1925,
+      "year_end": null,
+      "year_precision": "exact",
+      "era": "era.british_raj",
+      "category": "movement",
+      "title": "Periyar launches the Self-Respect Movement",
+      "summary": "The movement attacked caste, priestly authority and the subordination of women, and built an institutional and rhetorical base that would dominate Tamil politics for the next century.",
+      "tags": [
+        "agitation",
+        "caste_mobilisation"
+      ],
+      "places": [
+        "Erode",
+        "Madras"
+      ],
+      "actors": [
+        "Periyar E. V. Ramasamy"
+      ],
+      "magnitude": 0.9,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.9,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "unrest",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Tamil_Nadu",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "tamil-nadu.1937.movement.0f09ef",
+      "year": 1937,
+      "year_end": 1965,
+      "year_precision": "decade",
+      "era": "era.british_raj",
+      "category": "movement",
+      "title": "The anti-Hindi agitations",
+      "summary": "Compulsory Hindi in schools in 1937, and the 1965 transition to Hindi as sole official language, both met mass agitation and deaths. The outcome was the indefinite continuation of English alongside Hindi.",
+      "tags": [
+        "agitation",
+        "language_movement"
+      ],
+      "places": [
+        "Madras State"
+      ],
+      "actors": [
+        "Periyar E. V. Ramasamy",
+        "C. N. Annadurai"
+      ],
+      "magnitude": 0.95,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.92,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "unrest",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Tamil_Nadu",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "tamil-nadu.1967.highlight.9d27fe",
+      "year": 1967,
+      "year_end": null,
+      "year_precision": "exact",
+      "era": "era.green_revolution",
+      "category": "highlight",
+      "title": "The DMK takes power",
+      "summary": "Annadurai's DMK ended Congress rule; no national party has governed Tamil Nadu since. Dravidian parties made welfare provision the currency of electoral competition.",
+      "tags": [
+        "agitation",
+        "caste_mobilisation"
+      ],
+      "places": [
+        "Tamil Nadu"
+      ],
+      "actors": [
+        "C. N. Annadurai",
+        "DMK"
+      ],
+      "magnitude": 0.9,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.95,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "narrative",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Tamil_Nadu",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "tamil-nadu.1969.legislature.e39e3b",
+      "year": 1969,
+      "year_end": null,
+      "year_precision": "exact",
+      "era": "era.green_revolution",
+      "category": "legislature",
+      "title": "Madras State is renamed Tamil Nadu",
+      "summary": "The renaming formalised the linguistic-cultural identity that the Dravidian movement had built, four years after the anti-Hindi agitation of 1965.",
+      "tags": [
+        "language_movement",
+        "state_reorganisation"
+      ],
+      "places": [
+        "Tamil Nadu"
+      ],
+      "actors": [
+        "C. N. Annadurai"
+      ],
+      "magnitude": 0.7,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.95,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "governance",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Tamil_Nadu",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "tamil-nadu.1982.development.e0e737",
+      "year": 1982,
+      "year_end": null,
+      "year_precision": "exact",
+      "era": "era.green_revolution",
+      "category": "development",
+      "title": "The midday meal scheme is universalised",
+      "summary": "M. G. Ramachandran extended the noon meal to all primary schoolchildren. Enrolment and retention rose sharply; the scheme was later adopted nationally on the Tamil Nadu template.",
+      "tags": [
+        "literacy_drive",
+        "literacy_rise",
+        "public_health_drive"
+      ],
+      "places": [
+        "Tamil Nadu"
+      ],
+      "actors": [
+        "M. G. Ramachandran"
+      ],
+      "magnitude": 0.9,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.9,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "economy",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Tamil_Nadu",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "tamil-nadu.1995.development.397d29",
+      "year": 1995,
+      "year_end": 2015,
+      "year_precision": "decade",
+      "era": "era.liberalisation",
+      "category": "development",
+      "title": "Chennai becomes an automotive and IT hub",
+      "summary": "Ford, Hyundai and a deep supplier base made Chennai India's largest car-exporting cluster, while Tidel Park and the IT corridor built a software economy on the state's long-standing engineering-education capacity.",
+      "tags": [
+        "industrial_boom",
+        "it_boom",
+        "policy_liberalisation",
+        "urbanisation"
+      ],
+      "places": [
+        "Chennai",
+        "Sriperumbudur"
+      ],
+      "actors": [],
+      "magnitude": 0.85,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.85,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "economy",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Tamil_Nadu",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "tamil-nadu.2004.disaster.6884d7",
+      "year": 2004,
+      "year_end": null,
+      "year_precision": "exact",
+      "era": "era.liberalisation",
+      "category": "disaster",
+      "title": "The Indian Ocean tsunami",
+      "summary": "The tsunami killed thousands along the Coromandel coast and destroyed the boats and gear of fishing communities. Reconstruction reshaped coastal settlement and fisheries policy.",
+      "tags": [
+        "displacement",
+        "earthquake",
+        "flood",
+        "population_loss"
+      ],
+      "places": [
+        "Nagapattinam",
+        "Cuddalore"
+      ],
+      "actors": [],
+      "magnitude": 0.85,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.95,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "resilience",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Tamil_Nadu",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "tamil-nadu.2015.disaster.454433",
+      "year": 2015,
+      "year_end": null,
+      "year_precision": "exact",
+      "era": "era.digital",
+      "category": "disaster",
+      "title": "The Chennai floods",
+      "summary": "Record rainfall met a city built over its own drainage — the Pallikaranai marsh and the Adyar and Cooum floodplains. Urbanisation, not only rainfall, set the scale of the disaster.",
+      "tags": [
+        "flood",
+        "urbanisation"
+      ],
+      "places": [
+        "Chennai"
+      ],
+      "actors": [],
+      "magnitude": 0.8,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.92,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "resilience",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Tamil_Nadu",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    }
+  ]
+}

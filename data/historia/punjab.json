@@ -1,0 +1,915 @@
+{
+  "state_id": "punjab",
+  "schema_version": "1.0.0",
+  "generated_at": "2026-08-29T14:17:02+00:00",
+  "provenance": "seed-v1-authored-pending-verification",
+  "coverage": {
+    "era.sultanate": {
+      "event_count": 1,
+      "gap_years": [],
+      "mean_confidence": 0.88
+    },
+    "era.mughal": {
+      "event_count": 2,
+      "gap_years": [],
+      "mean_confidence": 0.9
+    },
+    "era.company_raj": {
+      "event_count": 2,
+      "gap_years": [],
+      "mean_confidence": 0.93
+    },
+    "era.british_raj": {
+      "event_count": 3,
+      "gap_years": [
+        1900,
+        1901,
+        1902,
+        1903,
+        1904,
+        1905,
+        1906,
+        1908,
+        1909,
+        1910,
+        1911,
+        1912,
+        1913,
+        1914,
+        1915,
+        1916,
+        1917,
+        1918,
+        1920,
+        1921,
+        1922,
+        1923,
+        1924,
+        1925,
+        1926,
+        1927,
+        1928,
+        1929,
+        1930,
+        1931,
+        1932,
+        1933,
+        1934,
+        1935,
+        1936,
+        1937,
+        1938,
+        1939,
+        1940,
+        1941,
+        1942,
+        1943,
+        1944,
+        1945,
+        1946,
+        1947
+      ],
+      "mean_confidence": 0.903
+    },
+    "era.nation_building": {
+      "event_count": 3,
+      "gap_years": [
+        1948,
+        1949,
+        1950,
+        1951,
+        1952,
+        1953,
+        1954,
+        1955,
+        1956,
+        1957,
+        1958,
+        1959,
+        1960,
+        1961,
+        1962,
+        1963,
+        1964,
+        1965
+      ],
+      "mean_confidence": 0.95
+    },
+    "era.green_revolution": {
+      "event_count": 3,
+      "gap_years": [
+        1966,
+        1967,
+        1968,
+        1969,
+        1970,
+        1971,
+        1972,
+        1973,
+        1974,
+        1975,
+        1976,
+        1977,
+        1979,
+        1980,
+        1981,
+        1982,
+        1983,
+        1986,
+        1987,
+        1988,
+        1989,
+        1990,
+        1991
+      ],
+      "mean_confidence": 0.883
+    },
+    "era.liberalisation": {
+      "event_count": 1,
+      "gap_years": [
+        1991,
+        1992,
+        1993,
+        1994,
+        1996,
+        1997,
+        1998,
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014
+      ],
+      "mean_confidence": 0.85
+    },
+    "era.digital": {
+      "event_count": 1,
+      "gap_years": [
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "mean_confidence": 0.93
+    }
+  },
+  "events": [
+    {
+      "id": "punjab.1469.culture.d0dc79",
+      "year": 1469,
+      "year_end": null,
+      "year_precision": "exact",
+      "era": "era.sultanate",
+      "category": "culture",
+      "title": "Guru Nanak is born at Talwandi",
+      "summary": "Nanak's teaching rejected caste, ritual and religious boundary, and established the institutions — sangat, langar, the line of Gurus — from which a distinct Punjabi social order grew.",
+      "tags": [
+        "dynastic_patronage"
+      ],
+      "places": [
+        "Nankana Sahib"
+      ],
+      "actors": [
+        "Guru Nanak"
+      ],
+      "magnitude": 0.9,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.88,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "legitimacy",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Punjab,_India",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "punjab.1577.development.77d860",
+      "year": 1577,
+      "year_end": 1604,
+      "year_precision": "exact",
+      "era": "era.mughal",
+      "category": "development",
+      "title": "Amritsar is founded and the Adi Granth installed",
+      "summary": "Guru Ram Das founded the town and Guru Arjan compiled and installed the Adi Granth in the Harmandir Sahib, giving the community a centre, a scripture and a market town in one.",
+      "tags": [
+        "dynastic_patronage",
+        "urbanisation"
+      ],
+      "places": [
+        "Amritsar"
+      ],
+      "actors": [
+        "Guru Ram Das",
+        "Guru Arjan"
+      ],
+      "magnitude": 0.8,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.9,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "economy",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Punjab,_India",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "punjab.1699.movement.0f48e8",
+      "year": 1699,
+      "year_end": null,
+      "year_precision": "exact",
+      "era": "era.mughal",
+      "category": "movement",
+      "title": "The Khalsa is founded at Anandpur",
+      "summary": "Guru Gobind Singh instituted the Khalsa, transforming a devotional community into a self-defending one. It set the organisational form that would carry Punjab through the eighteenth century.",
+      "tags": [
+        "caste_mobilisation"
+      ],
+      "places": [
+        "Anandpur Sahib"
+      ],
+      "actors": [
+        "Guru Gobind Singh"
+      ],
+      "magnitude": 0.9,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.9,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "unrest",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Punjab,_India",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "punjab.1799.highlight.b01217",
+      "year": 1799,
+      "year_end": 1839,
+      "year_precision": "exact",
+      "era": "era.company_raj",
+      "category": "highlight",
+      "title": "Ranjit Singh builds the Sikh Empire",
+      "summary": "Ranjit Singh took Lahore in 1799 and forged the misls into a state stretching from the Sutlej to the Khyber — secular in appointment, formidable in arms, and the last major Indian power to fall to the British.",
+      "tags": [
+        "annexation",
+        "dynastic_patronage"
+      ],
+      "places": [
+        "Lahore"
+      ],
+      "actors": [
+        "Maharaja Ranjit Singh"
+      ],
+      "magnitude": 0.95,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.93,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "narrative",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Punjab,_India",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "punjab.1849.war.a9646d",
+      "year": 1849,
+      "year_end": null,
+      "year_precision": "exact",
+      "era": "era.company_raj",
+      "category": "war",
+      "title": "Annexation after the Second Anglo-Sikh War",
+      "summary": "Following Chillianwala and Gujrat, the Company annexed the Punjab. It became the Raj's principal recruiting ground and, later, the target of its largest irrigation investment.",
+      "tags": [
+        "annexation",
+        "battle"
+      ],
+      "places": [
+        "Punjab"
+      ],
+      "actors": [
+        "Lord Dalhousie",
+        "Duleep Singh"
+      ],
+      "magnitude": 0.9,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.93,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "military",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Punjab,_India",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "punjab.1885.development.7aee71",
+      "year": 1885,
+      "year_end": 1920,
+      "year_precision": "decade",
+      "era": "era.british_raj",
+      "category": "development",
+      "title": "The canal colonies",
+      "summary": "The Chenab, Jhelum and Lower Bari Doab canals irrigated millions of acres of western Punjab waste, settled by peasant grantees. It was the largest agricultural colonisation scheme of the colonial era.",
+      "tags": [
+        "agri_yield_rise",
+        "canal_built",
+        "irrigation_expansion",
+        "migration",
+        "urbanisation"
+      ],
+      "places": [
+        "Lyallpur",
+        "Chenab Colony"
+      ],
+      "actors": [
+        "Punjab Government"
+      ],
+      "magnitude": 0.95,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.9,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "economy",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Punjab,_India",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "punjab.1907.movement.e3f599",
+      "year": 1907,
+      "year_end": null,
+      "year_precision": "exact",
+      "era": "era.british_raj",
+      "category": "movement",
+      "title": "The Colonization Bill agitation",
+      "summary": "Terms imposed on canal-colony grantees provoked the 'Pagri Sambhal Jatta' agitation led by Ajit Singh and Kishan Singh; the Bill was withdrawn. Punjab's tradition of organised agrarian protest starts here.",
+      "tags": [
+        "agitation",
+        "caste_mobilisation"
+      ],
+      "places": [
+        "Lyallpur"
+      ],
+      "actors": [
+        "Ajit Singh",
+        "Banke Dayal"
+      ],
+      "magnitude": 0.75,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.85,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "unrest",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Punjab,_India",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "punjab.1919.war.02c319",
+      "year": 1919,
+      "year_end": null,
+      "year_precision": "exact",
+      "era": "era.british_raj",
+      "category": "war",
+      "title": "The Jallianwala Bagh massacre",
+      "summary": "Troops under Dyer fired on an enclosed gathering in Amritsar, killing hundreds. It ended moderate faith in constitutional reform and made non-cooperation a mass proposition.",
+      "tags": [
+        "population_loss",
+        "rebellion"
+      ],
+      "places": [
+        "Amritsar"
+      ],
+      "actors": [
+        "Reginald Dyer",
+        "Michael O'Dwyer"
+      ],
+      "magnitude": 0.95,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.96,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "military",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Punjab,_India",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "punjab.1947.war.660038",
+      "year": 1947,
+      "year_end": null,
+      "year_precision": "exact",
+      "era": "era.nation_building",
+      "category": "war",
+      "title": "Partition",
+      "summary": "Punjab was cut in two. Around ten million people crossed the new border and hundreds of thousands died; East Punjab lost its canal colonies, its western cities and a third of its irrigated land.",
+      "tags": [
+        "migration",
+        "partition",
+        "population_loss"
+      ],
+      "places": [
+        "Punjab"
+      ],
+      "actors": [],
+      "magnitude": 1.0,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.97,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "military",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Punjab,_India",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "punjab.1966.development.529d03",
+      "year": 1966,
+      "year_end": 1980,
+      "year_precision": "decade",
+      "era": "era.nation_building",
+      "category": "development",
+      "title": "The Green Revolution",
+      "summary": "High-yielding wheat and rice, tubewells, assured procurement and subsidised power tripled output. Punjab fed the national buffer stock and became India's richest state per capita within a decade.",
+      "tags": [
+        "agri_yield_rise",
+        "electrification",
+        "irrigation_expansion",
+        "policy_liberalisation"
+      ],
+      "places": [
+        "Ludhiana",
+        "Punjab"
+      ],
+      "actors": [
+        "M. S. Swaminathan",
+        "Punjab Agricultural University"
+      ],
+      "magnitude": 1.0,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.95,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "economy",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Punjab,_India",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "punjab.1966.legislature.469ebc",
+      "year": 1966,
+      "year_end": null,
+      "year_precision": "exact",
+      "era": "era.nation_building",
+      "category": "legislature",
+      "title": "The Punjabi Suba and reorganisation",
+      "summary": "After sustained agitation, Punjab was reorganised on linguistic lines into Punjab, Haryana and hill districts transferred to Himachal, with Chandigarh a shared capital — an arrangement still unresolved.",
+      "tags": [
+        "language_movement",
+        "state_reorganisation",
+        "statehood_demand"
+      ],
+      "places": [
+        "Punjab",
+        "Chandigarh"
+      ],
+      "actors": [
+        "Sant Fateh Singh",
+        "Akali Dal"
+      ],
+      "magnitude": 0.9,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.93,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "governance",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Punjab,_India",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "punjab.1978.war.448915",
+      "year": 1978,
+      "year_end": 1995,
+      "year_precision": "decade",
+      "era": "era.green_revolution",
+      "category": "war",
+      "title": "Militancy and the decade of violence",
+      "summary": "Demands framed in the Anandpur Sahib Resolution, Centre-state disputes over river waters and Chandigarh, and armed separatism produced a sustained insurgency and heavy state counter-action.",
+      "tags": [
+        "insurgency",
+        "population_loss",
+        "rebellion"
+      ],
+      "places": [
+        "Punjab"
+      ],
+      "actors": [],
+      "magnitude": 0.95,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.85,
+      "review": {
+        "status": "flagged",
+        "flags": [
+          "contested_history",
+          "sensitive"
+        ],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": true,
+      "sim": {
+        "channel": "military",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Punjab,_India",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "punjab.1984.war.4f8926",
+      "year": 1984,
+      "year_end": null,
+      "year_precision": "exact",
+      "era": "era.green_revolution",
+      "category": "war",
+      "title": "Operation Blue Star and its aftermath",
+      "summary": "The army operation in the Harmandir Sahib complex, the assassination of the Prime Minister and the anti-Sikh massacres that followed in Delhi and elsewhere marked the year that made reconciliation hardest.",
+      "tags": [
+        "insurgency",
+        "migration",
+        "population_loss",
+        "rebellion"
+      ],
+      "places": [
+        "Amritsar",
+        "Delhi"
+      ],
+      "actors": [],
+      "magnitude": 1.0,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.9,
+      "review": {
+        "status": "flagged",
+        "flags": [
+          "contested_history",
+          "sensitive"
+        ],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": true,
+      "sim": {
+        "channel": "military",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Punjab,_India",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "punjab.1985.legislature.d2c490",
+      "year": 1985,
+      "year_end": null,
+      "year_precision": "exact",
+      "era": "era.green_revolution",
+      "category": "legislature",
+      "title": "The Rajiv-Longowal Accord",
+      "summary": "The accord promised Chandigarh to Punjab and a tribunal on river waters. Longowal was assassinated weeks later and the core terms were never implemented, leaving the grievances live.",
+      "tags": [
+        "peace_accord"
+      ],
+      "places": [
+        "Punjab"
+      ],
+      "actors": [
+        "Rajiv Gandhi",
+        "Harchand Singh Longowal"
+      ],
+      "magnitude": 0.8,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.9,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "governance",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Punjab,_India",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "punjab.1995.disaster.bfa36b",
+      "year": 1995,
+      "year_end": 2020,
+      "year_precision": "decade",
+      "era": "era.liberalisation",
+      "category": "disaster",
+      "title": "Groundwater depletion and the paddy trap",
+      "summary": "Free power and assured paddy procurement drove tubewell irrigation far past recharge; water tables fell metres per decade across central Punjab. The Green Revolution's incentive structure became its own constraint.",
+      "tags": [
+        "agri_yield_fall",
+        "drought",
+        "irrigation_expansion"
+      ],
+      "places": [
+        "Punjab"
+      ],
+      "actors": [],
+      "magnitude": 0.9,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.85,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "resilience",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Punjab,_India",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "punjab.2020.movement.86ecd4",
+      "year": 2020,
+      "year_end": 2021,
+      "year_precision": "exact",
+      "era": "era.digital",
+      "category": "movement",
+      "title": "The farm laws protest",
+      "summary": "Punjab farmers led a year-long encampment against three farm laws seen as threatening assured procurement. The laws were repealed — the clearest recent instance of Punjab's agrarian organising capacity.",
+      "tags": [
+        "agitation",
+        "policy_liberalisation"
+      ],
+      "places": [
+        "Punjab",
+        "Delhi borders"
+      ],
+      "actors": [
+        "Samyukt Kisan Morcha"
+      ],
+      "magnitude": 0.9,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.93,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "unrest",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Punjab,_India",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    }
+  ]
+}

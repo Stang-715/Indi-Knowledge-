@@ -1,0 +1,979 @@
+{
+  "count": 54,
+  "questions": [
+    {
+      "type": "year_of",
+      "difficulty": "medium",
+      "state": "Gujarat",
+      "era": "era.british_raj",
+      "prompt": "In which year did this happen in Gujarat — “Ahmedabad's first cotton mill”?",
+      "options": [
+        "1851",
+        "1854",
+        "1859",
+        "1861"
+      ],
+      "answer": "1861",
+      "explain": "Ranchhodlal Chhotalal opened the Shahpur mill, founding an Indian-owned mechanised textile industry financed by Gujarati merchant capital. Ahmedabad became the 'Manchester of the East'.",
+      "source_event": "gujarat.1861.development.ce4bb3"
+    },
+    {
+      "type": "which_state",
+      "difficulty": "easy",
+      "state": "Gujarat",
+      "era": "era.mughal",
+      "prompt": "Which state's history includes this? “Surat as the Mughal empire's premier port” (1572)",
+      "options": [
+        "Jharkhand",
+        "Tamil Nadu",
+        "Kerala",
+        "Gujarat"
+      ],
+      "answer": "Gujarat",
+      "explain": "Surat handled the Hajj traffic and the western trade, with Gujarati, Armenian and European merchants operating side by side. Gujarati textiles reached East Africa, the Gulf and Southeast Asia.",
+      "source_event": "gujarat.1572.development.18e58c"
+    },
+    {
+      "type": "category",
+      "difficulty": "easy",
+      "state": "Gujarat",
+      "era": "era.british_raj",
+      "prompt": "“The Ahmedabad mill strike” (Gujarat, 1918) — which strand of Historia does this belong to?",
+      "options": [
+        "Development Journey",
+        "Key Highlights",
+        "Wars & Conflicts",
+        "Movements & People"
+      ],
+      "answer": "Movements & People",
+      "explain": "Gandhi's fast in support of mill workers produced a negotiated settlement and, from it, the Textile Labour Association — a distinctive arbitration-based union tradition rather than a confrontational one.",
+      "source_event": "gujarat.1918.movement.bc1c46"
+    },
+    {
+      "type": "year_of",
+      "difficulty": "medium",
+      "state": "Gujarat",
+      "era": "era.nation_building",
+      "prompt": "In which year did this happen in Gujarat — “Gujarat is formed”?",
+      "options": [
+        "1954",
+        "1958",
+        "1960",
+        "1962"
+      ],
+      "answer": "1960",
+      "explain": "Bombay State was divided on 1 May 1960 into Gujarat and Maharashtra, completing the linguistic reorganisation begun in 1956.",
+      "source_event": "gujarat.1960.legislature.a9f396"
+    },
+    {
+      "type": "which_state",
+      "difficulty": "easy",
+      "state": "Gujarat",
+      "era": "era.sultanate",
+      "prompt": "Which state's history includes this? “Alauddin Khalji annexes Gujarat” (1297)",
+      "options": [
+        "Punjab",
+        "Tamil Nadu",
+        "Kerala",
+        "Gujarat"
+      ],
+      "answer": "Gujarat",
+      "explain": "Khalji forces defeated Karna of the Vaghela dynasty, ending Rajput rule and bringing Gujarat's ports and their customs revenue into the Delhi Sultanate.",
+      "source_event": "gujarat.1297.war.bdee79"
+    },
+    {
+      "type": "category",
+      "difficulty": "easy",
+      "state": "Gujarat",
+      "era": "era.sultanate",
+      "prompt": "“Ahmad Shah I founds Ahmedabad” (Gujarat, 1411) — which strand of Historia does this belong to?",
+      "options": [
+        "Culture & Thought",
+        "Laws & Legislature",
+        "Disasters & Shocks",
+        "Development Journey"
+      ],
+      "answer": "Development Journey",
+      "explain": "The new capital on the Sabarmati drew weavers, dyers and merchants. Ahmedabad's textile identity — and its guild (mahajan) form of self-organisation — dates from this foundation.",
+      "source_event": "gujarat.1411.development.b5e296"
+    },
+    {
+      "type": "sequence",
+      "difficulty": "hard",
+      "state": "Gujarat",
+      "era": null,
+      "prompt": "Put these four moments in Gujarat's history in order, earliest first.",
+      "options": [
+        "Ahmedabad's first cotton mill",
+        "Operation Flood",
+        "The Kaira district milk cooperative is founded",
+        "Ahmad Shah I founds Ahmedabad"
+      ],
+      "answer": [
+        "Ahmad Shah I founds Ahmedabad",
+        "Ahmedabad's first cotton mill",
+        "The Kaira district milk cooperative is founded",
+        "Operation Flood"
+      ],
+      "explain": "1411 Ahmad Shah I founds Ahmedabad → 1861 Ahmedabad's first cotton mill → 1946 The Kaira district milk cooperative is founded → 1970 Operation Flood",
+      "source_event": [
+        "gujarat.1861.development.ce4bb3",
+        "gujarat.1411.development.b5e296",
+        "gujarat.1946.development.903e69",
+        "gujarat.1970.development.cf31f9"
+      ]
+    },
+    {
+      "type": "year_of",
+      "difficulty": "medium",
+      "state": "Jharkhand",
+      "era": "era.liberalisation",
+      "prompt": "In which year did this happen in Jharkhand — “Jharkhand attains statehood”?",
+      "options": [
+        "2000",
+        "2005",
+        "2007",
+        "2011"
+      ],
+      "answer": "2000",
+      "explain": "Carved out of southern Bihar on 15 November 2000 — Birsa Munda's birth anniversary — after seven decades of agitation. The new state held immense mineral wealth and among India's worst human development indicators.",
+      "source_event": "jharkhand.2000.legislature.de8edf"
+    },
+    {
+      "type": "which_state",
+      "difficulty": "easy",
+      "state": "Jharkhand",
+      "era": "era.british_raj",
+      "prompt": "Which state's history includes this? “Birsa Munda's Ulgulan” (1899)",
+      "options": [
+        "Jharkhand",
+        "Kerala",
+        "Gujarat",
+        "West Bengal"
+      ],
+      "answer": "Jharkhand",
+      "explain": "Birsa Munda led an armed movement to restore the khuntkatti collective land system against dikus and the colonial state. Birsa died in custody at 25; the rebellion directly shaped the tenancy law that followed.",
+      "source_event": "jharkhand.1899.war.8dfacf"
+    },
+    {
+      "type": "category",
+      "difficulty": "easy",
+      "state": "Jharkhand",
+      "era": "era.nation_building",
+      "prompt": "“Bokaro, Ranchi and the public sector build-out” (Jharkhand, 1955) — which strand of Historia does this belong to?",
+      "options": [
+        "Crafts & Making",
+        "Development Journey",
+        "Key Highlights",
+        "Disasters & Shocks"
+      ],
+      "answer": "Development Journey",
+      "explain": "Bokaro Steel, Heavy Engineering Corporation at Ranchi and the coalfields made the region the core of India's industrial base — under central ownership, with profits, management and skilled jobs largely flowing outward.",
+      "source_event": "jharkhand.1955.development.fadc70"
+    },
+    {
+      "type": "year_of",
+      "difficulty": "hard",
+      "state": "Jharkhand",
+      "era": "era.nation_building",
+      "prompt": "In which year did this happen in Jharkhand — “The Damodar Valley Corporation dams”?",
+      "options": [
+        "1914",
+        "1948",
+        "1959",
+        "1960"
+      ],
+      "answer": "1948",
+      "explain": "Modelled on the Tennessee Valley Authority, the DVC built dams for flood control and power. They generated electricity for industry elsewhere and displaced tens of thousands of largely Adivasi families locally.",
+      "source_event": "jharkhand.1948.development.6bb6d7"
+    },
+    {
+      "type": "which_state",
+      "difficulty": "easy",
+      "state": "Jharkhand",
+      "era": "era.green_revolution",
+      "prompt": "Which state's history includes this? “The Jharkhand Mukti Morcha is founded” (1973)",
+      "options": [
+        "Gujarat",
+        "Tamil Nadu",
+        "West Bengal",
+        "Jharkhand"
+      ],
+      "answer": "Jharkhand",
+      "explain": "The JMM fused Adivasi land grievance with coalfield labour organising, giving the statehood demand — voiced since the 1930s Adivasi Mahasabha — a mass vehicle.",
+      "source_event": "jharkhand.1973.movement.c189af"
+    },
+    {
+      "type": "category",
+      "difficulty": "easy",
+      "state": "Jharkhand",
+      "era": "era.company_raj",
+      "prompt": "“The Santhal Hool” (Jharkhand, 1855) — which strand of Historia does this belong to?",
+      "options": [
+        "Wars & Conflicts",
+        "Key Highlights",
+        "Disasters & Shocks",
+        "Movements & People"
+      ],
+      "answer": "Wars & Conflicts",
+      "explain": "Sidhu and Kanhu Murmu led tens of thousands of Santhals against zamindars, moneylenders and the Company. It was crushed with heavy loss of life, but forced the creation of a separately administered Santhal Parganas.",
+      "source_event": "jharkhand.1855.war.af19c1"
+    },
+    {
+      "type": "sequence",
+      "difficulty": "hard",
+      "state": "Jharkhand",
+      "era": null,
+      "prompt": "Put these four moments in Jharkhand's history in order, earliest first.",
+      "options": [
+        "Bokaro, Ranchi and the public sector build-out",
+        "Tata Steel is built at Sakchi",
+        "MoUs, mining leases and the resource paradox",
+        "The Kol uprising"
+      ],
+      "answer": [
+        "The Kol uprising",
+        "Tata Steel is built at Sakchi",
+        "Bokaro, Ranchi and the public sector build-out",
+        "MoUs, mining leases and the resource paradox"
+      ],
+      "explain": "1831 The Kol uprising → 1907 Tata Steel is built at Sakchi → 1955 Bokaro, Ranchi and the public sector build-out → 2005 MoUs, mining leases and the resource paradox",
+      "source_event": [
+        "jharkhand.1831.war.dde5c3",
+        "jharkhand.2005.development.4d0f83",
+        "jharkhand.1907.development.7f090d",
+        "jharkhand.1955.development.fadc70"
+      ]
+    },
+    {
+      "type": "year_of",
+      "difficulty": "medium",
+      "state": "Kerala",
+      "era": "era.digital",
+      "prompt": "In which year did this happen in Kerala — “The Kerala floods”?",
+      "options": [
+        "2009",
+        "2013",
+        "2018",
+        "2022"
+      ],
+      "answer": "2018",
+      "explain": "The worst flooding since 1924 displaced over a million people. Recovery leaned heavily on local government capacity and diaspora remittance — the institutions built over the preceding decades.",
+      "source_event": "kerala.2018.disaster.1797f2"
+    },
+    {
+      "type": "which_state",
+      "difficulty": "easy",
+      "state": "Kerala",
+      "era": "era.liberalisation",
+      "prompt": "Which state's history includes this? “Kerala declared fully literate” (1991)",
+      "options": [
+        "Kerala",
+        "Jharkhand",
+        "West Bengal",
+        "Punjab"
+      ],
+      "answer": "Kerala",
+      "explain": "The total literacy campaign, run through mass volunteer mobilisation, led to Kerala's declaration as India's first fully literate state — the compounding payoff of state schooling begun in 1817 and widened in 1957.",
+      "source_event": "kerala.1991.development.9720b0"
+    },
+    {
+      "type": "category",
+      "difficulty": "easy",
+      "state": "Kerala",
+      "era": "era.nation_building",
+      "prompt": "“The world's first elected communist government takes office” (Kerala, 1957) — which strand of Historia does this belong to?",
+      "options": [
+        "Key Highlights",
+        "Development Journey",
+        "Wars & Conflicts",
+        "Movements & People"
+      ],
+      "answer": "Key Highlights",
+      "explain": "E. M. S. Namboodiripad's ministry took power through the ballot — among the earliest communist governments anywhere to be freely elected. It moved immediately on land and education.",
+      "source_event": "kerala.1957.highlight.c13471"
+    },
+    {
+      "type": "year_of",
+      "difficulty": "medium",
+      "state": "Kerala",
+      "era": "era.british_raj",
+      "prompt": "In which year did this happen in Kerala — “The Channar revolt concludes”?",
+      "options": [
+        "1859",
+        "1863",
+        "1867",
+        "1869"
+      ],
+      "answer": "1859",
+      "explain": "After decades of agitation, Nadar women won the right to cover their upper bodies. The struggle established public protest over caste dignity as a durable Kerala political form.",
+      "source_event": "kerala.1859.movement.71ec93"
+    },
+    {
+      "type": "which_state",
+      "difficulty": "easy",
+      "state": "Kerala",
+      "era": "era.nation_building",
+      "prompt": "Which state's history includes this? “Travancore and Cochin merge” (1949)",
+      "options": [
+        "Gujarat",
+        "Tamil Nadu",
+        "Kerala",
+        "Punjab"
+      ],
+      "answer": "Kerala",
+      "explain": "The two princely states merged into Travancore-Cochin, the administrative step that made a united Malayalam-speaking state possible seven years later.",
+      "source_event": "kerala.1949.legislature.11b536"
+    },
+    {
+      "type": "category",
+      "difficulty": "easy",
+      "state": "Kerala",
+      "era": "era.british_raj",
+      "prompt": "“Temple Entry Proclamation” (Kerala, 1936) — which strand of Historia does this belong to?",
+      "options": [
+        "Movements & People",
+        "Disasters & Shocks",
+        "Crafts & Making",
+        "Laws & Legislature"
+      ],
+      "answer": "Laws & Legislature",
+      "explain": "Chithira Thirunal Balarama Varma opened Travancore's state temples to all Hindus regardless of caste — a legislative act of social reform decades ahead of comparable measures elsewhere.",
+      "source_event": "kerala.1936.legislature.c90d03"
+    },
+    {
+      "type": "sequence",
+      "difficulty": "hard",
+      "state": "Kerala",
+      "era": null,
+      "prompt": "Put these four moments in Kerala's history in order, earliest first.",
+      "options": [
+        "The Dutch take Kochi from the Portuguese",
+        "The Channar revolt concludes",
+        "Muziris and the Roman spice trade",
+        "Travancore's royal rescript on education"
+      ],
+      "answer": [
+        "Muziris and the Roman spice trade",
+        "The Dutch take Kochi from the Portuguese",
+        "Travancore's royal rescript on education",
+        "The Channar revolt concludes"
+      ],
+      "explain": "50 BCE Muziris and the Roman spice trade → 1663 The Dutch take Kochi from the Portuguese → 1817 Travancore's royal rescript on education → 1859 The Channar revolt concludes",
+      "source_event": [
+        "kerala.1817.legislature.95c233",
+        "kerala.1859.movement.71ec93",
+        "kerala.-50.development.d03145",
+        "kerala.1663.war.d15736"
+      ]
+    },
+    {
+      "type": "year_of",
+      "difficulty": "medium",
+      "state": "Punjab",
+      "era": "era.british_raj",
+      "prompt": "In which year did this happen in Punjab — “The Jallianwala Bagh massacre”?",
+      "options": [
+        "1910",
+        "1919",
+        "1921",
+        "1927"
+      ],
+      "answer": "1919",
+      "explain": "Troops under Dyer fired on an enclosed gathering in Amritsar, killing hundreds. It ended moderate faith in constitutional reform and made non-cooperation a mass proposition.",
+      "source_event": "punjab.1919.war.02c319"
+    },
+    {
+      "type": "which_state",
+      "difficulty": "easy",
+      "state": "Punjab",
+      "era": "era.liberalisation",
+      "prompt": "Which state's history includes this? “Groundwater depletion and the paddy trap” (1995)",
+      "options": [
+        "Jharkhand",
+        "Gujarat",
+        "Punjab",
+        "Tamil Nadu"
+      ],
+      "answer": "Punjab",
+      "explain": "Free power and assured paddy procurement drove tubewell irrigation far past recharge; water tables fell metres per decade across central Punjab. The Green Revolution's incentive structure became its own constraint.",
+      "source_event": "punjab.1995.disaster.bfa36b"
+    },
+    {
+      "type": "category",
+      "difficulty": "easy",
+      "state": "Punjab",
+      "era": "era.nation_building",
+      "prompt": "“The Punjabi Suba and reorganisation” (Punjab, 1966) — which strand of Historia does this belong to?",
+      "options": [
+        "Key Highlights",
+        "Culture & Thought",
+        "Wars & Conflicts",
+        "Laws & Legislature"
+      ],
+      "answer": "Laws & Legislature",
+      "explain": "After sustained agitation, Punjab was reorganised on linguistic lines into Punjab, Haryana and hill districts transferred to Himachal, with Chandigarh a shared capital — an arrangement still unresolved.",
+      "source_event": "punjab.1966.legislature.469ebc"
+    },
+    {
+      "type": "year_of",
+      "difficulty": "medium",
+      "state": "Punjab",
+      "era": "era.nation_building",
+      "prompt": "In which year did this happen in Punjab — “Partition”?",
+      "options": [
+        "1936",
+        "1940",
+        "1944",
+        "1947"
+      ],
+      "answer": "1947",
+      "explain": "Punjab was cut in two. Around ten million people crossed the new border and hundreds of thousands died; East Punjab lost its canal colonies, its western cities and a third of its irrigated land.",
+      "source_event": "punjab.1947.war.660038"
+    },
+    {
+      "type": "which_state",
+      "difficulty": "easy",
+      "state": "Punjab",
+      "era": "era.british_raj",
+      "prompt": "Which state's history includes this? “The Colonization Bill agitation” (1907)",
+      "options": [
+        "Punjab",
+        "Kerala",
+        "Tamil Nadu",
+        "Jharkhand"
+      ],
+      "answer": "Punjab",
+      "explain": "Terms imposed on canal-colony grantees provoked the 'Pagri Sambhal Jatta' agitation led by Ajit Singh and Kishan Singh; the Bill was withdrawn. Punjab's tradition of organised agrarian protest starts here.",
+      "source_event": "punjab.1907.movement.e3f599"
+    },
+    {
+      "type": "category",
+      "difficulty": "easy",
+      "state": "Punjab",
+      "era": "era.nation_building",
+      "prompt": "“The Green Revolution” (Punjab, 1966) — which strand of Historia does this belong to?",
+      "options": [
+        "Development Journey",
+        "Wars & Conflicts",
+        "Key Highlights",
+        "Disasters & Shocks"
+      ],
+      "answer": "Development Journey",
+      "explain": "High-yielding wheat and rice, tubewells, assured procurement and subsidised power tripled output. Punjab fed the national buffer stock and became India's richest state per capita within a decade.",
+      "source_event": "punjab.1966.development.529d03"
+    },
+    {
+      "type": "sequence",
+      "difficulty": "hard",
+      "state": "Punjab",
+      "era": null,
+      "prompt": "Put these four moments in Punjab's history in order, earliest first.",
+      "options": [
+        "The Jallianwala Bagh massacre",
+        "The Khalsa is founded at Anandpur",
+        "Annexation after the Second Anglo-Sikh War",
+        "Amritsar is founded and the Adi Granth installed"
+      ],
+      "answer": [
+        "Amritsar is founded and the Adi Granth installed",
+        "The Khalsa is founded at Anandpur",
+        "Annexation after the Second Anglo-Sikh War",
+        "The Jallianwala Bagh massacre"
+      ],
+      "explain": "1577 Amritsar is founded and the Adi Granth installed → 1699 The Khalsa is founded at Anandpur → 1849 Annexation after the Second Anglo-Sikh War → 1919 The Jallianwala Bagh massacre",
+      "source_event": [
+        "punjab.1919.war.02c319",
+        "punjab.1849.war.a9646d",
+        "punjab.1577.development.77d860",
+        "punjab.1699.movement.0f48e8"
+      ]
+    },
+    {
+      "type": "year_of",
+      "difficulty": "medium",
+      "state": "Tamil Nadu",
+      "era": "era.green_revolution",
+      "prompt": "In which year did this happen in Tamil Nadu — “The midday meal scheme is universalised”?",
+      "options": [
+        "1972",
+        "1977",
+        "1982",
+        "1986"
+      ],
+      "answer": "1982",
+      "explain": "M. G. Ramachandran extended the noon meal to all primary schoolchildren. Enrolment and retention rose sharply; the scheme was later adopted nationally on the Tamil Nadu template.",
+      "source_event": "tamil-nadu.1982.development.e0e737"
+    },
+    {
+      "type": "which_state",
+      "difficulty": "easy",
+      "state": "Tamil Nadu",
+      "era": "era.company_raj",
+      "prompt": "Which state's history includes this? “The Carnatic is annexed and Madras Presidency consolidated” (1801)",
+      "options": [
+        "Tamil Nadu",
+        "Kerala",
+        "West Bengal",
+        "Gujarat"
+      ],
+      "answer": "Tamil Nadu",
+      "explain": "The Nawab's territories passed to the Company and the ryotwari settlement was extended, assessing individual cultivators directly rather than through zamindars — a different extraction machine from Bengal's.",
+      "source_event": "tamil-nadu.1801.legislature.c1cce3"
+    },
+    {
+      "type": "category",
+      "difficulty": "easy",
+      "state": "Tamil Nadu",
+      "era": "era.british_raj",
+      "prompt": "“Periyar launches the Self-Respect Movement” (Tamil Nadu, 1925) — which strand of Historia does this belong to?",
+      "options": [
+        "Laws & Legislature",
+        "Movements & People",
+        "Disasters & Shocks",
+        "Crafts & Making"
+      ],
+      "answer": "Movements & People",
+      "explain": "The movement attacked caste, priestly authority and the subordination of women, and built an institutional and rhetorical base that would dominate Tamil politics for the next century.",
+      "source_event": "tamil-nadu.1925.movement.5cffa1"
+    },
+    {
+      "type": "year_of",
+      "difficulty": "medium",
+      "state": "Tamil Nadu",
+      "era": "era.digital",
+      "prompt": "In which year did this happen in Tamil Nadu — “The Chennai floods”?",
+      "options": [
+        "2005",
+        "2010",
+        "2015",
+        "2020"
+      ],
+      "answer": "2015",
+      "explain": "Record rainfall met a city built over its own drainage — the Pallikaranai marsh and the Adyar and Cooum floodplains. Urbanisation, not only rainfall, set the scale of the disaster.",
+      "source_event": "tamil-nadu.2015.disaster.454433"
+    },
+    {
+      "type": "which_state",
+      "difficulty": "easy",
+      "state": "Tamil Nadu",
+      "era": "era.early_medieval",
+      "prompt": "Which state's history includes this? “Rajendra Chola's naval expedition to Srivijaya” (1025)",
+      "options": [
+        "Kerala",
+        "Punjab",
+        "West Bengal",
+        "Tamil Nadu"
+      ],
+      "answer": "Tamil Nadu",
+      "explain": "A Chola fleet raided Srivijayan ports across the Malacca Strait, securing the eastern trade route. It is the only sustained overseas naval projection by a pre-modern Indian state.",
+      "source_event": "tamil-nadu.1025.war.70d5e5"
+    },
+    {
+      "type": "category",
+      "difficulty": "easy",
+      "state": "Tamil Nadu",
+      "era": "era.british_raj",
+      "prompt": "“The anti-Hindi agitations” (Tamil Nadu, 1937) — which strand of Historia does this belong to?",
+      "options": [
+        "Movements & People",
+        "Laws & Legislature",
+        "Key Highlights",
+        "Crafts & Making"
+      ],
+      "answer": "Movements & People",
+      "explain": "Compulsory Hindi in schools in 1937, and the 1965 transition to Hindi as sole official language, both met mass agitation and deaths. The outcome was the indefinite continuation of English alongside Hindi.",
+      "source_event": "tamil-nadu.1937.movement.0f09ef"
+    },
+    {
+      "type": "sequence",
+      "difficulty": "hard",
+      "state": "Tamil Nadu",
+      "era": null,
+      "prompt": "Put these four moments in Tamil Nadu's history in order, earliest first.",
+      "options": [
+        "The Great Famine of Madras",
+        "The Brihadeeswarar temple is completed",
+        "The Indian Ocean tsunami",
+        "Fort St George founded at Madras"
+      ],
+      "answer": [
+        "The Brihadeeswarar temple is completed",
+        "Fort St George founded at Madras",
+        "The Great Famine of Madras",
+        "The Indian Ocean tsunami"
+      ],
+      "explain": "1010 The Brihadeeswarar temple is completed → 1639 Fort St George founded at Madras → 1876 The Great Famine of Madras → 2004 The Indian Ocean tsunami",
+      "source_event": [
+        "tamil-nadu.1876.disaster.9ab73b",
+        "tamil-nadu.1010.craft.8fd4c1",
+        "tamil-nadu.1639.development.01d6f7",
+        "tamil-nadu.2004.disaster.6884d7"
+      ]
+    },
+    {
+      "type": "year_of",
+      "difficulty": "medium",
+      "state": "West Bengal",
+      "era": "era.british_raj",
+      "prompt": "In which year did this happen in West Bengal — “The Partition of Bengal and the Swadeshi movement”?",
+      "options": [
+        "1893",
+        "1897",
+        "1905",
+        "1917"
+      ],
+      "answer": "1905",
+      "explain": "Curzon's partition of Bengal along communal lines triggered the Swadeshi agitation — boycott of British goods and a revival of indigenous manufacture. The partition was annulled in 1911; the politics it created were not.",
+      "source_event": "west-bengal.1905.movement.25c350"
+    },
+    {
+      "type": "which_state",
+      "difficulty": "easy",
+      "state": "West Bengal",
+      "era": "era.company_raj",
+      "prompt": "Which state's history includes this? “The Great Bengal Famine” (1770)",
+      "options": [
+        "West Bengal",
+        "Jharkhand",
+        "Punjab",
+        "Gujarat"
+      ],
+      "answer": "West Bengal",
+      "explain": "Harvest failure compounded by undiminished revenue demand killed an estimated ten million — perhaps a third of the population. Revenue collection in 1770-71 was maintained at or above prior levels.",
+      "source_event": "west-bengal.1770.disaster.977b9d"
+    },
+    {
+      "type": "category",
+      "difficulty": "easy",
+      "state": "West Bengal",
+      "era": "era.company_raj",
+      "prompt": "“The Permanent Settlement” (West Bengal, 1793) — which strand of Historia does this belong to?",
+      "options": [
+        "Disasters & Shocks",
+        "Laws & Legislature",
+        "Wars & Conflicts",
+        "Development Journey"
+      ],
+      "answer": "Laws & Legislature",
+      "explain": "Cornwallis fixed land revenue in perpetuity with zamindars as proprietors. It guaranteed Company income, created a rentier landlord class, and left cultivators without security — a settlement whose effects outlast the Raj.",
+      "source_event": "west-bengal.1793.legislature.0073cd"
+    },
+    {
+      "type": "year_of",
+      "difficulty": "medium",
+      "state": "West Bengal",
+      "era": "era.company_raj",
+      "prompt": "In which year did this happen in West Bengal — “The first railway line out of Howrah”?",
+      "options": [
+        "1843",
+        "1850",
+        "1852",
+        "1854"
+      ],
+      "answer": "1854",
+      "explain": "The East Indian Railway opened Howrah–Hooghly, beginning the network that would move coal, jute and troops — and pull the rural interior into a port-facing economy.",
+      "source_event": "west-bengal.1854.development.c79f6e"
+    },
+    {
+      "type": "which_state",
+      "difficulty": "easy",
+      "state": "West Bengal",
+      "era": "era.green_revolution",
+      "prompt": "Which state's history includes this? “The Naxalbari uprising” (1967)",
+      "options": [
+        "West Bengal",
+        "Punjab",
+        "Jharkhand",
+        "Kerala"
+      ],
+      "answer": "West Bengal",
+      "explain": "A peasant revolt in Naxalbari over land seizure launched a Maoist insurgency that took its name from the village and spread far beyond Bengal, most durably into the mineral belt to the west.",
+      "source_event": "west-bengal.1967.movement.d8d166"
+    },
+    {
+      "type": "category",
+      "difficulty": "easy",
+      "state": "West Bengal",
+      "era": "era.early_medieval",
+      "prompt": "“Bakhtiyar Khalji takes Nadia” (West Bengal, 1204) — which strand of Historia does this belong to?",
+      "options": [
+        "Disasters & Shocks",
+        "Culture & Thought",
+        "Wars & Conflicts",
+        "Crafts & Making"
+      ],
+      "answer": "Wars & Conflicts",
+      "explain": "Ikhtiyar al-Din Muhammad Bakhtiyar Khalji's raid on Nadia broke Sena power in western Bengal and opened five centuries of Islamic rule in the delta.",
+      "source_event": "west-bengal.1204.war.e67eef"
+    },
+    {
+      "type": "sequence",
+      "difficulty": "hard",
+      "state": "West Bengal",
+      "era": null,
+      "prompt": "Put these four moments in West Bengal's history in order, earliest first.",
+      "options": [
+        "The Naxalbari uprising",
+        "The Great Bengal Famine",
+        "Calcutta founded as a Company factory",
+        "Battle of Plassey"
+      ],
+      "answer": [
+        "Calcutta founded as a Company factory",
+        "Battle of Plassey",
+        "The Great Bengal Famine",
+        "The Naxalbari uprising"
+      ],
+      "explain": "1690 Calcutta founded as a Company factory → 1757 Battle of Plassey → 1770 The Great Bengal Famine → 1967 The Naxalbari uprising",
+      "source_event": [
+        "west-bengal.1690.development.6d73d9",
+        "west-bengal.1757.war.89a809",
+        "west-bengal.1770.disaster.977b9d",
+        "west-bengal.1967.movement.d8d166"
+      ]
+    },
+    {
+      "type": "what_followed",
+      "difficulty": "hard",
+      "state": "Tamil Nadu",
+      "era": null,
+      "pattern": "linguistic_statehood",
+      "prompt": "In Tamil Nadu, 1937: “The anti-Hindi agitations”. Following the “Identity Becomes a Border” pattern, what followed by 1969?",
+      "options": [
+        "Madras State is renamed Tamil Nadu",
+        "MoUs, mining leases and the resource paradox",
+        "Chennai becomes an automotive and IT hub",
+        "Kerala declared fully literate"
+      ],
+      "answer": "Madras State is renamed Tamil Nadu",
+      "explain": "Where a population's identity -- language, tribe or region -- does not match the administration governing it, mobilisation follows and the map is eventually redrawn to fit. Language is the paradigm case (Tamil Nadu, Gujarat); tribal identity does the same work in Jharkhand.  Chain: 1937 The anti-Hindi agitations → 1967 The DMK takes power → 1969 Madras State is renamed Tamil Nadu",
+      "source_event": [
+        "tamil-nadu.1937.movement.0f09ef",
+        "tamil-nadu.1967.highlight.9d27fe",
+        "tamil-nadu.1969.legislature.e39e3b"
+      ]
+    },
+    {
+      "type": "what_followed",
+      "difficulty": "hard",
+      "state": "West Bengal",
+      "era": null,
+      "pattern": "extraction_famine",
+      "prompt": "In West Bengal, 1757: “Battle of Plassey”. Following the “The Revenue Ratchet” pattern, what followed by 1770?",
+      "options": [
+        "The Kaira district milk cooperative is founded",
+        "Tata Steel is built at Sakchi",
+        "The Great Bengal Famine",
+        "Kerala declared fully literate"
+      ],
+      "answer": "The Great Bengal Famine",
+      "explain": "A revenue demand fixed independently of the harvest converts a bad monsoon into a mass death event. The famine is fiscal, not meteorological.  Chain: 1757 Battle of Plassey → 1765 The Company obtains the Diwani of Bengal → 1770 The Great Bengal Famine → 1770 The Great Bengal Famine",
+      "source_event": [
+        "west-bengal.1757.war.89a809",
+        "west-bengal.1765.legislature.46ec81",
+        "west-bengal.1770.disaster.977b9d",
+        "west-bengal.1770.disaster.977b9d"
+      ]
+    },
+    {
+      "type": "what_followed",
+      "difficulty": "hard",
+      "state": "Kerala",
+      "era": null,
+      "pattern": "reform_dividend",
+      "prompt": "In Kerala, 1957: “The world's first elected communist government takes office”. Following the “The Long Dividend” pattern, what followed by 1973?",
+      "options": [
+        "The Damodar Valley Corporation dams",
+        "The Gulf migration and the remittance economy",
+        "Vibrant Gujarat and the investment turn",
+        "The first railway line out of Howrah"
+      ],
+      "answer": "The Gulf migration and the remittance economy",
+      "explain": "Land reform and schooling pay nothing for a generation, then compound. States that spend early on people outperform states that spend early on plant.  Chain: 1957 The world's first elected communist government takes office → 1969 Kerala Land Reforms (Amendment) Act → 1973 The Gulf migration and the remittance economy",
+      "source_event": [
+        "kerala.1957.highlight.c13471",
+        "kerala.1969.legislature.9a8e84",
+        "kerala.1973.development.33300e"
+      ]
+    },
+    {
+      "type": "what_followed",
+      "difficulty": "hard",
+      "state": "West Bengal",
+      "era": null,
+      "pattern": "craft_kill",
+      "prompt": "In West Bengal, 1793: “The Permanent Settlement”. Following the “The Unmaking of a Craft” pattern, what followed by 1911?",
+      "options": [
+        "Bombay rises and Surat declines",
+        "The Gulf migration and the remittance economy",
+        "The Kaira district milk cooperative is founded",
+        "The capital moves from Calcutta to Delhi"
+      ],
+      "answer": "The capital moves from Calcutta to Delhi",
+      "explain": "Craft economies die from demand-side policy — monopsony, tariffs, mechanised imports — far faster than from any loss of skill.  Chain: 1793 The Permanent Settlement → 1800 The collapse of Bengal's handloom weaving → 1911 The capital moves from Calcutta to Delhi",
+      "source_event": [
+        "west-bengal.1793.legislature.0073cd",
+        "west-bengal.1800.craft.9a6f78",
+        "west-bengal.1911.legislature.a598b3"
+      ]
+    },
+    {
+      "type": "what_followed",
+      "difficulty": "hard",
+      "state": "Punjab",
+      "era": null,
+      "pattern": "irrigation_trap",
+      "prompt": "In Punjab, 1966: “The Green Revolution”. Following the “The Irrigation Trap” pattern, what followed by 1995?",
+      "options": [
+        "Ahmad Shah I founds Ahmedabad",
+        "Bombay rises and Surat declines",
+        "Groundwater depletion and the paddy trap",
+        "The first railway line out of Howrah"
+      ],
+      "answer": "Groundwater depletion and the paddy trap",
+      "explain": "Subsidised water and guaranteed procurement raise yields spectacularly, then lock the region into the crop that exhausts its water.  Chain: 1966 The Green Revolution → 1966 The Green Revolution → 1995 Groundwater depletion and the paddy trap",
+      "source_event": [
+        "punjab.1966.development.529d03",
+        "punjab.1966.development.529d03",
+        "punjab.1995.disaster.bfa36b"
+      ]
+    },
+    {
+      "type": "what_followed",
+      "difficulty": "hard",
+      "state": "West Bengal",
+      "era": null,
+      "pattern": "partition_shock",
+      "prompt": "In West Bengal, 1947: “Partition and the making of West Bengal”. Following the “The Cut” pattern, what followed by 1967?",
+      "options": [
+        "The Kaira district milk cooperative is founded",
+        "Bokaro, Ranchi and the public sector build-out",
+        "The first railway line out of Howrah",
+        "The Naxalbari uprising"
+      ],
+      "answer": "The Naxalbari uprising",
+      "explain": "A border drawn through a functioning economy severs producers from markets and people from land; the demographic shock outlives the political one by generations.  Chain: 1947 Partition and the making of West Bengal → 1947 Partition and the making of West Bengal → 1967 The Naxalbari uprising",
+      "source_event": [
+        "west-bengal.1947.war.709e18",
+        "west-bengal.1947.war.709e18",
+        "west-bengal.1967.movement.d8d166"
+      ]
+    },
+    {
+      "type": "what_followed",
+      "difficulty": "hard",
+      "state": "Kerala",
+      "era": null,
+      "pattern": "diaspora_engine",
+      "prompt": "In Kerala, 1957: “The world's first elected communist government takes office”. Following the “The Remittance Engine” pattern, what followed by 1973?",
+      "options": [
+        "The canal colonies",
+        "Ahmedabad's first cotton mill",
+        "The Gulf migration and the remittance economy",
+        "Bokaro, Ranchi and the public sector build-out"
+      ],
+      "answer": "The Gulf migration and the remittance economy",
+      "explain": "Educate a population a poor economy cannot employ and it exports labour; the wages come home as consumption and human development without industrialisation.  Chain: 1957 The world's first elected communist government takes office → 1973 The Gulf migration and the remittance economy → 1973 The Gulf migration and the remittance economy",
+      "source_event": [
+        "kerala.1957.highlight.c13471",
+        "kerala.1973.development.33300e",
+        "kerala.1973.development.33300e"
+      ]
+    },
+    {
+      "type": "what_followed",
+      "difficulty": "hard",
+      "state": "West Bengal",
+      "era": null,
+      "pattern": "capital_drain",
+      "prompt": "In West Bengal, 1911: “The capital moves from Calcutta to Delhi”. Following the “The Capital Drain” pattern, what followed by 1980?",
+      "options": [
+        "Ahmedabad's first cotton mill",
+        "The jute economy declines",
+        "Bokaro, Ranchi and the public sector build-out",
+        "The Gulf migration and the remittance economy"
+      ],
+      "answer": "The jute economy declines",
+      "explain": "Losing capital status costs a city more than the buildings it keeps: investment follows administration, and the decline shows up decades later.  Chain: 1911 The capital moves from Calcutta to Delhi → 1980 The jute economy declines",
+      "source_event": [
+        "west-bengal.1911.legislature.a598b3",
+        "west-bengal.1980.development.200e14"
+      ]
+    },
+    {
+      "type": "what_followed",
+      "difficulty": "hard",
+      "state": "Kerala",
+      "era": null,
+      "pattern": "patronage_monument",
+      "prompt": "In Kerala, 1741: “Battle of Colachel”. Following the “Loot into Stone” pattern, what followed by 1750?",
+      "options": [
+        "Trippadidanam: Travancore dedicated to Padmanabha",
+        "Muziris and the Roman spice trade",
+        "The Damodar Valley Corporation dams",
+        "Amritsar is founded and the Adi Granth installed"
+      ],
+      "answer": "Trippadidanam: Travancore dedicated to Padmanabha",
+      "explain": "Successful conquest is converted into monumental building and endowed craft — the temple is a war memorial with an economy attached.  Chain: 1741 Battle of Colachel → 1750 Trippadidanam: Travancore dedicated to Padmanabha",
+      "source_event": [
+        "kerala.1741.war.9b773f",
+        "kerala.1750.legislature.f42e88"
+      ]
+    },
+    {
+      "type": "what_followed",
+      "difficulty": "hard",
+      "state": "Gujarat",
+      "era": null,
+      "pattern": "port_bloom",
+      "prompt": "In Gujarat, 1668: “Bombay rises and Surat declines”. Following the “Harbour to Workshop” pattern, what followed by 1861?",
+      "options": [
+        "The Green Revolution",
+        "Ahmedabad's first cotton mill",
+        "The Kaira district milk cooperative is founded",
+        "The canal colonies"
+      ],
+      "answer": "Ahmedabad's first cotton mill",
+      "explain": "A usable harbour pulls in trade, trade capitalises craft, and craft becomes the region's identity long after the trade moves on.  Chain: 1668 Bombay rises and Surat declines → 1861 Ahmedabad's first cotton mill",
+      "source_event": [
+        "gujarat.1668.development.83eaaa",
+        "gujarat.1861.development.ce4bb3"
+      ]
+    },
+    {
+      "type": "pattern_transfer",
+      "difficulty": "expert",
+      "state": "Tamil Nadu",
+      "era": null,
+      "pattern": "linguistic_statehood",
+      "prompt": "Tamil Nadu shows the “Identity Becomes a Border” pattern — where a population's identity -- language, tribe or region -- does not match the administration governing it, mobilisation follows and the map is eventually redrawn to fit. Which of these states repeats the same pattern?",
+      "options": [
+        "Maharashtra",
+        "Kerala",
+        "Uttar Pradesh",
+        "Uttarakhand"
+      ],
+      "answer": "Kerala",
+      "explain": "Confirmed in: Gujarat, Jharkhand, Kerala, Punjab, Tamil Nadu.",
+      "source_event": null
+    },
+    {
+      "type": "pattern_transfer",
+      "difficulty": "expert",
+      "state": "West Bengal",
+      "era": null,
+      "pattern": "extraction_famine",
+      "prompt": "West Bengal shows the “The Revenue Ratchet” pattern — a revenue demand fixed independently of the harvest converts a bad monsoon into a mass death event. Which of these states repeats the same pattern?",
+      "options": [
+        "Odisha",
+        "Maharashtra",
+        "Rajasthan",
+        "Tamil Nadu"
+      ],
+      "answer": "Tamil Nadu",
+      "explain": "Confirmed in: Tamil Nadu, West Bengal.",
+      "source_event": null
+    }
+  ]
+}

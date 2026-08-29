@@ -1,0 +1,709 @@
+{
+  "state_id": "jharkhand",
+  "schema_version": "1.0.0",
+  "generated_at": "2026-08-29T14:17:02+00:00",
+  "provenance": "seed-v1-authored-pending-verification",
+  "coverage": {
+    "era.company_raj": {
+      "event_count": 3,
+      "gap_years": [],
+      "mean_confidence": 0.85
+    },
+    "era.british_raj": {
+      "event_count": 3,
+      "gap_years": [
+        1900,
+        1901,
+        1902,
+        1903,
+        1904,
+        1905,
+        1906,
+        1909,
+        1910,
+        1911,
+        1912,
+        1913,
+        1914,
+        1915,
+        1916,
+        1917,
+        1918,
+        1919,
+        1920,
+        1921,
+        1922,
+        1923,
+        1924,
+        1925,
+        1926,
+        1927,
+        1928,
+        1929,
+        1930,
+        1931,
+        1932,
+        1933,
+        1934,
+        1935,
+        1936,
+        1937,
+        1938,
+        1939,
+        1940,
+        1941,
+        1942,
+        1943,
+        1944,
+        1945,
+        1946,
+        1947
+      ],
+      "mean_confidence": 0.907
+    },
+    "era.nation_building": {
+      "event_count": 2,
+      "gap_years": [
+        1947,
+        1949,
+        1950,
+        1951,
+        1952,
+        1953,
+        1954,
+        1956,
+        1957,
+        1958,
+        1959,
+        1960,
+        1961,
+        1962,
+        1963,
+        1964,
+        1965,
+        1966
+      ],
+      "mean_confidence": 0.85
+    },
+    "era.green_revolution": {
+      "event_count": 1,
+      "gap_years": [
+        1966,
+        1967,
+        1968,
+        1969,
+        1970,
+        1971,
+        1972,
+        1974,
+        1975,
+        1976,
+        1977,
+        1978,
+        1979,
+        1980,
+        1981,
+        1982,
+        1983,
+        1984,
+        1985,
+        1986,
+        1987,
+        1988,
+        1989,
+        1990,
+        1991
+      ],
+      "mean_confidence": 0.88
+    },
+    "era.liberalisation": {
+      "event_count": 3,
+      "gap_years": [
+        1991,
+        1992,
+        1993,
+        1994,
+        1995,
+        1996,
+        1997,
+        1998,
+        1999,
+        2001,
+        2002,
+        2003,
+        2004,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014
+      ],
+      "mean_confidence": 0.853
+    }
+  },
+  "events": [
+    {
+      "id": "jharkhand.1765.legislature.1918fb",
+      "year": 1765,
+      "year_end": null,
+      "year_precision": "exact",
+      "era": "era.company_raj",
+      "category": "legislature",
+      "title": "The Chotanagpur plateau passes to the Company",
+      "summary": "With the Diwani of Bengal, the forested plateau and its Munda, Ho and Santhal communities came under Company revenue administration — a system built for settled wet-rice agriculture applied to shifting, clan-held forest land.",
+      "tags": [
+        "annexation",
+        "revenue_extraction",
+        "revenue_settlement"
+      ],
+      "places": [
+        "Chotanagpur"
+      ],
+      "actors": [
+        "East India Company"
+      ],
+      "magnitude": 0.7,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.85,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "governance",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Jharkhand",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "jharkhand.1831.war.dde5c3",
+      "year": 1831,
+      "year_end": 1832,
+      "year_precision": "exact",
+      "era": "era.company_raj",
+      "category": "war",
+      "title": "The Kol uprising",
+      "summary": "Munda and Ho cultivators rose against outsider landholders and moneylenders installed under Company revenue arrangements. Suppression was severe; the grievance — alienation of tribal land — did not go away.",
+      "tags": [
+        "agitation",
+        "displacement",
+        "rebellion"
+      ],
+      "places": [
+        "Chotanagpur"
+      ],
+      "actors": [
+        "Munda community",
+        "Ho community"
+      ],
+      "magnitude": 0.8,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.82,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "military",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Jharkhand",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "jharkhand.1855.war.af19c1",
+      "year": 1855,
+      "year_end": 1856,
+      "year_precision": "exact",
+      "era": "era.company_raj",
+      "category": "war",
+      "title": "The Santhal Hool",
+      "summary": "Sidhu and Kanhu Murmu led tens of thousands of Santhals against zamindars, moneylenders and the Company. It was crushed with heavy loss of life, but forced the creation of a separately administered Santhal Parganas.",
+      "tags": [
+        "agitation",
+        "displacement",
+        "rebellion"
+      ],
+      "places": [
+        "Santhal Parganas"
+      ],
+      "actors": [
+        "Sidhu Murmu",
+        "Kanhu Murmu"
+      ],
+      "magnitude": 0.9,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.88,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "military",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Jharkhand",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "jharkhand.1899.war.8dfacf",
+      "year": 1899,
+      "year_end": 1900,
+      "year_precision": "exact",
+      "era": "era.british_raj",
+      "category": "war",
+      "title": "Birsa Munda's Ulgulan",
+      "summary": "Birsa Munda led an armed movement to restore the khuntkatti collective land system against dikus and the colonial state. Birsa died in custody at 25; the rebellion directly shaped the tenancy law that followed.",
+      "tags": [
+        "agitation",
+        "displacement",
+        "rebellion"
+      ],
+      "places": [
+        "Khunti",
+        "Ranchi"
+      ],
+      "actors": [
+        "Birsa Munda"
+      ],
+      "magnitude": 0.9,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.9,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "military",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Jharkhand",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "jharkhand.1907.development.7f090d",
+      "year": 1907,
+      "year_end": 1912,
+      "year_precision": "exact",
+      "era": "era.british_raj",
+      "category": "development",
+      "title": "Tata Steel is built at Sakchi",
+      "summary": "Jamsetji Tata's plan for an integrated steelworks was sited where iron ore, coal and water met. Sakchi became Jamshedpur — a company town, and the beginning of the plateau's role as a resource hinterland.",
+      "tags": [
+        "displacement",
+        "industrial_boom",
+        "mineral_discovery",
+        "urbanisation"
+      ],
+      "places": [
+        "Jamshedpur",
+        "Sakchi"
+      ],
+      "actors": [
+        "Jamsetji Tata",
+        "Dorabji Tata"
+      ],
+      "magnitude": 0.95,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.92,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "economy",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Jharkhand",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "jharkhand.1908.legislature.c4313a",
+      "year": 1908,
+      "year_end": null,
+      "year_precision": "exact",
+      "era": "era.british_raj",
+      "category": "legislature",
+      "title": "The Chotanagpur Tenancy Act",
+      "summary": "Enacted in the wake of the Ulgulan, the CNT Act restricted transfer of tribal land to non-tribals. It remains the central instrument — and the central political battleground — of land rights in the region.",
+      "tags": [
+        "land_reform"
+      ],
+      "places": [
+        "Chotanagpur"
+      ],
+      "actors": [
+        "Government of Bengal"
+      ],
+      "magnitude": 0.9,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.9,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "governance",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Jharkhand",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "jharkhand.1948.development.6bb6d7",
+      "year": 1948,
+      "year_end": 1960,
+      "year_precision": "decade",
+      "era": "era.nation_building",
+      "category": "development",
+      "title": "The Damodar Valley Corporation dams",
+      "summary": "Modelled on the Tennessee Valley Authority, the DVC built dams for flood control and power. They generated electricity for industry elsewhere and displaced tens of thousands of largely Adivasi families locally.",
+      "tags": [
+        "dam_built",
+        "displacement",
+        "electrification"
+      ],
+      "places": [
+        "Damodar Valley"
+      ],
+      "actors": [
+        "Damodar Valley Corporation"
+      ],
+      "magnitude": 0.85,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.85,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "economy",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Jharkhand",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "jharkhand.1955.development.fadc70",
+      "year": 1955,
+      "year_end": 1965,
+      "year_precision": "decade",
+      "era": "era.nation_building",
+      "category": "development",
+      "title": "Bokaro, Ranchi and the public sector build-out",
+      "summary": "Bokaro Steel, Heavy Engineering Corporation at Ranchi and the coalfields made the region the core of India's industrial base — under central ownership, with profits, management and skilled jobs largely flowing outward.",
+      "tags": [
+        "displacement",
+        "industrial_boom",
+        "mineral_discovery",
+        "urbanisation"
+      ],
+      "places": [
+        "Bokaro",
+        "Ranchi",
+        "Dhanbad"
+      ],
+      "actors": [
+        "Government of India"
+      ],
+      "magnitude": 0.85,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.85,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "economy",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Jharkhand",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "jharkhand.1973.movement.c189af",
+      "year": 1973,
+      "year_end": null,
+      "year_precision": "exact",
+      "era": "era.green_revolution",
+      "category": "movement",
+      "title": "The Jharkhand Mukti Morcha is founded",
+      "summary": "The JMM fused Adivasi land grievance with coalfield labour organising, giving the statehood demand — voiced since the 1930s Adivasi Mahasabha — a mass vehicle.",
+      "tags": [
+        "agitation",
+        "caste_mobilisation",
+        "statehood_demand"
+      ],
+      "places": [
+        "Dhanbad"
+      ],
+      "actors": [
+        "Shibu Soren",
+        "A. K. Roy",
+        "Binod Bihari Mahato"
+      ],
+      "magnitude": 0.85,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.88,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "unrest",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Jharkhand",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "jharkhand.2000.legislature.de8edf",
+      "year": 2000,
+      "year_end": null,
+      "year_precision": "exact",
+      "era": "era.liberalisation",
+      "category": "legislature",
+      "title": "Jharkhand attains statehood",
+      "summary": "Carved out of southern Bihar on 15 November 2000 — Birsa Munda's birth anniversary — after seven decades of agitation. The new state held immense mineral wealth and among India's worst human development indicators.",
+      "tags": [
+        "state_reorganisation",
+        "statehood_demand"
+      ],
+      "places": [
+        "Jharkhand"
+      ],
+      "actors": [],
+      "magnitude": 0.95,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.96,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "governance",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Jharkhand",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "jharkhand.2000.war.6341c9",
+      "year": 2000,
+      "year_end": 2015,
+      "year_precision": "decade",
+      "era": "era.liberalisation",
+      "category": "war",
+      "title": "Maoist insurgency in the mineral belt",
+      "summary": "Left-wing extremism entrenched across the forested districts, drawing on displacement, land alienation and absent state services. The insurgency concentrated precisely where extraction was densest.",
+      "tags": [
+        "displacement",
+        "insurgency",
+        "rebellion"
+      ],
+      "places": [
+        "Saranda",
+        "Palamu",
+        "West Singhbhum"
+      ],
+      "actors": [],
+      "magnitude": 0.85,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.82,
+      "review": {
+        "status": "flagged",
+        "flags": [
+          "contested_history"
+        ],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": true,
+      "sim": {
+        "channel": "military",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Jharkhand",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    },
+    {
+      "id": "jharkhand.2005.development.4d0f83",
+      "year": 2005,
+      "year_end": 2020,
+      "year_precision": "decade",
+      "era": "era.liberalisation",
+      "category": "development",
+      "title": "MoUs, mining leases and the resource paradox",
+      "summary": "Successive governments signed large mining and steel MoUs. Royalty accrued to the state while land acquisition, resettlement failures and litigation left many projects stalled and communities displaced.",
+      "tags": [
+        "agitation",
+        "displacement",
+        "industrial_boom",
+        "revenue_surge"
+      ],
+      "places": [
+        "Jharkhand"
+      ],
+      "actors": [],
+      "magnitude": 0.8,
+      "causes": [],
+      "effects": [],
+      "confidence": 0.78,
+      "review": {
+        "status": "auto",
+        "flags": [],
+        "note": "Seed corpus v1: authored from general historical knowledge. Corroborate against the cited article on first live ingest.",
+        "reviewer": null
+      },
+      "contested": false,
+      "sim": {
+        "channel": "economy",
+        "deltas": {},
+        "scenario": null
+      },
+      "sources": [
+        {
+          "kind": "authored",
+          "ref": "seed/v1 -> verify at https://en.wikipedia.org/wiki/Jharkhand",
+          "retrieved": "2026-08-29T14:17:02+00:00",
+          "license": "CC0-1.0",
+          "quote": null
+        }
+      ]
+    }
+  ]
+}
