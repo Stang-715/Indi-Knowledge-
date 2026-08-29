@@ -30,7 +30,7 @@ import { initDeck, card, allCards, recordRecital, recitedEntries, recitedCount,
 import { initPages, openCardsPage, openBooksPage, openDetail } from './pages.js';
 import { initLenses, registerLens, lensList, lensById, armedLens, armedLensId,
          arm, disarm, actionAt, execute as lensExecute, buildTray, paintTray,
-         keyToLens, ELIGIBILITY, ELIGIBILITY_ORDER } from './lenses.js';
+         keyToLens, ELIGIBILITY, ELIGIBILITY_ORDER, normalizeEligibility } from './lenses.js';
 import { drawGrid, drawMarks, drawWash, surveyCells, surveyCellAt,
          drawIsolation, stateBounds } from './sheet.js';
 import { drawIso as drawIsoBlocks } from './iso.js';
@@ -361,7 +361,121 @@ function drawIso(st) {
     ? `gold is where your people stand — ${held} of ${st.districts.length} districts · height is how many`
     : `${st.districts.length} districts, and none of your people stand in any of them yet`;
 }
-function renderStateActs(st, mine) { $('sp-acts').innerHTML = ''; }
+/* ── What you can decide about a state ──────────────────────────────────── */
+//
+// A registry, not a hand-written row of buttons, because this is where the
+// build features land as they arrive: an action declares who it is, what it
+// costs, whether it can act here (in the same six pigments the sheets use),
+// and what it does. Adding one is adding an entry.
+
+const STATE_ACTS = [
+  {
+    id: 'settle', glyph: '⛺', label: 'Found a camp here',
+    note: (st, mine) => {
+      const at = freeSpotIn(st);
+      return at ? `${SETTLE_FOOD} food · in ${at.name}, the emptiest district here`
+                : `${SETTLE_FOOD} food`;
+    },
+    eligible: (st) => {
+      if (!freeSpotIn(st)) return 'never';
+      if (G.meters.order < SETTLE_ORDER) return 'could';
+      return G.meters.food >= SETTLE_FOOD ? 'can' : 'could';
+    },
+    why: (st) => !freeSpotIn(st) ? 'Every district here already has a camp of yours in it.'
+      : G.meters.order < SETTLE_ORDER
+        ? `Too wild to send anyone out — Order ${Math.round(G.meters.order)} of the ${SETTLE_ORDER} it takes.`
+        : `A camp costs ${SETTLE_FOOD} food; the pot holds ${Math.round(G.meters.food)}.`,
+    run: (st) => { const at = freeSpotIn(st); if (at) foundCamp(at.lon, at.lat); },
+  },
+  {
+    id: 'fund', glyph: '🛕', label: 'Fund the next building here',
+    note: () => {
+      const b = BUILDINGS.find((x) => !G.built[x.id]);
+      return b ? `₹${b.cost} · ${b.name} — ${b.blurb.split('.')[0]}` : 'everything the pot can buy already stands';
+    },
+    eligible: (st, mine) => {
+      const b = BUILDINGS.find((x) => !G.built[x.id]);
+      if (!b) return 'already';
+      if (!mine.length) return 'never';
+      if (!G.flags.money) return 'could';
+      return G.meters.money >= b.cost ? 'can' : 'could';
+    },
+    why: (st, mine) => !mine.length ? `You hold no camp in ${st.name} to build in.`
+      : !G.flags.money ? 'There is no money yet. Teach barter and counting first.'
+      : `The pot holds ₹${Math.round(G.meters.money)}.`,
+    run: (st, mine) => {
+      const [lon, lat] = campList()[mine[0]];
+      lensExecute(LENS_ORDER, lon, lat);
+    },
+  },
+  {
+    id: 'recite', glyph: '🪔', label: 'Recite to this state',
+    note: (st, mine) => currentCard
+      ? `“${currentCard.title}” to the ${mine.reduce((n, i) => n + campPop(i), 0)} of your people here`
+      : 'no card in your hands',
+    eligible: (st, mine) => {
+      if (!mine.length) return 'never';
+      if (!currentCard) return 'never';
+      if (!G.read.has(currentCard.id)) return 'could';
+      return recite ? 'progress' : 'can';
+    },
+    why: (st, mine) => !mine.length ? `Nobody of yours is in ${st.name} to hear you.`
+      : !currentCard ? 'You are holding no card.'
+      : recite ? 'You are already mid-verse.'
+      : 'Read the card before you can teach it.',
+    run: (st, mine) => {
+      // Stand where they are, then chant: a recital aimed at a place is the
+      // same recital, given from inside it.
+      enterCamp(mine[0]);
+      startRecite();
+    },
+  },
+];
+
+/**
+ * Where a new camp would go in this state: the district whose centre is
+ * furthest from any camp you already hold.
+ *
+ * Deliberately NOT a survey cell. The lattice is ~3 degrees on a side, so a
+ * state the size of Kerala contains no cell centre at all and the panel would
+ * say "nowhere left" about ground that is entirely empty. The state view
+ * addresses districts because that is the scale it is looking at.
+ */
+const CAMP_APART = 0.6;              // degrees; closer than this is the same place
+
+function freeSpotIn(st) {
+  let best = null, bestD = CAMP_APART;
+  for (const d of st.districts) {
+    let near = Infinity;
+    for (const [lon, lat] of campList()) near = Math.min(near, Math.hypot(lon - d.c[0], lat - d.c[1]));
+    if (near > bestD) { bestD = near; best = { lon: d.c[0], lat: d.c[1], name: d.name }; }
+  }
+  return best;
+}
+
+function renderStateActs(st, mine) {
+  $('sp-acts').innerHTML = STATE_ACTS.map((a) => {
+    const state = normalizeEligibility(a.eligible(st, mine));
+    const can = state === 'can';
+    const e = ELIGIBILITY[state];
+    return `<button class="sp-act" data-act="${a.id}" ${can ? '' : 'disabled'}
+      title="${esc(can ? a.note(st, mine) : a.why(st, mine))}">
+      <i style="background:${e.color}"></i>
+      <span>${a.glyph} ${esc(a.label)}<em>${esc(can ? a.note(st, mine) : a.why(st, mine))}</em></span>
+    </button>`;
+  }).join('');
+}
+
+$('sp-acts').addEventListener('click', (e) => {
+  const b = e.target.closest('[data-act]');
+  const st = focusedState();
+  if (!b || !st) return;
+  const a = STATE_ACTS.find((x) => x.id === b.dataset.act);
+  const mine = campsIn(st);
+  if (!a || normalizeEligibility(a.eligible(st, mine)) !== 'can') return;
+  a.run(st, mine);
+  renderStatePanel();
+});
 
 const row = (k, v) => `<div class="sp-row"><b>${esc(k)}</b><span>${esc(v)}</span></div>`;
 
@@ -724,6 +838,23 @@ function placeName(lon, lat) {
   return `The ${best ?? st.name} Camp`;
 }
 
+/** Found a camp, wherever the decision was taken — a survey cell or a state
+ *  panel. One place, so the cost, the naming and the ledger cannot drift. */
+function foundCamp(lon, lat) {
+  G.meters.food = Math.max(0, G.meters.food - SETTLE_FOOD);
+  const name = placeName(lon, lat);
+  addCamp(lon, lat, name);
+  G.founded.push({ lon, lat, name, day: G.day });
+  cameraMoved();
+  toast(`${name} is founded. Some of your people have walked out to it.`);
+  saveGame();
+  paintHUD();
+  paintCampChip();
+  paintLegend();
+  if (view.state) renderStatePanel();
+  return name;
+}
+
 const LENS_SURVEY = registerLens({
   id: 'survey', glyph: '🧭', name: 'The Survey', grid: 'survey', books: [],
   blurb: 'The country cell by cell — where your people are, and where they are not.',
@@ -749,18 +880,7 @@ const LENS_SURVEY = registerLens({
         : G.meters.order < SETTLE_ORDER
           ? `Too wild to send anyone out — Order ${Math.round(G.meters.order)}, and ${SETTLE_ORDER} is the least it takes.`
           : `Founding a camp costs ${SETTLE_FOOD} food; the pot holds ${Math.round(G.meters.food)}.`,
-      execute: (t) => {
-        G.meters.food = Math.max(0, G.meters.food - SETTLE_FOOD);
-        const name = placeName(t.cell.lon, t.cell.lat);
-        addCamp(t.cell.lon, t.cell.lat, name);
-        G.founded.push({ lon: t.cell.lon, lat: t.cell.lat, name, day: G.day });
-        cameraMoved();
-        toast(`${name} is founded. Some of your people have walked out to it.`);
-        saveGame();
-        paintHUD();
-        paintCampChip();
-        paintLegend();
-      } },
+      execute: (t) => foundCamp(t.cell.lon, t.cell.lat) },
   ],
   // Every cell answers, so the empty country reads as opportunity rather than
   // as nothing — which is the whole reason to lay this sheet down.
@@ -847,7 +967,7 @@ function paintLegend() {
 /** A tap on the world: hand it to the sheet that is down. */
 function onCloseupTap(lon, lat) { lensExecute(effectiveLens(), lon, lat); }
 
-function afterFarmChange() { saveGame(); paintHUD(); paintCampChip(); paintLegend(); }
+function afterFarmChange() { saveGame(); paintHUD(); paintCampChip(); paintLegend(); if (view.state) renderStatePanel(); }
 
 /** Every camp's crops grow and every well refills, whether or not you are
  *  standing there — the work you did keeps working. */
@@ -1223,6 +1343,7 @@ function onNewDay() {
   paintHUD();
   paintCampChip();   // crops ripened overnight; the hint should say so
   paintLegend();
+  if (view.state) renderStatePanel();
 }
 
 /* ── The loop ───────────────────────────────────────────────────────────── */
@@ -1378,6 +1499,7 @@ window.__test = {
   camp: () => view.camp,
   state: () => view.state,
   enterState: (slug) => enterState(slug),
+  renderState: () => { if (view.state) renderStatePanel(); },
   exitState: () => exitState(),
   enterCamp: (i) => enterCamp(i),
   exitCamp: () => exitCamp(),
