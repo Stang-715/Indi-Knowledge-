@@ -66,6 +66,15 @@ function userBookEntries() {
   return { books, cards };
 }
 
+/**
+ * Does this card belong to a set of books? The sentinel 'user' stands for
+ * every book the player brought themselves — their ids are minted at upload
+ * time, so no lens could name them in advance.
+ */
+export function cardInBooks(c, books) {
+  return books.includes(c.book) || (books.includes('user') && c.category === 'Modern');
+}
+
 let baseBooks = [], baseCards = [];
 
 function rebuild() {

@@ -211,6 +211,22 @@
     padding: 5px 10px; pointer-events: none; }
   #camphint[hidden] { display: none; }
 
+  /* ── The vibe: the table changes material with the sheet ───────────────
+     Same mechanism the kit has always shipped for eras (kit.css [data-era]):
+     only the paper and its shadow move. --gold is untouched, because gold
+     means YOURS and nothing else, on every sheet. */
+  body[data-lens="field"]     { --sheet: #D2BE95; --sheet-shade: #BCA678; --paper: #E6D9B7;
+                                --lens-edge: #7A8F52; }
+  body[data-lens="hearth"]    { --sheet: #DAC4A0; --sheet-shade: #C6AC82; --paper: #EEDCC0;
+                                --lens-edge: #A8642B; }
+  body[data-lens="order"]     { --sheet: #D3CDB6; --sheet-shade: #BDB69C; --paper: #E9E3D0;
+                                --lens-edge: #3E8496; }
+  body[data-lens="chronicle"] { --sheet: #CDC3AB; --sheet-shade: #B6AB90; --paper: #E4DCC8;
+                                --lens-edge: #7A4E8E; }
+  #stage { transition: background-color .25s ease; }
+  #cardslot, #camphint, #campchip, #lenslegend, .toast, .door {
+    transition: background-color .25s ease, border-color .25s ease; }
+
   /* ── The lens rail: sheets at the edge of the table ────────────────── */
   #lensrail { position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
     z-index: 6; display: flex; flex-direction: column; gap: 7px; }
@@ -224,8 +240,9 @@
     transition: transform .25s ease, opacity .25s ease, border-color .25s ease; }
   #lensrail .lens:hover { opacity: 1; transform: translateX(0); border-color: var(--gold); }
   #lensrail .lens[aria-pressed="true"] { opacity: 1; transform: translateX(0);
-    border-color: var(--gold); border-left-width: 3px; color: var(--ink);
-    box-shadow: var(--shadow-lift); }
+    border-color: var(--rule); border-left: 3px solid var(--lens-edge, var(--gold));
+    color: var(--ink); box-shadow: var(--shadow-lift); }
+  body[data-lens] #camphint { border-left: 3px solid var(--lens-edge, var(--rule)); }
   #lensrail .lens-glyph { font-size: 16px; line-height: 1; }
   #lensrail .lens-name { letter-spacing: .01em; }
   @media (max-width: 720px) {
@@ -241,6 +258,12 @@
   #lenslegend[hidden] { display: none; }
   .lg-row { display: flex; align-items: center; gap: 6px; }
   .lg-row i { width: 9px; height: 9px; border: 1px solid var(--rule); }
+
+  /* The chip that says a sheet is narrowing the shelf, and lifts it again. */
+  .chip--lens { cursor: pointer; border-color: var(--lens-edge, var(--gold));
+    border-left-width: 3px; background: var(--paper); font: inherit; font-size: 11.5px;
+    margin-bottom: 10px; }
+  .chip--lens:hover { background: var(--sheet-shade); }
 
   /* ── Toasts ────────────────────────────────────────────────────────── */
   #toasts { position: absolute; top: 64px; left: 50%; transform: translateX(-50%);

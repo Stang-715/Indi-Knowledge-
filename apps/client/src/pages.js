@@ -7,11 +7,23 @@
  * "Recite this", which hands the card to the stage and closes the page.
  */
 import { allCards, allBooks, card, timesRecited, recitedCount, bookProgress,
-         addUserBook, removeUserBook, levelName } from './deck.js';
+         addUserBook, removeUserBook, levelName, cardInBooks } from './deck.js';
 
 const $ = (id) => document.getElementById(id);
 
-let hooks = null;  // { getLevel, setCurrentCard }
+let hooks = null;  // { getLevel, setCurrentCard, getFilter, clearFilter }
+
+/** The books the sheet on the table cares about, or null for all of them. */
+const filter = () => hooks?.getFilter?.() ?? null;
+const inFilter = (c) => { const f = filter(); return !f || cardInBooks(c, f.books); };
+
+/** The one line that says a sheet is narrowing what you can see, and how to
+ *  put it down again. */
+function filterNote() {
+  const f = filter();
+  return f ? `<button class="chip chip--lens" data-clear-filter
+    title="Lift the sheet and see everything again">${f.glyph} ${f.name} — showing its books only ✕</button>` : '';
+}
 let booksView = { tab: 'book', open: null };  // open: a book id, or null = shelf
 
 export function initPages(h) {
@@ -27,16 +39,19 @@ export function openBooksPage() { booksView = { tab: 'book', open: null }; rende
 
 function renderBinder() {
   const lv = hooks.getLevel();
-  const cards = allCards();
+  const all = allCards();
+  const cards = all.filter(inFilter);
   const done = recitedCount();
-  const pct = Math.round((done / cards.length) * 100);
+  const pct = Math.round((done / all.length) * 100);
   const books = new Map(allBooks().map((b) => [b.id, b]));
 
   $('binder-head').innerHTML = `
     <h1>The Collection</h1>
-    <p class="lede">${done} of ${cards.length} recited — ${pct}% of everything there is to teach.
+    <p class="lede">${done} of ${all.length} recited — ${pct}% of everything there is to teach.
       Locked cards open with your level; reciting is what levels you.</p>
-    <div class="binder-books">${bookProgress().map((b) =>
+    ${filterNote()}
+    <div class="binder-books">${bookProgress()
+      .filter((b) => cards.some((c) => c.book === b.id)).map((b) =>
       `<span class="chip">${b.icon} ${b.title} <b>${b.done}/${b.total}</b></span>`).join('')}</div>`;
 
   $('binder-grid').innerHTML = cards.map((c) => {
@@ -55,6 +70,7 @@ function renderBinder() {
 }
 
 function onCardsClick(e) {
+  if (e.target.closest('[data-clear-filter]')) { hooks.clearFilter?.(); renderBinder(); return; }
   // The detail's own buttons are handled on the detail element itself.
   if (e.target.closest('.card-detail')) return;
   const b = e.target.closest('[data-card]');
@@ -125,10 +141,11 @@ function renderBooks() {
   if (booksView.open) { renderBookOpen(booksView.open, lv, tabs); return; }
 
   if (booksView.tab === 'cat') {
-    const cards = allCards();
+    const cards = allCards().filter(inFilter);
     const cats = [...new Set(cards.map((c) => c.category))];
     $('books-body').innerHTML = `${tabs}
       <p class="lede">The same library, cut by subject — what each kind of teaching is FOR.</p>
+      ${filterNote()}
       ${cats.map((cat) => {
         const mine = cards.filter((c) => c.category === cat);
         const done = mine.filter((c) => timesRecited(c.id) > 0).length;
@@ -144,9 +161,11 @@ function renderBooks() {
   }
 
   // By Book: the shelf, plus the player's own.
+  const shelf = bookProgress().filter((b) => !filter() || cardInBooks({ book: b.id, category: b.user ? 'Modern' : '' }, filter().books));
   $('books-body').innerHTML = `${tabs}
     <p class="lede">Read a book through and its people carry it. Progress is pages recited.</p>
-    ${bookProgress().map((b) => `
+    ${filterNote()}
+    ${shelf.map((b) => `
       <div class="shelf-row" data-book="${b.id}">
         <span class="sr-icon">${b.icon}</span>
         <span class="sr-title">${b.title}</span>
@@ -206,6 +225,7 @@ function renderBookOpen(bookId, lv, tabs) {
 }
 
 function onBooksClick(e) {
+  if (e.target.closest('[data-clear-filter]')) { hooks.clearFilter?.(); renderBooks(); return; }
   if (e.target.closest('.card-detail')) return;
   const tab = e.target.closest('[data-tab]');
   if (tab) { booksView.tab = tab.dataset.tab; booksView.open = null; renderBooks(); return; }

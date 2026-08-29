@@ -26,7 +26,7 @@ import { initPop, tickPop, dailyPop, drawPop, popCount, animalCount,
          CAMP_RADIUS } from './pop.js';
 import { initDeck, card, allCards, recordRecital, recitedEntries, recitedCount,
          totalXP, levelFor, levelName, nextLevelAt, cardsAtLevel, nextCard,
-         timesRecited, bookProgress } from './deck.js';
+         timesRecited, bookProgress, cardInBooks } from './deck.js';
 import { initPages, openCardsPage, openBooksPage, openDetail } from './pages.js';
 import { initLenses, registerLens, lensList, lensById, armedLens, armedLensId,
          arm, disarm, actionAt, execute as lensExecute, buildTray, paintTray,
@@ -453,7 +453,8 @@ const LENS_FIELD = registerLens({
 });
 
 const LENS_HEARTH = registerLens({
-  id: 'hearth', glyph: '🪔', name: 'The Hearth', grid: 'camps', books: ['kahani', 'gita'],
+  id: 'hearth', glyph: '🪔', name: 'The Hearth', grid: 'camps',
+  books: ['kahani', 'gita', 'user'],
   blurb: 'Where your people gather — walk in and stand among them.',
   target: (lon, lat) => {
     if (view.camp >= 0) return null;
@@ -471,7 +472,8 @@ const LENS_HEARTH = registerLens({
 });
 
 const LENS_ORDER = registerLens({
-  id: 'order', glyph: '⚖️', name: 'The Order', grid: 'states', books: [],
+  id: 'order', glyph: '⚖️', name: 'The Order', grid: 'states',
+  books: ['shilpa', 'ganit', 'vigyan'],
   blurb: 'What the common pot pays for: halls, schools, granaries.',
   // Funding is placed, not assigned: the next thing the people need rises at
   // the camp you tap, which is the only decision the common pot ever asks for.
@@ -509,7 +511,7 @@ const LENS_ORDER = registerLens({
 });
 
 const LENS_CHRONICLE = registerLens({
-  id: 'chronicle', glyph: '🏛️', name: 'The Chronicle', grid: 'survey', books: [],
+  id: 'chronicle', glyph: '🏛️', name: 'The Chronicle', grid: 'survey', books: ['veda'],
   blurb: 'What this ground remembers — the record laid over the living map.',
   target: (lon, lat) => {
     const i = view.camp >= 0 ? view.camp : campAt(lon, lat, 3.5);
@@ -517,6 +519,15 @@ const LENS_CHRONICLE = registerLens({
   },
   hint: () => 'a reading sheet — nothing to do here, only to see',
 });
+
+/** The next card from this sheet's own books: something unrecited if there
+ *  is any, otherwise the one you have kept warmest least recently. */
+function nextCardIn(books) {
+  if (!books?.length) return null;
+  const lv = G.level;
+  const mine = allCards().filter((c) => c.level <= lv && cardInBooks(c, books));
+  return mine.find((c) => timesRecited(c.id) === 0) ?? mine[0] ?? null;
+}
 
 /** The sheet actually governing taps: what you armed, or the one this view
  *  has always used. Arming nothing must leave the game exactly as it was. */
@@ -529,7 +540,16 @@ initLenses({
     paintTray($('lensrail'));
     cameraMoved();                 // the grid lives in the terrain cache
     paintLegend();
-    document.body.dataset.lens = l?.id ?? '';
+    // The table changes material with the sheet: same palette mechanism the
+    // kit has always shipped for eras, driven by the lens instead.
+    if (l) document.body.dataset.lens = l.id; else delete document.body.dataset.lens;
+    // And the card in your hands changes with it — a sheet is a subject, and
+    // the subject brings its own book. Nothing is lost: an already-chosen
+    // card is only set aside if this sheet has something of its own to say.
+    if (l) {
+      const c = nextCardIn(l.books);
+      if (c) currentCard = c;
+    }
     paintCampChip();
     paintHUD();
     saveGame();
@@ -810,6 +830,9 @@ initPages({
     toast(`Ready: "${c.title}". Hold Space when you are.`);
   },
   onDeckChanged: () => { saveGame(); paintHUD(); },
+  // The binder and the library open on the sheet that is down.
+  getFilter: () => { const l = armedLens(); return l?.books.length ? { id: l.id, name: l.name, glyph: l.glyph, books: l.books } : null; },
+  clearFilter: () => disarm(),
 });
 
 /* ── Funding: what money and attention buy ──────────────────────────────── */
@@ -1103,6 +1126,7 @@ window.__test = {
   tally: () => ({ ...G.tally }),
   addMoney: (n) => { G.meters.money += n; paintHUD(); },
   lenses: () => lensList().map((l) => l.id),
+  bookOf: (id) => card(id)?.book ?? null,
   setMoney: (n) => { G.meters.money = n; G.flags.money = true; paintHUD(); },
   farmLonLat: (i, what) => {
     const L = farmLayout(i);
