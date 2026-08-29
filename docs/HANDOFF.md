@@ -7,7 +7,9 @@ tree** — the previous version predated phases 12–43 and lied to newcomers.
 **Repo:** `Stang-715/Indi-Knowledge-` · branch `claude/amazing-hopper-q6g8s7`
 **The game, live:** https://claude.ai/code/artifact/fccc9042-9f5e-49dd-87a4-3e73e46ee8a6
 **Tests:** `npm test` (348, all green) · `npm run verify` · `npm run gaps` (coverage report)
-**Build:** `node tools/build-timeline.mjs` → `node tools/build-client.mjs` → `dist/paramountcy.html` (single file, ~1.9 MB, colophon-stamped)
+**Build:** `node tools/build-deck.mjs` (the 62 cards) → `node tools/build-lenses.mjs` (the
+record the knowledge sheets read) → `node tools/build-client.mjs` → `dist/paramountcy.html`
+(single file, ~0.9 MB, colophon-stamped)
 
 ---
 
@@ -117,7 +119,8 @@ waiting on human data (docs/17-indus-session.md).
 
 ```
 npm test                    # 295 green before you touch anything
-node tools/build-timeline.mjs   # after any data/doc change
+node tools/build-deck.mjs       # after any card/corpus change
+node tools/build-lenses.mjs     # after any atlas-data/ change
 node tools/build-client.mjs     # then rebuild the bundle
 npm run gaps                # the coverage report, targets retired
 ```
