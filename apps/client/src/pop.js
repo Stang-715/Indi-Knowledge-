@@ -22,7 +22,7 @@ const START_ANIMALS = 22;
 const POP_HARD_CAP = 420;
 
 const WALK_SPEED = 0.22;          // degrees per real second, at 1x
-const CAMP_RADIUS = 1.6;          // how far a villager strays from home, deg
+export const CAMP_RADIUS = 1.6;   // how far a villager strays from home, deg
 const FIGHT_RANGE = 0.55;         // how close two hotheads must be, deg
 const FIGHT_SECONDS = 2.6;
 const HUNT_RANGE = 2.2;

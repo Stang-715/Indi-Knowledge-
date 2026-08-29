@@ -22,22 +22,25 @@ import { WorldgenClient } from '../../../packages/render-realm/src/workerclient.
 import { initPop, tickPop, dailyPop, drawPop, popCount, animalCount,
          setListenFocus, takeCounters, lightFire, campList, START_POP,
          setEconomyFlags, setBuildings, cowCount, campAt, campName, campPop,
-         farmLayout, workAt, grainBurst, FARM_PLOTS, WELL_DIGS, WELL_MAX_WATER } from './pop.js';
+         farmLayout, workAt, grainBurst, FARM_PLOTS, WELL_DIGS, WELL_MAX_WATER,
+         CAMP_RADIUS } from './pop.js';
 import { initDeck, card, allCards, recordRecital, recitedEntries, recitedCount,
          totalXP, levelFor, levelName, nextLevelAt, cardsAtLevel, nextCard,
          timesRecited, bookProgress } from './deck.js';
 import { initPages, openCardsPage, openBooksPage, openDetail } from './pages.js';
 import { initLenses, registerLens, lensList, lensById, armedLens, armedLensId,
          arm, disarm, actionAt, execute as lensExecute, buildTray, paintTray,
-         keyToLens } from './lenses.js';
+         keyToLens, ELIGIBILITY, ELIGIBILITY_ORDER } from './lenses.js';
+import { drawGrid, drawMarks } from './sheet.js';
 
 const $ = (id) => document.getElementById(id);
 
 /* ── World: terrain and the deck ────────────────────────────────────────── */
 
-const [bundle, DECK] = await Promise.all([
+const [bundle, DECK, ATLAS] = await Promise.all([
   fetch('../../data/skeleton/bundle.json').then(r => r.json()),
   fetch('../../data/game/deck.json').then(r => r.json()),
+  fetch('../../data/atlas/boundaries.json').then(r => r.json()),
 ]);
 
 const SK = loadSkeleton(bundle);
@@ -111,6 +114,10 @@ function renderTerrainCache(budget) {
   tctx.clearRect(0, 0, w, h);
   tctx.drawImage(off, 0, 0, w, h);
   renderer.drawWater(tctx, proj, w, h, cam.level(w / dpr), 1);
+  // The sheet's own subdivision goes in here too: it changes only when the
+  // camera or the lens changes, so it costs nothing per frame.
+  drawGrid(tctx, proj, dpr, cam.level(w / dpr), effectiveLens().grid,
+           { atlas: ATLAS, camps: campList(), campRadius: CAMP_RADIUS });
 }
 
 function cameraMoved() {
@@ -279,6 +286,7 @@ function paintCampChip() {
   $('camphint').hidden = !hint;
   $('camphint').textContent = hint;
   $('camphint').style.top = inCamp ? '' : '14px';
+  paintLegend();
 }
 
 /* ── The farm: work you do with your hands ──────────────────────────────── */
@@ -428,6 +436,20 @@ const LENS_FIELD = registerLens({
       execute: () => {} },
   ],
   hint: () => closeupHint(),
+  // Inside a camp the Field reads plots and a well, not camps.
+  marks() {
+    if (view.camp < 0 || !knowsPlough()) return null;
+    const L = farmLayout(view.camp);
+    const out = L.plots.map((g, j) => {
+      const a = actionAt(LENS_FIELD, g.lon, g.lat);
+      return a && { lon: g.lon, lat: g.lat, w: g.w, h: g.h, state: a.state };
+    }).filter(Boolean);
+    if (knowsWell()) {
+      const a = actionAt(LENS_FIELD, L.well.lon, L.well.lat);
+      if (a) out.push({ lon: L.well.lon, lat: L.well.lat, r: L.well.r * 1.35, state: a.state });
+    }
+    return out;
+  },
 });
 
 const LENS_HEARTH = registerLens({
@@ -449,7 +471,7 @@ const LENS_HEARTH = registerLens({
 });
 
 const LENS_ORDER = registerLens({
-  id: 'order', glyph: '⚖️', name: 'The Order', grid: 'camps', books: [],
+  id: 'order', glyph: '⚖️', name: 'The Order', grid: 'states', books: [],
   blurb: 'What the common pot pays for: halls, schools, granaries.',
   // Funding is placed, not assigned: the next thing the people need rises at
   // the camp you tap, which is the only decision the common pot ever asks for.
@@ -505,6 +527,8 @@ function effectiveLens() {
 initLenses({
   onArm: (l) => {
     paintTray($('lensrail'));
+    cameraMoved();                 // the grid lives in the terrain cache
+    paintLegend();
     document.body.dataset.lens = l?.id ?? '';
     paintCampChip();
     paintHUD();
@@ -515,10 +539,45 @@ initLenses({
   onBlocked: (a) => { const m = a.verb?.why?.(a.target); if (m) toast(m); },
 });
 
+/**
+ * How the world answers the sheet right now: one mark per thing the sheet
+ * reads, in the six pigments. A lens may paint its own things (the Field
+ * paints plots); otherwise the camps answer, and each one answers with
+ * exactly what a tap there would do — the sheet cannot lie about the verb.
+ */
+function lensMarks() {
+  const l = effectiveLens();
+  if (!l) return null;
+  if (l.marks) return l.marks();
+  // A reading sheet has no verbs, so it has nothing to say about eligibility.
+  // Painting every camp "never" would be a sentence it does not mean.
+  if (!l.verbs.length) return null;
+  const out = [];
+  const camps = campList();
+  for (let i = 0; i < camps.length; i++) {
+    const [lon, lat] = camps[i];
+    const a = actionAt(l, lon, lat);
+    if (a) out.push({ lon, lat, state: a.state });
+  }
+  return out;
+}
+
+/** The pigments actually in play, named — the legend as a slip of paper. */
+function paintLegend() {
+  const el = $('lenslegend');
+  const l = armedLens();
+  const marks = l ? lensMarks() : null;
+  const seen = new Set((marks ?? []).map((m) => m.state));
+  const rows = ELIGIBILITY_ORDER.filter((k) => seen.has(k));
+  el.hidden = !rows.length;
+  el.innerHTML = rows.map((k) =>
+    `<span class="lg-row" title="${ELIGIBILITY[k].hint}"><i style="background:${ELIGIBILITY[k].color}"></i>${ELIGIBILITY[k].label}</span>`).join('');
+}
+
 /** A tap on the world: hand it to the sheet that is down. */
 function onCloseupTap(lon, lat) { lensExecute(effectiveLens(), lon, lat); }
 
-function afterFarmChange() { saveGame(); paintHUD(); paintCampChip(); }
+function afterFarmChange() { saveGame(); paintHUD(); paintCampChip(); paintLegend(); }
 
 /** Every camp's crops grow and every well refills, whether or not you are
  *  standing there — the work you did keeps working. */
@@ -888,6 +947,7 @@ function onNewDay() {
   saveGame();
   paintHUD();
   paintCampChip();   // crops ripened overnight; the hint should say so
+  paintLegend();
 }
 
 /* ── The loop ───────────────────────────────────────────────────────────── */
@@ -919,6 +979,7 @@ function frame(t) {
     const proj = cam.projection(w, h);
     ctx.clearRect(0, 0, w, h);
     ctx.drawImage(terrainCv, 0, 0);
+    drawMarks(ctx, proj, dpr, lensMarks());
     drawPop(ctx, proj, dpr, t / 1000, G.level, view.camp, farmView());
 
     if (recite) {

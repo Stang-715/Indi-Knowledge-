@@ -233,6 +233,15 @@
     #lensrail .lens { padding: 8px; }
   }
 
+  /* The legend: a slip naming only the pigments actually on the sheet. */
+  #lenslegend { position: absolute; left: 14px; bottom: 58px; z-index: 6;
+    display: flex; flex-direction: column; gap: 3px; background: var(--paper);
+    border: 1px solid var(--rule); box-shadow: var(--shadow-contact);
+    padding: 6px 10px; font-size: 11px; color: var(--ink-soft); }
+  #lenslegend[hidden] { display: none; }
+  .lg-row { display: flex; align-items: center; gap: 6px; }
+  .lg-row i { width: 9px; height: 9px; border: 1px solid var(--rule); }
+
   /* ── Toasts ────────────────────────────────────────────────────────── */
   #toasts { position: absolute; top: 64px; left: 50%; transform: translateX(-50%);
     z-index: 6; display: flex; flex-direction: column; gap: 6px; align-items: center;
@@ -270,6 +279,7 @@
        Lay one down and the world answers in its language. Keys 1..n, 0 or Esc
        lifts it off again. -->
   <div id="lensrail" aria-label="Lenses: sheets to lay over the map"></div>
+  <div id="lenslegend" hidden aria-label="What the colours on the sheet mean"></div>
 
   <div id="toasts" aria-live="polite"></div>
 
