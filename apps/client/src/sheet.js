@@ -4,10 +4,11 @@
  * Two halves, on purpose:
  *
  *   · the GRID — the subdivision this sheet reads the country in. Camps and
- *     their catchments, the state outlines the atlas surveyed, or the 9×9
- *     survey lattice the sim has always used. It only changes when the camera
- *     or the sheet changes, so it is baked into the terrain cache alongside
- *     the rivers rather than redrawn every frame.
+ *     the ground each one walks, the states the atlas surveyed, or those
+ *     states cut into districts, the unit of administration. A grid only
+ *     changes when the camera or the sheet changes, so it is baked into the
+ *     terrain cache alongside the rivers rather than redrawn every frame —
+ *     and so is the wash a knowledge sheet lays under it.
  *
  *   · the MARKS — how each thing on that grid answers the sheet right now,
  *     in the six eligibility pigments. That changes with the game, so it is
@@ -21,10 +22,6 @@ import { ELIGIBILITY } from './lenses.js';
 
 /* ── The grids ──────────────────────────────────────────────────────────── */
 
-/** The survey lattice — the same 9×9 the sim divides the country into
- *  (packages/sim/src/survey.js), so the two never disagree about a cell. */
-export const SURVEY_GRID = { w: 66.0, s: 6.0, e: 94.0, n: 35.0, cols: 9, rows: 9 };
-
 function strokeRing(ctx, proj, flat) {
   ctx.moveTo(proj.toX(flat[0]), proj.toY(flat[1]));
   for (let i = 2; i < flat.length; i += 2) ctx.lineTo(proj.toX(flat[i]), proj.toY(flat[i + 1]));
@@ -37,9 +34,11 @@ function strokeRing(ctx, proj, flat) {
  * the Camera projects — so they stroke straight onto the canvas. Simplified
  * community geometry, for visualisation only.
  */
-function drawStateGrid(ctx, proj, dpr, level, atlas) {
+function drawStateGrid(ctx, proj, dpr, level, atlas, withDistricts) {
   if (!atlas) return;
-  if (level >= 3) {
+  // Districts are the unit of administration, so the Order draws them at any
+  // zoom; every other sheet only wants them once you have leaned in.
+  if (withDistricts || level >= 3) {
     ctx.beginPath();
     for (const s of atlas.states) for (const d of s.districts) for (const r of d.rings) strokeRing(ctx, proj, r);
     ctx.strokeStyle = 'rgba(62, 37, 64, 0.16)';
@@ -51,26 +50,6 @@ function drawStateGrid(ctx, proj, dpr, level, atlas) {
   ctx.strokeStyle = 'rgba(62, 37, 64, 0.42)';
   ctx.lineWidth = 1.1 * dpr;
   ctx.stroke();
-}
-
-function drawSurveyGrid(ctx, proj, dpr) {
-  const G = SURVEY_GRID;
-  ctx.beginPath();
-  for (let c = 0; c <= G.cols; c++) {
-    const lon = G.w + (G.e - G.w) * (c / G.cols);
-    ctx.moveTo(proj.toX(lon), proj.toY(G.n));
-    ctx.lineTo(proj.toX(lon), proj.toY(G.s));
-  }
-  for (let r = 0; r <= G.rows; r++) {
-    const lat = G.s + (G.n - G.s) * (r / G.rows);
-    ctx.moveTo(proj.toX(G.w), proj.toY(lat));
-    ctx.lineTo(proj.toX(G.e), proj.toY(lat));
-  }
-  ctx.setLineDash([5 * dpr, 5 * dpr]);
-  ctx.strokeStyle = 'rgba(62, 37, 64, 0.28)';
-  ctx.lineWidth = 0.9 * dpr;
-  ctx.stroke();
-  ctx.setLineDash([]);
 }
 
 /** Camps and the ground each one walks: a thin catchment circle per camp. */
@@ -96,9 +75,37 @@ function drawCampGrid(ctx, proj, dpr, camps, radius) {
 export function drawGrid(ctx, proj, dpr, level, kind, { atlas, camps, campRadius } = {}) {
   if (!kind || kind === 'none') return;
   ctx.save();
-  if (kind === 'states') drawStateGrid(ctx, proj, dpr, level, atlas);
-  else if (kind === 'survey') drawSurveyGrid(ctx, proj, dpr);
+  if (kind === 'states' || kind === 'districts')
+    drawStateGrid(ctx, proj, dpr, level, atlas, kind === 'districts');
   else if (kind === 'camps' && camps) drawCampGrid(ctx, proj, dpr, camps, campRadius ?? 1.6);
+  ctx.restore();
+}
+
+/* ── The wash: a magnitude, state by state ──────────────────────────────── */
+
+/**
+ * A knowledge sheet paints how MUCH, not what you can do — so it must not
+ * borrow the eligibility pigments, which mean one thing each. It gets a wash
+ * instead: one hue at five lightnesses over the state outlines, in its own
+ * colour, well away from gold (gold means yours). Ground the record has
+ * nothing to say about is left as unsurveyed paper — the distinction between
+ * "there is nothing there" and "we have not looked".
+ *
+ * @param values  slug → 0..1, or undefined where there is no record
+ * @param rgb     the sheet's hue, [r, g, b]
+ */
+export function drawWash(ctx, proj, dpr, atlas, values, rgb) {
+  if (!atlas || !values) return;
+  ctx.save();
+  for (const st of atlas.states) {
+    const v = values[st.slug];
+    ctx.beginPath();
+    for (const ring of st.outline) strokeRing(ctx, proj, ring);
+    ctx.fillStyle = v == null
+      ? 'rgba(216,203,170,0.40)'
+      : `rgba(${rgb[0]},${rgb[1]},${rgb[2]},${(0.10 + Math.max(0, Math.min(1, v)) * 0.34).toFixed(3)})`;
+    ctx.fill('evenodd');
+  }
   ctx.restore();
 }
 

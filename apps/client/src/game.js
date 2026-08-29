@@ -31,16 +31,17 @@ import { initPages, openCardsPage, openBooksPage, openDetail } from './pages.js'
 import { initLenses, registerLens, lensList, lensById, armedLens, armedLensId,
          arm, disarm, actionAt, execute as lensExecute, buildTray, paintTray,
          keyToLens, ELIGIBILITY, ELIGIBILITY_ORDER } from './lenses.js';
-import { drawGrid, drawMarks } from './sheet.js';
+import { drawGrid, drawMarks, drawWash } from './sheet.js';
 
 const $ = (id) => document.getElementById(id);
 
 /* ── World: terrain and the deck ────────────────────────────────────────── */
 
-const [bundle, DECK, ATLAS] = await Promise.all([
+const [bundle, DECK, ATLAS, RECORD] = await Promise.all([
   fetch('../../data/skeleton/bundle.json').then(r => r.json()),
   fetch('../../data/game/deck.json').then(r => r.json()),
   fetch('../../data/atlas/boundaries.json').then(r => r.json()),
+  fetch('../../data/game/lenses.json').then(r => r.json()),
 ]);
 
 const SK = loadSkeleton(bundle);
@@ -114,9 +115,12 @@ function renderTerrainCache(budget) {
   tctx.clearRect(0, 0, w, h);
   tctx.drawImage(off, 0, 0, w, h);
   renderer.drawWater(tctx, proj, w, h, cam.level(w / dpr), 1);
-  // The sheet's own subdivision goes in here too: it changes only when the
-  // camera or the lens changes, so it costs nothing per frame.
-  drawGrid(tctx, proj, dpr, cam.level(w / dpr), effectiveLens().grid,
+  // The sheet's own wash and subdivision go in here too: both change only
+  // when the camera or the lens changes, so they cost nothing per frame.
+  const L = effectiveLens();
+  const wash = L.wash?.();
+  if (wash) drawWash(tctx, proj, dpr, ATLAS, wash.values, wash.rgb);
+  drawGrid(tctx, proj, dpr, cam.level(w / dpr), L.grid,
            { atlas: ATLAS, camps: campList(), campRadius: CAMP_RADIUS });
 }
 
@@ -335,6 +339,58 @@ function farmHit(lon, lat) {
   return null;
 }
 
+/* ── The record: what the researched packs say about this ground ────────── */
+//
+// data/game/lenses.json is the atlas's own dossiers, reduced by
+// tools/build-lenses.mjs to what a sheet on a table actually needs: one
+// number to paint a state by, and a few lines for the slip you open when you
+// tap it. The full record, with its sources, stays in atlas-data/.
+
+/** Which state a point falls in — the atlas rings, tested as geometry. */
+function stateAt(lon, lat) {
+  for (const st of ATLAS.states) {
+    let inside = false;
+    for (const ring of st.outline) {
+      for (let i = 0, j = ring.length - 2; i < ring.length; j = i, i += 2) {
+        const xi = ring[i], yi = ring[i + 1], xj = ring[j], yj = ring[j + 1];
+        if (((yi > lat) !== (yj > lat)) && (lon < (xj - xi) * (lat - yi) / (yj - yi) + xi)) inside = !inside;
+      }
+    }
+    if (inside) return st;
+  }
+  return null;
+}
+
+/** slug → 0..1 over a record's own numbers, for the wash. */
+function washFrom(table) {
+  const max = Math.max(1, ...Object.values(table).map((r) => r.n));
+  const out = {};
+  for (const [slug, r] of Object.entries(table)) out[slug] = r.n / max;
+  return out;
+}
+
+const esc = (t) => String(t ?? '').replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+
+/** The dossier: a slip laid on the table, in the same frame a card uses. */
+function openDossier(title, kicker, rows) {
+  for (const el of document.querySelectorAll('.card-detail')) el.remove();
+  const el = document.createElement('div');
+  el.className = 'card-detail';
+  el.innerHTML = `<div class="cd-box">
+    <div class="cd-book">${esc(kicker)}</div>
+    <h2>${esc(title)}</h2>
+    ${rows.filter(Boolean).map(([k, v]) => k
+      ? `<p class="cd-moral"><b>${esc(k)}</b> · ${esc(v)}</p>`
+      : `<p class="cd-text">${esc(v)}</p>`).join('')}
+    <p class="cd-origin">From the atlas's researched packs — see atlas-data/ for the full record and its sources.</p>
+    <div class="cd-row"><button class="btn" data-close-detail>close</button></div>
+  </div>`;
+  el.addEventListener('click', (e) => {
+    if (e.target === el || e.target.closest('[data-close-detail]')) el.remove();
+  });
+  $('stage').append(el);
+}
+
 /* ── The lenses: sheets you lay over the table ──────────────────────────── */
 //
 // The tap routing lives here, not in a special case per feature. Whatever
@@ -472,16 +528,31 @@ const LENS_HEARTH = registerLens({
 });
 
 const LENS_ORDER = registerLens({
-  id: 'order', glyph: '⚖️', name: 'The Order', grid: 'states',
+  id: 'order', glyph: '⚖️', name: 'The Order', grid: 'districts',
   books: ['shilpa', 'ganit', 'vigyan'],
+  // Painted by how finely the ground is administered — the district count,
+  // which is the one number the governance record varies most across.
+  wash: () => ({ values: washFrom(RECORD.order), rgb: [62, 132, 150] }),
   blurb: 'What the common pot pays for: halls, schools, granaries.',
   // Funding is placed, not assigned: the next thing the people need rises at
   // the camp you tap, which is the only decision the common pot ever asks for.
   target: (lon, lat) => {
     const i = view.camp >= 0 ? view.camp : campAt(lon, lat);
-    return i >= 0 ? { kind: 'camp', camp: i, def: BUILDINGS.find((b) => !G.built[b.id]) } : null;
+    if (i >= 0) return { kind: 'camp', camp: i, def: BUILDINGS.find((b) => !G.built[b.id]) };
+    const st = stateAt(lon, lat);
+    return st ? { kind: 'state', slug: st.slug, rec: RECORD.order[st.slug] } : null;
   },
   verbs: [
+    { id: 'read-order', label: 'read how it is governed',
+      eligible: (t) => t.kind === 'state' ? (t.rec ? 'can' : 'never') : 'never',
+      execute: (t) => openDossier(t.rec.name, 'how this ground is governed', [
+        ['', t.rec.summary],
+        t.rec.capital && ['Capital', t.rec.capital],
+        t.rec.formed && ['Formed', t.rec.formed],
+        t.rec.n && ['Districts', t.rec.n],
+        t.rec.legislature && ['Legislature', t.rec.legislature],
+        t.rec.policy && ['A flagship policy', `${t.rec.policy.name} — ${t.rec.policy.area}`],
+      ]) },
     { id: 'fund', label: 'fund it',
       eligible: (t) => {
         if (!t.def) return 'already';           // everything the pot can buy, stands
@@ -503,21 +574,39 @@ const LENS_ORDER = registerLens({
       } },
   ],
   hint: () => {
-    if (!G.flags.money) return 'nothing to fund yet — money comes with barter and counting';
+    if (!G.flags.money) return 'nothing to fund yet — money comes with barter and counting; tap a state to read how it is governed';
     const next = BUILDINGS.find((b) => !G.built[b.id]);
-    return next ? `₹${Math.round(G.meters.money)} in the pot — tap a camp to raise the ${next.name} (₹${next.cost})`
-                : 'every building stands; the pot is yours to grow';
+    return next ? `₹${Math.round(G.meters.money)} in the pot — tap a camp to raise the ${next.name} (₹${next.cost}), or any state to read how it is governed`
+                : 'every building stands — tap any state to read how it is governed';
   },
 });
 
 const LENS_CHRONICLE = registerLens({
-  id: 'chronicle', glyph: '🏛️', name: 'The Chronicle', grid: 'survey', books: ['veda'],
+  id: 'chronicle', glyph: '🏛️', name: 'The Chronicle', grid: 'states', books: ['veda'],
   blurb: 'What this ground remembers — the record laid over the living map.',
+  // Painted by world-heritage weight: what this ground built that the world
+  // still keeps. Plum, deliberately — gold already means yours.
+  wash: () => ({ values: washFrom(RECORD.chronicle), rgb: [122, 78, 142] }),
   target: (lon, lat) => {
-    const i = view.camp >= 0 ? view.camp : campAt(lon, lat, 3.5);
-    return i >= 0 ? { kind: 'camp', camp: i } : null;
+    const st = stateAt(lon, lat);
+    return st ? { kind: 'state', slug: st.slug, rec: RECORD.chronicle[st.slug] } : null;
   },
-  hint: () => 'a reading sheet — nothing to do here, only to see',
+  verbs: [
+    { id: 'read-record', label: 'read the record',
+      eligible: (t) => t.rec ? 'can' : 'never',
+      execute: (t) => openDossier(t.rec.name, 'what this ground remembers', [
+        ['', t.rec.summary],
+        t.rec.first && [t.rec.first.year, t.rec.first.what],
+        t.rec.dynasties.length && ['Who ruled here', t.rec.dynasties.join(' · ')],
+        t.rec.events && ['Documented events', t.rec.events],
+        t.rec.unesco && ['World Heritage', `${t.rec.unesco} propert${t.rec.unesco === 1 ? 'y' : 'ies'}`],
+        t.rec.sites.length && ['What still stands', t.rec.sites.join(' · ')],
+      ]) },
+  ],
+  hint: () => 'tap any state to read what this ground remembers',
+  // The wash IS this sheet's mark. Ringing the camps would answer a question
+  // about settlements that a sheet about states never asked.
+  marks: () => null,
 });
 
 /** The next card from this sheet's own books: something unrecited if there
@@ -1127,6 +1216,11 @@ window.__test = {
   addMoney: (n) => { G.meters.money += n; paintHUD(); },
   lenses: () => lensList().map((l) => l.id),
   bookOf: (id) => card(id)?.book ?? null,
+  screenAt: (lon, lat) => {
+    const proj = cam.projection(cv.width, cv.height);
+    const rect = cv.getBoundingClientRect();
+    return { x: rect.left + proj.toX(lon) / dpr, y: rect.top + proj.toY(lat) / dpr };
+  },
   setMoney: (n) => { G.meters.money = n; G.flags.money = true; paintHUD(); },
   farmLonLat: (i, what) => {
     const L = farmLayout(i);
