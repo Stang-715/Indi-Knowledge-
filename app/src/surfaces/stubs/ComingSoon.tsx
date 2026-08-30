@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import Disclosure from '../../components/chowk/Disclosure'
+import { useT } from '../../i18n'
 import './coming-soon.css'
 
 interface Props {
@@ -18,17 +19,18 @@ interface Props {
  * "coming soon" — and it links to whatever already exists rather than hiding it.
  */
 export default function ComingSoon({ surface, tagline, planned, existing }: Props) {
+  const t = useT()
   return (
     <div className="soon">
       <header className="soon__head">
-        <p className="t-label">In development</p>
+        <p className="t-label">{t('stub.inDevelopment')}</p>
         <h1 className="t-display soon__title">{surface}</h1>
         <p className="soon__tagline">{tagline}</p>
       </header>
 
       {existing && existing.length > 0 && (
         <section className="soon__block">
-          <p className="t-label">Already working</p>
+          <p className="t-label">{t('stub.alreadyWorking')}</p>
           <div className="stack">
             {existing.map((e) => (
               <Link key={e.to} to={e.to} className="soon__link glass-dark">
@@ -41,14 +43,14 @@ export default function ComingSoon({ surface, tagline, planned, existing }: Prop
       )}
 
       <section className="soon__block">
-        <p className="t-label">Planned</p>
+        <p className="t-label">{t('stub.planned')}</p>
         <div className="stack">
           {planned.map((p) => (
             <Disclosure
               key={p.code}
               icon={<span className="soon__code">{p.code}</span>}
               title={p.title}
-              meta="Not built yet"
+              meta={t('stub.notBuilt')}
             >
               <p>{p.detail}</p>
             </Disclosure>

@@ -1,18 +1,5 @@
-import type { LocaleCode } from '../core/types'
-
-export interface LanguageMeta {
-  code: LocaleCode
-  endonym: string
-  english: string
-}
-
-export const LANGUAGES: LanguageMeta[] = [
-  { code: 'en', endonym: 'English', english: 'English' },
-  { code: 'hi', endonym: 'हिन्दी', english: 'Hindi' },
-  { code: 'bn', endonym: 'বাংলা', english: 'Bengali' },
-  { code: 'ta', endonym: 'தமிழ்', english: 'Tamil' },
-  { code: 'mr', endonym: 'मराठी', english: 'Marathi' },
-]
+import type { LocaleCode } from './locales'
+import { SARATHI_EN } from './sarathi.en'
 
 type Dict = Record<string, string>
 
@@ -177,6 +164,86 @@ const en: Dict = {
   'common.suppressed': '{n} small groups hidden to protect anonymity',
   'common.notCollected': 'Not collected',
   'common.principle': 'Architectural constraint',
+  /* ---------------------------------------------------------------- *
+   * Chowk shell — surfaces, navigation, contextual action
+   * ---------------------------------------------------------------- */
+  'shell.skip': 'Skip to content',
+  'surface.sarathi': 'Sarathi',
+  'surface.bharat': 'Bharat',
+  'surface.bills': 'Bills',
+  'surface.works': 'Works',
+  'action.sarathi': 'Ask Sarathi something',
+  'action.bharat': 'List your store',
+  'action.bills': 'Go to an open vote',
+  'action.works': 'File a work',
+
+  /* ------------------------- 1.x Sarathi surface -------------------- */
+  'sar.hearing': 'Hearing…',
+  'sar.mic.start': 'Ask by voice',
+  'sar.mic.stop': 'Stop listening',
+  'sar.mic.denied':
+    'The microphone is blocked for this app. Your browser’s site settings can allow it — or just type, which works exactly as well.',
+  'sar.settings': 'Voice & language',
+  'sar.offline.title': 'No connection — Sarathi still works.',
+  'sar.offline.body':
+    'He runs on your phone. New notices and bills will arrive when you are back on.',
+  'sar.island.offline': 'No connection',
+  'sar.island.offlineValue': 'Sarathi is fine',
+  'sar.island.offlineEyebrow': 'Offline',
+  'sar.island.offlineTitle': 'Sarathi still works',
+  'sar.island.whatElse': 'What else works',
+  'sar.dismiss': 'Dismiss',
+
+  /* --------------------------- 1.5 settings ------------------------- */
+  'set.language': 'Language',
+  'set.languageHint':
+    'Sarathi speaks and listens in this language. Where a phrase has not been translated yet you will see the English rather than a broken placeholder.',
+  'set.speech': 'Speech',
+  'set.readAloud': 'Read answers aloud',
+  'set.readAloudOn': 'Uses your device’s own voice. Nothing is sent anywhere.',
+  'set.readAloudOff': 'This device has no speech voices available.',
+  'set.micNote':
+    'Asking by voice uses your browser’s speech engine, which on most desktops means the audio is sent to that vendor to be transcribed. Nothing is stored by this app either way — and typing does exactly the same job.',
+  'set.micNone':
+    'This device has no speech recognition, so the microphone button is hidden. Typing works exactly as well.',
+  'set.reading': 'Reading',
+  'set.textSize': 'Text size',
+  'set.scale.standard': 'Standard',
+  'set.reduceMotion': 'Reduce motion',
+  'set.reduceMotionHint': 'Stops his blinking, sway and the drifting background.',
+  'set.contrast': 'High contrast',
+  'set.contrastHint': 'Black on white, hard borders, no glass and no gradient.',
+  'set.offlineIf': 'If you go offline',
+  'set.offlineNow': 'You are offline',
+  'set.translationPartial': 'Partly translated — the rest appears in English',
+  'set.translationPending': 'Not translated yet — this appears in English',
+
+  /* ------------------------------ 1.6 offline ----------------------- */
+  'off.sarathi': 'Talking to Sarathi',
+  'off.sarathiWhy': 'He runs on your phone, not on a server',
+  'off.notices': 'Notices you have opened',
+  'off.noticesWhy': 'Kept on the device once read',
+  'off.settings': 'Your settings and language',
+  'off.settingsWhy': 'Never needed a connection',
+  'off.new': 'New notices and bills',
+  'off.newWhy': 'Arrive when you are back on',
+  'off.vote': 'Casting a vote',
+  'off.voteWhy': 'Held until there is a connection',
+
+  /* ------------------------- surfaces not yet built ----------------- */
+  'stub.inDevelopment': 'In development',
+  'stub.alreadyWorking': 'Already working',
+  'stub.planned': 'Planned',
+  'stub.notBuilt': 'Not built yet',
+
+  /* ---------------------------- screen states ----------------------- */
+  'state.empty': 'Nothing here yet',
+  'state.loading': 'Loading',
+  'state.error': 'That did not load',
+  'state.errorBody': 'Something went wrong fetching this. It is not your connection.',
+  'state.retry': 'Try again',
+  'state.stale': 'Showing what was saved',
+  'state.staleBody': 'You are offline, so this may have changed since you last had a connection.',
 }
 
 /**
@@ -242,13 +309,17 @@ const mr: Dict = {
   'poll.advisory': 'सल्लागार मतदान — कायदेशीर मत नाही',
 }
 
-export const DICTS: Record<LocaleCode, Dict> = { en, hi, bn, ta, mr }
-
-/** BCP-47 tags for speech synthesis and `lang` attributes. */
-export const BCP47: Record<LocaleCode, string> = {
-  en: 'en-IN',
-  hi: 'hi-IN',
-  bn: 'bn-IN',
-  ta: 'ta-IN',
-  mr: 'mr-IN',
+/**
+ * Partial by design. Only English is complete; every other locale falls through
+ * to it key by key, so a half-translated screen stays usable instead of showing
+ * raw identifiers. LOCALES records how far each language actually is.
+ */
+export const DICTS: Partial<Record<LocaleCode, Dict>> & { en: Dict } = {
+  // Sarathi's prose is merged in rather than inlined: it is the largest body of
+  // translatable text in the app and belongs beside the rest of the catalogue.
+  en: { ...en, ...SARATHI_EN },
+  hi, bn, ta, mr,
 }
+
+/* BCP-47 tags now live on each entry in i18n/locales.ts, beside the script and
+   the text direction they belong with. */

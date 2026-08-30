@@ -56,10 +56,22 @@
   white-space: nowrap;
   max-width: 0;
   overflow: hidden;
+  text-overflow: ellipsis;
   opacity: 0;
   transition: max-width var(--t-slow) var(--ease), opacity var(--t-base) var(--ease);
 }
-.inav__tab[aria-selected='true'] .inav__label { max-width: 120px; opacity: 1; }
+/* Sized in ch so it grows with the text scale instead of clipping against a
+   fixed pixel box — caught by the pseudo-locale, which is what it is for. */
+.inav__tab[aria-selected='true'] .inav__label { max-width: 11ch; opacity: 1; }
+
+/* Past 130% the label cannot fit beside four tabs and an action on a 390px
+   screen. Rather than clip it, drop it: the icon, the glow and the aria-label
+   all still identify the active surface. Larger text must not cost navigation. */
+:root[data-text='large'] .inav__tab[aria-selected='true'] .inav__label {
+  max-width: 0;
+  opacity: 0;
+}
+:root[data-text='large'] .inav__tab { padding: 11px 12px; }
 
 .inav__glow {
   position: absolute;

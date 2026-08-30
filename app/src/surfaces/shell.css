@@ -28,6 +28,12 @@
   margin-inline: auto;
 }
 
+/* A flex item defaults to min-width:auto, so it refuses to shrink below its
+   min-content width and grows the surface past the viewport — where the shell's
+   overflow:hidden then hides the damage rather than showing a scrollbar. Every
+   surface root gets the constraint here so no surface has to remember it. */
+.shell__main > * { min-width: 0; max-width: 100%; }
+
 .shell__dock {
   position: fixed;
   left: 0;
@@ -50,6 +56,7 @@
   color: #fff;
   border-radius: var(--r-m);
   text-decoration: none;
+  max-width: calc(100vw - 2 * var(--sp-3));
   transition: top var(--t-fast) var(--ease);
 }
 .shell__skip:focus { top: calc(58px + env(safe-area-inset-top, 0px)); }

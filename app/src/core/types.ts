@@ -9,7 +9,13 @@
 
 export type Surface = 'citizen' | 'government' | 'oversight'
 
-export type LocaleCode = 'en' | 'hi' | 'ta' | 'bn' | 'mr'
+/**
+ * Canonical locale list lives in i18n/locales.ts — it is an i18n concern and it
+ * carries script, direction and translation status alongside the code. Re-exported
+ * here so existing callers do not need to know that. Types erase at compile, so
+ * this costs nothing at runtime.
+ */
+export type { LocaleCode } from '../i18n/locales'
 
 /** A stated, manually-entered locality. Never derived from device location. */
 export interface Locality {

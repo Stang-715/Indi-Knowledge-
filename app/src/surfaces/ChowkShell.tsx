@@ -4,6 +4,7 @@ import MeshGround from '../components/chowk/MeshGround'
 import IslandNav, { type NavTab, type SurfaceId } from '../components/chowk/IslandNav'
 import DynamicIsland, { type Activity, type IslandState } from '../components/chowk/DynamicIsland'
 import { ActionContext, IslandContext } from './shell-context'
+import { useT } from '../i18n'
 import './shell.css'
 
 const ICONS: Record<SurfaceId, React.ReactNode> = {
@@ -35,11 +36,12 @@ const ICONS: Record<SurfaceId, React.ReactNode> = {
   ),
 }
 
-const TABS: NavTab[] = [
-  { id: 'sarathi', label: 'Sarathi', hue: '#E8991F', icon: ICONS.sarathi },
-  { id: 'bharat', label: 'Bharat', hue: '#0E7C86', icon: ICONS.bharat },
-  { id: 'bills', label: 'Bills', hue: '#6B4EA8', icon: ICONS.bills },
-  { id: 'works', label: 'Works', hue: '#1F6B4A', icon: ICONS.works },
+/** Labels come from the catalogue at render; only the hue is fixed here. */
+const TAB_SPEC: { id: SurfaceId; hue: string }[] = [
+  { id: 'sarathi', hue: '#E8991F' },
+  { id: 'bharat', hue: '#0E7C86' },
+  { id: 'bills', hue: '#6B4EA8' },
+  { id: 'works', hue: '#1F6B4A' },
 ]
 
 /** The second hue each surface blooms, so no two grounds read the same. */
@@ -50,20 +52,13 @@ const GROUND: Record<SurfaceId, [string, string]> = {
   works: ['#1F6B4A', '#7A6B22'],
 }
 
-/** What the circle on the island means here. It changes per surface. */
-const ACTION: Record<SurfaceId, string> = {
-  sarathi: 'Ask Sarathi something',
-  bharat: 'List your store',
-  bills: 'Go to an open vote',
-  works: 'File a work',
-}
-
 function surfaceFromPath(path: string): SurfaceId {
   const match = /\/s\/(sarathi|bharat|bills|works)/.exec(path)
   return (match?.[1] as SurfaceId) ?? 'sarathi'
 }
 
 export default function ChowkShell() {
+  const t = useT()
   const navigate = useNavigate()
   const location = useLocation()
   const active = surfaceFromPath(location.pathname)
@@ -73,6 +68,15 @@ export default function ChowkShell() {
   const [action, setAction] = useState<(() => void) | null>(null)
 
   const [from, to] = GROUND[active]
+
+  const tabs: NavTab[] = useMemo(
+    () => TAB_SPEC.map((spec) => ({
+      ...spec,
+      label: t(`surface.${spec.id}`),
+      icon: ICONS[spec.id],
+    })),
+    [t],
+  )
 
   const raise = useCallback((next: Activity | null, state: IslandState = 'pill') => {
     setActivity(next)
@@ -95,9 +99,10 @@ export default function ChowkShell() {
         activity={activity}
         state={islandState}
         onStateChange={setIslandState}
+        dismissLabel={t('sar.dismiss')}
       />
 
-      <a className="shell__skip" href="#main">Skip to content</a>
+      <a className="shell__skip" href="#main">{t('shell.skip')}</a>
 
       <main className="shell__main" id="main">
         <IslandContext.Provider value={island}>
@@ -109,10 +114,10 @@ export default function ChowkShell() {
 
       <div className="shell__dock">
         <IslandNav
-          tabs={TABS}
+          tabs={tabs}
           active={active}
           onSelect={(id) => navigate(`/s/${id}`)}
-          actionLabel={ACTION[active]}
+          actionLabel={t(`action.${active}`)}
           onAction={() => action?.()}
         />
       </div>

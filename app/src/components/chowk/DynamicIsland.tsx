@@ -18,6 +18,8 @@ export interface Activity {
 }
 
 interface Props {
+  /** Label for the dismiss control, from the catalogue. */
+  dismissLabel: string
   activity: Activity | null
   state: IslandState
   onStateChange: (next: IslandState) => void
@@ -31,7 +33,7 @@ interface Props {
  * hue of whatever raised it, so you know which surface is talking before you
  * read a word.
  */
-export default function DynamicIsland({ activity, state, onStateChange }: Props) {
+export default function DynamicIsland({ activity, state, onStateChange, dismissLabel }: Props) {
   const [mounted, setMounted] = useState(false)
 
   // Mount one frame late so the first paint animates in rather than snapping.
@@ -89,7 +91,7 @@ export default function DynamicIsland({ activity, state, onStateChange }: Props)
               className="di__btn"
               onClick={(e) => { e.stopPropagation(); onStateChange('pill') }}
             >
-              Dismiss
+              {dismissLabel}
             </button>
           </div>
         </>

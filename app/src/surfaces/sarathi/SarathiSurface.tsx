@@ -69,17 +69,21 @@ export default function SarathiSurface() {
     setMood(answer.mood)
     setSuggestions([])
     setHandoff(null)
-    setPending(answer.say)
+    // brain.ts holds structure and returns catalogue keys; the prose is resolved
+    // here, so his answers translate like every other string in the app.
+    setPending(answer.say.map((key) => t(key, { name: getPseudonym() ?? '' })))
     setSpeaking(true)
 
     // Chips and the handoff appear only once he has finished, so they do not
     // compete with the sentence still arriving.
-    const settle = still ? 0 : answer.say.join(' ').length * REVEAL_MS_PER_CHAR + 260
+    const settle = still
+      ? 0
+      : answer.say.reduce((n, k) => n + t(k).length, 0) * REVEAL_MS_PER_CHAR + 260
     window.setTimeout(() => {
       setSuggestions(answer.followUps ?? [])
       setHandoff(handoffFrom(answer, question))
     }, settle)
-  }, [still])
+  }, [still, t])
 
   /* Drain paragraph by paragraph so he reads as talking rather than pasting. */
   useEffect(() => {
@@ -142,15 +146,17 @@ export default function SarathiSurface() {
     island.raise({
       id: 'offline',
       hue: '#E8991F',
-      label: 'No connection',
-      value: 'Sarathi is fine',
-      eyebrow: 'Offline',
-      title: 'Sarathi still works',
-      actions: [{ label: 'What else works', primary: true, onSelect: () => setSettingsOpen(true) }],
+      label: t('sar.island.offline'),
+      value: t('sar.island.offlineValue'),
+      eyebrow: t('sar.island.offlineEyebrow'),
+      title: t('sar.island.offlineTitle'),
+      actions: [
+        { label: t('sar.island.whatElse'), primary: true, onSelect: () => setSettingsOpen(true) },
+      ],
     }, 'pill')
-  }, [online, island])
+  }, [online, island, t])
 
-  const chip = (id: string) => put(promptFor(id), answerFor(id))
+  const chip = (id: string) => put(t(promptFor(id)), answerFor(id))
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -191,7 +197,7 @@ export default function SarathiSurface() {
           className="btn btn--glass btn--sm sar__settings"
           onClick={() => setSettingsOpen(true)}
         >
-          Voice &amp; language
+          {t('sar.settings')}
         </button>
       </div>
 
@@ -218,7 +224,7 @@ export default function SarathiSurface() {
 
         {mic.interim && (
           <p className="sar__line sar__line--citizen sar__line--interim">
-            <span className="sar__who">Hearing…</span>
+            <span className="sar__who">{t('sar.hearing')}</span>
             {mic.interim}
           </p>
         )}
@@ -245,7 +251,7 @@ export default function SarathiSurface() {
         <div className="sar__chip-row" role="group" aria-labelledby="sar-suggest">
           {chips.map((id) => (
             <button key={id} type="button" className="chip chip--glass" onClick={() => chip(id)}>
-              {promptFor(id)}
+              {t(promptFor(id))}
             </button>
           ))}
         </div>
@@ -270,7 +276,7 @@ export default function SarathiSurface() {
             type="button"
             className={`sar__mic${mic.state === 'listening' ? ' is-live' : ''}`}
             onClick={() => (mic.state === 'listening' ? mic.stop() : mic.start())}
-            aria-label={mic.state === 'listening' ? 'Stop listening' : 'Ask by voice'}
+            aria-label={mic.state === 'listening' ? t('sar.mic.stop') : t('sar.mic.start')}
             aria-pressed={mic.state === 'listening'}
           >
             <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -285,10 +291,7 @@ export default function SarathiSurface() {
       </form>
 
       {mic.state === 'denied' && (
-        <p className="sar__mic-note">
-          The microphone is blocked for this app. Your browser&rsquo;s site settings can allow it —
-          or just type, which works exactly as well.
-        </p>
+        <p className="sar__mic-note">{t('sar.mic.denied')}</p>
       )}
 
       <VoiceSettings

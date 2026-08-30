@@ -32,6 +32,10 @@ h1, h2, h3, h4 {
   font-weight: 600;
   text-wrap: balance;
   letter-spacing: -.015em;
+  /* Indic compounds and long transliterations have few break opportunities;
+     a heading that cannot break pushes the whole layout sideways. */
+  overflow-wrap: anywhere;
+  min-width: 0;
 }
 
 p { margin: 0; }
@@ -166,8 +170,9 @@ img, svg, video { max-width: 100%; }
 .t-tiny { font-size: .78rem; color: var(--ink-3); line-height: 1.45; }
 .t-muted { color: var(--ink-2); }
 
-.stack { display: grid; gap: var(--sp-3); }
-.row { display: flex; gap: var(--sp-2); align-items: center; flex-wrap: wrap; }
+.stack { display: grid; gap: var(--sp-3); min-width: 0; }
+.stack > * { min-width: 0; }
+.row { display: flex; gap: var(--sp-2); align-items: center; flex-wrap: wrap; min-width: 0; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

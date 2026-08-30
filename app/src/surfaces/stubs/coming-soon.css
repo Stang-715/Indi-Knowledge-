@@ -1,8 +1,9 @@
-.soon { display: grid; gap: var(--sp-5); align-content: start; }
+.soon { display: grid; gap: var(--sp-5); align-content: start; min-width: 0; }
+.soon > * { min-width: 0; }
 
 .soon__head { display: grid; gap: var(--sp-2); }
 .soon__head .t-label { color: rgba(255,255,255,.72); }
-.soon__title { font-size: clamp(2.2rem, 10vw, 3rem); color: #fff; }
+.soon__title { font-size: clamp(2.2rem, 10vw, 3rem); color: #fff; overflow-wrap: anywhere; }
 .soon__tagline { color: rgba(255,255,255,.8); font-size: .95rem; max-width: 40ch; }
 
 .soon__block { display: grid; gap: var(--sp-3); }

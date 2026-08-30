@@ -46,6 +46,9 @@ export function SessionProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const root = document.documentElement
     root.style.setProperty('--text-scale', String(prefs.a11y.textScale))
+    // A custom property cannot be matched in a selector, so the scale is also an
+    // attribute — components that must restructure at large text read this.
+    root.dataset.text = prefs.a11y.textScale >= 1.3 ? 'large' : 'normal'
     root.dataset.contrast = prefs.a11y.highContrast ? 'high' : 'normal'
     root.dataset.motion =
       prefs.a11y.reduceMotion || prefs.a11y.screenReaderMode ? 'reduced' : 'full'

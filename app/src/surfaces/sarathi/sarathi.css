@@ -2,7 +2,9 @@
   display: grid;
   gap: var(--sp-4);
   align-content: start;
+  min-width: 0;
 }
+.sar > * { min-width: 0; max-width: 100%; }
 
 /* ------------------------------- 1.1 stage ------------------------------ */
 
@@ -11,11 +13,17 @@
   justify-items: center;
   gap: var(--sp-2);
   position: relative;
+  /* A grid child under justify-items:center is sized to max-content, so long
+     text grows past the container instead of wrapping. Both of these are
+     required — the pseudo-locale found this by pushing the whole surface
+     off-screen where the shell's overflow:hidden then hid the evidence. */
+  min-width: 0;
 }
+.sar__stage > * { max-width: 100%; min-width: 0; }
 
-.sar__id { text-align: center; }
-.sar__name { font-size: 1.7rem; color: #fff; }
-.sar__role { font-size: .86rem; color: rgba(255, 255, 255, .72); margin-top: 2px; }
+.sar__id { text-align: center; max-width: 100%; min-width: 0; }
+.sar__name { font-size: 1.7rem; color: #fff; overflow-wrap: anywhere; }
+.sar__role { font-size: .86rem; color: rgba(255, 255, 255, .72); margin-top: 2px; overflow-wrap: anywhere; }
 
 .sar__settings { margin-top: var(--sp-2); }
 
@@ -53,7 +61,9 @@
   border-radius: var(--r-m);
   line-height: 1.55;
   max-width: 92%;
+  min-width: 0;
   white-space: pre-wrap;
+  overflow-wrap: anywhere;
   font-size: .92rem;
   animation: sar-in var(--t-base) var(--ease);
 }

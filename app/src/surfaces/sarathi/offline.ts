@@ -26,11 +26,15 @@ export function useOnline(): boolean {
   return online
 }
 
-/** What still works with no connection, for the offline sheet to state plainly. */
-export const OFFLINE_CAPABILITIES = [
-  { works: true, label: 'Talking to Sarathi', detail: 'He runs on your phone, not on a server' },
-  { works: true, label: 'Notices you have opened', detail: 'Kept on the device once read' },
-  { works: true, label: 'Your settings and language', detail: 'Never needed a connection' },
-  { works: false, label: 'New notices and bills', detail: 'Arrive when you are back on' },
-  { works: false, label: 'Casting a vote', detail: 'Held until there is a connection' },
+/**
+ * What still works with no connection, for the offline sheet to state plainly.
+ * Keys rather than text — this list is read by people whose connection is the
+ * least reliable thing about their day, in whichever language they chose.
+ */
+export const OFFLINE_CAPABILITIES: { works: boolean; key: string }[] = [
+  { works: true, key: 'sarathi' },
+  { works: true, key: 'notices' },
+  { works: true, key: 'settings' },
+  { works: false, key: 'new' },
+  { works: false, key: 'vote' },
 ]
