@@ -9,7 +9,8 @@
     "lint": "oxlint",
     "check:constraints": "node scripts/check-constraints.mjs",
     "test": "npm run check:constraints && tsc -b --force && oxlint",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build:singlefile": "VITE_HASH_ROUTER=true vite build --config vite.config.singlefile.ts"
   },
   "dependencies": {
     "react": "^19.2.8",
@@ -23,6 +24,7 @@
     "@vitejs/plugin-react": "^6.1.0",
     "oxlint": "^1.79.0",
     "typescript": "~6.0.2",
-    "vite": "^8.2.2"
+    "vite": "^8.2.2",
+    "vite-plugin-singlefile": "^2.3.3"
   }
 }

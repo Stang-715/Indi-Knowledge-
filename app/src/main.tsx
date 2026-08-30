@@ -9,9 +9,12 @@ createRoot(document.getElementById('root')!).render(
   </StrictMode>,
 )
 
-/* Offline support. Registration failure is not an error worth surfacing —
+/* Offline support. Skipped for the single-file build, which ships no separate
+   sw.js to register. Registration failure is otherwise not worth surfacing —
    the app works without it, it just stops working without a connection. */
-if ('serviceWorker' in navigator && import.meta.env.PROD) {
+const SHIPS_SERVICE_WORKER = import.meta.env.VITE_HASH_ROUTER !== 'true'
+
+if ('serviceWorker' in navigator && import.meta.env.PROD && SHIPS_SERVICE_WORKER) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register(`${import.meta.env.BASE_URL}sw.js`).catch(() => {})
   })

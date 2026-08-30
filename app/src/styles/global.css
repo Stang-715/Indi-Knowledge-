@@ -8,33 +8,56 @@
    low-bandwidth promise real rather than a label.
 --------------------------------------------------------------------------- */
 
+/* Palette values live here once, as light/dark pairs, and the two blocks below
+   only remap which half is in play. A colour therefore cannot drift between
+   themes, and neither theme can be defined only inside a media query. */
 :root {
   --text-scale: 1;
 
-  --ink:        #17211f;
-  --ink-soft:   #5c6b68;
-  --surface:    #ffffff;
-  --surface-2:  #f2f5f4;
-  --page:       #f7f9f8;
-  --line:       #dde4e2;
+  --l-ink:#17211f;        --d-ink:#e8efed;
+  --l-ink-soft:#5c6b68;   --d-ink-soft:#9aaba8;
+  --l-surface:#ffffff;    --d-surface:#16201f;
+  --l-surface-2:#f2f5f4;  --d-surface-2:#1e2a28;
+  --l-page:#f7f9f8;       --d-page:#0e1616;
+  --l-line:#dde4e2;       --d-line:#2c3b39;
 
-  --accent:      #146b63;
-  --accent-line: #a8d3ce;
-  --accent-wash: #e6f2f0;
-  --on-accent:   #ffffff;
+  --l-accent:#146b63;      --d-accent:#4fbdaf;
+  --l-accent-line:#a8d3ce; --d-accent-line:#2b6a63;
+  --l-accent-wash:#e6f2f0; --d-accent-wash:#14302e;
+  --l-on-accent:#ffffff;   --d-on-accent:#06201d;
 
-  --warn:      #8a5a00;
-  --warn-wash: #fdf3e0;
-  --warn-line: #e8ce93;
+  --l-warn:#8a5a00;       --d-warn:#e5b768;
+  --l-warn-wash:#fdf3e0;  --d-warn-wash:#2e2413;
+  --l-warn-line:#e8ce93;  --d-warn-line:#5c4922;
 
-  --danger:      #a32b2b;
-  --danger-wash: #fbeceb;
-  --danger-line: #eab9b6;
+  --l-danger:#a32b2b;      --d-danger:#f28b85;
+  --l-danger-wash:#fbeceb; --d-danger-wash:#331a19;
+  --l-danger-line:#eab9b6; --d-danger-line:#6b332f;
 
-  --ok:      #1f6b3a;
-  --ok-wash: #e8f4ec;
+  --l-ok:#1f6b3a;      --d-ok:#74c894;
+  --l-ok-wash:#e8f4ec; --d-ok-wash:#16301f;
 
-  --focus: #0b5cd5;
+  --l-focus:#0b5cd5;  --d-focus:#7fb2ff;
+
+  --ink: var(--l-ink);
+  --ink-soft: var(--l-ink-soft);
+  --surface: var(--l-surface);
+  --surface-2: var(--l-surface-2);
+  --page: var(--l-page);
+  --line: var(--l-line);
+  --accent: var(--l-accent);
+  --accent-line: var(--l-accent-line);
+  --accent-wash: var(--l-accent-wash);
+  --on-accent: var(--l-on-accent);
+  --warn: var(--l-warn);
+  --warn-wash: var(--l-warn-wash);
+  --warn-line: var(--l-warn-line);
+  --danger: var(--l-danger);
+  --danger-wash: var(--l-danger-wash);
+  --danger-line: var(--l-danger-line);
+  --ok: var(--l-ok);
+  --ok-wash: var(--l-ok-wash);
+  --focus: var(--l-focus);
 
   --s1: 4px;  --s2: 8px;  --s3: 12px; --s4: 18px; --s5: 26px; --s6: 38px;
   --r-sm: 6px; --r-md: 10px; --r-lg: 16px; --r-pill: 999px;
@@ -44,36 +67,57 @@
   color-scheme: light dark;
 }
 
+/* System preference — unless the viewer has explicitly asked for light. */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --ink:        #e8efed;
-    --ink-soft:   #9aaba8;
-    --surface:    #16201f;
-    --surface-2:  #1e2a28;
-    --page:       #0e1616;
-    --line:       #2c3b39;
-
-    --accent:      #4fbdaf;
-    --accent-line: #2b6a63;
-    --accent-wash: #14302e;
-    --on-accent:   #06201d;
-
-    --warn:      #e5b768;
-    --warn-wash: #2e2413;
-    --warn-line: #5c4922;
-
-    --danger:      #f28b85;
-    --danger-wash: #331a19;
-    --danger-line: #6b332f;
-
-    --ok:      #74c894;
-    --ok-wash: #16301f;
-
-    --focus: #7fb2ff;
+  :root:not([data-theme='light']) {
+    --ink: var(--d-ink);
+    --ink-soft: var(--d-ink-soft);
+    --surface: var(--d-surface);
+    --surface-2: var(--d-surface-2);
+    --page: var(--d-page);
+    --line: var(--d-line);
+    --accent: var(--d-accent);
+    --accent-line: var(--d-accent-line);
+    --accent-wash: var(--d-accent-wash);
+    --on-accent: var(--d-on-accent);
+    --warn: var(--d-warn);
+    --warn-wash: var(--d-warn-wash);
+    --warn-line: var(--d-warn-line);
+    --danger: var(--d-danger);
+    --danger-wash: var(--d-danger-wash);
+    --danger-line: var(--d-danger-line);
+    --ok: var(--d-ok);
+    --ok-wash: var(--d-ok-wash);
+    --focus: var(--d-focus);
+    color-scheme: dark;
   }
 }
 
-/* High contrast is an explicit choice, so it wins over the media query. */
+/* An explicit choice by the host or the viewer wins in both directions. */
+:root[data-theme='dark'] {
+  --ink: var(--d-ink);
+  --ink-soft: var(--d-ink-soft);
+  --surface: var(--d-surface);
+  --surface-2: var(--d-surface-2);
+  --page: var(--d-page);
+  --line: var(--d-line);
+  --accent: var(--d-accent);
+  --accent-line: var(--d-accent-line);
+  --accent-wash: var(--d-accent-wash);
+  --on-accent: var(--d-on-accent);
+  --warn: var(--d-warn);
+  --warn-wash: var(--d-warn-wash);
+  --warn-line: var(--d-warn-line);
+  --danger: var(--d-danger);
+  --danger-wash: var(--d-danger-wash);
+  --danger-line: var(--d-danger-line);
+  --ok: var(--d-ok);
+  --ok-wash: var(--d-ok-wash);
+  --focus: var(--d-focus);
+  color-scheme: dark;
+}
+
+/* High contrast is an explicit accessibility choice, so it beats both. */
 :root[data-contrast='high'] {
   --ink: #000000;
   --ink-soft: #1c1c1c;
@@ -91,6 +135,7 @@
   --danger: #8a0000;
   --danger-wash: #ffffff;
   --danger-line: #8a0000;
+  color-scheme: light;
 }
 :root[data-contrast='high'] * {
   text-shadow: none !important;
@@ -297,12 +342,14 @@ img, svg, video { max-width: 100%; }
 button.card { cursor: pointer; }
 button.card:hover, a.card:hover { border-color: var(--accent-line); }
 
-.card__title { margin: 0 0 var(--s2); font-size: 1.02rem; font-weight: 650; }
+/* Rendered as <p> in some places and <span> inside a link in others; the
+   explicit block keeps the margins live and the title on its own line. */
+.card__title { display: block; margin: 0 0 var(--s2); font-size: 1.02rem; font-weight: 650; }
 .card__meta {
   display: flex; flex-wrap: wrap; gap: var(--s2);
   font-size: 0.8rem; color: var(--ink-soft);
 }
-.card__body { margin: var(--s2) 0 0; color: var(--ink-soft); font-size: 0.92rem; }
+.card__body { display: block; margin: var(--s2) 0 0; color: var(--ink-soft); font-size: 0.92rem; }
 
 .stack { display: grid; gap: var(--s3); }
 .stack--tight { gap: var(--s2); }

@@ -1,4 +1,13 @@
-import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-dom'
+import {
+  BrowserRouter, HashRouter, Navigate, Route, Routes,
+} from 'react-router-dom'
+
+/**
+ * Hosting without server-side rewrites (a static artifact host, a file:// build)
+ * cannot map /app/polls/:id back to index.html, so those targets use hash
+ * routing. A server that can rewrite gets clean paths.
+ */
+const Router = import.meta.env.VITE_HASH_ROUTER === 'true' ? HashRouter : BrowserRouter
 import { SessionProvider, useSession } from './core/session'
 import { I18nProvider } from './i18n'
 import Landing from './Landing'
