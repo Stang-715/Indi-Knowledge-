@@ -1,0 +1,42 @@
+.soon { display: grid; gap: var(--sp-5); align-content: start; }
+
+.soon__head { display: grid; gap: var(--sp-2); }
+.soon__head .t-label { color: rgba(255,255,255,.72); }
+.soon__title { font-size: clamp(2.2rem, 10vw, 3rem); color: #fff; }
+.soon__tagline { color: rgba(255,255,255,.8); font-size: .95rem; max-width: 40ch; }
+
+.soon__block { display: grid; gap: var(--sp-3); }
+.soon__block .t-label { color: rgba(255,255,255,.72); }
+
+.soon__link {
+  display: grid;
+  gap: 3px;
+  padding: var(--sp-4);
+  text-decoration: none;
+  border-radius: var(--r-m);
+}
+/* Block, not inline — these sit in a grid cell where span margins are dead. */
+.soon__link-t { display: block; font-family: var(--f-display); font-weight: 650; font-size: 1rem; }
+.soon__link-d { display: block; font-size: .8rem; color: rgba(255,255,255,.75); }
+
+.soon__code {
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-stretch: 80%;
+  font-variant-numeric: tabular-nums;
+  font-size: .82rem;
+}
+
+/* The disclosures sit on the mesh, so they take the dark composition. */
+.soon .disc {
+  background: rgba(255,255,255,.09);
+  backdrop-filter: blur(18px) saturate(155%);
+  -webkit-backdrop-filter: blur(18px) saturate(155%);
+  border-color: rgba(255,255,255,.15);
+  color: #fff;
+}
+.soon .disc[open] { border-color: var(--hue); }
+.soon .disc__meta { color: rgba(255,255,255,.68); }
+.soon .disc__caret { color: rgba(255,255,255,.5); }
+.soon .disc__body { color: rgba(255,255,255,.82); }
+.soon .disc__icon { background: color-mix(in srgb, var(--hue) 30%, transparent); color: #fff; }

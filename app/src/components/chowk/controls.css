@@ -59,6 +59,7 @@
   background: var(--solid);
   color: var(--ink-2);
   text-align: start;
+  text-decoration: none;
   transition: border-color var(--t-fast) var(--ease), background var(--t-fast) var(--ease);
 }
 .chip:hover { border-color: var(--hue); }

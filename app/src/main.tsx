@@ -1,7 +1,14 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App'
+/* Order matters. The legacy civic screens' stylesheet loads first; the Chowk
+   system loads after it and deliberately wins the tokens and controls the two
+   share (--ink, --text-scale, .btn, .chip, .switch, body's ground). Chowk is
+   the design system now, so a shared name resolving to Chowk is correct — the
+   legacy screens inherit the newer shape rather than fighting it. */
 import './styles/global.css'
+import './design/base.css'
+import './components/chowk/controls.css'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

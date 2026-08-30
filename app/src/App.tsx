@@ -23,6 +23,9 @@ import {
   PrivacyCentre, ProfileIndex, PseudonymSettings,
 } from './citizen/Profile'
 import { GovHome, GovLogin, GovProvider, GovShell, useGov } from './gov/GovPortal'
+import ChowkShell from './surfaces/ChowkShell'
+import SarathiSurface from './surfaces/sarathi/SarathiSurface'
+import { BharatStub, BillsStub, WorksStub } from './surfaces/stubs'
 import { NoticeComposer, PollComposer } from './gov/Compose'
 import Dashboards from './gov/Dashboards'
 import Moderation from './gov/Moderation'
@@ -56,6 +59,24 @@ export default function App() {
         <GovProvider>
           <Router>
             <Routes>
+              {/* --------------------------- Chowk ---------------------------- *
+               * The four surfaces. Surface 1 is built; 2, 3 and 4 state what is
+               * coming and link to whatever already works. */}
+              <Route
+                path="/s"
+                element={
+                  <RequireOnboarding>
+                    <ChowkShell />
+                  </RequireOnboarding>
+                }
+              >
+                <Route index element={<Navigate to="/s/sarathi" replace />} />
+                <Route path="sarathi" element={<SarathiSurface />} />
+                <Route path="bharat" element={<BharatStub />} />
+                <Route path="bills" element={<BillsStub />} />
+                <Route path="works" element={<WorksStub />} />
+              </Route>
+
               <Route path="/" element={<Landing />} />
               <Route path="/welcome" element={<Onboarding />} />
 

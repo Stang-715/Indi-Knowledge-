@@ -62,8 +62,8 @@ export default function MeshGround({
 
       for (const b of blobs) {
         const g = ctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, b.r)
-        g.addColorStop(0, b.c + '99')
-        g.addColorStop(0.55, b.c + '2E')
+        g.addColorStop(0, b.c + '7A')
+        g.addColorStop(0.55, b.c + '22')
         g.addColorStop(1, b.c + '00')
         ctx.fillStyle = g
         ctx.beginPath()
