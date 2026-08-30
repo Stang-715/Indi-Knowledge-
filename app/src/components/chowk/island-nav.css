@@ -1,5 +1,6 @@
 .inav {
   position: relative;
+  isolation: isolate;
   display: flex;
   align-items: center;
   gap: 3px;
@@ -11,8 +12,21 @@
   -webkit-backdrop-filter: blur(28px) saturate(175%);
   border: 1px solid rgba(255, 255, 255, .15);
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, .13) inset,
+    0 1px 0 rgba(255, 255, 255, .16) inset,
+    0 -1px 0 rgb(0 0 0 / .3) inset,
     0 20px 46px -16px rgba(0, 0, 0, .6);
+}
+
+/* The sampled ground, under the dock's own wash. */
+.inav::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--glass-tint, transparent);
+  transition: background var(--t-slow) linear;
+  pointer-events: none;
 }
 
 .inav__tab {
@@ -83,6 +97,11 @@
   transition: transform var(--t-base) var(--ease);
 }
 .inav__act:active { transform: scale(.9) rotate(90deg); }
+
+/* Pressure on the tabs: the whole dock compresses very slightly, so a tap on
+   any part of it reads as pressing one physical object. */
+.inav__tab:active { transform: scale(.94); }
+.inav__tab { transition: color var(--t-base) var(--ease), transform var(--t-fast) var(--ease); }
 
 :root[data-contrast='high'] .inav {
   background: #fff;

@@ -14,6 +14,7 @@ import { useSession } from '../../core/session'
 import { useI18n } from '../../i18n'
 import { getPseudonym } from '../../core/identity'
 import { useIsland, useSurfaceAction } from '../shell-context'
+import { useContentTint } from '../../components/chowk/useContentTint'
 import './sarathi.css'
 
 interface Turn {
@@ -56,6 +57,9 @@ export default function SarathiSurface() {
 
   const logRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
+  // The log is the largest glass panel on the surface, so it is the one where
+  // sampling the ground beneath is most visible as you scroll.
+  const logTint = useContentTint(logRef, { strength: 0.3 })
   const seq = useRef(0)
   const nextId = () => { seq.current += 1; return `t${seq.current}` }
 
@@ -197,6 +201,7 @@ export default function SarathiSurface() {
       <div
         className="sar__log glass-dark"
         ref={logRef}
+        style={logTint ? ({ ['--glass-tint' as string]: logTint }) : undefined}
         role="log"
         aria-live="polite"
         aria-relevant="additions text"

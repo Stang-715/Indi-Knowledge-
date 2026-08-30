@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { useContentTint } from './useContentTint'
 import './island-nav.css'
 
 export type SurfaceId = 'sarathi' | 'bharat' | 'bills' | 'works'
@@ -30,6 +31,8 @@ export default function IslandNav({
   tabs, active, onSelect, actionLabel, onAction,
 }: Props) {
   const navRef = useRef<HTMLElement>(null)
+  // The dock floats over the mesh, so it takes its colour from what it floats on.
+  const tint = useContentTint(navRef, { strength: 0.34 })
   const [glow, setGlow] = useState({ left: 0, width: 0, hue: tabs[0]?.hue ?? '#E8991F' })
 
   const place = useCallback(() => {
@@ -57,7 +60,12 @@ export default function IslandNav({
   }, [place])
 
   return (
-    <nav className="inav" ref={navRef} aria-label="Surfaces">
+    <nav
+      className="inav"
+      ref={navRef}
+      aria-label="Surfaces"
+      style={tint ? ({ ['--glass-tint' as string]: tint }) : undefined}
+    >
       <span
         className="inav__glow"
         aria-hidden="true"

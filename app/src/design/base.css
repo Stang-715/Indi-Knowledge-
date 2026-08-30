@@ -56,30 +56,97 @@ img, svg, video { max-width: 100%; }
 }
 
 /* ---------------------------------------------------------------- *
- * Glass.
- * Only ever placed over content — a map, the caricature stage, a mesh.
- * Over a flat panel it has nothing to refract and reads as weak grey.
+ * Glass — behavioural, not decorative.
+ *
+ * Three things separate this from a static translucency:
+ *
+ *  1. TINT. --glass-tint is set from the colour actually sampled beneath the
+ *     element (see useContentTint), so a card over the marigold bloom and the
+ *     same card over the violet one are visibly different objects. It falls
+ *     back to nothing, and the surface still works.
+ *  2. LENS. A bright rim on the top edge and a dark one on the bottom read as
+ *     a thick refracting edge rather than a cut-out rectangle. The rim is what
+ *     makes it look like a piece of material with a thickness.
+ *  3. PRESSURE. Pressing compresses it — it scales down, the rim brightens and
+ *     the blur tightens. Responsiveness you can see is the whole point; a
+ *     surface that does not answer a touch reads as an image of a surface.
+ *
+ * Glass is only ever placed over content — a mesh, a map, a photograph. Over a
+ * flat panel it has nothing to refract and reads as weak grey.
  * ---------------------------------------------------------------- */
+
+.glass, .glass-dark {
+  position: relative;
+  isolation: isolate;
+  transition:
+    transform var(--t-fast) var(--ease),
+    box-shadow var(--t-base) var(--ease),
+    background-color var(--t-slow) linear;
+}
+
+/* The sampled ground, laid under the panel's own wash. */
+.glass::before, .glass-dark::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--glass-tint, transparent);
+  transition: background var(--t-slow) linear;
+  pointer-events: none;
+}
+
 .glass {
   background: var(--glass);
   backdrop-filter: blur(26px) saturate(165%);
   -webkit-backdrop-filter: blur(26px) saturate(165%);
   border: 1px solid var(--glass-line);
   border-radius: var(--r-l);
-  box-shadow: 0 1px 0 var(--glass-lift) inset, 0 18px 44px -22px var(--shade);
+  box-shadow:
+    0 1px 0 var(--glass-lift) inset,
+    0 -1px 0 rgb(0 0 0 / .06) inset,
+    0 18px 44px -22px var(--shade);
 }
 
 /* Glass over an always-dark ground (the stage, the map) needs its own
    composition — the light-theme glass tokens would wash the text out. */
 .glass-dark {
-  background: rgba(255,255,255,.11);
+  background: rgba(255, 255, 255, .10);
   backdrop-filter: blur(20px) saturate(160%);
   -webkit-backdrop-filter: blur(20px) saturate(160%);
-  border: 1px solid rgba(255,255,255,.16);
+  border: 1px solid rgba(255, 255, 255, .16);
   border-radius: var(--r-m);
-  box-shadow: 0 1px 0 rgba(255,255,255,.13) inset;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, .16) inset,
+    0 -1px 0 rgb(0 0 0 / .22) inset,
+    0 16px 36px -20px rgb(0 0 0 / .5);
   color: #fff;
 }
+
+/* Pressure. Applied to glass that is itself a control. */
+.glass--press { cursor: pointer; }
+.glass--press:active {
+  transform: scale(.985);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, .3) inset,
+    0 -1px 0 rgb(0 0 0 / .26) inset,
+    0 6px 16px -12px var(--shade);
+}
+
+/* High contrast removes the material entirely — a blurred, tinted panel behind
+   text is precisely what a high-contrast mode exists to get rid of. */
+:root[data-contrast='high'] .glass,
+:root[data-contrast='high'] .glass-dark {
+  background: var(--solid);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+:root[data-contrast='high'] .glass::before,
+:root[data-contrast='high'] .glass-dark::before { display: none; }
 
 /* ---------------------------------------------------------------- *
  * Type utilities

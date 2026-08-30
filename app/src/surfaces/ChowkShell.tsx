@@ -87,7 +87,9 @@ export default function ChowkShell() {
 
   return (
     <div className="shell" data-surface={active}>
-      <MeshGround from={from} to={to} />
+      {/* MeshGround wraps the rest of the shell rather than sitting beside it,
+          because glass surfaces sample the ground through its context. */}
+      <MeshGround from={from} to={to}>
 
       <DynamicIsland
         activity={activity}
@@ -114,6 +116,7 @@ export default function ChowkShell() {
           onAction={() => action?.()}
         />
       </div>
+      </MeshGround>
     </div>
   )
 }
