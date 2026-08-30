@@ -1,0 +1,107 @@
+/*
+ * Chowk design tokens.
+ *
+ * Palette values are declared once as light/dark pairs; the blocks beneath only
+ * remap which half is live. A colour therefore cannot drift between themes, and
+ * neither theme is defined solely inside a media query — which is the classic
+ * way an app ends up rendering one theme's text on the other theme's ground.
+ *
+ * Theme resolution has three states, not two:
+ *   :root                          → light (the complete palette)
+ *   prefers-color-scheme: dark     → dark, unless the citizen chose light
+ *   [data-theme]                   → an explicit choice wins in both directions
+ */
+
+:root {
+  /* ---- brand constants, identical in both themes ---------------------- */
+  --marigold: #E8991F;    /* 1 Sarathi   — the garland flower              */
+  --harbour: #0E7C86;     /* 2 Bharat    — deep water at the container port */
+  --indelible: #6B4EA8;   /* 3 Bills     — the violet of election ink       */
+  --milestone: #1F6B4A;   /* 4 Works     — the green of a kilometre stone   */
+  --alert: #D6452F;       /* reserved: overruns, closures, expiring votes   */
+
+  /* ---- light / dark pairs -------------------------------------------- */
+  --l-ground:#EEEFF3;        --d-ground:#0F1320;
+  --l-ground-2:#E4E6EC;      --d-ground-2:#161B2C;
+  --l-ink:#12151F;           --d-ink:#EDEFF5;
+  --l-ink-2:#565D71;         --d-ink-2:#98A0B8;
+  --l-ink-3:#858BA0;         --d-ink-3:#6B7391;
+  --l-hair:#CDD1DC;          --d-hair:#2A3149;
+  --l-solid:#FFFFFF;         --d-solid:#1B2133;
+
+  --l-glass:rgba(255,255,255,.62);       --d-glass:rgba(38,45,68,.55);
+  --l-glass-line:rgba(255,255,255,.90);  --d-glass-line:rgba(255,255,255,.14);
+  --l-glass-lift:rgba(255,255,255,.85);  --d-glass-lift:rgba(255,255,255,.10);
+  --l-shade:rgba(18,21,31,.10);          --d-shade:rgba(0,0,0,.45);
+
+  --ground:var(--l-ground);        --ground-2:var(--l-ground-2);
+  --ink:var(--l-ink);              --ink-2:var(--l-ink-2);
+  --ink-3:var(--l-ink-3);          --hair:var(--l-hair);
+  --solid:var(--l-solid);          --glass:var(--l-glass);
+  --glass-line:var(--l-glass-line);--glass-lift:var(--l-glass-lift);
+  --shade:var(--l-shade);
+
+  /* The surface hue in play. The shell reassigns this per tab, and every
+     component reads it — which is why one variable changes the whole room. */
+  --hue: var(--marigold);
+
+  --f-display:'Anek Latin', 'Segoe UI', system-ui, sans-serif;
+  --f-body:'Instrument Sans', system-ui, -apple-system, sans-serif;
+
+  --r-xs:8px; --r-s:14px; --r-m:20px; --r-l:28px; --r-xl:36px; --r-pill:999px;
+  --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:18px; --sp-5:26px; --sp-6:40px;
+
+  /* One curve for the whole system. Everything that moves uses this. */
+  --ease:cubic-bezier(.32,.72,0,1);
+  --t-fast:180ms; --t-base:320ms; --t-slow:480ms;
+
+  /* Set from the citizen's accessibility choice; every rem scales with it. */
+  --text-scale:1;
+
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --ground:var(--d-ground);        --ground-2:var(--d-ground-2);
+    --ink:var(--d-ink);              --ink-2:var(--d-ink-2);
+    --ink-3:var(--d-ink-3);          --hair:var(--d-hair);
+    --solid:var(--d-solid);          --glass:var(--d-glass);
+    --glass-line:var(--d-glass-line);--glass-lift:var(--d-glass-lift);
+    --shade:var(--d-shade);
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme='dark'] {
+  --ground:var(--d-ground);        --ground-2:var(--d-ground-2);
+  --ink:var(--d-ink);              --ink-2:var(--d-ink-2);
+  --ink-3:var(--d-ink-3);          --hair:var(--d-hair);
+  --solid:var(--d-solid);          --glass:var(--d-glass);
+  --glass-line:var(--d-glass-line);--glass-lift:var(--d-glass-lift);
+  --shade:var(--d-shade);
+  color-scheme: dark;
+}
+
+/* High contrast is an explicit accessibility choice, so it beats both themes. */
+:root[data-contrast='high'] {
+  --ground:#FFFFFF; --ground-2:#FFFFFF; --solid:#FFFFFF;
+  --ink:#000000; --ink-2:#1C1C1C; --ink-3:#333333; --hair:#000000;
+  --glass:#FFFFFF; --glass-line:#000000; --glass-lift:transparent; --shade:transparent;
+  --hue:#7A4A00;
+  color-scheme: light;
+}
+:root[data-contrast='high'] *,
+:root[data-contrast='high'] *::before,
+:root[data-contrast='high'] *::after {
+  text-shadow: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Per-surface hue. Applied to the shell, inherited by everything inside. */
+[data-surface='sarathi'] { --hue: var(--marigold); }
+[data-surface='bharat']  { --hue: var(--harbour); }
+[data-surface='bills']   { --hue: var(--indelible); }
+[data-surface='works']   { --hue: var(--milestone); }

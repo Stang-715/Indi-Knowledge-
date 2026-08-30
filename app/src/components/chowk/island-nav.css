@@ -1,0 +1,93 @@
+.inav {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 6px;
+  border-radius: var(--r-pill);
+  /* Always the dark composition: it floats over the mesh in both themes. */
+  background: rgba(20, 24, 38, .62);
+  backdrop-filter: blur(28px) saturate(175%);
+  -webkit-backdrop-filter: blur(28px) saturate(175%);
+  border: 1px solid rgba(255, 255, 255, .15);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, .13) inset,
+    0 20px 46px -16px rgba(0, 0, 0, .6);
+}
+
+.inav__tab {
+  position: relative;
+  z-index: 1;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 11px 13px;
+  border-radius: var(--r-pill);
+  color: rgba(237, 239, 245, .6);
+  transition: color var(--t-base) var(--ease);
+  min-height: 44px;
+}
+.inav__tab[aria-selected='true'] { color: #fff; }
+
+.inav__icon { display: grid; place-items: center; }
+.inav__icon svg { width: 21px; height: 21px; display: block; }
+
+.inav__label {
+  font-size: .82rem;
+  font-weight: 650;
+  white-space: nowrap;
+  max-width: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-width var(--t-slow) var(--ease), opacity var(--t-base) var(--ease);
+}
+.inav__tab[aria-selected='true'] .inav__label { max-width: 120px; opacity: 1; }
+
+.inav__glow {
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  border-radius: var(--r-pill);
+  z-index: 0;
+  transition:
+    left var(--t-slow) var(--ease),
+    width var(--t-slow) var(--ease),
+    background var(--t-base) var(--ease);
+}
+
+.inav__sep {
+  width: 1px;
+  height: 24px;
+  background: rgba(255, 255, 255, .16);
+  margin: 0 3px;
+  flex: 0 0 auto;
+}
+
+.inav__act {
+  z-index: 1;
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  min-height: 44px;
+  border-radius: 50%;
+  border: 0;
+  cursor: pointer;
+  background: #fff;
+  color: #12151F;
+  display: grid;
+  place-items: center;
+  transition: transform var(--t-base) var(--ease);
+}
+.inav__act:active { transform: scale(.9) rotate(90deg); }
+
+:root[data-contrast='high'] .inav {
+  background: #fff;
+  border-color: #000;
+  border-width: 2px;
+}
+:root[data-contrast='high'] .inav__tab { color: #000; }
+:root[data-contrast='high'] .inav__tab[aria-selected='true'] { color: #fff; }

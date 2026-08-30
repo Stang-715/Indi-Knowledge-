@@ -1,0 +1,49 @@
+.sheet__scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: rgba(6, 8, 14, .5);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  animation: sheet-fade var(--t-base) var(--ease);
+}
+@keyframes sheet-fade { from { opacity: 0 } to { opacity: 1 } }
+
+.sheet {
+  width: min(560px, 100%);
+  max-height: 88dvh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: var(--sp-3) var(--sp-4) calc(var(--sp-5) + env(safe-area-inset-bottom, 0px));
+  background: var(--solid);
+  border: 1px solid var(--hair);
+  border-bottom: 0;
+  border-radius: var(--r-xl) var(--r-xl) 0 0;
+  display: grid;
+  gap: var(--sp-3);
+  align-content: start;
+  animation: sheet-rise var(--t-slow) var(--ease);
+}
+@keyframes sheet-rise {
+  from { transform: translateY(14%); opacity: .6; }
+  to   { transform: none; opacity: 1; }
+}
+
+.sheet__grip {
+  width: 40px; height: 4px;
+  border-radius: 2px;
+  background: var(--hair);
+  justify-self: center;
+  margin-bottom: var(--sp-2);
+}
+
+.sheet__title {
+  font-size: 1.2rem;
+  font-weight: 650;
+  font-stretch: 90%;
+}
+
+.sheet__body { display: grid; gap: var(--sp-3); }

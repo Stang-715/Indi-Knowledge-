@@ -1,0 +1,56 @@
+.disc {
+  border-radius: var(--r-m);
+  border: 1px solid var(--hair);
+  background: var(--solid);
+  overflow: hidden;
+  transition: border-color var(--t-base) var(--ease);
+}
+.disc[open] { border-color: var(--hue); }
+
+.disc__head {
+  list-style: none;
+  cursor: pointer;
+  padding: var(--sp-3) var(--sp-4);
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: var(--sp-3);
+  align-items: center;
+  min-height: 62px;
+}
+.disc__head::-webkit-details-marker { display: none; }
+
+.disc__icon {
+  width: 40px; height: 40px;
+  border-radius: 12px;
+  display: grid; place-items: center;
+  background: color-mix(in srgb, var(--hue) 15%, transparent);
+  color: var(--hue);
+  flex: 0 0 auto;
+}
+
+/* Block, not inline: these sit in a grid cell where a span's margin is dead
+   and the title would run straight into the meta line. */
+.disc__text { display: grid; gap: 2px; min-width: 0; }
+.disc__title {
+  display: block;
+  font-family: var(--f-display);
+  font-size: .96rem; font-weight: 650;
+}
+.disc__meta { display: block; font-size: .78rem; color: var(--ink-3); }
+
+.disc__caret { color: var(--ink-3); transition: transform var(--t-slow) var(--ease); }
+.disc[open] .disc__caret { transform: rotate(180deg); }
+
+.disc__body {
+  padding: 0 var(--sp-4) var(--sp-4);
+  font-size: .88rem;
+  color: var(--ink-2);
+  line-height: 1.6;
+  display: grid;
+  gap: var(--sp-3);
+  animation: disc-reveal var(--t-slow) var(--ease);
+}
+@keyframes disc-reveal {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: none; }
+}

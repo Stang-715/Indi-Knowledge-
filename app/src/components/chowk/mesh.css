@@ -1,0 +1,12 @@
+.mesh {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* High contrast replaces the mesh with a flat ground — a gradient behind text
+   is exactly what a high-contrast mode exists to remove. */
+:root[data-contrast='high'] .mesh { display: none; }

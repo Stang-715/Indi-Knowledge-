@@ -1,0 +1,120 @@
+/*
+ * Chowk base layer — element defaults and the primitives every surface uses.
+ * Component-specific rules live beside their component, not here.
+ */
+
+@import './fonts.css';
+@import './tokens.css';
+
+* { box-sizing: border-box; }
+
+html {
+  font-size: calc(16px * var(--text-scale));
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--f-body);
+  line-height: 1.55;
+  overflow-wrap: break-word;
+  -webkit-font-smoothing: antialiased;
+  /* A mobile app should not rubber-band or text-select like a document. */
+  overscroll-behavior-y: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--f-display);
+  margin: 0;
+  font-weight: 600;
+  text-wrap: balance;
+  letter-spacing: -.015em;
+}
+
+p { margin: 0; }
+
+:where(a) { color: var(--hue); }
+
+:where(button, a, input, textarea, select, [tabindex]):focus-visible {
+  outline: 2px solid var(--hue);
+  outline-offset: 3px;
+  border-radius: var(--r-xs);
+}
+
+/* Every interactive target clears the 44px minimum. */
+button, [role='button'], a.tap, label.tap { min-height: 44px; }
+
+img, svg, video { max-width: 100%; }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* ---------------------------------------------------------------- *
+ * Glass.
+ * Only ever placed over content — a map, the caricature stage, a mesh.
+ * Over a flat panel it has nothing to refract and reads as weak grey.
+ * ---------------------------------------------------------------- */
+.glass {
+  background: var(--glass);
+  backdrop-filter: blur(26px) saturate(165%);
+  -webkit-backdrop-filter: blur(26px) saturate(165%);
+  border: 1px solid var(--glass-line);
+  border-radius: var(--r-l);
+  box-shadow: 0 1px 0 var(--glass-lift) inset, 0 18px 44px -22px var(--shade);
+}
+
+/* Glass over an always-dark ground (the stage, the map) needs its own
+   composition — the light-theme glass tokens would wash the text out. */
+.glass-dark {
+  background: rgba(255,255,255,.11);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: var(--r-m);
+  box-shadow: 0 1px 0 rgba(255,255,255,.13) inset;
+  color: #fff;
+}
+
+/* ---------------------------------------------------------------- *
+ * Type utilities
+ * ---------------------------------------------------------------- */
+.t-display {
+  font-family: var(--f-display); font-weight: 700;
+  font-stretch: 82%; letter-spacing: -.025em; line-height: 1.04;
+}
+.t-num {
+  font-family: var(--f-display); font-weight: 700;
+  font-stretch: 78%; font-variant-numeric: tabular-nums; letter-spacing: -.02em;
+}
+.t-label {
+  font-size: .72rem; font-weight: 650; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--ink-3);
+}
+.t-tiny { font-size: .78rem; color: var(--ink-3); line-height: 1.45; }
+.t-muted { color: var(--ink-2); }
+
+.stack { display: grid; gap: var(--sp-3); }
+.row { display: flex; gap: var(--sp-2); align-items: center; flex-wrap: wrap; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+:root[data-motion='reduced'] *,
+:root[data-motion='reduced'] *::before,
+:root[data-motion='reduced'] *::after {
+  animation-duration: .01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: .01ms !important;
+  scroll-behavior: auto !important;
+}
