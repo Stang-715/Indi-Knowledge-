@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Capacitor generates these from capacitor.config.ts; `npx cap add` recreates them.
+ios/
+android/
