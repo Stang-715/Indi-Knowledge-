@@ -149,7 +149,7 @@ function ReachPanel() {
 /* ------------------------------- 10.4 Export ------------------------------ */
 
 function ExportPanel() {
-  const [done, setDone] = useState(false)
+  const [state, setState] = useState<'idle' | 'downloaded' | 'blocked' | 'copied'>('idle')
 
   const rows = useMemo(() => {
     const out: string[] = ['poll_id,bill_title,option,count,total,coverage_pct']
@@ -165,7 +165,7 @@ function ExportPanel() {
     return out.join('\n')
   }, [])
 
-  const download = () => {
+  const record = () =>
     appendAudit({
       actorKind: 'gov',
       actor: 'Dashboard export',
@@ -173,23 +173,73 @@ function ExportPanel() {
       scope: 'all open polls',
       detail: 'Aggregate CSV exported. Contains counts and coverage only.',
     })
-    const blob = new Blob([rows], { type: 'text/csv' })
-    const url = URL.createObjectURL(blob)
-    const a = document.createElement('a')
-    a.href = url
-    a.download = 'civic-dialogue-aggregate.csv'
-    a.click()
-    URL.revokeObjectURL(url)
-    setDone(true)
+
+  /**
+   * Some browsers — embedded webviews, kiosk builds, sandboxed frames — refuse
+   * a script-initiated download without reporting an error. Rather than leaving
+   * an officer clicking a button that does nothing, fall through to showing the
+   * report so it can still be copied out.
+   */
+  const download = () => {
+    record()
+    try {
+      const blob = new Blob([rows], { type: 'text/csv' })
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = 'civic-dialogue-aggregate.csv'
+      a.rel = 'noopener'
+      document.body.appendChild(a)
+      a.click()
+      a.remove()
+      URL.revokeObjectURL(url)
+      setState('downloaded')
+    } catch {
+      setState('blocked')
+    }
+  }
+
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(rows)
+      setState('copied')
+    } catch {
+      setState('blocked')
+    }
   }
 
   return (
     <>
       <h3 className="section-title">Export</h3>
-      <button type="button" className="btn btn--ghost btn--block" onClick={download}>
-        Export aggregate report (CSV)
-      </button>
-      {done && <Banner tone="ok">Exported. The export is recorded in the public audit trail.</Banner>}
+      <div className="row">
+        <button type="button" className="btn btn--ghost" onClick={download}>
+          Download aggregate report (CSV)
+        </button>
+        <button type="button" className="btn btn--ghost" onClick={copy}>
+          Copy to clipboard
+        </button>
+      </div>
+
+      {state === 'downloaded' && (
+        <Banner tone="ok">Exported. The export is recorded in the public audit trail.</Banner>
+      )}
+      {state === 'copied' && <Banner tone="ok">Copied. Paste it into a spreadsheet.</Banner>}
+      {state === 'blocked' && (
+        <Banner tone="advisory" title="This browser blocked the download">
+          The report is below — select it and copy it out.
+        </Banner>
+      )}
+
+      <details className="card">
+        <summary style={{ cursor: 'pointer', fontWeight: 650 }}>Show the report</summary>
+        <pre
+          className="scroll-x"
+          style={{ fontSize: '0.78rem', marginTop: 'var(--s3)', marginBottom: 0 }}
+        >
+          {rows}
+        </pre>
+      </details>
+
       <p className="tiny">
         The export carries the coverage percentage in every row on purpose — so a number cannot
         be lifted into a briefing without the figure that qualifies it.
