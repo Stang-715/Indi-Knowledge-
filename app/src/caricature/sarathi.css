@@ -1,0 +1,68 @@
+.sarathi {
+  position: relative;
+  display: grid;
+  place-items: center;
+  filter: drop-shadow(0 10px 22px rgb(0 0 0 / 0.18));
+}
+
+.sarathi__svg {
+  cursor: pointer;
+  overflow: visible;
+  transition: transform 420ms cubic-bezier(0.34, 1.4, 0.5, 1);
+  animation: sarathi-sway 6.5s ease-in-out infinite;
+  transform-origin: 110px 190px;
+}
+
+.sarathi__svg:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 6px;
+  border-radius: 12px;
+}
+
+@keyframes sarathi-sway {
+  0%, 100% { translate: 0 0; }
+  50%      { translate: 0 -6px; }
+}
+
+.sarathi--speaking .sarathi__svg {
+  animation: sarathi-sway 3.2s ease-in-out infinite;
+}
+
+.sarathi--poked .sarathi__svg {
+  animation: sarathi-nod 480ms ease-out;
+}
+
+@keyframes sarathi-nod {
+  0%   { rotate: 0deg; scale: 1; }
+  30%  { rotate: -5deg; scale: 1.04; }
+  60%  { rotate: 4deg; scale: 1.01; }
+  100% { rotate: 0deg; scale: 1; }
+}
+
+.sarathi__brows path,
+.sarathi__eyes ellipse {
+  transition: all 260ms ease;
+}
+
+.sarathi__think circle {
+  fill: var(--accent);
+  opacity: 0;
+  animation: sarathi-think 1.5s ease-in-out infinite;
+}
+.sarathi__think circle:nth-child(2) { animation-delay: 0.2s; }
+.sarathi__think circle:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes sarathi-think {
+  0%, 100% { opacity: 0; translate: 0 4px; }
+  50%      { opacity: 0.85; translate: 0 0; }
+}
+
+/* Screen-reader mode and reduced motion both land here. */
+.sarathi--still .sarathi__svg,
+:root[data-motion='reduced'] .sarathi__svg {
+  animation: none !important;
+}
+:root[data-motion='reduced'] .sarathi__think circle {
+  animation: none;
+  opacity: 0.7;
+}

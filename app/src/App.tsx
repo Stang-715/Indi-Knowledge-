@@ -1,0 +1,118 @@
+import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-dom'
+import { SessionProvider, useSession } from './core/session'
+import { I18nProvider } from './i18n'
+import Landing from './Landing'
+import Onboarding from './citizen/Onboarding'
+import CitizenShell from './citizen/CitizenShell'
+import Home from './citizen/Home'
+import { NoticeDetail, NoticeList } from './citizen/Notices'
+import { PollDetail, PollList } from './citizen/Polls'
+import { ThreadView, TopicList } from './citizen/Discussion'
+import { Inbox, Search } from './citizen/InboxSearch'
+import {
+  AccessibilitySettings, Help, LocalitySettings, NotificationSettings,
+  PrivacyCentre, ProfileIndex, PseudonymSettings,
+} from './citizen/Profile'
+import { GovHome, GovLogin, GovProvider, GovShell, useGov } from './gov/GovPortal'
+import { NoticeComposer, PollComposer } from './gov/Compose'
+import Dashboards from './gov/Dashboards'
+import Moderation from './gov/Moderation'
+import Oversight from './oversight/Oversight'
+import type { GovRole } from './core/types'
+
+/** Onboarding is not skippable — a pseudonym is required before anything can be said. */
+function RequireOnboarding({ children }: { children: React.ReactElement }) {
+  const { prefs, voice } = useSession()
+  if (!prefs.onboarded || !voice) return <Navigate to="/welcome" replace />
+  return children
+}
+
+/** Role gating (7.0): sections outside an account's roles are not routable. */
+function RequireRole({ role, children }: { role: GovRole; children: React.ReactElement }) {
+  const { account, can } = useGov()
+  if (!account) return <Navigate to="/gov" replace />
+  if (!can(role)) return <Navigate to="/gov/home" replace />
+  return children
+}
+
+function Localised({ children }: { children: React.ReactNode }) {
+  const { prefs } = useSession()
+  return <I18nProvider locale={prefs.locale}>{children}</I18nProvider>
+}
+
+export default function App() {
+  return (
+    <SessionProvider>
+      <Localised>
+        <GovProvider>
+          <Router>
+            <Routes>
+              <Route path="/" element={<Landing />} />
+              <Route path="/welcome" element={<Onboarding />} />
+
+              {/* ---------------------------- citizen app --------------------------- */}
+              <Route
+                path="/app"
+                element={
+                  <RequireOnboarding>
+                    <CitizenShell />
+                  </RequireOnboarding>
+                }
+              >
+                <Route index element={<Home />} />
+                <Route path="inbox" element={<Inbox />} />
+                <Route path="search" element={<Search />} />
+
+                <Route path="notices" element={<NoticeList />} />
+                <Route path="notices/archive" element={<NoticeList archive />} />
+                <Route path="notices/:id" element={<NoticeDetail />} />
+
+                <Route path="polls" element={<PollList />} />
+                <Route path="polls/archive" element={<PollList archive />} />
+                <Route path="polls/:id" element={<PollDetail />} />
+
+                <Route path="discuss" element={<TopicList />} />
+                <Route path="discuss/:id" element={<ThreadView />} />
+
+                <Route path="profile" element={<ProfileIndex />} />
+                <Route path="profile/pseudonym" element={<PseudonymSettings />} />
+                <Route path="profile/notifications" element={<NotificationSettings />} />
+                <Route path="profile/locality" element={<LocalitySettings />} />
+                <Route path="profile/privacy" element={<PrivacyCentre />} />
+                <Route path="profile/accessibility" element={<AccessibilitySettings />} />
+                <Route path="profile/help" element={<Help />} />
+              </Route>
+
+              {/* -------------------------- government portal ------------------------ */}
+              <Route path="/gov" element={<GovLogin />} />
+              <Route path="/gov" element={<GovShell />}>
+                <Route path="home" element={<GovHome />} />
+                <Route
+                  path="notices"
+                  element={<RequireRole role="notice-officer"><NoticeComposer /></RequireRole>}
+                />
+                <Route
+                  path="polls"
+                  element={<RequireRole role="poll-officer"><PollComposer /></RequireRole>}
+                />
+                <Route
+                  path="dashboards"
+                  element={<RequireRole role="analyst"><Dashboards /></RequireRole>}
+                />
+                <Route
+                  path="moderation"
+                  element={<RequireRole role="moderator"><Moderation /></RequireRole>}
+                />
+              </Route>
+
+              {/* --------------------------- oversight layer ------------------------- */}
+              <Route path="/oversight" element={<Oversight />} />
+
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </Router>
+        </GovProvider>
+      </Localised>
+    </SessionProvider>
+  )
+}
