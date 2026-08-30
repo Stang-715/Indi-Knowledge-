@@ -11,7 +11,7 @@
  */
 
 const CACHE = 'civic-dialogue-v1'
-const SHELL = ['./', './index.html', './manifest.webmanifest', './icon.svg']
+const SHELL = ['/', '/index.html', '/manifest.webmanifest', '/icon.svg']
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
@@ -39,10 +39,10 @@ self.addEventListener('fetch', (event) => {
       fetch(request)
         .then((response) => {
           const copy = response.clone()
-          caches.open(CACHE).then((cache) => cache.put('./index.html', copy))
+          caches.open(CACHE).then((cache) => cache.put('/index.html', copy))
           return response
         })
-        .catch(() => caches.match('./index.html').then((r) => r || Response.error())),
+        .catch(() => caches.match('/index.html').then((r) => r || Response.error())),
     )
     return
   }
