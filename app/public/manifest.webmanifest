@@ -1,16 +1,30 @@
 {
-  "name": "Civic Dialogue",
-  "short_name": "Civic",
-  "description": "Government notices, plain-language bills and advisory polling — without location tracking.",
+  "name": "Chowk",
+  "short_name": "Chowk",
+  "description": "A guide you can talk to, the country in live data, the bills being written about you, and every road anybody intends to dig up.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#f7f9f8",
-  "theme_color": "#146b63",
-  "categories": ["government", "news", "social"],
+  "background_color": "#0F1320",
+  "theme_color": "#E8991F",
+  "categories": [
+    "government",
+    "news",
+    "social"
+  ],
   "icons": [
-    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
-    { "src": "/icon-maskable.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-maskable.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
   ]
 }

@@ -17,7 +17,7 @@ export const LANGUAGES: LanguageMeta[] = [
 type Dict = Record<string, string>
 
 const en: Dict = {
-  'app.name': 'Civic Dialogue',
+  'app.name': 'Chowk',
   'app.tagline': 'Notices, bills and public debate — without being tracked.',
 
   'nav.home': 'Home',
@@ -75,7 +75,7 @@ const en: Dict = {
   'home.charName': 'Sarathi',
   'home.charRole': 'your guide to this platform',
   'home.inputLabel': 'Ask Sarathi a question',
-  'home.placeholder': 'Ask about polls, privacy, notices…',
+  'home.placeholder': 'Ask Sarathi anything…',
   'home.send': 'Ask',
   'home.listen': 'Read answers aloud',
   'home.suggestions': 'Try asking',
