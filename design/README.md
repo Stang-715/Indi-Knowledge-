@@ -5,6 +5,28 @@ Open it in a browser; the components in it are live, not screenshots.
 
 Published: https://claude.ai/code/artifact/7f500136-20a9-4b30-8884-d8b57c4501cd
 
+`chowk-plan.html` is the twelve-phase build plan: design orientation per surface,
+exit criteria and risks per phase, a risk register, and the research findings that
+reordered the work.
+
+Published: https://claude.ai/code/artifact/0c7a6ea6-0e3d-4940-8ce7-f5af1b90c486
+
+## External constraints the plan is built on
+
+Researched rather than assumed, and each one changed the order of the work:
+
+- **DPDP Act 2023 + Rules 2025** — full compliance expected 13 May 2027. Consent must
+  be free, specific, informed and unconditional, preceded by a plain-language notice,
+  available in English or any Eighth Schedule language. Under-18s must not be profiled.
+- **Eighth Schedule** — 22 scheduled languages, not the 5 we scoped. Anek covers 10
+  Indic scripts; Santali, Kashmiri, Sindhi, Dogri, Manipuri and Bodo need more.
+- **Right to Service Acts** — statutory service timelines with appeal routes. Surface
+  4's overrun record is a digital surface for an obligation that already exists.
+- **UX4G / GIGW 3.0** — the government's own design system, WCAG 2.1 AA. Adopt its
+  compliance substance, not its visual identity.
+- **Liquid Glass vs Material 3 Expressive** — the platforms diverged in 2025, and
+  current glass is behavioural rather than visual. Ours is the static kind.
+
 ## Why the fonts are inlined
 
 `fonts/` holds the variable woff2 for Anek Latin and Instrument Sans, embedded in
