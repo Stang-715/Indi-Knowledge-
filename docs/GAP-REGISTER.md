@@ -434,6 +434,21 @@ nothing about the transfer visible to the server beyond a key rotation.
 
 ## Phase 5 — Surface 3, Bills
 
+Verified: 80 files against the six architectural constraints (including the new
+rule that a file recording a poll response must render the advisory banner);
+45 components and 20 stylesheets against the accessibility floor; 9 routes in
+the pseudo-locale at 160% with nothing clipped; and 956 text elements across 10
+routes, 2 themes and 3 points in the mesh drift, every one meeting WCAG AA
+against its real composited backdrop.
+
+Three of those checks failed first and were fixed rather than adjusted. The
+layout check had only ever run one route, so a whole surface could have shipped
+unmeasured; extended to nine, it failed six of them immediately. The contrast
+check found the surface unreadable in light mode — seventy elements below AA,
+all light-theme — because `MeshGround` paints on a dark base in both themes and
+this surface had used the theme's own ink tokens.
+
+
 ### G-5-01 · There is no live source. Every bill is invented.
 **Severity:** blocker for the phase's exit criterion
 The exit criterion says a citizen can "read a live bill in plain words". They can
