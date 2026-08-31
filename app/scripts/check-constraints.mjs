@@ -59,6 +59,39 @@ for (const file of files) {
   }
 }
 
+/* Principle 1, second half — no map tiles, from anybody.
+ *
+ * The location rule above catches the device APIs. It does not catch the way a
+ * map normally leaks a position: a tile request carries the viewer's IP and the
+ * exact rectangle they are looking at to whoever serves the tiles. Do that on
+ * every open and a third party has a movement pattern, assembled without this
+ * app ever calling a location API — "we never asked for your location" would be
+ * true and would not matter.
+ *
+ * So Surface 4 draws its own map from published road geometry. This rule fails
+ * the build if a tile source or a map SDK that fetches them is reintroduced.
+ * Matched against the raw source, because a URL and an import specifier are
+ * both string literals and the stripped copy cannot see either. */
+const TILE_SOURCES = [
+  /from\s+['"](?:leaflet|maplibre-gl|mapbox-gl|ol|@googlemaps\/|react-map-gl)/,
+  /https?:\/\/[^'"\s]*tile\.openstreetmap/i,
+  /https?:\/\/api\.mapbox\.com/i,
+  /https?:\/\/maps\.googleapis\.com/i,
+  /https?:\/\/[a-z0-9.-]*tiles?\.[a-z0-9.-]+\/[^'"\s]*\{[zxy]\}/i,
+]
+for (const file of files) {
+  const raw = readFileSync(file.path, 'utf8')
+  for (const pattern of TILE_SOURCES) {
+    if (pattern.test(raw)) {
+      failures.push(
+        `[principle 1] ${file.rel} reaches a map tile source (${pattern}). ` +
+          `A tile request hands a third party the viewer's address and the rectangle ` +
+          `they are looking at. Surface 4 draws its own map for that reason.`,
+      )
+    }
+  }
+}
+
 /* Principle 2 — the two identity layers must not be joined. */
 const REAL_ID = /\b(idHash|realName|documentNumber|eligibilityToken)\b/
 const PSEUDO = /\b(pseudonym|authorPseudonym)\b/

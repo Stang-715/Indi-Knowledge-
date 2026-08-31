@@ -59,6 +59,11 @@ import {
 } from './seed'
 import { BILLS, CONSTITUENCIES, REPRESENTATIVES, VOTE_RECORDS } from './bills'
 import { CONSTITUTION } from './constitution'
+import { DEPARTMENTS, STRETCHES, WORKS } from './works'
+import {
+  departmentRecord, isLive, stateOf, stretchesForStreet,
+  type Department, type DepartmentRecord, type Stretch, type Work,
+} from '../core/works'
 import {
   constituenciesForDistrict, hasEnded, searchConstituencies, STAGES,
   type Bill, type Clause, type Constituency, type ConstitutionData,
@@ -710,4 +715,105 @@ export function votingRecord(representativeId: string): {
 /** The pseudonymous view on a bill, where one is attached. */
 export function billAggregate(bill: Bill): Aggregate | null {
   return bill.pollId ? pollAggregate(bill.pollId) : null
+}
+
+/* ---------------------------- Surface 4 — works ---------------------------- */
+
+/**
+ * The works reads.
+ *
+ * Every function here takes a street name or an id. None takes a position, and
+ * there is nothing on the device it could read instead — which is the point of
+ * asking a citizen to type their street rather than offering to find it.
+ */
+
+export function listWorks(): Work[] {
+  return [...WORKS].sort((a, b) => a.restoreBy - b.restoreBy)
+}
+
+export function getWork(id: string): Work | undefined {
+  return WORKS.find((w) => w.id === id)
+}
+
+export function listStretches(): Stretch[] {
+  return STRETCHES
+}
+
+export function getStretch(id: string): Stretch | undefined {
+  return STRETCHES.find((s) => s.id === id)
+}
+
+export function listDepartments(): Department[] {
+  return DEPARTMENTS
+}
+
+export function getDepartment(id: string): Department | undefined {
+  return DEPARTMENTS.find((d) => d.id === id)
+}
+
+/** 4.1 — what is dug, closed or planned right now. */
+export function liveWorks(): Work[] {
+  return listWorks().filter((w) => isLive(w))
+}
+
+/**
+ * 4.5 — what is happening on the streets a citizen follows.
+ *
+ * Matching is loose on purpose. Somebody who types "MG Rd" is telling you the
+ * street they live on; answering with an empty screen because the gazetteer
+ * says "Mahatma Gandhi Road" teaches them the app does not know their area.
+ */
+export function worksOnStreet(street: string): Work[] {
+  const ids = new Set(stretchesForStreet(STRETCHES, street).map((s) => s.id))
+  return listWorks().filter((w) => ids.has(w.stretchId))
+}
+
+export function worksOnFollowed(streets: { name: string }[]): Work[] {
+  const seen = new Set<string>()
+  const out: Work[] = []
+  for (const street of streets) {
+    for (const work of worksOnStreet(street.name)) {
+      if (!seen.has(work.id)) { seen.add(work.id); out.push(work) }
+    }
+  }
+  return out.sort((a, b) => a.restoreBy - b.restoreBy)
+}
+
+/**
+ * Works worth interrupting somebody for: a full closure starting on a followed
+ * street, or a commitment on one that has just been missed. The filter runs on
+ * the device against streets stored on the device.
+ */
+export function alertsOnFollowed(streets: { name: string }[]): Work[] {
+  return worksOnFollowed(streets).filter((w) => {
+    const state = stateOf(w)
+    return (state === 'open' && w.closure === 'full') || state === 'overrun'
+  })
+}
+
+export function streetSuggestions(query: string): Stretch[] {
+  const q = query.trim().toLowerCase()
+  if (q.length < 2) return []
+  const seen = new Set<string>()
+  return STRETCHES.filter((s) => {
+    if (!`${s.street} ${s.locality} ${s.district}`.toLowerCase().includes(q)) return false
+    if (seen.has(s.street)) return false
+    seen.add(s.street)
+    return true
+  })
+}
+
+/**
+ * 4.6 — the overrun record.
+ *
+ * Published per department, permanently, and framed as what it is: the Right to
+ * Service record those bodies already owe. Nothing here is computed from a
+ * department's own admission — an overrun appears the day a committed date
+ * passes, whether or not anybody updates a status.
+ */
+export function overrunRecord(): DepartmentRecord[] {
+  return DEPARTMENTS
+    .map((d) => departmentRecord(d, WORKS))
+    .filter((r) => r.finished > 0)
+    .sort((a, b) => b.late - a.late || b.medianLateDays - a.medianLateDays)
 }

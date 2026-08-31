@@ -528,6 +528,87 @@ store release, and the app still opens on a dead connection.
 
 ---
 
+## Phase 6 — Surface 4, Works, citizen half
+
+### G-6-01 · No live works data, and this is the claim that depends on it
+**Severity:** blocker for the phase's exit criterion
+The exit criterion is "useful with zero departments signed up, purely from
+published data". Everything in `data/works.ts` is invented, so the surface is
+useful with zero departments and zero data — which proves the interface, not the
+premise.
+The premise is the risky part. Bills are published in one place in a consistent
+form; roadwork permits are published by hundreds of municipal bodies, in
+whatever form each chose, and in many places not at all. Whether this surface
+can be built from published data is a question about Indian municipal
+publishing, and it has not been answered.
+**Do:** survey what three or four municipal corporations actually publish, and
+build against the worst of them rather than the best.
+**Verify:** one real ward's works appear from that ward's own publications, with
+no department having signed up to anything.
+
+### G-6-02 · The departments are fictional
+**Severity:** blocker before release
+An overrun record is a claim that a named body failed to do what it promised.
+Publishing an invented one against a real authority would be a defamation with a
+chart attached, so the departments here are made up and marked `sample` on
+screen. The utility types, the record's shape and the Right to Service framing
+are real; the failures are nobody's.
+**Do:** name real bodies only against records traceable to their own
+publications, and treat a disputed figure as an incident with a correction
+trail rather than a support ticket.
+**Verify:** every number on 4.6 traces to a published permit and a published
+completion, and a department can see how its own figure was computed.
+
+### G-6-03 · The map is schematic, not the real street network
+**Severity:** major
+Eight polylines in a local metre grid. Real geometry would come from a municipal
+GIS layer or an OpenStreetMap extract — bundled or served by us, never fetched
+per tile, for the reason the no-tiles rule exists.
+The consequence is that a citizen cannot recognise their own street by its
+shape, only by its name, which weakens 4.5 for anyone who does not know what
+their road is called on paper.
+**Do:** bundle a simplified geometry per ward, served the same way the
+legislative records will be.
+**Verify:** a resident recognises their junction without reading a label.
+
+### G-6-04 · The followed-street tier has no transport
+**Severity:** major
+The tier exists, filters correctly on the device, and shows on the screen it
+would fire from. There is no push delivery behind it — the same gap the notice
+tiers have had since Phase 0. A closure alert that only appears when you open
+the app is not an alert.
+Delivery is the hard part here, not the filter: a push service that knows which
+streets to notify about is a service holding a list of streets each person cares
+about, which is a home address written down slowly. The filter has to stay on
+the device, which means the push has to be contentless — a nudge to open the
+app, not a message about a road.
+**Verify:** a full closure on a followed street reaches a locked phone, and the
+push service cannot tell which street it was about.
+
+### G-6-05 · Street matching has no gazetteer behind it
+**Severity:** minor
+`normaliseStreet` folds the common abbreviations — Rd, St, Marg — and matching
+is substring in both directions. A street the dataset does not carry matches
+nothing and says nothing, so a citizen cannot tell "no works here" from "I have
+not heard of your street".
+**Do:** say which it is, and let a street be followed even when nothing is known
+about it yet.
+**Verify:** following an unknown street is possible and honest about being
+unknown.
+
+### G-6-06 · The departmental half is still blocked
+**Severity:** blocker for the surface's purpose
+4.2 file a work, 4.3 clash detection and 4.4 approval-to-permit are Phase 7 and
+are blocked on institutional identity. A scheduler where anybody can file as the
+Water Board is worse than no scheduler, because it launders a fake permit into a
+real-looking one.
+Until then the permit number on a work is whatever the publication said, and
+`works.noPermit` is the common case.
+**Verify:** two real departments in one ward file, clash, resolve and issue —
+and a citizen can check the permit from the street.
+
+---
+
 ## Cross-cutting
 
 ### G-X-01 · Two design systems are loaded at once

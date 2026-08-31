@@ -17,23 +17,3 @@ export function BharatStub() {
     />
   )
 }
-
-export function WorksStub() {
-  return (
-    <ComingSoon
-      surface="Works"
-      tagline="Nobody digs before they book it here."
-      existing={[
-        { to: '/app/notices', label: 'Notices', detail: 'Water shutdowns, road work and health camps for the wards you follow' },
-        { to: '/gov', label: 'Department portal', detail: 'Institutional sign-in, publishing, and the moderation queues' },
-      ]}
-      planned={[
-        { code: '4.1', title: 'Live works map', detail: 'What is dug, closed or planned — each with the end date the department committed to.' },
-        { code: '4.2', title: 'Schedule a work', detail: 'The department files intent: road, window, reason, restoration date.' },
-        { code: '4.3', title: 'Clash detector', detail: 'Water booked this stretch last week. Resolve it before approval, not after the tarmac is up.' },
-        { code: '4.4', title: 'Approval to permit', detail: 'The permit number is issued here. No permit, no dig.' },
-        { code: '4.6', title: 'Overrun record', detail: 'Promised against actual, published per department, permanently. This is what makes 4.2 a commitment instead of paperwork.' },
-      ]}
-    />
-  )
-}

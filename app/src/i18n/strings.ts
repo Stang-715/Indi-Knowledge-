@@ -241,6 +241,85 @@ const en: Dict = {
   'stub.notBuilt': 'Not built yet',
 
   /* ---------------------------- screen states ----------------------- */
+  /* ------------------------------ Surface 4 ------------------------------ */
+
+  'works.title': 'Works',
+  'works.tagline': 'What is dug, what is closed, and when it is due back.',
+  'works.section.map': 'Map',
+  'works.section.mine': 'My streets',
+  'works.section.record': 'The record',
+
+  'works.state.planned': 'Booked, not started',
+  'works.state.open': 'Open now',
+  'works.state.overrun': 'Past its date',
+  'works.state.restored': 'Restored',
+  'works.state.cancelled': 'Called off',
+
+  'works.utility.water': 'Water',
+  'works.utility.power': 'Power',
+  'works.utility.telecom': 'Telecom',
+  'works.utility.gas': 'Gas',
+  'works.utility.road': 'Road',
+  'works.utility.drainage': 'Drainage',
+
+  'works.closure.full': 'Road closed',
+  'works.closure.partial': 'Partly open',
+  'works.closure.none': 'Traffic unaffected',
+
+  'works.dueIn': 'Due back in {n} days',
+  'works.dueToday': 'Due back today',
+  'works.lateBy': '{n} days past its date',
+  'works.restoredOn': 'Restored {d}',
+  'works.startsIn': 'Starts in {n} days',
+  'works.committed': 'Committed to',
+  'works.originally': 'Originally {d}',
+  'works.revisions': 'The date has moved {n} times',
+  'works.revision': 'The date has moved once',
+  'works.permit': 'Permit {n}',
+  'works.noPermit': 'Published without a permit number',
+  'works.noPermitBody':
+    'Until departments file here, most works arrive from published notices with no permit attached. The surface says so rather than leaving a blank.',
+  'works.reason': 'Why the road is open',
+  'works.who': 'Who is doing it',
+  'works.history': 'What was promised',
+  'works.appeal': 'Right to Service appeal',
+  'works.appealBody':
+    'Most states set statutory timelines for notified services, with a designated officer and an appeal when a deadline is missed. This is that record, not a complaint form.',
+
+  'works.map.label': 'Schematic map of works. Pan with a drag, zoom with the buttons.',
+  'works.map.zoomIn': 'Zoom in',
+  'works.map.zoomOut': 'Zoom out',
+  'works.map.reset': 'Fit everything',
+  'works.map.legend': 'What the colours mean',
+  'works.map.noTiles':
+    'Drawn from published geometry rather than fetched from a map service. A tile request would carry your address and the exact rectangle you are looking at to a third party.',
+  'works.map.list': 'The same works as a list',
+  'works.map.empty': 'No works are open in this area.',
+
+  'works.mine.title': 'My streets',
+  'works.mine.add': 'Follow a street',
+  'works.mine.addHint': 'Type it the way you say it. Nothing is looked up about you.',
+  'works.mine.none': 'You are not following any streets yet.',
+  'works.mine.nothing': 'Nothing is happening on the streets you follow.',
+  'works.mine.following': 'Following',
+  'works.mine.follow': 'Follow',
+  'works.mine.unfollow': 'Stop following',
+  'works.mine.local':
+    'The streets you follow are stored on this device and matched here. No list of streets you care about is sent anywhere — that list is a home address written down slowly.',
+  'works.mine.alerts': 'Worth telling you about now',
+
+  'works.record.title': 'Promised against actual',
+  'works.record.intro':
+    'Every work with a committed date that has passed, counted per department. A department is not late for a job that is not due yet, and none of this waits for anybody to admit anything — a date that passes counts the day it passes.',
+  'works.record.finished': '{n} due',
+  'works.record.onTime': '{n} on time',
+  'works.record.late': '{n} late',
+  'works.record.median': 'Typically {n} days late',
+  'works.record.worst': 'Worst: {n} days',
+  'works.record.revisions': '{n} dates moved',
+  'works.record.clean': 'Nothing past its date.',
+  'works.record.why': 'Why this is published',
+
   /* ------------------------------ Surface 3 ------------------------------ */
 
   'bills.title': 'Bills',

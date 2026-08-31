@@ -151,6 +151,38 @@ is a first-class position rather than a gap: most business in both Houses passes
 on a voice vote with no division, and rendering that silence as an absence would
 libel half of Parliament by rounding error.
 
+## Surface 4 — Works, citizen half
+
+`core/works.ts` holds the domain. Three rules shape it.
+
+**A work has a location. A citizen does not.** Every coordinate in the data
+belongs to a hole in a road — public infrastructure geometry, published by the
+authority. None belongs to a person. "My road" is a street the citizen typed,
+stored on the device, and matched by loose string comparison, because somebody
+who writes "MG Rd" is telling you where they live and should not get an empty
+screen because a gazetteer spells it differently.
+
+**The map is drawn, not fetched.** This is the constraint that is easiest to
+miss and the one that matters most on this surface. A tile request carries the
+viewer's IP and the exact rectangle they are looking at to whoever serves the
+tiles; repeat it on every open and a third party holds a movement pattern
+assembled without the app ever calling a location API. "We never asked for your
+location" would be true and would not matter. So `WorksMap.tsx` renders an SVG
+from the stored polylines — it weighs nothing, works with no signal, and sends
+nobody anything. The constraint check fails the build if a tile source or a map
+SDK that fetches them appears anywhere in the tree.
+
+**The overrun record is a duty, not an accusation.** Most states have a Right to
+Service Act setting statutory timelines for notified services, with a designated
+officer and an appeal when a deadline is missed. 4.6 is that record. Nothing in
+it waits for a department to admit anything — `stateOf` derives overrun from the
+committed date and the clock, so a work goes late the day it goes late. Every
+change to a committed date is kept with its reason, because a department that
+can quietly move its own deadline has no deadline. Departments are counted only
+on works whose date has passed: a body is not late for a job that is not due,
+and counting one would make the record disputable, which is the fastest way to
+make it ignored.
+
 ## Not yet built
 
 - Surfaces 2 and 4. Bharat and Works are still the planned-page stubs.

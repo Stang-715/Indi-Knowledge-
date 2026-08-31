@@ -1,0 +1,224 @@
+/* ------------------------------------------------------------------ *
+ * Surface 4 — Works.
+ *
+ * A site notice board: blunt, factual, dated. Map first, list second, and the
+ * date is the largest thing on any card — everything else here is answerable
+ * from a sign on a barrier, and when the road comes back is not.
+ *
+ * The ink is pinned to the dark palette for the same reason Surface 3's is:
+ * MeshGround paints on a dark base in both themes, so anything sitting on it
+ * reads light-on-dark whatever the OS says. High contrast is exempt — that mode
+ * replaces the material and its tokens must win.
+ * ------------------------------------------------------------------ */
+
+.wk {
+  display: grid;
+  gap: var(--sp-5);
+  align-content: start;
+  min-width: 0;
+}
+
+:root:not([data-contrast='high']) .wk {
+  --ink: var(--d-ink);
+  --ink-2: var(--d-ink-2);
+  --ink-3: var(--d-ink-3);
+  --hair: rgba(255, 255, 255, .22);
+  --ground-2: rgba(255, 255, 255, .10);
+  --solid: rgba(255, 255, 255, .08);
+  --glass: var(--d-glass);
+  --glass-line: var(--d-glass-line);
+  --glass-lift: var(--d-glass-lift);
+  --shade: var(--d-shade);
+  color: var(--ink);
+}
+
+/* The five states, as one palette used by the map, the cards and the record.
+   Chosen to survive over the milestone-green bloom rather than to look pretty
+   on white. */
+.wk, .wmap {
+  --w-planned: #8FA3C8;
+  --w-open: #6FC5A0;
+  --w-overrun: #F0846B;
+  --w-restored: #7E8AA6;
+  --w-cancelled: #5C6478;
+}
+
+.wk__head { display: grid; gap: var(--sp-2); justify-items: start; min-width: 0; }
+.wk__title { font-size: clamp(2rem, 9vw, 2.6rem); margin: 0; }
+.wk__tagline { margin: 0; color: var(--ink-2); font-size: .95rem; line-height: 1.5; }
+.wk__cite { margin: 0; color: var(--ink-3); font-size: .82rem; }
+.wk__street {
+  margin: 0; font-family: var(--f-display); font-weight: 700; font-stretch: 88%;
+  font-size: clamp(1.4rem, 6vw, 1.8rem); line-height: 1.14; color: var(--ink);
+}
+.wk__when {
+  margin: 0; font-family: var(--f-display); font-weight: 700; font-stretch: 82%;
+  font-size: clamp(1.6rem, 7.5vw, 2.1rem); line-height: 1.05; letter-spacing: -.02em;
+  color: var(--w-open);
+}
+.wk__when--overrun { color: var(--w-overrun); }
+.wk__when--restored, .wk__when--cancelled { color: var(--ink-2); }
+.wk__when--planned { color: var(--w-planned); }
+
+.wk__back {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: none; border: 0; padding: 6px 2px;
+  color: var(--ink-2); font: inherit; font-size: .86rem; font-weight: 600;
+  cursor: pointer; justify-self: start; min-height: 44px; text-decoration: none;
+}
+.wk__back:hover { color: var(--ink); }
+
+.wk__h2 {
+  margin: 0 0 var(--sp-3);
+  font-family: var(--f-display); font-weight: 700; font-stretch: 86%;
+  font-size: 1.05rem; letter-spacing: -.01em; color: var(--ink);
+}
+.wk__h2--alert { color: var(--w-overrun); }
+.wk__block { display: grid; gap: var(--sp-2); min-width: 0; }
+.wk__list { display: grid; gap: var(--sp-3); min-width: 0; }
+.wk__prose { margin: 0; line-height: 1.6; color: var(--ink); }
+.wk__note { margin: 0; color: var(--ink-2); font-size: .84rem; line-height: 1.55; }
+.wk__none { margin: 0; color: var(--ink-3); font-size: .88rem; }
+.wk__label { margin: 0; }
+.wk__search { margin: 0; }
+
+.wk__permit {
+  margin: 0; font-family: var(--f-display); font-weight: 700;
+  font-variant-numeric: tabular-nums; font-size: .95rem; color: var(--ink);
+}
+.wk__permit--none { font-family: var(--f-body); font-weight: 600; color: var(--ink-2); }
+
+.wk__committed { margin: 0; font-size: .95rem; color: var(--ink); }
+.wk__moved { margin: 0; font-size: .86rem; color: var(--w-overrun); }
+.wk__revisions {
+  list-style: none; margin: var(--sp-2) 0 0; padding: 0; display: grid; gap: var(--sp-3);
+}
+.wk__revisions li {
+  display: grid; gap: 3px; min-width: 0;
+  padding-left: var(--sp-4); border-left: 2px solid var(--hair);
+}
+.wk__rev-date { font-weight: 650; font-size: .9rem; color: var(--ink); }
+.wk__rev-why { font-size: .85rem; line-height: 1.5; color: var(--ink-2); }
+
+/* --------------------------------- the map -------------------------------- */
+
+.wmap { display: grid; gap: var(--sp-3); position: relative; min-width: 0; }
+
+.wmap__svg {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: var(--r-l);
+  background: rgba(255, 255, 255, .05);
+  border: 1px solid var(--glass-line);
+  touch-action: none;                 /* the drag is a pan, not a page scroll */
+  cursor: grab;
+  display: block;
+}
+.wmap__svg:active { cursor: grabbing; }
+
+.wmap__road {
+  fill: none;
+  stroke: rgba(255, 255, 255, .20);
+  stroke-width: 9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.wmap__road--work { stroke-width: 13; }
+
+.wmap__pin { cursor: pointer; }
+.wmap__pin-ring { fill: none; stroke: rgba(0, 0, 0, .45); stroke-width: 3; }
+.wmap__pin.is-on .wmap__pin-ring { stroke: #fff; stroke-width: 4; }
+.wmap__pin:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+
+.wmap__controls {
+  position: absolute; top: var(--sp-3); right: var(--sp-3);
+  display: grid; gap: var(--sp-2); justify-items: end;
+}
+
+.wmap__legend {
+  list-style: none; margin: 0; padding: 0;
+  display: flex; flex-wrap: wrap; gap: var(--sp-2) var(--sp-4);
+  font-size: .78rem; color: var(--ink-2);
+}
+.wmap__legend li { display: inline-flex; align-items: center; gap: 6px; }
+.wmap__swatch {
+  width: 12px; height: 12px; border-radius: 3px; display: inline-block;
+  border: 1px solid rgba(0, 0, 0, .3);
+}
+.wmap__note { margin: 0; font-size: .78rem; line-height: 1.5; color: var(--ink-3); }
+
+/* ------------------------------- work cards ------------------------------- */
+
+.wc {
+  display: grid; gap: 5px; padding: var(--sp-4);
+  text-decoration: none; color: inherit; min-width: 0;
+  border-left: 4px solid var(--w-open);
+}
+.wc--overrun { border-left-color: var(--w-overrun); }
+.wc--planned { border-left-color: var(--w-planned); }
+.wc--restored, .wc--cancelled { border-left-color: var(--w-restored); }
+
+.wc__when {
+  font-family: var(--f-display); font-weight: 700; font-stretch: 82%;
+  font-size: 1.35rem; line-height: 1.08; letter-spacing: -.02em; color: var(--ink);
+}
+.wc--overrun .wc__when { color: var(--w-overrun); }
+.wc__street { font-weight: 700; font-size: 1rem; color: var(--ink); }
+.wc__meta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px; }
+.wc__tag {
+  font-size: .7rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+  border-radius: var(--r-pill); padding: 3px 9px;
+  border: 1px solid var(--hair); color: var(--ink-2);
+}
+.wc__tag--overrun { border-color: var(--w-overrun); color: var(--w-overrun); }
+.wc__tag--open { border-color: var(--w-open); color: var(--w-open); }
+.wc__who { font-size: .82rem; color: var(--ink-3); }
+
+/* -------------------------------- streets --------------------------------- */
+
+.street {
+  display: grid; gap: 3px; padding: var(--sp-4); text-align: left;
+  border: 0; font: inherit; color: inherit; cursor: pointer; min-width: 0;
+}
+.street__name { font-weight: 700; font-size: .98rem; color: var(--ink); }
+.street__where { font-size: .8rem; color: var(--ink-3); }
+.street__act { font-size: .78rem; font-weight: 700; color: var(--hue); margin-top: 4px; }
+.street__chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--sp-2); }
+
+/* -------------------------------- the record ------------------------------ */
+
+.rec { display: grid; gap: var(--sp-2); padding: var(--sp-4); justify-items: start; min-width: 0; }
+.rec__name {
+  margin: 0; font-family: var(--f-display); font-weight: 700; font-stretch: 88%;
+  font-size: 1.02rem; line-height: 1.2; color: var(--ink);
+}
+.rec__counts, .rec__detail {
+  display: flex; flex-wrap: wrap; gap: 6px var(--sp-3);
+  margin: 0; font-size: .82rem; color: var(--ink-2);
+}
+.rec__ok { color: var(--w-open); font-weight: 650; }
+.rec__late { color: var(--w-overrun); font-weight: 650; }
+.rec__track {
+  width: 100%; height: 8px; margin: 2px 0 0;
+  border-radius: var(--r-pill); background: var(--w-overrun); overflow: hidden;
+}
+.rec__fill { display: block; height: 100%; background: var(--w-open); border-radius: inherit; }
+.rec__appeal { margin: 0; font-size: .8rem; color: var(--ink-3); }
+
+/* ------------------------------------------------------------------ *
+ * Shrinking. Same rule Surface 3 needed: a grid item will not go below its
+ * min-content width, so one long word in a longer language pushes the column
+ * past the viewport where the shell's overflow:hidden hides it.
+ * ------------------------------------------------------------------ */
+.wk :where(div, p, span, a, button, section, article, header, ol, ul, li,
+           details, summary, h1, h2, input, textarea, aside, label) {
+  min-width: 0;
+}
+.wk :where(h1, h2, p, span, a, li, summary) { overflow-wrap: anywhere; }
+.wk > *,
+.wk__head > *,
+.wk__block > *,
+.wk__list > *,
+.wmap > * { max-width: 100%; }
+
+:root[data-text='large'] .wc__meta { flex-direction: column; align-items: flex-start; }

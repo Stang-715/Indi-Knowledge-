@@ -25,7 +25,11 @@ import {
 import { GovHome, GovLogin, GovProvider, GovShell, useGov } from './gov/GovPortal'
 import ChowkShell from './surfaces/ChowkShell'
 import SarathiSurface from './surfaces/sarathi/SarathiSurface'
-import { BharatStub, WorksStub } from './surfaces/stubs'
+import { BharatStub } from './surfaces/stubs'
+import WorksSurface from './surfaces/works/WorksSurface'
+import WorkDetail from './surfaces/works/WorkDetail'
+import MyStreets from './surfaces/works/MyStreets'
+import WorksRecord from './surfaces/works/Record'
 import BillsSurface from './surfaces/bills/BillsSurface'
 import BillDetail from './surfaces/bills/BillDetail'
 import Constitution from './surfaces/bills/Constitution'
@@ -83,7 +87,10 @@ export default function App() {
                 <Route path="bills/constitution" element={<Constitution />} />
                 <Route path="bills/constituency" element={<Constituency />} />
                 <Route path="bills/debate/:id" element={<Debate />} />
-                <Route path="works" element={<WorksStub />} />
+                <Route path="works" element={<WorksSurface />} />
+                <Route path="works/w/:id" element={<WorkDetail />} />
+                <Route path="works/mine" element={<MyStreets />} />
+                <Route path="works/record" element={<WorksRecord />} />
               </Route>
 
               <Route path="/" element={<Landing />} />

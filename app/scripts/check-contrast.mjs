@@ -48,6 +48,9 @@ const ROUTES = [
   { path: '/s/bills/constituency', name: 'Constituency' },
   { path: '/s/bills/debate/top_water_bill', name: 'Debate' },
   { path: '/s/works', name: 'Works' },
+  { path: '/s/works/w/wk_market_fibre', name: 'One work' },
+  { path: '/s/works/mine', name: 'My streets' },
+  { path: '/s/works/record', name: 'The record' },
   { path: '/app/profile/privacy', name: 'Privacy & rights' },
 ]
 
@@ -61,6 +64,7 @@ const SEED = () => {
   }))
   localStorage.setItem('cdp:prefs:prefs', JSON.stringify({
     locale: 'en', onboarded: true, seenNoticeIds: [],
+    followedStreets: [{ id: 's1', name: 'MG Road' }, { id: 's2', name: 'Market Approach' }],
     localities: [{ id: 'loc_w12', label: 'Ward 12', ward: 'W12', district: 'Pune', state: 'MH' }],
   }))
   localStorage.setItem('cdp:prefs:consent', JSON.stringify({

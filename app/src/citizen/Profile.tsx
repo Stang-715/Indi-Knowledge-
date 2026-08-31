@@ -203,6 +203,12 @@ export function NotificationSettings() {
       <Switch name="Replies to my posts" checked={n.replies} onChange={(v) => setNotifications({ replies: v })} />
       <Switch name="Results when a poll closes" checked={n.results} onChange={(v) => setNotifications({ results: v })} />
       <Switch
+        name="Closures on streets I follow"
+        hint="A road shut this morning is worth interrupting you for. The streets are matched on this device; the list never leaves it."
+        checked={n.followedStreets}
+        onChange={(v) => setNotifications({ followedStreets: v })}
+      />
+      <Switch
         name="Quiet hours"
         hint="Nothing between 22:00 and 07:00 unless it is time-critical."
         checked={n.quietHours}

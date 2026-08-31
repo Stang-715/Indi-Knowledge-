@@ -35,6 +35,7 @@ await p.evaluate(()=>{
   // pseudo-locale AND the largest text scale — the two together are the real test
   localStorage.setItem('cdp:prefs:prefs',JSON.stringify({locale:'zz',onboarded:true,
     localities:[{id:'loc_w12',label:'W12',ward:'W12',district:'Pune',state:'MH'}],seenNoticeIds:[],
+    followedStreets:[{id:'s1',name:'MG Road'},{id:'s2',name:'Market Approach'}],
     a11y:{textScale:1.6,highContrast:false,reduceMotion:true,lowBandwidth:false,screenReaderMode:false,voiceOut:false}}))
 })
 const ROUTES = [
@@ -45,8 +46,12 @@ const ROUTES = [
   ['Bills · Constitution', '/s/bills/constitution'],
   ['Bills · constituency', '/s/bills/constituency'],
   ['Bills · debate', '/s/bills/debate/top_water_bill'],
+  ['Works · map', '/s/works'],
+  ['Works · one work', '/s/works/w/wk_market_fibre'],
+  ['Works · no permit', '/s/works/w/wk_temple_fibre'],
+  ['Works · my streets', '/s/works/mine'],
+  ['Works · the record', '/s/works/record'],
   ['Bharat (stub)', '/s/bharat'],
-  ['Works (stub)', '/s/works'],
 ]
 
 let failed = false

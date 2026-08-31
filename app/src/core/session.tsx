@@ -18,6 +18,8 @@ interface SessionValue {
   setA11y: (patch: Partial<A11ySettings>) => void
   setNotifications: (patch: Partial<NotificationSettings>) => void
   setLocalities: (localities: StatedLocality[], movesForWork?: boolean) => void
+  /** Follow or unfollow a street the citizen typed. Stays on the device. */
+  toggleStreet: (name: string, locality?: string) => void
   completeOnboarding: () => void
   markNoticeSeen: (id: string) => void
 
@@ -79,6 +81,16 @@ export function SessionProvider({ children }: { children: ReactNode }) {
           localities,
           movesForWork: movesForWork ?? prefs.movesForWork,
         }),
+      toggleStreet: (name, locality) => {
+        const key = name.trim().toLowerCase()
+        const held = prefs.followedStreets.find((s) => s.name.trim().toLowerCase() === key)
+        update({
+          followedStreets: held
+            ? prefs.followedStreets.filter((s) => s.id !== held.id)
+            : [...prefs.followedStreets,
+               { id: `st_${Date.now().toString(36)}`, name: name.trim(), locality }],
+        })
+      },
       completeOnboarding: () => update({ onboarded: true }),
       markNoticeSeen: (id) =>
         update({
