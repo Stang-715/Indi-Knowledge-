@@ -3,3 +3,6 @@ dist/
 *.local
 .DS_Store
 dist-singlefile/
+
+# SQLite databases created at runtime
+server/.data/

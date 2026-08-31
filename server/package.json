@@ -1,0 +1,10 @@
+{
+  "name": "chowk-server",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node --experimental-strip-types --disable-warning=ExperimentalWarning src/http.ts",
+    "test": "node --experimental-strip-types --disable-warning=ExperimentalWarning scripts/test.ts",
+    "check:constraints": "node scripts/check-server-constraints.mjs"
+  }
+}

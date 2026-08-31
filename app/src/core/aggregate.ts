@@ -62,8 +62,15 @@ export function aggregateBy<T>(
   const all = [...counts.values()]
   const total = all.reduce((sum, b) => sum + b.count, 0)
 
-  // Suppression applies to the breakdown, never to the headline total.
-  const kept = all.filter((b) => b.count >= MIN_CELL || total < MIN_CELL)
+  /*
+   * Suppression applies to the breakdown, never to the headline total.
+   *
+   * There is deliberately no "but show it anyway when the total is small"
+   * escape. That clause was here and it inverted the rule: with three responses
+   * — precisely when a breakdown names people — it showed every cell. A poll
+   * with one answer must report a total of one and no breakdown at all.
+   */
+  const kept = all.filter((b) => b.count >= MIN_CELL)
   const suppressed = all.length - kept.length
 
   return {

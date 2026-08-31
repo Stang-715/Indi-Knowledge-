@@ -284,6 +284,62 @@ contrast checks, and tears down.
 
 ---
 
+## Phase 4 — backend
+
+### G-4-01 · The client still talks to its local mock, not the server
+**Severity:** blocker for Phase 4's exit criterion
+The API exists, is tested and holds the identity split, but `app/src/data/repo.ts`
+has not been pointed at it. The exit criterion — "every caller of the repository
+layer is unchanged" — is therefore unproven. The transport swap is the remaining
+work, plus the offline queue and conflict rules the plan lists.
+**Verify:** the app runs against the API with no component changed, and works
+offline with writes queued.
+
+### G-4-02 · Textbook RSA blinding, not a reviewed construction
+**Severity:** major
+`server/src/blind.ts` implements plain RSA blind signatures with a chained-SHA256
+full-domain hash. It is correct for the property it claims and is not a
+production construction. RFC 9474 (RSA-BSSA) is the reviewed one.
+**Do:** replace before any real deployment; have the whole scheme reviewed by
+someone who does this for a living.
+**Verify:** the construction is RFC 9474 and has been externally reviewed.
+
+### G-4-03 · Issue and spend are only separated by client behaviour
+**Severity:** major
+Blinding makes a token cryptographically unlinkable, but a token spent seconds
+after issue is linkable by clock alone. A batch of 12 is issued so spending need
+not be one-to-one with issue — but nothing enforces a delay, and the client is
+free to spend immediately.
+**Do:** enforce a minimum age on a token server-side, and have the client draw
+its batch well before it needs one.
+**Verify:** a token presented within the minimum age is rejected.
+
+### G-4-04 · The government and oversight surfaces have no API
+**Severity:** major
+Only the citizen routes exist. Notice publishing, poll creation, moderation
+queues and the oversight reader are still local-only, and the audit trail is
+written by the server but not yet read by an independent login.
+**Verify:** the oversight layer reads the server's audit database through a
+login the government side does not hold.
+
+### G-4-05 · No transport security, no deployment
+**Severity:** blocker
+The server listens on plain HTTP with a wildcard CORS origin, which is right for
+a local test and wrong everywhere else. There is no TLS, no origin allowlist, no
+deployment target — Vercel is blocked on this account, so nothing is hosted.
+**Verify:** TLS enforced, origins restricted, and a named host.
+
+### G-4-06 · Consent is enforced on the client, not the server
+**Severity:** major
+Phase 3 put consent checks on the writes in `data/repo.ts`. The API does not
+check them at all — it verifies eligibility and rate limits, but a request that
+skips the app entirely is not asked whether the citizen consented to that
+purpose. Consent enforced only in the client is the same mistake as a rate limit
+enforced only in the client.
+**Verify:** the API rejects a write whose purpose has no recorded consent.
+
+---
+
 ## Cross-cutting
 
 ### G-X-01 · Two design systems are loaded at once
