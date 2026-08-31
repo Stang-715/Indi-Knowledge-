@@ -10,7 +10,42 @@
 
 import { appendAudit } from '../core/audit'
 import { aggregateBy, type Aggregate, type Coverage } from '../core/aggregate'
-import { getPseudonym } from '../core/identity'
+import { getPseudonym, mayParticipate } from '../core/identity'
+import { hasConsent, loadConsent, type PurposeId } from '../core/consent'
+
+/**
+ * Consent enforced at the data layer rather than in the screens.
+ *
+ * A check in a component is a check one new code path walks around. Putting it
+ * on the write itself means a refusal holds however the app grows — the same
+ * reasoning as the architectural constraints, applied to the thing the citizen
+ * actually decided.
+ */
+export class ConsentRequiredError extends Error {
+  readonly purpose: PurposeId
+
+  constructor(purpose: PurposeId) {
+    super(`Refused: no consent recorded for "${purpose}".`)
+    this.name = 'ConsentRequiredError'
+    this.purpose = purpose
+  }
+}
+
+export class ParticipationError extends Error {
+  constructor() {
+    super('Reading only: participation begins at eighteen.')
+    this.name = 'ParticipationError'
+  }
+}
+
+function requireConsent(purpose: PurposeId): void {
+  if (!hasConsent(loadConsent(), purpose)) throw new ConsentRequiredError(purpose)
+}
+
+/** Whether the app should offer an action at all, so it can explain instead of failing. */
+export function canDo(purpose: PurposeId): boolean {
+  return mayParticipate() && hasConsent(loadConsent(), purpose)
+}
 import { read, write } from '../core/storage'
 import type {
   BrigadingFlag, Notice, Poll, Post, Report, ReportReason, Stance, Topic,
@@ -83,6 +118,8 @@ export function retractionOverlay(): Record<string, { at: number; reason: string
  * to build one from (3.2).
  */
 export function markSeen(noticeId: string): void {
+  // A reach count is the mildest thing here and still asked for separately.
+  requireConsent('reach-count')
   const counts = read<Record<string, number>>('content', 'seen', {})
   counts[noticeId] = (counts[noticeId] ?? 0) + 1
   write('content', 'seen', counts)
@@ -150,6 +187,8 @@ export function myResponse(pollId: string): Response | null {
 }
 
 export function castVote(pollId: string, optionId: string): Response {
+  if (!mayParticipate()) throw new ParticipationError()
+  requireConsent('poll-response')
   const pseudonym = getPseudonym()
   if (!pseudonym) throw new Error('No pseudonym — cannot record a response.')
   const rows = read<Response[]>('responses', responseKey(pollId), [])
@@ -237,6 +276,8 @@ export function listPosts(topicId: string): Post[] {
 export function addPost(
   topicId: string, body: string, stance: Stance,
 ): Post {
+  if (!mayParticipate()) throw new ParticipationError()
+  requireConsent('public-speech')
   const pseudonym = getPseudonym()
   if (!pseudonym) throw new Error('No pseudonym — cannot post.')
   const post: Post = {
@@ -255,6 +296,7 @@ export function addPost(
 }
 
 export function react(postId: string, kind: 'agree' | 'disagree'): void {
+  if (!canDo('public-speech')) return
   const pseudonym = getPseudonym()
   if (!pseudonym) return
   // One reaction per account per post — enforced by storing the choice, not a count.

@@ -2,17 +2,31 @@ import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSession } from '../core/session'
 import { useI18n, LANGUAGES } from '../i18n'
-import { COLLECTED, NOT_COLLECTED, PRINCIPLES } from '../core/principles'
-import { suggestPseudonym, validatePseudonym } from '../core/identity'
+import { getEligibility, isMinor, suggestPseudonym, validatePseudonym } from '../core/identity'
 import { LOCALITY_CATALOGUE } from '../data/seed'
 import type { StatedLocality } from '../core/prefs'
 import type { LocaleCode } from '../core/types'
 import { Banner, PrincipleNote, Switch } from '../components/ui'
+import ConsentNotice from './consent/ConsentNotice'
+import { decideAll } from '../core/consent'
 import Sarathi from '../caricature/Sarathi'
 
-type Step = 'welcome' | 'language' | 'verify' | 'locality' | 'pseudonym' | 'privacy' | 'a11y'
+type Step =
+  | 'welcome' | 'language' | 'verify' | 'minor'
+  | 'locality' | 'pseudonym' | 'consent' | 'a11y'
 
-const ORDER: Step[] = ['welcome', 'language', 'verify', 'locality', 'pseudonym', 'privacy', 'a11y']
+const ADULT: Step[] = [
+  'welcome', 'language', 'verify', 'locality', 'pseudonym', 'consent', 'a11y',
+]
+
+/**
+ * A minor never reaches pseudonym creation or the consent notice.
+ *
+ * The Act bans tracking and profiling of under-eighteens outright, and the
+ * cleanest way to honour that is to never ask them for anything to profile.
+ * They read; nothing about them is stored beyond the settings they choose.
+ */
+const MINOR: Step[] = ['welcome', 'language', 'verify', 'minor', 'a11y']
 
 export default function Onboarding() {
   const { t } = useI18n()
@@ -20,9 +34,28 @@ export default function Onboarding() {
   const navigate = useNavigate()
   const [step, setStep] = useState<Step>('welcome')
 
-  const index = ORDER.indexOf(step)
-  const next = () => setStep(ORDER[Math.min(index + 1, ORDER.length - 1)])
-  const back = () => setStep(ORDER[Math.max(index - 1, 0)])
+  /**
+   * The route is chosen by the verification result, not by the citizen — and it
+   * changes during the flow, at the moment verification returns. So it is read
+   * when a step is taken rather than captured at render: the verify step calls
+   * next() from inside its own handler, where a render-time value would still
+   * be the adult route and would walk a minor into pseudonym creation.
+   */
+  const routeNow = () =>
+    isMinor() && getEligibility()?.verified ? MINOR : ADULT
+
+  const order = routeNow()
+  const index = Math.max(0, order.indexOf(step))
+  const next = () => {
+    const live = routeNow()
+    const at = Math.max(0, live.indexOf(step))
+    setStep(live[Math.min(at + 1, live.length - 1)])
+  }
+  const back = () => {
+    const live = routeNow()
+    const at = Math.max(0, live.indexOf(step))
+    setStep(live[Math.max(at - 1, 0)])
+  }
 
   const finish = () => {
     session.completeOnboarding()
@@ -38,8 +71,8 @@ export default function Onboarding() {
           </button>
         )}
         <h1 className="topbar__title">{t('app.name')}</h1>
-        <span className="tiny" aria-label={`Step ${index + 1} of ${ORDER.length}`}>
-          {index + 1}/{ORDER.length}
+        <span className="tiny" aria-label={`Step ${index + 1} of ${order.length}`}>
+          {index + 1}/{order.length}
         </span>
       </header>
 
@@ -49,7 +82,8 @@ export default function Onboarding() {
         {step === 'verify' && <Verify onNext={next} />}
         {step === 'locality' && <LocalityStep onNext={next} />}
         {step === 'pseudonym' && <PseudonymStep onNext={next} />}
-        {step === 'privacy' && <Privacy onNext={next} />}
+        {step === 'minor' && <MinorNotice onNext={next} />}
+        {step === 'consent' && <ConsentNotice onDone={next} />}
         {step === 'a11y' && <Accessibility onNext={finish} />}
       </main>
       <div />
@@ -365,56 +399,46 @@ function PseudonymStep({ onNext }: { onNext: () => void }) {
   )
 }
 
-/* ------------------------- 1.6 Privacy disclosure ------------------------- */
+/* ----------------------------- age gate ----------------------------------- */
 
-function Privacy({ onNext }: { onNext: () => void }) {
-  const { t } = useI18n()
-  const [read, setRead] = useState(false)
+/**
+ * Shown instead of pseudonym creation and the consent notice when the ID
+ * service reports an under-eighteen, or reports nothing at all.
+ *
+ * It is written as an explanation rather than a rejection, because it is one:
+ * everything on every screen is still readable, and the reason taking part
+ * starts at eighteen is that advisory polling stands in for the franchise.
+ */
+function MinorNotice({ onNext }: { onNext: () => void }) {
+  const { t, locale } = useI18n()
+  const { eligibility } = useSession()
 
   return (
     <>
-      <h2 style={{ margin: 0 }}>{t('onboard.privacy.title')}</h2>
+      <span className="badge">{t('age.minorBadge')}</span>
+      <h2 style={{ margin: 0 }}>{t('age.minorTitle')}</h2>
+      <p className="prose">{t('age.minorBody')}</p>
 
-      <ul className="tickList">
-        {NOT_COLLECTED.map((item) => (
-          <li key={item}>{item}</li>
-        ))}
-      </ul>
+      {eligibility?.ageBand === 'unknown' && (
+        <Banner tone="advisory">{t('age.unknownNote')}</Banner>
+      )}
 
-      <h3 className="section-title">{t('onboard.privacy.collected')}</h3>
-      <ul className="tickList tickList--keep">
-        {COLLECTED.map((row) => (
-          <li key={row.field}>
-            <span>
-              <strong>{row.field}</strong> — {row.why}.{' '}
-              <span className="tiny">
-                {row.seenByGov ? 'Visible publicly under your pseudonym.' : 'Never seen by a government account.'}
-              </span>
-            </span>
-          </li>
-        ))}
-      </ul>
-
-      <h3 className="section-title">Why these cannot be changed later</h3>
-      <div className="stack stack--tight">
-        {PRINCIPLES.map((p) => (
-          <div key={p.id} className="card">
-            <p className="card__title">{p.title}</p>
-            <p className="card__body">{p.statement}</p>
-          </div>
-        ))}
-      </div>
-
-      <div
-        onScroll={() => setRead(true)}
-        style={{ display: 'none' }}
-        aria-hidden="true"
-      />
-
-      <button type="button" className="btn btn--block" onClick={onNext} onFocus={() => setRead(true)}>
-        {t('action.understand')}
+      <button
+        type="button"
+        className="btn btn--block"
+        onClick={() => {
+          // Settings alone, and only because the app cannot draw itself without
+          // them. Nothing here profiles anybody.
+          decideAll('granted', locale, ['settings'])
+          onNext()
+        }}
+      >
+        {t('action.continue')}
       </button>
-      <p className="tiny">{read ? '' : ''}</p>
+
+      <PrincipleNote>
+        {t('age.minorBody')}
+      </PrincipleNote>
     </>
   )
 }

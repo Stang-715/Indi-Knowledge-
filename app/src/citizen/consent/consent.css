@@ -1,0 +1,106 @@
+.cns { display: grid; gap: var(--sp-4); min-width: 0; }
+.cns > * { min-width: 0; }
+
+.cns__title { font-size: clamp(1.5rem, 6vw, 2rem); }
+.cns__intro { color: var(--ink-2); font-size: .95rem; line-height: 1.6; }
+
+.cns__changed {
+  padding: var(--sp-3) var(--sp-4);
+  border-radius: var(--r-m);
+  background: color-mix(in srgb, var(--warn, #8a5a00) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--warn, #8a5a00) 40%, transparent);
+  font-size: .88rem;
+  line-height: 1.55;
+}
+
+.cns__section { margin-top: var(--sp-2); }
+
+.cns__list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--sp-3); }
+
+.cns__item {
+  display: grid;
+  gap: var(--sp-3);
+  padding: var(--sp-4);
+  border: 1px solid var(--hair);
+  border-radius: var(--r-m);
+  background: var(--solid);
+  min-width: 0;
+}
+
+/* Two columns on a roomy screen, stacked on a phone. The label/value pairing
+   has to survive both, so it is a grid rather than inline runs. */
+.cns__facts { display: grid; gap: 2px; min-width: 0; }
+.cns__factLabel {
+  font-size: .68rem;
+  font-weight: 650;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-top: var(--sp-2);
+}
+.cns__factLabel:first-child { margin-top: 0; }
+.cns__fact { font-size: .9rem; line-height: 1.5; color: var(--ink); }
+.cns__cost { color: var(--ink-2); }
+
+.cns__tags { display: flex; flex-wrap: wrap; gap: var(--sp-2); }
+.cns__tags .tag {
+  display: inline-flex;
+  padding: 4px 10px;
+  border-radius: var(--r-pill);
+  font-size: .7rem;
+  font-weight: 650;
+  border: 1px solid var(--hair);
+  background: var(--ground-2);
+  color: var(--ink-2);
+}
+.cns__tags .tag--gov {
+  border-color: color-mix(in srgb, var(--hue) 50%, transparent);
+  color: var(--hue);
+  background: color-mix(in srgb, var(--hue) 10%, transparent);
+}
+
+/* Agree and Refuse are the same size, the same weight and the same distance
+   from the thumb. A brighter agree button is a nudge, and a nudged consent is
+   not freely given. */
+.cns__choice { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-2); }
+
+.cns__btn {
+  font: inherit;
+  font-size: .88rem;
+  font-weight: 650;
+  cursor: pointer;
+  padding: 12px;
+  min-height: 46px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--hair);
+  background: var(--ground-2);
+  color: var(--ink-2);
+  transition: background var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease),
+    color var(--t-fast) var(--ease), transform var(--t-fast) var(--ease);
+}
+.cns__btn:active { transform: scale(.96); }
+
+.cns__btn--grant[aria-checked='true'] {
+  background: color-mix(in srgb, var(--milestone, #1F6B4A) 18%, transparent);
+  border-color: var(--milestone, #1F6B4A);
+  color: var(--milestone, #1F6B4A);
+}
+.cns__btn--refuse[aria-checked='true'] {
+  background: color-mix(in srgb, var(--alert, #D6452F) 16%, transparent);
+  border-color: var(--alert, #D6452F);
+  color: var(--alert, #D6452F);
+}
+
+.cns__bulk { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-2); }
+
+.cns__version { font-size: .78rem; color: var(--ink-3); }
+
+.cns__must {
+  font-size: .85rem;
+  color: var(--ink-2);
+  padding: var(--sp-3);
+  border-radius: var(--r-s);
+  background: var(--ground-2);
+}
+
+:root[data-contrast='high'] .cns__btn { border-width: 2px; }

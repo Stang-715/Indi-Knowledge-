@@ -6,7 +6,9 @@ import {
   canChangePseudonym, inspectStoredData, pseudonymChangeAvailableAt,
   suggestPseudonym, validatePseudonym,
 } from '../core/identity'
-import { COLLECTED, NOT_COLLECTED, OUT_OF_SCOPE, PRINCIPLES } from '../core/principles'
+import { NOT_COLLECTED, OUT_OF_SCOPE, PRINCIPLES } from '../core/principles'
+import { decisionFor, loadConsent, PURPOSES } from '../core/consent'
+import RightsCentre from './consent/RightsCentre'
 import { LOCALITY_CATALOGUE } from '../data/seed'
 import { BackBar, Banner, Modal, PrincipleNote, Switch } from '../components/ui'
 import { A11yControls } from './Onboarding'
@@ -289,6 +291,9 @@ export function LocalitySettings() {
 
 export function PrivacyCentre() {
   const { t } = useI18n()
+  // Read at render: the table below shows the citizen's actual decisions, not a
+  // description of what they might have chosen.
+  const consent = loadConsent()
   const { deleteAccount } = useSession()
   const navigate = useNavigate()
   const [showRaw, setShowRaw] = useState(false)
@@ -300,6 +305,8 @@ export function PrivacyCentre() {
     <>
       <BackBar title={t('profile.privacy')} to="/app/profile" />
 
+      <RightsCentre />
+
       <h3 className="section-title">{t('common.notCollected')}</h3>
       <ul className="tickList">
         {NOT_COLLECTED.map((item) => <li key={item}>{item}</li>)}
@@ -309,14 +316,17 @@ export function PrivacyCentre() {
       <div className="scroll-x">
         <table className="table">
           <thead>
-            <tr><th>Field</th><th>Why</th><th>Government sees</th></tr>
+            <tr><th>What is stored</th><th>What it is for</th><th>Your decision</th></tr>
           </thead>
           <tbody>
-            {COLLECTED.map((row) => (
-              <tr key={row.field}>
-                <td>{row.field}</td>
-                <td>{row.why}</td>
-                <td>{row.seenByGov ? 'Yes, under your pseudonym' : 'No'}</td>
+            {PURPOSES.map((p) => (
+              <tr key={p.id}>
+                <td>{t(p.dataKey)}</td>
+                <td>{t(p.purposeKey)}</td>
+                <td>
+                  {decisionFor(consent, p.id) ?? 'not asked'}
+                  {p.seenByGov ? ' · public under your pseudonym' : ''}
+                </td>
               </tr>
             ))}
           </tbody>

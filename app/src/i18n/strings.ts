@@ -244,6 +244,114 @@ const en: Dict = {
   'state.retry': 'Try again',
   'state.stale': 'Showing what was saved',
   'state.staleBody': 'You are offline, so this may have changed since you last had a connection.',
+  /* ================================================================== *
+   * DPDP consent notice.
+   *
+   * This is the text the Act regulates, so it is written to the standard
+   * the Rules set: clear and plain language, the data itemised, the purpose
+   * for each, how to exercise rights, and how to complain to the Board.
+   * Every purpose states what refusing it costs, because a cost discovered
+   * afterwards is not a free choice.
+   * ================================================================== */
+  'consent.title': 'What Chowk keeps, and what you agree to',
+  'consent.intro':
+    'Each item below is a separate decision. You can refuse any of them and still use the app — where refusing costs you something, it says so on the item itself. You can change any of these later, in the same place, as easily as you set them here.',
+  'consent.itemised': 'Decide each one',
+  'consent.dataLabel': 'What is stored',
+  'consent.purposeLabel': 'What it is for',
+  'consent.costLabel': 'If you refuse',
+  'consent.noCost': 'Nothing changes for you.',
+  'consent.necessary': 'Needed for the main thing this app does',
+  'consent.seenByGov': 'Visible publicly under your pseudonym',
+  'consent.notSeenByGov': 'Never seen by a government account',
+  'consent.grant': 'Agree',
+  'consent.refuse': 'Refuse',
+  'consent.acceptAll': 'Agree to all of it',
+  'consent.refuseAll': 'Refuse all of it',
+  'consent.continue': 'Continue',
+  'consent.mustDecide': 'Decide each item above to continue. Refusing is a valid answer.',
+  'consent.version': 'Notice version {v}, read in {lang}',
+  'consent.changed':
+    'What Chowk does with your data has changed since you last agreed, so the notice is being shown again. Your previous answers are not carried over.',
+  'consent.receipt': 'Save a receipt of these decisions',
+  'consent.receiptSaved': 'Receipt copied. It lists your decisions, not your data.',
+
+  'consent.eligibility.data': 'A one-way hash of your ID number, and the fact that verification succeeded.',
+  'consent.eligibility.purpose': 'So that one person counts once in an advisory poll. Used at sign-up and never again.',
+  'consent.eligibility.cost': 'You can read everything, but not vote in advisory polls.',
+  'consent.pseudonym.data': 'The name you chose to speak under.',
+  'consent.pseudonym.purpose': 'So you can post and vote without your real name being involved.',
+  'consent.pseudonym.cost': 'You can read everything, but not post or vote.',
+  'consent.locality.data': 'The wards or districts you typed in.',
+  'consent.locality.purpose': 'To decide which notices reach you. Typed by you, never read from your device.',
+  'consent.locality.cost': 'Notices from everywhere reach you, unfiltered.',
+  'consent.poll.data': 'Which option you chose, stored under your pseudonym.',
+  'consent.poll.purpose': 'Counted into an aggregate that is passed to policymakers. Your individual answer never leaves.',
+  'consent.poll.cost': 'You can read results but not add to them.',
+  'consent.speech.data': 'Your posts and your agree or disagree reactions, under your pseudonym.',
+  'consent.speech.purpose': 'Shown publicly so other people can read and reply to them.',
+  'consent.speech.cost': 'You can read discussions but not take part in them.',
+  'consent.reach.data': 'That a notice was marked as seen. A number, never a name.',
+  'consent.reach.purpose': 'So an office can tell whether a notice actually reached people.',
+  'consent.reach.cost': 'Nothing you will notice. The count is one lower.',
+  'consent.settings.data': 'Your language, text size, contrast and motion choices.',
+  'consent.settings.purpose': 'To draw the app the way you set it. Kept on your device.',
+  'consent.settings.cost': 'The app returns to its defaults every time you open it.',
+
+  /* ---------------------- rights, DPDP ss 11 to 14 ------------------ */
+  'rights.title': 'Your rights over this data',
+  'rights.intro':
+    'These four rights are yours under the Digital Personal Data Protection Act. Each one is exercisable here rather than by writing to somebody.',
+  'rights.access': 'See everything held about you',
+  'rights.accessNote':
+    'A summary of what is stored, what is being done with it, and who else has it. Read from the actual store, not from a list somebody typed.',
+  'rights.accessOpen': 'Show it',
+  'rights.export': 'Save a copy',
+  'rights.exported': 'Copied. Paste it anywhere you like.',
+  'rights.correct': 'Correct or complete it',
+  'rights.correctNote':
+    'Your pseudonym, your localities and your settings are all editable wherever they are shown. Nothing else stored here is a fact about you that could be wrong.',
+  'rights.erase': 'Erase everything',
+  'rights.eraseNote':
+    'Immediate, not a request — there is nowhere else for it to travel to. Counts you already contributed to stay in past aggregates, because nothing in them is traceable to you.',
+  'rights.grievance': 'Raise a grievance',
+  'rights.grievanceNote':
+    'If something here is wrong or an answer does not satisfy you, say so. You will get a reply within {days} days.',
+  'rights.grievanceSubject': 'What is this about?',
+  'rights.grievanceDetail': 'What happened?',
+  'rights.grievanceSend': 'Send it',
+  'rights.grievanceSent': 'Raised. You can see it and its due date below.',
+  'rights.grievanceOpen': 'Awaiting an answer',
+  'rights.grievanceDue': 'Due by {date}',
+  'rights.grievanceNone': 'You have not raised anything.',
+  'rights.nominate': 'Name someone to act for you',
+  'rights.nominateNote':
+    'A nominee can exercise every right on this page if you die or cannot act. This is stored on your device and shared with nobody.',
+  'rights.nomineeName': 'Their name',
+  'rights.nomineeRelation': 'Who they are to you',
+  'rights.nomineeContact': 'How to reach them',
+  'rights.nomineeSave': 'Save nominee',
+  'rights.nomineeNone': 'Nobody nominated.',
+  'rights.nomineeClear': 'Remove nominee',
+  'rights.officer': 'Data Protection Officer',
+  'rights.officerPending':
+    'Not yet appointed. This app is pre-release and has no operating entity registered — rather than print an address that would swallow complaints, it says so.',
+  'rights.board':
+    'If an answer here does not satisfy you, you may complain to the Data Protection Board of India.',
+  'rights.processors': 'Who else has it',
+  'rights.processorsNone':
+    'Nobody. There are no processors, and nothing has been shared with another party. Aggregate counts leave this app; individual answers do not.',
+  'rights.notExist': 'What does not exist',
+  'rights.notExistBody':
+    'There is no record linking your verified identity to your pseudonym. No location has ever been read. Nobody holds a second copy of any of this.',
+
+  /* ------------------------------ age gate -------------------------- */
+  'age.minorTitle': 'You can read everything here',
+  'age.minorBody':
+    'Advisory polling stands in for the franchise, so taking part starts at eighteen — and the law is firm that under-eighteens must not be profiled at all. So Chowk asks nothing of you and stores nothing about you beyond your settings. Everything on every screen is yours to read.',
+  'age.minorBadge': 'Reading only',
+  'age.unknownNote':
+    'The verification service did not return an age, and an unknown answer is treated the same as under-eighteen — the safe reading of a missing signal is the one that profiles nobody.',
 }
 
 /**

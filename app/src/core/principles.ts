@@ -86,12 +86,12 @@ export const NOT_COLLECTED: string[] = [
   'Per-person read receipts shown to any government account',
 ]
 
-export const COLLECTED: { field: string; why: string; seenByGov: boolean }[] = [
-  { field: 'A one-way hash of your ID number', why: 'To ensure one person counts once', seenByGov: false },
-  { field: 'Whether verification succeeded, and when', why: 'To let you vote in advisory polls', seenByGov: false },
-  { field: 'The localities you typed in', why: 'To decide which notices reach you', seenByGov: false },
-  { field: 'Your pseudonym', why: 'The name your posts and votes appear under', seenByGov: true },
-  { field: 'Your poll choices, under that pseudonym', why: 'Counted into aggregate results', seenByGov: false },
-  { field: 'Your posts and reactions', why: 'Shown publicly under your pseudonym', seenByGov: true },
-  { field: 'Language and accessibility settings', why: 'To render the app the way you set it', seenByGov: false },
-]
+/*
+ * What is collected is no longer listed here.
+ *
+ * core/consent.ts owns it, because that is where each field is tied to the
+ * purpose it was consented to and to the decision the citizen made. Two lists
+ * of "what we store" is exactly the drift the privacy screen exists to catch,
+ * and the DPDP notice has to match what is actually held — so there is one
+ * list, and the notice and the privacy screen both read it.
+ */

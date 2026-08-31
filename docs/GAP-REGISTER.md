@@ -291,6 +291,64 @@ state, the segmented control — do not.
 
 ---
 
+## Phase 3 — DPDP consent and rights
+
+### G-3-01 · The consent notice exists only in English
+**Severity:** blocker for the 13 May 2027 deadline
+The 80 `consent.*` and `rights.*` keys are the text the Act actually regulates,
+and the Rules require the notice be available in English or any Eighth Schedule
+language. They exist in English only. This is the highest-priority slice of
+G-2B-02 and should be commissioned before Sarathi's 132 keys, which carry no
+legal deadline.
+**Verify:** the notice renders fully translated in a spot-check of five
+languages, with no fallthrough to English.
+
+### G-3-02 · DPO and Board contacts are placeholders
+**Severity:** blocker
+`GRIEVANCE.configured` is `false` and the screen says the officer is not yet
+appointed. That is the honest state — a wrong grievance address silently
+swallows complaints, which is worse than an obviously missing one — but it is
+not compliant. The Rules require a real contact on the notice.
+**Where:** `src/core/rights.ts`, the `GRIEVANCE` block.
+**Do:** set when the operating entity is registered; flip `configured` to true.
+**Verify:** a grievance raised in the app reaches a named person, and the Board
+route is stated with a working reference.
+
+### G-3-03 · Grievances go nowhere
+**Severity:** major
+`raiseGrievance` writes to device storage and starts a 90-day clock the citizen
+can see. Nothing transmits it, because there is no server yet (Phase 4) and no
+officer to receive it (G-3-02). The clock is therefore counting down against
+nobody.
+**Verify:** a raised grievance is delivered, acknowledged, and answerable, with
+the response time measured against the Rules rather than a constant in the code.
+
+### G-3-04 · Erasure clears the device, not a server
+**Severity:** major
+`s12` erasure is immediate and complete today because everything is on the
+device. The moment Phase 4 adds a backend that stops being true, and the erasure
+copy — which currently explains *why* it is instant here — becomes wrong.
+**Verify:** erasure is re-specified and re-tested against the server the same
+day the server exists; the copy is revised in the same change.
+
+### G-3-05 · The age band is a demo heuristic
+**Severity:** blocker
+`Onboarding.tsx` derives `minor` from an identifier ending in zero, so the minor
+path is exercisable without a second real identity. A real verification service
+must return the band. Until then the gate is a stub with the right shape.
+**Verify:** the band comes from the ID service response and nothing in the client
+computes it.
+
+### G-3-06 · Consent is not re-requested on a version bump in a running session
+**Severity:** minor
+`isCurrent()` compares `NOTICE_VERSION` and the notice component re-asks when it
+is mounted with a stale record — but nothing forces the notice up mid-session if
+the version changes under a running app. Harmless today (the version only changes
+on deploy) and worth closing when consent moves server-side.
+**Verify:** bumping the version while the app is open brings the notice back.
+
+---
+
 ## Where Phase 3 stopped
 
 Phase 3 (DPDP consent and rights) was interrupted part-way to write this file.
@@ -310,6 +368,6 @@ Committed and typechecking, but **not yet wired to any UI**:
   profiles nobody.
 - `src/citizen/Onboarding.tsx` — verification now returns a band.
 
-**Not started:** the notice UI itself, the itemised toggles, the rights screens,
-the minor read-only path through the app, and every `consent.*` and `rights.*`
-catalogue string. Resume there.
+**Since resumed and completed.** The notice UI, itemised toggles, rights screens,
+minor path and all 80 catalogue strings are built and verified end to end. What
+Phase 3 left behind is recorded as G-3-01 to G-3-06 above.
