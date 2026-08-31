@@ -901,6 +901,38 @@ a device-local draft.
 
 ## Phase 10 — Field hardening
 
+Verified: 108 files against the architectural constraints, 60 components against
+the accessibility floor, 20 routes at 160% in the pseudo-locale, the bundle
+within budget, four surfaces painting and readable under 2G with the CPU divided
+by six, the low-power cut asserted, and 1,880 text elements meeting WCAG AA on
+**both** rendering paths — measured separately, because the tier now has to be
+stated rather than inferred from whatever the build machine reports about
+itself.
+
+The contrast check needed fixing before any of that could be believed. It
+collected element geometry, then hid the ink, then screenshotted — and on
+Sarathi the caricature replaces his suggestion chips when the greeting settles,
+so the row moved between those steps and every chip was sampled against the
+pixels of wherever it used to be. It reported one as white-on-marigold that was,
+by then, painted somewhere else. Four fixes went into the app chasing that
+phantom, including one that made a chip fully opaque and changed the reading not
+at all — which should have been the clue much earlier than it was.
+
+Geometry is now read again after the capture, and any element whose box moved
+across it is discarded and counted rather than failed. A measurement that cannot
+tell "low contrast" from "moved" must not claim low contrast.
+
+### G-10-07 · Twelve elements on Sarathi are never contrast-checked
+**Severity:** minor
+They move during the capture — the suggestion chips being swapped as the
+greeting settles — so every reading of them is discarded as invalid. Discarded
+is honest; unmeasured is still unmeasured, and those chips are the first thing
+the app asks anybody to tap.
+**Do:** give the check a way to hold the page still — settle the caricature
+before collecting, or measure that surface in a state where nothing is pending.
+**Verify:** the discard count is zero, on both rendering paths.
+
+
 The exit criterion is that the app is usable on a four-year-old budget phone on
 a 2G connection, **verified by someone who is not us**. The second half is the
 whole point of the criterion and it is not met: everything below was measured by

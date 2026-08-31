@@ -106,6 +106,19 @@
 .sar .sar__chips-label { color: rgba(255, 255, 255, .86); margin-bottom: var(--sp-2); }
 .sar__chip-row { display: flex; flex-wrap: wrap; gap: var(--sp-2); }
 
+/* ------------------------------------------------------------------ *
+ * The suggestion chips at low power.
+ *
+ * With the mesh frozen on one frame the chips sit wherever the bloom happens
+ * to be, permanently, rather than passing through it. The row gets its own
+ * ground instead of floating over whichever colour it landed on.
+ * ------------------------------------------------------------------ */
+:root[data-power='low'] .sar__chips {
+  background: rgba(14, 18, 30, .92);
+  border-radius: var(--r-m);
+  padding: var(--sp-3);
+}
+
 /* -------------------------------- ask box ------------------------------- */
 
 .sar__ask { display: flex; gap: var(--sp-2); align-items: stretch; }

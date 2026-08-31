@@ -346,3 +346,23 @@
    is not this surface's to restyle, but it is this surface's to contain. */
 .bl .banner { max-width: 100%; }
 
+
+/* ------------------------------------------------------------------ *
+ * Low power on this surface.
+ *
+ * The generic rule in base.css builds its flat panel from --solid, which on
+ * this surface is a translucent white — fine over a light page, and over the
+ * mesh it lets the bloom straight through. With the blur gone there is nothing
+ * else standing between the ground and the text, so the panel becomes opaque
+ * here rather than nearly so.
+ *
+ * Found by the contrast check on a machine that reported few enough cores to
+ * pick the low tier automatically — which is also how it came to light that
+ * the low path had never been measured at all.
+ * ------------------------------------------------------------------ */
+:root[data-power='low'] .bl .glass,
+:root[data-power='low'] .bl .glass-dark {
+  background: linear-gradient(var(--scrim-strong), var(--scrim-strong)), rgba(18, 24, 40, .95);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}

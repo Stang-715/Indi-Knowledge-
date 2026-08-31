@@ -60,7 +60,11 @@ const ROUTES = [
   { path: '/app/profile/assist', name: 'Assisted use' },
 ]
 
-const SEED = () => {
+const POWER = process.env.POWER === 'low' ? 'low' : 'full'
+
+/* Takes the tier as an argument: this function is serialised into the page,
+   so anything it closes over in Node is not there when it runs. */
+const SEED = (power) => {
   localStorage.setItem('cdp:eligibility:record', JSON.stringify({
     verified: true, idHash: 'a', verifiedAt: Date.now(),
     attestedBy: 'National ID Verification Service', ageBand: 'adult',
@@ -70,6 +74,15 @@ const SEED = () => {
   }))
   localStorage.setItem('cdp:prefs:prefs', JSON.stringify({
     locale: 'en', onboarded: true, seenNoticeIds: [],
+    /* Stated, never inferred. Left on 'auto' this measured whichever tier the
+       machine running CI happened to report itself into — which is how the
+       low-power path went unmeasured until a build machine with few cores
+       picked it and eighteen elements failed at once. */
+    a11y: {
+      textScale: 1, highContrast: false, reduceMotion: false, lowBandwidth: false,
+      screenReaderMode: false, voiceOut: false, assist: false,
+      power,
+    },
     followedStreets: [{ id: 's1', name: 'MG Road' }, { id: 's2', name: 'Market Approach' }],
     localities: [{ id: 'loc_w12', label: 'Ward 12', ward: 'W12', district: 'Pune', state: 'MH' }],
   }))
@@ -87,6 +100,9 @@ const SEED = () => {
 /** Every element that renders its own text, with colour, box and size class. */
 const COLLECT = () => {
   const out = []
+  // Kept so the geometry can be re-read at the moment of capture. Rects taken
+  // now and pixels taken later describe two different pages.
+  window.__els = []
   const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT)
   const seen = new Set()
   let node
@@ -129,6 +145,7 @@ const COLLECT = () => {
     // WCAG "large": 18.66px bold, or 24px at any weight.
     const large = px >= 24 || (px >= 18.66 && weight >= 700)
 
+    window.__els.push(el)
     out.push({
       color: cs.color,
       opacity: Number(cs.opacity),
@@ -206,6 +223,7 @@ const MEASURE = async (dataUrl, items, dpr, overlays) => {
 
   const results = []
   for (const it of items) {
+    if (it.moved) continue
     const fg = parse(it.color)
     if (!fg || fg.a < 0.15) continue
 
@@ -266,6 +284,11 @@ const MEASURE = async (dataUrl, items, dpr, overlays) => {
 const failures = []
 let measured = 0
 
+console.log(`\nMeasuring the ${POWER === 'low' ? 'low-power' : 'full'} rendering path.`)
+
+/** Elements that moved during a capture and so could not be measured. */
+let skipped = 0
+
 const browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' })
 
 for (const scheme of ['dark', 'light']) {
@@ -273,7 +296,7 @@ for (const scheme of ['dark', 'light']) {
     viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, colorScheme: scheme,
   })
   await page.goto(`${BASE}/`, { waitUntil: 'networkidle' })
-  await page.evaluate(SEED)
+  await page.evaluate(SEED, POWER)
 
   for (const route of ROUTES) {
     await page.goto(BASE + route.path, { waitUntil: 'networkidle' })
@@ -306,7 +329,64 @@ for (const scheme of ['dark', 'light']) {
       const overlays = await page.evaluate(OVERLAYS)
 
       await page.evaluate(HIDE)
+
+      /* Geometry is re-read here, with the ink already hidden and the
+         screenshot about to be taken.
+         The first version measured pixels against rects collected moments
+         earlier, and on Sarathi that was wrong in a way no amount of staring at
+         CSS explained: the caricature's suggestion chips are replaced when his
+         greeting settles, so the row moved between the two steps and every chip
+         was sampled against the pixels of wherever it used to be. It reported a
+         chip as white-on-marigold that was, by then, painted opaque somewhere
+         else on the screen. Three fixes went into the app for a defect that was
+         in the measurement. */
+      const fresh = await page.evaluate(() => (window.__els ?? []).map((el) => {
+        const r = el.getBoundingClientRect()
+        return { x: Math.max(0, r.left), y: Math.max(0, r.top), w: r.width, h: r.height }
+      }))
+      for (let i = 0; i < items.length; i += 1) {
+        const now = fresh[i]
+        // Anything that moved out of view or collapsed between the two reads is
+        // dropped rather than guessed at.
+        if (!now || now.w < 4 || now.h < 4
+          || now.y < 0 || now.y + now.h > 844 || now.x + now.w > 390) {
+          items[i].moved = true
+          continue
+        }
+        items[i].rect = {
+          x: now.x, y: now.y,
+          w: Math.min(now.w, 390 - now.x),
+          h: Math.min(now.h, 844 - now.y),
+        }
+      }
+
       const shot = await page.screenshot({ type: 'png' })
+
+      /* And read the geometry once more, after the capture.
+         A screenshot is not instantaneous, and this app is still moving during
+         one: the caricature swaps his suggestion chips when the greeting
+         settles. An element that moved across the capture cannot be measured —
+         its pixels are partly where it was and partly where it went — and
+         reporting that as low contrast is how a measurement invents a defect.
+         Four separate fixes went into the app chasing one such phantom before
+         this check existed. Anything that did not hold still is skipped and
+         counted, not failed. */
+      const after = await page.evaluate(() => (window.__els ?? []).map((el) => {
+        const r = el.getBoundingClientRect()
+        return { x: Math.max(0, r.left), y: Math.max(0, r.top), w: r.width, h: r.height }
+      }))
+      let moved = 0
+      for (let i = 0; i < items.length; i += 1) {
+        if (items[i].moved) continue
+        const then = items[i].rect
+        const now = after[i]
+        if (!now || Math.abs(now.x - then.x) > 1 || Math.abs(now.y - then.y) > 1
+          || Math.abs(now.w - then.w) > 1) {
+          items[i].moved = true
+          moved += 1
+        }
+      }
+      if (moved > 0) skipped += moved
       await page.evaluate(SHOW)
 
       const dataUrl = `data:image/png;base64,${shot.toString('base64')}`
@@ -351,6 +431,13 @@ const unique = [...worstByElement.values()].sort((a, b) => a.ratio - b.ratio)
 
 console.log(`Measured ${measured} text elements across ${ROUTES.length} routes, ` +
   `2 themes, ${FRAMES.length} points in the mesh drift.\n`)
+if (skipped > 0) {
+  console.log(
+    `${skipped} element measurements were discarded because the element moved ` +
+    'during the capture. A pixel sample of something that was somewhere else is ' +
+    'not a contrast reading.',
+  )
+}
 
 if (unique.length > 0) {
   console.error(`✗ ${unique.length} below WCAG AA:\n`)

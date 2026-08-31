@@ -64,6 +64,7 @@ export default function MeshGround({
     const still =
       window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
       document.documentElement.dataset.motion === 'reduced' ||
+      tier === 'low' ||
       !animated
 
     let raf = 0
