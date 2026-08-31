@@ -101,6 +101,9 @@ const en: Dict = {
   'poll.results': 'Results',
   'poll.coverage': 'Who this represents',
   'poll.needVerify': 'Verify your identity to vote',
+  'poll.coverageOf': '{n} answered — {pct}% of the people this poll claims to speak for',
+  'poll.minorReadOnly': 'Reading only. Answering begins at eighteen.',
+  'poll.consentNeeded': 'You have not agreed to your answers being recorded. You can change that in Privacy.',
 
   'discuss.postOpinion': 'Post an opinion',
   'discuss.stance': 'Your position',
@@ -115,6 +118,7 @@ const en: Dict = {
   'discuss.rateLimited': 'You have posted several times this hour. You can post again {t}.',
   'discuss.charsLeft': '{n} characters left',
   'discuss.removed': 'Removed by moderation',
+  'common.you': 'You',
 
   'sort.balanced': 'Balanced',
   'sort.recent': 'Newest',
@@ -237,6 +241,99 @@ const en: Dict = {
   'stub.notBuilt': 'Not built yet',
 
   /* ---------------------------- screen states ----------------------- */
+  /* ------------------------------ Surface 3 ------------------------------ */
+
+  'bills.title': 'Bills',
+  'bills.tagline': 'What is being legislated, and what you think of it.',
+  'bills.section.pipeline': 'Pipeline',
+  'bills.section.constitution': 'Constitution',
+  'bills.section.constituency': 'My seat',
+  'bills.search': 'Search bills',
+  'bills.searchHint': 'Title, ministry or citation.',
+  'bills.noResults': 'No bill matches that.',
+
+  'bills.stage.introduced': 'Introduced',
+  'bills.stage.committee': 'In committee',
+  'bills.stage.lower-passed': 'Passed by the Lok Sabha',
+  'bills.stage.upper-passed': 'Passed by the Rajya Sabha',
+  'bills.stage.assented': 'Assented',
+  'bills.stage.lapsed': 'Lapsed',
+  'bills.stage.withdrawn': 'Withdrawn',
+  'bills.stage.none': 'Nothing at this stage.',
+  'bills.ended': 'Bills that did not become law',
+  'bills.endedMeta': 'Lapsed on dissolution, or withdrawn',
+
+  'bills.house.lok-sabha': 'Lok Sabha',
+  'bills.house.rajya-sabha': 'Rajya Sabha',
+  'bills.house.both': 'Both Houses',
+
+  'bills.prov.official': 'From the official record',
+  'bills.prov.partial': 'Partly readable',
+  'bills.prov.unreadable': 'Could not be read',
+  'bills.prov.sample': 'Sample record — invented for this build',
+  'bills.prov.partialBody':
+    'Part of this bill could not be read from the source. What is shown below was read; anything missing is in the original.',
+  'bills.prov.unreadableBody':
+    'The source did not return anything this app could read. Rather than show you something that might be wrong, here is the original.',
+  'bills.prov.sampleBody':
+    'This is not a real bill. It is written to exercise the surface end to end. Real bills carry the source they came from and the time it was read.',
+  'bills.source': 'Open the original',
+  'bills.readAt': 'Read {n} days ago',
+  'bills.readToday': 'Read today',
+
+  'bills.summary': 'In plain words',
+  'bills.noSummary': 'Nobody has written a plain summary of this bill yet.',
+  'bills.history': 'What has happened so far',
+  'bills.clauses': 'Clause by clause',
+  'bills.clausesNone': 'The clauses of this bill are not available here.',
+  'bills.disputed': 'Where the argument is',
+  'bills.disputedTag': 'Disputed',
+  'bills.asDrafted': 'As drafted',
+  'bills.inPlain': 'What it does',
+  'bills.amends': 'Changes',
+  'bills.viewOn': 'Your view on this bill',
+  'bills.debate': 'Read the debate',
+  'bills.noPoll': 'No advisory poll is open on this bill.',
+
+  'const.title': 'The Constitution',
+  'const.asOf': 'As it stood on {d}',
+  'const.showing': 'Showing {n} of {total}',
+  'const.tab.parts': 'Parts',
+  'const.tab.articles': 'Articles',
+  'const.tab.schedules': 'Schedules',
+  'const.tab.amendments': 'Amendments',
+  'const.search': 'Search the Constitution',
+  'const.searchHint': 'Article number, a Part, a Schedule, or a phrase.',
+  'const.gistNote':
+    'These are summaries in plain words, never the text itself. The text is one tap away and it is the text that is the law.',
+  'const.part': 'Part {p}',
+  'const.articles': 'Articles {r}',
+
+  'seat.title': 'Your constituency',
+  'seat.find': 'Find your constituency',
+  'seat.findHint': 'Type the name of a constituency, a district or a state.',
+  'seat.suggested': 'From the localities you stated',
+  'seat.noStated': 'You have not stated a locality yet. Search for your constituency instead.',
+  'seat.noMatch': 'No constituency matches that.',
+  'seat.rep': 'Who represents this seat',
+  'seat.since': 'Holding the seat since {d}',
+  'seat.record': 'How they voted',
+  'seat.recordNote':
+    'Most business in both Houses passes on a voice vote with no division called, so there is no individual record to publish. Those show as no recorded vote — not as an absence.',
+  'seat.vote.for': 'For',
+  'seat.vote.against': 'Against',
+  'seat.vote.abstained': 'Abstained',
+  'seat.vote.absent': 'Absent',
+  'seat.vote.not-recorded': 'No recorded vote',
+  'seat.division': 'Division {n}',
+  'seat.noLocation':
+    'Nothing here reads where you are. A constituency is found by asking you, or from a locality you typed into settings — and it can be wrong, which is why you can change it.',
+  'seat.change': 'Choose a different seat',
+
+  'debate.title': 'Debate',
+  'debate.balanced': 'You are seeing disagreement first, not the loudest voice.',
+  'debate.empty': 'Nobody has posted here yet.',
+
   'state.empty': 'Nothing here yet',
   'state.loading': 'Loading',
   'state.error': 'That did not load',

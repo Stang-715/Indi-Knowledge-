@@ -57,6 +57,13 @@ import type {
 import {
   BRIGADING_FLAGS, NOTICES, POLLS, POSTS, SEED_COVERAGE, SEED_TALLIES, TOPICS,
 } from './seed'
+import { BILLS, CONSTITUENCIES, REPRESENTATIVES, VOTE_RECORDS } from './bills'
+import { CONSTITUTION } from './constitution'
+import {
+  constituenciesForDistrict, hasEnded, searchConstituencies, STAGES,
+  type Bill, type Clause, type Constituency, type ConstitutionData,
+  type Representative, type Stage, type VoteRecord,
+} from '../core/legislation'
 
 /* ---------------------------------- notices --------------------------------- */
 
@@ -550,4 +557,157 @@ export function search(query: string): SearchHit[] {
     }
   }
   return hits
+}
+
+/* -------------------------- Surface 3 — legislation ------------------------- */
+
+/**
+ * The legislative reads.
+ *
+ * Same rule as everything else here: aggregates and records out, no identity in
+ * or out. Two additions specific to this surface —
+ *
+ *   - every record carries its provenance and the time it was read, so a screen
+ *     can show what it is looking at rather than implying certainty it does not
+ *     have;
+ *   - nothing takes a position, a coordinate or a device signal. A constituency
+ *     is found by asking or from a locality the citizen typed.
+ */
+
+export function listBills(): Bill[] {
+  return [...BILLS].sort((a, b) => b.introducedAt - a.introducedAt)
+}
+
+export function getBill(id: string): Bill | undefined {
+  return BILLS.find((b) => b.id === id)
+}
+
+/** Bills grouped by where they are, in the order the stages actually happen. */
+export function pipeline(): { stage: Stage; bills: Bill[] }[] {
+  const live = listBills().filter((b) => !hasEnded(b))
+  return STAGES.map((stage) => ({
+    stage,
+    bills: live.filter((b) => b.stage === stage),
+  }))
+}
+
+export function endedBills(): Bill[] {
+  return listBills().filter(hasEnded)
+}
+
+export function getClause(billId: string, clauseId: string): Clause | undefined {
+  return getBill(billId)?.clauses.find((c) => c.id === clauseId)
+}
+
+/** Full-text-ish search across bills, for the surface's own search. */
+export function searchBills(query: string): Bill[] {
+  const q = query.trim().toLowerCase()
+  if (q.length < 2) return []
+  return listBills().filter((b) =>
+    `${b.title} ${b.citation} ${b.ministry} ${b.plainSummary ?? ''}`.toLowerCase().includes(q),
+  )
+}
+
+/* ---- the Constitution ---- */
+
+export interface ConstitutionHit {
+  kind: 'part' | 'article' | 'schedule' | 'amendment'
+  id: string
+  title: string
+  detail: string
+}
+
+export function constitution(): ConstitutionData {
+  return CONSTITUTION
+}
+
+export function searchConstitution(query: string): ConstitutionHit[] {
+  const q = query.trim().toLowerCase()
+  if (q.length < 2) return []
+  const hits: ConstitutionHit[] = []
+
+  for (const p of CONSTITUTION.parts) {
+    if (`part ${p.roman} ${p.title} ${p.subject}`.toLowerCase().includes(q)) {
+      hits.push({ kind: 'part', id: p.roman, title: `Part ${p.roman} — ${p.title}`, detail: p.subject })
+    }
+  }
+  for (const a of CONSTITUTION.articles) {
+    if (`article ${a.number} ${a.heading} ${a.gist}`.toLowerCase().includes(q)) {
+      hits.push({ kind: 'article', id: a.number, title: `Article ${a.number} — ${a.heading}`, detail: a.gist })
+    }
+  }
+  for (const s of CONSTITUTION.schedules) {
+    if (`${s.title} ${s.subject}`.toLowerCase().includes(q)) {
+      hits.push({ kind: 'schedule', id: String(s.number), title: s.title, detail: s.subject })
+    }
+  }
+  for (const a of CONSTITUTION.amendments) {
+    if (`${a.shortTitle} ${a.effect} ${a.year} ${a.number}`.toLowerCase().includes(q)) {
+      hits.push({
+        kind: 'amendment', id: String(a.number),
+        title: `${a.shortTitle} (${a.year})`, detail: a.effect,
+      })
+    }
+  }
+  return hits
+}
+
+/* ---- constituency and representation ---- */
+
+export function listConstituencies(): Constituency[] {
+  return CONSTITUENCIES
+}
+
+export function findConstituencies(query: string): Constituency[] {
+  return searchConstituencies(CONSTITUENCIES, query)
+}
+
+/**
+ * Constituencies suggested from the localities the citizen stated in settings.
+ *
+ * This is a string match against a district they typed. It is not a lookup, not
+ * a geocode, and there is nothing on the device it could read instead — which
+ * is the whole point of storing a stated locality in the first place.
+ */
+export function constituenciesFromStatedLocalities(districts: string[]): Constituency[] {
+  const seen = new Set<string>()
+  const out: Constituency[] = []
+  for (const district of districts) {
+    for (const c of constituenciesForDistrict(CONSTITUENCIES, district)) {
+      if (!seen.has(c.id)) { seen.add(c.id); out.push(c) }
+    }
+  }
+  return out
+}
+
+export function getConstituency(id: string): Constituency | undefined {
+  return CONSTITUENCIES.find((c) => c.id === id)
+}
+
+export function representativeFor(constituencyId: string): Representative | undefined {
+  return REPRESENTATIVES.find((r) => r.constituencyId === constituencyId)
+}
+
+/**
+ * How a representative voted, per bill.
+ *
+ * A bill with no row is not an abstention and not an absence — it is a bill on
+ * which no division was called, which is how most business passes. The caller
+ * gets `not-recorded` for those, explicitly, so no screen can render silence as
+ * a position.
+ */
+export function votingRecord(representativeId: string): {
+  bill: Bill; record: VoteRecord | null
+}[] {
+  return listBills().map((bill) => ({
+    bill,
+    record: VOTE_RECORDS.find(
+      (v) => v.representativeId === representativeId && v.billId === bill.id,
+    ) ?? null,
+  }))
+}
+
+/** The pseudonymous view on a bill, where one is attached. */
+export function billAggregate(bill: Bill): Aggregate | null {
+  return bill.pollId ? pollAggregate(bill.pollId) : null
 }

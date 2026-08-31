@@ -18,8 +18,13 @@ export interface Handoff {
   because: string
 }
 
-/** Legacy paths map onto surfaces that are not built yet — see the page map. */
+/** Built surfaces first; legacy paths still map onto the surface that will
+    absorb them, so the handoff is coloured correctly either way. */
 const SURFACE_OF: { prefix: string; surface: string }[] = [
+  { prefix: '/s/bills', surface: 'bills' },
+  { prefix: '/s/bharat', surface: 'bharat' },
+  { prefix: '/s/works', surface: 'works' },
+  { prefix: '/s/sarathi', surface: 'sarathi' },
   { prefix: '/app/polls', surface: 'bills' },
   { prefix: '/app/discuss', surface: 'bills' },
   { prefix: '/app/notices', surface: 'works' },

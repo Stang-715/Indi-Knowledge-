@@ -3,9 +3,13 @@
  * Layout check — the pseudo-locale pass, in a browser.
  *
  * The static checks cannot see a layout that only fits because English is
- * short. This one runs Surface 1 in the pseudo-locale at the largest text scale
- * and fails if anything escapes the viewport, because the shell's
+ * short. This one runs every built surface in the pseudo-locale at the largest
+ * text scale and fails if anything escapes the viewport, because the shell's
  * overflow:hidden turns that failure into a silent one.
+ *
+ * It checked one route until Surface 3 landed, which meant a new surface could
+ * ship having never been measured at 160% in a language 40% longer than
+ * English. Every route a citizen can reach is in the list below now.
  *
  * Needs a served build:
  *   npm run build && npx vite preview --port 4320 &
@@ -33,34 +37,57 @@ await p.evaluate(()=>{
     localities:[{id:'loc_w12',label:'W12',ward:'W12',district:'Pune',state:'MH'}],seenNoticeIds:[],
     a11y:{textScale:1.6,highContrast:false,reduceMotion:true,lowBandwidth:false,screenReaderMode:false,voiceOut:false}}))
 })
-await p.goto(`${BASE}/s/sarathi`,{waitUntil:'networkidle'})
-await p.waitForTimeout(2200)
+const ROUTES = [
+  ['Sarathi', '/s/sarathi'],
+  ['Bills · pipeline', '/s/bills'],
+  ['Bills · a bill', '/s/bills/b/bill_water'],
+  ['Bills · unreadable source', '/s/bills/b/bill_transport'],
+  ['Bills · Constitution', '/s/bills/constitution'],
+  ['Bills · constituency', '/s/bills/constituency'],
+  ['Bills · debate', '/s/bills/debate/top_water_bill'],
+  ['Bharat (stub)', '/s/bharat'],
+  ['Works (stub)', '/s/works'],
+]
 
-// any element whose content overflows its own box horizontally = clipped layout
-const clipped = await p.evaluate(()=>{
-  const bad=[]; const vw = window.innerWidth
-  for (const el of document.querySelectorAll('.shell *')) {
-    const cs=getComputedStyle(el)
-    if (cs.overflowX==='auto'||cs.overflowX==='scroll') continue
-    if (el.classList.contains('sr-only')) continue        // clipped by design
-    if (cs.position==='fixed') continue                    // dock centres itself
-    const r = el.getBoundingClientRect()
-    if (r.width === 0) continue
-    // Escaping the viewport is the failure the shell's overflow:hidden hides.
-    if (r.right > vw + 2 || r.left < -2) {
-      bad.push((el.className||el.tagName).toString().slice(0,28)+' ['+Math.round(r.left)+'..'+Math.round(r.right)+']')
+let failed = false
+
+for (const [name, route] of ROUTES) {
+  await p.goto(`${BASE}${route}`, { waitUntil: 'networkidle' })
+  await p.waitForTimeout(900)
+
+  // any element whose content overflows its own box horizontally = clipped layout
+  const clipped = await p.evaluate(()=>{
+    const bad=[]; const vw = window.innerWidth
+    for (const el of document.querySelectorAll('.shell *')) {
+      const cs=getComputedStyle(el)
+      if (cs.overflowX==='auto'||cs.overflowX==='scroll') continue
+      if (el.classList.contains('sr-only')) continue        // clipped by design
+      if (cs.position==='fixed') continue                    // dock centres itself
+      const r = el.getBoundingClientRect()
+      if (r.width === 0) continue
+      // Escaping the viewport is the failure the shell's overflow:hidden hides.
+      if (r.right > vw + 2 || r.left < -2) {
+        bad.push((el.className||el.tagName).toString().slice(0,28)+' ['+Math.round(r.left)+'..'+Math.round(r.right)+']')
+      }
     }
-  }
-  return bad.slice(0,8)
-})
-console.log('page h-scroll:', await p.evaluate(()=>document.documentElement.scrollWidth>window.innerWidth+2))
-console.log('clipped elements:', clipped.length? clipped.join(' | ') : 'none')
-const unresolved = await p.evaluate(()=>(document.body.innerText.match(/⟦[^⟧]+⟧/g)||[]).slice(0,10))
-console.log('unresolved keys:', unresolved.length ? unresolved : 'none')
-await p.screenshot({path:`${D}/pseudo-160.png`})
-console.log('errors:', errs.length?errs.slice(0,2).join(' | '):'none')
+    return bad.slice(0,8)
+  })
+  const hscroll = await p.evaluate(()=>document.documentElement.scrollWidth>window.innerWidth+2)
+  const unresolved = await p.evaluate(()=>(document.body.innerText.match(/⟦[^⟧]+⟧/g)||[]).slice(0,10))
 
-const failed = clipped.length > 0 || unresolved.length > 0
-console.log(failed ? '\n✗ layout check failed' : '\n✓ pseudo-locale at 160% — nothing clipped, no unresolved keys')
+  const bad = clipped.length > 0 || unresolved.length > 0 || hscroll
+  failed = failed || bad
+  console.log(`${bad ? '✗' : '✓'} ${name.padEnd(26)} ${
+    bad
+      ? [hscroll && 'page scrolls sideways', clipped.length && `clipped: ${clipped.join(' | ')}`,
+         unresolved.length && `unresolved: ${unresolved.join(' ')}`].filter(Boolean).join(' · ')
+      : 'nothing clipped, no unresolved keys'}`)
+}
+
+await p.goto(`${BASE}/s/bills`, { waitUntil: 'networkidle' })
+await p.screenshot({path:`${D}/pseudo-160.png`})
+if (errs.length) console.log('console errors:', errs.slice(0,3).join(' | '))
+
+console.log(failed ? '\n✗ layout check failed' : `\n✓ ${ROUTES.length} routes at 160% in the pseudo-locale — nothing clipped, no unresolved keys`)
 await b.close()
 process.exit(failed ? 1 : 0)

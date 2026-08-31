@@ -18,25 +18,6 @@ export function BharatStub() {
   )
 }
 
-export function BillsStub() {
-  return (
-    <ComingSoon
-      surface="Bills"
-      tagline="What is being legislated, and what you actually think of it."
-      existing={[
-        { to: '/app/polls', label: 'Advisory polls', detail: 'Bill summaries, the full text, and a vote that carries its own coverage figure' },
-        { to: '/app/discuss', label: 'Debate', detail: 'Balanced ordering — you see disagreement before you see the loudest voice' },
-      ]}
-      planned={[
-        { code: '3.1', title: 'The pipeline', detail: 'Introduced, committee, passed, assented — live status for every bill in the session.' },
-        { code: '3.2', title: 'Bill detail', detail: 'Plain summary and full text side by side, with a clause-by-clause explorer.' },
-        { code: '3.4', title: 'Constitution', detail: 'Parts, Articles, Schedules and every Amendment, searchable.' },
-        { code: '3.5', title: 'Your constituency', detail: 'Who represents you, and how they actually voted rather than what they said.' },
-      ]}
-    />
-  )
-}
-
 export function WorksStub() {
   return (
     <ComingSoon

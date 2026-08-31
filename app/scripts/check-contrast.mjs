@@ -42,6 +42,11 @@ const ROUTES = [
   { path: '/s/sarathi', name: 'Sarathi' },
   { path: '/s/bharat', name: 'Bharat' },
   { path: '/s/bills', name: 'Bills' },
+  { path: '/s/bills/b/bill_water', name: 'Bill detail' },
+  { path: '/s/bills/b/bill_transport', name: 'Unreadable source' },
+  { path: '/s/bills/constitution', name: 'Constitution' },
+  { path: '/s/bills/constituency', name: 'Constituency' },
+  { path: '/s/bills/debate/top_water_bill', name: 'Debate' },
   { path: '/s/works', name: 'Works' },
   { path: '/app/profile/privacy', name: 'Privacy & rights' },
 ]

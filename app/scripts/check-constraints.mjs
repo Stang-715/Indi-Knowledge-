@@ -86,6 +86,25 @@ if (banner) {
   }
 }
 
+/* Principle 3, second half — the banner must actually be on the vote.
+ *
+ * The rule above stops the banner growing a dismiss button. It says nothing
+ * about a new screen that takes a vote and simply never renders it, which is
+ * the likelier way this gets lost: Surface 3 added a second voting surface, and
+ * a third is coming. So any file that can record a response must show the
+ * banner in the same file. */
+for (const file of files) {
+  if (!/\bcastVote\s*\(/.test(file.code)) continue
+  if (file.rel.replace(/\\/g, '/').startsWith('data/')) continue   // the data layer, not a screen
+  if (!/AdvisoryBanner/.test(file.code)) {
+    failures.push(
+      `[principle 3] ${file.rel} records a poll response without rendering AdvisoryBanner. ` +
+        `Advisory polling is not voting, and every surface that takes a view has to say so ` +
+        `on the screen where the view is taken.`,
+    )
+  }
+}
+
 /* Principle 4 — the audit trail is append-only. */
 const audit = files.find((f) => f.rel.replace(/\\/g, '/') === 'core/audit.ts')
 if (audit && /export function (delete|remove|edit|update|clear)/i.test(audit.code)) {

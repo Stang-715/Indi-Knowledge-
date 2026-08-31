@@ -25,7 +25,12 @@ import {
 import { GovHome, GovLogin, GovProvider, GovShell, useGov } from './gov/GovPortal'
 import ChowkShell from './surfaces/ChowkShell'
 import SarathiSurface from './surfaces/sarathi/SarathiSurface'
-import { BharatStub, BillsStub, WorksStub } from './surfaces/stubs'
+import { BharatStub, WorksStub } from './surfaces/stubs'
+import BillsSurface from './surfaces/bills/BillsSurface'
+import BillDetail from './surfaces/bills/BillDetail'
+import Constitution from './surfaces/bills/Constitution'
+import Constituency from './surfaces/bills/Constituency'
+import Debate from './surfaces/bills/Debate'
 import { NoticeComposer, PollComposer } from './gov/Compose'
 import Dashboards from './gov/Dashboards'
 import Moderation from './gov/Moderation'
@@ -73,7 +78,11 @@ export default function App() {
                 <Route index element={<Navigate to="/s/sarathi" replace />} />
                 <Route path="sarathi" element={<SarathiSurface />} />
                 <Route path="bharat" element={<BharatStub />} />
-                <Route path="bills" element={<BillsStub />} />
+                <Route path="bills" element={<BillsSurface />} />
+                <Route path="bills/b/:id" element={<BillDetail />} />
+                <Route path="bills/constitution" element={<Constitution />} />
+                <Route path="bills/constituency" element={<Constituency />} />
+                <Route path="bills/debate/:id" element={<Debate />} />
                 <Route path="works" element={<WorksStub />} />
               </Route>
 

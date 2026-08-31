@@ -198,7 +198,7 @@ const ENTRIES: Entry[] = [
       mood: 'neutral',
       say: ['sar.polls.p1', 'sar.polls.p2', 'sar.polls.p3'],
       followUps: ['advisory', 'who-sees-vote', 'results'],
-      goto: { label: 'See open polls', to: '/app/polls' },
+      goto: { label: 'See open polls', to: '/s/bills' },
     },
   },
   {
@@ -221,7 +221,7 @@ const ENTRIES: Entry[] = [
       mood: 'neutral',
       say: ['sar.discussion.p1', 'sar.discussion.p2', 'sar.discussion.p3'],
       followUps: ['balanced', 'brigading', 'moderation'],
-      goto: { label: 'Open discussions', to: '/app/discuss' },
+      goto: { label: 'Open discussions', to: '/s/bills' },
     },
   },
   {

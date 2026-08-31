@@ -150,6 +150,52 @@ export const POLLS: Poll[] = [
   },
 ]
 
+/* Two polls attached to bills in `data/bills.ts`, so the chain a citizen
+   actually walks — pipeline, bill, clause, view, debate — exists end to end
+   rather than stopping at a bill with nothing to answer. */
+POLLS.push(
+  {
+    id: 'poll_water_bill',
+    billTitle: 'Municipal Water Supply (Continuity of Service) Bill',
+    plainSummary:
+      'The bill would require seventy-two hours’ notice before a planned water cut, and a published reason and restoration time within four hours of an unplanned one.\n\nThe argument is about clause 9. Utilities say reporting every missed restoration time to the regulator turns an operational problem into a compliance one. Residents’ associations say a deadline nobody is measured against is not a deadline.\n\nThe bill is with the standing committee. Nothing you answer here changes that; it is passed upward as a view.',
+    fullTextUrl: 'https://sansad.in/ls',
+    fullTextLabel: 'Bill No. 118 of 2026 — full text',
+    options: [
+      { id: 'o1', label: 'Support as drafted' },
+      { id: 'o2', label: 'Support, but drop the reporting duty in clause 9' },
+      { id: 'o3', label: 'Support, and go further — publish the record openly' },
+      { id: 'o4', label: 'Oppose' },
+    ],
+    opensAt: now - 9 * DAY,
+    closesAt: now + 11 * DAY,
+    localityIds: 'all',
+    issuedBy: INSTITUTIONS[3],
+    advisoryOnly: true,
+    editWindowMs: 24 * 60 * 60 * 1000,
+  },
+  {
+    id: 'poll_roads_bill',
+    billTitle: 'Road Excavation (Coordination and Restoration) Bill',
+    plainSummary:
+      'The bill would make it unlawful to dig a public road without a permit, and would refuse a permit unless the work was registered a fortnight in advance and no other agency had booked the same stretch.\n\nClause 11 is the one under dispute: it requires the authority to publish restoration dates promised against dates achieved. Departments argue this will be read as a league table. The counter-argument is that it is the only clause that makes the rest enforceable.\n\nThe bill has passed both Houses and awaits assent, so this is a view on a bill that is nearly law rather than one being drafted.',
+    fullTextUrl: 'https://sansad.in/ls',
+    fullTextLabel: 'Bill No. 74 of 2026 — full text as passed',
+    options: [
+      { id: 'o1', label: 'Support, including the published record' },
+      { id: 'o2', label: 'Support, but the record should stay internal' },
+      { id: 'o3', label: 'Fourteen days’ notice is too long for emergency work' },
+      { id: 'o4', label: 'Oppose' },
+    ],
+    opensAt: now - 20 * DAY,
+    closesAt: now + 4 * DAY,
+    localityIds: 'all',
+    issuedBy: INSTITUTIONS[1],
+    advisoryOnly: true,
+    editWindowMs: 24 * 60 * 60 * 1000,
+  },
+)
+
 export const TOPICS: Topic[] = [
   {
     id: 'top_vendor',
@@ -164,6 +210,18 @@ export const TOPICS: Topic[] = [
     createdAt: now - 3 * DAY,
   },
   {
+    id: 'top_water_bill',
+    title: 'Water Supply (Continuity of Service) Bill — clause 9',
+    anchor: { kind: 'poll', id: 'poll_water_bill' },
+    createdAt: now - 9 * DAY,
+  },
+  {
+    id: 'top_roads_bill',
+    title: 'Road Excavation Bill — publishing the restoration record',
+    anchor: { kind: 'poll', id: 'poll_roads_bill' },
+    createdAt: now - 20 * DAY,
+  },
+  {
     id: 'top_water',
     title: 'Three-day water shutdown in Ward 12',
     anchor: { kind: 'notice', id: 'not_water_shut' },
@@ -172,6 +230,44 @@ export const TOPICS: Topic[] = [
 ]
 
 export const POSTS: Post[] = [
+  /* The two bill threads. Written to be argued with rather than agreed with:
+     balanced ordering only demonstrates anything on a thread that actually
+     disagrees with itself. */
+  {
+    id: 'pb1', topicId: 'top_water_bill', authorPseudonym: 'NorthernAlmanac417',
+    body: 'Clause 9 is the only part of this bill with teeth and it is the part the utilities are lobbying to remove. Three misses a quarter is not a hard bar. If they cannot clear it, the reporting is not the problem.',
+    stance: 'support', createdAt: now - 8 * DAY, agree: 268, disagree: 41,
+  },
+  {
+    id: 'pb2', topicId: 'top_water_bill', authorPseudonym: 'CarefulMillstone129',
+    body: 'I work in a municipal water office. We miss restoration times because a contractor did not turn up or the part came from another district, not because nobody is watching. A report to the regulator does not put water in the pipe and it takes an engineer half a day to file.',
+    stance: 'oppose', createdAt: now - 8 * DAY, agree: 191, disagree: 96,
+  },
+  {
+    id: 'pb3', topicId: 'top_water_bill', authorPseudonym: 'RiversideCompass860',
+    body: 'Both of those are true at once. Report it, but make the form take five minutes and let the reason be "contractor did not attend" — then the regulator learns something instead of collecting paperwork.',
+    stance: 'mixed', createdAt: now - 7 * DAY, agree: 344, disagree: 22,
+  },
+  {
+    id: 'pb4', topicId: 'top_water_bill', authorPseudonym: 'OpenSparrow552',
+    body: 'Does clause 9 apply to a private operator running a municipal contract, or only to the utility itself? Half the supply in my ward is contracted out and I cannot tell from the drafting.',
+    stance: 'question', createdAt: now - 6 * DAY, agree: 158, disagree: 3,
+  },
+  {
+    id: 'pb5', topicId: 'top_roads_bill', authorPseudonym: 'DistantHarbour733',
+    body: 'Clause 11 is the whole bill. A permit system without a published record is a filing cabinet. We have had the filing cabinet since 2011 and the road outside my house has been dug four times in two years.',
+    stance: 'support', createdAt: now - 18 * DAY, agree: 402, disagree: 28,
+  },
+  {
+    id: 'pb6', topicId: 'top_roads_bill', authorPseudonym: 'BrightLedger288',
+    body: 'Fourteen days is unworkable for a burst main. The emergency exception in clause 5 is one sentence and does not say who decides what counts as an emergency, which means in practice everything will be filed as one.',
+    stance: 'oppose', createdAt: now - 17 * DAY, agree: 233, disagree: 64,
+  },
+  {
+    id: 'pb7', topicId: 'top_roads_bill', authorPseudonym: 'PatientWeaver905',
+    body: 'Support the record, but publish it per stretch of road rather than per department. A league table gets argued about; a street that has been dug six times gets fixed.',
+    stance: 'mixed', createdAt: now - 15 * DAY, agree: 287, disagree: 35,
+  },
   {
     id: 'p1', topicId: 'top_vendor', authorPseudonym: 'QuietBanyan204',
     body: 'The lottery sounds fair until you notice there are 40 spots proposed for a ward with about 300 people vending. That is not regulation, it is eviction with extra steps.',

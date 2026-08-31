@@ -125,10 +125,35 @@ A phase is not called complete until anything it left behind is recorded there.
 Two entries carry a correction to a completion claim already made — Phase 2 was
 reported as meeting exit criteria it had only partly met.
 
+## Surface 3 — Bills
+
+`core/legislation.ts` holds the domain, and two rules shape every type in it.
+
+**Provenance travels with the record.** Bill text and status come from sources
+that change format without notice, and a parser that half-succeeds must not
+render a bill as though it read it properly. Every record carries how it was
+obtained and when, and there is a designed path — `surfaces/bills/Sourced.tsx` —
+that shows the link to the original instead of the content. `bill_transport` in
+the sample data is unreadable and `bill_records` partly readable, so that path is
+walked in ordinary use rather than only in a test.
+
+**Nothing is derived from where a device is.** The constituency finder is the
+one screen in the app where a coordinate would be the obvious answer, and it is
+the screen the location constraint exists for. It takes a search term or the
+district the citizen stated in settings, and `constituenciesForDistrict` is a
+string comparison. There is no lookup that accepts a position because there is
+no position to accept.
+
+The sample data is invented and says so on screen. Constituency names are real
+and stable; the people holding them are fictional, because a fabricated voting
+record attached to a real name is a defamation with a search index. `not-recorded`
+is a first-class position rather than a gap: most business in both Houses passes
+on a voice vote with no division, and rendering that silence as an absence would
+libel half of Parliament by rounding error.
+
 ## Not yet built
 
-- A server. `data/repo.ts` is a local mock in the shape the API will take; no
-  caller reaches around it.
+- Surfaces 2 and 4. Bharat and Works are still the planned-page stubs.
 - Real ID verification. `core/identity.ts` hashes locally; in production the raw
   identifier should never reach the client at all — the service returns a digest
   and an attestation.

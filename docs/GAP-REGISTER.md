@@ -432,6 +432,87 @@ not.
 nothing about the transfer visible to the server beyond a key rotation.
 ---
 
+## Phase 5 — Surface 3, Bills
+
+### G-5-01 · There is no live source. Every bill is invented.
+**Severity:** blocker for the phase's exit criterion
+The exit criterion says a citizen can "read a live bill in plain words". They can
+read a bill in plain words; it is not live. `data/bills.ts` is sample data,
+marked `provenance: 'sample'` and labelled as such on screen, and nothing in the
+app fetches from sansad.in, PRS or India Code.
+What does exist is the machinery the fetch will need: provenance on every
+record, a lag label, and a degradation path that shows the source link instead
+of content. Two sample records are deliberately damaged so that path is walked
+in ordinary use.
+**Do:** a fetcher per source with a parser whose failure mode is `unreadable`
+rather than a partial render, and a scheduled refresh that updates `fetchedAt`
+whether or not the content changed.
+**Verify:** a bill's stage changes in the app because it changed in Parliament,
+and a deliberately broken source produces a link rather than a wrong summary.
+
+### G-5-02 · Representatives and voting records are fictional
+**Severity:** blocker before release
+Constituency names and districts are real. The people are not, and every record
+says so. This is deliberate: a fabricated voting record attached to a real name
+is a defamation with a search index, and inventing one to fill a screen would be
+the exact failure this surface exists to be an answer to.
+`not-recorded` is a first-class position rather than a gap, because most business
+in both Houses passes on a voice vote with no division called.
+**Do:** take members and divisions from an accountable source, and treat a
+mismatch as an incident rather than a data-quality metric.
+**Verify:** every name on the surface traces to a published record, and a
+division shown matches the House's own division list.
+
+### G-5-03 · The Constitution is a dated subset
+**Severity:** major
+Twenty-five Articles of about 470, thirteen Amendments of 106, all Parts and all
+twelve Schedules. The screen says so — "showing 25 of about 470" is rendered,
+not buried — and every entry is a plain-words summary rather than the text,
+with the source one tap away.
+The snapshot is dated 29 September 2023. A constitution changes rarely, which is
+exactly why an undated copy goes stale without anybody noticing.
+**Do:** carry the full Article list, and check the amendment count against the
+source on a schedule rather than at authoring time.
+**Verify:** an Article the app does not carry is still findable, and the `asOf`
+date moves when the source does.
+
+### G-5-04 · Constituency matching is a district string comparison
+**Severity:** major
+A stated district is matched against the districts a constituency covers. A
+district usually holds several constituencies and a constituency can span
+districts, so the suggestion is a hint and the screen treats it as one — the
+citizen picks, and can search instead.
+This is a consequence of the location constraint, not an oversight: the precise
+answer needs a ward or a polling-station number, which is more identifying than
+a district, and asking for it must stay the citizen's choice.
+**Do:** let a citizen state their ward if they want a precise answer, and keep
+the district hint for those who do not.
+**Verify:** a district with four constituencies offers all four rather than
+guessing one.
+
+### G-5-05 · The legacy poll and discussion screens still exist
+**Severity:** minor
+Surface 3 has Chowk-native voting and debate. `/app/polls` and `/app/discuss`
+still carry the older versions, and the three polls not attached to a bill —
+ward budget, night bus, street vending — are reachable only there.
+**Do:** fold standalone polls into whichever surface owns them (a ward budget is
+Works, not Bills) and retire the `/app` shell as Surface 4 absorbs the rest of
+it.
+**Verify:** every poll is reachable from a Chowk surface, and `/app/polls`
+redirects rather than rendering.
+
+### G-5-06 · Bills are not in the sync layer
+**Severity:** major
+`core/pull.ts` caches posts, tallies and reach. Bills, the Constitution and
+constituencies are bundled with the app, so they work offline trivially and
+cannot be updated without a release. This is the client half of G-4-07.
+**Do:** serve legislative records from the API and cache them the same way, with
+the same stale-while-revalidate read.
+**Verify:** a bill updated on the server reaches an installed app without a
+store release, and the app still opens on a dead connection.
+
+---
+
 ## Cross-cutting
 
 ### G-X-01 · Two design systems are loaded at once
