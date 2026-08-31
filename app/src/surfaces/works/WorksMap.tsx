@@ -213,9 +213,13 @@ export default function WorksMap({ stretches, works, selected, onSelect }: Props
 
       <ul className="wmap__legend" aria-label={t('works.map.legend')}>
         {(['open', 'overrun', 'planned', 'restored'] as WorkState[]).map((s) => (
+          /* The label is its own span so that what is measured for contrast is
+             the text against the ground, not the text against the swatch
+             sitting beside it. A checker cannot tell those apart from the box
+             alone, and it is right not to guess. */
           <li key={s}>
             <span className="wmap__swatch" style={{ background: COLOUR[s] }} aria-hidden="true" />
-            {t(`works.state.${s}`)}
+            <span className="wmap__legend-text">{t(`works.state.${s}`)}</span>
           </li>
         ))}
       </ul>

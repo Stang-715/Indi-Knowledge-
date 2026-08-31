@@ -345,3 +345,12 @@
 /* The advisory banner is a shared component with its own older stylesheet. It
    is not this surface's to restyle, but it is this surface's to contain. */
 .bl .banner { max-width: 100%; }
+
+/* A pressed chip over a dark ground fills rather than tints — the shared style
+   writes the label in the same hue it tints the background with, which is one
+   colour against itself once the panel is dark. */
+.bl .chip[aria-pressed='true'], .bl .chip.is-on {
+  background: var(--hue);
+  border-color: var(--hue);
+  color: var(--on-hue);
+}

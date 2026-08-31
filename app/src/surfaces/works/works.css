@@ -134,6 +134,16 @@
   position: absolute; top: var(--sp-3); right: var(--sp-3);
   display: grid; gap: var(--sp-2); justify-items: end;
 }
+/* These sit over whatever the map is drawing, including the palest road
+   colour. Glass alone is not enough ground to hold white text against that,
+   so the controls carry their own. */
+.wmap__controls .btn {
+  background: rgba(10, 13, 22, .74);
+  border-color: rgba(255, 255, 255, .3);
+  color: #fff;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
 
 .wmap__legend {
   list-style: none; margin: 0; padding: 0;
@@ -141,6 +151,7 @@
   font-size: .78rem; color: var(--ink-2);
 }
 .wmap__legend li { display: inline-flex; align-items: center; gap: 6px; }
+.wmap__legend-text { color: var(--ink-2); }
 .wmap__swatch {
   width: 12px; height: 12px; border-radius: 3px; display: inline-block;
   border: 1px solid rgba(0, 0, 0, .3);
@@ -165,13 +176,27 @@
 .wc--overrun .wc__when { color: var(--w-overrun); }
 .wc__street { font-weight: 700; font-size: 1rem; color: var(--ink); }
 .wc__meta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px; }
+/* State tags are filled rather than outlined.
+ *
+ * An outlined tag puts its accent colour in the border and the same colour in
+ * the text, which reads well and measures as one colour against itself — the
+ * strongest pixel inside the box is the border, and the text has to clear that
+ * too. Filling it puts the accent behind dark ink instead, where the contrast
+ * is 7:1 or better for all four states and the tag is easier to pick out. */
 .wc__tag {
   font-size: .7rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
   border-radius: var(--r-pill); padding: 3px 9px;
   border: 1px solid var(--hair); color: var(--ink-2);
 }
-.wc__tag--overrun { border-color: var(--w-overrun); color: var(--w-overrun); }
-.wc__tag--open { border-color: var(--w-open); color: var(--w-open); }
+.wc__tag--overrun,
+.wc__tag--open,
+.wc__tag--planned,
+.wc__tag--restored,
+.wc__tag--cancelled { color: #12151F; border-color: transparent; }
+.wc__tag--overrun { background: var(--w-overrun); }
+.wc__tag--open { background: var(--w-open); }
+.wc__tag--planned { background: var(--w-planned); }
+.wc__tag--restored, .wc__tag--cancelled { background: var(--w-restored); }
 .wc__who { font-size: .82rem; color: var(--ink-3); }
 
 /* -------------------------------- streets --------------------------------- */
@@ -220,5 +245,22 @@
 .wk__block > *,
 .wk__list > *,
 .wmap > * { max-width: 100%; }
+
+/* A pressed chip over a dark ground.
+ *
+ * The shared style tints the background with the hue and writes the label in
+ * the same hue, which works on a light panel and is one colour against itself
+ * on a mesh. Over these grounds the pressed state fills instead, and the label
+ * takes the surface's on-hue ink. */
+.wk .chip[aria-pressed='true'], .wk .chip.is-on {
+  background: var(--hue);
+  border-color: var(--hue);
+  color: var(--on-hue);
+}
+
+/* An unselected segment at --ink-2 clears AA over the violet ground and does
+   not over this one. Surface 4's hue is the darkest of the four. */
+.wk .seg button { color: var(--ink); }
+.wk .seg button[aria-selected='true'] { color: var(--on-hue); }
 
 :root[data-text='large'] .wc__meta { flex-direction: column; align-items: flex-start; }
