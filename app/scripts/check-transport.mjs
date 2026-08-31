@@ -123,6 +123,7 @@ const setup = await page.evaluate(async () => {
     institution: await import('/src/core/institution.ts'),
     api: await import('/src/core/api.ts'),
     storeclaim: await import('/src/core/storeclaim.ts'),
+    auditchain: await import('/src/core/auditchain.ts'),
   }
   const record = await id.recordVerification('E2E-12345671', 'National ID Verification Service')
   const tokens = await id.refillTokens()
@@ -475,6 +476,35 @@ check('the listing carries no pseudonym field', shop.hasPseudonymField === false
 check('and neither the listing cache nor the edit secret names a pseudonym',
   shop.localMentionsPseudonym === false)
 check('the device keeps the secret that lets it edit the listing', shop.claimedHere === true)
+
+/* --- Phase 9: the reader checks the trail themselves --- */
+
+const oversight = await page.evaluate(async () => {
+  const { auditchain, api } = window.__chowk
+  const chain = await fetch(`${api.API_BASE}/v1/oversight/chain`).then((r) => r.json())
+  const head = await fetch(`${api.API_BASE}/v1/oversight/head`).then((r) => r.json())
+  const verdict = await auditchain.verifyChain(chain.entries ?? [])
+
+  // The same walk over a trail with one field altered — which is what a
+  // tampered copy of the database would hand a reader.
+  const tampered = (chain.entries ?? []).map((e, i) =>
+    (i === 1 ? { ...e, detail: 'never happened' } : e))
+  const onTampered = await auditchain.verifyChain(tampered)
+
+  return {
+    ok: verdict.ok,
+    checked: verdict.checked,
+    agrees: verdict.head === head.digest,
+    tamperCaught: onTampered.ok === false,
+    brokenAt: onTampered.brokenAt ?? null,
+  }
+})
+
+check('the browser recomputes the whole chain and it holds',
+  oversight.ok === true && oversight.checked > 0, `${oversight.checked} entries`)
+check('and reaches the same head the server reports', oversight.agrees === true)
+check('a single altered entry is caught by the reader, not by the server',
+  oversight.tamperCaught === true, `broken at ${oversight.brokenAt}`)
 
 await browser.close()
 console.log(`\n${failures === 0 ? '✓ the client runs on the API, online and off.' : `✗ ${failures} failed`}\n`)

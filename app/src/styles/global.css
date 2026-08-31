@@ -201,6 +201,12 @@ img, svg, video { max-width: 100%; }
   color: var(--on-accent);
   border-radius: var(--r-md);
   transition: top 120ms ease;
+  /* It sits off the top rather than off the side, so it is laid out at full
+     width the whole time and runs past the viewport once the text scale is
+     large. The one control a keyboard user meets first should not be the one
+     that is clipped. */
+  max-width: calc(100% - (2 * var(--s3)));
+  box-sizing: border-box;
 }
 .skip:focus { top: var(--s3); }
 

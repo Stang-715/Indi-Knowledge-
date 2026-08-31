@@ -809,6 +809,70 @@ store release.
 
 ---
 
+## Phase 9 — Oversight transparency
+
+The plan's exit criterion is that an operator who is neither us nor the
+government can read the trail and we cannot edit it. The second half is now
+enforceable from outside: the trail is a hash chain, the reader's own browser
+recomputes it, and a head kept elsewhere makes a rewrite provable. The first
+half is not something software delivers — it needs an operator to exist.
+
+### G-9-01 · There is no independent body
+**Severity:** blocker for the phase's exit criterion
+Anybody can enrol as an observer, exactly as anybody can enrol as a department.
+The credential proves possession of a key and nothing about entitlement. Until
+a real body holds one, the countersignature slot is furniture.
+This is the risk the plan named: the layer depends entirely on a genuinely
+independent body existing, software cannot manufacture that, and pretending
+otherwise is the failure the layer is meant to prevent.
+**Do:** identify who. A statutory body, a court-appointed auditor, a consortium
+of civil society organisations — the answer determines what the enrolment gate
+checks, and it is not ours to pick alone.
+**Verify:** a named body outside the platform and outside government holds an
+observer key and has countersigned a head we did not choose.
+
+### G-9-02 · Nobody is keeping the heads
+**Severity:** blocker
+The chain makes a rewrite detectable by anyone holding an older head. Nothing in
+this system causes anyone to hold one. Published, unread, is the same as
+unpublished.
+**Do:** anchor the head somewhere outside — a periodic post to an append-only
+public log, a transparency-log service, or simply an observer that fetches and
+stores it on a schedule and publishes its own archive.
+**Verify:** an independent archive of heads exists and can be compared against
+this server's without our cooperation.
+
+### G-9-03 · The transparency report counts what is easy, not what matters
+**Severity:** major
+Reports carry entry counts by action, request counts by kind, and the head at
+publication. They do not carry what a reader would most want: how long requests
+took, how many were still open at period end, which departments acted most, or
+any comparison against the previous period.
+**Verify:** a reader can tell from one report whether the platform is getting
+better or worse at answering what is asked of it.
+
+### G-9-04 · The government portal writes to the trail through the same server
+**Severity:** major
+Entries are appended by the same process that serves them. A compromised server
+can therefore write plausible entries as well as decline to write real ones —
+the chain proves nothing was removed after the fact, not that everything that
+happened was recorded.
+**Do:** have the acting party sign its own entries, the way departments already
+sign filings, so an entry attests to who did it rather than to what this server
+chose to write down.
+**Verify:** an audit entry carries a signature from the actor named in it.
+
+### G-9-05 · Client and server audit trails are separate
+**Severity:** minor
+`core/audit.ts` still keeps a local trail for actions taken in the local-only
+government screens, and the oversight page reads that for the audit log tab
+while reading the server for the chain. Two trails is one too many, and the one
+that is not chained is the one somebody will quote.
+**Verify:** one trail, chained, with the local one gone or explicitly marked as
+a device-local draft.
+
+---
+
 ## Cross-cutting
 
 ### G-X-01 · Two design systems are loaded at once

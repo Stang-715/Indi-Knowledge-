@@ -57,6 +57,7 @@ const ROUTES = [
   ['Bharat · trade', '/s/bharat/trade'],
   ['Bharat · shops', '/s/bharat/shops'],
   ['Bharat · public map', '/s/bharat/map'],
+  ['Oversight', '/oversight'],
 ]
 
 let failed = false

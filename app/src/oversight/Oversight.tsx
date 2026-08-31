@@ -1,6 +1,8 @@
-import { useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { listAudit } from '../core/audit'
+import Chain from './Chain'
+import { apiGet } from '../core/api'
 import { listFlags, listNotices, listPolls, listReports, listTopics, listPosts, retractionOverlay } from '../data/repo'
 import { PRINCIPLES } from '../core/principles'
 import { Banner, PrincipleNote, timeAgo } from '../components/ui'
@@ -16,7 +18,7 @@ import { useT } from '../i18n'
  */
 export default function Oversight() {
   const t = useT()
-  const [tab, setTab] = useState<'report' | 'audit'>('report')
+  const [tab, setTab] = useState<'report' | 'audit' | 'chain'>('report')
 
   return (
     <div className="shell">
@@ -36,9 +38,14 @@ export default function Oversight() {
           <button type="button" role="tab" className="chip" aria-selected={tab === 'audit'} aria-pressed={tab === 'audit'} onClick={() => setTab('audit')}>
             Audit log
           </button>
+          <button type="button" role="tab" className="chip" aria-selected={tab === 'chain'} aria-pressed={tab === 'chain'} onClick={() => setTab('chain')}>
+            Check the chain
+          </button>
         </div>
 
-        {tab === 'report' ? <TransparencyReport /> : <AuditLog />}
+        {tab === 'report' && <TransparencyReport />}
+        {tab === 'audit' && <AuditLog />}
+        {tab === 'chain' && <Chain />}
       </main>
       <div />
     </div>
@@ -85,23 +92,8 @@ function TransparencyReport() {
         ))}
       </div>
 
-      <h2 className="section-title">Requests to identify a citizen</h2>
-      <div className="card">
-        <span className="spread">
-          <span>
-            <span className="card__title" style={{ margin: 0 }}>Requests received</span>
-            <span className="tiny" style={{ display: 'block' }}>Courts, police, departments</span>
-          </span>
-          <strong style={{ fontSize: '1.5rem' }}>3</strong>
-        </span>
-        <span className="spread" style={{ marginTop: 'var(--s3)' }}>
-          <span>
-            <span className="card__title" style={{ margin: 0 }}>Requests fulfilled</span>
-            <span className="tiny" style={{ display: 'block' }}>Technically impossible to fulfil</span>
-          </span>
-          <strong style={{ fontSize: '1.5rem' }}>0</strong>
-        </span>
-      </div>
+      <h2 className="section-title">Requests received, and what became of them</h2>
+      <RequestRegister />
 
       <Banner tone="ok" title="Why that second number is always zero">
         There is no stored link between a verified identity and a pseudonym. A request for one
@@ -124,6 +116,71 @@ function TransparencyReport() {
         This page is published on a schedule by an independent body. The government accounts it
         describes have no write access to it and no ability to delay it.
       </PrincipleNote>
+    </>
+  )
+}
+
+/**
+ * The register, read from the server rather than written into this page.
+ *
+ * The numbers here used to be typed into the markup. That is fine as a mock and
+ * indefensible on a transparency page: a count somebody can edit by editing a
+ * component is not a record, and the one number that matters — demands to
+ * identify a citizen — is exactly the one an operator would be tempted to
+ * adjust. It comes from an append-only register now, where a closed request
+ * cannot be reopened and a database trigger says so.
+ */
+function RequestRegister() {
+  const [tally, setTally] = useState<Record<string, number>[] | null>(null)
+  const [failed, setFailed] = useState(false)
+
+  const load = useCallback(async () => {
+    try {
+      const res = await apiGet<{ tally?: Record<string, number>[] }>('/v1/oversight/requests')
+      setTally(res.tally ?? [])
+    } catch {
+      setFailed(true)
+    }
+  }, [])
+  useEffect(() => { void load() }, [load])
+
+  if (failed) {
+    return (
+      <Banner tone="danger">
+        The register is not reachable, so no count can be shown. An empty table would read as
+        “nothing was asked of us”, which is a different claim entirely.
+      </Banner>
+    )
+  }
+  if (!tally) return <p className="empty">Reading the register…</p>
+  if (tally.length === 0) {
+    return <p className="empty">Nothing has been asked of this platform yet.</p>
+  }
+
+  return (
+    <>
+      <div className="stack stack--tight">
+        {tally.map((row) => (
+          <div key={String(row.kind)} className="card">
+            <span className="spread">
+              <span>
+                <span className="card__title" style={{ margin: 0 }}>{String(row.kind)}</span>
+                <span className="tiny" style={{ display: 'block' }}>
+                  {row.closed} closed of {row.received} received
+                </span>
+              </span>
+              <strong style={{ fontSize: '1.5rem' }}>{row.fulfilled} fulfilled</strong>
+            </span>
+          </div>
+        ))}
+      </div>
+
+      <Banner tone="ok" title="Why disclosure demands are never fulfilled">
+        There is no stored link between a verified identity and a pseudonym. A demand for one is
+        answered with the truth: the record does not exist. That is not a policy a future
+        operator can revise — it is an absence in how the system is built, and changing it would
+        mean shipping visibly different software.
+      </Banner>
     </>
   )
 }

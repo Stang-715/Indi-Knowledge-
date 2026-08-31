@@ -255,6 +255,39 @@ beside them. A queue nobody staffs is a directory with nothing in it — but the
 report route is the other half of that bargain and needs a person behind it from
 the day the directory opens.
 
+## Oversight — what append-only actually buys
+
+The audit trail was append-only from Phase 0: no update or delete exported, a
+SQLite trigger that raises even from a direct shell, and a constraint check that
+fails the build if a mutation appears. All three stop *this server* editing its
+own history. None of them stops the whole database being replaced with a tidier
+one, and from outside a rewritten trail and an honest one look identical.
+
+So every entry now carries the digest of the one before it. Altering or removing
+anything breaks the chain, and `core/auditchain.ts` recomputes it **in the
+reader's browser** — an oversight layer whose verification is performed by the
+party being overseen is not oversight. If the page and the server ever disagree,
+the page did the arithmetic.
+
+The number that matters is the head. Kept somewhere the platform does not
+control and compared later, it turns a rewritten history from something nobody
+could notice into something anybody can prove. Which is why the head is
+published on a schedule, why reports are materialised by the calendar for every
+completed month rather than when somebody asks, and why an enrolled observer can
+countersign a head with a key we do not hold.
+
+The request register counts what is asked of the platform, including the demand
+most transparency reports omit: how many times an authority has asked us to
+identify somebody. Fulfilled is structurally zero — not a refusal each time, but
+an operation nobody has. A closed request cannot be reopened; a trigger says so,
+because counts that can be revised after publication are a draft.
+
+**The limit, stated rather than glossed.** All of this is worth exactly as much
+as somebody outside bothering to keep the heads. Software can publish, chain and
+accept a signature. It cannot make an independent body exist, and enrolment as
+an observer is currently ungated in the same way department enrolment is. A
+layer that implied otherwise would be the precise failure it exists to prevent.
+
 ## Not yet built
 
 - Surfaces 2 and 4. Bharat and Works are still the planned-page stubs.
