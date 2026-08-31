@@ -25,13 +25,13 @@
 .btn:active { transform: scale(.96); }
 .btn:disabled { opacity: .45; cursor: not-allowed; transform: none; filter: none; }
 
-.btn--hue   { background: var(--hue); color: #fff; }
+.btn--hue   { background: var(--hue); color: var(--on-hue); }
 .btn--hue:hover:not(:disabled) { filter: brightness(1.08); }
 .btn--solid { background: var(--ink); color: var(--ground); }
 .btn--ghost { background: transparent; border-color: var(--hair); color: var(--ink); }
 .btn--quiet { background: var(--ground-2); color: var(--ink-2); }
 .btn--glass {
-  background: rgba(255,255,255,.13);
+  background: linear-gradient(var(--scrim), var(--scrim)), rgba(255, 255, 255, .13);
   backdrop-filter: blur(20px) saturate(160%);
   -webkit-backdrop-filter: blur(20px) saturate(160%);
   border-color: rgba(255,255,255,.2);
@@ -70,8 +70,9 @@
 }
 /* Chips that sit on the mesh rather than on a panel. */
 .chip--glass {
-  background: rgba(255,255,255,.12);
-  border-color: rgba(255,255,255,.2);
+  background: linear-gradient(var(--scrim-strong), var(--scrim-strong)),
+              rgba(255, 255, 255, .12);
+  border-color: rgba(255, 255, 255, .26);
   color: #fff;
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
@@ -111,7 +112,7 @@
   min-height: 40px;
   transition: color var(--t-base) var(--ease);
 }
-.seg button[aria-selected='true'] { color: #fff; }
+.seg button[aria-selected='true'] { color: var(--on-hue); }
 
 /* fields ---------------------------------------------------------- */
 .field { display: grid; gap: 7px; }

@@ -30,7 +30,7 @@
 
 /* The disclosures sit on the mesh, so they take the dark composition. */
 .soon .disc {
-  background: rgba(255,255,255,.09);
+  background: linear-gradient(var(--scrim), var(--scrim)), rgba(255, 255, 255, .09);
   backdrop-filter: blur(18px) saturate(155%);
   -webkit-backdrop-filter: blur(18px) saturate(155%);
   border-color: rgba(255,255,255,.15);

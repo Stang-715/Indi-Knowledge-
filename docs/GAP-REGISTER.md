@@ -225,7 +225,17 @@ and canvas work.
 
 ## Phase 2e — accessibility in CI
 
-### G-2E-01 · Contrast is not measured anywhere — highest priority in this file
+### G-2E-01 · Contrast is not measured anywhere — CLOSED
+**Severity:** was blocker · **closed** by `scripts/check-contrast.mjs`
+Measured empirically rather than statically, because the backdrop is a drifting
+gradient behind glass and is in no stylesheet: hide the ink, screenshot the real
+composited backdrop, decode it in the page, and contrast each element's colour
+against the *worst* pixel behind it, at three points in the mesh drift, across
+five routes and both themes. Found 55, of which 25 were the checker's own bugs
+(occlusion by the fixed dock, boxes straddling the viewport edge, closed
+`<details>`); 30 were real and are fixed. Proven to fail by injecting a
+regression. Now 460 elements measured, all AA.
+Original text follows for the record.
 **Severity:** blocker
 No contrast checking exists. `check-a11y.mjs` cannot do it — contrast depends on
 rendered colour, and the design deliberately puts white text over a *moving,
@@ -260,7 +270,10 @@ was correct behaviour for the rule as written and a weakness in the rule.
 interactive element can be found by role.
 **Verify:** a deliberately small new control fails the check.
 
-### G-2E-04 · `check-layout.mjs` is not in any automated run
+### G-2E-04 · `check-layout.mjs` is not in any automated run — CLOSED
+**Severity:** was minor · **closed** by `npm run check:release`, which builds,
+then runs the layout and contrast checks together.
+Original text follows for the record.
 **Severity:** minor
 It needs a served build, so it was deliberately kept out of `npm test` to keep
 that fast and offline. Nothing else runs it, so in practice it runs only when

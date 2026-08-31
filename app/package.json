@@ -14,7 +14,9 @@
     "build:native": "VITE_HASH_ROUTER=true npm run build",
     "sync:native": "npm run build:native && npx cap sync",
     "check:a11y": "node scripts/check-a11y.mjs",
-    "check:layout": "node scripts/check-layout.mjs"
+    "check:layout": "node scripts/check-layout.mjs",
+    "check:contrast": "node scripts/check-contrast.mjs",
+    "check:release": "npm run build && node scripts/check-layout.mjs && node scripts/check-contrast.mjs"
   },
   "dependencies": {
     "react": "^19.2.8",

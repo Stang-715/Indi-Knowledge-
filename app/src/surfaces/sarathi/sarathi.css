@@ -56,7 +56,8 @@
 @keyframes sar-in { from { opacity: 0; transform: translateY(6px) } to { opacity: 1; transform: none } }
 
 .sar__line--sarathi {
-  background: color-mix(in srgb, var(--hue) 26%, transparent);
+  background: linear-gradient(var(--scrim), var(--scrim)),
+              color-mix(in srgb, var(--hue) 26%, transparent);
   border: 1px solid color-mix(in srgb, var(--hue) 42%, transparent);
   justify-self: start;
   border-bottom-left-radius: 5px;
@@ -99,7 +100,10 @@
 
 /* ------------------------------- 1.3 chips ------------------------------ */
 
-.sar__chips-label { color: rgba(255, 255, 255, .74); margin-bottom: var(--sp-2); }
+/* Wins on specificity rather than on bundle order. .t-label and a single
+   component class are equally specific, so whichever CSS landed last decided
+   the colour — which put --ink-3 on the mesh at 1.97:1. */
+.sar .sar__chips-label { color: rgba(255, 255, 255, .86); margin-bottom: var(--sp-2); }
 .sar__chip-row { display: flex; flex-wrap: wrap; gap: var(--sp-2); }
 
 /* -------------------------------- ask box ------------------------------- */
@@ -114,7 +118,7 @@
   font-size: .95rem;
   border-radius: var(--r-pill);
   border: 1px solid rgba(255, 255, 255, .2);
-  background: rgba(255, 255, 255, .12);
+  background: linear-gradient(var(--scrim), var(--scrim)), rgba(255, 255, 255, .12);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   color: #fff;
@@ -138,7 +142,7 @@
   flex: 0 0 auto;
   display: grid;
   place-items: center;
-  background: rgba(255, 255, 255, .12);
+  background: linear-gradient(var(--scrim), var(--scrim)), rgba(255, 255, 255, .12);
   color: #fff;
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
@@ -146,6 +150,7 @@
 .sar__mic.is-live {
   background: var(--hue);
   border-color: var(--hue);
+  color: var(--on-hue);
   animation: sar-live 1.6s ease-in-out infinite;
 }
 @keyframes sar-live {
@@ -157,7 +162,7 @@
   padding: 0 var(--sp-4);
   background: var(--hue);
   border-color: var(--hue);
-  color: #fff;
+  color: var(--on-hue);
   font-size: .9rem;
 }
 

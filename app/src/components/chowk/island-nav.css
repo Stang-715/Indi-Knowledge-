@@ -45,7 +45,8 @@
   transition: color var(--t-base) var(--ease);
   min-height: 44px;
 }
-.inav__tab[aria-selected='true'] { color: #fff; }
+/* The glow behind the active tab is the hue, so the label sits on it. */
+.inav__tab[aria-selected='true'] { color: var(--on-hue); }
 
 .inav__icon { display: grid; place-items: center; }
 .inav__icon svg { width: 21px; height: 21px; display: block; }
@@ -121,4 +122,5 @@
   border-width: 2px;
 }
 :root[data-contrast='high'] .inav__tab { color: #000; }
-:root[data-contrast='high'] .inav__tab[aria-selected='true'] { color: #fff; }
+:root[data-contrast='high'] /* The glow behind the active tab is the hue, so the label sits on it. */
+.inav__tab[aria-selected='true'] { color: var(--on-hue); }
