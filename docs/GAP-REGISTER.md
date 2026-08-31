@@ -530,6 +530,26 @@ store release, and the app still opens on a dead connection.
 
 ## Phase 6 — Surface 4, Works, citizen half
 
+Verified: 90 files against the architectural constraints, including a new rule
+that fails the build if a map tile source or a map SDK that fetches them appears
+anywhere in the tree — proven by planting one. 52 components against the
+accessibility floor. 13 routes at 160% in the pseudo-locale with nothing
+clipped. 1,226 text elements across 13 routes, 2 themes and 3 points in the mesh
+drift, every one meeting WCAG AA against its real composited backdrop.
+
+Contrast took three rounds. The first found 48 elements below AA on the new
+surface, in both themes: outlined tags whose accent sat in the border and the
+text at once, a pressed chip that tints its background with the hue it writes
+the label in, map controls floating white over the palest road colour, and an
+unselected segmented tab at a token that clears AA on violet and not on
+milestone green. Twenty survived the fixes — secondary ink on glass cards over
+this surface's brightest blooms — and the surface now pins brighter ink of its
+own and stands its cards on a stronger scrim.
+
+The lesson is worth keeping: milestone green is the darkest of the four hues, so
+a shared token passing on three surfaces says nothing about the fourth.
+
+
 ### G-6-01 · No live works data, and this is the claim that depends on it
 **Severity:** blocker for the phase's exit criterion
 The exit criterion is "useful with zero departments signed up, purely from
