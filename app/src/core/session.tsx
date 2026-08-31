@@ -5,7 +5,7 @@ import type { ReactNode } from 'react'
 import { DEFAULT_PREFS, loadPrefs, savePrefs, type A11ySettings, type NotificationSettings, type Prefs, type StatedLocality } from './prefs'
 import {
   eraseEverything, getEligibility, getVoice, recordVerification, setPseudonym,
-  type EligibilityRecord, type VoiceRecord,
+  type AgeBand, type EligibilityRecord, type VoiceRecord,
 } from './identity'
 import type { LocaleCode } from './types'
 
@@ -21,7 +21,7 @@ interface SessionValue {
   completeOnboarding: () => void
   markNoticeSeen: (id: string) => void
 
-  verify: (rawIdentifier: string, attestedBy: string) => Promise<void>
+  verify: (rawIdentifier: string, attestedBy: string, ageBand?: AgeBand) => Promise<void>
   choosePseudonym: (value: string) => void
   deleteAccount: () => void
 }
@@ -86,8 +86,8 @@ export function SessionProvider({ children }: { children: ReactNode }) {
             ? prefs.seenNoticeIds
             : [...prefs.seenNoticeIds, id],
         }),
-      verify: async (rawIdentifier, attestedBy) => {
-        const record = await recordVerification(rawIdentifier, attestedBy)
+      verify: async (rawIdentifier, attestedBy, ageBand = 'unknown') => {
+        const record = await recordVerification(rawIdentifier, attestedBy, ageBand)
         setEligibility(record)
       },
       choosePseudonym: (v) => setVoice(setPseudonym(v)),

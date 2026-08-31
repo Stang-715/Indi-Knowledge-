@@ -20,6 +20,20 @@ import { clearNamespace, dumpNamespace, read, write } from './storage'
  * Layer 1 — eligibility. Used once, at onboarding. Never at speech time.
  * ------------------------------------------------------------------ */
 
+/**
+ * Age band, not date of birth.
+ *
+ * The DPDP Act defines a child as under eighteen and bans tracking, behavioural
+ * monitoring and targeted advertising directed at children outright. Chowk does
+ * none of those to anybody, but "we do not profile children" is only a claim you
+ * can make if you know who is a child.
+ *
+ * So the verification service returns a band, never a birth date. A band answers
+ * the only question the app is entitled to ask, and cannot be used to identify
+ * anyone the way a date of birth can.
+ */
+export type AgeBand = 'adult' | 'minor' | 'unknown'
+
 export interface EligibilityRecord {
   verified: boolean
   /** A one-way digest. The raw ID number is never stored, sent or logged. */
@@ -27,6 +41,8 @@ export interface EligibilityRecord {
   verifiedAt: number
   /** Which authority attested. No document image, number or scan is kept. */
   attestedBy: string
+  /** From the ID service. Never derived from anything the citizen typed. */
+  ageBand: AgeBand
 }
 
 const ELIGIBILITY_KEY = 'record'
@@ -62,15 +78,34 @@ export async function digestIdentifier(raw: string): Promise<string> {
 export async function recordVerification(
   rawIdentifier: string,
   attestedBy: string,
+  ageBand: AgeBand = 'unknown',
 ): Promise<EligibilityRecord> {
   const record: EligibilityRecord = {
     verified: true,
     idHash: await digestIdentifier(rawIdentifier),
     verifiedAt: Date.now(),
     attestedBy,
+    ageBand,
   }
   write('eligibility', ELIGIBILITY_KEY, record)
   return record
+}
+
+/**
+ * Whether this citizen may take part rather than only read.
+ *
+ * Advisory polling is a proxy for the franchise, so eighteen is the line anyway
+ * — the DPDP requirement and the product requirement happen to agree. An unknown
+ * band is treated as a minor: the safe reading of an absent signal is the one
+ * that profiles nobody.
+ */
+export function mayParticipate(): boolean {
+  return getEligibility()?.ageBand === 'adult'
+}
+
+export function isMinor(): boolean {
+  const band = getEligibility()?.ageBand
+  return band === 'minor' || band === 'unknown'
 }
 
 /* ------------------------------------------------------------------ *

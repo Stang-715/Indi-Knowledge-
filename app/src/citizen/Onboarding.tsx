@@ -131,14 +131,18 @@ function Verify({ onNext }: { onNext: () => void }) {
     setState('working')
     // Stand-in for the government ID verification API. In production the raw
     // identifier never reaches this client at all — the service returns a
-    // digest and an attestation, and that is all we ever hold.
+    // digest, an attestation and an age band, and that is all we ever hold.
     await new Promise((r) => setTimeout(r, 700))
-    const plausible = value.replace(/\s/g, '').length >= 8
-    if (!plausible) {
+    const digits = value.replace(/\s/g, '')
+    if (digits.length < 8) {
       setState('failed')
       return
     }
-    await verify(value, 'National ID Verification Service')
+    // The service answers "adult or not", never a date of birth. Demo rule: an
+    // identifier ending in 0 stands in for an under-18 result so the minor path
+    // is exercisable without needing a second real identity.
+    const ageBand = digits.endsWith('0') ? 'minor' : 'adult'
+    await verify(value, 'National ID Verification Service', ageBand)
     setState('idle')
     onNext()
   }

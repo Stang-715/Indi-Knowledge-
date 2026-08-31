@@ -115,6 +115,16 @@ recomputing history would make published figures disagree with themselves.
 - Any real-identity-to-pseudonym mapping, for any role.
 - Any amplification of any account, the platform owner's included.
 
+## Deferred work
+
+`GAP-REGISTER.md` records what each phase promised and did not deliver, written
+at the moment it was deferred so it can be picked up cold. It is the punch list
+to run after the numbered phases and before any release.
+
+A phase is not called complete until anything it left behind is recorded there.
+Two entries carry a correction to a completion claim already made — Phase 2 was
+reported as meeting exit criteria it had only partly met.
+
 ## Not yet built
 
 - A server. `data/repo.ts` is a local mock in the shape the API will take; no
