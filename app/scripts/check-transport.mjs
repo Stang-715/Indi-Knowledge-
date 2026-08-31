@@ -75,6 +75,7 @@ const api = spawn(process.execPath, [
     CHOWK_ELIGIBILITY_DB: join(DATA, 'eligibility.db'),
     CHOWK_VOICE_DB: join(DATA, 'voice.db'),
     CHOWK_AUDIT_DB: join(DATA, 'audit.db'),
+    CHOWK_WORKS_DB: join(DATA, 'works.db'),
   },
   stdio: 'ignore',
 })
@@ -118,6 +119,9 @@ const setup = await page.evaluate(async () => {
     repo: await import('/src/data/repo.ts'),
     sync: await import('/src/core/sync.ts'),
     pull: await import('/src/core/pull.ts'),
+    deptkey: await import('/src/core/deptkey.ts'),
+    institution: await import('/src/core/institution.ts'),
+    api: await import('/src/core/api.ts'),
   }
   const record = await id.recordVerification('E2E-12345671', 'National ID Verification Service')
   const tokens = await id.refillTokens()
@@ -344,6 +348,89 @@ check('a pseudonym somebody else holds is detected, not written through',
   collided.collides === true && collided.sent === 0 && collided.kept > 0,
   `collides=${collided.collides}, sent=${collided.sent}, kept=${collided.kept}`)
 check('and the key made for it is forgotten', collided.strayKey === false)
+
+/* --- Phase 7: a department files, a clash blocks, a permit issues --- */
+
+const desk = await page.evaluate(async () => {
+  const { deptkey } = window.__chowk
+  const base = window.__chowk.api.API_BASE
+  const api = (path, body) => fetch(`${base}${path}`, {
+    method: 'POST', headers: { 'content-type': 'application/json' },
+    body: JSON.stringify(body),
+  }).then((r) => r.json())
+
+  const enrol = async (id, name, utility, approver) => {
+    const publicKey = await deptkey.departmentPublicKey(id)
+    const payload = { id, name, utility, publicKey, approver }
+    const sig = await deptkey.signAs(id, '/v1/registry/enrol', payload)
+    return api('/v1/registry/enrol', { ...payload, sig })
+  }
+
+  const water = await enrol('e2e_water', 'E2E Water Division', 'water', false)
+  const roads = await enrol('e2e_roads', 'E2E Roads Department', 'road', true)
+
+  const DAY = 86400000
+  const stretch = `e2e_stretch_${Date.now()}`
+  const fileWork = async (dept, id, from, to) => {
+    const payload = {
+      id, department: dept, stretch, utility: 'water',
+      reason: 'End to end.', closure: 'partial', startsAt: from, restoreBy: to,
+    }
+    const sig = await deptkey.signAs(dept, '/v1/works/file', payload)
+    return api('/v1/works/file', { ...payload, sig })
+  }
+
+  const now = Date.now()
+  const a = await fileWork('e2e_water', `e2e_a_${now}`, now + DAY, now + 10 * DAY)
+  const b = await fileWork('e2e_roads', `e2e_b_${now}`, now + 5 * DAY, now + 15 * DAY)
+
+  const decide = async (dept, filing, decision) => {
+    const payload = { filing, department: dept, decision, note: 'e2e' }
+    const sig = await deptkey.signAs(dept, '/v1/works/decide', payload)
+    return api('/v1/works/decide', { ...payload, sig })
+  }
+
+  const blocked = await decide('e2e_roads', `e2e_b_${now}`, 'approve')
+  await decide('e2e_roads', `e2e_a_${now}`, 'refuse')
+  const issued = await decide('e2e_roads', `e2e_b_${now}`, 'approve')
+
+  return {
+    waterOk: water.ok === true,
+    gate: water.gate,
+    filedState: a.state,
+    clashState: b.state,
+    blockedReason: blocked.reason,
+    permit: issued.permit?.number ?? null,
+  }
+})
+
+check('a department enrols from the desk and the gate says it is automatic',
+  desk.waterOk && desk.gate === 'automatic', desk.gate)
+check('the first filing on a free stretch is filed', desk.filedState === 'filed', desk.filedState)
+check('an overlapping filing comes back clashed', desk.clashState === 'clashed', desk.clashState)
+check('approval is refused while the clash stands',
+  desk.blockedReason === 'clash-stands', desk.blockedReason)
+check('and once resolved a permit issues', Boolean(desk.permit), String(desk.permit))
+
+/* The check a person next to the barrier makes, in their own browser, against
+   a key their phone pinned rather than one the server asserted. */
+const verified = await page.evaluate(async (number) => {
+  const { institution } = window.__chowk
+  const good = await institution.checkPermit(number)
+  const missing = await institution.checkPermit('CHK-26-000000')
+  return {
+    found: good.found, valid: good.valid, pinning: good.pinning,
+    enrolledBy: good.department?.enrolledBy ?? null,
+    missingFound: missing.found,
+  }
+}, desk.permit)
+
+check('a citizen can look the permit up with no account', verified.found)
+check('and the phone verifies the signature itself against the pinned root',
+  verified.valid === true, `pinning=${verified.pinning}`)
+check('the permit names a department the register vouches for',
+  verified.enrolledBy === 'automatic', String(verified.enrolledBy))
+check('an invented permit number is not found', verified.missingFound === false)
 
 await browser.close()
 console.log(`\n${failures === 0 ? '✓ the client runs on the API, online and off.' : `✗ ${failures} failed`}\n`)

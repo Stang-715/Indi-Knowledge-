@@ -51,6 +51,7 @@ const ROUTES = [
   ['Works · no permit', '/s/works/w/wk_temple_fibre'],
   ['Works · my streets', '/s/works/mine'],
   ['Works · the record', '/s/works/record'],
+  ['Works · check a permit', '/s/works/permit'],
   ['Bharat (stub)', '/s/bharat'],
 ]
 

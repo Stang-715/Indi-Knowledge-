@@ -320,6 +320,39 @@ const en: Dict = {
   'works.record.clean': 'Nothing past its date.',
   'works.record.why': 'Why this is published',
 
+  'permit.title': 'Check a permit',
+  'permit.tagline':
+    'Type the number from the board on the barrier. Nothing is recorded about who asked.',
+  'permit.number': 'Permit number',
+  'permit.numberHint': 'Looks like CHK-26-4F7A2B.',
+  'permit.check': 'Check it',
+  'permit.checking': 'Checking…',
+  'permit.valid': 'Genuine',
+  'permit.validBody':
+    'This permit was signed by the issuing authority, and your phone checked that signature itself. The server was not asked to vouch for it.',
+  'permit.invalid': 'Does not check out',
+  'permit.invalidBody':
+    'A record came back but its signature does not match. Treat this permit as unverified and report it.',
+  'permit.missing': 'No such permit',
+  'permit.missingBody':
+    'Nothing has been issued under that number. Either it was typed wrong, or the board is showing a number nobody issued.',
+  'permit.offline': 'No connection',
+  'permit.offlineBody': 'A permit can only be checked against the register, and the register is not reachable.',
+  'permit.for': 'What it covers',
+  'permit.window': 'From {from} to {to}',
+  'permit.issued': 'Issued {d}',
+  'permit.by': 'Issued to',
+  'permit.unregistered': 'The department on this permit is not in the register.',
+  'permit.pin.built-in': 'Checked against the key built into this app.',
+  'permit.pin.first-use':
+    'Checked against the key this device saw first. A built release carries the key inside it; this one does not, so the first time it asked was a moment it had to trust.',
+  'permit.pin.none': 'No registry key is available, so nothing could be checked.',
+  'permit.rootChanged':
+    'The register is offering a different root key from the one this device pinned. That is either a server that has been replaced or one that has been taken over. Nothing here is trustworthy until it is explained.',
+  'permit.gate':
+    'Enrolment in this build is automatic — any body that asks is entered in the register. The signatures below are real; what they attest to is that somebody held a key, not that they are who they say.',
+
+
   /* ------------------------------ Surface 3 ------------------------------ */
 
   'bills.title': 'Bills',

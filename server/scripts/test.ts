@@ -6,6 +6,7 @@ import { webcrypto } from 'node:crypto'
 import { blind, unblind, newNonce, verifyToken, hashToInt } from '../src/blind.ts'
 import { toSign } from '../src/canonical.ts'
 import { toSign as clientToSign } from '../../app/src/core/canonical.ts'
+import { verifyPayload } from '../src/institution.ts'
 
 /**
  * End-to-end proof that the server cannot join the two identity layers.
@@ -40,6 +41,7 @@ const server = spawn(process.execPath, [
     CHOWK_ELIGIBILITY_DB: join(DATA, 'eligibility.db'),
     CHOWK_VOICE_DB: join(DATA, 'voice.db'),
     CHOWK_AUDIT_DB: join(DATA, 'audit.db'),
+    CHOWK_WORKS_DB: join(DATA, 'works.db'),
   },
   stdio: 'ignore',
 })
@@ -382,6 +384,169 @@ check('a repeat claim from the holding key is accepted', reclaim.ok === true, re
 const collision = await claim('InteropKite404', impersonator)
 check('a claim on a held name from another key is refused',
   collision.ok === false && collision.reason === 'taken', collision.reason)
+
+/* ---- Phase 7: institutional identity, filing, clashes and permits ---- */
+
+/** A department, holding its own key exactly as a real one would. */
+async function departmentDevice(id: string, name: string, utility: string, approver = false) {
+  const device = await newDevice()
+  const payload = { id, name, utility, publicKey: device.publicKey, approver }
+  const res = await post('/v1/registry/enrol', {
+    ...payload, sig: await device.sign('/v1/registry/enrol', payload),
+  })
+  return { id, device, res }
+}
+
+const stamp7 = Date.now()
+const water = await departmentDevice(`dep_water_${stamp7}`, 'Ward Water Supply Division', 'water')
+const roads = await departmentDevice(`dep_roads_${stamp7}`, 'Municipal Roads Department', 'road', true)
+
+check('a department enrols by proving it holds its key', water.res.ok === true, water.res.reason)
+check('and the entry says the gate was automatic',
+  water.res.gate === 'automatic' && water.res.entry.enrolledBy === 'automatic')
+
+const rootRes = await get('/v1/registry/root') as { publicKey: Record<string, unknown> }
+const rootJwk = JSON.stringify(rootRes.publicKey)
+check('the registry root entry verifies against the pinned root key',
+  verifyPayload(rootJwk, '/v1/registry/entry', {
+    id: water.id, name: 'Ward Water Supply Division', utility: 'water',
+    publicKey: JSON.stringify(water.device.publicKey),
+    registeredAt: water.res.entry.registeredAt, approver: false,
+  }, water.res.entry.rootSig))
+
+const impostor = await newDevice()
+const stolenEntry = { ...water.res.entry, name: 'Ward Water Supply Division (not really)' }
+check('an entry with an altered name no longer verifies',
+  !verifyPayload(rootJwk, '/v1/registry/entry', {
+    id: stolenEntry.id, name: stolenEntry.name, utility: 'water',
+    publicKey: JSON.stringify(water.device.publicKey),
+    registeredAt: stolenEntry.registeredAt, approver: false,
+  }, stolenEntry.rootSig))
+
+// Signed properly by the impostor's own key, so what is being tested is the
+// register refusing a held id — not the signature check catching a lazy forgery.
+const takenPayload = {
+  id: water.id, name: 'Someone else', utility: 'water',
+  publicKey: impostor.publicKey, approver: false,
+}
+const enrolTaken = await post('/v1/registry/enrol', {
+  ...takenPayload, sig: await impostor.sign('/v1/registry/enrol', takenPayload),
+})
+check('an id already held by another key cannot be re-enrolled',
+  enrolTaken.ok === false && enrolTaken.reason === 'taken', enrolTaken.reason)
+
+/* --- 4.2 filing --- */
+
+const stretch = `str_test_${stamp7}`
+const DAY7 = 24 * 60 * 60 * 1000
+
+async function fileWork(
+  dept: { id: string; device: Device }, id: string, from: number, to: number,
+) {
+  const payload = {
+    id, department: dept.id, stretch, utility: 'water',
+    reason: 'Replacing a main.', closure: 'partial', startsAt: from, restoreBy: to,
+  }
+  return post('/v1/works/file', { ...payload, sig: await dept.device.sign('/v1/works/file', payload) })
+}
+
+const first = await fileWork(water, `wk_a_${stamp7}`, stamp7 + DAY7, stamp7 + 10 * DAY7)
+check('a registered department can file a work', first.ok === true, first.reason)
+check('with no clash it is simply filed', first.state === 'filed', first.state)
+
+const unsignedFile = await post('/v1/works/file', {
+  id: `wk_x_${stamp7}`, department: water.id, stretch, utility: 'water',
+  reason: 'No signature.', closure: 'partial',
+  startsAt: stamp7 + DAY7, restoreBy: stamp7 + 2 * DAY7,
+})
+check('an unsigned filing is refused',
+  unsignedFile.ok === false && unsignedFile.reason === 'bad-signature', unsignedFile.reason)
+
+const unregistered = await newDevice()
+const ghostPayload = {
+  id: `wk_ghost_${stamp7}`, department: 'dep_not_registered', stretch, utility: 'water',
+  reason: 'Filed by nobody.', closure: 'partial',
+  startsAt: stamp7 + DAY7, restoreBy: stamp7 + 2 * DAY7,
+}
+const ghost = await post('/v1/works/file', {
+  ...ghostPayload, sig: await unregistered.sign('/v1/works/file', ghostPayload),
+})
+check('a body that is not in the register cannot file',
+  ghost.ok === false && ghost.reason === 'not-registered', ghost.reason)
+
+/* --- 4.3 the clash detector --- */
+
+const second = await fileWork(roads, `wk_b_${stamp7}`, stamp7 + 5 * DAY7, stamp7 + 15 * DAY7)
+check('an overlapping window on the same stretch is caught at filing',
+  second.ok === true && second.state === 'clashed' && second.clashes.length === 1,
+  `${second.state}, ${second.clashes?.length ?? 0} clash(es)`)
+
+const elsewhere = await (async () => {
+  const payload = {
+    id: `wk_c_${stamp7}`, department: roads.id, stretch: `${stretch}_other`,
+    utility: 'road', reason: 'Different road.', closure: 'partial',
+    startsAt: stamp7 + 5 * DAY7, restoreBy: stamp7 + 15 * DAY7,
+  }
+  return post('/v1/works/file', { ...payload, sig: await roads.device.sign('/v1/works/file', payload) })
+})()
+check('a different stretch at the same time does not clash',
+  elsewhere.state === 'filed', elsewhere.state)
+
+/* --- 4.4 approval to permit --- */
+
+async function decide(
+  dept: { id: string; device: Device }, filing: string, decision: string, note = '',
+) {
+  const payload = { filing, department: dept.id, decision, note }
+  return post('/v1/works/decide', {
+    ...payload, sig: await dept.device.sign('/v1/works/decide', payload),
+  })
+}
+
+const notApprover = await decide(water, `wk_b_${stamp7}`, 'approve')
+check('a department without the approver capability cannot issue a permit',
+  notApprover.ok === false && notApprover.reason === 'not-an-approver', notApprover.reason)
+
+const whileClashed = await decide(roads, `wk_b_${stamp7}`, 'approve')
+check('approval is refused while a clash stands',
+  whileClashed.ok === false && whileClashed.reason === 'clash-stands', whileClashed.reason)
+
+const withdrawn = await decide(roads, `wk_a_${stamp7}`, 'refuse', 'Withdrawn by agreement.')
+check('resolving the clash means one side actually moves', withdrawn.ok === true, withdrawn.reason)
+
+const nowApproved = await decide(roads, `wk_b_${stamp7}`, 'approve', 'Clash resolved.')
+check('and then the permit issues',
+  nowApproved.ok === true && Boolean(nowApproved.permit?.number), nowApproved.reason)
+
+/* --- a permit anybody can check --- */
+
+const permitNo = nowApproved.permit.number
+const checked = await get(`/v1/permits/verify?number=${encodeURIComponent(permitNo)}`)
+check('a permit can be looked up by its number alone with no account',
+  checked.ok === true, checked.ok ? permitNo : checked.reason)
+check('and its signature verifies against the pinned root key',
+  verifyPayload(rootJwk, '/v1/permits/verify', checked.permit, checked.sig))
+
+check('a permit whose dates are altered no longer verifies',
+  !verifyPayload(rootJwk, '/v1/permits/verify',
+    { ...checked.permit, restoreBy: checked.permit.restoreBy + 30 * DAY7 }, checked.sig))
+
+const invented = await get('/v1/permits/verify?number=CHK-26-000000')
+check('an invented permit number is not found',
+  invented.ok === false && invented.reason === 'no-such-permit', invented.reason)
+
+/* --- the works store holds no citizen --- */
+
+const worksDb = new DatabaseSync(join(DATA, 'works.db'))
+const worksTables = (worksDb.prepare(
+  "SELECT name FROM sqlite_master WHERE type='table'").all() as { name: string }[])
+  .map((r) => r.name)
+check('works store holds no identity column',
+  !worksTables.some((t) => {
+    const cols = worksDb.prepare(`PRAGMA table_info(${t})`).all() as { name: string }[]
+    return cols.some((c) => /pseudonym|id_hash|citizen|identity/i.test(c.name))
+  }), worksTables.join(','))
+worksDb.close()
 
 console.log(`\n${failures === 0 ? '✓ all passed' : `✗ ${failures} failed`}\n`)
 

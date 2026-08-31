@@ -30,6 +30,7 @@ import WorksSurface from './surfaces/works/WorksSurface'
 import WorkDetail from './surfaces/works/WorkDetail'
 import MyStreets from './surfaces/works/MyStreets'
 import WorksRecord from './surfaces/works/Record'
+import Permit from './surfaces/works/Permit'
 import BillsSurface from './surfaces/bills/BillsSurface'
 import BillDetail from './surfaces/bills/BillDetail'
 import Constitution from './surfaces/bills/Constitution'
@@ -37,6 +38,7 @@ import Constituency from './surfaces/bills/Constituency'
 import Debate from './surfaces/bills/Debate'
 import { NoticeComposer, PollComposer } from './gov/Compose'
 import Dashboards from './gov/Dashboards'
+import GovWorks from './gov/Works'
 import Moderation from './gov/Moderation'
 import Oversight from './oversight/Oversight'
 import type { GovRole } from './core/types'
@@ -91,6 +93,7 @@ export default function App() {
                 <Route path="works/w/:id" element={<WorkDetail />} />
                 <Route path="works/mine" element={<MyStreets />} />
                 <Route path="works/record" element={<WorksRecord />} />
+                <Route path="works/permit" element={<Permit />} />
               </Route>
 
               <Route path="/" element={<Landing />} />
@@ -109,6 +112,7 @@ export default function App() {
                 <Route path="inbox" element={<Inbox />} />
                 <Route path="search" element={<Search />} />
 
+                <Route path="works" element={<GovWorks />} />
                 <Route path="notices" element={<NoticeList />} />
                 <Route path="notices/archive" element={<NoticeList archive />} />
                 <Route path="notices/:id" element={<NoticeDetail />} />

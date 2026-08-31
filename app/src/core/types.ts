@@ -125,10 +125,22 @@ export type GovRole =
   | 'poll-officer'        // 9.0
   | 'analyst'             // 10.0
   | 'moderator'           // 11.0
+  | 'works-officer'       // 4.2 — files works on behalf of a department
+  | 'works-approver'      // 4.4 — approves a filing and issues the permit
 
 export interface GovAccount {
   id: string
   name: string
+  /**
+   * The department in the register this account acts for.
+   *
+   * An account is a person at a desk; a department is an entry in the register
+   * holding a key. Filing is signed by the department, not by the person, which
+   * is why a filing survives the officer leaving and why the register is what a
+   * citizen's phone checks rather than a staff list.
+   */
+  departmentId?: string
+  utility?: string
   institution: InstitutionRef
   roles: GovRole[]
 }

@@ -64,6 +64,10 @@ for (const f of files) {
 const CROSS = {
   'db-eligibility.ts': /\b(pseudonym|post|response|reaction|option_id)\b/,
   'db-voice.ts': /\b(id_hash|identity|aadhaar|age_band|attested_by)\b/,
+  // The works store is the only public one and has no citizen in it at all.
+  // "The works table has a citizen column now" has to be impossible rather
+  // than discouraged, so both identity layers are barred from it.
+  'db-works.ts': /\b(pseudonym|id_hash|identity|aadhaar|age_band|attested_by|citizen)\b/,
 }
 /* The schema lives inside a template literal, which the stripped copy blanks —
  * so the CREATE TABLE text is pulled out of the raw source and scanned directly.

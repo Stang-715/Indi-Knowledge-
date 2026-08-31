@@ -51,6 +51,7 @@ const ROUTES = [
   { path: '/s/works/w/wk_market_fibre', name: 'One work' },
   { path: '/s/works/mine', name: 'My streets' },
   { path: '/s/works/record', name: 'The record' },
+  { path: '/s/works/permit', name: 'Check a permit' },
   { path: '/app/profile/privacy', name: 'Privacy & rights' },
 ]
 

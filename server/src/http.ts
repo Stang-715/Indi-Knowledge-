@@ -4,6 +4,10 @@ import { toSign } from './canonical.ts'
 import * as elig from './db-eligibility.ts'
 import * as voice from './db-voice.ts'
 import * as audit from './db-audit.ts'
+import * as works from './db-works.ts'
+import {
+  entryPayload, makeKeys, permitNumber, permitPayload, publicOf, signPayload, verifyPayload,
+} from './institution.ts'
 import { BATCH, makeIssuer, signBlinded, verifyToken, type IssuerKeys } from './blind.ts'
 
 /**
@@ -98,6 +102,27 @@ const GATED = {
   'poll-response': 'casting or changing a vote',
   'public-speech': 'posting or reacting',
 } as const
+
+/* ----------------------------- registry root ----------------------------- */
+
+/**
+ * The registry root key.
+ *
+ * Persisted, because a root that changed on every deploy would invalidate every
+ * permit ever issued — and a permit a citizen cannot check on the street is a
+ * number on a barrier board.
+ *
+ * That this key lives here at all is the unresolved half of Phase 7. Whoever
+ * holds it decides who counts as a government department. It belongs with a
+ * body that is accountable for that decision; today it is with the platform,
+ * which is the wrong home and is recorded as such on every entry it signs.
+ */
+let rootPrivateJwk = works.loadRootJwk()
+if (!rootPrivateJwk) {
+  rootPrivateJwk = makeKeys().privateJwk
+  works.saveRootJwk(rootPrivateJwk)
+}
+const rootPublicJwk = publicOf(rootPrivateJwk)
 
 /* ----------------------------- signed writes ----------------------------- */
 
@@ -324,6 +349,198 @@ const routes: Record<string, (body: Record<string, unknown>, url: URL) => unknow
 
   'GET /v1/notices/reach': (_b, url) =>
     ({ seen: voice.reach(url.searchParams.get('notice') ?? '') }),
+
+  /* --- the register of departments (7.0) --- */
+
+  'GET /v1/registry/root': () => ({ publicKey: JSON.parse(rootPublicJwk) }),
+
+  'GET /v1/registry': () => ({
+    departments: works.departments().map((d) => ({
+      id: d.id, name: d.name, utility: d.utility,
+      publicKey: JSON.parse(d.public_key),
+      registeredAt: d.registered_at,
+      approver: d.approver === 1,
+      rootSig: d.root_sig,
+      enrolledBy: d.enrolled_by,
+    })),
+  }),
+
+  /**
+   * Enrol a department.
+   *
+   * The request is signed by the key being enrolled, which proves the body
+   * sending it holds the private half. What it does not prove is that the body
+   * is the Water Board — that is the institutional gate, and there is not one
+   * here. Enrolment is automatic, every entry records `enrolled_by:
+   * 'automatic'`, and the client shows it. A scheduler where a fake Water Board
+   * can file is worse than no scheduler; this is that scheduler, wearing a
+   * label that says so.
+   */
+  'POST /v1/registry/enrol': (body) => {
+    const { id, name, utility } = body as Record<string, string>
+    const publicKey = body.publicKey as Record<string, unknown> | undefined
+    if (!id || !name || !utility || !publicKey) return { ok: false, reason: 'incomplete' }
+
+    const publicJwk = JSON.stringify(publicKey)
+    if (!verifyPayload(publicJwk, '/v1/registry/enrol', body, String(body.sig ?? ''))) {
+      return { ok: false, reason: 'bad-signature' }
+    }
+
+    const row = {
+      id, name, utility,
+      public_key: publicJwk,
+      registered_at: Date.now(),
+      approver: body.approver === true ? 1 : 0,
+      root_sig: '',
+      enrolled_by: 'automatic',
+    }
+    row.root_sig = signPayload(rootPrivateJwk, '/v1/registry/entry', entryPayload(row))
+
+    if (!works.enrol(row)) return { ok: false, reason: 'taken' }
+
+    const stored = works.department(id)!
+    audit.append('automated', 'Department register', 'registry.enrol', id,
+      `${name} enrolled with no institutional check. The gate is automatic in ` +
+      'this build and the entry records that.')
+    return {
+      ok: true,
+      entry: {
+        id: stored.id, name: stored.name, utility: stored.utility,
+        publicKey: JSON.parse(stored.public_key),
+        registeredAt: stored.registered_at,
+        approver: stored.approver === 1,
+        rootSig: stored.root_sig,
+        enrolledBy: stored.enrolled_by,
+      },
+      gate: 'automatic',
+    }
+  },
+
+  /* --- 4.2 file a work --- */
+
+  'POST /v1/works/file': (body) => {
+    const { id, department, stretch, utility, reason, closure } = body as Record<string, string>
+    const startsAt = Number(body.startsAt)
+    const restoreBy = Number(body.restoreBy)
+    if (!id || !department || !stretch || !reason) return { ok: false, reason: 'incomplete' }
+    if (!Number.isFinite(startsAt) || !Number.isFinite(restoreBy) || restoreBy <= startsAt) {
+      return { ok: false, reason: 'bad-window' }
+    }
+
+    const dep = works.department(department)
+    if (!dep) return { ok: false, reason: 'not-registered' }
+    const sig = String(body.sig ?? '')
+    if (!verifyPayload(dep.public_key, '/v1/works/file', body, sig)) {
+      return { ok: false, reason: 'bad-signature' }
+    }
+
+    // 4.3 runs at filing time, not at approval. A department that learns about
+    // a clash a week later has already ordered the barriers.
+    const clashing = works.clashes(stretch, startsAt, restoreBy)
+
+    works.file({
+      id, department, stretch, utility: utility || dep.utility, reason,
+      starts_at: startsAt, restore_by: restoreBy, closure: closure || 'partial',
+      filed_at: Date.now(), state: clashing.length > 0 ? 'clashed' : 'filed', sig,
+    })
+    audit.append('gov', dep.name, 'works.file', stretch,
+      `Work filed for ${new Date(startsAt).toISOString().slice(0, 10)} to ` +
+      `${new Date(restoreBy).toISOString().slice(0, 10)}. ` +
+      `${clashing.length} clash(es) found at filing.`)
+
+    return { ok: true, id, state: clashing.length > 0 ? 'clashed' : 'filed', clashes: clashing }
+  },
+
+  'GET /v1/works/filings': (_b, url) => {
+    const state = url.searchParams.get('state') ?? undefined
+    return { filings: works.filings(state ?? undefined) }
+  },
+
+  'GET /v1/works/clashes': (_b, url) => ({
+    clashes: works.clashes(
+      url.searchParams.get('stretch') ?? '',
+      Number(url.searchParams.get('from') ?? 0),
+      Number(url.searchParams.get('to') ?? 0),
+      url.searchParams.get('exclude') ?? undefined,
+    ),
+  }),
+
+  /* --- 4.4 approval to permit --- */
+
+  'POST /v1/works/decide': (body) => {
+    const { filing: filingId, department, decision, note } = body as Record<string, string>
+    const dep = works.department(department)
+    if (!dep) return { ok: false, reason: 'not-registered' }
+    if (dep.approver !== 1) return { ok: false, reason: 'not-an-approver' }
+    if (!verifyPayload(dep.public_key, '/v1/works/decide', body, String(body.sig ?? ''))) {
+      return { ok: false, reason: 'bad-signature' }
+    }
+
+    const row = works.filing(filingId)
+    if (!row) return { ok: false, reason: 'no-such-filing' }
+    if (row.state === 'approved') return { ok: false, reason: 'already-decided' }
+
+    if (decision !== 'approve') {
+      works.decide(filingId, 'refused', dep.id, note ?? '')
+      audit.append('gov', dep.name, 'works.refuse', row.stretch, note ?? 'Refused.')
+      return { ok: true, state: 'refused' }
+    }
+
+    // Approval is refused while a clash stands. Resolving it means one side
+    // moves its window or withdraws — not a note saying it was considered.
+    const standing = works.clashes(row.stretch, row.starts_at, row.restore_by, filingId)
+    if (standing.length > 0) {
+      works.decide(filingId, 'clashed', dep.id, note ?? '')
+      return { ok: false, reason: 'clash-stands', clashes: standing }
+    }
+
+    const issuedAt = Date.now()
+    const number = permitNumber(filingId, issuedAt)
+    const payload = permitPayload({
+      number, filing: filingId, department: row.department, stretch: row.stretch,
+      startsAt: row.starts_at, restoreBy: row.restore_by, issuedAt,
+    })
+    works.issue({
+      number, filing: filingId, issued_by: dep.id, issued_at: issuedAt,
+      // Signed by the approving authority, whose own entry the root signed.
+      // The chain a citizen checks is: pinned root, register entry, permit.
+      sig: signPayload(rootPrivateJwk, '/v1/permits/verify', payload),
+    })
+    works.decide(filingId, 'approved', dep.id, note ?? '')
+    audit.append('gov', dep.name, 'works.permit', row.stretch,
+      `Permit ${number} issued. Verifiable by anyone against the registry root.`)
+
+    return { ok: true, state: 'approved', permit: { number, issuedAt, payload } }
+  },
+
+  /**
+   * Permit verification, for anybody. No account, no session, no explanation of
+   * who is asking — a permit on a barrier board is checked by whoever is
+   * standing next to it.
+   */
+  'GET /v1/permits/verify': (_b, url) => {
+    const number = url.searchParams.get('number') ?? ''
+    const row = works.permit(number)
+    if (!row) return { ok: false, reason: 'no-such-permit' }
+    const filing = works.filing(row.filing)
+    if (!filing) return { ok: false, reason: 'no-such-filing' }
+    return {
+      ok: true,
+      permit: {
+        number: row.number,
+        filing: row.filing,
+        department: filing.department,
+        stretch: filing.stretch,
+        startsAt: filing.starts_at,
+        restoreBy: filing.restore_by,
+        issuedAt: row.issued_at,
+      },
+      issuedBy: row.issued_by,
+      sig: row.sig,
+      reason: filing.reason,
+      closure: filing.closure,
+    }
+  },
 
   /* --- oversight --- */
 

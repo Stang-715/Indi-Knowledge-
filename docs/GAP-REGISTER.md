@@ -629,6 +629,84 @@ and a citizen can check the permit from the street.
 
 ---
 
+## Phase 7 — Surface 4, departmental half
+
+The plan marked this phase blocked, and said the block "will not be solved by
+building more screens". That is right, and it is why the work went into the
+credential and the verifier rather than the forms. The exit criterion — *two
+real departments in one ward file, clash, resolve and issue* — is not met and
+cannot be met from here: it needs two real departments.
+
+What is built: enrolment against a registry root, department-signed filings,
+clash detection at filing time, approval refused while a clash stands, permits
+signed over the root, and a citizen-side check that verifies the signature on
+the phone rather than asking the server whether to believe it.
+
+### G-7-01 · The enrolment gate does not exist
+**Severity:** blocker before anything real is filed
+Any body that asks is entered in the register. The signatures are real; what
+they attest is that somebody held a key, not that they are the department they
+name. A scheduler where a fake water board can file is worse than no scheduler,
+so this is marked in the data (`enrolled_by: 'automatic'`), on the departmental
+desk, and beside the green tick on the citizen's permit check.
+**Do:** enrol against something that already exists and is already
+accountable — the state's own notification of designated officers under its
+Right to Service Act is the obvious anchor, because it is published, it names
+people, and it is not ours.
+**Verify:** a body that is not in that notification cannot be enrolled, and the
+route by which one is enrolled is auditable by someone outside the platform.
+
+### G-7-02 · The registry root is held by the platform
+**Severity:** blocker before anything real is filed
+Whoever holds the root decides who counts as government. That is the one power
+this architecture otherwise refuses everywhere, and it cannot be refused here —
+only placed somewhere accountable. Today it is a key file beside the server.
+**Do:** decide whose key it is before the first real permit is issued, and
+publish the answer. Consider more than one root, so no single body's compromise
+invalidates every permit.
+**Verify:** the root is held by a named body that is not the platform operator,
+and rotating it is a published procedure rather than a deploy.
+
+### G-7-03 · The root key is pinned on first use, not built in
+**Severity:** major
+`VITE_REGISTRY_ROOT` compiles the key into a release; absent it, the client
+takes the key the server offers the first time and refuses any different one
+after. First use is exactly when an attacker would like to be the server. The
+permit screen says which of the two it is relying on rather than showing the
+same tick for both.
+**Verify:** a shipped build carries the root key inside it, and a build without
+one says so on every check.
+
+### G-7-04 · A permit cannot be checked without a connection
+**Severity:** major
+The signature is verified on the device, but the permit record still comes from
+the server. Somebody standing next to a barrier with no signal cannot check
+anything — which is most of the situations this feature exists for.
+**Do:** make a permit a self-contained signed token that a QR code on the board
+can carry, so the phone verifies it with no network at all.
+**Verify:** a permit checks out in aeroplane mode.
+
+### G-7-05 · Filings are not on the citizen surface yet
+**Severity:** major
+4.1, 4.5 and 4.6 read `data/works.ts`, which is bundled sample data. Filings
+made at the desk go to the server and do not appear on the map. The two halves
+of Surface 4 are correct separately and not yet joined — the same gap as G-4-07
+and G-5-06, now with a third dataset in it.
+**Verify:** a work filed at the desk appears on the citizen map, and its permit
+number checks out from that card.
+
+### G-7-06 · No revocation, and no key rotation
+**Severity:** major
+A department key that is compromised cannot be withdrawn, and a permit issued
+under it stays valid forever. Nothing expires, nothing is revoked, and there is
+no list of entries that have been cancelled.
+**Do:** signed revocation entries under the root, and an expiry on register
+entries so a stale one lapses rather than lasting indefinitely.
+**Verify:** revoking a department invalidates its future filings and is visible
+to a phone that only has the root key.
+
+---
+
 ## Cross-cutting
 
 ### G-X-01 · Two design systems are loaded at once

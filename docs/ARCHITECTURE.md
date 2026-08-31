@@ -183,6 +183,44 @@ on works whose date has passed: a body is not late for a job that is not due,
 and counting one would make the record disputable, which is the fastest way to
 make it ignored.
 
+## Institutional identity — Surface 4, departmental half
+
+The hard question of Phase 7, split into the part software answers and the part
+it cannot.
+
+**What software answers.** "The Water Board filed this" is a claim anybody can
+check rather than one the server asserts. A department holds a signing key on
+its own device (`core/deptkey.ts`). The registry root signs an entry binding
+that key to a named body. A permit is signed over the same root. The app pins
+the root's public key, so the chain — pinned root, signed register entry, signed
+permit — is checked on the phone of whoever is standing next to the barrier,
+and this server cannot forge a link in it. `core/institution.ts` does that
+verification; it deliberately does not trust the server it is talking to.
+
+**What it cannot.** Who holds the root, and which real bodies get enrolled under
+it. Whoever holds that key decides who counts as government — the exact power
+the rest of this architecture refuses to take, and here it cannot be refused,
+only placed somewhere accountable. Today it sits with the platform and the
+enrolment gate is automatic: any body that asks is entered. Both facts are
+recorded on every entry (`enrolled_by`) and shown on the citizen's permit check
+beside the green tick, because a tick over an ungated register is the most
+dangerous thing this surface could display.
+
+**A department key and a voice key never meet.** An engineer at the water board
+is also a citizen — posting under a pseudonym in the evening, filing works in
+the morning. The two keys live in separate IndexedDB databases and the
+constraint check fails the build if one module reaches both, because linking
+those halves of a person would be the app doing it rather than an attacker.
+
+**The clash check runs at filing, not at approval.** A department that learns
+about a clash a week later has already ordered the barriers. Approval is refused
+while a clash stands, so resolving one means a window actually moves.
+
+The fourth database file, `server/src/db-works.ts`, is the only public store —
+roadworks and permits are public records and there is no citizen in it at all.
+It is still a separate file, so "the works table has a citizen column now" is a
+change that cannot be made rather than one that is discouraged.
+
 ## Not yet built
 
 - Surfaces 2 and 4. Bharat and Works are still the planned-page stubs.

@@ -278,3 +278,41 @@
 .wk .seg button[aria-selected='true'] { color: var(--on-hue); }
 
 :root[data-text='large'] .wc__meta { flex-direction: column; align-items: flex-start; }
+
+/* ------------------------------ permit check ------------------------------ */
+
+.pv {
+  display: grid; gap: var(--sp-2); padding: var(--sp-4);
+  border-radius: var(--r-l); border: 1px solid var(--hair);
+  background: rgba(255, 255, 255, .07); min-width: 0;
+}
+.pv--ok { border-color: var(--w-open); }
+.pv--bad { border-color: var(--w-overrun); }
+.pv--none { border-style: dashed; }
+
+.pv__verdict {
+  margin: 0; font-family: var(--f-display); font-weight: 700; font-stretch: 84%;
+  font-size: 1.3rem; line-height: 1.1; color: var(--ink);
+}
+.pv--ok .pv__verdict { color: var(--w-open); }
+.pv--bad .pv__verdict { color: var(--w-overrun); }
+.pv__body { margin: 0; font-size: .88rem; line-height: 1.55; color: var(--ink-2); }
+.pv__meta { margin: 0; font-size: .78rem; line-height: 1.5; color: var(--ink-3); }
+
+.pv__facts { display: grid; gap: 2px; margin: var(--sp-2) 0 0; min-width: 0; }
+.pv__facts dt { font-size: .72rem; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--ink-3); margin-top: var(--sp-2); }
+.pv__facts dd { margin: 0; font-size: .92rem; line-height: 1.5; color: var(--ink); }
+
+/* The unresolved half of the phase, said beside the tick rather than under it. */
+.pv__gate {
+  margin: var(--sp-2) 0 0; padding: var(--sp-3);
+  border-radius: var(--r-s); border: 1px dashed var(--w-overrun);
+  font-size: .82rem; line-height: 1.55; color: var(--ink);
+}
+
+/* A field hint at --ink-3 measures 4.1:1 over the olive part of this surface's
+   bloom. It is the smallest text on the screen and it carries the format of the
+   thing you are about to type, so it takes the secondary ink rather than the
+   faintest. */
+.wk .field__hint { color: var(--ink-2); }

@@ -75,6 +75,20 @@ const DEMO_ACCOUNTS: GovAccount[] = [
     roles: ['analyst'],
   },
   {
+    id: 'g5', name: 'D. Pawar (Water Supply, works desk)',
+    institution: INSTITUTIONS[0],
+    roles: ['works-officer'],
+    departmentId: 'dep_demo_water',
+    utility: 'water',
+  },
+  {
+    id: 'g6', name: 'K. Iyer (Roads, approvals)',
+    institution: INSTITUTIONS[0],
+    roles: ['works-officer', 'works-approver'],
+    departmentId: 'dep_demo_roads',
+    utility: 'road',
+  },
+  {
     id: 'g4', name: 'Moderation Desk',
     institution: INSTITUTIONS[0],
     roles: ['moderator'],
@@ -173,6 +187,7 @@ export function GovLogin() {
 /* --------------------------------- gov shell ------------------------------ */
 
 const SECTIONS: { to: string; label: string; role: GovRole }[] = [
+  { to: '/gov/works', label: 'Works', role: 'works-officer' },
   { to: '/gov/notices', label: 'Notices', role: 'notice-officer' },
   { to: '/gov/polls', label: 'Polls', role: 'poll-officer' },
   { to: '/gov/dashboards', label: 'Dashboards', role: 'analyst' },

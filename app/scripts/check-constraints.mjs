@@ -106,6 +106,28 @@ for (const file of files) {
   }
 }
 
+/* Principle 2, second half — a department key and a voice key never meet.
+ *
+ * An engineer at the water board is also a citizen: they post under a pseudonym
+ * in the evening and file works in the morning. One module able to reach both
+ * key stores is one signature away from linking those two halves of a person,
+ * and it would be the app itself doing the linking rather than an attacker.
+ *
+ * So the two live in separate IndexedDB databases and no file may open both. */
+for (const file of files) {
+  const rel = file.rel.replace(/\\/g, '/')
+  const raw = readFileSync(file.path, 'utf8')
+  const voice = /from\s+['"][^'"]*voicekey/.test(raw) || rel === 'core/voicekey.ts'
+  const dept = /from\s+['"][^'"]*deptkey/.test(raw) || rel === 'core/deptkey.ts'
+  if (voice && dept) {
+    failures.push(
+      `[principle 2] ${file.rel} reaches both the pseudonym signing key and a department ` +
+        `signing key. The same person may hold both, and nothing in this app may be able ` +
+        `to put them side by side.`,
+    )
+  }
+}
+
 /* Principle 3 — the advisory disclaimer must not be dismissible. */
 const banner = files.find((f) => f.rel.replace(/\\/g, '/') === 'components/ui.tsx')
 if (banner) {

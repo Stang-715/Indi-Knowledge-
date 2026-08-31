@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { Link } from 'react-router-dom'
 import WorksMap from './WorksMap'
 import WorkCard from './WorkCard'
 import SectionSwitch from './SectionSwitch'
@@ -48,6 +49,13 @@ export default function WorksSurface() {
         selected={selected}
         onSelect={(id) => setSelected(id === selected ? null : id)}
       />
+
+      {/* "No permit, no dig" is only a rule if the person next to the hole can
+          check the permit. The route to do that is on the front of the surface,
+          not buried in a menu. */}
+      <Link to="/s/works/permit" className="btn btn--ghost btn--block">
+        {t('permit.title')}
+      </Link>
 
       <h2 className="wk__h2">{t('works.map.list')}</h2>
       {ordered.length === 0
