@@ -20,8 +20,12 @@
 
 :root:not([data-contrast='high']) .wk {
   --ink: var(--d-ink);
-  --ink-2: var(--d-ink-2);
-  --ink-3: var(--d-ink-3);
+  /* Brighter than the shared dark-theme values. Milestone green is the darkest
+     of the four hues and its bloom is the least forgiving ground in the app;
+     --d-ink-2 measures 4.0:1 over it where the same token clears AA on violet.
+     A token that passes on three surfaces is not a token that passes. */
+  --ink-2: #ABB3C6;
+  --ink-3: #9AA3BA;
   --hair: rgba(255, 255, 255, .22);
   --ground-2: rgba(255, 255, 255, .10);
   --solid: rgba(255, 255, 255, .08);
@@ -160,6 +164,13 @@
 
 /* ------------------------------- work cards ------------------------------- */
 
+/* Glass over this surface's brightest blooms is not dark enough on its own to
+   hold secondary ink. The cards carry the stronger scrim under their own wash;
+   the panels are still glass, they are simply standing on more ground. */
+.wk .glass {
+  background: linear-gradient(var(--scrim-strong), var(--scrim-strong)), var(--glass);
+}
+
 .wc {
   display: grid; gap: 5px; padding: var(--sp-4);
   text-decoration: none; color: inherit; min-width: 0;
@@ -186,7 +197,10 @@
 .wc__tag {
   font-size: .7rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
   border-radius: var(--r-pill); padding: 3px 9px;
-  border: 1px solid var(--hair); color: var(--ink-2);
+  border: 1px solid var(--hair);
+  /* Uppercase at .7rem is small text carrying real information — the utility
+     and whether the road is passable. It takes the primary ink, not secondary. */
+  color: var(--ink);
 }
 .wc__tag--overrun,
 .wc__tag--open,
