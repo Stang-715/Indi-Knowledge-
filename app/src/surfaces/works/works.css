@@ -260,17 +260,6 @@
 .wk__list > *,
 .wmap > * { max-width: 100%; }
 
-/* A pressed chip over a dark ground.
- *
- * The shared style tints the background with the hue and writes the label in
- * the same hue, which works on a light panel and is one colour against itself
- * on a mesh. Over these grounds the pressed state fills instead, and the label
- * takes the surface's on-hue ink. */
-.wk .chip[aria-pressed='true'], .wk .chip.is-on {
-  background: var(--hue);
-  border-color: var(--hue);
-  color: var(--on-hue);
-}
 
 /* An unselected segment at --ink-2 clears AA over the violet ground and does
    not over this one. Surface 4's hue is the darkest of the four. */

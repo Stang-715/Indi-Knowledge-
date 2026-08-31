@@ -811,6 +811,32 @@ store release.
 
 ## Phase 9 — Oversight transparency
 
+Verified: 107 files against the architectural constraints, including a new rule
+requiring the chain columns and the digest — proven by removing one, which the
+first version of the rule missed because `digest` still appeared in a table two
+definitions further down. 60 components against the accessibility floor. 69
+server assertions and 35 in a real browser, including a spliced entry caught by
+the reader rather than the server. 19 routes at 160% in the pseudo-locale.
+1,736 text elements across 18 routes, 2 themes and 3 points in the mesh drift,
+every one meeting WCAG AA.
+
+Adding the oversight page to the contrast check found a bug that had been in the
+shared stylesheet the whole time. A pressed chip tinted its background with the
+surface hue and wrote its label in that same hue — legible on a pale panel, one
+colour against itself wherever the tint composited strongly, and 1.01:1 on this
+page. It had already been patched separately on three surfaces; it is fixed once
+now, in `controls.css`, and the three local overrides are gone.
+
+Underneath it was the real defect: `--on-hue` was only defined under
+`[data-surface]`, so on every screen outside the four rooms — the oversight
+layer, the department portal — it resolved to nothing. It has a root default,
+and one in the high-contrast block.
+
+The lesson generalises past this phase: a rule fixed three times in three places
+is a rule that was never fixed, and a route left out of the checks is a route
+where the shared code is unverified.
+
+
 The plan's exit criterion is that an operator who is neither us nor the
 government can read the trail and we cannot edit it. The second half is now
 enforceable from outside: the trail is a hash chain, the reader's own browser

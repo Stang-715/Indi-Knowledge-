@@ -237,11 +237,6 @@
 .bh__grid > *,
 .fig > * { max-width: 100%; }
 
-.bh .chip[aria-pressed='true'], .bh .chip.is-on {
-  background: var(--hue);
-  border-color: var(--hue);
-  color: var(--on-hue);
-}
 .bh .seg button { color: var(--ink); }
 .bh .seg button[aria-selected='true'] { color: var(--on-hue); }
 .bh .field__hint { color: var(--ink-2); }

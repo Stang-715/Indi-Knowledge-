@@ -44,6 +44,11 @@
   /* The surface hue in play. The shell reassigns this per tab, and every
      component reads it — which is why one variable changes the whole room. */
   --hue: var(--marigold);
+  /* What is legible on it. Defined here as well as per surface, because the
+     screens outside the four rooms — the oversight layer, the department
+     portal — carry no `data-surface` and would otherwise resolve this to
+     nothing, which is how a filled control ends up writing in its own colour. */
+  --on-hue: #12151F;
 
   --f-display:'Anek Latin', 'Segoe UI', system-ui, sans-serif;
   --f-body:'Instrument Sans', system-ui, -apple-system, sans-serif;
@@ -88,7 +93,7 @@
   --ground:#FFFFFF; --ground-2:#FFFFFF; --solid:#FFFFFF;
   --ink:#000000; --ink-2:#1C1C1C; --ink-3:#333333; --hair:#000000;
   --glass:#FFFFFF; --glass-line:#000000; --glass-lift:transparent; --shade:transparent;
-  --hue:#7A4A00;
+  --hue:#7A4A00; --on-hue:#FFFFFF;
   color-scheme: light;
 }
 :root[data-contrast='high'] *,

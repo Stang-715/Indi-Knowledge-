@@ -57,16 +57,25 @@
   min-height: 40px;
   border: 1px solid var(--hair);
   background: var(--solid);
-  color: var(--ink-2);
+  /* Primary ink, not secondary. A chip is a control carrying a choice, and at
+     .82rem over a panel the secondary tone measured 4.3:1 against the 4.5 it
+     needed on the light legacy shell. */
+  color: var(--ink);
   text-align: start;
   text-decoration: none;
   transition: border-color var(--t-fast) var(--ease), background var(--t-fast) var(--ease);
 }
 .chip:hover { border-color: var(--hue); }
+/* A pressed chip fills rather than tints.
+ *
+ * The tinted version wrote the label in the same hue it tinted the background
+ * with — one colour against itself wherever the tint composites strongly, which
+ * measured 1.01:1 on the oversight page. Three surfaces had already overridden
+ * it locally; this is that fix made once, where it belongs. */
 .chip[aria-pressed='true'], .chip.is-on {
-  background: color-mix(in srgb, var(--hue) 16%, transparent);
+  background: var(--hue);
   border-color: var(--hue);
-  color: var(--hue);
+  color: var(--on-hue);
 }
 /* Chips that sit on the mesh rather than on a panel. */
 .chip--glass {
