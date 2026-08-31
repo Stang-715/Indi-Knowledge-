@@ -1,0 +1,77 @@
+.sstate {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--sp-3);
+  align-items: start;
+  padding: var(--sp-4);
+  border-radius: var(--r-m);
+  background: rgba(255, 255, 255, .09);
+  border: 1px solid rgba(255, 255, 255, .15);
+  backdrop-filter: blur(18px) saturate(155%);
+  -webkit-backdrop-filter: blur(18px) saturate(155%);
+  color: #fff;
+  font-size: .88rem;
+  min-width: 0;
+}
+
+.sstate__mark {
+  width: 38px; height: 38px;
+  border-radius: 11px;
+  display: grid; place-items: center;
+  background: color-mix(in srgb, var(--hue) 26%, transparent);
+  color: #fff;
+  flex: 0 0 auto;
+}
+.sstate--error .sstate__mark { background: color-mix(in srgb, var(--alert) 34%, transparent); }
+
+/* Block, not inline — these sit in a grid cell where a span's margin is dead. */
+.sstate__text { display: grid; gap: 3px; min-width: 0; }
+.sstate__text b { display: block; font-family: var(--f-display); font-weight: 650; }
+.sstate__text em {
+  display: block; font-style: normal;
+  color: rgba(255, 255, 255, .74); line-height: 1.5;
+}
+
+.sstate__retry { grid-column: 2; justify-self: start; margin-top: var(--sp-2); }
+
+.sstate__spin {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, .28);
+  border-top-color: #fff;
+  animation: sstate-spin .9s linear infinite;
+}
+@keyframes sstate-spin { to { transform: rotate(360deg); } }
+
+/* A skeleton says "here is the shape of what is coming"; a spinner only says
+   "wait". On a ten-second connection that difference matters. */
+.skel { display: grid; gap: var(--sp-2); }
+.skel__row {
+  height: 58px;
+  border-radius: var(--r-m);
+  background: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, .07) 30%,
+    rgba(255, 255, 255, .15) 50%,
+    rgba(255, 255, 255, .07) 70%
+  );
+  background-size: 220% 100%;
+  animation: skel-sweep 1.6s ease-in-out infinite;
+}
+@keyframes skel-sweep {
+  from { background-position: 180% 0; }
+  to   { background-position: -40% 0; }
+}
+
+/* Motion here is decorative, so it goes entirely rather than merely slowing. */
+:root[data-motion='reduced'] .skel__row { animation: none; opacity: .5; }
+:root[data-motion='reduced'] .sstate__spin { animation: none; }
+
+:root[data-contrast='high'] .sstate {
+  background: var(--solid);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+:root[data-contrast='high'] .sstate__text em { color: var(--ink-2); }

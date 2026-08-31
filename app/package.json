@@ -5,14 +5,16 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run check:constraints && tsc -b && vite build",
+    "build": "npm run check:constraints && npm run check:a11y && tsc -b && vite build",
     "lint": "oxlint",
     "check:constraints": "node scripts/check-constraints.mjs",
-    "test": "npm run check:constraints && tsc -b --force && oxlint",
+    "test": "npm run check:constraints && npm run check:a11y && tsc -b --force && oxlint",
     "preview": "vite preview",
     "build:singlefile": "VITE_HASH_ROUTER=true vite build --config vite.config.singlefile.ts",
     "build:native": "VITE_HASH_ROUTER=true npm run build",
-    "sync:native": "npm run build:native && npx cap sync"
+    "sync:native": "npm run build:native && npx cap sync",
+    "check:a11y": "node scripts/check-a11y.mjs",
+    "check:layout": "node scripts/check-layout.mjs"
   },
   "dependencies": {
     "react": "^19.2.8",

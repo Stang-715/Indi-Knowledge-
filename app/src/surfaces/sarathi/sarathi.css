@@ -27,20 +27,6 @@
 
 .sar__settings { margin-top: var(--sp-2); }
 
-/* ------------------------------ 1.6 offline ----------------------------- */
-
-.sar__offline {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: var(--sp-3);
-  align-items: start;
-  padding: var(--sp-3) var(--sp-4);
-  font-size: .84rem;
-}
-/* Block, not inline: these sit in a grid cell where a span's margin is dead. */
-.sar__offline b { display: block; font-weight: 650; }
-.sar__offline em { display: block; font-style: normal; color: rgba(255, 255, 255, .66); margin-top: 2px; }
-
 /* -------------------------------- 1.2 log ------------------------------- */
 
 .sar__log {

@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Stage from './Stage'
 import VoiceSettings from './VoiceSettings'
-import OfflineNote from './OfflineNote'
+import ScreenState from '../../components/chowk/ScreenState'
 import { useSpeechInput } from './useSpeechInput'
 import { handoffFrom, stashHandoff, type Handoff } from './handoff'
 import { useOnline } from './offline'
@@ -201,7 +201,15 @@ export default function SarathiSurface() {
         </button>
       </div>
 
-      {!online && <OfflineNote />}
+      {/* 1.6 — the stale state, said plainly. An app that goes quiet when the
+          signal drops reads as an app that is broken. */}
+      {!online && (
+        <ScreenState
+          kind="stale"
+          title={t('sar.offline.title')}
+          body={t('sar.offline.body')}
+        />
+      )}
 
       {/* --------------------------- 1.2 the talk ------------------------- */}
       <div
