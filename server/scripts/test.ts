@@ -7,6 +7,7 @@ import { blind, unblind, newNonce, verifyToken, hashToInt } from '../src/blind.t
 import { toSign } from '../src/canonical.ts'
 import { toSign as clientToSign } from '../../app/src/core/canonical.ts'
 import { verifyPayload } from '../src/institution.ts'
+import { digestOf as clientDigest } from '../../app/src/core/auditchain.ts'
 
 /**
  * End-to-end proof that the server cannot join the two identity layers.
@@ -586,6 +587,118 @@ check('works store holds no identity column',
     return cols.some((c) => /pseudonym|id_hash|citizen|identity/i.test(c.name))
   }), worksTables.join(','))
 worksDb.close()
+
+/* ---- Phase 9: a trail somebody outside can check ---- */
+
+const head1 = await get('/v1/oversight/head') as
+  { seq: number; digest: string; count: number; check: { ok: boolean } }
+check('the audit trail is a chain and it verifies',
+  head1.check.ok === true && head1.seq > 0, `seq ${head1.seq}`)
+
+// Any action moves the head. A trail whose head never changed would be a trail
+// nothing was being written to.
+await post('/v1/oversight/request', { id: `rq_a_${stamp7}`, kind: 'disclosure-demand' })
+const head2 = await get('/v1/oversight/head') as { seq: number; digest: string }
+check('the head moves when something happens',
+  head2.seq > head1.seq && head2.digest !== head1.digest, `seq ${head1.seq} → ${head2.seq}`)
+
+const observerDevice = await newDevice()
+const obsPayload = {
+  id: `obs_${stamp7}`, name: 'Sample oversight body', publicKey: observerDevice.publicKey,
+}
+const enrolObs = await post('/v1/oversight/enrol', {
+  ...obsPayload, sig: await observerDevice.sign('/v1/oversight/enrol', obsPayload),
+})
+check('an oversight body enrols by proving it holds its key',
+  enrolObs.ok === true && enrolObs.gate === 'automatic', enrolObs.reason ?? enrolObs.gate)
+
+const staleHead = { observer: obsPayload.id, seq: head1.seq, digest: head1.digest }
+const staleAttest = await post('/v1/oversight/attest', {
+  ...staleHead, sig: await observerDevice.sign('/v1/oversight/attest', staleHead),
+})
+check('countersigning a head that has moved on is refused',
+  staleAttest.ok === false && staleAttest.reason === 'stale-head', staleAttest.reason)
+
+const nowHead = await get('/v1/oversight/head') as { seq: number; digest: string }
+const attestPayload = { observer: obsPayload.id, seq: nowHead.seq, digest: nowHead.digest }
+const attested = await post('/v1/oversight/attest', {
+  ...attestPayload, sig: await observerDevice.sign('/v1/oversight/attest', attestPayload),
+})
+check('an observer countersigns the current head', attested.ok === true, attested.reason)
+
+const impostorObs = await newDevice()
+const forgedPayload = { observer: obsPayload.id, seq: nowHead.seq, digest: nowHead.digest }
+const forgedAttest = await post('/v1/oversight/attest', {
+  ...forgedPayload, sig: await impostorObs.sign('/v1/oversight/attest', forgedPayload),
+})
+check('somebody else cannot countersign in the observer\'s name',
+  forgedAttest.ok === false && forgedAttest.reason === 'bad-signature', forgedAttest.reason)
+
+/* --- the register of requests --- */
+
+await post('/v1/oversight/request/close', { id: `rq_a_${stamp7}`, outcome: 'impossible' })
+const reclose = await post('/v1/oversight/request/close', {
+  id: `rq_a_${stamp7}`, outcome: 'fulfilled',
+})
+check('a closed request cannot be reopened or rewritten',
+  reclose.ok === false && reclose.reason === 'already-closed', reclose.reason)
+
+const tally = await get('/v1/oversight/requests') as { tally: Record<string, number>[] }
+const demands = tally.tally.find((t) => t.kind === 'disclosure-demand') as
+  unknown as { received: number; fulfilled: number } | undefined
+check('demands to identify somebody are counted, and none is fulfilled',
+  demands !== undefined && demands.received > 0 && demands.fulfilled === 0,
+  `${demands?.received ?? 0} received, ${demands?.fulfilled ?? 0} fulfilled`)
+
+/* --- reports exist because of the calendar, not because anybody asked --- */
+
+const reportRes = await get('/v1/oversight/reports') as { reports: Record<string, unknown>[] }
+check('a report exists for every completed period',
+  reportRes.reports.length >= 6, `${reportRes.reports.length} reports`)
+check('and each carries the head of the chain at the moment it was written',
+  reportRes.reports.every((r) => typeof r.head_digest === 'string' && r.head_digest.length > 0))
+
+/* --- the reader's own copy of the digest agrees with ours --- */
+
+const chainRes = await get('/v1/oversight/chain') as { entries: Record<string, unknown>[] }
+const firstEntry = chainRes.entries[0] as unknown as Parameters<typeof clientDigest>[0] & {
+  digest: string
+}
+check('the browser digest matches the server\'s for a real entry',
+  (await clientDigest(firstEntry)) === firstEntry.digest)
+
+/* --- the chain catches a rewritten history --- */
+
+const auditDb = new DatabaseSync(join(DATA, 'audit.db'))
+let entryEditBlocked = false
+try {
+  auditDb.prepare("UPDATE entry SET detail = 'rewritten' WHERE seq = 1").run()
+} catch {
+  entryEditBlocked = true
+}
+check('an entry cannot be edited even from a direct SQL connection', entryEditBlocked)
+
+let reportEditBlocked = false
+try {
+  auditDb.prepare("UPDATE report SET body = '{}' WHERE rowid = 1").run()
+} catch {
+  reportEditBlocked = true
+}
+check('nor can a published report', reportEditBlocked)
+
+// The triggers refuse an edit. What proves the chain itself works is inserting
+// a plausible entry that does not follow from the one before — which is what a
+// tampered copy of this database would look like.
+const forgedSeq = 999999
+auditDb.prepare(`
+  INSERT INTO entry (id, at, actor_kind, actor, action, scope, detail, seq, prev, digest)
+  VALUES ('au_forged', ?, 'gov', 'Somebody', 'invented', 'nothing', 'never happened', ?, 'x', 'y')
+`).run(Date.now(), forgedSeq)
+const broken = await get('/v1/oversight/head') as { check: { ok: boolean; brokenAt?: number } }
+check('an entry spliced into the trail breaks the chain',
+  broken.check.ok === false && broken.check.brokenAt === forgedSeq,
+  `broken at ${broken.check.brokenAt}`)
+auditDb.close()
 
 console.log(`\n${failures === 0 ? '✓ all passed' : `✗ ${failures} failed`}\n`)
 

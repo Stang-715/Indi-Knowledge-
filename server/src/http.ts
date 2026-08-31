@@ -602,9 +602,131 @@ const routes: Record<string, (body: Record<string, unknown>, url: URL) => unknow
     return { ok: true }
   },
 
-  /* --- oversight --- */
+  /* --- oversight (Phase 9) --- */
 
+  /**
+   * The trail, and everything needed to check it.
+   *
+   * Public, deliberately. The entries name institutions and classes of data,
+   * never a citizen, so there is nothing here to gate — and gating public data
+   * behind an oversight login would be transparency theatre. The oversight
+   * credential further down exists to let somebody outside put their name to
+   * what the trail said on a day, which is a thing the public cannot do.
+   */
   'GET /v1/audit': () => ({ entries: audit.list() }),
+
+  'GET /v1/oversight/chain': (_b, url) => ({
+    entries: audit.chain(Number(url.searchParams.get('from') ?? 0)),
+  }),
+
+  /**
+   * The head of the chain.
+   *
+   * The single most useful thing an outside party can take from this server: a
+   * digest that, kept and compared later, turns a rewritten history from an
+   * undetectable act into a provable one. Its value is entirely in somebody
+   * bothering to keep it.
+   */
+  'GET /v1/oversight/head': () => ({ ...audit.head(), check: audit.verifyChain() }),
+
+  'GET /v1/oversight/requests': () => ({ tally: audit.requestTally() }),
+
+  'GET /v1/oversight/reports': () => {
+    // Materialised by the calendar on every read, so a period cannot go
+    // unreported because nobody asked in time.
+    audit.ensureReports()
+    return { reports: audit.reports() }
+  },
+
+  'GET /v1/oversight/observers': () => ({
+    observers: audit.observers(),
+    attestations: audit.attestations(),
+  }),
+
+  /**
+   * Enrolling an oversight body.
+   *
+   * Signed by the key being enrolled, which proves possession and nothing else.
+   * Who is entitled to be an observer is the same unresolved institutional
+   * question as who counts as a department, and it has the same non-answer
+   * here: whoever asks. The entry says so, and so does the screen.
+   */
+  'POST /v1/oversight/enrol': (body) => {
+    const { id, name } = body as Record<string, string>
+    const publicKey = body.publicKey as Record<string, unknown> | undefined
+    if (!id || !name || !publicKey) return { ok: false, reason: 'incomplete' }
+    const jwk = JSON.stringify(publicKey)
+    if (!verifyPayload(jwk, '/v1/oversight/enrol', body, String(body.sig ?? ''))) {
+      return { ok: false, reason: 'bad-signature' }
+    }
+    if (!audit.addObserver(id, name, jwk)) return { ok: false, reason: 'taken' }
+    audit.append('oversight', name, 'oversight.enrol', id,
+      'An observer enrolled. There is no gate on who may: the entitlement question ' +
+      'is institutional and unanswered, and this entry is the admission.')
+    return { ok: true, gate: 'automatic' }
+  },
+
+  /**
+   * An observer countersigning the head.
+   *
+   * This is the closest thing to the exit criterion software can deliver: a
+   * signature, by a party that is neither us nor the government, over what the
+   * trail said at a moment. It does not stop us rewriting history. It makes a
+   * rewrite contradict a signature we do not hold the key to.
+   */
+  'POST /v1/oversight/attest': (body) => {
+    const { observer: observerId } = body as Record<string, string>
+    const row = audit.observer(observerId)
+    if (!row) return { ok: false, reason: 'not-an-observer' }
+    if (!verifyPayload(row.public_key, '/v1/oversight/attest', body, String(body.sig ?? ''))) {
+      return { ok: false, reason: 'bad-signature' }
+    }
+    const current = audit.head()
+    if (Number(body.seq) !== current.seq || String(body.digest) !== current.digest) {
+      // Signing a head that is no longer the head would attest to nothing.
+      return { ok: false, reason: 'stale-head', head: current }
+    }
+    audit.attest(
+      `at_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 7)}`,
+      observerId, current.seq, current.digest, String(body.sig),
+    )
+    audit.append('oversight', row.name, 'oversight.attest', `seq ${current.seq}`,
+      `Head ${current.digest.slice(0, 16)}… countersigned by an observer.`)
+    return { ok: true, seq: current.seq, digest: current.digest }
+  },
+
+  /**
+   * Recording a request.
+   *
+   * Including the demands nobody publishes: how many times an authority has
+   * asked us to identify somebody. Fulfilled is structurally zero — not because
+   * we refuse each time, but because joining a pseudonym to an identity is not
+   * an operation anybody here has.
+   */
+  'POST /v1/oversight/request': (body) => {
+    const { id, kind, note } = body as Record<string, string>
+    const kinds = [
+      'access', 'correction', 'erasure', 'nomination', 'grievance',
+      'disclosure-demand', 'takedown-demand',
+    ]
+    if (!id || !kinds.includes(kind)) return { ok: false, reason: 'bad-kind' }
+    audit.receiveRequest(id, kind as audit.RequestKind, note ?? '')
+    audit.append('automated', 'Request register', 'request.received', kind,
+      'A request was received. It is counted from this moment whether or not it is ' +
+      'ever answered.')
+    return { ok: true }
+  },
+
+  'POST /v1/oversight/request/close': (body) => {
+    const { id, outcome } = body as Record<string, string>
+    if (!['fulfilled', 'refused', 'impossible'].includes(outcome)) {
+      return { ok: false, reason: 'bad-outcome' }
+    }
+    if (!audit.closeRequest(id, outcome)) return { ok: false, reason: 'already-closed' }
+    audit.append('automated', 'Request register', 'request.closed', outcome,
+      `A request was closed as ${outcome}.`)
+    return { ok: true }
+  },
 }
 
 /* -------------------------------- server --------------------------------- */

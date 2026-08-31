@@ -21,8 +21,15 @@
 
 :root:not([data-contrast='high']) .bh {
   --ink: var(--d-ink);
-  --ink-2: #ABB3C6;
-  --ink-3: #9AA3BA;
+  /* Raised again for harbour.
+   *
+   * The value that cleared AA over milestone green measures 4.38:1 over the
+   * deep blue-green of this bloom, and what it was carrying when it failed was
+   * a figure's own label, period and age — the text this entire surface exists
+   * to make legible. A supporting tone that is hard to read on the almanac is
+   * not a styling nit, it is the criterion quietly not being met. */
+  --ink-2: #C6CCDA;
+  --ink-3: #B4BBCE;
   --hair: rgba(255, 255, 255, .22);
   --ground-2: rgba(255, 255, 255, .10);
   --solid: rgba(255, 255, 255, .08);

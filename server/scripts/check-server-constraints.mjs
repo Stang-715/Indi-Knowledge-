@@ -101,6 +101,40 @@ if (auditFile) {
   }
 }
 
+/* 3b. The trail must be a chain, not a list.
+ *
+ * Triggers stop this server editing its own history. Nothing stops the whole
+ * database being replaced with a tidier one, and from outside the two look
+ * identical. Each entry carrying the digest of the one before is what makes a
+ * rewrite detectable by anybody who kept an older head — so the chain columns
+ * and the digest are as load-bearing as the triggers, and go the same way if
+ * somebody decides they are overhead. */
+if (auditFile) {
+  /* Scoped to the entry table's own DDL. The first version scanned the whole
+     schema and passed a build with the chain removed, because `digest` still
+     appeared in the attestation table two definitions further down. */
+  const entryDdl = (schemaOf(auditFile.raw)
+    .match(/CREATE TABLE IF NOT EXISTS entry[\s\S]*?\);/) ?? [''])[0]
+  const schema = entryDdl
+  for (const column of ['seq', 'prev', 'digest']) {
+    if (!new RegExp(`\\b${column}\\b`).test(schema)) {
+      add('audit', auditFile.rel,
+        `the entry table has lost its \`${column}\` column. Without the chain an ` +
+        'altered history is indistinguishable from an honest one.')
+    }
+  }
+  if (!/createHash\(/.test(auditFile.code)) {
+    add('audit', auditFile.rel,
+      'no digest is computed. The chain is the only part of append-only that somebody ' +
+      'outside this server can check.')
+  }
+  if (!/request_close_once|report_no_update/.test(auditFile.raw)) {
+    add('audit', auditFile.rel,
+      'a published report or a closed request can be rewritten. Counts that can be ' +
+      'revised after publication are a draft, not a record.')
+  }
+}
+
 /* 4. No IP address may be read, logged or stored. */
 for (const f of files) {
   if (/remoteAddress|x-forwarded-for|socket\.address\(\)/i.test(f.code)) {

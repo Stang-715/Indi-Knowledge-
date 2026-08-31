@@ -724,6 +724,21 @@ to a phone that only has the root key.
 
 ## Phase 8 — Surface 2, Bharat
 
+Verified: 105 files against the architectural constraints, including a new rule
+confining number formatting to the two files that own it — proven by planting a
+`toFixed` on a trade screen. 59 components against the accessibility floor. 18
+routes at 160% in the pseudo-locale. 1,632 text elements across 17 routes, 2
+themes and 3 points in the mesh drift, every one meeting WCAG AA.
+
+Contrast found six failures, all on the trade screen, all between 4.38 and 4.45
+against the 4.5 needed — and all of them a figure's own label, period and age
+over the harbour bloom. That is the text this entire surface exists to make
+legible, so the supporting ink was raised rather than the margin argued about.
+Three surfaces have now each needed their own ink: a shared token that clears AA
+on violet does not clear it on milestone green, and one that clears milestone
+green does not clear harbour.
+
+
 ### G-8-01 · No live feed behind any figure
 **Severity:** blocker for the phase's exit criterion
 Every number on the surface names a source and a period, and the mechanism that
