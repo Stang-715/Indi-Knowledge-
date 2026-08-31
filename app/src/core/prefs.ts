@@ -28,6 +28,31 @@ export interface A11ySettings {
   screenReaderMode: boolean
   /** The caricature speaking aloud is opt-in, never automatic. */
   voiceOut: boolean
+  /**
+   * Whether the expensive material is drawn.
+   *
+   * `auto` asks the device — which is the answer that helps the people this app
+   * is for, because they are the least likely to go looking for a setting. The
+   * two explicit values exist because a measurement can be wrong in both
+   * directions, and neither being able to turn it off nor being stuck with it
+   * off is acceptable.
+   */
+  power: 'auto' | 'full' | 'low'
+  /**
+   * Assisted use.
+   *
+   * For somebody being helped through the app by another person — which is how
+   * a great many people in India use a smartphone, and not a thing to design
+   * around as an exception.
+   *
+   * It makes the screen easier to follow: bigger targets, more space, one
+   * decision at a time, and Sarathi reading aloud by default. It does not make
+   * anything easier to do *on somebody's behalf*, and it cannot: a pseudonym is
+   * signed by a key bound to the device that claimed it, so a helper's phone
+   * has no way to answer as the person it is helping. The mode says so on the
+   * screen rather than leaving it as an implementation detail.
+   */
+  assist: boolean
 }
 
 export interface NotificationSettings {
@@ -86,6 +111,8 @@ export const DEFAULT_PREFS: Prefs = {
     lowBandwidth: false,
     screenReaderMode: false,
     voiceOut: false,
+    power: 'auto',
+    assist: false,
   },
   notifications: {
     // Defaults to everything important, not everything at all (edge case 10).

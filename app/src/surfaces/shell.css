@@ -46,7 +46,10 @@
 }
 .shell__dock > * { pointer-events: auto; }
 
-.shell__skip {
+/* Selected through the parent so the width cap does not depend on which
+   stylesheet the bundler emitted first — a shared `.shell > *` rule in the
+   legacy sheet has the same specificity and quietly won. */
+.shell > .shell__skip {
   position: absolute;
   left: var(--sp-3);
   top: -100px;
@@ -59,4 +62,4 @@
   max-width: calc(100vw - 2 * var(--sp-3));
   transition: top var(--t-fast) var(--ease);
 }
-.shell__skip:focus { top: calc(58px + env(safe-area-inset-top, 0px)); }
+.shell > .shell__skip:focus { top: calc(58px + env(safe-area-inset-top, 0px)); }

@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react'
 import {
   BrowserRouter, HashRouter, Navigate, Route, Routes,
 } from 'react-router-dom'
@@ -10,42 +11,84 @@ import {
 const Router = import.meta.env.VITE_HASH_ROUTER === 'true' ? HashRouter : BrowserRouter
 import { SessionProvider, useSession } from './core/session'
 import { I18nProvider } from './i18n'
-import Landing from './Landing'
-import Onboarding from './citizen/Onboarding'
-import CitizenShell from './citizen/CitizenShell'
-import Home from './citizen/Home'
-import { NoticeDetail, NoticeList } from './citizen/Notices'
-import { PollDetail, PollList } from './citizen/Polls'
-import { ThreadView, TopicList } from './citizen/Discussion'
-import { Inbox, Search } from './citizen/InboxSearch'
-import {
-  AccessibilitySettings, Help, LocalitySettings, NotificationSettings,
-  PrivacyCentre, ProfileIndex, PseudonymSettings,
-} from './citizen/Profile'
 import { GovHome, GovLogin, GovProvider, GovShell, useGov } from './gov/GovPortal'
 import ChowkShell from './surfaces/ChowkShell'
-import SarathiSurface from './surfaces/sarathi/SarathiSurface'
-import BharatSurface from './surfaces/bharat/BharatSurface'
-import Weather from './surfaces/bharat/Weather'
-import Trade from './surfaces/bharat/Trade'
-import Shops, { StoreProfile } from './surfaces/bharat/Shops'
-import PublicMap from './surfaces/bharat/PublicMap'
-import WorksSurface from './surfaces/works/WorksSurface'
-import WorkDetail from './surfaces/works/WorkDetail'
-import MyStreets from './surfaces/works/MyStreets'
-import WorksRecord from './surfaces/works/Record'
-import Permit from './surfaces/works/Permit'
-import BillsSurface from './surfaces/bills/BillsSurface'
-import BillDetail from './surfaces/bills/BillDetail'
-import Constitution from './surfaces/bills/Constitution'
-import Constituency from './surfaces/bills/Constituency'
-import Debate from './surfaces/bills/Debate'
-import { NoticeComposer, PollComposer } from './gov/Compose'
-import Dashboards from './gov/Dashboards'
-import GovWorks from './gov/Works'
-import Moderation from './gov/Moderation'
-import Oversight from './oversight/Oversight'
 import type { GovRole } from './core/types'
+
+/**
+ * Everything but the first screen is fetched when it is first opened.
+ *
+ * The whole app was one 600 kB chunk. On the connections this is built for that
+ * is eight seconds before anything appears, and most of it is code the person
+ * opening Sarathi will never run — the almanac's tables, the works map, the
+ * department portal. Splitting by route means the first paint carries the shell
+ * and the surface you asked for, and nothing else.
+ *
+ * The four surfaces are split from each other for the same reason: they are
+ * four rooms, and you enter one at a time.
+ */
+const Landing = lazy(() => import('./Landing'))
+const Onboarding = lazy(() => import('./citizen/Onboarding'))
+const CitizenShell = lazy(() => import('./citizen/CitizenShell'))
+const Home = lazy(() => import('./citizen/Home'))
+const NoticeDetail = lazy(() => import('./citizen/Notices').then((m) => ({ default: m.NoticeDetail })))
+const NoticeList = lazy(() => import('./citizen/Notices').then((m) => ({ default: m.NoticeList })))
+const PollDetail = lazy(() => import('./citizen/Polls').then((m) => ({ default: m.PollDetail })))
+const PollList = lazy(() => import('./citizen/Polls').then((m) => ({ default: m.PollList })))
+const ThreadView = lazy(() => import('./citizen/Discussion').then((m) => ({ default: m.ThreadView })))
+const TopicList = lazy(() => import('./citizen/Discussion').then((m) => ({ default: m.TopicList })))
+const Inbox = lazy(() => import('./citizen/InboxSearch').then((m) => ({ default: m.Inbox })))
+const Search = lazy(() => import('./citizen/InboxSearch').then((m) => ({ default: m.Search })))
+const AccessibilitySettings = lazy(() => import('./citizen/Profile').then((m) => ({ default: m.AccessibilitySettings })))
+const AssistedUse = lazy(() => import('./citizen/Profile').then((m) => ({ default: m.AssistedUse })))
+const Help = lazy(() => import('./citizen/Profile').then((m) => ({ default: m.Help })))
+const LocalitySettings = lazy(() => import('./citizen/Profile').then((m) => ({ default: m.LocalitySettings })))
+const NotificationSettings = lazy(() => import('./citizen/Profile').then((m) => ({ default: m.NotificationSettings })))
+const PrivacyCentre = lazy(() => import('./citizen/Profile').then((m) => ({ default: m.PrivacyCentre })))
+const ProfileIndex = lazy(() => import('./citizen/Profile').then((m) => ({ default: m.ProfileIndex })))
+const PseudonymSettings = lazy(() => import('./citizen/Profile').then((m) => ({ default: m.PseudonymSettings })))
+
+const SarathiSurface = lazy(() => import('./surfaces/sarathi/SarathiSurface'))
+const BharatSurface = lazy(() => import('./surfaces/bharat/BharatSurface'))
+const Weather = lazy(() => import('./surfaces/bharat/Weather'))
+const Trade = lazy(() => import('./surfaces/bharat/Trade'))
+const Shops = lazy(() => import('./surfaces/bharat/Shops'))
+const StoreProfile = lazy(() => import('./surfaces/bharat/Shops').then((m) => ({ default: m.StoreProfile })))
+const PublicMap = lazy(() => import('./surfaces/bharat/PublicMap'))
+const WorksSurface = lazy(() => import('./surfaces/works/WorksSurface'))
+const WorkDetail = lazy(() => import('./surfaces/works/WorkDetail'))
+const MyStreets = lazy(() => import('./surfaces/works/MyStreets'))
+const WorksRecord = lazy(() => import('./surfaces/works/Record'))
+const Permit = lazy(() => import('./surfaces/works/Permit'))
+const BillsSurface = lazy(() => import('./surfaces/bills/BillsSurface'))
+const BillDetail = lazy(() => import('./surfaces/bills/BillDetail'))
+const Constitution = lazy(() => import('./surfaces/bills/Constitution'))
+const Constituency = lazy(() => import('./surfaces/bills/Constituency'))
+const Debate = lazy(() => import('./surfaces/bills/Debate'))
+
+const NoticeComposer = lazy(() => import('./gov/Compose').then((m) => ({ default: m.NoticeComposer })))
+const PollComposer = lazy(() => import('./gov/Compose').then((m) => ({ default: m.PollComposer })))
+const Dashboards = lazy(() => import('./gov/Dashboards'))
+const GovWorks = lazy(() => import('./gov/Works'))
+const Moderation = lazy(() => import('./gov/Moderation'))
+const Oversight = lazy(() => import('./oversight/Oversight'))
+
+
+/**
+ * Shown while a route's chunk is still arriving.
+ *
+ * Deliberately quiet: a spinner that appears for 80ms on a fast connection is
+ * noise, and one that never appears on a slow one is a blank page. This is the
+ * app's own loading state, which every screen already has a designed version
+ * of.
+ */
+function RouteLoading() {
+  return (
+    <div className="route-wait" role="status" aria-live="polite">
+      <span className="sr-only">Loading</span>
+    </div>
+  )
+}
 
 /** Onboarding is not skippable — a pseudonym is required before anything can be said. */
 function RequireOnboarding({ children }: { children: React.ReactElement }) {
@@ -73,6 +116,10 @@ export default function App() {
       <Localised>
         <GovProvider>
           <Router>
+            {/* One fallback for the whole tree. A route arriving a beat late on
+                a slow connection should read as the app thinking, not as a
+                blank screen — and it must not shift the layout when it lands. */}
+            <Suspense fallback={<RouteLoading />}>
             <Routes>
               {/* --------------------------- Chowk ---------------------------- *
                * The four surfaces. Surface 1 is built; 2, 3 and 4 state what is
@@ -139,6 +186,7 @@ export default function App() {
                 <Route path="profile/locality" element={<LocalitySettings />} />
                 <Route path="profile/privacy" element={<PrivacyCentre />} />
                 <Route path="profile/accessibility" element={<AccessibilitySettings />} />
+                <Route path="profile/assist" element={<AssistedUse />} />
                 <Route path="profile/help" element={<Help />} />
               </Route>
 
@@ -169,6 +217,7 @@ export default function App() {
 
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
+            </Suspense>
           </Router>
         </GovProvider>
       </Localised>

@@ -5,6 +5,7 @@ import IslandNav, { type NavTab, type SurfaceId } from '../components/chowk/Isla
 import DynamicIsland, { type Activity, type IslandState } from '../components/chowk/DynamicIsland'
 import { ActionContext, IslandContext } from './shell-context'
 import { useT } from '../i18n'
+import { useSession } from '../core/session'
 import './shell.css'
 
 const ICONS: Record<SurfaceId, React.ReactNode> = {
@@ -59,6 +60,8 @@ function surfaceFromPath(path: string): SurfaceId {
 
 export default function ChowkShell() {
   const t = useT()
+  const { prefs } = useSession()
+  const assisted = prefs.a11y.assist
   const navigate = useNavigate()
   const location = useLocation()
   const active = surfaceFromPath(location.pathname)
@@ -105,6 +108,13 @@ export default function ChowkShell() {
       <a className="shell__skip" href="#main">{t('shell.skip')}</a>
 
       <main className="shell__main" id="main">
+        {/* Undismissable while the mode is on, and addressed to the person
+            being helped rather than to the helper. Somebody who has handed
+            their phone over should be able to see, at any moment, that it is
+            in a mode somebody else switched on. */}
+        {assisted && (
+          <p className="assist-strip" role="note">{t('assist.strip')}</p>
+        )}
         <IslandContext.Provider value={island}>
           <ActionContext.Provider value={actionCtx}>
             <Outlet />

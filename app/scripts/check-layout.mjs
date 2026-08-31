@@ -58,6 +58,7 @@ const ROUTES = [
   ['Bharat · shops', '/s/bharat/shops'],
   ['Bharat · public map', '/s/bharat/map'],
   ['Oversight', '/oversight'],
+  ['Assisted use', '/app/profile/assist'],
 ]
 
 let failed = false

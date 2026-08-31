@@ -539,6 +539,44 @@ export function A11yControls() {
         onChange={(v) => setA11y({ lowBandwidth: v })}
       />
       <Switch
+        name="Somebody is helping me use this"
+        hint="Bigger buttons, more space between them, one decision at a time, and Sarathi reads aloud. Your helper's phone still cannot answer for you — that is not a rule, it is how the app is built."
+        checked={a11y.assist}
+        onChange={(v) => setA11y({ assist: v, voiceOut: v ? true : a11y.voiceOut })}
+      />
+      {/* Not a switch. The honest shape of this choice is three states — let
+          the device decide, always draw it, never draw it — because a
+          measurement can be wrong in both directions and neither being stuck
+          with the expensive version nor stuck without it is acceptable. */}
+      <div className="field">
+        <span className="field__label" id="powerlabel">Visual effects</span>
+        <div className="row" role="radiogroup" aria-labelledby="powerlabel">
+          {([
+            ['auto', 'Match my phone'],
+            ['full', 'Always draw them'],
+            ['low', 'Never draw them'],
+          ] as const).map(([value, label]) => (
+            <button
+              key={value}
+              type="button"
+              role="radio"
+              aria-checked={a11y.power === value}
+              className="chip"
+              onClick={() => setA11y({ power: value })}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+        <p className="field__hint">
+          The moving background and the frosted panels cost battery and frames. On a phone
+          that says it is small or on a slow connection, they are not drawn — the layout, the
+          type and every word stay exactly the same. Your phone answers this question on the
+          device; nothing about it is sent anywhere.
+        </p>
+      </div>
+
+      <Switch
         name="Read answers aloud"
         hint="Sarathi speaks his replies using your device's own voice. Off by default — a phone that talks unprompted is not always safe."
         checked={a11y.voiceOut}

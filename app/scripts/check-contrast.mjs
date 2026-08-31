@@ -57,6 +57,7 @@ const ROUTES = [
   { path: '/s/works/permit', name: 'Check a permit' },
   { path: '/app/profile/privacy', name: 'Privacy & rights' },
   { path: '/oversight', name: 'Oversight' },
+  { path: '/app/profile/assist', name: 'Assisted use' },
 ]
 
 const SEED = () => {

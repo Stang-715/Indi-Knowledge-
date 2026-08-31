@@ -7,6 +7,7 @@ import {
   eraseEverything, getEligibility, getVoice, recordVerification, setPseudonym,
   type AgeBand, type EligibilityRecord, type VoiceRecord,
 } from './identity'
+import { tierFor } from './capability'
 import type { LocaleCode } from './types'
 
 interface SessionValue {
@@ -55,6 +56,11 @@ export function SessionProvider({ children }: { children: ReactNode }) {
     root.dataset.motion =
       prefs.a11y.reduceMotion || prefs.a11y.screenReaderMode ? 'reduced' : 'full'
     root.dataset.bandwidth = prefs.a11y.lowBandwidth ? 'low' : 'full'
+    /* The device's own answer, unless the citizen has overridden it. Set on the
+       root so CSS can drop the expensive material without any component
+       knowing, and so the mesh can stop repainting. */
+    root.dataset.power = prefs.a11y.lowBandwidth ? 'low' : tierFor(prefs.a11y.power)
+    root.dataset.assist = prefs.a11y.assist ? 'on' : 'off'
     root.lang = prefs.locale
   }, [prefs.a11y, prefs.locale])
 

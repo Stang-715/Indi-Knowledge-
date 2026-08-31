@@ -212,6 +212,18 @@ img, svg, video { max-width: 100%; }
 
 /* --------------------------------- layout -------------------------------- */
 
+/* A grid item defaults to min-width:auto and will not shrink below its own
+   content, so the topbar grew the whole shell past the viewport in a language
+   40% longer than English — where the overflow was simply not visible. The
+   Chowk shell has carried this rule since Surface 1; the legacy shell went
+   without it until a route of its own was finally put in front of the layout
+   check. A route left out of the checks is a route where nothing is verified. */
+.shell > * { min-width: 0; max-width: 100%; }
+/* Specificity, not order: the rule above would otherwise undo the skip link's
+   own width cap, which exists because it is laid out at full width the whole
+   time and only moved into view on focus. */
+.shell > .skip { max-width: calc(100% - (2 * var(--s3))); }
+
 .shell {
   min-height: 100dvh;
   display: grid;
@@ -321,6 +333,23 @@ img, svg, video { max-width: 100%; }
   font-size: 0.72rem;
   cursor: pointer;
   text-decoration: none;
+  /* Five equal columns only stay equal if each will shrink. A grid item will
+     not go below its own content, so one long label in a longer language
+     pushed the whole bar past the viewport. */
+  min-width: 0;
+}
+.tabbar__item > span { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+
+/* At the largest text setting five labels do not fit on a 360px screen in any
+   language. The glyphs carry the meaning and the accessible name is on the
+   link, so the label goes rather than the layout. */
+:root[data-text='large'] .tabbar__item > span:not(.tabbar__glyph) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
 .tabbar__item[aria-current='page'] {

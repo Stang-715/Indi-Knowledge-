@@ -16,8 +16,10 @@
     "check:a11y": "node scripts/check-a11y.mjs",
     "check:layout": "node scripts/check-layout.mjs",
     "check:contrast": "node scripts/check-contrast.mjs",
+    "check:field": "node scripts/check-field.mjs",
+    "check:bundle": "node scripts/check-bundle.mjs",
     "check:transport": "node --experimental-strip-types --disable-warning=ExperimentalWarning scripts/check-transport.mjs",
-    "check:release": "npm run build && node scripts/check-layout.mjs && node scripts/check-contrast.mjs"
+    "check:release": "npm run build && npm run check:bundle && node scripts/check-layout.mjs && node scripts/check-contrast.mjs && node scripts/check-field.mjs"
   },
   "dependencies": {
     "react": "^19.2.8",

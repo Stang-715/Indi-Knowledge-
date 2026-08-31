@@ -288,6 +288,51 @@ accept a signature. It cannot make an independent body exist, and enrolment as
 an observer is currently ungated in the same way department enrolment is. A
 layer that implied otherwise would be the precise failure it exists to prevent.
 
+## Field conditions
+
+The app is for people on 2G connections and four-year-old handsets, and until
+this phase nothing measured whether it worked for them.
+
+**Route splitting.** The whole app was one 606 kB chunk — around eight seconds
+of blank screen on a 2G connection, most of it code the person opening Sarathi
+would never run. Every route is fetched when first opened, which halved the
+entry to 72 kB gzipped. `scripts/check-bundle.mjs` budgets what crosses the wire
+and says the first load in seconds at 35 kB/s, because kilobytes are not what
+anybody experiences.
+
+**A harness that can fail.** `scripts/check-field.mjs` runs Chromium with the
+network throttled to 2G and the CPU divided by six. Its first version seeded the
+session by navigating once before enabling the throttling, which warmed the HTTP
+cache — every route "passed" 2G in a second, and the harness could not fail. The
+session is seeded by an init script now and the cache is disabled. Real numbers:
+about seven seconds to paint, eight to readable.
+
+**The low-power tier.** `core/capability.ts` asks the device about itself —
+small memory, few cores, a thin connection, data-saver on — and drops the two
+expensive things: the mesh paints once instead of animating, and the glass
+becomes a flat panel. The layout, type, colour and every word are unchanged.
+The signals are read and never sent; `deviceMemory` and `hardwareConcurrency`
+are fingerprinting surface, used here for one local rendering decision.
+
+The mesh read `data-power` once at mount, which was before the session provider
+had set it — so the device that most needed the animation stopped was the one
+still running it. It observes the attribute now. The field check asserts the
+cut actually happens: two animation frames in two and a half seconds against a
+hundred and eighty, and no panel still compositing a blur.
+
+The caricature keeps its ambient motion. A few animated transforms on one SVG is
+not what makes a budget handset stutter, and the front door of the app going
+dead is a real cost against a small saving.
+
+**Assisted use.** A great many people in India use a smartphone with somebody
+beside them, and that is a normal way to use a phone rather than an exception to
+handle afterwards. Assisted mode enlarges targets, spaces decisions out and
+turns on read-aloud. It deliberately does not make anything easier to do on
+somebody's behalf, and it could not: a pseudonym is signed by a key bound to the
+device that claimed it, so a helper's phone has no way to write as the person it
+is helping. The mode says so on screen and a strip stays visible while it is on,
+addressed to the person being helped rather than the helper.
+
 ## Not yet built
 
 - Surfaces 2 and 4. Bharat and Works are still the planned-page stubs.

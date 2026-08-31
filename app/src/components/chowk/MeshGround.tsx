@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { subscribeToTier, type PowerTier } from '../../core/capability'
 import type { ReactNode } from 'react'
 import { MeshContext, type MeshSampler } from './mesh-context'
 import './mesh.css'
@@ -36,6 +37,11 @@ export default function MeshGround({
   const ref = useRef<HTMLCanvasElement>(null)
   const probe = useRef<HTMLCanvasElement | null>(null)
   const [ready, setReady] = useState(0)
+  /* Observed rather than read once: the session provider sets `data-power` in
+     its own effect, and whichever of the two ran first decided whether this
+     canvas animated forever. */
+  const [tier, setTier] = useState<PowerTier>('full')
+  useEffect(() => subscribeToTier(setTier), [])
 
   useEffect(() => {
     const cv = ref.current
@@ -50,6 +56,11 @@ export default function MeshGround({
     }
     const pctx = probe.current.getContext('2d', { willReadFrequently: true })
 
+    /* A continuously repainted gradient is the single most expensive thing in
+       this app. It stops for a stated motion preference, and equally for a
+       device that told us it is small or on a thin connection — the person on
+       a four-year-old handset is the one who can least afford it and the least
+       likely to go looking for a setting. */
     const still =
       window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
       document.documentElement.dataset.motion === 'reduced' ||
@@ -120,7 +131,7 @@ export default function MeshGround({
       window.removeEventListener('resize', onResize)
       document.removeEventListener('visibilitychange', onVisibility)
     }
-  }, [from, to, base, animated])
+  }, [from, to, base, animated, tier])
 
   const sampler = useMemo<MeshSampler>(() => ({
     sample: (rect) => {

@@ -192,3 +192,122 @@ img, svg, video { max-width: 100%; }
   transition-duration: .01ms !important;
   scroll-behavior: auto !important;
 }
+
+/* ---------------------------------------------------------------- *
+ * Waiting for a route's chunk.
+ *
+ * Nothing for the first 300ms, because a flash of loading state on a fast
+ * connection is worse than the wait it describes. After that a quiet pulse,
+ * so a slow connection reads as the app working rather than as a dead screen.
+ * ---------------------------------------------------------------- */
+.route-wait {
+  min-height: 50vh;
+  display: grid;
+  place-items: center;
+}
+.route-wait::before {
+  content: '';
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 2px solid var(--hair);
+  border-top-color: var(--hue);
+  opacity: 0;
+  animation: route-wait-in 200ms 300ms ease forwards, route-wait-spin 900ms linear infinite;
+}
+@keyframes route-wait-in { to { opacity: 1; } }
+@keyframes route-wait-spin { to { rotate: 360deg; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .route-wait::before { animation: route-wait-in 200ms 300ms ease forwards; }
+}
+:root[data-motion='reduced'] .route-wait::before {
+  animation: route-wait-in 200ms 300ms ease forwards;
+}
+
+/* ---------------------------------------------------------------- *
+ * Low power.
+ *
+ * Set by the device's own answer about itself — small memory, few cores, a
+ * thin connection, data-saver on — or by an explicit choice. The backdrop
+ * filter goes, because compositing a blurred copy of the ground behind every
+ * panel is the second most expensive thing here after the mesh, and on a
+ * budget handset it is paid for in dropped frames and heat.
+ *
+ * What is kept: the layout, the type, the colour, every word. This is not a
+ * cut-down app for poorer people — it is the same app, not drawing the part
+ * that costs frames. The glass becomes an opaque panel of the same tone, which
+ * is what it looked like in the first place to anybody whose phone was already
+ * dropping the blur.
+ * ---------------------------------------------------------------- */
+:root[data-power='low'] .glass,
+:root[data-power='low'] .glass-dark {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+:root[data-power='low'] .glass {
+  background: color-mix(in srgb, var(--solid) 88%, var(--hue) 12%);
+}
+:root[data-power='low'] .glass-dark {
+  background: linear-gradient(var(--scrim-strong), var(--scrim-strong)), rgba(28, 34, 52, .92);
+}
+:root[data-power='low'] .glass::before,
+:root[data-power='low'] .glass-dark::before { display: none; }
+
+/* The pressure state re-blurs on touch. Not here. */
+:root[data-power='low'] .glass--press:active {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  transform: scale(.99);
+}
+
+/* ---------------------------------------------------------------- *
+ * Assisted use.
+ *
+ * For somebody being walked through the app by another person — a relative, a
+ * shopkeeper, a common service centre operator. That is how a great many
+ * people in India use a smartphone, and it is not an exception to design
+ * around afterwards.
+ *
+ * Everything here is about being followable from over somebody's shoulder:
+ * larger targets for a hand that is not the owner's, more space between
+ * decisions so a finger does not land on the wrong one, and a focus ring
+ * strong enough to point at.
+ *
+ * What it deliberately does not do is make anything easier to do on somebody
+ * else's behalf. It cannot: the pseudonym is signed by a key bound to the
+ * device that claimed it, so a helper's phone has no way to answer as the
+ * person it is helping.
+ * ---------------------------------------------------------------- */
+:root[data-assist='on'] {
+  --sp-3: 16px;
+  --sp-4: 22px;
+}
+:root[data-assist='on'] .btn { min-height: 60px; font-size: 1.02rem; }
+:root[data-assist='on'] .btn--sm { min-height: 52px; font-size: .92rem; }
+:root[data-assist='on'] .chip { min-height: 52px; font-size: .92rem; padding: 12px 18px; }
+:root[data-assist='on'] .field input,
+:root[data-assist='on'] .field select,
+:root[data-assist='on'] .field textarea { min-height: 60px; font-size: 1.02rem; }
+:root[data-assist='on'] .field__label { font-size: .9rem; }
+:root[data-assist='on'] .seg button { min-height: 54px; }
+
+/* A pointing finger needs somewhere obvious to point. */
+:root[data-assist='on'] :focus-visible {
+  outline: 4px solid var(--hue);
+  outline-offset: 3px;
+}
+
+.assist-strip {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: block;
+  padding: 10px var(--sp-4);
+  background: var(--hue);
+  color: var(--on-hue);
+  font-size: .86rem;
+  font-weight: 650;
+  line-height: 1.4;
+  text-align: center;
+}

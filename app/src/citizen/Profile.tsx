@@ -400,11 +400,59 @@ export function PrivacyCentre() {
 
 /* --------------------------- 6.x Accessibility ---------------------------- */
 
+/**
+ * What a helper may and may not do.
+ *
+ * Written for the helper to read out and the person being helped to hear. The
+ * load-bearing sentence is the last one: this is not a promise about conduct,
+ * it is a description of what the software can and cannot do, and the
+ * difference is the whole point.
+ */
+export function AssistedUse() {
+  return (
+    <>
+      <BackBar title="Helping someone use Chowk" to="/app/profile/accessibility" />
+
+      <p className="prose">
+        A lot of people use a smartphone with somebody beside them — a son, a neighbour, the
+        operator at a common service centre. That is a normal way to use a phone, not a
+        failure to be worked around, and assisted mode is built for it: bigger buttons, more
+        space between them, one decision at a time, and Sarathi reading each answer aloud.
+      </p>
+
+      <h3 className="section-title">What a helper can do</h3>
+      <ul className="prose">
+        <li>Read the screen out, and explain what a notice or a bill says.</li>
+        <li>Type on the person's behalf while they say what they want written.</li>
+        <li>Set up localities, language and accessibility settings with them.</li>
+      </ul>
+
+      <h3 className="section-title">What a helper cannot do</h3>
+      <ul className="prose">
+        <li>Answer a poll for somebody from the helper's own phone.</li>
+        <li>Post under somebody else's name from the helper's own phone.</li>
+        <li>See who anybody else is. Nobody can.</li>
+      </ul>
+
+      <PrincipleNote>
+        Those three are not house rules. A pseudonym is signed by a key that exists only on the
+        device that claimed it and cannot be copied off it, so another phone has no way to
+        write as you — the server rejects it, and would reject us too. Hand the phone back
+        before you answer, not because you are asked to, but because that is the only thing
+        that works.
+      </PrincipleNote>
+    </>
+  )
+}
+
 export function AccessibilitySettings() {
   return (
     <>
       <BackBar title="Accessibility" to="/app/profile" />
       <A11yControls />
+      <Link to="/app/profile/assist" className="btn btn--ghost btn--block">
+        Helping someone else use this →
+      </Link>
       <p className="tiny">
         These apply immediately and to every screen, including the government portal and the
         oversight layer.

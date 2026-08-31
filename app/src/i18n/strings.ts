@@ -241,6 +241,9 @@ const en: Dict = {
   'stub.notBuilt': 'Not built yet',
 
   /* ---------------------------- screen states ----------------------- */
+  'assist.strip': 'Someone is helping you use this. Only you can answer for you.',
+  'assist.title': 'Helping someone use Chowk',
+
   /* ------------------------------ Surface 2 ------------------------------ */
 
   'fig.age': '{n} days old',

@@ -899,6 +899,74 @@ a device-local draft.
 
 ---
 
+## Phase 10 — Field hardening
+
+The exit criterion is that the app is usable on a four-year-old budget phone on
+a 2G connection, **verified by someone who is not us**. The second half is the
+whole point of the criterion and it is not met: everything below was measured by
+the party that wrote it, on emulated hardware.
+
+### G-10-01 · No real handset, and the emulation flatters us
+**Severity:** blocker for the phase's exit criterion
+`check:field` throttles Chromium's network to 2G and divides its CPU by six.
+A divided desktop core keeps a desktop cache hierarchy, a desktop GPU and no
+thermal ceiling, so it flatters exactly what hurts on a budget phone: memory
+bandwidth, sustained load, and throttling once the back of the phone is warm.
+The numbers it produces (about 7s to paint, 8s to readable) are a floor.
+**Do:** run the same four surfaces on a real ₹8,000 Android handset, on a real
+2G connection, for long enough to get warm.
+**Verify:** somebody who is not us reports what they saw.
+
+### G-10-02 · No screen-reader pass in any script, let alone three
+**Severity:** blocker before release
+The static check covers labels, roles, focus styles and reduced motion.
+It cannot tell whether a screen makes sense read aloud, whether the reading
+order matches the visual one, or whether TalkBack pronounces a Devanagari
+string correctly when the app's own font has not loaded for that script.
+The plan asks for passes in three scripts with real users. None has happened.
+**Verify:** three sessions, three scripts, three people who use a screen reader
+daily, with what they could not do written down.
+
+### G-10-03 · The low-power tier is never chosen on the machines that run the checks
+**Severity:** major
+The tier is asserted by forcing the preference to `low`. The automatic path —
+`deviceMemory`, `hardwareConcurrency`, `effectiveType`, `saveData` — is never
+exercised, because the machine running CI reports itself as capable. The
+thresholds (4 GB, 4 cores) are a guess at where a 2019 budget phone sits.
+**Do:** check the thresholds against real devices, and emulate the signals in
+the harness so the automatic path is covered too.
+**Verify:** a device reporting 2 GB and 4 cores gets the low tier without
+anybody touching a setting.
+
+### G-10-04 · Assisted use is untested with anybody who needs it
+**Severity:** major
+The mode is built from an argument about how phones are shared, not from
+watching anybody share one. The structural claim inside it — that a helper's
+phone cannot answer for the person being helped — is true and tested. Whether
+the mode makes the app followable from over a shoulder is not.
+**Verify:** somebody who normally has a phone operated for them gets through
+onboarding and answers one poll, with the helper reading aloud.
+
+### G-10-05 · Intermittent connection is handled but not measured
+**Severity:** major
+The offline queue is covered by the transport check: writes queue and drain,
+refusals surface. What is not measured is the middle case that actually
+happens — a connection that is present, slow and failing intermittently, where
+a request neither succeeds nor fails cleanly. The 12-second timeout in
+`core/api.ts` is a guess.
+**Verify:** a flow completes on a connection that drops one request in three.
+
+### G-10-06 · The legacy shell had never been measured at all
+**Severity:** closed, and worth keeping written down
+Putting one `/app` route in front of the layout check found the topbar and the
+tab bar overflowing a 360px viewport in a longer language — since Phase 0. Both
+are fixed. The lesson is the finding: the Chowk shell had carried the
+shrink rule since Surface 1 and the legacy shell went without it for ten phases,
+because no route of its own was ever checked. A route left out of the checks is
+a route where nothing is verified.
+
+---
+
 ## Cross-cutting
 
 ### G-X-01 · Two design systems are loaded at once

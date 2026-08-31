@@ -24,7 +24,11 @@ export function useContentTint(
 
   useEffect(() => {
     const el = ref.current
-    if (!el || !sampler || !enabled) {
+    /* Sampling the ground on every scroll is a readPixels per frame. Worth it
+       for glass that behaves; not worth it on a device that has told us it is
+       small, where the blur it feeds has been switched off anyway. */
+    const lowPower = document.documentElement.dataset.power === 'low'
+    if (!el || !sampler || !enabled || lowPower) {
       setTint(null)
       return undefined
     }
