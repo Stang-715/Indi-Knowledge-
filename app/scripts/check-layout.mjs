@@ -52,7 +52,11 @@ const ROUTES = [
   ['Works · my streets', '/s/works/mine'],
   ['Works · the record', '/s/works/record'],
   ['Works · check a permit', '/s/works/permit'],
-  ['Bharat (stub)', '/s/bharat'],
+  ['Bharat · state', '/s/bharat'],
+  ['Bharat · weather', '/s/bharat/weather'],
+  ['Bharat · trade', '/s/bharat/trade'],
+  ['Bharat · shops', '/s/bharat/shops'],
+  ['Bharat · public map', '/s/bharat/map'],
 ]
 
 let failed = false

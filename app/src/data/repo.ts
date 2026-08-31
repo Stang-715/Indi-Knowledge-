@@ -49,7 +49,8 @@ export function canDo(purpose: PurposeId): boolean {
 import { read, write } from '../core/storage'
 import { enqueue, isPending } from '../core/sync'
 import {
-  cachedPosts, cachedReach, cachedTally, pullPosts, pullReach, pullTally,
+  cachedPosts, cachedReach, cachedStores, cachedTally, pullPosts, pullReach,
+  pullStores, pullTally,
 } from '../core/pull'
 import type {
   BrigadingFlag, Notice, Poll, Post, Report, ReportReason, Stance, Topic,
@@ -59,6 +60,12 @@ import {
 } from './seed'
 import { BILLS, CONSTITUENCIES, REPRESENTATIVES, VOTE_RECORDS } from './bills'
 import { CONSTITUTION } from './constitution'
+import { BRANDS, FLOWS, THROUGHPUT, WEATHER } from './bharat'
+import { PROFILES, STATES } from './states'
+import type {
+  Brand, CommodityFlow, PortThroughput, Sector, StateProfile, StateRef, Store,
+  StoreCategory, WeatherReading,
+} from '../core/bharat'
 import { DEPARTMENTS, STRETCHES, WORKS } from './works'
 import {
   departmentRecord, isLive, stateOf, stretchesForStreet,
@@ -816,4 +823,91 @@ export function overrunRecord(): DepartmentRecord[] {
     .map((d) => departmentRecord(d, WORKS))
     .filter((r) => r.finished > 0)
     .sort((a, b) => b.late - a.late || b.medianLateDays - a.medianLateDays)
+}
+
+/* --------------------------- Surface 2 — Bharat ---------------------------- */
+
+/**
+ * The almanac reads.
+ *
+ * Every number that leaves here is a `Figure`, which cannot exist without a
+ * source and the period it describes. That is the surface's exit criterion
+ * expressed as a type rather than as a rule somebody remembers.
+ */
+
+export function listStates(): StateRef[] {
+  return STATES
+}
+
+export function stateProfile(code: string): StateProfile | undefined {
+  return PROFILES[code]
+}
+
+export function weatherFor(code: string): WeatherReading[] {
+  return WEATHER.filter((w) => w.stateCode === code)
+}
+
+export function flowsFor(code: string): CommodityFlow[] {
+  return FLOWS.filter((f) => f.stateCode === code)
+}
+
+export function portsFor(code: string): PortThroughput[] {
+  return THROUGHPUT.filter((p) => p.stateCode === code)
+}
+
+export function brandsFor(code: string, sector?: Sector): Brand[] {
+  return BRANDS.filter((b) => b.stateCode === code && (!sector || b.sector === sector))
+}
+
+/** Every source named on the surface, so a reader can see the whole provenance at once. */
+export function sourcesUsed(code: string): { name: string; url: string }[] {
+  const seen = new Map<string, string>()
+  for (const w of weatherFor(code)) seen.set(w.sourceName, w.sourceUrl)
+  for (const f of flowsFor(code)) seen.set(f.sourceName, f.sourceUrl)
+  for (const p of portsFor(code)) seen.set(p.sourceName, p.sourceUrl)
+  for (const b of brandsFor(code)) seen.set(b.sourceName, b.sourceUrl)
+  const profile = stateProfile(code)
+  if (profile) seen.set(profile.sourceName, profile.sourceUrl)
+  return [...seen].map(([name, url]) => ({ name, url }))
+}
+
+/* ---- stores (2.6 / 2.7 / 2.8) ---- */
+
+/**
+ * Store listings, cached like everything else the server owns.
+ *
+ * Reads are synchronous from the cache and a fetch runs in the background, so
+ * the directory opens instantly on a bad connection and is a little behind
+ * rather than absent.
+ */
+export function listStores(): Store[] {
+  void pullStores()
+  const rows = cachedStores() ?? []
+  return rows
+    .filter((r) => !r.removed_at)
+    .map((r) => ({
+      id: r.id,
+      name: r.name,
+      category: r.category as StoreCategory,
+      address: r.address,
+      locality: r.locality,
+      district: r.district,
+      stateCode: r.state_code,
+      what: r.what,
+      hours: r.hours ?? undefined,
+      phone: r.phone ?? undefined,
+      at: typeof r.at_x === 'number' && typeof r.at_y === 'number'
+        ? { x: r.at_x, y: r.at_y }
+        : undefined,
+      listedAt: r.listed_at,
+      verified: r.verified === 1,
+    }))
+}
+
+export function getStore(id: string): Store | undefined {
+  return listStores().find((s) => s.id === id)
+}
+
+export function storesFor(code: string): Store[] {
+  return listStores().filter((s) => s.stateCode === code)
 }

@@ -25,7 +25,11 @@ import {
 import { GovHome, GovLogin, GovProvider, GovShell, useGov } from './gov/GovPortal'
 import ChowkShell from './surfaces/ChowkShell'
 import SarathiSurface from './surfaces/sarathi/SarathiSurface'
-import { BharatStub } from './surfaces/stubs'
+import BharatSurface from './surfaces/bharat/BharatSurface'
+import Weather from './surfaces/bharat/Weather'
+import Trade from './surfaces/bharat/Trade'
+import Shops, { StoreProfile } from './surfaces/bharat/Shops'
+import PublicMap from './surfaces/bharat/PublicMap'
 import WorksSurface from './surfaces/works/WorksSurface'
 import WorkDetail from './surfaces/works/WorkDetail'
 import MyStreets from './surfaces/works/MyStreets'
@@ -83,7 +87,12 @@ export default function App() {
               >
                 <Route index element={<Navigate to="/s/sarathi" replace />} />
                 <Route path="sarathi" element={<SarathiSurface />} />
-                <Route path="bharat" element={<BharatStub />} />
+                <Route path="bharat" element={<BharatSurface />} />
+                <Route path="bharat/weather" element={<Weather />} />
+                <Route path="bharat/trade" element={<Trade />} />
+                <Route path="bharat/shops" element={<Shops />} />
+                <Route path="bharat/shops/:id" element={<StoreProfile />} />
+                <Route path="bharat/map" element={<PublicMap />} />
                 <Route path="bills" element={<BillsSurface />} />
                 <Route path="bills/b/:id" element={<BillDetail />} />
                 <Route path="bills/constitution" element={<Constitution />} />

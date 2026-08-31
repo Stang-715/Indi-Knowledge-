@@ -1,0 +1,240 @@
+/* ------------------------------------------------------------------ *
+ * Surface 2 — Bharat.
+ *
+ * An almanac you trust: dense, and never showing off. This is the only
+ * surface where somebody arrives wanting numbers rather than an answer, so
+ * the density is high on purpose — and every number carries its period and
+ * its source at a size you can actually read, because the failure to design
+ * against is a page that looks authoritative over data from four months ago.
+ *
+ * Ink is pinned to the dark palette, as on Surfaces 3 and 4: MeshGround
+ * paints on a dark base in both themes. Harbour is the second-darkest of the
+ * four hues, so the secondary ink is raised here too rather than inherited.
+ * ------------------------------------------------------------------ */
+
+.bh {
+  display: grid;
+  gap: var(--sp-5);
+  align-content: start;
+  min-width: 0;
+}
+
+:root:not([data-contrast='high']) .bh {
+  --ink: var(--d-ink);
+  --ink-2: #ABB3C6;
+  --ink-3: #9AA3BA;
+  --hair: rgba(255, 255, 255, .22);
+  --ground-2: rgba(255, 255, 255, .10);
+  --solid: rgba(255, 255, 255, .08);
+  --glass: var(--d-glass);
+  --glass-line: var(--d-glass-line);
+  --glass-lift: var(--d-glass-lift);
+  --shade: var(--d-shade);
+  color: var(--ink);
+}
+
+.bh .glass {
+  background: linear-gradient(var(--scrim-strong), var(--scrim-strong)), var(--glass);
+}
+
+.bh__head { display: grid; gap: var(--sp-2); justify-items: start; min-width: 0; }
+.bh__title { font-size: clamp(2rem, 9vw, 2.6rem); margin: 0; }
+.bh__shopname {
+  margin: 0; font-family: var(--f-display); font-weight: 700; font-stretch: 88%;
+  font-size: clamp(1.4rem, 6vw, 1.8rem); line-height: 1.14; color: var(--ink);
+}
+.bh__tagline { margin: 0; color: var(--ink-2); font-size: .95rem; line-height: 1.5; }
+
+.bh__back {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: none; border: 0; padding: 6px 2px; text-decoration: none;
+  color: var(--ink-2); font: inherit; font-size: .86rem; font-weight: 600;
+  cursor: pointer; justify-self: start; min-height: 44px;
+}
+.bh__back:hover { color: var(--ink); }
+
+.bh__h2 {
+  margin: 0 0 var(--sp-3);
+  font-family: var(--f-display); font-weight: 700; font-stretch: 86%;
+  font-size: 1.05rem; letter-spacing: -.01em; color: var(--ink);
+}
+.bh__h3 { margin: var(--sp-3) 0 var(--sp-2); font-size: .9rem; font-weight: 700; color: var(--ink); }
+.bh__block { display: grid; gap: var(--sp-3); min-width: 0; }
+.bh__list { display: grid; gap: var(--sp-3); min-width: 0; }
+.bh__prose { margin: 0; line-height: 1.6; color: var(--ink); }
+.bh__note { margin: 0; color: var(--ink-2); font-size: .84rem; line-height: 1.55; }
+.bh__none { margin: 0; color: var(--ink-3); font-size: .88rem; }
+.bh__status { margin: 0; color: var(--ink); font-size: .9rem; font-weight: 650; }
+.bh__sample { margin: 0; font-size: .78rem; color: var(--ink-2); }
+.bh__chips { display: flex; flex-wrap: wrap; gap: var(--sp-2); }
+
+.bh__num {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 30px; height: 26px; padding: 0 6px;
+  border-radius: var(--r-xs); background: var(--ground-2);
+  font-family: var(--f-display); font-weight: 700; font-size: .74rem;
+  letter-spacing: .04em; color: var(--ink);
+}
+
+.bh__facts { display: grid; gap: 2px; margin: 0; min-width: 0; }
+.bh__facts dt {
+  font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--ink-2); margin-top: var(--sp-3);
+}
+.bh__facts dd { margin: 0; font-size: .95rem; line-height: 1.5; color: var(--ink); }
+
+.bh__sources { margin: var(--sp-2) 0 0; padding-left: var(--sp-4); display: grid; gap: 6px; }
+.bh__sources a { color: var(--ink); }
+
+/* --------------------------------- figures -------------------------------- */
+
+.fig {
+  display: grid; gap: 2px; min-width: 0;
+  padding: var(--sp-3);
+  border-radius: var(--r-s);
+  border: 1px solid var(--hair);
+  background: rgba(255, 255, 255, .05);
+}
+.fig__label {
+  font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--ink-2);
+}
+.fig__value {
+  font-family: var(--f-display); font-weight: 700; font-stretch: 78%;
+  font-variant-numeric: tabular-nums; letter-spacing: -.02em;
+  font-size: 1.2rem; line-height: 1.06; color: var(--ink);
+}
+.fig--lead .fig__value { font-size: clamp(1.5rem, 6vw, 1.9rem); }
+.fig__period { font-size: .76rem; color: var(--ink-2); }
+.fig__age { color: var(--ink-2); }
+.fig__source { font-size: .74rem; color: var(--ink-2); text-decoration: underline; }
+.fig__method { font-size: .74rem; line-height: 1.45; color: var(--ink-2); }
+.fig__sample {
+  justify-self: start; margin-top: 3px;
+  font-size: .68rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+  border-radius: var(--r-pill); padding: 2px 8px;
+  border: 1px dashed var(--hair); color: var(--ink);
+}
+.fig.is-stale { border-color: var(--alert); }
+.fig__stalemark {
+  justify-self: start; margin-top: 3px;
+  font-size: .72rem; font-weight: 700; color: #FFB4A2;
+}
+.fig__inline {
+  font-family: var(--f-display); font-weight: 700; font-variant-numeric: tabular-nums;
+}
+
+.bh__grid {
+  display: grid; gap: var(--sp-2);
+  grid-template-columns: repeat(auto-fit, minmax(148px, 1fr));
+  min-width: 0;
+}
+
+/* -------------------------------- timeline -------------------------------- */
+
+.tl { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--sp-3); }
+.tl__item {
+  display: grid; gap: 3px; min-width: 0;
+  padding-left: var(--sp-4); border-left: 2px solid var(--hair);
+}
+.tl__year {
+  font-family: var(--f-display); font-weight: 700; font-variant-numeric: tabular-nums;
+  font-size: .95rem; color: var(--ink);
+}
+.tl__what { font-size: .88rem; line-height: 1.55; color: var(--ink-2); }
+
+/* --------------------------------- weather -------------------------------- */
+
+.wx { display: grid; gap: var(--sp-3); padding: var(--sp-4); min-width: 0; }
+.wx__district {
+  margin: 0; font-family: var(--f-display); font-weight: 700; font-stretch: 88%;
+  font-size: 1.05rem; color: var(--ink);
+}
+.wx__adv { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--sp-2); }
+.wx__adv-item {
+  display: grid; gap: 3px; padding: var(--sp-3);
+  border-radius: var(--r-s); border-left: 3px solid var(--hair);
+  background: rgba(255, 255, 255, .05);
+}
+.wx__adv-item--heat, .wx__adv-item--flood { border-left-color: var(--alert); }
+.wx__adv-kind {
+  font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--ink-2);
+}
+.wx__adv-text { font-size: .9rem; line-height: 1.55; color: var(--ink); }
+
+/* ---------------------------------- trade --------------------------------- */
+
+.fl { display: grid; gap: var(--sp-2); padding: var(--sp-4); min-width: 0; }
+.fl__name {
+  margin: 0; font-family: var(--f-display); font-weight: 700; font-stretch: 88%;
+  font-size: 1.05rem; color: var(--ink);
+}
+.fl__period { margin: 0; font-size: .78rem; color: var(--ink-2); }
+.fl__dest {
+  display: grid; gap: var(--sp-2);
+  grid-template-columns: repeat(auto-fit, minmax(148px, 1fr));
+}
+
+/* ---------------------------------- shops --------------------------------- */
+
+.sh {
+  display: grid; gap: 4px; padding: var(--sp-4);
+  text-decoration: none; color: inherit; min-width: 0;
+}
+.sh__name { font-weight: 700; font-size: 1rem; color: var(--ink); }
+.sh__meta { display: flex; flex-wrap: wrap; gap: 6px; }
+.sh__tag {
+  font-size: .68rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+  border-radius: var(--r-pill); padding: 3px 9px;
+  border: 1px solid var(--hair); color: var(--ink);
+}
+.sh__tag--ok { border-color: transparent; background: #6FC5A0; color: #12151F; }
+.sh__tag--un { border-style: dashed; }
+.sh__what { font-size: .9rem; line-height: 1.5; color: var(--ink); }
+.sh__where { font-size: .8rem; color: var(--ink-2); }
+
+/* -------------------------------- the map --------------------------------- */
+
+.pmap {
+  width: 100%; aspect-ratio: 1; display: block;
+  border-radius: var(--r-l);
+  background: rgba(255, 255, 255, .05);
+  border: 1px solid var(--glass-line);
+}
+.pmap__road {
+  fill: none; stroke: rgba(255, 255, 255, .20);
+  stroke-width: 9; stroke-linecap: round; stroke-linejoin: round;
+}
+.pmap__work { fill: #8FA3C8; }
+.pmap__work--open { fill: #6FC5A0; }
+.pmap__work--overrun { fill: #F0846B; }
+.pmap__shop { cursor: pointer; }
+.pmap__shop-dot { fill: #E8C468; stroke: rgba(0, 0, 0, .45); stroke-width: 3; }
+.pmap__shop-dot--unplaced { fill: none; stroke: #E8C468; stroke-dasharray: 4 3; }
+.pmap__shop.is-on .pmap__shop-dot { stroke: #fff; stroke-width: 4; }
+.pmap__shop:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+
+/* ------------------------------------------------------------------ *
+ * Shrinking — the same rule Surfaces 3 and 4 needed.
+ * ------------------------------------------------------------------ */
+.bh :where(div, p, span, a, button, section, article, header, ol, ul, li,
+           details, summary, h1, h2, h3, input, textarea, select, aside, label, dl, dt, dd) {
+  min-width: 0;
+}
+.bh :where(h1, h2, h3, p, span, a, li, dd, summary) { overflow-wrap: anywhere; }
+.bh > *,
+.bh__head > *,
+.bh__block > *,
+.bh__list > *,
+.bh__grid > *,
+.fig > * { max-width: 100%; }
+
+.bh .chip[aria-pressed='true'], .bh .chip.is-on {
+  background: var(--hue);
+  border-color: var(--hue);
+  color: var(--on-hue);
+}
+.bh .seg button { color: var(--ink); }
+.bh .seg button[aria-selected='true'] { color: var(--on-hue); }
+.bh .field__hint { color: var(--ink-2); }

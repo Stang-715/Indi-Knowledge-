@@ -74,7 +74,10 @@ const CROSS = {
  * Scanning the whole raw file instead would fire on the prose in the comments. */
 const schemaOf = (raw) => {
   const m = raw.match(/db\.exec\(`([\s\S]*?)`\)/g) ?? []
-  return m.join('\n')
+  // SQL comments are stripped: a note explaining why a column must never exist
+  // should not trip the rule that the column must never exist. The works store
+  // carries exactly such a note and the first version of this rule failed it.
+  return m.join('\n').replace(/--[^\n]*/g, ' ')
 }
 for (const f of files) {
   const pattern = CROSS[f.rel]

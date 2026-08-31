@@ -160,6 +160,33 @@ for (const file of files) {
   }
 }
 
+/* Surface 2's exit criterion, made structural.
+ *
+ * Every number on the almanac must name its source and the period it describes.
+ * `core/figures.ts` makes a number un-constructable without both, and one
+ * component prints them. The gap that leaves is a screen formatting a raw value
+ * itself — a tile added in a hurry, the source promised for later. So number
+ * formatting is confined to the two files that own it, and anywhere else on the
+ * surface it is a build failure.
+ *
+ * `String(n)` is not formatting and is not caught: it is how a count of list
+ * items or a year reaches a label, and neither is a measured quantity. */
+const FORMATTING = /\.toLocaleString\s*\(|\.toFixed\s*\(|\.toPrecision\s*\(|Intl\.NumberFormat/
+const MAY_FORMAT = ['core/figures.ts', 'surfaces/bharat/Figure.tsx']
+for (const file of files) {
+  const rel = file.rel.replace(/\\/g, '/')
+  if (!rel.startsWith('surfaces/bharat/') && rel !== 'core/figures.ts') continue
+  if (MAY_FORMAT.includes(rel)) continue
+  if (FORMATTING.test(file.code)) {
+    failures.push(
+      `[surface 2] ${file.rel} formats a number itself. Every figure on the almanac has to ` +
+        `carry its source and its period, which only core/figures.ts and the Figure ` +
+        `component can guarantee. A value formatted anywhere else is one that shipped ` +
+        `without saying where it came from.`,
+    )
+  }
+}
+
 /* Principle 4 — the audit trail is append-only. */
 const audit = files.find((f) => f.rel.replace(/\\/g, '/') === 'core/audit.ts')
 if (audit && /export function (delete|remove|edit|update|clear)/i.test(audit.code)) {

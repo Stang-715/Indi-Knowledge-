@@ -41,6 +41,9 @@ const FRAMES = [0, 2200, 4600]
 const ROUTES = [
   { path: '/s/sarathi', name: 'Sarathi' },
   { path: '/s/bharat', name: 'Bharat' },
+  { path: '/s/bharat/weather', name: 'Weather' },
+  { path: '/s/bharat/trade', name: 'Trade' },
+  { path: '/s/bharat/shops', name: 'Shops' },
   { path: '/s/bills', name: 'Bills' },
   { path: '/s/bills/b/bill_water', name: 'Bill detail' },
   { path: '/s/bills/b/bill_transport', name: 'Unreadable source' },

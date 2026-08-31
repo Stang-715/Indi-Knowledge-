@@ -122,6 +122,7 @@ const setup = await page.evaluate(async () => {
     deptkey: await import('/src/core/deptkey.ts'),
     institution: await import('/src/core/institution.ts'),
     api: await import('/src/core/api.ts'),
+    storeclaim: await import('/src/core/storeclaim.ts'),
   }
   const record = await id.recordVerification('E2E-12345671', 'National ID Verification Service')
   const tokens = await id.refillTokens()
@@ -431,6 +432,49 @@ check('and the phone verifies the signature itself against the pinned root',
 check('the permit names a department the register vouches for',
   verified.enrolledBy === 'automatic', String(verified.enrolledBy))
 check('an invented permit number is not found', verified.missingFound === false)
+
+/* --- Phase 8: a shop lists itself, and carries no pseudonym --- */
+
+const shop = await page.evaluate(async () => {
+  const { storeclaim, api, repo, pull } = window.__chowk
+  const id = `st_e2e_${Date.now().toString(36)}`
+  const ownerDigest = await storeclaim.claimStore(id)
+  const res = await fetch(`${api.API_BASE}/v1/stores`, {
+    method: 'POST', headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({
+      id, name: 'E2E Provisions', category: 'grocery',
+      address: '12 Market Approach', locality: 'Ward 12', district: 'Pune',
+      stateCode: 'MH', what: 'Dry goods.', ownerDigest,
+    }),
+  }).then((r) => r.json())
+
+  await pull.pullStores()
+  const listed = repo.listStores().find((s) => s.id === id)
+
+  /* What this device kept about listings, so the test looks for a pseudonym
+     rather than taking its absence on trust. Scoped to the store keys: the
+     discussion cache beside them holds post authors' pseudonyms quite
+     legitimately, and a scan wide enough to catch those proves nothing. */
+  const localKeys = ['cdp:content:store-claims', 'cdp:content:srv:stores']
+    .map((k) => `${k}=${localStorage.getItem(k) ?? ''}`)
+    .join(' | ')
+
+  return {
+    ok: res.ok === true,
+    found: Boolean(listed),
+    verified: listed?.verified ?? null,
+    hasPseudonymField: listed ? Object.keys(listed).some((k) => /pseudonym/i.test(k)) : true,
+    localMentionsPseudonym: /pseudonym|SteadyFerry912|HeldElsewhere42/i.test(localKeys),
+    claimedHere: storeclaim.listedHere(id),
+  }
+})
+
+check('a shop lists itself with no account', shop.ok && shop.found)
+check('and is published unverified', shop.verified === false, String(shop.verified))
+check('the listing carries no pseudonym field', shop.hasPseudonymField === false)
+check('and neither the listing cache nor the edit secret names a pseudonym',
+  shop.localMentionsPseudonym === false)
+check('the device keeps the secret that lets it edit the listing', shop.claimedHere === true)
 
 await browser.close()
 console.log(`\n${failures === 0 ? '✓ the client runs on the API, online and off.' : `✗ ${failures} failed`}\n`)

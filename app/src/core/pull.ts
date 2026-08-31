@@ -112,3 +112,34 @@ export function pullReach(noticeId: string): Promise<void> {
     return typeof res.seen === 'number' ? changed(key, res.seen) : false
   })
 }
+
+/* --------------------------------- stores ---------------------------------- */
+
+export interface CachedStore {
+  id: string
+  name: string
+  category: string
+  address: string
+  locality: string
+  district: string
+  state_code: string
+  what: string
+  hours?: string | null
+  phone?: string | null
+  at_x?: number | null
+  at_y?: number | null
+  listed_at: number
+  verified: number
+  removed_at?: number | null
+}
+
+export function cachedStores(): CachedStore[] | null {
+  return read<CachedStore[] | null>('content', 'srv:stores', null)
+}
+
+export function pullStores(): Promise<void> {
+  return once('srv:stores', async () => {
+    const res = await apiGet<{ stores?: CachedStore[] }>('/v1/stores')
+    return Array.isArray(res.stores) ? changed('srv:stores', res.stores) : false
+  })
+}

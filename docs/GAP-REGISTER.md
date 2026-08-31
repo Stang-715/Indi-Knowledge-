@@ -722,6 +722,78 @@ to a phone that only has the root key.
 
 ---
 
+## Phase 8 — Surface 2, Bharat
+
+### G-8-01 · No live feed behind any figure
+**Severity:** blocker for the phase's exit criterion
+Every number on the surface names a source and a period, and the mechanism that
+makes that unavoidable is real: `Figure` cannot be constructed without both, one
+component prints them, and the build fails if anything else formats a number.
+What is behind them is invented. Weather is not IMD, trade is not APEDA, port
+throughput is not the port authorities — the names and links are where the real
+data would come from, so the shape a feed has to fit is already on screen.
+The plan named data licensing as one of this phase's two non-technical risks,
+and it is the live one: several of these sources publish in forms that are not
+licensed for redistribution.
+**Do:** settle licensing before wiring, source by source, and treat a source
+that cannot be redistributed as a link rather than a figure.
+**Verify:** a figure's value changes because its source published, and every
+source on the page is one we are permitted to republish.
+
+### G-8-02 · The directory entries are fictional firms
+**Severity:** blocker before release
+A directory entry claims a named business exists and does a particular thing.
+Inventing one against a real company's name is a claim about somebody else's
+business, so the firms here are made up and every card says so. `registerEntry`
+is the field that will carry the identifier — an MCA company master entry, a
+state industries directory listing — that makes the claim checkable.
+**Verify:** every entry traces to a register, and a firm can see what is said
+about it and how to correct it.
+
+### G-8-03 · Store moderation has no human behind it
+**Severity:** blocker before the directory opens
+Listings auto-publish, are marked unverified, and can be reported. The report
+lands in a queue on the server. Nobody reads that queue, there is no
+verification tier, and nothing that would let a person work through reports at
+the volume the plan expects on day one.
+This is the phase's second named non-technical risk and it is not a software
+problem: the moderation load the day store listings open needs staffing, a
+policy for what "verified" means, and somebody accountable for applying it.
+**Do:** define the verified tier, staff the queue, and do not open listings in
+a locality before both exist there.
+**Verify:** a report is answered by a person within a stated time, and the
+directory says what verified actually checked.
+
+### G-8-04 · A shop's map pin cannot be placed yet
+**Severity:** minor
+The listing form takes a stated address but no position, so a new shop is laid
+out along the bottom band of the public map rather than dropped from it. That is
+deliberate — an entry that vanishes because a field was left blank is an entry
+its owner cannot find — but it means the map is only as useful as the sample
+data until placing a pin exists.
+**Do:** let the lister drag a pin on the ward map. The pin is a statement about
+a business, made by its owner; nothing may read a position from the device.
+**Verify:** a shop appears where its owner put it, and no code path obtains that
+point any other way.
+
+### G-8-05 · State profiles are a written snapshot, not a fetch
+**Severity:** major
+Formation dates, capitals and seat counts are stable public facts, written from
+public record against named sources and dated. District counts carry their own
+note saying they move. Nothing is fetched, so the `asOf` never advances on its
+own — the same gap as G-5-03 for the Constitution, and it has the same fix.
+**Verify:** the snapshot date moves when the source does.
+
+### G-8-06 · The almanac is not in the sync layer
+**Severity:** major
+Stores come from the server and cache like everything else. States, weather,
+trade and the directory are bundled with the app and cannot change without a
+release. The client half of G-4-07, now across three surfaces.
+**Verify:** a figure updated on the server reaches an installed app without a
+store release.
+
+---
+
 ## Cross-cutting
 
 ### G-X-01 · Two design systems are loaded at once

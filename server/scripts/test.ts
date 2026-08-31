@@ -535,6 +535,45 @@ const invented = await get('/v1/permits/verify?number=CHK-26-000000')
 check('an invented permit number is not found',
   invented.ok === false && invented.reason === 'no-such-permit', invented.reason)
 
+/* ---- Phase 8: a store listing carries no identity ---- */
+
+const digest = 'a'.repeat(64)
+const storeId = `st_${stamp7}`
+const listed = await post('/v1/stores', {
+  id: storeId, name: 'Corner Provisions', category: 'grocery',
+  address: '12 Market Approach', locality: 'Ward 12', district: 'Pune', stateCode: 'MH',
+  what: 'Dry goods, milk, and a photocopier.', ownerDigest: digest,
+})
+check('a business can list itself with no account', listed.ok === true, listed.reason)
+
+const withPseudonym = await post('/v1/stores', {
+  id: `${storeId}_p`, name: 'Named Shop', category: 'grocery',
+  address: '13 Market Approach', locality: 'Ward 12', district: 'Pune', stateCode: 'MH',
+  what: 'Anything.', ownerDigest: digest, pseudonym: 'SteadyFerry912',
+})
+check('a listing that carries a pseudonym is refused outright',
+  withPseudonym.ok === false && withPseudonym.reason === 'no-pseudonym-here',
+  withPseudonym.reason)
+
+const storeList = await get('/v1/stores') as { stores: Record<string, unknown>[] }
+const mineStore = storeList.stores.find((s) => s.id === storeId)
+check('a new listing is published unverified',
+  mineStore !== undefined && mineStore.verified === 0, String(mineStore?.verified))
+
+const wrongDigest = await post('/v1/stores/edit', {
+  id: storeId, ownerDigest: 'b'.repeat(64), name: 'Hijacked',
+})
+check('a listing cannot be edited without the secret that made it',
+  wrongDigest.ok === false && wrongDigest.reason === 'not-yours', wrongDigest.reason)
+
+const rightDigest = await post('/v1/stores/edit', {
+  id: storeId, ownerDigest: digest, name: 'Corner Provisions & Stationery',
+})
+check('and can be edited with it', rightDigest.ok === true, rightDigest.reason)
+
+const reported = await post('/v1/stores/report', { store: storeId, reason: 'wrong-details' })
+check('a listing can be reported by anyone', reported.ok === true, reported.reason)
+
 /* --- the works store holds no citizen --- */
 
 const worksDb = new DatabaseSync(join(DATA, 'works.db'))

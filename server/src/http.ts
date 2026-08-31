@@ -542,6 +542,66 @@ const routes: Record<string, (body: Record<string, unknown>, url: URL) => unknow
     }
   },
 
+  /* --- 2.6 / 2.7 / 2.8 store listings --- */
+
+  /**
+   * Listing a shop.
+   *
+   * No pseudonym is accepted here, and none is stored. What the device sends is
+   * the digest of a secret it keeps, which lets it edit the listing later and
+   * tells this server nothing about who made it. A directory entry that carried
+   * its lister's pseudonym would turn every pseudonymous post that person had
+   * ever made into a statement by a named business at a known address.
+   *
+   * Published immediately and marked unverified, because the alternative — a
+   * queue nobody staffs — is a directory with nothing in it. The report route
+   * below is the other half of that bargain and it needs a person behind it.
+   */
+  'POST /v1/stores': (body) => {
+    const {
+      id, name, category, address, locality, district, stateCode, what, hours, phone,
+      ownerDigest,
+    } = body as Record<string, string>
+    if (!id || !name || !address || !ownerDigest) return { ok: false, reason: 'incomplete' }
+    if (name.length > 120 || what?.length > 400) return { ok: false, reason: 'too-long' }
+    if (!/^[0-9a-f]{16,128}$/.test(ownerDigest)) return { ok: false, reason: 'bad-digest' }
+    if ('pseudonym' in body) return { ok: false, reason: 'no-pseudonym-here' }
+
+    works.putStore({
+      id, name, category: category || 'other', address,
+      locality: locality || '', district: district || '', state_code: stateCode || '',
+      what: what || '', hours: hours || null, phone: phone || null,
+      at_x: typeof body.atX === 'number' ? body.atX : null,
+      at_y: typeof body.atY === 'number' ? body.atY : null,
+      listed_at: Date.now(), verified: 0, owner_digest: ownerDigest,
+    })
+    audit.append('automated', 'Store directory', 'store.list', locality || 'unstated',
+      'A business listed itself. Published unverified; no identity was recorded.')
+    return { ok: true, id }
+  },
+
+  'GET /v1/stores': () => ({ stores: works.listStores() }),
+
+  'POST /v1/stores/edit': (body) => {
+    const { id, ownerDigest } = body as Record<string, string>
+    if (!works.editStore(id, ownerDigest, body as Record<string, never>)) {
+      return { ok: false, reason: 'not-yours' }
+    }
+    return { ok: true }
+  },
+
+  'POST /v1/stores/report': (body) => {
+    const { store: storeId, reason, note } = body as Record<string, string>
+    if (!works.store(storeId)) return { ok: false, reason: 'no-such-store' }
+    works.reportStore(
+      `sr_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 7)}`,
+      storeId, reason || 'other', note || '',
+    )
+    audit.append('automated', 'Store directory', 'store.report', storeId,
+      'A listing was reported. Queued for a human; nothing about the reporter was kept.')
+    return { ok: true }
+  },
+
   /* --- oversight --- */
 
   'GET /v1/audit': () => ({ entries: audit.list() }),

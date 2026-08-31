@@ -221,6 +221,40 @@ roadworks and permits are public records and there is no citizen in it at all.
 It is still a separate file, so "the works table has a citizen column now" is a
 change that cannot be made rather than one that is discouraged.
 
+## Surface 2 — Bharat, and the figure that cannot ship bare
+
+The exit criterion is one sentence: every number can name its source and its
+age, and no figure ships without both. That is easy to write and hard to keep —
+the pressure is always one more tile, the source added later, later never
+arriving. The failure is not an error; it is a screen that looks authoritative
+over data four months old, which is worse than an empty screen because somebody
+acts on it.
+
+So the criterion is a type. `core/figures.ts` exports a branded `Figure` that no
+object literal satisfies: the only way to obtain one is `figure()`, and that
+will not compile without a source, a URL and the period the number describes.
+`surfaces/bharat/Figure.tsx` is the one component that prints one, and the
+constraint check fails the build if any other file on the surface calls a
+number-formatting API. Derived numbers inherit the oldest period and the weakest
+provenance of their inputs, so a change computed from an official figure and a
+sample one is not presented as official.
+
+**A store listing carries no pseudonym, and cannot.** A shop has a name, a
+stated address and opening hours; the person who listed it has a pseudonym they
+post and vote under. Joining those would make every pseudonymous opinion its
+owner ever expressed attributable to a named business at a known address — a
+deanonymisation the platform would have performed on itself, in exchange for an
+edit button. So the listing device mints a secret and sends only its digest:
+a capability that proves you can edit this listing and says nothing about who
+you are. Losing it means losing the edit, which is the price of having no
+account; a recovery flow would be an identity by another name. The server
+refuses outright any listing that arrives carrying a pseudonym.
+
+Listings publish immediately and are marked unverified, with a report route
+beside them. A queue nobody staffs is a directory with nothing in it — but the
+report route is the other half of that bargain and needs a person behind it from
+the day the directory opens.
+
 ## Not yet built
 
 - Surfaces 2 and 4. Bharat and Works are still the planned-page stubs.

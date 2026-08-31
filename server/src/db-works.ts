@@ -77,6 +77,50 @@ db.exec(`
     sig         TEXT NOT NULL
   );
 
+  -- A shop, listed by whoever runs it.
+  --
+  -- There is no pseudonym column here and there never may be. A shop has a
+  -- name and a stated address; the person who listed it has a pseudonym they
+  -- post and vote under. Joining the two would make every pseudonymous
+  -- opinion its owner ever expressed attributable to a named business at a
+  -- known address — a deanonymisation this platform would have performed on
+  -- itself, for the convenience of an edit button.
+  --
+  -- What is stored instead is the digest of a secret the listing device holds.
+  -- It proves you can edit this listing and says nothing about who you are.
+  CREATE TABLE IF NOT EXISTS store (
+    id           TEXT PRIMARY KEY,
+    name         TEXT NOT NULL,
+    category     TEXT NOT NULL,
+    address      TEXT NOT NULL,
+    locality     TEXT NOT NULL,
+    district     TEXT NOT NULL,
+    state_code   TEXT NOT NULL,
+    what         TEXT NOT NULL,
+    hours        TEXT,
+    phone        TEXT,
+    at_x         REAL,
+    at_y         REAL,
+    listed_at    INTEGER NOT NULL,
+    -- False until a human has checked it against something. The directory says
+    -- so rather than implying a check nobody performed.
+    verified     INTEGER NOT NULL DEFAULT 0,
+    removed_at   INTEGER,
+    removed_reason TEXT,
+    owner_digest TEXT NOT NULL
+  );
+
+  -- Reports against listings. Auto-publish with a report route was the plan;
+  -- this is the route, and it needs a human behind it from day one.
+  CREATE TABLE IF NOT EXISTS store_report (
+    id        TEXT PRIMARY KEY,
+    store     TEXT NOT NULL,
+    reason    TEXT NOT NULL,
+    note      TEXT,
+    at        INTEGER NOT NULL,
+    status    TEXT NOT NULL CHECK (status IN ('open','upheld','dismissed'))
+  );
+
   -- The registry root's own key, so it survives a restart. A root that changed
   -- on every deploy would invalidate every permit ever issued.
   CREATE TABLE IF NOT EXISTS root_key (
@@ -236,4 +280,73 @@ export function permitForFiling(filingId: string): PermitRow | undefined {
 
 export function permits(): PermitRow[] {
   return db.prepare('SELECT * FROM permit ORDER BY issued_at DESC').all() as PermitRow[]
+}
+
+
+/* ---------------------------------- stores --------------------------------- */
+
+export interface StoreRow {
+  id: string
+  name: string
+  category: string
+  address: string
+  locality: string
+  district: string
+  state_code: string
+  what: string
+  hours?: string | null
+  phone?: string | null
+  at_x?: number | null
+  at_y?: number | null
+  listed_at: number
+  verified: number
+  removed_at?: number | null
+  removed_reason?: string | null
+  owner_digest: string
+}
+
+export function listStores(): StoreRow[] {
+  return db.prepare('SELECT * FROM store ORDER BY listed_at DESC').all() as StoreRow[]
+}
+
+export function store(id: string): StoreRow | undefined {
+  return db.prepare('SELECT * FROM store WHERE id = ?').get(id) as StoreRow | undefined
+}
+
+export function putStore(row: StoreRow): void {
+  db.prepare(`
+    INSERT OR IGNORE INTO store
+      (id, name, category, address, locality, district, state_code, what, hours, phone,
+       at_x, at_y, listed_at, verified, owner_digest)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, ?)
+  `).run(row.id, row.name, row.category, row.address, row.locality, row.district,
+    row.state_code, row.what, row.hours ?? null, row.phone ?? null,
+    row.at_x ?? null, row.at_y ?? null, row.listed_at, row.owner_digest)
+}
+
+/** Edits are gated on the digest, which is a capability rather than an identity. */
+export function editStore(id: string, digest: string, patch: Partial<StoreRow>): boolean {
+  const held = store(id)
+  if (!held || held.owner_digest !== digest) return false
+  db.prepare(`
+    UPDATE store SET name = ?, category = ?, address = ?, what = ?, hours = ?, phone = ?
+    WHERE id = ?
+  `).run(
+    patch.name ?? held.name, patch.category ?? held.category,
+    patch.address ?? held.address, patch.what ?? held.what,
+    patch.hours ?? held.hours ?? null, patch.phone ?? held.phone ?? null, id,
+  )
+  return true
+}
+
+export function reportStore(id: string, storeId: string, reason: string, note: string): void {
+  db.prepare(`
+    INSERT OR IGNORE INTO store_report (id, store, reason, note, at, status)
+    VALUES (?, ?, ?, ?, ?, 'open')
+  `).run(id, storeId, reason, note, Date.now())
+}
+
+export function storeReports(status = 'open'): Record<string, unknown>[] {
+  return db.prepare('SELECT * FROM store_report WHERE status = ? ORDER BY at DESC')
+    .all(status) as Record<string, unknown>[]
 }
