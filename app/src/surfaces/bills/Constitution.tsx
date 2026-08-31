@@ -60,7 +60,7 @@ export default function Constitution() {
           : (
             <div className="bl__list">
               {hits.map((hit) => (
-                <article key={`${hit.kind}-${hit.id}`} className="ce glass">
+                <article key={`${hit.kind}-${hit.id}`} className="ce glass-dark">
                   <h2 className="ce__title">{hit.title}</h2>
                   <p className="ce__detail">{hit.detail}</p>
                 </article>
@@ -128,7 +128,7 @@ export default function Constitution() {
           {tab === 'schedules' && (
             <div className="bl__list">
               {data.schedules.map((s) => (
-                <article key={s.number} className="ce glass">
+                <article key={s.number} className="ce glass-dark">
                   <h2 className="ce__title">{s.title}</h2>
                   <p className="ce__detail">{s.subject}</p>
                 </article>
@@ -145,7 +145,7 @@ export default function Constitution() {
               </p>
               <div className="bl__list">
                 {data.amendments.map((a) => (
-                  <article key={a.number} className="ce glass">
+                  <article key={a.number} className="ce glass-dark">
                     <h2 className="ce__title">{a.shortTitle}</h2>
                     <p className="ce__meta">{a.year}</p>
                     <p className="ce__detail">{a.effect}</p>

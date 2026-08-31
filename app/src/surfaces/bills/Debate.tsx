@@ -92,7 +92,7 @@ export default function Debate() {
           const counts = reactionDelta(p)
           const mine = myReaction(p.id)
           return (
-            <article key={p.id} className="dp glass">
+            <article key={p.id} className="dp glass-dark">
               <p className="dp__who">
                 <span className="dp__name">{p.authorPseudonym}</span>
                 {p.authorPseudonym === me && <span className="dp__you">{t('common.you')}</span>}
@@ -102,11 +102,11 @@ export default function Debate() {
               </p>
               <p className="dp__body">{p.body}</p>
               <p className="dp__acts">
-                <button type="button" className="chip" aria-pressed={mine === 'agree'}
+                <button type="button" className="chip chip--glass" aria-pressed={mine === 'agree'}
                   onClick={() => { react(p.id, 'agree'); force((n) => n + 1) }}>
                   {t('discuss.agree')} {counts.agree}
                 </button>
-                <button type="button" className="chip" aria-pressed={mine === 'disagree'}
+                <button type="button" className="chip chip--glass" aria-pressed={mine === 'disagree'}
                   onClick={() => { react(p.id, 'disagree'); force((n) => n + 1) }}>
                   {t('discuss.disagree')} {counts.disagree}
                 </button>
@@ -127,7 +127,7 @@ export default function Debate() {
           <label className="field__label" htmlFor="dp-stance">{t('discuss.stance')}</label>
           <div className="dp__stances" id="dp-stance">
             {(['support', 'oppose', 'mixed', 'question'] as Stance[]).map((s) => (
-              <button key={s} type="button" className="chip" aria-pressed={stance === s}
+              <button key={s} type="button" className="chip chip--glass" aria-pressed={stance === s}
                 onClick={() => setStance(s)}>
                 {t(`discuss.stance.${s}`)}
               </button>

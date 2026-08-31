@@ -98,7 +98,7 @@ function List({
   return (
     <div className="bl__list">
       {items.map((c) => (
-        <button key={c.id} type="button" className="seat glass glass--press"
+        <button key={c.id} type="button" className="seat glass-dark glass--press"
           onClick={() => onPick(c.id)}>
           <span className="seat__name">{c.name}</span>
           <span className="seat__where">{c.state} · {c.districts.join(', ')}</span>
@@ -127,7 +127,7 @@ function Seat({ id }: { id: string }) {
         {rep ? (
           <>
             <SourceFallback of={rep} />
-            <article className="rep glass">
+            <article className="rep glass-dark">
               <p className="rep__name">{rep.name}</p>
               <p className="rep__party">{rep.party}</p>
               <p className="rep__since">
@@ -149,7 +149,7 @@ function Seat({ id }: { id: string }) {
             {votingRecord(rep.id).map(({ bill, record }) => {
               const position = record?.position ?? 'not-recorded'
               return (
-                <Link key={bill.id} to={`/s/bills/b/${bill.id}`} className="vr glass glass--press">
+                <Link key={bill.id} to={`/s/bills/b/${bill.id}`} className="vr glass-dark glass--press">
                   <span className="vr__bill">{bill.title}</span>
                   <span className={`vr__pos vr__pos--${position}`}>
                     {t(`seat.vote.${position}`)}

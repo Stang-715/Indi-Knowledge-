@@ -37,7 +37,7 @@ export function ProvenanceChip({ of }: { of: Sourced }) {
 export function SourceLink({ of }: { of: Sourced }) {
   const t = useT()
   return (
-    <a className="btn btn--ghost btn--sm src__link" href={of.sourceUrl}
+    <a className="btn btn--glass btn--sm src__link" href={of.sourceUrl}
       target="_blank" rel="noreferrer noopener">
       {t('bills.source')}
       <span className="src__name">{of.sourceName}</span>

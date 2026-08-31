@@ -29,16 +29,39 @@
  * that mode replaces the material entirely and its tokens must win.
  * ------------------------------------------------------------------ */
 :root:not([data-contrast='high']) .bl {
-  --ink: var(--d-ink);
-  --ink-2: var(--d-ink-2);
-  --ink-3: var(--d-ink-3);
-  --hair: rgba(255, 255, 255, .22);
-  --ground-2: rgba(255, 255, 255, .10);
-  --solid: rgba(255, 255, 255, .08);
+  --ink: #FFFFFF;
+  /* The dark theme's own secondary ink is not bright enough over a violet
+     bloom. Measured, not guessed: #98A0B8 came back at 2.2:1 against the
+     lightest panel on the surface. */
+  --ink-2: rgba(255, 255, 255, .86);
+  --ink-3: rgba(255, 255, 255, .74);
+  --hair: rgba(255, 255, 255, .26);
+  --ground-2: var(--scrim-strong);
+  --solid: var(--scrim);
   --glass: var(--d-glass);
   --glass-line: var(--d-glass-line);
   --glass-lift: var(--d-glass-lift);
   --shade: var(--d-shade);
+  color: var(--ink);
+}
+
+/* Anything with its own surface gets the scrim the design system already
+   proved holds AA over a bloom, rather than a white wash that lightens the
+   ground under the text. */
+:root:not([data-contrast='high']) .bl :where(.srcfall, .vote__opt, .seg, .clause__num),
+:root:not([data-contrast='high']) .bl :where(.field input, .field textarea, .field select) {
+  background: linear-gradient(var(--scrim-strong), var(--scrim-strong)),
+              rgba(255, 255, 255, .10);
+  color: var(--ink);
+  border-color: rgba(255, 255, 255, .22);
+}
+
+/* Pills carry a coloured border for meaning and a dark fill for legibility.
+   Without the fill the brightest pixel inside the box is the border itself,
+   and the contrast check reads the label against that. */
+:root:not([data-contrast='high']) .bl :where(.prov, .vr__pos, .dp__stance, .dp__you, .rail__ended) {
+  background: linear-gradient(var(--scrim-strong), var(--scrim-strong)),
+              rgba(255, 255, 255, .08);
   color: var(--ink);
 }
 
@@ -50,7 +73,7 @@
   letter-spacing: -.015em; margin: 0; color: var(--ink);
 }
 .bl__tagline { margin: 0; color: var(--ink-2); font-size: .95rem; line-height: 1.5; }
-.bl__cite { margin: 0; color: var(--ink-3); font-size: .82rem; }
+.bl__cite { margin: 0; color: var(--ink-2); font-size: .82rem; }
 
 .bl__back {
   display: inline-flex; align-items: center; gap: 6px;
@@ -72,8 +95,8 @@
 .bl__block { display: grid; gap: var(--sp-3); min-width: 0; }
 .bl__prose { margin: 0; line-height: 1.62; color: var(--ink); white-space: pre-line; }
 .bl__note { margin: 0; color: var(--ink-2); font-size: .84rem; line-height: 1.55; }
-.bl__none { margin: 0; color: var(--ink-3); font-size: .88rem; }
-.bl__showing { margin: 0; color: var(--ink-3); font-size: .78rem; }
+.bl__none { margin: 0; color: var(--ink-2); font-size: .88rem; }
+.bl__showing { margin: 0; color: var(--ink-2); font-size: .78rem; }
 .bl__disputed { margin: var(--sp-2) 0 0; }
 
 /* ------------------------------ bill card ------------------------------ */
@@ -90,7 +113,7 @@
 }
 .bc__meta, .bc__foot {
   display: flex; flex-wrap: wrap; align-items: center; gap: 6px;
-  font-size: .78rem; color: var(--ink-3); min-width: 0;
+  font-size: .78rem; color: var(--ink-2); min-width: 0;
 }
 .bc__foot { justify-content: space-between; margin-top: 2px; }
 .bc__ministry { color: var(--ink-2); font-weight: 600; }
@@ -109,13 +132,13 @@
 .rail__step.is-done .rail__dot { background: var(--hue); }
 .rail__step.is-here .rail__dot { box-shadow: 0 0 0 2px color-mix(in oklab, var(--hue) 35%, transparent); }
 .rail__label {
-  font-size: .62rem; line-height: 1.25; text-align: center; color: var(--ink-3);
+  font-size: .62rem; line-height: 1.25; text-align: center; color: var(--ink-2);
   letter-spacing: .01em;
 }
 .rail__step.is-here .rail__label { color: var(--ink); font-weight: 650; }
 .rail__ended {
   font-size: .74rem; font-weight: 650; letter-spacing: .06em; text-transform: uppercase;
-  color: var(--ink-3); border: 1px dashed var(--hair); border-radius: var(--r-pill);
+  color: var(--ink); border: 1px dashed var(--hair); border-radius: var(--r-pill);
   padding: 3px 10px;
 }
 
@@ -132,10 +155,10 @@
 .prov--warn { border-color: color-mix(in oklab, var(--alert) 55%, var(--hair)); }
 .prov--note { border-style: dashed; }
 .prov__what { font-weight: 650; color: var(--ink); }
-.prov__when { color: var(--ink-3); }
+.prov__when { color: var(--ink-2); }
 
 .src__link { display: inline-flex; flex-wrap: wrap; gap: 6px; justify-self: start; }
-.src__name { color: var(--ink-3); font-weight: 500; }
+.src__name { color: var(--ink-2); font-weight: 500; }
 
 .srcfall {
   display: grid; gap: var(--sp-2); justify-items: start;
@@ -146,7 +169,7 @@
 .srcfall--warn { border-color: color-mix(in oklab, var(--alert) 50%, var(--hair)); }
 .srcfall--note { border-style: dashed; }
 .srcfall__title { margin: 0; font-weight: 700; font-size: .92rem; color: var(--ink); }
-.srcfall__body { margin: 0; font-size: .86rem; line-height: 1.55; color: var(--ink-2); }
+.srcfall__body { margin: 0; font-size: .86rem; line-height: 1.55; color: var(--ink); }
 
 /* ------------------------------- history ------------------------------- */
 
@@ -156,7 +179,7 @@
   padding-left: var(--sp-4); border-left: 2px solid var(--hair);
 }
 .hist__stage { font-weight: 650; font-size: .9rem; color: var(--ink); }
-.hist__date { font-size: .78rem; color: var(--ink-3); }
+.hist__date { font-size: .78rem; color: var(--ink-2); }
 .hist__note { font-size: .86rem; line-height: 1.5; color: var(--ink-2); }
 
 /* ------------------------------- clauses ------------------------------- */
@@ -166,7 +189,7 @@
   min-width: 26px; height: 26px; padding: 0 6px;
   border-radius: var(--r-xs); background: var(--ground-2);
   font-family: var(--f-display); font-weight: 700; font-size: .8rem;
-  font-variant-numeric: tabular-nums; color: var(--ink-2);
+  font-variant-numeric: tabular-nums; color: var(--ink);
 }
 .clause__label { margin: 0 0 4px; }
 .clause__plain { margin: 0 0 var(--sp-4); line-height: 1.6; color: var(--ink); }
@@ -197,7 +220,7 @@
 .vote__opt:disabled { opacity: .5; cursor: not-allowed; }
 
 .vote__mine { margin: 0; font-weight: 650; color: var(--ink); }
-.vote__closed { margin: 0; color: var(--ink-3); font-size: .86rem; }
+.vote__closed { margin: 0; color: var(--ink-2); font-size: .86rem; }
 .vote__note { margin: 0; color: var(--ink-2); font-size: .84rem; line-height: 1.5; }
 .vote__note--warn { color: var(--alert); }
 
@@ -216,7 +239,7 @@
   background: var(--ground-2); overflow: hidden;
 }
 .vote__bar-fill { display: block; height: 100%; background: var(--hue); border-radius: inherit; }
-.vote__coverage { margin: 0; font-size: .78rem; color: var(--ink-3); line-height: 1.45; }
+.vote__coverage { margin: 0; font-size: .78rem; color: var(--ink-2); line-height: 1.45; }
 
 /* ------------------------- constitution entries ------------------------ */
 
@@ -225,7 +248,7 @@
   margin: 0; font-family: var(--f-display); font-weight: 700; font-stretch: 88%;
   font-size: .98rem; line-height: 1.25; color: var(--ink);
 }
-.ce__meta { margin: 0; font-size: .76rem; color: var(--ink-3); }
+.ce__meta { margin: 0; font-size: .76rem; color: var(--ink-2); }
 .ce__detail { margin: 0; font-size: .88rem; line-height: 1.55; color: var(--ink-2); }
 
 /* ------------------------------ constituency --------------------------- */
@@ -235,7 +258,7 @@
   border: 0; font: inherit; color: inherit; cursor: pointer; min-width: 0;
 }
 .seat__name { font-weight: 700; font-size: .98rem; color: var(--ink); }
-.seat__where { font-size: .8rem; color: var(--ink-3); }
+.seat__where { font-size: .8rem; color: var(--ink-2); }
 
 .rep { display: grid; gap: 4px; padding: var(--sp-4); justify-items: start; min-width: 0; }
 .rep__name {
@@ -243,7 +266,7 @@
   font-size: 1.1rem; color: var(--ink);
 }
 .rep__party { margin: 0; font-size: .88rem; color: var(--ink-2); }
-.rep__since { margin: 0 0 var(--sp-2); font-size: .78rem; color: var(--ink-3); }
+.rep__since { margin: 0 0 var(--sp-2); font-size: .78rem; color: var(--ink-2); }
 
 .vr {
   display: grid; gap: 4px; padding: var(--sp-4);
@@ -259,14 +282,14 @@
 .vr__pos--for { border-color: color-mix(in oklab, var(--milestone) 55%, var(--hair)); }
 .vr__pos--against { border-color: color-mix(in oklab, var(--alert) 55%, var(--hair)); }
 .vr__pos--not-recorded { border-style: dashed; }
-.vr__div { font-size: .74rem; color: var(--ink-3); }
+.vr__div { font-size: .74rem; color: var(--ink-2); }
 
 /* -------------------------------- debate ------------------------------- */
 
 .dp { display: grid; gap: var(--sp-2); padding: var(--sp-4); min-width: 0; }
 .dp--removed {
   border: 1px dashed var(--hair); border-radius: var(--r-l);
-  background: var(--ground-2); color: var(--ink-3);
+  background: var(--ground-2); color: var(--ink-2);
 }
 .dp__who {
   display: flex; flex-wrap: wrap; align-items: center; gap: 8px;

@@ -94,7 +94,7 @@ function StageDot({ muted = false }: { muted?: boolean }) {
 export function BillCard({ bill }: { bill: Bill }) {
   const t = useT()
   return (
-    <Link to={`/s/bills/b/${bill.id}`} className="bc glass glass--press">
+    <Link to={`/s/bills/b/${bill.id}`} className="bc glass-dark glass--press">
       <span className="bc__title">{bill.title}</span>
       <span className="bc__meta">
         <span>{bill.citation}</span>
