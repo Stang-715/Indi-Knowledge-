@@ -15,6 +15,8 @@
  */
 
 import { clearNamespace, dumpNamespace, read, write } from './storage'
+import { apiPost } from './api'
+import { blind, newNonce, unblind, verifyToken } from './blind'
 
 /* ------------------------------------------------------------------ *
  * Layer 1 — eligibility. Used once, at onboarding. Never at speech time.
@@ -87,8 +89,151 @@ export async function recordVerification(
     attestedBy,
     ageBand,
   }
+
+  /* Ask the verification service, and let its answer about age win — a band the
+     device guessed is a guess. Offline, the local record stands and the app
+     stays usable; the wallet fills on the first connection instead. */
+  try {
+    const res = await apiPost<{
+      ok: boolean; ageBand?: AgeBand; issuer?: { n: string; e: string }
+    }>('/v1/eligibility/verify', { identifier: rawIdentifier })
+    if (res.ok) {
+      if (res.ageBand) record.ageBand = res.ageBand
+      if (res.issuer) setIssuer(res.issuer)
+    }
+  } catch {
+    /* No connection. Verification is provisional until there is one. */
+  }
+
   write('eligibility', ELIGIBILITY_KEY, record)
+  void refillTokens()
   return record
+}
+
+/* ------------------------------------------------------------------ *
+ * Eligibility tokens — the proof that leaves this layer.
+ *
+ * A vote has to convince the server of two things at once: that a verified
+ * adult is behind it, and that it belongs to a pseudonym. Sending the identity
+ * record to prove the first would hand over exactly the join this architecture
+ * exists to prevent. So what travels is a blind signature: a token this device
+ * blinded before the issuer ever saw it, which verifies as genuine and matches
+ * nothing in the issuing transcript.
+ *
+ * The wallet below therefore holds tokens and no identity, and the queue that
+ * spends them holds a pseudonym and no identity. Both halves of a vote exist on
+ * this device; neither half, nor both together on the wire, reconstitutes the
+ * link. That is the property, and it is a property of the mathematics rather
+ * than of anyone's restraint.
+ * ------------------------------------------------------------------ */
+
+/** Presented with a write. Carries no reference to the identity that drew it. */
+export interface EligibilityToken {
+  nonce: string
+  signature: string
+}
+
+interface Wallet {
+  tokens: EligibilityToken[]
+  /** Which token was presented for which write, so an edit costs nothing extra. */
+  bound: Record<string, EligibilityToken>
+  /** The issuer's public key, as the verification service gave it. */
+  issuer: { n: string; e: string } | null
+}
+
+const WALLET_KEY = 'wallet'
+/** Drawn in a batch so that spending a token is not one-to-one with drawing it. */
+const BATCH = 12
+/** Refill before the wallet empties: an unsendable vote must never be the cause. */
+const LOW_WATER = 4
+
+function getWallet(): Wallet {
+  return read<Wallet>('eligibility', WALLET_KEY, { tokens: [], bound: {}, issuer: null })
+}
+
+function setWallet(wallet: Wallet): void {
+  write('eligibility', WALLET_KEY, wallet)
+}
+
+function setIssuer(issuer: { n: string; e: string }): void {
+  setWallet({ ...getWallet(), issuer })
+}
+
+export function tokenCount(): number {
+  return getWallet().tokens.length
+}
+
+/**
+ * Draws signatures for freshly blinded nonces. Returns how many tokens are held
+ * afterwards; never throws, because a refill that fails is a refill to try again
+ * later, not an error to put in front of anybody.
+ */
+let refilling: Promise<number> | null = null
+
+/** One refill at a time, or two of them race an empty wallet and draw twice the batch. */
+export function refillTokens(): Promise<number> {
+  if (!refilling) refilling = drawTokens().finally(() => { refilling = null })
+  return refilling
+}
+
+async function drawTokens(): Promise<number> {
+  const record = getEligibility()
+  const wallet = getWallet()
+  if (!record?.verified || record.ageBand !== 'adult') return wallet.tokens.length
+  if (!wallet.issuer) return wallet.tokens.length
+  if (wallet.tokens.length >= LOW_WATER) return wallet.tokens.length
+
+  const n = BigInt('0x' + wallet.issuer.n)
+  const e = BigInt('0x' + wallet.issuer.e)
+  const want = BATCH - wallet.tokens.length
+
+  try {
+    const drafts = []
+    for (let i = 0; i < want; i += 1) drafts.push(await blind(newNonce(), n, e))
+
+    const res = await apiPost<{ ok: boolean; signatures?: string[] }>(
+      '/v1/eligibility/tokens',
+      { idHash: record.idHash, blinded: drafts.map((d) => d.blinded) },
+    )
+    if (!res.ok || !res.signatures) return wallet.tokens.length
+
+    const drawn: EligibilityToken[] = []
+    for (const [i, blindSig] of res.signatures.entries()) {
+      const draft = drafts[i]
+      if (!draft) continue
+      const signature = unblind(blindSig, draft.r, n)
+      // Checked here so a broken batch fails at issue rather than at the ballot.
+      if (await verifyToken(draft.nonce, signature, n, e)) {
+        drawn.push({ nonce: draft.nonce, signature })
+      }
+    }
+
+    const next = getWallet()
+    setWallet({ ...next, tokens: [...next.tokens, ...drawn] })
+    return next.tokens.length + drawn.length
+  } catch {
+    return wallet.tokens.length
+  }
+}
+
+/**
+ * Hands out the token for a given write, drawing a new one only the first time.
+ * Binding matters: changing a vote presents the same token it was cast with, so
+ * the server recognises the edit instead of charging a second token for a
+ * change of mind.
+ */
+export function takeToken(bind: string): EligibilityToken | null {
+  const wallet = getWallet()
+  const held = wallet.bound[bind]
+  if (held) return held
+
+  const [next, ...rest] = wallet.tokens
+  if (!next) {
+    void refillTokens()
+    return null
+  }
+  setWallet({ ...wallet, tokens: rest, bound: { ...wallet.bound, [bind]: next } })
+  return next
 }
 
 /**

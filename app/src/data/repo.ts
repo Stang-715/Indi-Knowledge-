@@ -47,6 +47,10 @@ export function canDo(purpose: PurposeId): boolean {
   return mayParticipate() && hasConsent(loadConsent(), purpose)
 }
 import { read, write } from '../core/storage'
+import { enqueue, isPending } from '../core/sync'
+import {
+  cachedPosts, cachedReach, cachedTally, pullPosts, pullReach, pullTally,
+} from '../core/pull'
 import type {
   BrigadingFlag, Notice, Poll, Post, Report, ReportReason, Stance, Topic,
 } from '../core/types'
@@ -123,6 +127,7 @@ export function markSeen(noticeId: string): void {
   const counts = read<Record<string, number>>('content', 'seen', {})
   counts[noticeId] = (counts[noticeId] ?? 0) + 1
   write('content', 'seen', counts)
+  enqueue('seen', noticeId, { noticeId })
 }
 
 const BASE_REACH: Record<string, number> = {
@@ -131,8 +136,12 @@ const BASE_REACH: Record<string, number> = {
 }
 
 export function noticeReach(noticeId: string): number {
+  void pullReach(noticeId)
   const counts = read<Record<string, number>>('content', 'seen', {})
-  return (BASE_REACH[noticeId] ?? 0) + (counts[noticeId] ?? 0)
+  // The server's counter is authoritative once it has been fetched; before
+  // that, the local tally is the best this device can honestly say.
+  const seen = cachedReach(noticeId) ?? counts[noticeId] ?? 0
+  return (BASE_REACH[noticeId] ?? 0) + seen
 }
 
 /* ----------------------------------- polls ---------------------------------- */
@@ -196,6 +205,9 @@ export function castVote(pollId: string, optionId: string): Response {
   const without = rows.filter((r) => r.pseudonym !== pseudonym)
   const response: Response = { pseudonym, optionId, at: Date.now() }
   write('responses', responseKey(pollId), [...without, response])
+  // Queued rather than sent: the vote is recorded here and now, whether or not
+  // there is a connection, and travels when there is one.
+  enqueue('vote', responseKey(pollId), { pollId, optionId })
   return response
 }
 
@@ -212,9 +224,20 @@ export function pollAggregate(pollId: string): Aggregate {
   const poll = getPoll(pollId)
   if (!poll) return { total: 0, buckets: [], suppressed: 0 }
 
+  void pullTally(pollId)
+  const server = cachedTally(pollId)
   const rows = read<Response[]>('responses', responseKey(pollId), [])
+
+  /* Where the server has answered, its tally is everyone's; this device's own
+     response is already inside it, and adding the local row again would count
+     one citizen twice. The exception is a vote still sitting in the queue —
+     that one is real, and nowhere else yet. */
+  const local = server
+    ? (isPending('vote', responseKey(pollId)) ? rows.slice(-1) : [])
+    : rows
+
   const live = aggregateBy(
-    rows,
+    local,
     (r) => r.pseudonym,
     (r) => {
       const opt = poll.options.find((o) => o.id === r.optionId)
@@ -232,6 +255,10 @@ export function pollAggregate(pollId: string): Aggregate {
       count: seeded[option.id] ?? 0,
     })
   }
+  for (const bucket of server?.buckets ?? []) {
+    const target = merged.get(bucket.key)
+    if (target) target.count += bucket.count
+  }
   for (const bucket of live.buckets) {
     const target = merged.get(bucket.key)
     if (target) target.count += bucket.count
@@ -245,7 +272,12 @@ export function pollAggregate(pollId: string): Aggregate {
     ? { ...base, responded: total }
     : undefined
 
-  return { total, buckets, suppressed: live.suppressed, coverage }
+  return {
+    total,
+    buckets,
+    suppressed: (server?.suppressed ?? 0) + live.suppressed,
+    coverage,
+  }
 }
 
 /* -------------------------------- discussion -------------------------------- */
@@ -264,12 +296,35 @@ export function topicForAnchor(kind: 'notice' | 'poll', id: string): Topic | und
 }
 
 export function listPosts(topicId: string): Post[] {
+  void pullPosts(topicId)
   const extra = read<Post[]>('content', 'posts', [])
   const removals = read<Record<string, { at: number; reason: string }>>(
     'content', 'postRemovals', {},
   )
-  return [...extra, ...POSTS]
-    .filter((p) => p.topicId === topicId)
+
+  /* Server rows win over the local copy of the same post, because they carry
+     everyone's reactions rather than only this device's optimistic zero. They
+     match by id because the id was chosen here before the post was sent. */
+  const byId = new Map<string, Post>()
+  for (const p of extra) if (p.topicId === topicId) byId.set(p.id, p)
+  for (const row of cachedPosts(topicId) ?? []) {
+    byId.set(row.id, {
+      id: row.id,
+      topicId,
+      authorPseudonym: row.pseudonym,
+      body: row.body,
+      stance: row.stance as Stance,
+      createdAt: row.created_at,
+      agree: row.agree,
+      disagree: row.disagree,
+      ...(row.removed_at
+        ? { removed: { at: row.removed_at, reason: row.removed_reason ?? '' } }
+        : {}),
+    })
+  }
+
+  const merged = [...byId.values()].sort((a, b) => b.createdAt - a.createdAt)
+  return [...merged, ...POSTS.filter((p) => p.topicId === topicId)]
     .map((p) => (removals[p.id] ? { ...p, removed: removals[p.id] } : p))
 }
 
@@ -281,7 +336,7 @@ export function addPost(
   const pseudonym = getPseudonym()
   if (!pseudonym) throw new Error('No pseudonym — cannot post.')
   const post: Post = {
-    id: `p_${Date.now().toString(36)}`,
+    id: `p_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 7)}`,
     topicId,
     authorPseudonym: pseudonym,
     body,
@@ -292,6 +347,9 @@ export function addPost(
   }
   const extra = read<Post[]>('content', 'posts', [])
   write('content', 'posts', [post, ...extra])
+  // The id is chosen here and sent with the post, so a retry after a dropped
+  // connection is the same post rather than a second one.
+  enqueue('post', post.id, { id: post.id, topicId, text: body, stance })
   return post
 }
 
@@ -305,6 +363,7 @@ export function react(postId: string, kind: 'agree' | 'disagree'): void {
   if (previous === kind) delete mine[postId]
   else mine[postId] = kind
   write('responses', 'reactions', mine)
+  enqueue('reaction', postId, { postId, kind: mine[postId] ?? 'none' })
 }
 
 export function myReaction(postId: string): 'agree' | 'disagree' | undefined {

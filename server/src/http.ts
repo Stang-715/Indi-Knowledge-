@@ -77,6 +77,27 @@ const hashId = (raw: string) =>
 /** k-anonymity: a breakdown cell below this is suppressed, never the total. */
 const MIN_CELL = 5
 
+/** Bumped in lockstep with the client's NOTICE_VERSION. */
+const NOTICE_VERSION = 1
+
+/**
+ * Which writes the server checks consent for, and which it cannot.
+ *
+ * Only writes that already carry a pseudonym are checkable here. Marking a
+ * notice as seen is deliberately anonymous — it increments a counter and
+ * carries no identifier at all — so there is nothing for the server to look
+ * consent up against. Adding one so the check could run would manufacture the
+ * per-citizen read receipt the consent is there to prevent, which is a worse
+ * outcome than enforcing that particular purpose on the client alone.
+ *
+ * So: attributable writes are gated here; anonymous ones are gated in the app,
+ * and that asymmetry is a property of the data rather than an oversight.
+ */
+const GATED = {
+  'poll-response': 'casting or changing a vote',
+  'public-speech': 'posting or reacting',
+} as const
+
 /* -------------------------------- routes --------------------------------- */
 
 const routes: Record<string, (body: Record<string, unknown>, url: URL) => unknown> = {
@@ -132,6 +153,10 @@ const routes: Record<string, (body: Record<string, unknown>, url: URL) => unknow
       return { ok: false, reason: 'incomplete' }
     }
     if (!voice.pseudonymExists(pseudonym)) return { ok: false, reason: 'unknown-pseudonym' }
+    // Consent before eligibility: a refusal should not cost a token to discover.
+    if (!voice.hasConsent(pseudonym, 'poll-response', NOTICE_VERSION)) {
+      return { ok: false, reason: 'no-consent', purpose: 'poll-response' }
+    }
     if (!verifyToken(nonce, signature, issuer.n, issuer.e)) {
       return { ok: false, reason: 'bad-token' }
     }
@@ -163,12 +188,27 @@ const routes: Record<string, (body: Record<string, unknown>, url: URL) => unknow
     const { topicId, pseudonym, text, stance } = body as Record<string, string>
     if (!topicId || !pseudonym || !text) return { ok: false, reason: 'incomplete' }
     if (!voice.pseudonymExists(pseudonym)) return { ok: false, reason: 'unknown-pseudonym' }
+    if (!voice.hasConsent(pseudonym, 'public-speech', NOTICE_VERSION)) {
+      return { ok: false, reason: 'no-consent', purpose: 'public-speech' }
+    }
     if (text.length > 600) return { ok: false, reason: 'too-long' }
     // The client rate-limits as a courtesy; this is the control.
     if (!voice.rateAllows(`post:${pseudonym}`, 5, 60 * 60 * 1000)) {
       return { ok: false, reason: 'rate-limited' }
     }
-    const id = `p_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 7)}`
+    /* The client may name the post. It has to be able to: a post written
+       offline is shown immediately under an id the device chose, and if the
+       server minted a different one on arrival the same post would come back
+       from the next fetch as a second copy. An id is accepted only in the shape
+       ids take, and only if it is free or already this pseudonym's — a retry is
+       then idempotent, while an id aimed at somebody else's post is simply
+       replaced rather than allowed to shadow it. */
+    const given = String(body.id ?? '')
+    const owner = /^p_[a-z0-9_]{3,40}$/.test(given) ? voice.postAuthor(given) : undefined
+    const usable = /^p_[a-z0-9_]{3,40}$/.test(given) && (owner === undefined || owner === pseudonym)
+    const id = usable
+      ? given
+      : `p_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 7)}`
     voice.insertPost(id, topicId, pseudonym, text, stance || 'mixed')
     return { ok: true, id }
   },
@@ -179,9 +219,32 @@ const routes: Record<string, (body: Record<string, unknown>, url: URL) => unknow
   'POST /v1/reactions': (body) => {
     const { postId, pseudonym, kind } = body as Record<string, string>
     if (!voice.pseudonymExists(pseudonym)) return { ok: false, reason: 'unknown-pseudonym' }
+    if (!voice.hasConsent(pseudonym, 'public-speech', NOTICE_VERSION)) {
+      return { ok: false, reason: 'no-consent', purpose: 'public-speech' }
+    }
     voice.setReaction(postId, pseudonym, kind === 'none' ? null : kind)
     return { ok: true }
   },
+
+  /* --- consent --- */
+
+  'POST /v1/voice/consent': (body) => {
+    const pseudonym = String(body.pseudonym ?? '')
+    const decisions = body.decisions as Record<string, string> | undefined
+    if (!voice.pseudonymExists(pseudonym)) return { ok: false, reason: 'unknown-pseudonym' }
+    if (!decisions) return { ok: false, reason: 'incomplete' }
+    for (const [purpose, decision] of Object.entries(decisions)) {
+      if (decision !== 'granted' && decision !== 'refused') continue
+      voice.setConsent(pseudonym, purpose, decision, NOTICE_VERSION)
+    }
+    audit.append('automated', 'Consent intake', 'consent.record', 'one pseudonym',
+      `Decisions recorded against notice version ${NOTICE_VERSION}. ` +
+      'Which identity this pseudonym belongs to is not known to this server.')
+    return { ok: true, gated: Object.keys(GATED) }
+  },
+
+  'GET /v1/voice/consent': (_b, url) =>
+    ({ decisions: voice.listConsent(url.searchParams.get('pseudonym') ?? '') }),
 
   /* --- notices: reach is a counter, never a list of readers --- */
 

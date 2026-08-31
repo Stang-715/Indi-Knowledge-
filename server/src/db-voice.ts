@@ -61,6 +61,20 @@ db.exec(`
     seen      INTEGER NOT NULL DEFAULT 0
   );
 
+  -- Consent, recorded against the pseudonym.
+  --
+  -- It lives here rather than in the eligibility store because the writes it
+  -- gates are pseudonym-scoped, and putting it here means checking it teaches
+  -- the server nothing it did not already know from the write itself.
+  CREATE TABLE IF NOT EXISTS consent (
+    pseudonym TEXT NOT NULL,
+    purpose   TEXT NOT NULL,
+    decision  TEXT NOT NULL CHECK (decision IN ('granted','refused')),
+    version   INTEGER NOT NULL,
+    at        INTEGER NOT NULL,
+    PRIMARY KEY (pseudonym, purpose)
+  );
+
   CREATE TABLE IF NOT EXISTS rate (
     bucket TEXT NOT NULL,
     at     INTEGER NOT NULL
@@ -110,10 +124,19 @@ export function tally(pollId: string): { option_id: string; n: number }[] {
 export function insertPost(
   id: string, topicId: string, pseudonym: string, body: string, stance: string,
 ): void {
+  // OR IGNORE, because a client that retries a post after a dropped connection
+  // is resending one post, not writing a second one.
   db.prepare(`
-    INSERT INTO post (id, topic_id, pseudonym, body, stance, created_at)
+    INSERT OR IGNORE INTO post (id, topic_id, pseudonym, body, stance, created_at)
     VALUES (?, ?, ?, ?, ?, ?)
   `).run(id, topicId, pseudonym, body, stance, Date.now())
+}
+
+/** Who wrote a given post, so a client-supplied id cannot overwrite somebody else's. */
+export function postAuthor(id: string): string | undefined {
+  const row = db.prepare('SELECT pseudonym FROM post WHERE id = ?').get(id) as
+    { pseudonym: string } | undefined
+  return row?.pseudonym
 }
 
 export function listPosts(topicId: string) {
@@ -140,6 +163,43 @@ export function setReaction(postId: string, pseudonym: string, kind: string | nu
     INSERT INTO reaction (post_id, pseudonym, kind) VALUES (?, ?, ?)
     ON CONFLICT(post_id, pseudonym) DO UPDATE SET kind = excluded.kind
   `).run(postId, pseudonym, kind)
+}
+
+/**
+ * Records one decision. Granting and withdrawing take the same path, because
+ * the Act requires withdrawal be as easy as consent and one mechanism is the
+ * only way to guarantee that.
+ */
+export function setConsent(
+  pseudonym: string, purpose: string, decision: string, version: number,
+): void {
+  db.prepare(`
+    INSERT INTO consent (pseudonym, purpose, decision, version, at)
+    VALUES (?, ?, ?, ?, ?)
+    ON CONFLICT(pseudonym, purpose) DO UPDATE SET
+      decision = excluded.decision, version = excluded.version, at = excluded.at
+  `).run(pseudonym, purpose, decision, version, Date.now())
+}
+
+/**
+ * Whether a write may proceed.
+ *
+ * Absence is a refusal, not a default. A purpose never asked about has not been
+ * consented to, and treating silence as agreement is the whole failure mode the
+ * consent requirement exists to prevent.
+ */
+export function hasConsent(
+  pseudonym: string, purpose: string, version: number,
+): boolean {
+  const row = db.prepare(
+    'SELECT decision, version FROM consent WHERE pseudonym = ? AND purpose = ?',
+  ).get(pseudonym, purpose) as { decision: string; version: number } | undefined
+  return row?.decision === 'granted' && row.version === version
+}
+
+export function listConsent(pseudonym: string) {
+  return db.prepare('SELECT purpose, decision, version, at FROM consent WHERE pseudonym = ?')
+    .all(pseudonym) as Record<string, unknown>[]
 }
 
 export function bumpReach(noticeId: string): void {

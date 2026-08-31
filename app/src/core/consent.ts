@@ -23,6 +23,7 @@
 
 import { read, write } from './storage'
 import type { LocaleCode } from '../i18n/locales'
+import { enqueue } from './sync'
 
 /**
  * Bumped whenever a purpose is added, removed, or its meaning changes.
@@ -176,6 +177,9 @@ export function decide(
   next.decidedAt = Date.now()
   next.locale = locale
   saveConsent(next)
+  // The server gates writes on consent too, and must hear about a withdrawal
+  // as promptly as it heard about the grant.
+  enqueue('consent', id, { decisions: { [id]: decision } })
   return next
 }
 
@@ -191,6 +195,9 @@ export function decideAll(
     decisions: Object.fromEntries(list.map((id) => [id, { decision, at: now }])),
   }
   saveConsent(record)
+  enqueue('consent', 'all', {
+    decisions: Object.fromEntries(list.map((id) => [id, decision])),
+  })
   return record
 }
 

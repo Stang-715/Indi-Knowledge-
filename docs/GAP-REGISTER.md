@@ -286,14 +286,29 @@ contrast checks, and tears down.
 
 ## Phase 4 — backend
 
-### G-4-01 · The client still talks to its local mock, not the server
-**Severity:** blocker for Phase 4's exit criterion
-The API exists, is tested and holds the identity split, but `app/src/data/repo.ts`
-has not been pointed at it. The exit criterion — "every caller of the repository
-layer is unchanged" — is therefore unproven. The transport swap is the remaining
-work, plus the offline queue and conflict rules the plan lists.
-**Verify:** the app runs against the API with no component changed, and works
-offline with writes queued.
+### G-4-01 · The client still talks to its local mock, not the server — CLOSED
+**Severity:** was blocker for Phase 4's exit criterion · **closed** by
+`core/api.ts`, `core/blind.ts`, `core/sync.ts`, `core/pull.ts` and the wiring in
+`data/repo.ts`, proven by `npm run check:transport`.
+Writes queue and flush; reads come from a local cache that a background fetch
+refreshes. The client blinds its own tokens in the browser and the server signs
+them, which the suite checks by exercising the client's module against the real
+issuer — if the two ever hash a nonce differently, every vote fails silently in
+production, and only an interop test catches it.
+The exit criterion holds: the diff touches `core/`, `data/repo.ts` and
+`main.tsx`, and no component, surface or screen file at all.
+
+Three bugs the browser found that no unit test would have:
+- Two flushes could overlap, so the pseudonym was registered twice and the
+  second answer — "that name exists" — stopped the queue for good. Flush and
+  token refill are now single-flight.
+- Registration treated "already exists" as a wall. The server cannot attribute
+  a pseudonym to a requester by design, so the client cannot tell its own second
+  claim from somebody else's first. What the queued writes need is that the name
+  exists, which a refusal proves; the collision case is G-4-08.
+- The suite itself tested a stale server twice — once a process left running
+  from before an edit, once a dev server orphaned by a timed-out run. Both
+  suites now start what they test, on ports they check are free.
 
 ### G-4-02 · Textbook RSA blinding, not a reviewed construction
 **Severity:** major
@@ -329,15 +344,46 @@ a local test and wrong everywhere else. There is no TLS, no origin allowlist, no
 deployment target — Vercel is blocked on this account, so nothing is hosted.
 **Verify:** TLS enforced, origins restricted, and a named host.
 
-### G-4-06 · Consent is enforced on the client, not the server
-**Severity:** major
+### G-4-06 · Consent is enforced on the client, not the server — CLOSED
+**Severity:** was major · **closed** by the `consent` table in
+`server/src/db-voice.ts` and the gate in `server/src/http.ts`
 Phase 3 put consent checks on the writes in `data/repo.ts`. The API does not
 check them at all — it verifies eligibility and rate limits, but a request that
 skips the app entirely is not asked whether the citizen consented to that
 purpose. Consent enforced only in the client is the same mistake as a rate limit
 enforced only in the client.
-**Verify:** the API rejects a write whose purpose has no recorded consent.
+Absence is refusal: a purpose never asked about has not been consented to.
+Consent is checked before the eligibility token on a vote, so a refusal does not
+cost a token to discover. One write cannot be gated — marking a notice as seen
+is deliberately anonymous, and adding an identifier so the check could run would
+manufacture the per-citizen read receipt the consent exists to prevent. That is
+a property of the data, not an oversight.
+**Verified:** `server/scripts/test.ts` rejects a vote, a post and a
+post-after-withdrawal; `app/scripts/check-transport.mjs` proves the refusal
+holds against a write that reaches past the client's own check.
 
+
+### G-4-07 · Notices, polls and moderation are still local-only
+**Severity:** major
+The transport carries what the server owns: responses, posts, reactions, reach
+and consent. Notices and polls are still published into local content by the
+government screens, so two devices do not see the same notice board — and the
+seeded tallies in `data/seed.ts` are still folded into every aggregate. This is
+the client half of G-4-04.
+**Verify:** a notice published on one device appears on another, and
+`pollAggregate` reports the server's numbers with no seeded remainder.
+
+### G-4-08 · A pseudonym is a claim, not a credential
+**Severity:** blocker before any deployment
+The server accepts any write from any name it has heard of. Nothing proves the
+device sending it is the device that claimed it, so one citizen can post and
+vote as another simply by using their pseudonym — and the client cannot tell a
+genuine name collision from its own retry (see G-4-01).
+**Do:** have the device generate a keypair when it chooses a pseudonym, register
+the public key with the claim, and sign every write. The key belongs to the
+voice layer only and must never touch the eligibility layer.
+**Verify:** a write signed by the wrong key is rejected, and a second claim of a
+held name fails against the key rather than against the name.
 ---
 
 ## Cross-cutting
@@ -440,3 +486,24 @@ Committed and typechecking, but **not yet wired to any UI**:
 **Since resumed and completed.** The notice UI, itemised toggles, rights screens,
 minor path and all 80 catalogue strings are built and verified end to end. What
 Phase 3 left behind is recorded as G-3-01 to G-3-06 above.
+
+---
+
+## Where Phase 4 stopped
+
+Phase 4 (backend) is complete against its exit criterion. The API holds the
+identity split, consent is enforced server-side, and the client runs on it —
+online and offline — with no component file changed. Three suites cover it:
+
+- `server/scripts/test.ts` — 27 assertions, including the one that matters: a
+  join across the eligibility and voice stores is not expressible in SQL.
+- `app/scripts/check-transport.mjs` — 14 assertions in a real browser against a
+  real API, covering the offline queue, the drain on reconnection, idempotent
+  retries, and a write refused after consent was withdrawn.
+- `server/scripts/check-server-constraints.mjs` — the architectural rules.
+
+What Phase 4 leaves behind is G-4-02 through G-4-05, G-4-07 and G-4-08. Two of
+those are blockers before anything is deployed to real people: there is no
+transport security (G-4-05), and a pseudonym is a claim rather than a credential
+(G-4-08). Neither is a matter of hardening the current design; both need work
+that should be planned rather than bolted on.

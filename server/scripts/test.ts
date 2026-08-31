@@ -1,4 +1,8 @@
-import { blind, unblind, newNonce, verifyToken } from '../src/blind.ts'
+import { spawn } from 'node:child_process'
+import { mkdtempSync, rmSync } from 'node:fs'
+import { tmpdir } from 'node:os'
+import { join } from 'node:path'
+import { blind, unblind, newNonce, verifyToken, hashToInt } from '../src/blind.ts'
 
 /**
  * End-to-end proof that the server cannot join the two identity layers.
@@ -8,7 +12,46 @@ import { blind, unblind, newNonce, verifyToken } from '../src/blind.ts'
  * to which verified identity.
  */
 
-const API = process.env.API ?? 'http://localhost:8787'
+/*
+ * The suite starts its own server, against its own databases, and stops it
+ * afterwards.
+ *
+ * It did not, once. It talked to whatever was already listening on 8787, and a
+ * server left running from before an edit reported two assertions as passing
+ * that the edited code had not yet been asked to do. A test that can pass
+ * against last week's build is not a test, so the process under test is now
+ * one this file starts.
+ */
+
+const PORT = Number(process.env.PORT ?? 8788)
+const API = `http://localhost:${PORT}`
+const DATA = mkdtempSync(join(tmpdir(), 'chowk-test-'))
+
+const server = spawn(process.execPath, [
+  '--experimental-strip-types', '--disable-warning=ExperimentalWarning',
+  new URL('../src/http.ts', import.meta.url).pathname,
+], {
+  env: {
+    ...process.env,
+    PORT: String(PORT),
+    CHOWK_ELIGIBILITY_DB: join(DATA, 'eligibility.db'),
+    CHOWK_VOICE_DB: join(DATA, 'voice.db'),
+    CHOWK_AUDIT_DB: join(DATA, 'audit.db'),
+  },
+  stdio: 'ignore',
+})
+
+process.on('exit', () => { server.kill() })
+
+for (let i = 0; i < 100; i += 1) {
+  try {
+    await fetch(`${API}/v1/audit`)
+    break
+  } catch {
+    await new Promise((r) => setTimeout(r, 100))
+  }
+}
+
 let failures = 0
 
 const check = (name: string, pass: boolean, detail = '') => {
@@ -45,6 +88,10 @@ async function citizen(identifier: string, pseudonym: string) {
   return { verify: v, tokens, n, e }
 }
 
+/** Records consent decisions against a pseudonym. */
+const consent = (pseudonym: string, decisions: Record<string, string>) =>
+  post('/v1/voice/consent', { pseudonym, decisions })
+
 console.log('\nChowk API — end to end\n')
 
 const stamp = Date.now()
@@ -56,27 +103,70 @@ check('tokens issued', (a.tokens?.length ?? 0) === 4)
 check('token verifies against the issuer key',
   verifyToken(a.tokens![0].nonce, a.tokens![0].signature, a.n!, a.e!))
 
+const alpha = `AlphaTester${stamp % 1000}`
+const beta = `BetaTester${stamp % 1000}`
+
+/* ---- consent is enforced by the server, not only by the app ---- */
+
 const pollId = `poll_test_${stamp}`
+
+const beforeConsent = await post('/v1/polls/respond', {
+  pollId, optionId: 'o1', pseudonym: alpha,
+  nonce: a.tokens![3].nonce, signature: a.tokens![3].signature,
+})
+check('a vote without recorded consent is refused',
+  beforeConsent.ok === false && beforeConsent.reason === 'no-consent', beforeConsent.reason)
+
+const stillUnspent = await post('/v1/polls/respond', {
+  pollId, optionId: 'o1', pseudonym: alpha,
+  nonce: a.tokens![3].nonce, signature: a.tokens![3].signature,
+})
+check('refusing consent did not burn the token',
+  stillUnspent.reason === 'no-consent', stillUnspent.reason)
+
+await consent(alpha, { 'poll-response': 'granted', 'public-speech': 'granted' })
+await consent(beta, { 'poll-response': 'granted', 'public-speech': 'refused' })
+
+const speechRefused = await post('/v1/posts', {
+  topicId: 'top_test', pseudonym: beta, text: 'This should not be stored.', stance: 'mixed',
+})
+check('a post from a pseudonym that refused speech is rejected',
+  speechRefused.ok === false && speechRefused.reason === 'no-consent', speechRefused.reason)
+
+const speechAllowed = await post('/v1/posts', {
+  topicId: 'top_test', pseudonym: alpha, text: 'This one is consented to.', stance: 'support',
+})
+check('a post from a pseudonym that granted speech is stored', speechAllowed.ok === true)
+
+// Withdrawal must take effect immediately, through the same mechanism.
+await consent(alpha, { 'public-speech': 'refused' })
+const afterWithdrawal = await post('/v1/posts', {
+  topicId: 'top_test', pseudonym: alpha, text: 'After withdrawing.', stance: 'support',
+})
+check('withdrawing consent blocks the next write immediately',
+  afterWithdrawal.ok === false && afterWithdrawal.reason === 'no-consent', afterWithdrawal.reason)
+await consent(alpha, { 'public-speech': 'granted' })
+
 const r1 = await post('/v1/polls/respond', {
-  pollId, optionId: 'o1', pseudonym: `AlphaTester${stamp % 1000}`,
+  pollId, optionId: 'o1', pseudonym: alpha,
   nonce: a.tokens![0].nonce, signature: a.tokens![0].signature,
 })
 check('a valid token casts a vote', r1.ok === true, r1.reason ?? '')
 
 const replay = await post('/v1/polls/respond', {
-  pollId: `${pollId}_other`, optionId: 'o1', pseudonym: `BetaTester${stamp % 1000}`,
+  pollId: `${pollId}_other`, optionId: 'o1', pseudonym: beta,
   nonce: a.tokens![0].nonce, signature: a.tokens![0].signature,
 })
 check('a spent token cannot be reused', replay.ok === false, replay.reason)
 
 const forged = await post('/v1/polls/respond', {
-  pollId, optionId: 'o2', pseudonym: `BetaTester${stamp % 1000}`,
+  pollId, optionId: 'o2', pseudonym: beta,
   nonce: newNonce(), signature: a.tokens![1].signature,
 })
 check('a forged token is rejected', forged.ok === false, forged.reason)
 
 const changed = await post('/v1/polls/respond', {
-  pollId, optionId: 'o3', pseudonym: `AlphaTester${stamp % 1000}`,
+  pollId, optionId: 'o3', pseudonym: alpha,
   nonce: a.tokens![2].nonce, signature: a.tokens![2].signature,
 })
 check('changing a vote does not cost a second token', changed.ok === true, changed.reason ?? '')
@@ -93,8 +183,8 @@ check('a minor is issued no tokens', (minor.tokens?.length ?? 0) === 0)
 /* ---- the one that matters ---- */
 
 const { DatabaseSync } = await import('node:sqlite')
-const eligDb = new DatabaseSync(process.env.CHOWK_ELIGIBILITY_DB ?? '.data/eligibility.db')
-const voiceDb = new DatabaseSync(process.env.CHOWK_VOICE_DB ?? '.data/voice.db')
+const eligDb = new DatabaseSync(join(DATA, 'eligibility.db'))
+const voiceDb = new DatabaseSync(join(DATA, 'voice.db'))
 
 const eligTables = (eligDb.prepare(
   "SELECT name FROM sqlite_master WHERE type='table'").all() as { name: string }[])
@@ -127,5 +217,76 @@ const spent = eligDb.prepare('PRAGMA table_info(spent)').all() as { name: string
 check('spent tokens carry no timestamp to correlate with issue',
   !spent.some((c) => /at|time|when/i.test(c.name)), spent.map((c) => c.name).join(','))
 
+/* ---- client interoperability ----
+ *
+ * The app blinds tokens in the browser with Web Crypto; the server signs them
+ * with node:crypto. If the two hash a nonce even slightly differently, every
+ * signature verifies as false and voting fails for everybody — silently, and
+ * only in production. So the client's own module is exercised here against the
+ * real issuer rather than a copy of it. */
+
+const client = await import('../../app/src/core/blind.ts')
+
+const issuerRes = await post('/v1/eligibility/verify', { identifier: 'INTEROP-11111111' })
+const issuerKey = (issuerRes as { issuer: { n: string; e: string } }).issuer
+const cn = BigInt('0x' + issuerKey.n)
+const ce = BigInt('0x' + issuerKey.e)
+
+const clientNonce = client.newNonce()
+const clientBlinded = await client.blind(clientNonce, cn, ce)
+const clientSig = await post('/v1/eligibility/tokens', {
+  idHash: (issuerRes as { idHash: string }).idHash,
+  blinded: [clientBlinded.blinded],
+}) as { ok: boolean; signatures: string[] }
+const clientToken = client.unblind(clientSig.signatures[0], clientBlinded.r, cn)
+
+check('the browser hash-to-integer matches the server\'s',
+  await client.hashToInt(clientNonce, cn) === hashToInt(clientNonce, cn))
+check('a token blinded in the client verifies on the server',
+  verifyToken(clientNonce, clientToken, cn, ce))
+
+await post('/v1/voice/claim', { pseudonym: 'InteropKite404' })
+await post('/v1/voice/consent', {
+  pseudonym: 'InteropKite404', decisions: { 'poll-response': 'granted' },
+})
+const interopVote = await post('/v1/polls/respond', {
+  pollId: 'poll_interop', optionId: 'yes',
+  pseudonym: 'InteropKite404', nonce: clientNonce, signature: clientToken,
+}) as { ok: boolean }
+check('a vote carrying a client-issued token is accepted', interopVote.ok)
+
+/* ---- idempotent posts ---- */
+
+const postId = 'p_interop_retry'
+await post('/v1/voice/consent', {
+  pseudonym: 'InteropKite404', decisions: { 'public-speech': 'granted' },
+})
+const firstSend = await post('/v1/posts',
+  { id: postId, topicId: 't_interop', pseudonym: 'InteropKite404', text: 'once' }) as { ok: boolean }
+const retrySend = await post('/v1/posts',
+  { id: postId, topicId: 't_interop', pseudonym: 'InteropKite404', text: 'once' }) as { ok: boolean }
+const interopPosts = await get('/v1/posts?topic=t_interop') as { posts: { id: string }[] }
+// Both halves matter. One row alone would also be what a retry that errored
+// looks like, and a client cannot tell "already have it" from "server broke".
+check('a retried post is answered, not errored', firstSend.ok && retrySend.ok,
+  `${firstSend.ok} then ${retrySend.ok}`)
+check('a retried post is one post, not two', interopPosts.posts.length === 1,
+  `${interopPosts.posts.length} row(s)`)
+
+await post('/v1/voice/claim', { pseudonym: 'InteropOther77' })
+await post('/v1/voice/consent', {
+  pseudonym: 'InteropOther77', decisions: { 'public-speech': 'granted' },
+})
+const stolen = await post('/v1/posts', {
+  id: postId, topicId: 't_interop', pseudonym: 'InteropOther77', text: 'shadow',
+}) as { ok: boolean; id: string }
+check('an id aimed at somebody else\'s post gets a new one instead',
+  stolen.ok && stolen.id !== postId, stolen.id)
+
 console.log(`\n${failures === 0 ? '✓ all passed' : `✗ ${failures} failed`}\n`)
-process.exit(failures === 0 ? 1 * 0 : 1)
+
+eligDb.close()
+voiceDb.close()
+server.kill()
+rmSync(DATA, { recursive: true, force: true })
+process.exit(failures === 0 ? 0 : 1)

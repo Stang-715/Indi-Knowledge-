@@ -1,6 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App'
+import { startSync } from './core/sync'
 /* Order matters. The legacy civic screens' stylesheet loads first; the Chowk
    system loads after it and deliberately wins the tokens and controls the two
    share (--ink, --text-scale, .btn, .chip, .switch, body's ground). Chowk is
@@ -26,3 +27,9 @@ if ('serviceWorker' in navigator && import.meta.env.PROD && SHIPS_SERVICE_WORKER
     navigator.serviceWorker.register(`${import.meta.env.BASE_URL}sw.js`).catch(() => {})
   })
 }
+
+/* The write queue. Started here rather than inside a screen so that a vote cast
+   on one surface still reaches the server if the citizen navigates away, closes
+   a sheet, or leaves the app on a dead connection and opens it again on a live
+   one. Nothing renders from this; it only drains what is already recorded. */
+startSync()
