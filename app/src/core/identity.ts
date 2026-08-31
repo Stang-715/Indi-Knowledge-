@@ -17,6 +17,7 @@
 import { clearNamespace, dumpNamespace, read, write } from './storage'
 import { apiPost } from './api'
 import { blind, newNonce, unblind, verifyToken } from './blind'
+import { forgetVoiceKey } from './voicekey'
 
 /* ------------------------------------------------------------------ *
  * Layer 1 — eligibility. Used once, at onboarding. Never at speech time.
@@ -331,6 +332,9 @@ export function eraseEverything(): void {
   clearNamespace('voice')
   clearNamespace('prefs')
   clearNamespace('responses')
+  // The signing key is not in localStorage and would otherwise outlive the
+  // account it belongs to.
+  void forgetVoiceKey()
 }
 
 /**

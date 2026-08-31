@@ -373,17 +373,63 @@ the client half of G-4-04.
 **Verify:** a notice published on one device appears on another, and
 `pollAggregate` reports the server's numbers with no seeded remainder.
 
-### G-4-08 · A pseudonym is a claim, not a credential
-**Severity:** blocker before any deployment
-The server accepts any write from any name it has heard of. Nothing proves the
-device sending it is the device that claimed it, so one citizen can post and
-vote as another simply by using their pseudonym — and the client cannot tell a
-genuine name collision from its own retry (see G-4-01).
-**Do:** have the device generate a keypair when it chooses a pseudonym, register
-the public key with the claim, and sign every write. The key belongs to the
-voice layer only and must never touch the eligibility layer.
-**Verify:** a write signed by the wrong key is rejected, and a second claim of a
-held name fails against the key rather than against the name.
+### G-4-08 · A pseudonym is a claim, not a credential — CLOSED
+**Severity:** was blocker before any deployment · **closed** by
+`app/src/core/voicekey.ts`, the shared canonical encoder in
+`core/canonical.ts` / `server/src/canonical.ts`, and the signature gate in
+`server/src/http.ts`.
+The device generates an ECDSA P-256 key when the citizen chooses a pseudonym,
+registers the public half with the claim, and signs every write under that
+name. The private key is non-extractable and lives in IndexedDB: script running
+in the page can sign while it is running and cannot walk away with the
+identity. It belongs to the voice layer alone and never touches eligibility.
+
+The route is part of what is signed, so a signature cannot be lifted from one
+write onto another, and `at` is inside the signed payload and checked against a
+15-minute window, so a captured request cannot be replayed later. Within that
+window replay is harmless: every signed write is an upsert or an
+insert-if-absent, deliberately.
+
+Claiming is now idempotent for the key that holds the name, which also resolves
+the ambiguity G-4-01 had to work around — a refusal means somebody else holds
+it, and the onboarding screen says so while the citizen is still looking at the
+field rather than leaving them with a queue that can never send.
+
+`seen` remains unsigned, and must: it carries no pseudonym at all, because a
+reach count must never become a per-citizen read receipt. The server constraint
+check names it as the single exception and fails any other pseudonym-scoped
+write that stops verifying a signature.
+
+**Verified:** 11 server assertions (unsigned, wrong-key, lifted-route, stale,
+repeat claim, collision, encoder parity) and 5 in the browser, each proven to
+fail when the gate is removed.
+
+### G-4-09 · A pseudonym change strands anything still queued
+**Severity:** minor
+A write is signed by the key that holds the name, and changing pseudonym makes
+a new key. Anything still in the queue from the old name can no longer be
+signed for, and sending it under the new one would put words in the new name's
+mouth — so it is refused with `pseudonym-changed` and dropped. Nothing tells
+the citizen that happened.
+The window is small (the queue drains in seconds, and a change is on a 30-day
+cooldown) but it is not nothing: a post written on a train, followed by a
+rename before the connection returns, is lost silently.
+**Do:** flush before a rename is committed, and if anything cannot be sent, say
+what it was and let the citizen decide.
+**Verify:** a rename with a pending write either sends it first or reports it.
+
+### G-4-10 · A lost device is a lost pseudonym
+**Severity:** major
+Whoever holds the phone holds the signing key, and there is no recovery path:
+no second factor, no way to move a pseudonym to a new device, and no way to
+revoke a key that has been taken. The remedy today is to claim a new name and
+lose the history attached to the old one.
+Recovery is genuinely hard here — anything that lets a citizen prove ownership
+of a pseudonym to the server risks becoming the join the architecture exists to
+prevent. An exportable key the citizen keeps themself is the shape that does
+not.
+**Verify:** a pseudonym can be moved to a new device by the citizen alone, with
+nothing about the transfer visible to the server beyond a key rotation.
 ---
 
 ## Cross-cutting
@@ -502,8 +548,9 @@ online and offline — with no component file changed. Three suites cover it:
   retries, and a write refused after consent was withdrawn.
 - `server/scripts/check-server-constraints.mjs` — the architectural rules.
 
-What Phase 4 leaves behind is G-4-02 through G-4-05, G-4-07 and G-4-08. Two of
-those are blockers before anything is deployed to real people: there is no
-transport security (G-4-05), and a pseudonym is a claim rather than a credential
-(G-4-08). Neither is a matter of hardening the current design; both need work
-that should be planned rather than bolted on.
+What Phase 4 leaves behind is G-4-02 through G-4-05, G-4-07, and G-4-09 and
+G-4-10, which the credential work itself opened. One blocker remains before
+anything is deployed to real people: there is no transport security (G-4-05).
+G-4-10 — a lost device is a lost pseudonym — is the one that needs design
+rather than implementation, because every obvious recovery mechanism risks
+becoming the join the architecture exists to prevent.

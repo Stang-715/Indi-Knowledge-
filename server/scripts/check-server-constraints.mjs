@@ -132,8 +132,45 @@ if (eligFile && /CREATE TABLE IF NOT EXISTS spent[\s\S]*?\)/.test(eligFile.raw))
   }
 }
 
+/* 7. Every write that speaks under a pseudonym must be signed.
+ *
+ * A name is printed next to every post, so it cannot also be the proof of who
+ * is speaking. A route that takes a pseudonym and writes without checking a
+ * signature accepts that write from anybody who can type the name.
+ *
+ * `seen` is the one deliberate exception: it carries no pseudonym at all,
+ * because a reach count must never become a per-citizen read receipt. It is
+ * listed here by name so that dropping the signature from a route that does
+ * name a pseudonym cannot pass by being quietly added to an exception list. */
+const UNSIGNED_BY_DESIGN = new Set(['POST /v1/notices/seen'])
+if (http) {
+  const routeBlocks = http.raw.split(/\n  '(?=POST |GET )/).slice(1)
+  for (const block of routeBlocks) {
+    const key = block.slice(0, block.indexOf("'"))
+    if (!key.startsWith('POST ') || UNSIGNED_BY_DESIGN.has(key)) continue
+    /* Comments and string literals are stripped before the test. The first
+       version scanned the raw block and accused the two eligibility routes,
+       which mention a pseudonym only to say they have never seen one. */
+    const body = block
+      .replace(/\/\*[\s\S]*?\*\//g, ' ')
+      .replace(/\/\/[^\n]*/g, ' ')
+      .replace(/'(?:[^'\\\n]|\\.)*'/g, "''")
+      .replace(/"(?:[^"\\\n]|\\.)*"/g, '""')
+      .replace(/`(?:[^`\\]|\\.)*`/g, '``')
+    // Only routes that act on a pseudonym; the eligibility routes have none.
+    if (!/\bpseudonym\b/.test(body)) continue
+    if (!/signedBy\(|checkSignature\(/.test(body)) {
+      add('credential', `http.ts ${key}`,
+        'writes under a pseudonym without verifying the signature of the key that ' +
+        'claimed it. Without that check the name is a claim anyone can make, not a ' +
+        'credential — see G-4-08.')
+    }
+  }
+}
+
 const RULES = {
   split: 'The two identity layers must not meet',
+  credential: 'A pseudonym is proved by a key, not by knowing the name',
   schema: 'Neither store may carry the other side’s columns',
   audit: 'The audit trail is append-only',
   network: 'No IP address is read, logged or stored',

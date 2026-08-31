@@ -1,6 +1,7 @@
 import { read, write } from './storage'
 import { apiPost, online } from './api'
 import { getPseudonym, takeToken } from './identity'
+import { forgetVoiceKey, publicKey, sign } from './voicekey'
 
 /**
  * The transport.
@@ -44,6 +45,15 @@ export interface Op {
   body: Record<string, unknown>
   /** Attempts made. Used to back off, never to drop silently. */
   tries: number
+  /**
+   * The pseudonym this was written under, when there was one.
+   *
+   * A write is signed by the key that holds the name, and changing pseudonym
+   * generates a new key. Anything still queued from the old name can no longer
+   * be signed for, and sending it under the new one would put words in the new
+   * name's mouth. So it is refused rather than re-attributed.
+   */
+  as: string | null
 }
 
 const QUEUE = 'queue'
@@ -83,9 +93,19 @@ const ORDER: Record<OpKind, number> = {
  * is malformed, or the citizen is not entitled to make it. Retrying these
  * forever would hide them; they are surfaced instead.
  */
+/**
+ * Writes that carry no pseudonym at all.
+ *
+ * A reach count is deliberately anonymous — there is no per-citizen read
+ * receipt anywhere in this system — so `seen` is sent with nothing identifying
+ * on it. It cannot be signed for the same reason, and does not need to be:
+ * there is no name for anybody to write under.
+ */
+const ANONYMOUS = new Set<OpKind>(['seen'])
+
 const TERMINAL = new Set([
   'invalid', 'incomplete', 'too-long', 'bad-token', 'bad-batch',
-  'not-verified', 'not-adult', 'exhausted', 'taken',
+  'not-verified', 'not-adult', 'exhausted', 'taken', 'bad-signature',
 ])
 
 export function enqueue(kind: OpKind, key: string, body: Record<string, unknown>): void {
@@ -101,7 +121,7 @@ export function enqueue(kind: OpKind, key: string, body: Record<string, unknown>
 
   kept.push({
     id: `op_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 7)}`,
-    kind, key, body, at: Date.now(), tries: 0,
+    kind, key, body, at: Date.now(), tries: 0, as: getPseudonym(),
   })
   setQueue(kept)
 }
@@ -130,23 +150,56 @@ const ROUTE: Record<OpKind, string> = {
  */
 const CLAIM_KEY = 'claim'
 
-interface ClaimState { name: string; state: 'claimed' | 'existed' }
+interface ClaimState { name: string; state: ClaimOutcome }
 
 export function claimState(): ClaimState | null {
   return read<ClaimState | null>('responses', CLAIM_KEY, null)
 }
 
-async function ensureRegistered(pseudonym: string): Promise<boolean> {
-  if (claimState()?.name === pseudonym) return true
+export type ClaimOutcome = 'held' | 'collision' | 'unreachable'
+
+/**
+ * Registers a name against this device's key.
+ *
+ * Called when the citizen picks a pseudonym, so a name somebody else holds is
+ * refused while they are still looking at the field, and again before every
+ * flush, so a name claimed offline is registered as soon as there is a
+ * connection.
+ */
+export async function claimName(pseudonym: string): Promise<ClaimOutcome> {
+  const held = claimState()
+  if (held?.name === pseudonym) return held.state
+
+  const key = await publicKey(pseudonym)
+  if (!key) return 'unreachable'   // no key store; nothing can be signed, so nothing is sent
+
   try {
-    const res = await apiPost<{ ok?: boolean }>('/v1/voice/claim', { pseudonym })
-    write('responses', CLAIM_KEY, {
-      name: pseudonym, state: res.ok ? 'claimed' : 'existed',
-    })
-    return true
+    const payload = { pseudonym, publicKey: key, at: Date.now() }
+    const sig = await sign(pseudonym, '/v1/voice/claim', payload)
+    if (!sig) return 'unreachable'
+    const res = await apiPost<{ ok?: boolean }>('/v1/voice/claim', { ...payload, sig })
+
+    // The claim is idempotent for the key that holds the name, so a refusal now
+    // means what it says: somebody else has it. That is a real collision and
+    // the citizen has to choose again — sending the queue under a name this
+    // device cannot sign for would only produce a wall of rejected writes.
+    const state: ClaimOutcome = res.ok ? 'held' : 'collision'
+    write('responses', CLAIM_KEY, { name: pseudonym, state })
+    // A key for a name this device does not hold is of no use to anybody.
+    if (state === 'collision') void forgetVoiceKey(pseudonym)
+    return state
   } catch {
-    return false   // unreachable; the queue keeps
+    return 'unreachable'   // the queue keeps
   }
+}
+
+async function ensureRegistered(pseudonym: string): Promise<boolean> {
+  return (await claimName(pseudonym)) === 'held'
+}
+
+/** Whether the chosen pseudonym turned out to be somebody else's (G-4-09 surfaces this). */
+export function pseudonymCollides(): boolean {
+  return claimState()?.state === 'collision'
 }
 
 export interface FlushResult {
@@ -198,7 +251,15 @@ async function run(): Promise<FlushResult> {
   const ordered = [...ops].sort((a, b) => ORDER[a.kind] - ORDER[b.kind] || a.at - b.at)
 
   for (const op of ordered) {
-    const body: Record<string, unknown> = { pseudonym, ...op.body }
+    if (op.as && op.as !== pseudonym) {
+      refused.push({ op, reason: 'pseudonym-changed' })
+      continue
+    }
+    const path = ROUTE[op.kind]
+    const anonymous = ANONYMOUS.has(op.kind)
+    const body: Record<string, unknown> = anonymous
+      ? { ...op.body }
+      : { pseudonym, at: Date.now(), ...op.body }
 
     /* A vote carries an eligibility token as well as a pseudonym. The token is
        a blind signature, so presenting the two together tells the server that
@@ -214,8 +275,19 @@ async function run(): Promise<FlushResult> {
       body.signature = token.signature
     }
 
+    /* Signed last, over everything the write carries, so the server can check
+       that this pseudonym's key stands behind every field of it. */
+    if (!anonymous) {
+      const sig = await sign(pseudonym, path, body)
+      if (!sig) {
+        refused.push({ op, reason: 'no-key' })
+        continue
+      }
+      body.sig = sig
+    }
+
     try {
-      const json = await apiPost<{ ok?: boolean; reason?: string }>(ROUTE[op.kind], body)
+      const json = await apiPost<{ ok?: boolean; reason?: string }>(path, body)
       if (json.ok) { sent += 1; continue }
 
       const reason = json.reason ?? 'refused'

@@ -2,7 +2,10 @@ import { spawn } from 'node:child_process'
 import { mkdtempSync, rmSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
+import { webcrypto } from 'node:crypto'
 import { blind, unblind, newNonce, verifyToken, hashToInt } from '../src/blind.ts'
+import { toSign } from '../src/canonical.ts'
+import { toSign as clientToSign } from '../../app/src/core/canonical.ts'
 
 /**
  * End-to-end proof that the server cannot join the two identity layers.
@@ -67,6 +70,52 @@ const post = async (path: string, body: unknown) =>
 
 const get = async (path: string) => (await fetch(API + path)).json()
 
+/* ---------------------------- signing devices ----------------------------
+ *
+ * A pseudonym is a credential now, so the tests need devices rather than bare
+ * names. Each holds an ECDSA key and signs its writes exactly as the client
+ * does — through the client's own canonical encoder, so a disagreement between
+ * the two shows up here rather than in production.
+ */
+
+interface Device {
+  publicKey: Record<string, unknown>
+  sign: (path: string, payload: Record<string, unknown>) => Promise<string>
+}
+
+const devices = new Map<string, Device>()
+
+async function newDevice(pseudonym?: string): Promise<Device> {
+  const pair = await webcrypto.subtle.generateKey(
+    { name: 'ECDSA', namedCurve: 'P-256' }, true, ['sign', 'verify'],
+  )
+  const jwk = await webcrypto.subtle.exportKey('jwk', pair.publicKey)
+  const device: Device = {
+    publicKey: { kty: jwk.kty, crv: jwk.crv, x: jwk.x, y: jwk.y },
+    sign: async (path, payload) => Buffer.from(await webcrypto.subtle.sign(
+      { name: 'ECDSA', hash: 'SHA-256' }, pair.privateKey,
+      Buffer.from(clientToSign(path, payload)),
+    )).toString('hex'),
+  }
+  if (pseudonym) devices.set(pseudonym, device)
+  return device
+}
+
+async function claim(pseudonym: string, device: Device) {
+  const payload = { pseudonym, publicKey: device.publicKey, at: Date.now() }
+  return post('/v1/voice/claim', {
+    ...payload, sig: await device.sign('/v1/voice/claim', payload),
+  })
+}
+
+/** A write signed by the device that holds the pseudonym it names. */
+async function signedPost(path: string, body: Record<string, unknown>) {
+  const device = devices.get(String(body.pseudonym))
+  if (!device) throw new Error(`no device for ${body.pseudonym}`)
+  const payload = { at: Date.now(), ...body }
+  return post(path, { ...payload, sig: await device.sign(path, payload) })
+}
+
 /** One citizen: verify, draw unlinkable tokens, claim a pseudonym, vote. */
 async function citizen(identifier: string, pseudonym: string) {
   const v = await post('/v1/eligibility/verify', { identifier })
@@ -84,13 +133,13 @@ async function citizen(identifier: string, pseudonym: string) {
     ? blinds.map((b, i) => ({ nonce: b.nonce, signature: unblind(signed.signatures[i], b.r, n) }))
     : []
 
-  await post('/v1/voice/claim', { pseudonym })
+  await claim(pseudonym, await newDevice(pseudonym))
   return { verify: v, tokens, n, e }
 }
 
 /** Records consent decisions against a pseudonym. */
 const consent = (pseudonym: string, decisions: Record<string, string>) =>
-  post('/v1/voice/consent', { pseudonym, decisions })
+  signedPost('/v1/voice/consent', { pseudonym, decisions })
 
 console.log('\nChowk API — end to end\n')
 
@@ -110,14 +159,14 @@ const beta = `BetaTester${stamp % 1000}`
 
 const pollId = `poll_test_${stamp}`
 
-const beforeConsent = await post('/v1/polls/respond', {
+const beforeConsent = await signedPost('/v1/polls/respond', {
   pollId, optionId: 'o1', pseudonym: alpha,
   nonce: a.tokens![3].nonce, signature: a.tokens![3].signature,
 })
 check('a vote without recorded consent is refused',
   beforeConsent.ok === false && beforeConsent.reason === 'no-consent', beforeConsent.reason)
 
-const stillUnspent = await post('/v1/polls/respond', {
+const stillUnspent = await signedPost('/v1/polls/respond', {
   pollId, optionId: 'o1', pseudonym: alpha,
   nonce: a.tokens![3].nonce, signature: a.tokens![3].signature,
 })
@@ -127,45 +176,45 @@ check('refusing consent did not burn the token',
 await consent(alpha, { 'poll-response': 'granted', 'public-speech': 'granted' })
 await consent(beta, { 'poll-response': 'granted', 'public-speech': 'refused' })
 
-const speechRefused = await post('/v1/posts', {
+const speechRefused = await signedPost('/v1/posts', {
   topicId: 'top_test', pseudonym: beta, text: 'This should not be stored.', stance: 'mixed',
 })
 check('a post from a pseudonym that refused speech is rejected',
   speechRefused.ok === false && speechRefused.reason === 'no-consent', speechRefused.reason)
 
-const speechAllowed = await post('/v1/posts', {
+const speechAllowed = await signedPost('/v1/posts', {
   topicId: 'top_test', pseudonym: alpha, text: 'This one is consented to.', stance: 'support',
 })
 check('a post from a pseudonym that granted speech is stored', speechAllowed.ok === true)
 
 // Withdrawal must take effect immediately, through the same mechanism.
 await consent(alpha, { 'public-speech': 'refused' })
-const afterWithdrawal = await post('/v1/posts', {
+const afterWithdrawal = await signedPost('/v1/posts', {
   topicId: 'top_test', pseudonym: alpha, text: 'After withdrawing.', stance: 'support',
 })
 check('withdrawing consent blocks the next write immediately',
   afterWithdrawal.ok === false && afterWithdrawal.reason === 'no-consent', afterWithdrawal.reason)
 await consent(alpha, { 'public-speech': 'granted' })
 
-const r1 = await post('/v1/polls/respond', {
+const r1 = await signedPost('/v1/polls/respond', {
   pollId, optionId: 'o1', pseudonym: alpha,
   nonce: a.tokens![0].nonce, signature: a.tokens![0].signature,
 })
 check('a valid token casts a vote', r1.ok === true, r1.reason ?? '')
 
-const replay = await post('/v1/polls/respond', {
+const replay = await signedPost('/v1/polls/respond', {
   pollId: `${pollId}_other`, optionId: 'o1', pseudonym: beta,
   nonce: a.tokens![0].nonce, signature: a.tokens![0].signature,
 })
 check('a spent token cannot be reused', replay.ok === false, replay.reason)
 
-const forged = await post('/v1/polls/respond', {
+const forged = await signedPost('/v1/polls/respond', {
   pollId, optionId: 'o2', pseudonym: beta,
   nonce: newNonce(), signature: a.tokens![1].signature,
 })
 check('a forged token is rejected', forged.ok === false, forged.reason)
 
-const changed = await post('/v1/polls/respond', {
+const changed = await signedPost('/v1/polls/respond', {
   pollId, optionId: 'o3', pseudonym: alpha,
   nonce: a.tokens![2].nonce, signature: a.tokens![2].signature,
 })
@@ -245,11 +294,11 @@ check('the browser hash-to-integer matches the server\'s',
 check('a token blinded in the client verifies on the server',
   verifyToken(clientNonce, clientToken, cn, ce))
 
-await post('/v1/voice/claim', { pseudonym: 'InteropKite404' })
-await post('/v1/voice/consent', {
+await claim('InteropKite404', await newDevice('InteropKite404'))
+await signedPost('/v1/voice/consent', {
   pseudonym: 'InteropKite404', decisions: { 'poll-response': 'granted' },
 })
-const interopVote = await post('/v1/polls/respond', {
+const interopVote = await signedPost('/v1/polls/respond', {
   pollId: 'poll_interop', optionId: 'yes',
   pseudonym: 'InteropKite404', nonce: clientNonce, signature: clientToken,
 }) as { ok: boolean }
@@ -258,12 +307,12 @@ check('a vote carrying a client-issued token is accepted', interopVote.ok)
 /* ---- idempotent posts ---- */
 
 const postId = 'p_interop_retry'
-await post('/v1/voice/consent', {
+await signedPost('/v1/voice/consent', {
   pseudonym: 'InteropKite404', decisions: { 'public-speech': 'granted' },
 })
-const firstSend = await post('/v1/posts',
+const firstSend = await signedPost('/v1/posts',
   { id: postId, topicId: 't_interop', pseudonym: 'InteropKite404', text: 'once' }) as { ok: boolean }
-const retrySend = await post('/v1/posts',
+const retrySend = await signedPost('/v1/posts',
   { id: postId, topicId: 't_interop', pseudonym: 'InteropKite404', text: 'once' }) as { ok: boolean }
 const interopPosts = await get('/v1/posts?topic=t_interop') as { posts: { id: string }[] }
 // Both halves matter. One row alone would also be what a retry that errored
@@ -273,15 +322,66 @@ check('a retried post is answered, not errored', firstSend.ok && retrySend.ok,
 check('a retried post is one post, not two', interopPosts.posts.length === 1,
   `${interopPosts.posts.length} row(s)`)
 
-await post('/v1/voice/claim', { pseudonym: 'InteropOther77' })
-await post('/v1/voice/consent', {
+await claim('InteropOther77', await newDevice('InteropOther77'))
+await signedPost('/v1/voice/consent', {
   pseudonym: 'InteropOther77', decisions: { 'public-speech': 'granted' },
 })
-const stolen = await post('/v1/posts', {
+const stolen = await signedPost('/v1/posts', {
   id: postId, topicId: 't_interop', pseudonym: 'InteropOther77', text: 'shadow',
 }) as { ok: boolean; id: string }
 check('an id aimed at somebody else\'s post gets a new one instead',
   stolen.ok && stolen.id !== postId, stolen.id)
+
+/* ---- a pseudonym is a credential, not a claim (G-4-08) ---- */
+
+check('the client and server canonical encoders agree',
+  toSign('/v1/posts', { z: 1, a: [2, { c: 'ऐ', b: null }], at: 7 })
+  === clientToSign('/v1/posts', { at: 7, a: [2, { b: null, c: 'ऐ' }], z: 1 }))
+
+const impersonator = await newDevice()
+const kite = devices.get('InteropKite404')!
+const topicId = 't_credential'
+
+const unsigned = await post('/v1/posts',
+  { topicId, pseudonym: 'InteropKite404', text: 'no signature', at: Date.now() })
+check('an unsigned write is rejected',
+  unsigned.ok === false && unsigned.reason === 'bad-signature', unsigned.reason)
+
+const wrongKeyPayload = { topicId, pseudonym: 'InteropKite404', text: 'not mine', at: Date.now() }
+const wrongKey = await post('/v1/posts', {
+  ...wrongKeyPayload, sig: await impersonator.sign('/v1/posts', wrongKeyPayload),
+})
+check('a write signed by the wrong key is rejected',
+  wrongKey.ok === false && wrongKey.reason === 'bad-signature', wrongKey.reason)
+
+// The route is inside what is signed, so a valid signature cannot be moved.
+const liftedPayload = { topicId, pseudonym: 'InteropKite404', text: 'lifted', at: Date.now() }
+const lifted = await post('/v1/posts', {
+  ...liftedPayload, sig: await kite.sign('/v1/reactions', liftedPayload),
+})
+check('a signature lifted from another route is rejected',
+  lifted.ok === false && lifted.reason === 'bad-signature', lifted.reason)
+
+const stalePayload = {
+  topicId, pseudonym: 'InteropKite404', text: 'yesterday',
+  at: Date.now() - 24 * 60 * 60 * 1000,
+}
+const stale = await post('/v1/posts', {
+  ...stalePayload, sig: await kite.sign('/v1/posts', stalePayload),
+})
+check('a signature replayed outside the freshness window is rejected',
+  stale.ok === false && stale.reason === 'stale', stale.reason)
+
+const rows = await get(`/v1/posts?topic=${topicId}`) as { posts: unknown[] }
+check('none of the rejected writes were stored', rows.posts.length === 0,
+  `${rows.posts.length} row(s)`)
+
+const reclaim = await claim('InteropKite404', kite)
+check('a repeat claim from the holding key is accepted', reclaim.ok === true, reclaim.reason)
+
+const collision = await claim('InteropKite404', impersonator)
+check('a claim on a held name from another key is refused',
+  collision.ok === false && collision.reason === 'taken', collision.reason)
 
 console.log(`\n${failures === 0 ? '✓ all passed' : `✗ ${failures} failed`}\n`)
 

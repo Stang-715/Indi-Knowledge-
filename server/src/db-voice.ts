@@ -23,9 +23,13 @@ const db = new DatabaseSync(PATH)
 db.exec(`
   PRAGMA journal_mode = WAL;
 
+  -- The public half of the key the device signs its writes with. A pseudonym
+  -- with no key is a name anybody could use; a pseudonym with one is a name
+  -- only the device that claimed it can write under.
   CREATE TABLE IF NOT EXISTS pseudonym (
     name       TEXT PRIMARY KEY,
-    created_at INTEGER NOT NULL
+    created_at INTEGER NOT NULL,
+    public_key TEXT
   );
 
   CREATE TABLE IF NOT EXISTS response (
@@ -82,14 +86,43 @@ db.exec(`
   CREATE INDEX IF NOT EXISTS rate_bucket ON rate (bucket, at);
 `)
 
-export function claimPseudonym(name: string): boolean {
-  try {
-    db.prepare('INSERT INTO pseudonym (name, created_at) VALUES (?, ?)')
-      .run(name, Date.now())
+/**
+ * Claims a name for a key.
+ *
+ * Idempotent for the device that already holds it — a retried claim from the
+ * same key is the same claim, which is what lets a client tell its own repeat
+ * from somebody else's collision. A claim on a held name with a different key
+ * is refused, and nothing about the holder is disclosed by the refusal.
+ */
+const pseudonymColumns = (db.prepare('PRAGMA table_info(pseudonym)').all() as { name: string }[])
+  .map((c) => c.name)
+if (!pseudonymColumns.includes('public_key')) {
+  db.exec('ALTER TABLE pseudonym ADD COLUMN public_key TEXT')
+}
+
+export function claimPseudonym(name: string, publicKey: string): boolean {
+  const held = db.prepare('SELECT public_key FROM pseudonym WHERE name = ?').get(name) as
+    { public_key: string | null } | undefined
+
+  if (!held) {
+    db.prepare('INSERT INTO pseudonym (name, created_at, public_key) VALUES (?, ?, ?)')
+      .run(name, Date.now(), publicKey)
     return true
-  } catch {
-    return false   // taken
   }
+  // A name claimed before keys existed binds to the first key that asks. There
+  // is no such deployment, and leaving the row unusable would be worse.
+  if (held.public_key === null) {
+    db.prepare('UPDATE pseudonym SET public_key = ? WHERE name = ?').run(publicKey, name)
+    return true
+  }
+  return held.public_key === publicKey
+}
+
+/** The key a write from this name must be signed with, if the name has one. */
+export function publicKeyFor(name: string): string | undefined {
+  const row = db.prepare('SELECT public_key FROM pseudonym WHERE name = ?').get(name) as
+    { public_key: string | null } | undefined
+  return row?.public_key ?? undefined
 }
 
 export function pseudonymExists(name: string): boolean {

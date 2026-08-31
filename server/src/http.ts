@@ -1,5 +1,6 @@
 import { createServer, type IncomingMessage, type ServerResponse } from 'node:http'
-import { createHash } from 'node:crypto'
+import { createHash, createPublicKey, verify as verifySig } from 'node:crypto'
+import { toSign } from './canonical.ts'
 import * as elig from './db-eligibility.ts'
 import * as voice from './db-voice.ts'
 import * as audit from './db-audit.ts'
@@ -98,6 +99,58 @@ const GATED = {
   'public-speech': 'posting or reacting',
 } as const
 
+/* ----------------------------- signed writes ----------------------------- */
+
+/**
+ * A pseudonym is a credential, not a claim.
+ *
+ * Every write that speaks under a name is signed by the key that claimed it.
+ * Without this the server accepts a post from anyone who can type somebody
+ * else's pseudonym, and the whole voice layer is a suggestion.
+ *
+ * What is signed is the route and the payload, canonically encoded, so a
+ * signature cannot be lifted from one write onto another. `at` is inside the
+ * payload and is checked for freshness, which is what stops a captured request
+ * being replayed later. Within that window a replay is harmless anyway: every
+ * signed write here is an upsert or an insert-if-absent, deliberately.
+ */
+const FRESHNESS_MS = 15 * 60 * 1000
+
+type SignatureFailure = { ok: false; reason: string }
+
+function checkSignature(
+  path: string, body: Record<string, unknown>, jwk: string | undefined,
+): SignatureFailure | null {
+  if (!jwk) return { ok: false, reason: 'unregistered-key' }
+
+  const at = Number(body.at ?? 0)
+  if (!Number.isFinite(at) || Math.abs(Date.now() - at) > FRESHNESS_MS) {
+    return { ok: false, reason: 'stale' }
+  }
+  const sig = String(body.sig ?? '')
+  if (!/^[0-9a-f]{8,256}$/.test(sig)) return { ok: false, reason: 'bad-signature' }
+
+  try {
+    const key = createPublicKey({ key: JSON.parse(jwk), format: 'jwk' })
+    const ok = verifySig(
+      'sha256',
+      Buffer.from(toSign(path, body)),
+      { key, dsaEncoding: 'ieee-p1363' },
+      Buffer.from(sig, 'hex'),
+    )
+    return ok ? null : { ok: false, reason: 'bad-signature' }
+  } catch {
+    return { ok: false, reason: 'bad-signature' }
+  }
+}
+
+/** The signature check for a write from an already-registered pseudonym. */
+function signedBy(path: string, body: Record<string, unknown>): SignatureFailure | null {
+  const pseudonym = String(body.pseudonym ?? '')
+  if (!voice.pseudonymExists(pseudonym)) return { ok: false, reason: 'unknown-pseudonym' }
+  return checkSignature(path, body, voice.publicKeyFor(pseudonym))
+}
+
 /* -------------------------------- routes --------------------------------- */
 
 const routes: Record<string, (body: Record<string, unknown>, url: URL) => unknown> = {
@@ -142,7 +195,19 @@ const routes: Record<string, (body: Record<string, unknown>, url: URL) => unknow
   'POST /v1/voice/claim': (body) => {
     const name = String(body.pseudonym ?? '').trim()
     if (name.length < 4 || name.length > 24) return { ok: false, reason: 'invalid' }
-    return { ok: voice.claimPseudonym(name), reason: 'taken' }
+
+    const key = body.publicKey
+    if (!key || typeof key !== 'object') return { ok: false, reason: 'no-key' }
+    const jwk = JSON.stringify(key)
+
+    // Signed with the key being registered, so a claim proves the claimer holds
+    // the private half rather than merely knowing a public one.
+    const bad = checkSignature('/v1/voice/claim', body, jwk)
+    if (bad) return bad
+
+    return voice.claimPseudonym(name, jwk)
+      ? { ok: true }
+      : { ok: false, reason: 'taken' }
   },
 
   /* --- voting: eligibility token + pseudonym, unlinkable to each other --- */
@@ -152,7 +217,8 @@ const routes: Record<string, (body: Record<string, unknown>, url: URL) => unknow
     if (!pollId || !optionId || !pseudonym || !nonce || !signature) {
       return { ok: false, reason: 'incomplete' }
     }
-    if (!voice.pseudonymExists(pseudonym)) return { ok: false, reason: 'unknown-pseudonym' }
+    const unsigned = signedBy('/v1/polls/respond', body)
+    if (unsigned) return unsigned
     // Consent before eligibility: a refusal should not cost a token to discover.
     if (!voice.hasConsent(pseudonym, 'poll-response', NOTICE_VERSION)) {
       return { ok: false, reason: 'no-consent', purpose: 'poll-response' }
@@ -187,7 +253,8 @@ const routes: Record<string, (body: Record<string, unknown>, url: URL) => unknow
   'POST /v1/posts': (body) => {
     const { topicId, pseudonym, text, stance } = body as Record<string, string>
     if (!topicId || !pseudonym || !text) return { ok: false, reason: 'incomplete' }
-    if (!voice.pseudonymExists(pseudonym)) return { ok: false, reason: 'unknown-pseudonym' }
+    const unsigned = signedBy('/v1/posts', body)
+    if (unsigned) return unsigned
     if (!voice.hasConsent(pseudonym, 'public-speech', NOTICE_VERSION)) {
       return { ok: false, reason: 'no-consent', purpose: 'public-speech' }
     }
@@ -218,7 +285,8 @@ const routes: Record<string, (body: Record<string, unknown>, url: URL) => unknow
 
   'POST /v1/reactions': (body) => {
     const { postId, pseudonym, kind } = body as Record<string, string>
-    if (!voice.pseudonymExists(pseudonym)) return { ok: false, reason: 'unknown-pseudonym' }
+    const unsigned = signedBy('/v1/reactions', body)
+    if (unsigned) return unsigned
     if (!voice.hasConsent(pseudonym, 'public-speech', NOTICE_VERSION)) {
       return { ok: false, reason: 'no-consent', purpose: 'public-speech' }
     }
@@ -231,7 +299,8 @@ const routes: Record<string, (body: Record<string, unknown>, url: URL) => unknow
   'POST /v1/voice/consent': (body) => {
     const pseudonym = String(body.pseudonym ?? '')
     const decisions = body.decisions as Record<string, string> | undefined
-    if (!voice.pseudonymExists(pseudonym)) return { ok: false, reason: 'unknown-pseudonym' }
+    const unsigned = signedBy('/v1/voice/consent', body)
+    if (unsigned) return unsigned
     if (!decisions) return { ok: false, reason: 'incomplete' }
     for (const [purpose, decision] of Object.entries(decisions)) {
       if (decision !== 'granted' && decision !== 'refused') continue

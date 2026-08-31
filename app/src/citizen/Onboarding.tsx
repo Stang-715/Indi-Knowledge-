@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useSession } from '../core/session'
 import { useI18n, LANGUAGES } from '../i18n'
 import { getEligibility, isMinor, suggestPseudonym, validatePseudonym } from '../core/identity'
+import { claimName } from '../core/sync'
 import { LOCALITY_CATALOGUE } from '../data/seed'
 import type { StatedLocality } from '../core/prefs'
 import type { LocaleCode } from '../core/types'
@@ -335,17 +336,34 @@ function PseudonymStep({ onNext }: { onNext: () => void }) {
   const { choosePseudonym } = useSession()
   const [value, setValue] = useState(() => suggestPseudonym())
   const [touched, setTouched] = useState(false)
+  const [claiming, setClaiming] = useState(false)
+  const [taken, setTaken] = useState(false)
 
-  const error = touched ? validatePseudonym(value) : null
+  const error = touched ? (validatePseudonym(value) ?? (taken ? 'taken' : null)) : null
   const messages: Record<string, string> = {
     tooShort: 'At least 4 characters.',
     tooLong: 'At most 24 characters.',
     badChars: 'Letters, numbers, hyphen and underscore only.',
+    taken: 'Somebody already speaks under this name. Try another.',
   }
 
-  const save = () => {
+  /**
+   * The name is registered against this device's signing key before it is kept,
+   * so a collision is answered here rather than discovered later by a queue
+   * that cannot send. Offline the name is kept anyway — the alternative is
+   * refusing to let someone finish setting up because they are on a train —
+   * and the claim goes out with the first flush.
+   */
+  const save = async () => {
     setTouched(true)
+    setTaken(false)
     if (validatePseudonym(value)) return
+
+    setClaiming(true)
+    const outcome = await claimName(value.trim())
+    setClaiming(false)
+
+    if (outcome === 'collision') { setTaken(true); return }
     choosePseudonym(value.trim())
     onNext()
   }
@@ -367,6 +385,7 @@ function PseudonymStep({ onNext }: { onNext: () => void }) {
           onChange={(e) => {
             setValue(e.target.value)
             setTouched(true)
+            setTaken(false)
           }}
           aria-invalid={error ? 'true' : undefined}
           aria-describedby={error ? 'pseuderr' : undefined}
@@ -381,12 +400,17 @@ function PseudonymStep({ onNext }: { onNext: () => void }) {
       <button
         type="button"
         className="btn btn--ghost btn--block"
-        onClick={() => { setValue(suggestPseudonym()); setTouched(false) }}
+        onClick={() => { setValue(suggestPseudonym()); setTouched(false); setTaken(false) }}
       >
         {t('onboard.pseudonym.suggest')}
       </button>
-      <button type="button" className="btn btn--block" onClick={save}>
-        {t('action.continue')}
+      <button
+        type="button"
+        className="btn btn--block"
+        onClick={() => { void save() }}
+        disabled={claiming}
+      >
+        {claiming ? 'Checking…' : t('action.continue')}
       </button>
 
       <PrincipleNote>

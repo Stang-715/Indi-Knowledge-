@@ -20,7 +20,9 @@ import { spawn } from 'node:child_process'
 import { mkdtempSync, rmSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
+import { webcrypto } from 'node:crypto'
 import { chromium } from 'playwright'
+import { toSign } from '../src/core/canonical.ts'
 
 /*
  * Ports are taken fresh, not fixed.
@@ -249,6 +251,99 @@ const afterWithdrawal = await (await fetch(`${API}/v1/posts?topic=${posted.topic
 check('and the refused post is nowhere on the server',
   !afterWithdrawal.posts.some((p) => p.id === 'p_forced_e2e'),
   `${afterWithdrawal.posts.length} post(s)`)
+
+/* --- the pseudonym is a credential, not a claim (G-4-08) --- */
+
+const keyShape = await page.evaluate(async () => {
+  const db = await new Promise((resolve, reject) => {
+    const req = indexedDB.open('chowk-voice-key', 1)
+    req.onsuccess = () => { resolve(req.result) }
+    req.onerror = () => { reject(req.error) }
+  })
+  const held = await new Promise((resolve, reject) => {
+    const req = db.transaction('key').objectStore('key').get('SteadyFerry912')
+    req.onsuccess = () => { resolve(req.result) }
+    req.onerror = () => { reject(req.error) }
+  })
+  return {
+    found: Boolean(held),
+    privateExtractable: held?.privateKey?.extractable ?? null,
+    usages: held?.privateKey?.usages ?? [],
+  }
+})
+check('the signing key is stored under the pseudonym it belongs to', keyShape.found)
+check('and cannot be exported, only used',
+  keyShape.privateExtractable === false && keyShape.usages.includes('sign'),
+  `extractable=${keyShape.privateExtractable}`)
+
+/* Another device, holding its own key, tries to write under the name. This is
+   the attack the whole gap describes: a pseudonym is public, so anyone can
+   type it. */
+const other = await webcrypto.subtle.generateKey(
+  { name: 'ECDSA', namedCurve: 'P-256' }, true, ['sign', 'verify'],
+)
+const forgedPayload = {
+  topicId: posted.topicId, pseudonym: 'SteadyFerry912',
+  text: 'Posted by somebody else.', stance: 'mixed', at: Date.now(),
+}
+const forgedSig = Buffer.from(await webcrypto.subtle.sign(
+  { name: 'ECDSA', hash: 'SHA-256' }, other.privateKey,
+  Buffer.from(toSign('/v1/posts', forgedPayload)),
+)).toString('hex')
+const forged = await (await fetch(`${API}/v1/posts`, {
+  method: 'POST', headers: { 'content-type': 'application/json' },
+  body: JSON.stringify({ ...forgedPayload, sig: forgedSig }),
+})).json()
+check('a write from another device under this name is refused',
+  forged.ok === false && forged.reason === 'bad-signature', forged.reason)
+
+/* And a name somebody else holds cannot be adopted by this device. */
+const takenName = 'HeldElsewhere42'
+const takerPayload = {
+  pseudonym: takenName, at: Date.now(),
+  publicKey: (({ kty, crv, x, y }) => ({ kty, crv, x, y }))(
+    await webcrypto.subtle.exportKey('jwk', other.publicKey),
+  ),
+}
+const taken = await (await fetch(`${API}/v1/voice/claim`, {
+  method: 'POST', headers: { 'content-type': 'application/json' },
+  body: JSON.stringify({
+    ...takerPayload,
+    sig: Buffer.from(await webcrypto.subtle.sign(
+      { name: 'ECDSA', hash: 'SHA-256' }, other.privateKey,
+      Buffer.from(toSign('/v1/voice/claim', takerPayload)),
+    )).toString('hex'),
+  }),
+})).json()
+check('another device holds the name first', taken.ok === true, taken.reason)
+
+const collided = await page.evaluate(async (name) => {
+  const { consent, id, repo, sync } = window.__chowk
+  consent.decide(consent.loadConsent(), 'public-speech', 'granted', 'en')
+  await sync.flush()
+  id.setPseudonym(name)
+  const topic = repo.listTopics()[0]
+  repo.addPost(topic.id, 'Should never be stored.', 'mixed')
+  const result = await sync.flush()
+  const db = await new Promise((resolve, reject) => {
+    const req = indexedDB.open('chowk-voice-key', 1)
+    req.onsuccess = () => { resolve(req.result) }
+    req.onerror = () => { reject(req.error) }
+  })
+  const strayKey = await new Promise((resolve, reject) => {
+    const req = db.transaction('key').objectStore('key').get(name)
+    req.onsuccess = () => { resolve(Boolean(req.result)) }
+    req.onerror = () => { reject(req.error) }
+  })
+  return {
+    collides: sync.pseudonymCollides(), sent: result.sent,
+    kept: sync.pendingCount(), strayKey,
+  }
+}, takenName)
+check('a pseudonym somebody else holds is detected, not written through',
+  collided.collides === true && collided.sent === 0 && collided.kept > 0,
+  `collides=${collided.collides}, sent=${collided.sent}, kept=${collided.kept}`)
+check('and the key made for it is forgotten', collided.strayKey === false)
 
 await browser.close()
 console.log(`\n${failures === 0 ? '✓ the client runs on the API, online and off.' : `✗ ${failures} failed`}\n`)
