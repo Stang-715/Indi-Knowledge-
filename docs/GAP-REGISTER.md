@@ -631,6 +631,21 @@ and a citizen can check the permit from the street.
 
 ## Phase 7 — Surface 4, departmental half
 
+Verified: 94 files against the architectural constraints, including two new
+rules — no module may reach both the pseudonym signing key and a department
+signing key, and neither may the works store grow a citizen column — each proven
+by planting a violation. 47 server assertions and 27 in a real browser, covering
+the chain from enrolment through a blocked approval to a permit the citizen's
+phone verifies for itself. 14 routes at 160% in the pseudo-locale with nothing
+clipped. 1,260 text elements across 14 routes, 2 themes and 3 points in the mesh
+drift, every one meeting WCAG AA against its real composited backdrop.
+
+Contrast found two failures, both the same element: a field hint at the faintest
+ink measured 4.13:1 over the olive part of the works bloom. It is the smallest
+text on the screen and it carries the format of the thing you are about to type,
+so it took the secondary ink instead.
+
+
 The plan marked this phase blocked, and said the block "will not be solved by
 building more screens". That is right, and it is why the work went into the
 credential and the verifier rather than the forms. The exit criterion — *two
