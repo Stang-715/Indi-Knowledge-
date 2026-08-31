@@ -230,6 +230,7 @@
   min-width: 0;
 }
 .bh :where(h1, h2, h3, p, span, a, li, dd, summary) { overflow-wrap: anywhere; }
+.bh .seg button { overflow-wrap: normal; }
 .bh > *,
 .bh__head > *,
 .bh__block > *,

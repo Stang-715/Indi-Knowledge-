@@ -73,6 +73,17 @@ for (const [name, route] of ROUTES) {
     for (const el of document.querySelectorAll('.shell *')) {
       const cs=getComputedStyle(el)
       if (cs.overflowX==='auto'||cs.overflowX==='scroll') continue
+      /* Content inside a scroll container is not clipped, it is scrollable —
+         which is the designed answer for a row of segments that cannot fit a
+         360px screen in a longer language. The first version only exempted the
+         container itself and reported every child of it. */
+      let scroller = el.parentElement, inScroller = false
+      while (scroller && scroller !== document.body) {
+        const pcs = getComputedStyle(scroller)
+        if (pcs.overflowX === 'auto' || pcs.overflowX === 'scroll') { inScroller = true; break }
+        scroller = scroller.parentElement
+      }
+      if (inScroller) continue
       if (el.classList.contains('sr-only')) continue        // clipped by design
       if (cs.position==='fixed') continue                    // dock centres itself
       const r = el.getBoundingClientRect()

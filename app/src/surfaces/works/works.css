@@ -254,6 +254,7 @@
   min-width: 0;
 }
 .wk :where(h1, h2, p, span, a, li, summary) { overflow-wrap: anywhere; }
+.wk .seg button { overflow-wrap: normal; }
 .wk > *,
 .wk__head > *,
 .wk__block > *,
